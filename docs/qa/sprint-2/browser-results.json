@@ -1,0 +1,90 @@
+{
+  "browser": "Microsoft Edge headless (Playwright)",
+  "url": "http://127.0.0.1:4173/",
+  "checks": [
+    {
+      "name": "Enemy activations disable player orders",
+      "status": "pass"
+    },
+    {
+      "name": "Three versus three loads with HP, teams and six initiative entries",
+      "status": "pass"
+    },
+    {
+      "name": "Inspecting another unit never transfers the active turn",
+      "status": "pass"
+    },
+    {
+      "name": "Attack preview and Escape cancellation preserve HP and resources",
+      "status": "pass"
+    },
+    {
+      "name": "Blocked and unreachable movement reject without state changes",
+      "status": "pass"
+    },
+    {
+      "name": "Attack then movement works once each and keeps the current initiative rolls",
+      "status": "pass"
+    },
+    {
+      "name": "Movement then attack also works within one activation",
+      "status": "pass"
+    },
+    {
+      "name": "Keyboard grid, visible focus, Enter and Escape complete the preview flow",
+      "status": "pass"
+    },
+    {
+      "name": "A complete seeded battle reaches victory; defeated enemies leave cells and orders lock",
+      "status": "pass"
+    },
+    {
+      "name": "Restarting the same seed reproduces the complete battle outcome and log",
+      "status": "pass"
+    },
+    {
+      "name": "Waiting through player activations reaches defeat without stalled rounds",
+      "status": "pass"
+    },
+    {
+      "name": "The result screen can restart a playable battle",
+      "status": "pass"
+    },
+    {
+      "name": "Restarting during enemy thinking cancels obsolete scheduled turns",
+      "status": "pass"
+    },
+    {
+      "name": "Intermediate and narrow layouts fit; an attack can be completed on the narrow layout",
+      "status": "pass"
+    },
+    {
+      "name": "Movement trial and camp remain reachable as separate prototypes",
+      "status": "pass"
+    },
+    {
+      "name": "Successful combat and prototype visits emit no JavaScript/console errors or external requests",
+      "status": "pass"
+    },
+    {
+      "name": "Animated movement locks orders and resting animations support pause/resume",
+      "status": "pass"
+    },
+    {
+      "name": "Slow loading gives progress and keeps commands disabled",
+      "status": "pass"
+    },
+    {
+      "name": "Invalid/empty catalogue exposes a retry and recovers combat",
+      "status": "pass"
+    },
+    {
+      "name": "A missing sprite becomes a movable marker; reload recovers it without JS errors",
+      "status": "pass"
+    }
+  ],
+  "consoleErrors": [],
+  "externalRequests": [],
+  "victoryRound": 7,
+  "defeatRound": 5
+}

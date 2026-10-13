@@ -1,6 +1,6 @@
 # Plan de desarrollo por sprints — Pokémon táctico roguelike
 
-Fecha: 13 de octubre de 2026. Versión: 1.2. Estado: sprints 0 y 1 completados técnicamente; sprint 1 pendiente de feedback. Sprint 2 todavía no iniciado.
+Fecha: 13 de octubre de 2026. Versión: 1.3. Estado: sprints 0–2 completados técnicamente; sprint 2 pendiente de feedback. Sprint 3 todavía no iniciado.
 
 Este documento conserva las decisiones del proyecto y organiza entregas pequeñas para construirlo con asistencia de IA. Cada sprint produce algo revisable y termina antes de comenzar el siguiente. El objetivo es un juego de navegador divertido para el portfolio, con pruebas locales primero y una posible publicación posterior en web propia. La viralidad es una aspiración, no un criterio garantizado de éxito.
 
@@ -98,7 +98,7 @@ No se necesita servidor de juego para la primera versión. Cuentas, nube, multij
 
 ## 6. Sprints y criterios de cierre
 
-Sprints 0 y 1 completados; resto pendiente. Los criterios siguientes describen el cierre de cada entrega. Las comprobaciones efectivamente ejecutadas del sprint 0 figuran en [su informe](SPRINT_0.md).
+Sprints 0–2 completados; resto pendiente. Los criterios siguientes describen el cierre de cada entrega. Las comprobaciones ejecutadas figuran en los informes de cada sprint.
 
 ### Sprint 0 — Preparación y recursos mínimos
 
@@ -267,13 +267,14 @@ Actualizar esta tabla al cerrar una entrega. Las columnas se completan con hecho
 | --- | --- | --- | --- | --- |
 | 0 | Completado técnicamente | 0.0.1; rama `codex/sprint-0` | Instalación limpia, tipos y build; 6 pruebas de catálogo; 33 hashes; 12 comprobaciones de navegador | Pendiente de feedback del usuario; siguiente: 1 |
 | 1 | Completado técnicamente | 0.1.0; rama `codex/sprint-1` | 12 pruebas de datos/movimiento; tipos y build; 33 hashes; 18 comprobaciones de navegador | Probar el ensayo en local; siguiente: 2 |
-| 2–9 | Pendientes | — | Ninguna | Iniciar 2 cuando se solicite |
+| 2 | Completado técnicamente | 0.2.0; rama `codex/sprint-2` | 21 pruebas de reglas/datos; tipos y build; 33 hashes; 20 comprobaciones de combate y 18 de regresión | Probar combate 3 contra 3; siguiente: 3 |
+| 3–9 | Pendientes | — | Ninguna | Iniciar 3 cuando se solicite |
 | 10A–10D | Pendientes | — | Ninguna | Ejecutar un bloque por vez |
 | 11–12 | Pendientes | — | Ninguna | Pruebas y publicación posteriores |
 
 Plantilla de cierre: objetivo entregado; archivos o módulos modificados; recursos reutilizados y procedencia; comprobaciones ejecutadas y resultados; prueba manual disponible; feedback; pendientes; actualización de valores provisionales.
 
-Petición sugerida para continuar: **«Empieza únicamente el sprint 2 del PLAN_SPRINTS.md; reutiliza las reglas de movimiento y añade rondas, iniciativa y combate básico».**
+Petición sugerida para continuar: **«Empieza únicamente el sprint 3 del PLAN_SPRINTS.md; conserva el combate y añade identidades, tipos y habilidades».**
 
 ## 9. Historial de entregas
 
@@ -287,3 +288,5 @@ Sprint 0: proyecto en `outputs/pokemon-tactics`, campamento de seis especies, re
 Repositorio: https://github.com/GregorioRuiz98/pokemon-tactics (privado inicialmente). Al terminar cada sprint: actualizar este plan y su informe, ejecutar las comprobaciones pertinentes, revisar el diff, crear un commit, subirlo y verificar el SHA remoto. El usuario ha autorizado este flujo para los siguientes sprints. Consultar AGENTS.md para los detalles. Este archivo es el plan canónico del proyecto.
 
 Sprint 1: tablero 8×8 con obstáculos, maleza, seis unidades fijas, alcance y trayectoria, confirmación/cancelación, presupuestos y orientación. Navegación reutilizada de EasyStar. El campamento continúa en `?view=camp`. Informe: [SPRINT_1.md](SPRINT_1.md). Rama de entrega: `codex/sprint-1`.
+
+Sprint 2: combate 3 contra 3 con cola por velocidad, semilla reproducible, desplazamiento y ataque en ambos órdenes, IA, PS, bajas y resultados. El ensayo sigue en `?view=training`. Informe: [SPRINT_2.md](SPRINT_2.md). Rama de entrega: `codex/sprint-2`.

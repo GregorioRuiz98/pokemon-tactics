@@ -1,7 +1,7 @@
 import * as Phaser from 'phaser';
 import type { PokemonSpecies, AnimationName } from '../data/catalog';
 import { facingFrom, TRAINING_BOARD } from '../rules/movement';
-import type { Unit, Point } from '../rules/movement';
+import type { Unit, Point, Board } from '../rules/movement';
 
 const center = (p: Point) => ({ x: p.x * 64 + 32, y: p.y * 64 + 43 });
 export class BoardScene extends Phaser.Scene {
@@ -19,6 +19,7 @@ export class BoardScene extends Phaser.Scene {
       progress: (value: number) => void;
       ready: (missing: string[]) => void;
     },
+    private readonly board: Board = TRAINING_BOARD,
   ) {
     super('Board');
   }
@@ -39,7 +40,7 @@ export class BoardScene extends Phaser.Scene {
   }
   create(): void {
     const g = this.add.graphics();
-    TRAINING_BOARD.forEach((row, y) =>
+    this.board.forEach((row, y) =>
       row.forEach((tile, x) => {
         const px = x * 64,
           py = y * 64;
@@ -129,6 +130,8 @@ export class BoardScene extends Phaser.Scene {
   sync(units: Unit[]): void {
     this.positions = units;
     if (!this.loaded) return;
+    const visible = new Set(units.map((unit) => unit.id));
+    for (const [id, sprite] of this.sprites) sprite.setVisible(visible.has(id));
     for (const unit of units) {
       const p = center(unit);
       this.sprites
@@ -164,5 +167,22 @@ export class BoardScene extends Phaser.Scene {
         }),
       );
     }
+  }
+  async hit(id: number, instant: boolean): Promise<void> {
+    const sprite = this.sprites.get(id);
+    if (!sprite || instant) return;
+    await new Promise<void>((resolve) =>
+      this.tweens.add({
+        targets: sprite,
+        alpha: 0.3,
+        duration: 90,
+        yoyo: true,
+        repeat: 1,
+        onComplete: () => {
+          sprite.setAlpha(1);
+          resolve();
+        },
+      }),
+    );
   }
 }

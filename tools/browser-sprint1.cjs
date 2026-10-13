@@ -56,7 +56,7 @@ const pass = (name) => {
         String.fromCharCode(65 + x) + (y + 1),
       );
     };
-    await page.goto('http://127.0.0.1:5173/', { waitUntil: 'networkidle' });
+    await page.goto('http://127.0.0.1:5173/?view=training', { waitUntil: 'networkidle' });
     await ready();
     assert.equal(await page.getByRole('gridcell').count(), 64);
     assert.equal(await page.locator('[data-unit]').count(), 6);
@@ -253,7 +253,7 @@ const pass = (name) => {
       reducedMotion: 'reduce',
     });
     const rp = await reduced.newPage();
-    await rp.goto('http://127.0.0.1:5173/', { waitUntil: 'networkidle' });
+    await rp.goto('http://127.0.0.1:5173/?view=training', { waitUntil: 'networkidle' });
     await rp.waitForFunction(
       () =>
         !!document.querySelector('#reset') &&
@@ -282,7 +282,7 @@ const pass = (name) => {
       await new Promise((r) => setTimeout(r, 450));
       await route.continue();
     });
-    await fp.goto('http://127.0.0.1:5173/', { waitUntil: 'domcontentloaded' });
+    await fp.goto('http://127.0.0.1:5173/?view=training', { waitUntil: 'domcontentloaded' });
     await fp.locator('#resource-status').waitFor();
     assert.equal(await fp.locator('#confirm').isEnabled(), false);
     await fp.screenshot({

@@ -22,3 +22,14 @@ Valores de iniciativa, puntos tácticos, estados y duración siguen siendo propu
 - El ensayo permite repartir el presupuesto entre varios desplazamientos hasta reiniciar. El sprint 2 sustituirá este contexto libre por activaciones y rondas.
 - Los sprites y estadísticas del sprint 0 se reutilizan sin nuevas descargas de especies. El terreno se dibuja con primitivas de Phaser. La cuadrícula HTML aporta nombres de casilla, selección y teclado equivalentes al canvas.
 - Playwright 1.64.0 queda como dependencia de desarrollo, con prueba de navegador reproducible. No se incluye en el juego de producción.
+
+## Sprint 2
+
+- Tres aliados fijos (Bulbasaur, Charmander, Squirtle) y tres enemigos (Pikachu, Butterfree, Geodude). Se reutilizan tablero, sprites, estadísticas y EasyStar; no hay nuevos paquetes ni descargas de especies.
+- PRNG local con semilla de texto, sin dependencia adicional. Se sortean velocidad y desempate una vez por unidad al empezar la ronda; ±5 % por defecto, opción ±10 %. La cola no vuelve a sortearse por inspeccionar, mover o atacar.
+- Una acción y un único desplazamiento continuo por activación, en ambos órdenes. El botón terminar renuncia a recursos pendientes. Presupuestos terrestres heredados del ensayo.
+- PS máximos: `round(35 + PS_base / 3)`. Daño básico físico: `max(5, round(12 + ataque_base × 0.18 − defensa_base × 0.10))`, limitado a los PS del objetivo. Precisión fija 100 %. Fórmulas provisionales, sin tabla de tipos ni ataque especial.
+- Alcance 1 para Bulbasaur, Pikachu y Geodude; 2 para Charmander, Squirtle y Butterfree. Distancia Manhattan; las casillas intermedias bloquean disparos y las diagonales cortas requieren ambos lados libres. Estos perfiles básicos se revisarán junto a las identidades del sprint 3.
+- La IA usa las mismas reglas: ataca un objetivo legal, busca un camino a una posición de ataque o espera. Elige por coste, PS e ID, sin consumir tiradas ni mostrar intenciones futuras. La política también permite simulaciones reproducibles en pruebas.
+- Las bajas conservan registro con PS 0, pero dejan ocupación, sprites y turnos pendientes. Victoria/derrota inmediata al caer la última unidad de un bando. Reiniciar invalida el bucle de IA anterior.
+- Se conserva el ensayo en `?view=training` y la galería en `?view=camp`. No se incorpora aún progreso de run, curación, reclutamiento ni guardado.

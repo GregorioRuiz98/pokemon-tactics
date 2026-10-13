@@ -23,6 +23,7 @@ import type { Point, Route } from './rules/movement';
 import { ROLES } from './rules/design';
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
+document.title='El claro de Kanto · Pokémon Tactics';
 const esc = (value: string) =>
   value.replace(
     /[&<>"']/g,
