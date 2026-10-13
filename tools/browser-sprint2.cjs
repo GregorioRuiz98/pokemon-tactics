@@ -14,7 +14,7 @@ const catalog = JSON.parse(
     'utf8',
   ),
 );
-const output = path.resolve(__dirname, '../docs/qa/sprint-2');
+const output = path.resolve(__dirname, '../docs/qa/sprint-2-hud');
 fs.mkdirSync(output, { recursive: true });
 const base = process.env.TACTICS_URL || 'http://127.0.0.1:5173/';
 const checks = [];
@@ -114,7 +114,12 @@ const pass = (name) => {
       apply(c);
       await settle();
     }
+    async function openOptions() {
+      if (!(await page.locator('#game-options').evaluate((e) => e.open)))
+        await page.locator('#game-options > summary').click();
+    }
     async function restart(seed = 'kanto-001', variance = 0.05) {
+      await openOptions();
       await page.locator('#seed').fill(seed);
       await page.locator('#variance').selectOption(String(variance));
       await page.locator('#restart').click();
@@ -138,6 +143,67 @@ const pass = (name) => {
     assert.equal(await page.locator('#finish-turn').isEnabled(), false);
     pass('Enemy activations disable player orders');
     await settle();
+    await page.waitForFunction(() =>
+      ['#actor-portrait', '#inspect-portrait'].every((selector) => {
+        const image = document.querySelector(selector);
+        return image.complete && image.naturalWidth > 0;
+      }),
+    );
+    async function assertHudDoesNotCoverBoard() {
+      const overlap = await page.evaluate(() => {
+        const grid = document
+          .querySelector('#board-grid')
+          .getBoundingClientRect();
+        return [
+          '.actor-hud',
+          '.orders-hud',
+          '.target-hud',
+          '.initiative-strip',
+          '.game-topbar',
+        ].filter((selector) => {
+          const box = document.querySelector(selector).getBoundingClientRect();
+          return (
+            Math.min(grid.right, box.right) - Math.max(grid.left, box.left) >
+              1 &&
+            Math.min(grid.bottom, box.bottom) - Math.max(grid.top, box.top) > 1
+          );
+        });
+      });
+      assert.deepEqual(overlap, [], 'HUD must not obscure playable cells');
+    }
+    assert.equal(
+      await page.evaluate(() =>
+        [
+          '#mode-move',
+          '#mode-attack',
+          '#confirm',
+          '#cancel',
+          '#finish-turn',
+        ].every((selector) =>
+          document
+            .querySelector('#gameplay')
+            .contains(document.querySelector(selector)),
+        ),
+      ),
+      true,
+    );
+    await assertHudDoesNotCoverBoard();
+    pass(
+      'Battle orders belong to the gameplay frame and leave every board cell unobstructed',
+    );
+    await openOptions();
+    await page.keyboard.press('Escape');
+    assert.equal(
+      await page.locator('#game-options').evaluate((e) => e.open),
+      false,
+    );
+    assert.equal(
+      await page.evaluate(() =>
+        document.activeElement.matches('#game-options > summary'),
+      ),
+      true,
+    );
+    pass('Options can be closed with Escape and return keyboard focus');
     assert.equal(await page.getByRole('gridcell').count(), 64);
     assert.equal(await page.locator('#initiative li').count(), 6);
     assert.equal(
@@ -156,7 +222,7 @@ const pass = (name) => {
           (b) => b.getAttribute('aria-label').match(/iniciativa ([\d.]+)/)[1],
         ),
       );
-    await page.locator('[data-unit="1"]').click();
+    await page.locator('[data-inspect="1"]').click();
     assert.equal(await page.locator('#inspect-name').innerText(), 'Bulbasaur');
     assert.equal(await page.locator('#actor-name').innerText(), 'Charmander');
     pass('Inspecting another unit never transfers the active turn');
@@ -209,7 +275,7 @@ const pass = (name) => {
       path: path.join(output, 'desktop.png'),
       fullPage: true,
     });
-    await page.locator('[data-unit="25"]').click();
+    await page.locator('[data-inspect="25"]').click();
     assert.equal(await page.locator('#inspect-team').innerText(), 'Enemigo');
     await page.locator('#mode-attack').click();
     await cell(3, 4).click();
@@ -276,15 +342,20 @@ const pass = (name) => {
     assert.equal(model.outcome, 'playing');
     assert.equal(await page.locator('#battle-result').isVisible(), false);
     pass('The result screen can restart a playable battle');
+    await openOptions();
     await page.locator('#seed').fill('old-seed');
     await page.locator('#restart').click();
+    await openOptions();
     await page.locator('#seed').fill('new-seed');
     await page.locator('#restart').click();
     model = createBattle(catalog, 'new-seed', 0.1);
     await settle();
     pass('Restarting during enemy thinking cancels obsolete scheduled turns');
     await restart();
+    await page.setViewportSize({ width: 1280, height: 768 });
+    await assertHudDoesNotCoverBoard();
     await page.setViewportSize({ width: 900, height: 1000 });
+    await assertHudDoesNotCoverBoard();
     assert.equal(
       await page.evaluate(
         () => document.documentElement.scrollWidth > innerWidth,
@@ -292,6 +363,7 @@ const pass = (name) => {
       false,
     );
     await page.setViewportSize({ width: 390, height: 844 });
+    await assertHudDoesNotCoverBoard();
     assert.equal(
       await page.evaluate(
         () => document.documentElement.scrollWidth > innerWidth,
@@ -306,6 +378,7 @@ const pass = (name) => {
     pass(
       'Intermediate and narrow layouts fit; an attack can be completed on the narrow layout',
     );
+    await openOptions();
     await page.locator('.battle-nav a[href="?view=training"]').click();
     await page.waitForLoadState('networkidle');
     await page.waitForFunction(

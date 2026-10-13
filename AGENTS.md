@@ -12,6 +12,8 @@
 - Las bajas se conservan con PS 0 para el registro, pero se excluyen de ocupación, representación y turnos futuros. Una baja final resuelve el resultado inmediatamente.
 - Fórmulas de PS/daño, alcance 1/2 y perfiles terrestres son provisionales. Precisión 100 %, sin multiplicadores de tipos ni ataque especial todavía. Ver `docs/SPRINT_2.md`.
 - Ruta principal: combate. `?view=training` conserva el ensayo; `?view=camp`, la galería. Contratos en `docs/DESIGN_SPRINT_2.md`, `docs/DESIGN_SPRINT_1.md` y `docs/DESIGN.md`.
+- Preferencia visual confirmada el 14 de octubre: HUD de RPG táctico integrado en el gameplay, retratos/fichas en esquinas y órdenes/previsión en el centro. Mantener los controles dentro del marco del juego, reservar espacio para ellos y no tapar casillas. La vista sigue siendo superior.
+- Semilla, reinicio, lista de unidades y prototipos secundarios se abren en Opciones. Conservar Escape, cierre al pulsar fuera y el foco del menú. Versión del ajuste: 0.2.1; informe en `docs/SPRINT_2_HUD.md`.
 - El bucle de IA debe invalidar turnos programados al reiniciar; conservar el bloqueo de órdenes durante transiciones y el acceso a pausa/reanudación.
 - Conservar pruebas de integridad de recursos y comprobar la UI en navegador cuando cambie.
 - Un sprint activo; sin delegación automática ni despliegue implícito.

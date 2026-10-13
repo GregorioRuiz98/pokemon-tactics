@@ -25,3 +25,7 @@ Velocidad con variación de 5–10 % determina la cola de una ronda; una activac
 ## Evidence on Hand
 
 Decisiones confirmadas, backlog y valores provisionales en `docs/PLAN_SPRINTS.md`; código, recursos y comprobaciones en los informes de sprint. Los valores de daño, movilidad y salud de esta primera batalla son hipótesis de ensayo, no decisiones definitivas de balance.
+
+## Brand Commitments
+
+El usuario ha pedido integrar las órdenes dentro del gameplay, con paneles de atacante/objetivo y previsión de ataque inspirados en la captura de RPG táctico aportada el 14 de octubre. Se adapta esa organización a Pokémon y al tablero en vista superior. La composición es una preferencia confirmada para las siguientes entregas.

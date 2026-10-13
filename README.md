@@ -1,6 +1,6 @@
-# Pokémon Tactics — sprint 2
+# Pokémon Tactics — sprint 2 · HUD integrado
 
-Combate local 3 contra 3 sobre un tablero 8×8, con iniciativa por velocidad, movimiento, ataque básico y victoria/derrota. El ensayo de movimiento y el campamento siguen disponibles desde la barra superior. Desarrollo según el [plan por sprints](docs/PLAN_SPRINTS.md).
+Combate local 3 contra 3 sobre un tablero 8×8, con iniciativa por velocidad, movimiento, ataque básico y victoria/derrota. La versión 0.2.1 integra las órdenes en el escenario, con retrato de unidad activa, ficha de objetivo y previsión central. El ensayo y el campamento siguen disponibles en Opciones. Desarrollo según el [plan por sprints](docs/PLAN_SPRINTS.md).
 
 Repositorio: [GregorioRuiz98/pokemon-tactics](https://github.com/GregorioRuiz98/pokemon-tactics). Cada sprint terminado se registra y sube tras sus comprobaciones; el procedimiento está en [AGENTS.md](AGENTS.md).
 
@@ -34,7 +34,7 @@ La compilación se guarda en `dist/` y la vista previa se sirve en `http://127.0
 - Suelo cuesta 1 y maleza 2; rocas, agua y otras unidades bloquean el paso. El ataque a distancia también comprueba los obstáculos intermedios.
 - Inspeccionar una unidad en tablero, cola o lista muestra PS, posición y estadísticas; no cambia de quién es el turno.
 - Flechas recorren la cuadrícula; Enter/Espacio eligen una casilla o unidad. Foco visible y animaciones pausables; movimiento reducido omite transiciones.
-- Semilla y variación ±5 %/±10 % se aplican al reiniciar. Una misma semilla y las mismas órdenes reproducen los resultados.
+- Opciones abre semilla, variación ±5 %/±10 %, reinicio y registro. Los cambios se aplican al reiniciar. Una misma semilla y las mismas órdenes reproducen los resultados. Escape o pulsar fuera cierra el menú.
 - Las bajas abandonan tablero y cola. Victoria/derrota permiten volver a combatir con la configuración elegida.
 
 Aliados: Bulbasaur, Charmander y Squirtle; enemigos: Pikachu, Butterfree y Geodude. Composición fija de prueba, perfiles terrestres, daño físico simplificado y precisión 100 %. La tabla de tipos, habilidades, puntos tácticos, estados, progreso de run y guardado pertenecen a los siguientes sprints.
@@ -51,7 +51,7 @@ Con el servidor de desarrollo activo en otra terminal:
 npm.cmd run test:browser
 ```
 
-Ejecuta 20 comprobaciones del combate y conserva capturas en `docs/qa/sprint-2`. La prueba controla al jugador mediante una política determinista de pruebas y comprueba cada estado con las reglas; no añade un modo automático al juego.
+Ejecuta 22 comprobaciones del combate y HUD, y conserva capturas en `docs/qa/sprint-2-hud`. Incluye que los controles no cubran casillas en escritorio, ventana de poca altura y móvil. La prueba controla al jugador mediante una política determinista de pruebas y comprueba cada estado con las reglas; no añade un modo automático al juego.
 
 `npm.cmd run test:browser:training` ejecuta las 18 comprobaciones del ensayo anterior. Usa Playwright 1.64.0 y Edge instalado en Windows. En otros sistemas, instalar Chromium con `npx playwright install chromium`. No envía capturas a servicios externos. El servidor debe estar activo: estos comandos no lo arrancan. `TACTICS_URL` permite ejecutar la prueba de combate contra otra URL local, por ejemplo la vista previa en el puerto 4173.
 
@@ -84,4 +84,4 @@ npm.cmd run verify:assets
 
 Las versiones de repositorios están fijadas en `tools/sources.lock.json`. PokéAPI no ofrece una versión en estos endpoints: las respuestas se cachean en `tools/cache` y la instantánea resultante queda incluida y verificada por hashes. Una reimportación sin esa caché puede actualizar datos; revisar su diff. No borrar la caché como parte de un arranque normal.
 
-Consultar [créditos](CREDITS.md), [decisiones](docs/DECISIONS.md) y [cierre del sprint 2](docs/SPRINT_2.md). Los recursos de terceros mantienen sus licencias y derechos; la licencia MIT del motor no cubre los personajes Pokémon.
+Consultar [créditos](CREDITS.md), [decisiones](docs/DECISIONS.md), [cierre del sprint 2](docs/SPRINT_2.md) y [ajuste del HUD](docs/SPRINT_2_HUD.md). Los recursos de terceros mantienen sus licencias y derechos; la licencia MIT del motor no cubre los personajes Pokémon.

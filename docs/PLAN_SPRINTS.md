@@ -1,6 +1,6 @@
 # Plan de desarrollo por sprints — Pokémon táctico roguelike
 
-Fecha: 13 de octubre de 2026. Versión: 1.3. Estado: sprints 0–2 completados técnicamente; sprint 2 pendiente de feedback. Sprint 3 todavía no iniciado.
+Fecha: 14 de octubre de 2026. Versión: 1.4. Estado: sprints 0–2 completados técnicamente; ajuste de HUD del sprint 2 completado. Sprint 3 todavía no iniciado.
 
 Este documento conserva las decisiones del proyecto y organiza entregas pequeñas para construirlo con asistencia de IA. Cada sprint produce algo revisable y termina antes de comenzar el siguiente. El objetivo es un juego de navegador divertido para el portfolio, con pruebas locales primero y una posible publicación posterior en web propia. La viralidad es una aspiración, no un criterio garantizado de éxito.
 
@@ -268,6 +268,7 @@ Actualizar esta tabla al cerrar una entrega. Las columnas se completan con hecho
 | 0 | Completado técnicamente | 0.0.1; rama `codex/sprint-0` | Instalación limpia, tipos y build; 6 pruebas de catálogo; 33 hashes; 12 comprobaciones de navegador | Pendiente de feedback del usuario; siguiente: 1 |
 | 1 | Completado técnicamente | 0.1.0; rama `codex/sprint-1` | 12 pruebas de datos/movimiento; tipos y build; 33 hashes; 18 comprobaciones de navegador | Probar el ensayo en local; siguiente: 2 |
 | 2 | Completado técnicamente | 0.2.0; rama `codex/sprint-2` | 21 pruebas de reglas/datos; tipos y build; 33 hashes; 20 comprobaciones de combate y 18 de regresión | Probar combate 3 contra 3; siguiente: 3 |
+| Ajuste UI de 2 | Completado | 0.2.1; misma rama | 21 pruebas de reglas/datos; tipos y build; 33 hashes; 22 comprobaciones de combate y HUD en desarrollo y producción | Referencia del usuario integrada; siguiente: 3 |
 | 3–9 | Pendientes | — | Ninguna | Iniciar 3 cuando se solicite |
 | 10A–10D | Pendientes | — | Ninguna | Ejecutar un bloque por vez |
 | 11–12 | Pendientes | — | Ninguna | Pruebas y publicación posteriores |
@@ -290,3 +291,5 @@ Repositorio: https://github.com/GregorioRuiz98/pokemon-tactics (privado inicialm
 Sprint 1: tablero 8×8 con obstáculos, maleza, seis unidades fijas, alcance y trayectoria, confirmación/cancelación, presupuestos y orientación. Navegación reutilizada de EasyStar. El campamento continúa en `?view=camp`. Informe: [SPRINT_1.md](SPRINT_1.md). Rama de entrega: `codex/sprint-1`.
 
 Sprint 2: combate 3 contra 3 con cola por velocidad, semilla reproducible, desplazamiento y ataque en ambos órdenes, IA, PS, bajas y resultados. El ensayo sigue en `?view=training`. Informe: [SPRINT_2.md](SPRINT_2.md). Rama de entrega: `codex/sprint-2`.
+
+14 de octubre: ajuste de interfaz del sprint 2, versión 0.2.1. HUD integrado en el escenario, fichas/retratos en esquinas, previsión y órdenes centrales y menú de opciones secundario. Referencia proporcionada por el usuario; reglas de combate conservadas. Informe: [SPRINT_2_HUD.md](SPRINT_2_HUD.md).

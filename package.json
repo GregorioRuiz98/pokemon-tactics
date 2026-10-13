@@ -1,6 +1,6 @@
 {
   "name": "pokemon-tactics",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "type": "module",
   "description": "Prototipo local de RPG táctico Pokémon — sprint 2: rondas y combate básico",
