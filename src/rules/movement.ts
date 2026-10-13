@@ -2,11 +2,14 @@ import EasyStar from 'easystarjs';
 
 export type Point = { x: number; y: number };
 export type Facing = 0 | 2 | 4 | 6;
+export type MovementProfile = 'ground' | 'grass' | 'swim' | 'fly';
 export type Unit = Point & {
   id: number;
   budget: number;
   remaining: number;
   facing: Facing;
+  team?: 'ally' | 'enemy';
+  profile?: MovementProfile;
 };
 export type Board = readonly (readonly number[])[];
 export const TERRAIN = {
@@ -29,10 +32,14 @@ export const key = (p: Point): string => `${p.x},${p.y}`;
 export const same = (a: Point, b: Point): boolean => a.x === b.x && a.y === b.y;
 export const coordinate = (p: Point): string =>
   `${String.fromCharCode(65 + p.x)}${p.y + 1}`;
-export const tileCost = (board: Board, p: Point): number =>
-  Number.isInteger(p.x) && Number.isInteger(p.y)
-    ? (TERRAIN[board[p.y]?.[p.x] as keyof typeof TERRAIN]?.cost ?? Infinity)
-    : Infinity;
+export function tileCost(board: Board, p: Point, profile: MovementProfile = 'ground'): number {
+  if (!Number.isInteger(p.x) || !Number.isInteger(p.y)) return Infinity;
+  const tile = board[p.y]?.[p.x];
+  if (tile === 0) return 1;
+  if (tile === 1) return profile === 'grass' || profile === 'fly' ? 1 : 2;
+  if (tile === 3 && (profile === 'swim' || profile === 'fly')) return 1;
+  return Infinity;
+}
 export function initialUnits(): Unit[] {
   return [
     [1, 1, 5, 4],
@@ -62,23 +69,23 @@ export function routesFrom(
 ): Map<string, Route> {
   const unit = units.find((u) => u.id === id);
   const routes = new Map<string, Route>();
-  if (!unit || !Number.isFinite(tileCost(board, unit))) return routes;
+  if (!unit || !Number.isFinite(tileCost(board, unit, unit.profile))) return routes;
   const finder = new EasyStar.js();
   finder.setGrid(board.map((row) => [...row]));
-  finder.setAcceptableTiles([0, 1]);
-  finder.setTileCost(0, 1);
-  finder.setTileCost(1, 2);
+  const passable = [0, 1, 3].filter(tile => Number.isFinite(tileCost([[tile]], { x: 0, y: 0 }, unit.profile)));
+  finder.setAcceptableTiles(passable);
+  passable.forEach(tile => finder.setTileCost(tile, tileCost([[tile]], { x: 0, y: 0 }, unit.profile)));
   finder.disableDiagonals();
   finder.enableSync();
   const occupied = new Set(units.filter((u) => u.id !== id).map(key));
   units
-    .filter((u) => u.id !== id)
+    .filter((u) => u.id !== id && (!unit.team || u.team !== unit.team))
     .forEach((u) => finder.avoidAdditionalPoint(u.x, u.y));
   board.forEach((row, y) =>
     row.forEach((_, x) => {
       const destination = { x, y };
       if (
-        !Number.isFinite(tileCost(board, destination)) ||
+        !Number.isFinite(tileCost(board, destination, unit.profile)) ||
         occupied.has(key(destination))
       )
         return;
@@ -90,7 +97,7 @@ export function routesFrom(
         if (path)
           routes.set(key(destination), {
             path,
-            cost: path.slice(1).reduce((sum, p) => sum + tileCost(board, p), 0),
+            cost: path.slice(1).reduce((sum, p) => sum + tileCost(board, p, unit.profile), 0),
           });
       });
     }),
@@ -108,7 +115,7 @@ export function planMove(
   if (!unit) return { ok: false, reason: 'Selecciona un Pokémon.' };
   if (same(unit, destination))
     return { ok: false, reason: 'Ya está en esa casilla.' };
-  if (!Number.isFinite(tileCost(board, destination)))
+  if (!Number.isFinite(tileCost(board, destination, unit.profile)))
     return { ok: false, reason: 'Ese terreno bloquea el paso.' };
   if (units.some((u) => u.id !== id && same(u, destination)))
     return { ok: false, reason: 'Casilla ocupada por otro Pokémon.' };
@@ -122,7 +129,8 @@ export function planMove(
   return { ok: true, route };
 }
 export function facingFrom(a: Point, b: Point): Facing {
-  return b.x > a.x ? 2 : b.x < a.x ? 6 : b.y < a.y ? 4 : 0;
+  const dx = b.x - a.x, dy = b.y - a.y;
+  return Math.abs(dx) >= Math.abs(dy) && dx !== 0 ? dx > 0 ? 2 : 6 : dy < 0 ? 4 : 0;
 }
 // Recalculate on confirmation so an old preview cannot bypass a changed board or occupancy.
 export function commitMove(

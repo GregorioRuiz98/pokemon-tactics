@@ -48,3 +48,12 @@ Valores de iniciativa, puntos tácticos, estados y duración siguen siendo propu
 - Iniciales y Control son dos equipos fijos de prueba con los mismos seis recursos, intercambiando bandos. No representan todavía selección aleatoria, reclutamiento ni sustitución durante una run.
 - El PRNG resuelve precisión y estados secundarios al confirmar. El gasto se valida de nuevo y se aplica incluso si la orden falla. IA y previsión usan el mismo contrato de acción.
 - Orientación final manual y paso por aliados siguen pendientes del sprint 4. No se implementan progresión, mapa de ruta, guardado ni evolución en esta entrega.
+
+## Sprint 4 — Posición y terreno, 14 de octubre de 2026
+
+- Se implementan las peticiones de orientación final y paso por aliados. La orientación se elige antes de ceder la activación y se confirma; la ruta permite tránsito aliado, exige destino libre y bloquea enemigos. El ensayo conserva sus reglas históricas.
+- Precisión provisional 85/95/100 % para un básico según frente/flanco/espalda; otras precisiones usan −15/−5/0 puntos porcentuales. Diagonales por proyección sobre el eje de orientación, con empate en ese eje. No se añade bonus de daño por ángulo.
+- Perfiles derivados de tipos: Planta mejora maleza, Agua permite cruzar agua y Volador cruza agua/maleza. Roca bloquea movimiento y visión; agua permite visión. Se conserva la regla de ambas esquinas libres para disparos diagonales cortos.
+- Lanzallamas y Polvo Veneno reciben área en cruz con aliados afectados y lanzador excluido. Lanzallamas se prueba con potencia 70 y ascuas de 4 PS al cerrar turno; Lanzarrocas añade empuje de una casilla. Límites, probabilidades, inmunidades y caducidad en `SPRINT_4.md`.
+- La IA usa las mismas previsiones espaciales y rutas. Se corrige la selección parcial de ruta para que agotar presupuesto sobre un aliado no produzca una orden inválida. La orientación defensiva y la decisión táctica no consumen PRNG.
+- No se añaden especies, dependencias, recursos de red en ejecución, progresión, guardado ni encuentros de run. Equilibrio y variedad de estrategias quedan para prueba del usuario antes de avanzar.

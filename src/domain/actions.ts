@@ -2,6 +2,7 @@ import { effectiveness } from '../rules/types.ts';
 import { statusImmunity } from './combatant.ts';
 import type { Combatant, StatusKind } from './combatant.ts';
 import type { PokemonType } from '../data/type-chart.ts';
+import type { Point } from '../rules/movement.ts';
 export type ActionTarget = 'enemy' | 'friendly' | 'self';
 export type ActionDefinition = {
   id: string;
@@ -37,6 +38,9 @@ export abstract class TacticalAction {
     this.definition = Object.freeze({ ...definition });
   }
   abstract preview(actor: Combatant, target: Combatant): ActionEffect;
+  affectedTiles(target: Point): Point[] { return [{ x: target.x, y: target.y }]; }
+  displacement(): 0 | 1 { return 0; }
+  leavesEmbers(): boolean { return false; }
 }
 export class DamageAction extends TacticalAction {
   readonly power: number;
@@ -85,4 +89,20 @@ export class GuardAction extends TacticalAction {
   preview(_actor: Combatant, _target: Combatant): ActionEffect {
     return { ...emptyEffect(), guard: true };
   }
+}
+const cross = (center: Point): Point[] => [{ x: center.x, y: center.y }, { x: center.x + 1, y: center.y }, { x: center.x - 1, y: center.y }, { x: center.x, y: center.y + 1 }, { x: center.x, y: center.y - 1 }];
+export class AreaDamageAction extends DamageAction {
+  readonly embers: boolean;
+  constructor(definition: ActionDefinition, power: number, category: 'physical' | 'special', secondary: StatusEffect | null = null, embers = false) {
+    super(definition, power, category, secondary);
+    this.embers = embers;
+  }
+  override affectedTiles(target: Point): Point[] { return cross(target); }
+  override leavesEmbers(): boolean { return this.embers; }
+}
+export class AreaStatusAction extends StatusAction {
+  override affectedTiles(target: Point): Point[] { return cross(target); }
+}
+export class PushAction extends DamageAction {
+  override displacement(): 0 | 1 { return 1; }
 }

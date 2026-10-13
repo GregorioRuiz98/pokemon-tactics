@@ -19,6 +19,9 @@ classDiagram
   TacticalAction <|-- StatusAction
   TacticalAction <|-- GuardAction
   DamageAction <|-- DrainAction
+  DamageAction <|-- AreaDamageAction
+  DamageAction <|-- PushAction
+  StatusAction <|-- AreaStatusAction
 ```
 
 Los tipos son datos de cada unidad. Un Pokémon de tipos Planta/Veneno conserva ambos; no hereda de clases de tipo. Las evoluciones futuras se modelarán como relaciones entre especies y cambios de perfil, sin asumir que una evolución es una subclase de su preevolución. Este sprint no incorpora evolución ni niveles.
@@ -26,5 +29,7 @@ Los tipos son datos de cada unidad. Un Pokémon de tipos Planta/Veneno conserva 
 `Combatant` y `Battle` conservan valores serializables: posiciones, PS, PT, estados, cola y semilla. Las instancias con comportamiento permanecen en el registro de dominio. Cada orden valida el estado actual y devuelve una copia; inspeccionar, prever y elegir órdenes de IA no cambia el estado ni consume aleatoriedad. No hay todavía persistencia de partidas.
 
 La orquestación de rondas sigue en `src/rules/battle.ts`, el movimiento en `src/rules/movement.ts` y la representación en `src/game`. El HUD usa las previsiones del dominio; no calcula otra fórmula de daño.
+
+Sprint 4: las acciones comparten contratos de casillas afectadas, empuje y terreno generado. `AreaDamageAction` configura si deja ascuas; el área no implica fuego para futuras habilidades. La orientación y la línea de visión se calculan en reglas, y el perfil de movimiento aporta costes y terrenos legales al adaptador de EasyStar. `Battle.fields` conserva solo posiciones, tipo y ronda de caducidad. Jugador e IA consultan la misma previsión por afectado.
 
 Para añadir una especie: importar sus datos y recursos con procedencia, definir su perfil heredado con acciones existentes o una nueva implementación del contrato, registrarlo y comprobar su catálogo, órdenes y presentación. La restricción a las seis especies actuales sigue activa hasta el sprint de ampliación correspondiente.

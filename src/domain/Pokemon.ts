@@ -1,4 +1,4 @@
-import { DamageAction, DrainAction, GuardAction, StatusAction } from './actions.ts';
+import { DamageAction, DrainAction, GuardAction, StatusAction, AreaDamageAction, AreaStatusAction, PushAction } from './actions.ts';
 import type { TacticalAction, ActionDefinition } from './actions.ts';
 import type { PokemonSpecies } from '../data/catalog.ts';
 import type { Combatant, Team } from './combatant.ts';
@@ -28,6 +28,7 @@ export abstract class Pokemon {
       maxHp, hp: maxHp, attack: species.baseStats.attack, defense: species.baseStats.defense,
       specialAttack: species.baseStats['special-attack'], specialDefense: species.baseStats['special-defense'],
       speed: species.baseStats.speed, range: this.action('basic')!.definition.range,
+      profile: species.types.includes('flying') ? 'fly' : species.types.includes('water') ? 'swim' : species.types.includes('grass') ? 'grass' : 'ground',
       tp: 2, maxTp: 5, status: null, guarded: false,
     };
   }
@@ -45,7 +46,7 @@ export class Charmander extends Pokemon {
   constructor() {
     super(4, 'Ofensiva especial y quemadura', 4, [
       new DamageAction(action('basic', 'Ascuas', 'Ataque especial básico de tipo Fuego.', 'fire', 0, 2), 40, 'special'),
-      new DamageAction(action('flamethrower', 'Lanzallamas', 'Gran daño; 10 % de quemadura si sobrevive.', 'fire', 3, 2), 90, 'special', { kind: 'burn', chance: 10, duration: 3 }),
+      new AreaDamageAction(action('flamethrower', 'Lanzallamas', 'Área en cruz: afecta también a aliados, deja ascuas; 10 % de quemadura.', 'fire', 3, 2), 70, 'special', { kind: 'burn', chance: 10, duration: 3 }, true),
       new StatusAction(action('will-o-wisp', 'Fuego Fatuo', 'Quema: daño al cerrar turno y mitad de ataque físico.', 'fire', 2, 2, 85), { kind: 'burn', chance: 100, duration: 3 }),
     ]);
   }
@@ -72,7 +73,7 @@ export class Butterfree extends Pokemon {
   constructor() {
     super(12, 'Control y cobertura de tipos', 4, [
       new DamageAction(action('basic', 'Tornado', 'Ataque especial básico de tipo Volador.', 'flying', 0, 2), 40, 'special'),
-      new StatusAction(action('poison-powder', 'Polvo Veneno', 'Envenena durante tres activaciones; Planta, Veneno y Acero son inmunes.', 'poison', 1, 2, 75), { kind: 'poison', chance: 100, duration: 3 }, true),
+      new AreaStatusAction(action('poison-powder', 'Polvo Veneno', 'Polvo en cruz, incluidos aliados. Planta, Veneno y Acero son inmunes.', 'poison', 1, 2, 75), { kind: 'poison', chance: 100, duration: 3 }, true),
       new DamageAction(action('confusion', 'Confusión', 'Daño especial Psíquico; adaptación sin estado de confusión.', 'psychic', 2, 2), 50, 'special'),
     ]);
   }
@@ -81,7 +82,7 @@ export class Geodude extends Pokemon {
   constructor() {
     super(74, 'Resistencia y ataque físico', 3, [
       new DamageAction(action('basic', 'Placaje', 'Ataque físico básico de tipo Normal.', 'normal', 0, 1), 40, 'physical'),
-      new DamageAction(action('rock-throw', 'Lanzarrocas', 'Daño físico de Roca a dos casillas.', 'rock', 1, 2, 90), 50, 'physical'),
+      new PushAction(action('rock-throw', 'Lanzarrocas', 'Daño de Roca y empuje de una casilla si el destino está libre.', 'rock', 1, 2, 90), 50, 'physical'),
       new GuardAction(action('harden', 'Fortaleza', 'Recibe la mitad del daño hasta su próxima activación.', 'normal', 1, 0, 100, 'self')),
     ]);
   }

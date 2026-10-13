@@ -15,8 +15,11 @@ import {
   TERRAIN,
   routesFrom,
   planMove,
+  tileCost,
 } from './rules/movement';
-import type { Point, Route } from './rules/movement';
+import type { Point, Route, Facing } from './rules/movement';
+import { FACINGS, FACING_ARROWS, FACING_NAMES, SIDE_NAMES } from './rules/position';
+import { PROFILE_NAMES, fieldDamage } from './rules/terrain';
 import {
   createBattle,
   activeUnit,
@@ -57,16 +60,16 @@ function render(catalog: PokemonSpecies[]): void {
     <main id="battle-root" class="battle-main">
       <section id="gameplay" class="gameplay" aria-labelledby="game-title">
         <header class="game-topbar"><h1 id="game-title">POKÉMON <span>TACTICS</span></h1><div class="battle-counts"><span id="ally-count"></span><span id="enemy-count"></span></div><button class="hud-utility" id="pause" aria-pressed="${paused}" disabled>${paused ? 'Reanudar' : 'Pausar'} animaciones</button><details id="game-options"><summary>Opciones</summary><div class="options-panel"><h2>Opciones de combate</h2><form id="battle-settings"><label for="seed">Semilla<input id="seed" name="seed" maxlength="64" value="kanto-001" autocomplete="off"></label><label for="variance">Variación<select id="variance"><option value="0.05">±5 %</option><option value="0.1">±10 %</option></select></label><label class="composition-setting" for="composition">Composición<select id="composition"><option value="starters">Iniciales: Bulbasaur, Charmander, Squirtle</option><option value="mixed">Control: Pikachu, Butterfree, Geodude</option></select></label><p>Los cambios se aplican al reiniciar. PT: 2 iniciales, +1 al activar, máximo 5. Estados: tres activaciones propias.</p><button id="restart" type="submit" disabled>Reiniciar combate</button></form><section class="training-roster battle-roster" aria-label="Unidades del combate">${state.units.map((u) => `<button data-unit="${u.id}" data-team="${u.team}" aria-pressed="false"><img src="${asset(`assets/pokemon/${u.id}/thumbnail.png`)}" alt="" width="32" height="32"><span><strong>${escape(u.name)}</strong><small data-unit-info="${u.id}"></small></span></button>`).join('')}</section><nav class="battle-nav" aria-label="Prototipos"><a href="?view=training">Ensayo de movimiento</a><a href="?view=camp">Campamento</a><a href="${asset('CREDITS.md')}" target="_blank" rel="noreferrer">Créditos y licencias</a></nav><details class="battle-log"><summary>Registro de combate</summary><ol id="combat-log"></ol></details></div></details></header>
-        <section class="initiative-strip" aria-labelledby="initiative-title"><div class="round-label"><h2 id="initiative-title">Ronda <span id="round"></span></h2><span>CLARO DE KANTO</span></div><ol id="initiative"></ol></section>
+        <section class="initiative-strip" aria-labelledby="initiative-title"><div class="round-label"><h2 id="initiative-title">Ronda <span id="round"></span></h2><span>CHARCA DE KANTO</span></div><ol id="initiative"></ol></section>
         <div id="resource-status" class="game-resource" role="status">Cargando recursos…</div>
         <section class="battlefield" aria-label="Tablero de combate">
           <div class="board-shell"><div id="game-container" aria-hidden="true"></div><div id="board-grid" role="grid" aria-label="Tablero de combate" aria-rowcount="8" aria-colcount="8" aria-describedby="board-help">${state.board.map((row, y) => `<div role="row">${row.map((_, x) => `<button role="gridcell" data-cell="${x},${y}" tabindex="${y * 8 + x === cursor ? 0 : -1}" disabled></button>`).join('')}</div>`).join('')}</div><div id="battle-result" hidden><h2 id="result-title" tabindex="-1"></h2><p id="result-description"></p><button id="play-again">Volver a combatir</button></div></div>
-          <div class="terrain-legend"><span>A · Aliado</span><span>E · Enemigo</span><span>Suelo 1 / maleza 2</span><span>Roca y agua bloquean</span></div>
+          <div class="terrain-legend"><span>A · Aliado</span><span>E · Enemigo</span><span>Suelo 1 / maleza 2</span><span>Roca bloquea · agua: acuáticos/voladores</span><span>Aliados atravesables · ↑ orientación</span></div>
         </section>
         <div class="hud-bottom">
           <aside class="actor-hud hud-window" aria-label="Unidad activa"><div class="hud-unit-heading"><img id="actor-portrait" src="${asset(`assets/pokemon/${activeUnit(state)!.id}/thumbnail.png`)}" alt="" width="72" height="72"><div><p id="turn-owner"></p><h2 id="actor-name"></h2><p id="turn-status"></p></div></div><div class="hud-health"><strong id="actor-hp"></strong><div id="actor-health" class="health-track" aria-hidden="true"></div></div><div class="activation-resources"><span id="move-available"></span><span id="action-available"></span><strong id="actor-tp"></strong></div><p id="actor-stats"></p><p id="actor-status" class="unit-status"></p></aside>
-          <section class="orders-hud" aria-label="Órdenes de combate"><div class="battle-actions"><button id="mode-move" aria-pressed="true">Mover</button><button id="mode-attack" aria-pressed="false">Acciones</button><button id="finish-turn" disabled>Terminar turno</button></div><div class="skill-actions" aria-label="Habilidades de la unidad activa"><button data-skill-slot="0" aria-pressed="true"></button><button data-skill-slot="1" aria-pressed="false"></button><button data-skill-slot="2" aria-pressed="false"></button></div><p id="ability-description"></p><div class="order-preview"><div id="attack-forecast" hidden><span>DAÑO <strong id="forecast-damage"></strong></span><span>ACIERTO <strong id="forecast-accuracy"></strong></span></div><p id="forecast-effect"></p><p id="order-summary">Espera tu turno.</p><p id="order-detail"></p><div class="order-buttons"><button id="confirm" disabled>Confirmar orden</button><button id="cancel" disabled>Cancelar</button></div></div><p id="feedback" role="status" aria-live="polite">Cargando el combate…</p></section>
-          <aside class="target-hud hud-window" aria-labelledby="inspect-name"><p class="target-label">FICHA CONSULTADA</p><div class="hud-unit-heading"><img id="inspect-portrait" src="${asset(`assets/pokemon/${inspected}/thumbnail.png`)}" alt="" width="64" height="64"><div><h3 id="inspect-name"></h3><span id="inspect-team"></span><div id="inspect-types" class="type-list"></div></div></div><div class="health-readout"><strong id="inspect-hp"></strong><span id="inspect-position"></span></div><div id="inspect-health" class="health-track" aria-hidden="true"></div><p id="inspect-stats"></p><p id="inspect-status" class="unit-status"></p></aside>
+          <section class="orders-hud" aria-label="Órdenes de combate"><div class="battle-actions"><button id="mode-move" aria-pressed="true">Mover</button><button id="mode-attack" aria-pressed="false">Acciones</button><button id="finish-turn" disabled>Terminar turno</button></div><div id="facing-controls" aria-label="Orientación final" hidden>${FACINGS.map(facing => `<button data-facing="${facing}" aria-pressed="false">${FACING_ARROWS[facing]} ${FACING_NAMES[facing]}</button>`).join('')}</div><div class="skill-actions" aria-label="Habilidades de la unidad activa"><button data-skill-slot="0" aria-pressed="true"></button><button data-skill-slot="1" aria-pressed="false"></button><button data-skill-slot="2" aria-pressed="false"></button></div><p id="ability-description"></p><div class="order-preview"><div id="attack-forecast" hidden><span>DAÑO <strong id="forecast-damage"></strong></span><span>ACIERTO <strong id="forecast-accuracy"></strong></span></div><p id="forecast-effect"></p><p id="order-summary">Espera tu turno.</p><p id="order-detail"></p><div class="order-buttons"><button id="confirm" disabled>Confirmar orden</button><button id="cancel" disabled>Cancelar</button></div></div><p id="feedback" role="status" aria-live="polite">Cargando el combate…</p></section>
+          <aside class="target-hud hud-window" aria-labelledby="inspect-name"><p class="target-label">FICHA CONSULTADA</p><div class="hud-unit-heading"><img id="inspect-portrait" src="${asset(`assets/pokemon/${inspected}/thumbnail.png`)}" alt="" width="64" height="64"><div><h3 id="inspect-name"></h3><span id="inspect-team"></span><div id="inspect-types" class="type-list"></div></div></div><div class="health-readout"><strong id="inspect-hp"></strong><span id="inspect-position"></span></div><div id="inspect-health" class="health-track" aria-hidden="true"></div><p id="inspect-stats"></p><p id="inspect-status" class="unit-status"></p><ul id="area-forecast" aria-label="Unidades afectadas por el área" hidden></ul></aside>
         </div>
         <p id="board-help">Flechas: recorrer · Enter: elegir · Escape: cancelar. Una acción y un desplazamiento por turno.</p>
       </section>
@@ -123,6 +126,9 @@ function render(catalog: PokemonSpecies[]): void {
   }
   function paint(): void {
     const actor = activeUnit(state);
+    const forecast = pending?.kind === 'attack' ? attackPlan(state, pending.target, undefined, pending.actionId) : null;
+    const area = new Set(forecast?.ok ? forecast.tiles.map(key) : []);
+    const push = forecast?.ok ? forecast.push : null;
     const destination =
       pending?.kind === 'move' ? pending.destination : pending ? null : hover;
     const route =
@@ -143,26 +149,31 @@ function render(catalog: PokemonSpecies[]): void {
       const reachable =
         !!actor &&
         playerTurn() &&
+        pending?.kind !== 'finish' &&
         !state.moved &&
         !unit &&
         (routes.get(key(p))?.cost ?? Infinity) <= actor.remaining;
       const attackable =
-        !!unit && playerTurn() && !state.acted && attackPlan(state, unit.id, undefined, selectedAction).ok;
+        !!unit && playerTurn() && pending?.kind !== 'finish' && !state.acted && attackPlan(state, unit.id, undefined, selectedAction).ok;
       button.disabled = !ready || busy;
-      button.className = `tile ${unit ? 'occupied team-' + unit.team : ''} ${unit && actor && unit.id === actor.id ? 'active-unit' : ''} ${unit?.id === inspected ? 'inspected' : ''} ${mode === 'move' && reachable ? 'can-reach' : ''} ${mode === 'attack' && attackable ? 'can-attack' : ''} ${costs.has(key(p)) ? 'path-tile' : ''} ${destination && same(p, destination) && route && route.cost <= actor!.remaining ? 'destination' : ''} ${pending?.kind === 'attack' && pending.target === unit?.id ? 'attack-target' : ''}`;
+      button.className = `tile ${unit ? 'occupied team-' + unit.team : ''} ${unit && actor && unit.id === actor.id ? 'active-unit' : ''} ${unit?.id === inspected ? 'inspected' : ''} ${mode === 'move' && reachable ? 'can-reach' : ''} ${mode === 'attack' && attackable ? 'can-attack' : ''} ${costs.has(key(p)) ? 'path-tile' : ''} ${destination && same(p, destination) && route && route.cost <= actor!.remaining ? 'destination' : ''} ${pending?.kind === 'attack' && pending.target === unit?.id ? 'attack-target' : ''} ${area.has(key(p)) ? 'effect-area' : ''} ${push && same(push, p) ? 'push-destination' : ''} ${state.fields.some(field => same(field, p)) ? 'ember-tile' : ''}`;
       button.setAttribute(
         'aria-selected',
         String(!!unit && unit.id === inspected),
       );
       button.setAttribute(
         'aria-label',
-        `${coordinate(p)}, ${terrain.name}${unit ? `, ${unit.name}, ${unit.team === 'ally' ? 'aliado' : 'enemigo'}, ${unit.hp} de ${unit.maxHp} PS, ${statusText(unit)}` : ''}${unit && actor && unit.id === actor.id ? ', turno activo' : ''}${reachable ? `, alcanzable, coste ${routes.get(key(p))!.cost}` : ''}${attackable ? ', objetivo válido' : ''}`,
+        `${coordinate(p)}, ${terrain.name}${unit ? `, ${unit.name}, ${unit.team === 'ally' ? 'aliado' : 'enemigo'}, ${unit.hp} de ${unit.maxHp} PS, ${statusText(unit)}, mira al ${FACING_NAMES[unit.facing]}` : ''}${unit && actor && unit.id === actor.id ? ', turno activo' : ''}${reachable ? `, alcanzable, coste ${routes.get(key(p))!.cost}` : ''}${attackable ? ', objetivo válido' : ''}${area.has(key(p)) ? ', área de efecto' : ''}${state.fields.some(field => same(field, p)) ? ', ascuas: daño al cerrar turno' : ''}${push && same(push, p) ? ', destino del empuje' : ''}`,
       );
       button.innerHTML = `<span class="tile-coordinate">${coordinate(p)}</span>${unit ? `<span class="team-marker" aria-hidden="true">${unit.team === 'ally' ? 'A' : 'E'}</span><span class="tile-unit">${escape(unit.name)}</span><span class="tile-health" aria-hidden="true"><i style="width:${(unit.hp / unit.maxHp) * 100}%"></i></span>` : ''}${costs.has(key(p)) ? `<span class="path-cost">${costs.get(key(p))}</span>` : ''}`;
+      if (unit) {
+        const facing = pending?.kind === 'finish' && unit.id === actor?.id ? pending.facing ?? unit.facing : unit.facing;
+        button.insertAdjacentHTML('beforeend', `<span class="facing-marker ${pending?.kind === 'finish' && unit.id === actor?.id ? 'facing-preview' : ''}" aria-hidden="true">${FACING_ARROWS[facing]}</span>`);
+      }
     });
   }
   const tileCostAt = (p: Point) =>
-    TERRAIN[state.board[p.y][p.x] as keyof typeof TERRAIN].cost;
+    tileCost(state.board, p, activeUnit(state)?.profile);
   function refresh(): void {
     const actor = activeUnit(state),
       canOrder = playerTurn(),
@@ -175,6 +186,7 @@ function render(catalog: PokemonSpecies[]): void {
     root.dataset.busy = String(busy);
     root.dataset.moved = String(state.moved);
     root.dataset.acted = String(state.acted);
+    root.dataset.fields = JSON.stringify(state.fields);
     $('#round').textContent = String(state.round);
     $('#ally-count').textContent =
       `${living(state).filter((u) => u.team === 'ally').length}/3 aliados`;
@@ -202,7 +214,7 @@ function render(catalog: PokemonSpecies[]): void {
     );
     $('#actor-hp').textContent = `PS ${actorCard.hp}/${actorCard.maxHp}`;
     $('#actor-stats').textContent =
-      `${pokemonFor(actorCard.id).role} · velocidad ${effectiveSpeed(actorCard)}`;
+      `${pokemonFor(actorCard.id).role} · ${PROFILE_NAMES[actorCard.profile ?? 'ground']} · mira al ${FACING_NAMES[actorCard.facing]} · velocidad ${effectiveSpeed(actorCard)}`;
     $('#actor-tp').textContent = `PT ${actorCard.tp}/${actorCard.maxTp}`;
     $('#actor-status').textContent = statusText(actorCard);
     $('#actor-health').innerHTML =
@@ -258,9 +270,23 @@ function render(catalog: PokemonSpecies[]): void {
     $<HTMLButtonElement>('#play-again').disabled = !ready || busy;
     $<HTMLButtonElement>('#pause').disabled = !ready;
     $('.order-buttons').hidden = !pending;
+    $('#facing-controls').hidden = pending?.kind !== 'finish';
+    $('.skill-actions').hidden = pending?.kind === 'finish';
+    $('#ability-description').hidden = pending?.kind === 'finish';
+    document.querySelectorAll<HTMLButtonElement>('#facing-controls [data-facing]').forEach(button => {
+      button.disabled = !canOrder;
+      button.setAttribute('aria-pressed', String(pending?.kind === 'finish' && (pending.facing ?? actor?.facing) === Number(button.dataset.facing)));
+    });
+    $('#area-forecast').innerHTML = '';
+    $('#area-forecast').hidden = true;
     $('#attack-forecast').hidden = pending?.kind !== 'attack';
     $('#forecast-effect').hidden = pending?.kind !== 'attack';
-    if (pending?.kind === 'move' && actor) {
+    if (pending?.kind === 'finish' && actor) {
+      const facing = pending.facing ?? actor.facing;
+      $('#order-summary').textContent = `Orientarse al ${FACING_NAMES[facing]} y terminar`;
+      $('#order-detail').textContent = `Frente: −15 puntos de precisión; flanco: −5; espalda: precisión base. ${fieldDamage(actor, state.fields) ? `Ascuas: perderá ${fieldDamage(actor, state.fields)} PS al cerrar turno.` : 'Elige una dirección y confirma.'}`;
+      $('#confirm').textContent = 'Confirmar orientación';
+    } else if (pending?.kind === 'move' && actor) {
       const route = routes.get(key(pending.destination))!;
       $('#order-summary').textContent =
         `${coordinate(actor)} → ${coordinate(pending.destination)} · ${route.cost} puntos`;
@@ -273,12 +299,19 @@ function render(catalog: PokemonSpecies[]): void {
       $('#forecast-damage').textContent = plan.ok ? String(plan.damage) : '—';
       $('#forecast-accuracy').textContent = plan.ok ? `${plan.accuracy} %` : '—';
       $('#forecast-effect').textContent = plan.ok
-        ? `${plan.cost} PT · ${plan.category === 'physical' ? 'Físico' : plan.category === 'special' ? 'Especial' : 'Apoyo/estado'}${plan.category !== 'status' ? ` · eficacia ×${plan.multiplier}${plan.stab > 1 ? ' · afinidad de tipo ×1,5' : ''}` : ''}` : '';
+        ? `${plan.cost} PT · ${plan.category === 'physical' ? 'Físico' : plan.category === 'special' ? 'Especial' : 'Apoyo/estado'}${plan.category !== 'status' ? ` · eficacia ×${plan.multiplier}${plan.stab > 1 ? ' · afinidad ×1,5' : ''}` : ''}${plan.side ? ` · ${SIDE_NAMES[plan.side]}` : ''}` : '';
       $('#order-summary').textContent = `${plan.ok ? plan.name : 'Acción'} → ${target.name}`;
       $('#order-detail').textContent = plan.ok
-        ? `${plan.guard ? 'Mitad de daño hasta su próxima activación' : `Si acierta: ${target.hp} → ${target.hp - plan.damage} PS`}${plan.heal ? ` · recupera ${plan.heal} PS` : ''}${plan.status ? ` · ${STATUS_NAMES[plan.status.kind]} ${plan.status.chance} % al acertar, ${plan.status.duration} activaciones` : ''}${plan.statusReason ? ` · ${plan.statusReason}` : ''}${plan.damage === target.hp ? ' · fuera de combate' : ''}`
+        ? `${plan.guard ? 'Mitad de daño hasta su próxima activación' : `Si acierta: ${target.hp} → ${target.hp - plan.damage} PS`}${plan.heal ? ` · recupera ${plan.heal} PS` : ''}${plan.status ? ` · ${STATUS_NAMES[plan.status.kind]} ${plan.status.chance} % al acertar, ${plan.status.duration} activaciones` : ''}${plan.statusReason ? ` · ${plan.statusReason}` : ''}${plan.damage === target.hp ? ' · fuera de combate' : ''}${plan.push ? ` · empuje a ${coordinate(plan.push)}` : ''}${plan.pushReason ? ` · ${plan.pushReason}` : ''}${plan.embers.length ? ' · deja ascuas: 4 PS al cerrar turno' : ''}`
         : plan.reason;
       $('#confirm').textContent = 'Confirmar ataque';
+      if (plan.ok && plan.tiles.length > 1) {
+        $('#area-forecast').hidden = false;
+        $('#area-forecast').innerHTML = `<li><strong>Área en cruz · incluye aliados</strong></li>${plan.hits.map(hit => {
+          const affected = state.units.find(unit => unit.id === hit.targetId)!;
+          return `<li class="${affected.team === actor?.team ? 'collateral' : ''}">${escape(affected.name)}${affected.team === actor?.team ? ' · ALIADO' : ''}: ${hit.damage} PS · ${hit.accuracy} %${hit.status ? ` · ${STATUS_NAMES[hit.status.kind]} ${hit.status.chance} % al acertar` : ''}${hit.statusReason ? ` · ${escape(hit.statusReason)}` : ''}</li>`;
+        }).join('')}`;
+      }
     } else {
       $('#order-summary').textContent = !actor
         ? 'La batalla ha terminado.'
@@ -294,7 +327,8 @@ function render(catalog: PokemonSpecies[]): void {
         : '';
       $('#confirm').textContent = 'Confirmar orden';
     }
-    const unit = state.units.find((u) => u.id === inspected)!;
+    const selectedTarget = pending?.kind === 'attack' ? pending.target : inspected;
+    const unit = state.units.find((u) => u.id === selectedTarget)!;
     $<HTMLImageElement>('#inspect-portrait').src = asset(
       `assets/pokemon/${unit.id}/thumbnail.png`,
     );
@@ -316,6 +350,7 @@ function render(catalog: PokemonSpecies[]): void {
     $('#inspect-stats').textContent =
       `AT ${unit.attack} / DF ${unit.defense} · AE ${unit.specialAttack} / DE ${unit.specialDefense} · PT ${unit.tp}/${unit.maxTp}`;
     $('#inspect-status').textContent = statusText(unit);
+    $('#inspect-status').textContent += ` · ${FACING_ARROWS[unit.facing]} ${FACING_NAMES[unit.facing]}${fieldDamage(unit, state.fields) ? ' · Ascuas: 4 PS al cerrar turno' : ''}`;
     unitButtons.forEach((button) => {
       const unit = state.units.find(
         (u) => u.id === Number(button.dataset.unit),
@@ -328,6 +363,9 @@ function render(catalog: PokemonSpecies[]): void {
       button.dataset.status = unit.status?.kind ?? '';
       button.dataset.duration = String(unit.status?.remaining ?? 0);
       button.dataset.guarded = String(unit.guarded);
+      button.dataset.facing = String(unit.facing);
+      button.dataset.profile = unit.profile ?? 'ground';
+      button.dataset.remaining = String(unit.remaining);
       button.dataset.x = String(unit.x);
       button.dataset.y = String(unit.y);
       $(`[data-unit-info="${unit.id}"]`).textContent =
@@ -400,6 +438,7 @@ function render(catalog: PokemonSpecies[]): void {
         refresh();
         return;
       }
+      if (pending?.kind === 'finish') { refresh(); return; }
       const actor = activeUnit(state)!;
       hover = null;
       pending = null;
@@ -503,12 +542,15 @@ function render(catalog: PokemonSpecies[]): void {
         result.route.path,
         preference.matches || paused,
       );
-    if (command.kind === 'attack' && result.hit && (result.damage ?? 0) > 0)
-      await scene.hit(command.target, preference.matches || paused);
+    if (command.kind === 'attack') for (const hit of result.hits ?? []) {
+      if (hit.hit && hit.damage > 0) await scene.hit(hit.targetId, preference.matches || paused);
+      if (hit.push) await scene.move(hit.targetId, [state.units.find(unit => unit.id === hit.targetId)!, hit.push], preference.matches || paused);
+    }
     if (token !== generation) return;
     state = result.state;
     busy = false;
     scene.sync(living(state));
+    scene.showFields(state.fields);
     refreshPaths();
     if (state.moved) mode = 'attack';
     if (state.acted) mode = 'move';
@@ -520,6 +562,7 @@ function render(catalog: PokemonSpecies[]): void {
     refresh();
     say(state.log[state.log.length - 1]);
     if (state.outcome !== 'playing') $('#result-title').focus();
+    else if (command.kind === 'finish') focusActor();
     else if (command.kind === 'move') {
       const unit = activeUnit(state)!;
       cells[unit.y * 8 + unit.x].focus();
@@ -561,12 +604,18 @@ function render(catalog: PokemonSpecies[]): void {
     if (playerTurn() && pending) void execute(pending).then(scheduleEnemies);
   });
   $('#finish-turn').addEventListener('click', () => {
-    if (playerTurn())
-      void execute({ kind: 'finish' }).then(() => {
-        scheduleEnemies();
-        focusActor();
-      });
+    if (!playerTurn()) return;
+    pending = { kind: 'finish', facing: activeUnit(state)!.facing };
+    hover = null;
+    refresh();
+    document.querySelector<HTMLButtonElement>('#facing-controls [data-facing][aria-pressed="true"]')!.focus();
+    say('Elige la orientación final y confirma para ceder el turno. Cancelar conserva la dirección anterior.');
   });
+  document.querySelectorAll<HTMLButtonElement>('#facing-controls [data-facing]').forEach(button => button.addEventListener('click', () => {
+    if (!playerTurn() || pending?.kind !== 'finish') return;
+    pending = { kind: 'finish', facing: Number(button.dataset.facing) as Facing };
+    refresh();
+  }));
   function restart(): void {
     if (!ready || busy) return;
     generation++;
@@ -583,6 +632,7 @@ function render(catalog: PokemonSpecies[]): void {
     mode = 'move';
     selectedAction = 'basic';
     scene.sync(living(state));
+    scene.showFields(state.fields);
     refreshPaths();
     refresh();
     say(`Nuevo combate: semilla ${state.seed}.`);
@@ -605,6 +655,7 @@ function render(catalog: PokemonSpecies[]): void {
     setPaused(event.matches);
   preference.addEventListener('change', motionChanged);
   scene.sync(living(state));
+  scene.showFields(state.fields);
   refreshPaths();
   refresh();
   const game = startGame(scene, { width: 512, height: 512 });

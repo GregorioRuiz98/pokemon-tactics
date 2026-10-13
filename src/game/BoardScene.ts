@@ -13,6 +13,8 @@ export class BoardScene extends Phaser.Scene {
   private loaded = false;
   private paused = false;
   private positions: Unit[] = [];
+  private fields: Point[] = [];
+  private fieldLayer?: Phaser.GameObjects.Graphics;
   constructor(
     private readonly catalog: PokemonSpecies[],
     private readonly callbacks: {
@@ -89,6 +91,8 @@ export class BoardScene extends Phaser.Scene {
         }
       }),
     );
+    this.fieldLayer = this.add.graphics().setDepth(0.5);
+    this.showFields(this.fields);
     for (const pokemon of this.catalog) {
       for (const name of ['Idle', 'Walk'] as const) {
         const data = pokemon.animations[name],
@@ -139,6 +143,18 @@ export class BoardScene extends Phaser.Scene {
         ?.setPosition(p.x, p.y)
         .setDepth(unit.y + 1);
       this.pose(unit.id, 'Idle', unit.facing);
+    }
+  }
+  showFields(points: readonly Point[]): void {
+    this.fields = points.map(point => ({ x: point.x, y: point.y }));
+    const layer = this.fieldLayer;
+    if (!layer) return;
+    layer.clear();
+    for (const point of points) {
+      const x = point.x * 64, y = point.y * 64;
+      layer.fillStyle(0xa34925, 0.45).fillRect(x + 2, y + 2, 60, 60);
+      layer.lineStyle(2, 0xf2bc65, 0.8).strokeRect(x + 4, y + 4, 56, 56);
+      layer.fillStyle(0xffcf76, 0.9).fillTriangle(x + 8, y + 50, x + 14, y + 37, x + 20, y + 50);
     }
   }
   setPaused(value: boolean): void {

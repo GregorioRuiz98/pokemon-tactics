@@ -1,0 +1,11 @@
+{
+  "url": "http://127.0.0.1:4173/",
+  "production": true,
+  "checks": [
+    "Board loads",
+    "Confirmed weighted movement charges 3 points",
+    "Camp loads through navigation",
+    "No JavaScript errors"
+  ],
+  "status": "pass"
+}

@@ -1,0 +1,79 @@
+{
+  "browser": "Microsoft Edge headless (Playwright)",
+  "checks": [
+    {
+      "name": "Board loads with 64 keyboard cells, six units and local sprites",
+      "status": "pass"
+    },
+    {
+      "name": "Hover previews a weighted route without creating an order",
+      "status": "pass"
+    },
+    {
+      "name": "Pending route costs three points; cancellation preserves position and budget",
+      "status": "pass"
+    },
+    {
+      "name": "Escape cancels from order controls as well as the grid",
+      "status": "pass"
+    },
+    {
+      "name": "Rock, water, unreachable destination and excessive cost reject without changes",
+      "status": "pass"
+    },
+    {
+      "name": "Occupied cells select their unit; all six roster controls work",
+      "status": "pass"
+    },
+    {
+      "name": "Animated confirmation locks orders, supports pause/resume and charges terrain cost",
+      "status": "pass"
+    },
+    {
+      "name": "Repeated movement uses remaining budget; exhausted units cannot move",
+      "status": "pass"
+    },
+    {
+      "name": "Cardinal movement updates final facing in all four directions",
+      "status": "pass"
+    },
+    {
+      "name": "Arrow keys, Enter, visible focus and post-move focus complete keyboard flow",
+      "status": "pass"
+    },
+    {
+      "name": "Statistics disclose real data; pausing keeps the resting canvas still",
+      "status": "pass"
+    },
+    {
+      "name": "Desktop, intermediate and narrow layouts do not overflow; narrow click flow works",
+      "status": "pass"
+    },
+    {
+      "name": "Camp from sprint zero remains available with species selection",
+      "status": "pass"
+    },
+    {
+      "name": "Successful visits have no JavaScript/console errors, external requests or broken images",
+      "status": "pass"
+    },
+    {
+      "name": "Reduced motion starts paused and commits displacement without walking tween",
+      "status": "pass"
+    },
+    {
+      "name": "Slow resource loading keeps the board stable and orders disabled",
+      "status": "pass"
+    },
+    {
+      "name": "Empty/invalid catalogue fails explicitly; retry recovers the board",
+      "status": "pass"
+    },
+    {
+      "name": "Missing animation uses marker, preserves movement and recovers through reload",
+      "status": "pass"
+    }
+  ],
+  "consoleErrors": [],
+  "externalRequests": []
+}

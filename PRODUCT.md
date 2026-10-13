@@ -16,7 +16,7 @@ Roguelike táctico por turnos contra la máquina, con control manual, equipos de
 
 ## Operating Context
 
-Una entrega por sprint; código subido a GitHub después de las comprobaciones. Los sprints 0 y 1 proporcionan catálogo, sprites, campamento y ensayo de movimiento. El sprint 2 permite un combate completo 3 contra 3. El sprint 3 incorpora POO, tipos, dos habilidades por especie, puntos tácticos, estados y dos composiciones fijas para comparar; el resto del diseño permanece en el plan.
+Una entrega por sprint; código subido a GitHub después de las comprobaciones. Los sprints 0 y 1 proporcionan catálogo, sprites, campamento y ensayo de movimiento. El sprint 2 permite un combate completo 3 contra 3. El sprint 3 incorpora POO, tipos, dos habilidades por especie, puntos tácticos, estados y dos composiciones fijas para comparar. El sprint 4 añade orientación final, precisión por ángulo, tránsito aliado, perfiles de terreno, áreas, empuje y ascuas. Progresión y recorrido permanecen en el plan.
 
 ## Capabilities and Constraints
 
