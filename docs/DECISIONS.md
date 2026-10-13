@@ -33,3 +33,9 @@ Valores de iniciativa, puntos tácticos, estados y duración siguen siendo propu
 - La IA usa las mismas reglas: ataca un objetivo legal, busca un camino a una posición de ataque o espera. Elige por coste, PS e ID, sin consumir tiradas ni mostrar intenciones futuras. La política también permite simulaciones reproducibles en pruebas.
 - Las bajas conservan registro con PS 0, pero dejan ocupación, sprites y turnos pendientes. Victoria/derrota inmediata al caer la última unidad de un bando. Reiniciar invalida el bucle de IA anterior.
 - Se conserva el ensayo en `?view=training` y la galería en `?view=camp`. No se incorpora aún progreso de run, curación, reclutamiento ni guardado.
+
+## Requisitos de jugabilidad pendientes — 14 de octubre de 2026
+
+- Registrar para el sprint 4 un botón de orientación al finalizar cada turno, junto con las bonificaciones por atacar flancos y espalda. El jugador elige una dirección cardinal antes de ceder la activación; esa dirección determina la posición relativa de los ataques posteriores.
+- Registrar para el mismo sprint que el desplazamiento pueda atravesar aliados. El destino debe estar libre y los enemigos siguen bloqueando el paso; previsualización, confirmación e IA deben compartir esta regla.
+- Son decisiones para implementar más adelante. El combate de la versión 0.2.1 todavía usa precisión fija del 100 %, orientación automática por movimiento/ataque y ocupación que impide atravesar cualquier unidad.

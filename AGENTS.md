@@ -8,6 +8,7 @@
 - Los datos y sprites se sirven localmente. Las importaciones de red son tareas explícitas de desarrollo, nunca del arranque del juego.
 - Mantener tres miembros iniciales y seis máximos como diseño futuro; el combate usa tres aliados y tres enemigos fijos, y no genera todavía un equipo aleatorio de run.
 - `src/rules/movement.ts` contiene navegación con EasyStar, terreno, ocupación y presupuesto; nunca duplicar esas reglas en Phaser. El desplazamiento se confirma y se revalida antes de cobrar puntos.
+- Requisitos pendientes del sprint 4, confirmados el 14 de octubre: botón para elegir orientación al cerrar cada turno cuando se incorporen bonificaciones por flancos/espalda; rutas que atraviesen aliados sin terminar en una casilla ocupada, con enemigos bloqueando el paso. El prototipo actual aún bloquea el paso por todas las unidades y no ofrece orientación final manual.
 - `src/rules/battle.ts` contiene PRNG, cola, activaciones, ataques y política táctica. No consumir tiradas al inspeccionar, previsualizar o animar. Una cola estable por ronda; una acción y un desplazamiento continuo por activación, en cualquier orden.
 - Las bajas se conservan con PS 0 para el registro, pero se excluyen de ocupación, representación y turnos futuros. Una baja final resuelve el resultado inmediatamente.
 - Fórmulas de PS/daño, alcance 1/2 y perfiles terrestres son provisionales. Precisión 100 %, sin multiplicadores de tipos ni ataque especial todavía. Ver `docs/SPRINT_2.md`.

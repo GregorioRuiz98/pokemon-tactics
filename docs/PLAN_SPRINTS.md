@@ -1,6 +1,6 @@
 # Plan de desarrollo por sprints — Pokémon táctico roguelike
 
-Fecha: 14 de octubre de 2026. Versión: 1.4. Estado: sprints 0–2 completados técnicamente; ajuste de HUD del sprint 2 completado. Sprint 3 todavía no iniciado.
+Fecha: 14 de octubre de 2026. Versión: 1.5. Estado: sprints 0–2 completados técnicamente; ajuste de HUD del sprint 2 completado. Sprint 3 todavía no iniciado. Orientación final y paso a través de aliados registrados para el sprint 4, pendientes de implementar.
 
 Este documento conserva las decisiones del proyecto y organiza entregas pequeñas para construirlo con asistencia de IA. Cada sprint produce algo revisable y termina antes de comenzar el siguiente. El objetivo es un juego de navegador divertido para el portfolio, con pruebas locales primero y una posible publicación posterior en web propia. La viralidad es una aspiración, no un criterio garantizado de éxito.
 
@@ -28,8 +28,10 @@ Este documento conserva las decisiones del proyecto y organiza entregas pequeña
 | Iniciativa | Velocidad determina el orden; todos tienen una activación por ronda y después se recalcula la cola |
 | Variación | Tirada de velocidad con variación porcentual del 5–10 % |
 | Activación | Desplazamiento y una acción, en cualquier orden; atacar y después moverse es posible |
+| Paso entre unidades | Se puede atravesar a los aliados al moverse, pero el destino debe estar libre; los enemigos bloquean el paso |
 | Recursos de combate | Sistema de puntos tácticos inspirado en Triangle Strategy; PP individuales pendientes de evaluación |
 | Posición | Frente, flancos y espalda afectan a probabilidades; previsión antes de confirmar |
+| Orientación final | Al incorporar bonificaciones por flancos y espalda, un botón al cerrar el turno permite elegir hacia dónde mira el Pokémon |
 | Información enemiga | Las intenciones se deducen; no se muestran como órdenes futuras |
 | Unidades | Especies de Kanto con tipos dobles, estadísticas y tabla de tipos modernos |
 | Identidad | Rol inicial fijo; ataque básico cuerpo a cuerpo o a distancia y habilidades inspiradas en Pokédex y movimientos |
@@ -146,12 +148,14 @@ Sprints 0–2 completados; resto pendiente. Los criterios siguientes describen e
 
 **Depende de:** 3. **Objetivo:** que el tablero importe.
 
-- Orientación final y precisión según frente, flanco y espalda; resolver diagonales con una regla explícita.
+- Precisión según frente, flanco y espalda; resolver diagonales con una regla explícita.
+- Botón de orientación al finalizar cada turno: elegir una dirección cardinal antes de ceder la activación. La dirección elegida se conserva y determina el frente, los flancos y la espalda para ataques posteriores. Se incorpora junto a las bonificaciones por posición.
+- Permitir que las rutas atraviesen aliados, manteniendo el destino libre y a los enemigos como obstáculos. Compartir la regla entre previsualización, confirmación e IA; conservar los costes del terreno.
 - Agua, hierba y obstáculos; perfiles de movimiento con excepciones por especie cuando proceda.
 - Ataques de área, empuje y un efecto de terreno; reglas de alcance y línea de visión.
 - Mejorar decisiones enemigas con costes, alcance, afinidades y seguridad, sin mostrar intenciones.
 
-**Cierre:** probar flanqueo, ocupación tras empuje, bordes, casillas inaccesibles y aplicación de áreas sin duplicar daño. Un mapa permite varias estrategias viables. Sin alturas, clima global ni complejidad adicional necesaria para zonas futuras.
+**Cierre:** probar elección y persistencia de orientación al terminar el turno, flanqueo según esa orientación y paso a través de aliados sin terminar sobre otra unidad. Comprobar bloqueo por enemigos, ocupación tras empuje, bordes, casillas inaccesibles y aplicación de áreas sin duplicar daño. Un mapa permite varias estrategias viables. Sin alturas, clima global ni complejidad adicional necesaria para zonas futuras.
 
 ### Sprint 5 — Primera ruta y consecuencias persistentes
 
