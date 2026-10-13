@@ -1,6 +1,6 @@
 # Plan de desarrollo por sprints — Pokémon táctico roguelike
 
-Fecha: 13 de octubre de 2026. Versión: 1.1. Estado: sprint 0 completado técnicamente; pendiente de feedback. Sprint 1 todavía no iniciado.
+Fecha: 13 de octubre de 2026. Versión: 1.2. Estado: sprints 0 y 1 completados técnicamente; sprint 1 pendiente de feedback. Sprint 2 todavía no iniciado.
 
 Este documento conserva las decisiones del proyecto y organiza entregas pequeñas para construirlo con asistencia de IA. Cada sprint produce algo revisable y termina antes de comenzar el siguiente. El objetivo es un juego de navegador divertido para el portfolio, con pruebas locales primero y una posible publicación posterior en web propia. La viralidad es una aspiración, no un criterio garantizado de éxito.
 
@@ -72,7 +72,7 @@ También quedan por fijar la fórmula de daño, precisión por ángulo, costes d
 
 ## 4. Reutilización de repositorios públicos
 
-Fuentes consultadas el 13 de octubre de 2026. En el sprint 0 se integraron plantilla Phaser, SpriteCollab, PokéAPI, Pixelify Sans y funciones de importación de PokéSurvivor; EasyStar sigue pendiente de evaluación. Versiones, archivos, autores y modificaciones están registrados en el proyecto. La licencia del código no cubre automáticamente los datos, imágenes o marcas de un repositorio.
+Fuentes consultadas el 13 de octubre de 2026. En el sprint 0 se integraron plantilla Phaser, SpriteCollab, PokéAPI, Pixelify Sans y funciones de importación de PokéSurvivor; EasyStar se integra en el sprint 1, versión npm 0.4.4 fija. Versiones, archivos, autores y modificaciones están registrados en el proyecto. La licencia del código no cubre automáticamente los datos, imágenes o marcas de un repositorio.
 
 | Recurso | Uso previsto y ahorro | Condiciones / fuente |
 | --- | --- | --- |
@@ -98,7 +98,7 @@ No se necesita servidor de juego para la primera versión. Cuentas, nube, multij
 
 ## 6. Sprints y criterios de cierre
 
-Sprint 0 completado; resto pendiente. Los criterios siguientes describen el cierre de cada entrega. Las comprobaciones efectivamente ejecutadas del sprint 0 figuran en [su informe](SPRINT_0.md).
+Sprints 0 y 1 completados; resto pendiente. Los criterios siguientes describen el cierre de cada entrega. Las comprobaciones efectivamente ejecutadas del sprint 0 figuran en [su informe](SPRINT_0.md).
 
 ### Sprint 0 — Preparación y recursos mínimos
 
@@ -266,13 +266,14 @@ Actualizar esta tabla al cerrar una entrega. Las columnas se completan con hecho
 | Sprint | Estado | Versión / commit | Comprobaciones ejecutadas | Feedback y próximo paso |
 | --- | --- | --- | --- | --- |
 | 0 | Completado técnicamente | 0.0.1; rama `codex/sprint-0` | Instalación limpia, tipos y build; 6 pruebas de catálogo; 33 hashes; 12 comprobaciones de navegador | Pendiente de feedback del usuario; siguiente: 1 |
-| 1–9 | Pendientes | — | Ninguna | Iniciar 1 cuando se solicite |
+| 1 | Completado técnicamente | 0.1.0; rama `codex/sprint-1` | 12 pruebas de datos/movimiento; tipos y build; 33 hashes; 18 comprobaciones de navegador | Probar el ensayo en local; siguiente: 2 |
+| 2–9 | Pendientes | — | Ninguna | Iniciar 2 cuando se solicite |
 | 10A–10D | Pendientes | — | Ninguna | Ejecutar un bloque por vez |
 | 11–12 | Pendientes | — | Ninguna | Pruebas y publicación posteriores |
 
 Plantilla de cierre: objetivo entregado; archivos o módulos modificados; recursos reutilizados y procedencia; comprobaciones ejecutadas y resultados; prueba manual disponible; feedback; pendientes; actualización de valores provisionales.
 
-Petición sugerida para continuar: **«Empieza únicamente el sprint 1 del PLAN_SPRINTS.md, conserva la base del sprint 0 y comprueba el tablero y desplazamiento».**
+Petición sugerida para continuar: **«Empieza únicamente el sprint 2 del PLAN_SPRINTS.md; reutiliza las reglas de movimiento y añade rondas, iniciativa y combate básico».**
 
 ## 9. Historial de entregas
 
@@ -284,3 +285,5 @@ Sprint 0: proyecto en `outputs/pokemon-tactics`, campamento de seis especies, re
 ## 10. Entregas en GitHub
 
 Repositorio: https://github.com/GregorioRuiz98/pokemon-tactics (privado inicialmente). Al terminar cada sprint: actualizar este plan y su informe, ejecutar las comprobaciones pertinentes, revisar el diff, crear un commit, subirlo y verificar el SHA remoto. El usuario ha autorizado este flujo para los siguientes sprints. Consultar AGENTS.md para los detalles. Este archivo es el plan canónico del proyecto.
+
+Sprint 1: tablero 8×8 con obstáculos, maleza, seis unidades fijas, alcance y trayectoria, confirmación/cancelación, presupuestos y orientación. Navegación reutilizada de EasyStar. El campamento continúa en `?view=camp`. Informe: [SPRINT_1.md](SPRINT_1.md). Rama de entrega: `codex/sprint-1`.

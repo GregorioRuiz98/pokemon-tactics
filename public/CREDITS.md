@@ -22,6 +22,8 @@ Se incluyen Idle y Walk y sus metadatos. Hojas sin modificar; miniaturas recorta
 - [Phaser](https://github.com/phaserjs/phaser), versión 4.0.0: motor 2D, MIT. Aviso íntegro: `licenses/phaser-MIT.md` en la distribución.
 - [Plantilla Phaser / Vite / TypeScript](https://github.com/phaserjs/template-vite-ts), commit `d1d7d58acfcf47f97642bcb8b4967071b85f8db9`: base de arranque/configuración adaptada, escenas reemplazadas, versiones fijadas y telemetría retirada. MIT; aviso en `licenses/phaser-template-MIT.txt`.
 - [PokéSurvivor, JPTER78](https://github.com/JPTER78/pokesurvivor), commit `a9b21f091d7e2e0b10bc9ef94836447bf63cddeb`: archivo `tools/fetch_sprites.py` conservado como `tools/vendor/pokesurvivor_sprites.py`. Se reutilizan sus funciones de XML, resolución de animaciones y ancla de suelo. El adaptador de este proyecto limita especies, genera JSON y registra hashes. Código MIT; aviso íntegro en `licenses/pokesurvivor-LICENSE.txt`.
+- [EasyStar.js](https://github.com/prettymuchbryce/easystarjs), Bryce Neal, versión 0.4.4: búsqueda A* integrada mediante npm, sin modificar el paquete. MIT; aviso íntegro en `licenses/EasyStar-MIT.txt` de la distribución. Usa [heap.js](https://github.com/qiao/heap.js), Xueqiao Xu, versión 0.2.6, port de heapq con licencia PSF y aviso de Python Software Foundation; texto conservado en `licenses/heap-PSF.md`. Versiones e integridad en `package-lock.json`.
+- Playwright 1.64.0, Microsoft, Apache-2.0: pruebas de navegador de desarrollo; licencia conservada en el paquete instalado, no se incluye en la aplicación de producción.
 - Vite 6.4.4 y TypeScript 5.7.3: herramientas de desarrollo, versiones en el lockfile. Sus licencias se conservan en los paquetes instalados; no se distribuyen como recursos del juego.
 
 ## Datos
@@ -48,3 +50,6 @@ El sprint 0 no utiliza cuentas, analítica, guardado de partidas ni servicios ex
 - [PokéAPI BSD-3-Clause](licenses/PokeAPI-BSD-3-Clause.txt)
 
 En el código fuente las licencias están bajo `public/licenses`; en la web se sirven bajo `licenses`.
+
+- [EasyStar MIT](licenses/EasyStar-MIT.txt)
+- [heap PSF](licenses/heap-PSF.md)

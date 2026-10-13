@@ -1,13 +1,20 @@
 // Bootstrap adapted from phaserjs/template-vite-ts (MIT).
-import { AUTO, Game, Scale } from 'phaser';
-import { CampScene } from './CampScene';
+import { AUTO, Game, Scale, Scene } from 'phaser';
 
-export function startGame(scene: CampScene): Game {
+export function startGame(
+  scene: Scene,
+  size = { width: 900, height: 520 },
+): Game {
   return new Game({
-    type: AUTO, parent: 'game-container', width: 900, height: 520,
-    backgroundColor: '#314b40', pixelArt: true, roundPixels: true,
+    type: AUTO,
+    parent: 'game-container',
+    ...size,
+    backgroundColor: '#314b40',
+    pixelArt: true,
+    roundPixels: true,
     scale: { mode: Scale.FIT, autoCenter: Scale.CENTER_BOTH },
-    scene: [scene], banner: false,
+    scene: [scene],
+    banner: false,
     input: { keyboard: false },
   });
 }
