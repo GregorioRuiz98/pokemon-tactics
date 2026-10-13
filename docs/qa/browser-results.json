@@ -1,0 +1,55 @@
+{
+  "browser": "Microsoft Edge headless (Playwright)",
+  "checks": [
+    {
+      "name": "Camp loads with six species and one Phaser canvas",
+      "status": "pass"
+    },
+    {
+      "name": "All species, Walk preview and all four orientations selectable",
+      "status": "pass"
+    },
+    {
+      "name": "Keyboard selection and visible focus",
+      "status": "pass"
+    },
+    {
+      "name": "Pause freezes canvas and resume advances animation",
+      "status": "pass"
+    },
+    {
+      "name": "Credits dialog, Escape/focus restoration, attribution files served",
+      "status": "pass"
+    },
+    {
+      "name": "Desktop and narrow layout without horizontal overflow",
+      "status": "pass"
+    },
+    {
+      "name": "Reduced motion starts with paused animations",
+      "status": "pass"
+    },
+    {
+      "name": "No JS/console errors and no external runtime requests",
+      "status": "pass"
+    },
+    {
+      "name": "Loading state visible with delayed catalog",
+      "status": "pass"
+    },
+    {
+      "name": "Missing sheet has partial state and successful reload recovery",
+      "status": "pass"
+    },
+    {
+      "name": "Empty/invalid catalog produces error and retry recovers",
+      "status": "pass"
+    },
+    {
+      "name": "Production build serves and renders all six species",
+      "status": "pass"
+    }
+  ],
+  "errors": [],
+  "external": []
+}

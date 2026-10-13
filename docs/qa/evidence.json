@@ -1,0 +1,24 @@
+{
+  "contract": "../DESIGN.md: campamento con seis especies, ficha real y animaciones; controles HTML equivalentes al canvas; escritorio y pantalla estrecha.",
+  "targetViewports": ["1440x1000", "390x844"],
+  "accessibility": {
+    "status": "pass",
+    "evidence": "Pruebas de teclado: flechas cambian especie y mantienen foco visible de 3px; Escape cierra créditos y devuelve foco. Botones con etiquetas y aria-pressed. Preferencia reduced-motion pausa animaciones al iniciar. Revisión visual de texto y contraste; no constituye una auditoría WCAG exhaustiva."
+  },
+  "responsive": {
+    "status": "pass",
+    "evidence": "Capturas de página completa en 1440x1000 y 390x844 revisadas; sin desbordamiento horizontal. En móvil ficha y controles quedan apilados, con selección de Butterfree comprobada."
+  },
+  "contentStates": {
+    "loading": {"status":"pass","evidence":"Catálogo retrasado deliberadamente: Preparando el campamento visible; carga final completa. loading.png."},
+    "empty": {"status":"pass","evidence":"Una respuesta [] se rechaza como catálogo incompleto; muestra error recuperable. No existe colección vacía válida en este sprint."},
+    "error": {"status":"pass","evidence":"Catálogo inválido muestra pantalla de error y reintento; tras quitar el fallo, el reintento recupera las seis especies. error.png."},
+    "partial": {"status":"pass","evidence":"Idle de Bulbasaur bloqueado: otras cinco especies visibles y aviso de animaciones no disponibles. Volver a cargar recupera el recurso. partial.png."},
+    "success": {"status":"pass","evidence":"Seis especies, datos, orientaciones y ambas animaciones comprobadas; canvas pausado permanece idéntico y reanuda movimiento. Sin errores JS ni peticiones HTTP externas."},
+    "permission": {"status":"not-applicable","reason":"La galería no solicita cuentas, permisos del navegador ni datos del usuario."}
+  },
+  "renderedEvidence": [
+    {"viewport":"1440x1000","artifact":"desktop.png","observation":"Las seis especies aparecen alineadas sobre sus plataformas. Ficha marfil y selección ámbar distinguibles; botones y tipos legibles."},
+    {"viewport":"390x844","artifact":"mobile.png","observation":"Vista completa sin recortes horizontales; títulos se ajustan, controles y lista de especies accesibles mediante desplazamiento vertical."}
+  ]
+}

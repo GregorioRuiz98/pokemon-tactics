@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Bulbasaur",
+    "id": 1,
+    "authors": [
+      "CHUNSOFT"
+    ]
+  },
+  {
+    "name": "Charmander",
+    "id": 4,
+    "authors": [
+      "CHUNSOFT"
+    ]
+  },
+  {
+    "name": "Squirtle",
+    "id": 7,
+    "authors": [
+      "CHUNSOFT"
+    ]
+  },
+  {
+    "name": "Pikachu",
+    "id": 25,
+    "authors": [
+      "CHUNSOFT"
+    ]
+  },
+  {
+    "name": "Butterfree",
+    "id": 12,
+    "authors": [
+      "CHUNSOFT"
+    ]
+  },
+  {
+    "name": "Geodude",
+    "id": 74,
+    "authors": [
+      "CHUNSOFT"
+    ]
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "template": {
+    "repository": "https://github.com/phaserjs/template-vite-ts",
+    "commit": "d1d7d58acfcf47f97642bcb8b4967071b85f8db9",
+    "raw": "https://raw.githubusercontent.com/phaserjs/template-vite-ts/d1d7d58acfcf47f97642bcb8b4967071b85f8db9"
+  },
+  "sprites": {
+    "repository": "https://github.com/PMDCollab/SpriteCollab",
+    "commit": "6ad5f1c6229af6b055de2c64442e5e508664290c",
+    "raw": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c"
+  },
+  "pokesurvivor": {
+    "repository": "https://github.com/JPTER78/pokesurvivor",
+    "commit": "a9b21f091d7e2e0b10bc9ef94836447bf63cddeb",
+    "raw": "https://raw.githubusercontent.com/JPTER78/pokesurvivor/a9b21f091d7e2e0b10bc9ef94836447bf63cddeb"
+  },
+  "fonts": {
+    "repository": "https://github.com/google/fonts",
+    "commit": "66928797f271fed5ee428544e7229685e2d90127",
+    "raw": "https://raw.githubusercontent.com/google/fonts/66928797f271fed5ee428544e7229685e2d90127"
+  },
+  "pokeapi": {
+    "repository": "https://github.com/PokeAPI/pokeapi",
+    "commit": "81d20919845b6a445969b9265aab5cec6b04cece",
+    "raw": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece"
+  }
+}

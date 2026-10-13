@@ -1,0 +1,17 @@
+{
+  "name": "pokemon-tactics",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Prototipo local de RPG tactico Pokemon — sprint 0",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "verify:assets": "node tools/verify-assets.mjs"
+  },
+  "dependencies": { "phaser": "4.0.0" },
+  "devDependencies": { "typescript": "5.7.3", "vite": "6.4.4" }
+}
