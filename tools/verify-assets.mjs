@@ -30,4 +30,12 @@ for (const pokemon of catalog) {
   }
   assert(existsSync(resolve(root, `public/assets/pokemon/${pokemon.id}/credits.txt`)));
 }
-console.log(`${catalog.length} species, 12 sheets and ${paths.size} provenance hashes verified.`);
+const typeSources = readJson('tools/vendor/pokeapi/sources.json');
+assert.equal(typeSources.commit, readJson('tools/sources.lock.json').pokeapi.commit);
+for (const file of typeSources.files) {
+  assert(['types.csv', 'type_efficacy.csv'].includes(file.file));
+  const hash = createHash('sha256').update(readFileSync(resolve(root, 'tools/vendor/pokeapi', file.file))).digest('hex');
+  assert.equal(hash, file.sha256, `Type resource changed: ${file.file}`);
+}
+assert(existsSync(resolve(root, 'public/licenses/PokeAPI-BSD-3-Clause.txt')));
+console.log(`${catalog.length} species, 12 sheets, ${paths.size} original provenance hashes and ${typeSources.files.length} pinned type CSV hashes verified.`);

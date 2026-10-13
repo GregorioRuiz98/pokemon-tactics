@@ -1,0 +1,16 @@
+{
+  "repository": "https://github.com/PokeAPI/pokeapi",
+  "commit": "81d20919845b6a445969b9265aab5cec6b04cece",
+  "license": "../../../public/licenses/PokeAPI-BSD-3-Clause.txt",
+  "files": [
+    {
+      "file": "types.csv",
+      "sha256": "37f039c8d722f47d51ba1c5c5ecf9b7007235b1a9a1af2827645c777b70307c8"
+    },
+    {
+      "file": "type_efficacy.csv",
+      "sha256": "cdd7de4066680414d0a2433af805f139f425d6350cbf998ecab559a0fe8ff587"
+    }
+  ],
+  "scope": "18 standard modern types; stellar, unknown and shadow excluded"
+}

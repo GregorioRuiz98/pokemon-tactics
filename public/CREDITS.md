@@ -30,6 +30,8 @@ Se incluyen Idle y Walk y sus metadatos. Hojas sin modificar; miniaturas recorta
 
 [PokéAPI](https://pokeapi.co/): nombres, tipos, estadísticas base y clasificación de seis especies. Respuestas cacheadas por el importador y convertidas en una instantánea local. No se consulta la API al jugar. Código del servicio BSD-3-Clause; esto no constituye una licencia general para personajes o datos de terceros. Aviso conservado en `licenses/PokeAPI-BSD-3-Clause.txt`.
 
+Sprint 3: tabla moderna de 18 tipos reutilizada de [`PokeAPI/pokeapi`](https://github.com/PokeAPI/pokeapi/tree/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv), commit `81d20919845b6a445969b9265aab5cec6b04cece`. Copias originales de `types.csv` y `type_efficacy.csv` en `tools/vendor/pokeapi`, con fuente, licencia y SHA-256 en `sources.json`. `tools/import-types.mjs` genera la matriz local de 324 relaciones; excluye Stellar y tipos no estándar. Habilidades y reglas tácticas son adaptaciones propias documentadas en `docs/SPRINT_3.md`.
+
 ## Tipografía
 
 Pixelify Sans, The Pixelify Sans Project Authors, obtenida del repositorio [Google Fonts](https://github.com/google/fonts/tree/main/ofl/pixelifysans). SIL Open Font License 1.1; archivo sin modificaciones y licencia en `licenses/PixelifySans-OFL.txt`.
@@ -42,14 +44,14 @@ El sprint 0 no utiliza cuentas, analítica, guardado de partidas ni servicios ex
 
 ## Licencias incluidas
 
-- [Phaser MIT](licenses/phaser-MIT.md)
-- [Plantilla MIT](licenses/phaser-template-MIT.txt)
-- [PokéSurvivor y separación de contenido](licenses/pokesurvivor-LICENSE.txt)
-- [SpriteCollab CC BY-NC 4.0](licenses/SpriteCollab-CC-BY-NC-4.0.md)
-- [Pixelify Sans OFL](licenses/PixelifySans-OFL.txt)
-- [PokéAPI BSD-3-Clause](licenses/PokeAPI-BSD-3-Clause.txt)
+- [Phaser MIT](public/licenses/phaser-MIT.md)
+- [Plantilla MIT](public/licenses/phaser-template-MIT.txt)
+- [PokéSurvivor y separación de contenido](public/licenses/pokesurvivor-LICENSE.txt)
+- [SpriteCollab CC BY-NC 4.0](public/licenses/SpriteCollab-CC-BY-NC-4.0.md)
+- [Pixelify Sans OFL](public/licenses/PixelifySans-OFL.txt)
+- [PokéAPI BSD-3-Clause](public/licenses/PokeAPI-BSD-3-Clause.txt)
 
 En el código fuente las licencias están bajo `public/licenses`; en la web se sirven bajo `licenses`.
 
-- [EasyStar MIT](licenses/EasyStar-MIT.txt)
-- [heap PSF](licenses/heap-PSF.md)
+- [EasyStar MIT](public/licenses/EasyStar-MIT.txt)
+- [heap PSF](public/licenses/heap-PSF.md)

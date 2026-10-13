@@ -39,3 +39,12 @@ Valores de iniciativa, puntos tácticos, estados y duración siguen siendo propu
 - Registrar para el sprint 4 un botón de orientación al finalizar cada turno, junto con las bonificaciones por atacar flancos y espalda. El jugador elige una dirección cardinal antes de ceder la activación; esa dirección determina la posición relativa de los ataques posteriores.
 - Registrar para el mismo sprint que el desplazamiento pueda atravesar aliados. El destino debe estar libre y los enemigos siguen bloqueando el paso; previsualización, confirmación e IA deben compartir esta regla.
 - Son decisiones para implementar más adelante. El combate de la versión 0.2.1 todavía usa precisión fija del 100 %, orientación automática por movimiento/ataque y ocupación que impide atravesar cualquier unidad.
+
+## Sprint 3 — POO, 14 de octubre de 2026
+
+- El usuario solicita POO para facilitar la introducción de herencia entre Pokémon. Se incorpora base `Pokemon`, seis especializaciones y jerarquía de acciones; los tipos y las relaciones futuras de evolución permanecen como datos. Las clases contienen comportamiento; el estado sigue siendo serializable y se copia al resolver órdenes. Ver `ARCHITECTURE.md`.
+- Se reutilizan `types.csv` y `type_efficacy.csv` de PokéAPI en el mismo commit ya fijado. Se importan 18 tipos estándar y 324 relaciones; Stellar no forma parte de este combate. Fuentes y dos hashes en `tools/vendor/pokeapi/sources.json`.
+- Se añaden dos habilidades y un básico gratuito por especie, PT, veneno/quemadura/parálisis, absorción y protección. Son adaptaciones tácticas; precisiones, potencias, alcances, costes y duración se definen con las acciones. Reglas y excepciones en `SPRINT_3.md`.
+- Iniciales y Control son dos equipos fijos de prueba con los mismos seis recursos, intercambiando bandos. No representan todavía selección aleatoria, reclutamiento ni sustitución durante una run.
+- El PRNG resuelve precisión y estados secundarios al confirmar. El gasto se valida de nuevo y se aplica incluso si la orden falla. IA y previsión usan el mismo contrato de acción.
+- Orientación final manual y paso por aliados siguen pendientes del sprint 4. No se implementan progresión, mapa de ruta, guardado ni evolución en esta entrega.

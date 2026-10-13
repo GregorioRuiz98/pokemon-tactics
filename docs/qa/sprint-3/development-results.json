@@ -1,0 +1,90 @@
+{
+  "browser": "Microsoft Edge headless (Playwright)",
+  "url": "http://127.0.0.1:5173/",
+  "checks": [
+    {
+      "name": "Local battle loads six units, one basic and two skills; activation grants exactly one PT",
+      "status": "pass"
+    },
+    {
+      "name": "Desktop HUD remains integrated and leaves every board cell free",
+      "status": "pass"
+    },
+    {
+      "name": "Inspection shows another Pokémon without changing the active turn",
+      "status": "pass"
+    },
+    {
+      "name": "Typed skill forecast matches rules and Escape preserves HP, PT, action and RNG-dependent replay",
+      "status": "pass"
+    },
+    {
+      "name": "Skill spends PT/action once; movement remains available after acting",
+      "status": "pass"
+    },
+    {
+      "name": "Keyboard grid, cancel and Options preserve visible focus",
+      "status": "pass"
+    },
+    {
+      "name": "Support skill accepts a friendly target and displays its protection and remaining PT",
+      "status": "pass"
+    },
+    {
+      "name": "Second composition plays movement then status skill; chance, duration and applied paralysis match the model",
+      "status": "pass"
+    },
+    {
+      "name": "A complete battle with typed skills reaches victory without stalled activations",
+      "status": "pass"
+    },
+    {
+      "name": "Same seed and orders reproduce HP, PT, status, initiative, result and log exactly",
+      "status": "pass"
+    },
+    {
+      "name": "Passive play reaches defeat; poison/burn casualties and ordinary damage cannot block the queue",
+      "status": "pass"
+    },
+    {
+      "name": "Alternative composition completes a full battle using the other three species",
+      "status": "pass"
+    },
+    {
+      "name": "Skills, long descriptions and orders fit intermediate/mobile layouts with a playable confirmation flow",
+      "status": "pass"
+    },
+    {
+      "name": "Training and camp remain reachable",
+      "status": "pass"
+    },
+    {
+      "name": "Normal play emits no console/JavaScript errors or remote requests",
+      "status": "pass"
+    },
+    {
+      "name": "Animated movement locks orders and resting animations support pause/resume",
+      "status": "pass"
+    },
+    {
+      "name": "Slow loading gives progress and keeps commands disabled",
+      "status": "pass"
+    },
+    {
+      "name": "Invalid/empty catalogue exposes a retry and recovers combat",
+      "status": "pass"
+    },
+    {
+      "name": "A missing sprite becomes a movable marker; reload recovers it without JS errors",
+      "status": "pass"
+    }
+  ],
+  "consoleErrors": [],
+  "externalRequests": [],
+  "victoryRound": 3,
+  "defeatRound": 2,
+  "secondComposition": {
+    "outcome": "victory",
+    "round": 2
+  }
+}

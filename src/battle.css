@@ -10,7 +10,7 @@
 .gameplay {
   position: relative;
   height: calc(100dvh - 24px);
-  min-height: 680px;
+  min-height: 780px;
   overflow: visible;
   background: #2b4436;
   border: 1px solid #839479;
@@ -249,7 +249,7 @@
 }
 .gameplay .battlefield {
   position: absolute;
-  width: min(560px, calc(100dvh - 416px));
+  width: min(560px, max(240px, calc(100dvh - 550px)));
   top: 112px;
   left: 50%;
   transform: translateX(-50%);
@@ -277,7 +277,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: min(560px, calc(100dvh - 416px));
+  width: min(560px, max(240px, calc(100dvh - 550px)));
   gap: 8px;
   padding: 4px;
   background: #294238;
@@ -417,6 +417,43 @@
   min-width: 0;
   text-align: center;
   color: #fff1cf;
+}
+.skill-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 6px;
+}
+.skill-actions button {
+  padding: 7px 5px;
+  min-height: 44px;
+  background: #284738;
+  color: var(--hud-ink);
+  border: 1px solid #9db794;
+  font: 13px 'Pixelify Sans', monospace;
+  overflow-wrap: anywhere;
+}
+.skill-actions button[aria-pressed='true'] {
+  background: #d9b45f;
+  color: #16312b;
+}
+.skill-actions button:disabled { opacity: 0.6; cursor: not-allowed; }
+.skill-actions button:focus-visible, #composition:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+#ability-description {
+  font: 10px/1.5 monospace;
+  min-height: 30px;
+  margin: 6px 0;
+  color: #dce3ca;
+}
+.unit-status { font: 10px/1.5 monospace; margin: 6px 0 0; color: #ffe0a6; }
+#forecast-effect { font: 10px/1.5 monospace; margin: 4px 0; }
+.composition-setting { grid-column: 1 / -1; }
+#composition {
+  width: 100%; min-height: 40px; padding: 8px;
+  border: 1px solid #94a78b; background: #263f36; color: #fff1d2; font: 11px monospace;
 }
 .battle-actions {
   display: flex;

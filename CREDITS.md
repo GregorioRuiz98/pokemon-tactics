@@ -30,6 +30,8 @@ Se incluyen Idle y Walk y sus metadatos. Hojas sin modificar; miniaturas recorta
 
 [PokéAPI](https://pokeapi.co/): nombres, tipos, estadísticas base y clasificación de seis especies. Respuestas cacheadas por el importador y convertidas en una instantánea local. No se consulta la API al jugar. Código del servicio BSD-3-Clause; esto no constituye una licencia general para personajes o datos de terceros. Aviso conservado en `licenses/PokeAPI-BSD-3-Clause.txt`.
 
+Sprint 3: tabla moderna de 18 tipos reutilizada de [`PokeAPI/pokeapi`](https://github.com/PokeAPI/pokeapi/tree/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv), commit `81d20919845b6a445969b9265aab5cec6b04cece`. Copias originales de `types.csv` y `type_efficacy.csv` en `tools/vendor/pokeapi`, con fuente, licencia y SHA-256 en `sources.json`. `tools/import-types.mjs` genera la matriz local de 324 relaciones; excluye Stellar y tipos no estándar. Habilidades y reglas tácticas son adaptaciones propias documentadas en `docs/SPRINT_3.md`.
+
 ## Tipografía
 
 Pixelify Sans, The Pixelify Sans Project Authors, obtenida del repositorio [Google Fonts](https://github.com/google/fonts/tree/main/ofl/pixelifysans). SIL Open Font License 1.1; archivo sin modificaciones y licencia en `licenses/PixelifySans-OFL.txt`.
