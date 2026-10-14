@@ -1,6 +1,6 @@
 # Plan de desarrollo por sprints — Pokémon táctico roguelike
 
-Fecha: 14 de octubre de 2026. Versión: 1.9. Estado: sprints 0–5 completados técnicamente; sprint 6 todavía no iniciado. POO, orientación final y paso por aliados implementados. Feedback inicial recibido: bajas demasiado rápidas en 3v3; el usuario aplaza el equilibrio mientras se define mejor el juego y pide conservar los parámetros actuales.
+Fecha: 14 de octubre de 2026. Versión: 1.10. Estado: sprints 0–6 completados técnicamente; sprint 7 todavía no iniciado. POO, orientación final y paso por aliados implementados. Feedback inicial recibido: bajas demasiado rápidas en 3v3; el usuario aplaza el equilibrio hasta completar las mecánicas y pide conservar los parámetros actuales.
 
 Este documento conserva las decisiones del proyecto y organiza entregas pequeñas para construirlo con asistencia de IA. Cada sprint produce algo revisable y termina antes de comenzar el siguiente. El objetivo es un juego de navegador divertido para el portfolio, con pruebas locales primero y una posible publicación posterior en web propia. La viralidad es una aspiración, no un criterio garantizado de éxito.
 
@@ -100,7 +100,7 @@ No se necesita servidor de juego para la primera versión. Cuentas, nube, multij
 
 ## 6. Sprints y criterios de cierre
 
-Sprints 0–5 completados técnicamente; resto pendiente. Los criterios siguientes describen el cierre de cada entrega. Las comprobaciones ejecutadas figuran en los informes de cada sprint.
+Sprints 0–6 completados técnicamente; resto pendiente. Los criterios siguientes describen el cierre de cada entrega. Las comprobaciones ejecutadas figuran en los informes de cada sprint.
 
 ### Sprint 0 — Preparación y recursos mínimos
 
@@ -171,12 +171,12 @@ Sprints 0–5 completados técnicamente; resto pendiente. Los criterios siguient
 
 ### Sprint 6 — Tienda, reclutamiento y objetos
 
-**Depende de:** 5. **Objetivo:** decidir cómo invertir recursos y mantener el equipo.
+**Depende de:** 5. **Objetivo:** decidir cómo invertir recursos y mantener el equipo. Entrega técnica completada en 0.6.0; informe en [SPRINT_6.md](SPRINT_6.md). Tienda/reclutamiento separados, seis aliados, objetos y guardado actualizado.
 
 - Dinero, recompensas y tienda con consumibles curativos y unos pocos objetos equipables.
 - Usar consumibles exclusivamente fuera de combate, sin revivir ni curar automáticamente.
 - Sala de reclutamiento con tres candidatos no legendarios; incorporar hasta seis o sustituir con confirmación.
-- Un objeto equipado por miembro; regla explícita de recuperación al sustituir y tratamiento al morir.
+- Un objeto equipado por miembro; recuperación en la bolsa al sustituir o morir, confirmada por el usuario.
 
 **Cierre:** recorrido compra → curación → reclutamiento → combate. Sin duplicaciones de dinero, objetos ni recompensas tras recargar; compras sin saldo bloqueadas. Evaluar si separar tienda y reclutamiento ofrece decisiones útiles.
 
@@ -227,7 +227,7 @@ Cada bloque se ejecuta y cierra por separado. Incorporar inicialmente dos mapas 
 
 Orden temático del recorrido completo: roca → agua → eléctrico → planta → veneno → psíquico → fuego → tierra → uno de los dos finales. Los jefes no dependen de elegir una temática concreta hasta que se diseñe esa relación. No implica incluir entrenadores, diálogos o combates de líder de gimnasio.
 
-**Cierre de cada bloque:** jugar sus dos temáticas con la economía persistente; validar mapas, composición enemiga y nuevos créditos. Ajustar duración y recursos antes del siguiente bloque. Si ocho zonas alargan demasiado la partida, probar un recorrido reducido antes de aumentar encuentros.
+**Cierre de cada bloque:** jugar sus dos temáticas con la economía persistente; validar mapas, composición enemiga y nuevos créditos. Registrar duración y recursos; los ajustes de equilibrio esperan a completar las mecánicas. Si ocho zonas alargan demasiado la partida, probar un recorrido reducido antes de aumentar encuentros.
 
 ### Sprint 11 — Pruebas externas, equilibrio y portfolio
 
@@ -277,13 +277,14 @@ Actualizar esta tabla al cerrar una entrega. Las columnas se completan con hecho
 | 3 | Completado técnicamente | 0.3.0; rama `codex/sprint-3` | 35 pruebas; 324 relaciones de tipos y 35 hashes de recursos; tipos/build; 19 comprobaciones de navegador en desarrollo y producción | Probar dos composiciones y ajustar costes; siguiente: 4 |
 | 4 | Completado técnicamente | 0.4.0; rama `codex/sprint-4` | 49 pruebas; 20 escenarios repetidos; tipos/build y 35 hashes; 19 comprobaciones de navegador en desarrollo y producción, 18 de ensayo | Bajas rápidas en 3v3; equilibrio aplazado por el usuario. Conservar parámetros y repertorio; revisar Lanzallamas como opción futura. Siguiente: 5 |
 | 5 | Completado técnicamente | 0.5.0; rama `codex/sprint-5` | 57 pruebas; 100 rutas simuladas; tipos/build y 35 hashes; 18 comprobaciones de ruta en desarrollo y producción local, 19 de combate y 18 de ensayo | Probar continuidad y desgaste. Parámetros intactos; curación y economía en 6 |
-| 6–9 | Pendientes | — | Ninguna | Iniciar 6 cuando se solicite |
+| 6 | Completado técnicamente | 0.6.0; rama `codex/sprint-6` | 72 pruebas; tipos/build y 37 hashes; 18 comprobaciones de gestión en desarrollo y producción local, 19 de combate y 3 de ciclo de vida | Probar economía y composición. Equilibrio aplazado; siguiente: 7 |
+| 7–9 | Pendientes | — | Ninguna | Iniciar 7 cuando se solicite |
 | 10A–10D | Pendientes | — | Ninguna | Ejecutar un bloque por vez |
 | 11–12 | Pendientes | — | Ninguna | Pruebas y publicación posteriores |
 
 Plantilla de cierre: objetivo entregado; archivos o módulos modificados; recursos reutilizados y procedencia; comprobaciones ejecutadas y resultados; prueba manual disponible; feedback; pendientes; actualización de valores provisionales.
 
-Petición sugerida para continuar, tras probar la ruta: **«Empieza únicamente el sprint 6 del PLAN_SPRINTS.md; añade tienda, curación fuera de combate, reclutamiento y objetos».**
+Petición sugerida para continuar, tras probar la gestión: **«Empieza únicamente el sprint 7 del PLAN_SPRINTS.md; añade experiencia, niveles simplificados y evoluciones mediante objetos».**
 
 ## 9. Historial de entregas
 

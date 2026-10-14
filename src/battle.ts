@@ -3,6 +3,7 @@ import './battle.css';
 import { validateCatalog, TYPE_NAMES } from './data/catalog';
 import type { PokemonSpecies } from './data/catalog';
 import { pokemonFor } from './domain/Pokemon';
+import { heldItemFor, itemFor } from './domain/items';
 import { STATUS_NAMES, effectiveSpeed, movementBudget } from './domain/combatant';
 import type { Combatant } from './domain/combatant';
 import type { Composition } from './rules/battle';
@@ -224,7 +225,7 @@ export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): (
     $('#actor-stats').textContent =
       `${pokemonFor(actorCard.speciesId).role} · ${PROFILE_NAMES[actorCard.profile ?? 'ground']} · mira al ${FACING_NAMES[actorCard.facing]} · velocidad ${effectiveSpeed(actorCard)}`;
     $('#actor-tp').textContent = `PT ${actorCard.tp}/${actorCard.maxTp}`;
-    $('#actor-status').textContent = statusText(actorCard);
+    $('#actor-status').textContent = `${statusText(actorCard)}${actorCard.heldItem ? ` · ${itemFor(actorCard.heldItem).name}: ${itemFor(actorCard.heldItem).description}` : ''}`;
     $('#actor-health').innerHTML =
       `<i style="width:${(actorCard.hp / actorCard.maxHp) * 100}%"></i>`;
     $('#move-available').textContent = actor
@@ -261,11 +262,13 @@ export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): (
     $('#mode-move').setAttribute('aria-pressed', String(mode === 'move'));
     $('#mode-attack').setAttribute('aria-pressed', String(mode === 'attack'));
     document.querySelectorAll<HTMLButtonElement>('[data-skill-slot]').forEach((button, index) => {
-      const ability = pokemonFor(actorCard.speciesId).actions[index].definition;
+      const action = pokemonFor(actorCard.speciesId).actions[index], ability = action.definition;
+      const blocked = heldItemFor(actorCard.heldItem)?.allowsStatus() === false && action.preview(actorCard, actorCard).category === 'status';
       button.dataset.action = ability.id;
       button.textContent = `${ability.name} · ${ability.cost} PT`;
       button.title = `${TYPE_NAMES[ability.type]} · alcance ${ability.range} · acierto ${ability.accuracy} %`;
-      button.disabled = !canOrder || state.acted || actorCard.tp < ability.cost;
+      button.disabled = !canOrder || state.acted || actorCard.tp < ability.cost || blocked;
+      if (blocked) button.title += ' · Bloqueado por Chaleco Asalto';
       button.setAttribute('aria-pressed', String(mode === 'attack' && selectedAction === ability.id));
     });
     const selected = pokemonFor(actorCard.speciesId).action(selectedAction)?.definition;
@@ -356,8 +359,8 @@ export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): (
     $('#inspect-health').innerHTML =
       `<i style="width:${(unit.hp / unit.maxHp) * 100}%"></i>`;
     $('#inspect-stats').textContent =
-      `AT ${unit.attack} / DF ${unit.defense} · AE ${unit.specialAttack} / DE ${unit.specialDefense} · PT ${unit.tp}/${unit.maxTp}`;
-    $('#inspect-status').textContent = statusText(unit);
+      `AT ${unit.attack} / DF ${unit.defense} · AE ${unit.specialAttack} / DE ${heldItemFor(unit.heldItem)?.specialDefense(unit) ?? unit.specialDefense} · PT ${unit.tp}/${unit.maxTp}`;
+    $('#inspect-status').textContent = `${statusText(unit)}${unit.heldItem ? ` · ${itemFor(unit.heldItem).name}` : ''}`;
     $('#inspect-status').textContent += ` · ${FACING_ARROWS[unit.facing]} ${FACING_NAMES[unit.facing]}${fieldDamage(unit, state.fields) ? ' · Ascuas: 4 PS al cerrar turno' : ''}`;
     unitButtons.forEach((button) => {
       const unit = state.units.find(
@@ -368,6 +371,7 @@ export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): (
       button.dataset.hp = String(unit.hp);
       button.dataset.team = unit.team;
       button.dataset.tp = String(unit.tp);
+      button.dataset.held = unit.heldItem ?? '';
       button.dataset.status = unit.status?.kind ?? '';
       button.dataset.duration = String(unit.status?.remaining ?? 0);
       button.dataset.guarded = String(unit.guarded);

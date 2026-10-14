@@ -80,6 +80,58 @@
 #save-notice button { background: #193c52; border: 0; margin-left: 12px; padding: 8px; color: #f7edce; }
 .run-main ::selection { background: #f1c879; color: #172827; }
 .run-main a { text-underline-offset: 3px; }
+/* The same game windows now carry between-room management. */
+#run-money { color: var(--gold); font: 18px 'Pixelify Sans', sans-serif; white-space: nowrap; }
+.management-feedback { margin: 0 32px 20px; color: #f1c879; font-size: 13px; line-height: 1.6; }
+.management-feedback:empty { display: none; }
+.run-party li { padding: 12px 0; gap: 12px; }
+.run-party .member-number { display: inline; margin: 0; font: 11px Arial, sans-serif; color: #c4cebe; }
+.run-party li img { width: 48px; height: 48px; }
+.departed-members li { font-size: 12px; }
+.departed-members li img { width: 32px; height: 32px; }
+.route-tools { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 16px; }
+.route-tools h2 { margin: 0; }
+.route-scroll { max-height: 620px; overflow-y: auto; overflow-x: hidden; margin-top: 16px; scrollbar-color: #8a9f80 #192f29; }
+.route-scroll:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+.route-scroll .route-layer { padding-left: 0; }
+.route-scroll .route-map { padding-top: 6px; }
+.run-main .route-node.shop, .run-main .route-node.recruit { background: #273a43; }
+.run-main .route-node.available { background: #193c52; }
+.service-caption { font-size: 11px; color: #c4cebe; margin: 8px 0; }
+.service-content { min-width: 0; }
+.service-nav { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+.service-nav button[aria-pressed="true"] { color: #172827; background: #f1c879; border-color: #f1c879; }
+.shop-panel, .recruit-panel, .team-management { padding: 22px; background: #192f29; }
+.shop-panel h2, .recruit-panel h2, .team-management h2 { font: 24px 'Pixelify Sans', sans-serif; margin: 0 0 16px; }
+.shop-panel > p, .recruit-panel > p, .team-management > p { font-size: 13px; line-height: 1.6; color: #c4cebe; }
+.shop-list, .bag-list { padding: 0; margin: 0; list-style: none; }
+.shop-list li, .bag-list li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 20px; padding: 18px 0; border-bottom: 1px solid #536553; }
+.shop-list li:last-child, .bag-list li:last-child { border-bottom: 0; }
+.shop-list h3, .recruit-candidate h3, .team-management h3 { font: 21px 'Pixelify Sans', sans-serif; margin: 0 0 8px; }
+.shop-list p, .bag-list p, .recruit-candidate p { font-size: 13px; line-height: 1.6; color: #c4cebe; margin: 6px 0; }
+.shop-list small, .bag-list small, .recruit-candidate small { font-size: 12px; line-height: 1.6; color: #f7edce; }
+.shop-list button { min-width: 128px; font-size: 15px; }
+.team-management select, .replace-panel select { display: block; width: 100%; color: #f7edce; padding: 12px; background: #112722; border: 1px solid #9cb9bf; font: 15px Arial, sans-serif; margin: 10px 0 18px; }
+.team-management select:focus-visible, .replace-panel select:focus-visible, .service-bag summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.team-management label, .replace-panel label { display: block; font-size: 13px; line-height: 1.6; }
+.team-management h3 { margin-top: 26px; }
+.gear-slot { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.team-management .management-note { margin-top: 24px; }
+.service-bag { border-top: 1px solid #536553; background: #192f29; margin-top: 24px; }
+.service-bag > summary { padding: 16px 22px; font: 19px 'Pixelify Sans', sans-serif; min-height: 48px; cursor: pointer; }
+.service-bag .team-management { padding-top: 8px; }
+.recruit-candidates { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 24px; }
+.recruit-candidate { display: flex; flex-direction: column; align-items: start; min-width: 0; padding-bottom: 20px; }
+.recruit-candidate img { image-rendering: pixelated; object-fit: contain; align-self: center; margin-bottom: 14px; }
+.recruit-candidate h3 { margin-bottom: 10px; }
+.recruit-candidate p { flex: 1; }
+.recruit-candidate button { width: 100%; margin-top: 16px; padding: 10px 6px; font-size: 15px; }
+.replace-panel { padding-top: 24px; margin-top: 16px; border-top: 1px solid #f1c879; }
+.replace-panel h3 { font: 23px 'Pixelify Sans', sans-serif; }
+.replace-panel p, .service-close-note { font-size: 12px; line-height: 1.6; color: #c4cebe; }
+.replace-panel button { margin: 0 8px 8px 0; }
+#leave-service, #back-to-route { margin-top: 24px; }
+.migration-notice { color: #f1c879 !important; }
 [hidden] { display: none !important; }
 @media (max-width: 760px) {
   .run-main { margin: 0; border: 0; }
@@ -110,4 +162,17 @@
   .run-ending { padding: 20px 12px; }
   .run-ending th, .run-ending td { padding: 12px 4px; }
   .run-footer { padding: 20px 16px; }
+  .management-feedback { margin: 0 16px 18px; }
+  #run-money { font-size: 17px; }
+  .shop-panel, .recruit-panel, .team-management { padding: 18px 12px; }
+  .shop-list li, .bag-list li { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .shop-list button, .bag-list button { justify-self: start; }
+  .recruit-candidates { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .recruit-candidate { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 8px 14px; padding: 20px 0; border-bottom: 1px solid #536553; }
+  .recruit-candidate img { grid-row: 1 / 5; margin: 0; }
+  .recruit-candidate button { grid-column: 1 / -1; margin-top: 6px; }
+  .recruit-candidate h3, .recruit-candidate p { margin: 0; }
+  .route-tools { flex-wrap: wrap; gap: 12px; }
+  .route-scroll { max-height: 560px; }
+  .service-bag > summary { padding: 16px 12px; }
 }

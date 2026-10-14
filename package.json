@@ -1,9 +1,9 @@
 {
   "name": "pokemon-tactics",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "private": true,
   "type": "module",
-  "description": "Prototipo local de RPG táctico Pokémon — sprint 5: ruta, equipo aleatorio y guardado local",
+  "description": "Prototipo local de RPG táctico Pokémon — sprint 6: tienda, reclutamiento y objetos",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
@@ -11,9 +11,9 @@
     "preview": "vite preview --host 127.0.0.1",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
     "verify:assets": "node tools/verify-assets.mjs",
-    "test:browser": "node --experimental-strip-types tools/browser-sprint5.cjs",
+    "test:browser": "node --experimental-strip-types tools/browser-sprint6.cjs",
     "test:browser:combat": "node --experimental-strip-types tools/browser-sprint4.cjs",
-    "test:browser:lifecycle": "node --experimental-strip-types tools/browser-lifecycle-sprint5.cjs",
+    "test:browser:lifecycle": "node --experimental-strip-types tools/browser-lifecycle-sprint6.cjs",
     "test:browser:training": "node tools/browser-sprint1.cjs"
   },
   "dependencies": {

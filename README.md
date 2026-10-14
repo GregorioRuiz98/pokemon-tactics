@@ -1,6 +1,6 @@
-# Pokémon Tactics — sprint 5 · Ruta y consecuencias
+# Pokémon Tactics — sprint 6 · Tienda, reclutamiento y objetos
 
-Roguelike táctico local sobre tableros 8×8, con iniciativa por velocidad, tabla moderna de tipos, habilidades, puntos tácticos y estados. La versión 0.5.0 enlaza seis encuentros mediante una ruta con bifurcaciones y tres mapas. El equipo inicial tiene tres Pokémon aleatorios de las seis especies disponibles; los PS y las bajas persisten. El guardado local permite continuar incluso durante un combate. Conserva la POO y el HUD integrado en el escenario. Desarrollo según el [plan por sprints](docs/PLAN_SPRINTS.md).
+Roguelike táctico local sobre tableros 8×8, con iniciativa por velocidad, tabla moderna de tipos, habilidades, puntos tácticos y estados. La versión 0.6.0 añade dinero, tiendas, curación fuera de combate, reclutamiento y objetos equipados a la ruta de seis encuentros. El equipo empieza con tres Pokémon aleatorios y puede crecer hasta seis; todos los vivos se despliegan. PS y bajas persisten. Conserva la POO, el HUD integrado y el guardado local, incluida actualización de partidas del sprint 5. Desarrollo según el [plan por sprints](docs/PLAN_SPRINTS.md).
 
 Repositorio: [GregorioRuiz98/pokemon-tactics](https://github.com/GregorioRuiz98/pokemon-tactics). Cada sprint terminado se registra y sube tras sus comprobaciones; el procedimiento está en [AGENTS.md](AGENTS.md).
 
@@ -29,8 +29,11 @@ La compilación se guarda en `dist/` y la vista previa se sirve en `http://127.0
 ## Controles y alcance
 
 - **Empezar partida** genera equipo y ruta; la semilla opcional permite reproducirlos. **Continuar** abre el guardado del mismo navegador y origen. Preparar otra partida no reemplaza el progreso hasta confirmar.
-- En la ruta, elige una sala disponible conectada al último encuentro superado. Se ven escenario, enemigos y PS del equipo. El sexto combate es un final provisional; no representa los jefes legendarios definitivos.
-- PS y bajas se conservan entre salas; los miembros perdidos no vuelven a desplegarse. Estados, protección y PT se restablecen al entrar en otro combate. Aún no hay tiendas, objetos curativos ni reclutamiento: se implementarán en el sprint 6.
+- En la ruta, elige una visita de tienda o reclutamiento antes de cada combate. Elegir una excluye la otra en ese tramo; cerrar la visita impide volver. Se ven escenario, enemigos y PS del equipo. El sexto combate es un final provisional, sin los jefes legendarios definitivos.
+- PS y bajas se conservan; los perdidos salen del equipo y quedan registrados. Estados, protección y PT se restablecen al entrar en otro combate. Los consumibles solo se usan fuera de combate y no reviven.
+- **Comprar/Candidatos** y **Bolsa y equipo** alternan las vistas de cada visita. La bolsa también se abre desde la ruta. Elegir Pokémon muestra la recuperación de PS antes de usar una poción; equipar otro objeto devuelve el anterior.
+- **Reclutar** incorpora un miembro nuevo; las ofertas se pueden usar una sola vez. **Sustituir** permite liberar a un miembro y recuperar su objeto, con confirmación y cancelación/Escape. Con seis miembros, incorporar otro exige sustitución. Puede haber miembros de la misma especie con identidades distintas.
+- Los objetos equipados se recuperan en la bolsa al caer el portador, como ha decidido el usuario. Reclutar otro Pokémon de esa especie crea un miembro nuevo; no restaura la identidad perdida.
 - **Guardar y salir** vuelve al menú. Cada orden aceptada se guarda antes de su animación. Recargar no reinicia el encuentro, las tiradas ni sus bajas. Se muestran errores de almacenamiento, guardados corruptos/incompatibles y conflictos con otras pestañas.
 - La cola superior indica quién actúa. Los enemigos se resuelven automáticamente; las órdenes solo se dan a la unidad aliada activa.
 - **Mover** permite elegir una casilla y confirmar la ruta; **Acciones** y los tres botones de habilidades permiten elegir un objetivo compatible y confirmar daño, precisión, coste y efecto mostrado. **Cancelar** o Escape descarta la orden.
@@ -45,9 +48,11 @@ La compilación se guarda en `dist/` y la vista previa se sirve en `http://127.0
 - Opciones abre unidades, registro y prototipos. Solo el **combate de ensayo** permite cambiar semilla, variación ±5 %/±10 %, composición y reiniciar. Una misma semilla y las mismas órdenes reproducen los resultados. Escape o pulsar fuera cierra el menú.
 - Las bajas abandonan tablero y cola. Victoria permite continuar la ruta; perder todo el equipo termina la partida.
 
-El **combate de ensayo** en `?view=battle` conserva dos composiciones fijas: **Iniciales** (Bulbasaur, Charmander, Squirtle) y **Control** (Pikachu, Butterfree, Geodude); el otro trío es el bando enemigo. Cambia composición en Opciones y reinicia para compararlas. Daño, PS, precisión, costes y repertorios conservan los valores del sprint 4 por instrucción del usuario. Experiencia, reclutamiento, objetos y evolución siguen pendientes.
+El **combate de ensayo** en `?view=battle` conserva dos composiciones fijas: **Iniciales** (Bulbasaur, Charmander, Squirtle) y **Control** (Pikachu, Butterfree, Geodude); el otro trío es el bando enemigo. Cambia composición en Opciones y reinicia para compararlas. Daño, PS, precisión, costes y repertorios base conservan los valores del sprint 4. Los equipables añaden sus efectos propios. El equilibrio espera a completar las mecánicas; experiencia, evoluciones y jefes siguen pendientes.
 
-Prueba sugerida: empieza una partida, supera una sala y comprueba los PS al volver a la ruta. Recarga y continúa; un miembro perdido debe seguir fuera. La semilla `route-79`, ±5 %, permite probar seis encuentros completables con los valores actuales; no garantiza victoria con otras órdenes. La curación pendiente hace esta ruta exigente. Cambia de bifurcación para comparar terreno y rivales.
+Prueba sugerida: entra en tienda, compra una poción y un equipable; abre la bolsa y equipa. Tras combatir, cura a un superviviente y visita reclutamiento. Recarga durante la visita para comprobar saldo, PS y ofertas. La semilla `route-79`, ±5 %, reproduce el recorrido anterior si se cierran los servicios sin gastar y se siguen las mismas órdenes; añadir miembros, curar o equipar puede cambiar decisiones de la IA y resultados.
+
+Propuestas económicas iniciales: 240 monedas y una Poción; 100 monedas por victoria, 80 por recluta. Poción: 40 monedas, 20 PS; Superpoción: 90, 50 PS. Restos: 120, recupera 1/16 de PS máximos al cerrar turno; Chaleco Asalto: 110, defensa especial ×1,5 e impide estado/apoyo; Botas Gruesas: 80, adaptación que evita ascuas de casilla. Restos se aplica después del daño y no revive. Un equipado por miembro; sin ventas, evolución ni objetos rompibles todavía.
 
 Prototipos anteriores: ensayo en `?view=training`, campamento en `?view=camp`.
 
@@ -59,11 +64,13 @@ Con el servidor de desarrollo activo en otra terminal:
 npm.cmd run test:browser
 ```
 
-Ejecuta 18 comprobaciones de ruta, guardado, bifurcaciones, bajas, victoria/derrota, errores y móvil, y conserva capturas en `docs/qa/sprint-5`. Recorre seis combates reales con la semilla `route-79`, valida cada orden contra las reglas y comprueba continuación durante el combate. La política de pruebas no añade un modo automático al juego.
+Ejecuta 18 comprobaciones de tienda, curación, reclutamiento, seis aliados, sustituciones, ruta, guardado y móvil, con evidencia en `docs/qa/sprint-6`. Recorre seis combates reales y valida cada orden contra las reglas. El caso de sustitución con seis miembros usa un checkpoint sintético validado; no añade un modo automático al juego.
 
 `npm.cmd run test:browser:combat` ejecuta las 19 comprobaciones del combate anterior; `npm.cmd run test:browser:training`, las 18 del ensayo. Usan Playwright 1.64.0 y Edge instalado en Windows. En otros sistemas, instalar Chromium con `npx playwright install chromium`. No envían capturas a servicios externos. El servidor debe estar activo: estos comandos no lo arrancan. `TACTICS_URL` permite ejecutar ruta y combate contra otra URL local, por ejemplo la vista previa en el puerto 4173; `TACTICS_QA_DIR` cambia la carpeta de evidencia.
 
-Guardado: `localStorage`, clave `pokemon-tactics.run`, esquema versión 1. No se sincroniza entre navegadores, perfiles, dispositivos o puertos. Borrar datos del navegador elimina el guardado. Si falla el almacenamiento puedes jugar en memoria, con aviso; **Reintentar guardado** intenta conservar el progreso nuevo. No hay cuentas ni nube.
+Guardado: `localStorage`, clave `pokemon-tactics.run`, esquema versión 2. Registra operaciones para reconstruir saldo, bolsa, ofertas y miembros. Las partidas válidas de versión 1 se actualizan conservando PS y RNG; se guarda una copia anterior en `pokemon-tactics.run.v1-backup`. Las visitas anteriores a peleas ya iniciadas se consideran cerradas. Cada victoria antigua recibe su recompensa una vez al actualizar.
+
+No se sincroniza entre navegadores, perfiles, dispositivos o puertos. Borrar datos del navegador elimina guardado y copia. Si falla el almacenamiento puedes jugar en memoria con aviso; **Reintentar guardado** intenta conservar el progreso nuevo. No hay cuentas ni nube. La validación detecta corrupción; no es un sistema contra trampas.
 
 `npm.cmd run test:browser:lifecycle` comprueba el escape de nombres del catálogo, salir durante la carga de sprites y recargar durante una animación normal de movimiento.
 
@@ -76,12 +83,15 @@ Guardado: `localStorage`, clave `pokemon-tactics.run`, esquema versión 1. No se
 - `src/rules/battle.ts`: iniciativa reproducible, activaciones, PT, resolución espacial de acciones/estados, bajas y política táctica.
 - `src/rules/run.ts`: generación reproducible, conexiones, encuentros y consecuencias entre salas.
 - `src/data/run-store.ts`: guardado versionado, validación y detección de pestañas desactualizadas; `run-maps.ts`, tres escenarios reutilizando el tablero existente.
+- `src/domain/items.ts`: consumibles y equipables polimórficos; datos de nombres/IDs importados en `src/data/item-metadata.ts`.
+- `src/rules/legacy-run.ts` y `src/data/legacy-run-store.ts`: generación y validación de versión 1 para migración.
 - `src/rules/position.ts` y `terrain.ts`: orientación, ángulos, campos temporales y mapa táctico.
 - `src/game`: escenas de campamento y tablero, y arranque Phaser.
 - `src/main.ts`: entrada y selección de pantalla; `src/camp.ts` conserva la galería.
 - `src/tactical.ts` y `src/tactical.css`: controles y presentación del tablero.
 - `src/battle.ts` y `src/battle.css`: interacción y presentación del combate.
 - `src/run.ts` y `src/run.css`: menú, ruta, equipo y resultado de la partida; montaje/desmontaje del combate.
+- `src/run-management.ts`: tienda, candidatos, previsión de curación y gestión del hueco equipado.
 - `public/data`: instantánea local de datos y manifiesto de procedencia.
 - `public/assets`: sprites, miniaturas y fuente.
 - `public/licenses`: licencias de terceros.
@@ -103,4 +113,6 @@ Las versiones de repositorios están fijadas en `tools/sources.lock.json`. Poké
 
 La tabla de tipos se regenera sin red con `node tools/import-types.mjs`, desde los CSV originales fijados en `tools/vendor/pokeapi`. La prueba de tipos compara las 324 relaciones con esos datos y comprueba sus hashes.
 
-Consultar [cierre del sprint 5](docs/SPRINT_5.md), [cierre del sprint 4](docs/SPRINT_4.md), [arquitectura POO](docs/ARCHITECTURE.md), [créditos](CREDITS.md) y [decisiones](docs/DECISIONS.md). Los recursos de terceros mantienen sus licencias y derechos; la licencia MIT del motor no cubre los personajes Pokémon.
+Los nombres e IDs de cinco objetos se importan explícitamente con `node tools/import-items.mjs` desde el mismo commit fijado de PokéAPI. Las copias de `items.csv` y `item_names.csv` conservan hashes en `items-sources.json`. El juego usa el módulo generado y no consulta la API al jugar. Precios y efectos tácticos son propios del prototipo.
+
+Consultar [cierre del sprint 6](docs/SPRINT_6.md), [cierre del sprint 5](docs/SPRINT_5.md), [arquitectura POO](docs/ARCHITECTURE.md), [créditos](CREDITS.md) y [decisiones](docs/DECISIONS.md). Los recursos de terceros mantienen sus licencias y derechos; la licencia MIT del motor no cubre los personajes Pokémon.

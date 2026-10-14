@@ -1,0 +1,81 @@
+{
+  "browser": "Microsoft Edge headless / Playwright",
+  "url": "http://127.0.0.1:5173/",
+  "checks": [
+    {
+      "name": "Three initial members and seeded combat maps join a connected shop/recruit route",
+      "status": "pass"
+    },
+    {
+      "name": "Keyboard enters shop; purchases charge exact prices and limited stock becomes unavailable",
+      "status": "pass"
+    },
+    {
+      "name": "Reload during a visit retains money, bag and remaining stock without rerolling",
+      "status": "pass"
+    },
+    {
+      "name": "Equip, remove and re-equip conserve one copy of the item and its single slot",
+      "status": "pass"
+    },
+    {
+      "name": "Held item reaches combat and a real victory grants the reward once",
+      "status": "pass"
+    },
+    {
+      "name": "Outside-combat healing previews and consumes once; reload retains the healed HP",
+      "status": "pass"
+    },
+    {
+      "name": "Optional early substitution cancels without charge and restores its exact trigger focus",
+      "status": "pass"
+    },
+    {
+      "name": "Recruitment adds new identities, limits each offer to one use and blocks insufficient money",
+      "status": "pass"
+    },
+    {
+      "name": "Six allies deploy with separate sprites, complete initiative and a usable mobile HUD",
+      "status": "pass"
+    },
+    {
+      "name": "Real casualties leave the active team and cannot be selected for healing after reload",
+      "status": "pass"
+    },
+    {
+      "name": "Replacement preview and cancellation/Escape preserve roster, offer, equipment and money",
+      "status": "pass"
+    },
+    {
+      "name": "Confirmed replacement charges once, returns gear and preserves the new member after reload",
+      "status": "pass"
+    },
+    {
+      "name": "Six real combats reach the provisional final with exactly six rewards and persistent losses",
+      "status": "pass"
+    },
+    {
+      "name": "Version-1 ongoing fight migrates with its original backup and preserves battle progress",
+      "status": "pass"
+    },
+    {
+      "name": "A corrupted economic total is rejected without overwriting the save until explicit discard",
+      "status": "pass"
+    },
+    {
+      "name": "Shop and bag support long seeds, native controls, keyboard focus and mobile without overflow",
+      "status": "pass"
+    },
+    {
+      "name": "A stale shopping tab cannot replace the latest run or debit its money",
+      "status": "pass"
+    },
+    {
+      "name": "Gameplay visits have no JavaScript errors or external asset requests",
+      "status": "pass"
+    }
+  ],
+  "consoleErrors": [],
+  "externalRequests": [],
+  "syntheticFixtures": "Full-roster replacement only; gameplay encounters and final are reached with legal real commands."
+}

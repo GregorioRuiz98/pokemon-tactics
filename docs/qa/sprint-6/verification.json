@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-14",
+  "version": "0.6.0",
+  "unitTests": { "passed": 72, "failed": 0 },
+  "typecheck": "passed via npm run build",
+  "build": "passed; existing Phaser chunk-size warning remains",
+  "assets": { "originalHashes": 33, "typeCsvHashes": 2, "itemCsvHashes": 2, "status": "passed" },
+  "browser": { "engine": "Microsoft Edge headless / Playwright 1.64.0", "development": 18, "production": 18, "combatRegression": 19, "lifecycle": 3, "status": "passed" },
+  "fixtureNote": "The full-roster substitution checkpoint uses validated synthetic battle receipts; gameplay fights and the six-combat final are completed with legal real commands.",
+  "designDetector": { "tool": "Impeccable detect --json", "targets": ["src/run.ts", "src/run-management.ts", "src/run.css", "src/battle.ts"], "findings": [] },
+  "lint": "not configured; not run",
+  "coverage": "not configured; not measured",
+  "fullAccessibilityAudit": "not run",
+  "movementBrowserSuite": "not rerun; movement rules remain in unit tests",
+  "balance": "Existing base parameters and move definitions preserved. Equipment mechanics added; general balance remains deferred."
+}

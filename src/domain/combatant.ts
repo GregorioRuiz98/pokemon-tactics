@@ -1,5 +1,6 @@
 import type { Unit } from '../rules/movement.ts';
 import type { PokemonType } from '../data/type-chart.ts';
+import type { HeldItemId } from './items.ts';
 export type Team = 'ally' | 'enemy';
 export type StatusKind = 'poison' | 'burn' | 'paralysis';
 export type MajorStatus = {
@@ -9,6 +10,7 @@ export type MajorStatus = {
 // Values only: class instances never enter a save/replay snapshot.
 export type Combatant = Unit & {
   speciesId: number;
+  heldItem: HeldItemId | null;
   name: string;
   team: Team;
   types: PokemonType[];

@@ -3,14 +3,16 @@ import { runMap } from './run-maps.ts';
 import { pokemonFor } from '../domain/Pokemon.ts';
 import { supportsEmbers } from '../rules/terrain.ts';
 import { tileCost, key } from '../rules/movement.ts';
-import { createRun, availableNodes, encounterSeed } from '../rules/run.ts';
+import { replayRun, migrateLegacyRun, encounterSeed } from '../rules/run.ts';
+import { validateLegacyRun } from './legacy-run-store.ts';
 import type { Run } from '../rules/run.ts';
 import type { Battle } from '../rules/battle.ts';
 
 export const SAVE_KEY = 'pokemon-tactics.run';
-export const SAVE_VERSION = 1;
+export const SAVE_VERSION = 2;
+export const LEGACY_BACKUP_KEY = 'pokemon-tactics.run.v1-backup';
 export type StorageLike = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
-export type SaveRead = { kind: 'valid'; run: Run } | { kind: 'empty' | 'invalid' | 'incompatible' | 'unavailable' };
+export type SaveRead = { kind: 'valid'; run: Run; migrated?: true } | { kind: 'empty' | 'invalid' | 'incompatible' | 'unavailable' };
 export type SaveWrite = 'saved' | 'unavailable' | 'conflict';
 const object = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value);
 const integer = (value: unknown, min: number, max: number): value is number => typeof value === 'number' && Number.isInteger(value) && value >= min && value <= max;
@@ -33,6 +35,7 @@ function validateBattle(value: unknown, run: Run, catalog: readonly PokemonSpeci
   for (let index = 0; index < expected.length; index++) {
     const unit = battle.units[index], template = expected[index];
     requireValid(object(unit) && unit.id === template.id && unit.speciesId === template.speciesId && unit.team === template.team);
+    requireValid(unit.heldItem === ('heldItem' in template ? template.heldItem : null));
     const species = catalog.find(species => species.id === unit.speciesId)!;
     const original = pokemonFor(unit.speciesId).createCombatant(species, unit.team, { x: 0, y: 0 });
     for (const field of ['name', 'types', 'maxHp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed', 'range', 'budget', 'maxTp', 'profile'] as const)
@@ -67,40 +70,19 @@ export function validateRun(value: unknown, catalog: readonly PokemonSpecies[]):
   requireValid(object(value));
   const run = value as unknown as Run;
   requireValid(typeof run.seed === 'string' && run.seed.trim() === run.seed && run.seed.length > 0 && run.seed.length <= 64 && [0.05, 0.1].includes(run.variance));
-  const original = createRun(catalog, run.seed, run.variance);
-  requireValid(equal(run.nodes, original.nodes) && Array.isArray(run.roster) && run.roster.length === 3);
-  run.roster.forEach((member, index) => {
-    const initial = original.roster[index];
-    requireValid(object(member) && member.id === initial.id && member.speciesId === initial.speciesId && integer(member.hp, 0, initial.hp));
-  });
-  requireValid(['route', 'combat', 'victory', 'defeat'].includes(run.status) && Array.isArray(run.path) && run.path.length <= 6);
-  requireValid(Array.isArray(run.history) && run.history.length <= 6);
-  let previousHp = original.roster.map(member => member.hp);
-  const cleared: string[] = [];
-  for (let index = 0; index < run.history.length; index++) {
-    const record = run.history[index];
-    requireValid(object(record) && integer(record.round, 1, 100000) && ['victory', 'defeat'].includes(record.outcome));
-    requireValid(availableNodes({ ...original, path: cleared }).some(node => node.id === record.nodeId));
-    requireValid(Array.isArray(record.hp) && record.hp.length === 3 && record.hp.every((hp, i) => integer(hp, 0, original.roster[i].hp) && (previousHp[i] > 0 || hp === 0)));
-    requireValid(record.outcome === 'victory' ? record.hp.some(hp => hp > 0) : record.hp.every(hp => hp === 0) && index === run.history.length - 1);
-    previousHp = record.hp;
-    if (record.outcome === 'victory') cleared.push(record.nodeId);
-  }
-  requireValid(equal(cleared, run.path) && equal(previousHp, run.roster.map(member => member.hp)));
+  const replayed = replayRun(catalog, run.seed, run.variance, run.events);
+  // Replaying legal transactions reconstructs money, stock, bag, equipment, IDs and route.
+  requireValid(equal({ ...run, battle: null }, { ...replayed, battle: null }));
   if (run.status === 'combat') {
-    requireValid(typeof run.currentNodeId === 'string' && run.path.length < 6 && availableNodes({ ...run, status: 'route' }).some(node => node.id === run.currentNodeId));
-    requireValid(run.roster.some(member => member.hp > 0));
     validateBattle(run.battle, run, catalog);
   } else {
-    requireValid(run.currentNodeId === null && run.battle === null);
-    if (run.status === 'route') requireValid(run.path.length < 6 && run.roster.some(member => member.hp > 0) && run.history.every(record => record.outcome === 'victory'));
-    if (run.status === 'victory') requireValid(run.path.length === 6 && run.roster.some(member => member.hp > 0));
-    if (run.status === 'defeat') requireValid(run.roster.every(member => member.hp === 0) && run.history.at(-1)?.outcome === 'defeat');
+    requireValid(run.battle === null);
   }
   return structuredClone(run);
 }
 export class RunStore {
   private lastRaw: string | null = null;
+  private pendingBackup: string | null = null;
   private readonly storage: StorageLike | null;
   private readonly catalog: readonly PokemonSpecies[];
   constructor(storage: StorageLike | null, catalog: readonly PokemonSpecies[]) {
@@ -112,9 +94,15 @@ export class RunStore {
       if (!this.storage) return { kind: 'unavailable' };
       this.lastRaw = this.storage.getItem(SAVE_KEY);
       if (this.lastRaw === null) return { kind: 'empty' };
-      if (this.lastRaw.length > 100000) return { kind: 'invalid' };
+      if (this.lastRaw.length > 5000000) return { kind: 'invalid' };
       const envelope: unknown = JSON.parse(this.lastRaw);
       if (!object(envelope) || envelope.schema !== 'pokemon-tactics/run') return { kind: 'invalid' };
+      if (envelope.version === 1) {
+        const run = migrateLegacyRun(validateLegacyRun(envelope.run, this.catalog), this.catalog);
+        validateRun(run, this.catalog);
+        this.pendingBackup = this.lastRaw;
+        return { kind: 'valid', run, migrated: true };
+      }
       if (envelope.version !== SAVE_VERSION) return { kind: 'incompatible' };
       return { kind: 'valid', run: validateRun(envelope.run, this.catalog) };
     } catch {
@@ -126,9 +114,12 @@ export class RunStore {
     try {
       if (!this.storage) return 'unavailable';
       if (this.storage.getItem(SAVE_KEY) !== this.lastRaw) return 'conflict';
+      if (this.pendingBackup !== null && this.storage.getItem(LEGACY_BACKUP_KEY) === null)
+        this.storage.setItem(LEGACY_BACKUP_KEY, this.pendingBackup);
       const raw = JSON.stringify({ schema: 'pokemon-tactics/run', version: SAVE_VERSION, run });
       this.storage.setItem(SAVE_KEY, raw);
       this.lastRaw = raw;
+      this.pendingBackup = null;
       return 'saved';
     } catch { return 'unavailable'; }
   }
@@ -138,6 +129,7 @@ export class RunStore {
       if (this.storage.getItem(SAVE_KEY) !== this.lastRaw) return 'conflict';
       this.storage.removeItem(SAVE_KEY);
       this.lastRaw = null;
+      this.pendingBackup = null;
       return 'saved';
     } catch { return 'unavailable'; }
   }

@@ -74,3 +74,15 @@ Valores de iniciativa, puntos tácticos, estados y duración siguen siendo propu
 - Guardado local versión 1, también tras cada orden aceptada antes de animarla. Guardar incluye RNG, cola, ronda, estados, mapa, campos y recursos, para continuar sin reiniciar. Datos inválidos o incompatibles permanecen intactos hasta descarte explícito. Conflictos entre pestañas detienen la escritura antigua.
 - El fallo de almacenamiento se comunica y permite jugar en memoria, con reintento. No hay nube, cuentas, analítica ni sincronización de guardados entre puertos/dispositivos.
 - El daño y el repertorio no cambian. Una instantánea previa al sprint compara PS máximos, potencias, definiciones y previsiones de las seis especies. La curación fuera de combate y las tiendas quedan para el sprint 6; la dificultad de esta ruta sin ellas no es el balance final.
+
+## Sprint 6
+
+- Tienda y reclutamiento separados, como alternativas antes de cada combate, también al empezar. Elegir una excluye la otra y cerrar la visita impide repetirla. Se mantienen las seis peleas y sus mapas/composiciones por semilla.
+- Valores de economía provisionales: 240 monedas y una Poción al empezar; 100 por victoria, nada por derrota; reclutar cuesta 80. Tienda con stock limitado por visita, sin ventas ni refresco de ofertas.
+- Dos consumibles: Poción recupera hasta 20 PS por 40 monedas; Superpoción, 50 por 90. Solo fuera de combate y solo sobre vivos heridos; no curación automática ni resurrección.
+- Un equipable por Pokémon: Restos (120 monedas, recuperación de 1/16 de PS máximos después del daño al cerrar turno); Chaleco Asalto (110, defensa especial ×1,5 y bloqueo de estado/apoyo); Botas Gruesas (80, adaptación que evita ascuas de casilla, sin inmunidad a estados). Valores base y repertorios conservados.
+- El usuario confirma recuperar el objeto equipado al caer definitivamente. También se devuelve al cambiar objeto o sustituir miembro. Los perdidos y liberados quedan archivados; el recluta tiene un ID nuevo, aunque comparta especie con una baja.
+- Tres candidatos no legendarios por sala; hasta seis vivos y todos desplegados. Sustitución opcional antes de llenar el equipo, obligatoria al estar completo, con confirmación/cancelación y foco restaurado. Se permiten duplicados de especie fuera del trío inicial.
+- Esquema 2 con diario de operaciones; reproducción para validar economía/roster. Migración de versión 1 conserva HP y pelea en curso, copia anterior local y recompensa una vez por victoria antigua. Servicios previos a peleas ya iniciadas se consideran cerrados; no se retrocede la ruta para visitarlos.
+- La interfaz alterna mercancía/candidatos y bolsa dentro de la misma ventana; evita duplicar listas largas. Se reutilizan recursos locales y nombres/IDs de PokéAPI del commit fijado, con dos CSV originales y hashes nuevos.
+- El equilibrio se aplaza hasta completar las mecánicas, instrucción reiterada por el usuario. Experiencia, niveles, evoluciones y jefes permanecen en sus sprints.

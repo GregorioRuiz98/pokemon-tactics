@@ -1,0 +1,9 @@
+{
+  "url": "http://127.0.0.1:5173/",
+  "checks": [
+    "Catalog names render as text, not HTML",
+    "Exit during delayed sprite loading leaves no stale callbacks or browser errors",
+    "Reload during a normal movement tween resumes the accepted saved position"
+  ],
+  "consoleErrors": []
+}

@@ -1,0 +1,102 @@
+// Frozen schema-1 generation/validation for save migration. Do not evolve this contract.
+import type { PokemonSpecies } from './catalog.ts';
+import { runMap } from './run-maps.ts';
+import { pokemonFor } from '../domain/Pokemon.ts';
+import { supportsEmbers } from '../rules/terrain.ts';
+import { tileCost, key } from '../rules/movement.ts';
+import { createRun, availableNodes, encounterSeed } from '../rules/legacy-run.ts';
+import type { Run } from '../rules/legacy-run.ts';
+import type { Battle } from '../rules/battle.ts';
+
+export const SAVE_KEY = 'pokemon-tactics.run';
+export const SAVE_VERSION = 1;
+export type StorageLike = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
+export type SaveRead = { kind: 'valid'; run: Run } | { kind: 'empty' | 'invalid' | 'incompatible' | 'unavailable' };
+export type SaveWrite = 'saved' | 'unavailable' | 'conflict';
+const object = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value);
+const integer = (value: unknown, min: number, max: number): value is number => typeof value === 'number' && Number.isInteger(value) && value >= min && value <= max;
+const equal = (a: unknown, b: unknown): boolean => JSON.stringify(a) === JSON.stringify(b);
+function requireValid(condition: unknown): asserts condition {
+  if (!condition) throw new Error('Guardado no válido.');
+}
+function validateBattle(value: unknown, run: Run, catalog: readonly PokemonSpecies[]): void {
+  requireValid(object(value));
+  const battle = value as unknown as Battle;
+  const node = run.nodes.find(node => node.id === run.currentNodeId)!;
+  requireValid(battle.seed === encounterSeed(run, node.id) && battle.variance === run.variance && battle.composition === 'run');
+  requireValid(equal(battle.board, runMap(node.mapId).board) && integer(battle.rng, 0, 0xffffffff) && integer(battle.round, 1, 100000));
+  const expected = [
+    ...run.roster.filter(member => member.hp > 0).map(member => ({ ...member, team: 'ally' as const })),
+    ...node.enemies.map((speciesId, index) => ({ id: 1000 + index, speciesId, team: 'enemy' as const })),
+  ];
+  requireValid(Array.isArray(battle.units) && battle.units.length === expected.length);
+  const occupied = new Set<string>();
+  for (let index = 0; index < expected.length; index++) {
+    const unit = battle.units[index], template = expected[index];
+    requireValid(object(unit) && unit.id === template.id && unit.speciesId === template.speciesId && unit.team === template.team);
+    const species = catalog.find(species => species.id === unit.speciesId)!;
+    const original = pokemonFor(unit.speciesId).createCombatant(species, unit.team, { x: 0, y: 0 });
+    for (const field of ['name', 'types', 'maxHp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed', 'range', 'budget', 'maxTp', 'profile'] as const)
+      requireValid(equal(unit[field], original[field]));
+    requireValid(integer(unit.hp, 0, unit.maxHp) && integer(unit.tp, 0, unit.maxTp) && integer(unit.remaining, 0, unit.budget));
+    requireValid(integer(unit.x, 0, 7) && integer(unit.y, 0, 7) && [0, 2, 4, 6].includes(unit.facing));
+    requireValid(typeof unit.guarded === 'boolean');
+    requireValid(unit.status === null || (object(unit.status) && ['burn', 'poison', 'paralysis'].includes(unit.status.kind) && integer(unit.status.remaining, 1, 3)));
+    if (unit.hp > 0) {
+      requireValid(Number.isFinite(tileCost(battle.board, unit, unit.profile)) && !occupied.has(key(unit)));
+      occupied.add(key(unit));
+    }
+  }
+  const ids = battle.units.map(unit => unit.id);
+  const list = (value: unknown): value is number[] => Array.isArray(value) && value.every(id => ids.includes(id)) && new Set(value).size === value.length;
+  requireValid(Array.isArray(battle.initiative) && battle.initiative.length > 0 && battle.initiative.length <= ids.length);
+  requireValid(battle.initiative.every(entry => object(entry) && ids.includes(entry.id) && Number.isFinite(entry.score) && entry.score > 0 && typeof entry.tie === 'number' && entry.tie >= 0 && entry.tie < 1));
+  requireValid(new Set(battle.initiative.map(entry => entry.id)).size === battle.initiative.length);
+  requireValid(list(battle.queue) && list(battle.completed) && battle.completed.every(id => battle.initiative.some(entry => entry.id === id)));
+  const living = battle.units.filter(unit => unit.hp > 0);
+  const outcome = !living.some(unit => unit.team === 'ally') ? 'defeat' : !living.some(unit => unit.team === 'enemy') ? 'victory' : 'playing';
+  requireValid(battle.outcome === outcome);
+  const queue = battle.initiative.map(entry => entry.id).filter(id => living.some(unit => unit.id === id) && !battle.completed.includes(id));
+  requireValid(outcome === 'playing' ? queue.length > 0 && equal(queue, battle.queue) : battle.queue.length === 0);
+  requireValid(typeof battle.moved === 'boolean' && typeof battle.acted === 'boolean');
+  requireValid(Array.isArray(battle.fields) && battle.fields.length <= 64 && new Set(battle.fields.map(key)).size === battle.fields.length);
+  requireValid(battle.fields.every(field => object(field) && field.kind === 'embers' && integer(field.x, 0, 7) && integer(field.y, 0, 7) && integer(field.expires, battle.round + 1, battle.round + 2) && supportsEmbers(battle.board, field)));
+  requireValid(Array.isArray(battle.log) && battle.log.length <= 40 && battle.log.every(line => typeof line === 'string' && line.length < 1000));
+}
+// Validate before any DOM/Phaser use. This is corruption handling, not an anti-cheat boundary.
+export function validateLegacyRun(value: unknown, catalog: readonly PokemonSpecies[]): Run {
+  requireValid(object(value));
+  const run = value as unknown as Run;
+  requireValid(typeof run.seed === 'string' && run.seed.trim() === run.seed && run.seed.length > 0 && run.seed.length <= 64 && [0.05, 0.1].includes(run.variance));
+  const original = createRun(catalog, run.seed, run.variance);
+  requireValid(equal(run.nodes, original.nodes) && Array.isArray(run.roster) && run.roster.length === 3);
+  run.roster.forEach((member, index) => {
+    const initial = original.roster[index];
+    requireValid(object(member) && member.id === initial.id && member.speciesId === initial.speciesId && integer(member.hp, 0, initial.hp));
+  });
+  requireValid(['route', 'combat', 'victory', 'defeat'].includes(run.status) && Array.isArray(run.path) && run.path.length <= 6);
+  requireValid(Array.isArray(run.history) && run.history.length <= 6);
+  let previousHp = original.roster.map(member => member.hp);
+  const cleared: string[] = [];
+  for (let index = 0; index < run.history.length; index++) {
+    const record = run.history[index];
+    requireValid(object(record) && integer(record.round, 1, 100000) && ['victory', 'defeat'].includes(record.outcome));
+    requireValid(availableNodes({ ...original, path: cleared }).some(node => node.id === record.nodeId));
+    requireValid(Array.isArray(record.hp) && record.hp.length === 3 && record.hp.every((hp, i) => integer(hp, 0, original.roster[i].hp) && (previousHp[i] > 0 || hp === 0)));
+    requireValid(record.outcome === 'victory' ? record.hp.some(hp => hp > 0) : record.hp.every(hp => hp === 0) && index === run.history.length - 1);
+    previousHp = record.hp;
+    if (record.outcome === 'victory') cleared.push(record.nodeId);
+  }
+  requireValid(equal(cleared, run.path) && equal(previousHp, run.roster.map(member => member.hp)));
+  if (run.status === 'combat') {
+    requireValid(typeof run.currentNodeId === 'string' && run.path.length < 6 && availableNodes({ ...run, status: 'route' }).some(node => node.id === run.currentNodeId));
+    requireValid(run.roster.some(member => member.hp > 0));
+    validateBattle(run.battle, run, catalog);
+  } else {
+    requireValid(run.currentNodeId === null && run.battle === null);
+    if (run.status === 'route') requireValid(run.path.length < 6 && run.roster.some(member => member.hp > 0) && run.history.every(record => record.outcome === 'victory'));
+    if (run.status === 'victory') requireValid(run.path.length === 6 && run.roster.some(member => member.hp > 0));
+    if (run.status === 'defeat') requireValid(run.roster.every(member => member.hp === 0) && run.history.at(-1)?.outcome === 'defeat');
+  }
+  return structuredClone(run);
+}

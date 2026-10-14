@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const fs = require('node:fs'),
   path = require('node:path'),
   assert = require('node:assert/strict');
-const output = path.resolve(process.env.TACTICS_QA_DIR || path.resolve(__dirname, '../docs/qa/sprint-5/training'));
+const output = path.resolve(process.env.TACTICS_QA_DIR || path.resolve(__dirname, '../docs/qa/sprint-6/training'));
 fs.mkdirSync(output, { recursive: true });
 const checks = [];
 const pass = (name) => {

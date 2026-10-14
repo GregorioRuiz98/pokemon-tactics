@@ -38,4 +38,10 @@ for (const file of typeSources.files) {
   assert.equal(hash, file.sha256, `Type resource changed: ${file.file}`);
 }
 assert(existsSync(resolve(root, 'public/licenses/PokeAPI-BSD-3-Clause.txt')));
-console.log(`${catalog.length} species, 12 sheets, ${paths.size} original provenance hashes and ${typeSources.files.length} pinned type CSV hashes verified.`);
+const itemSources = readJson('tools/vendor/pokeapi/items-sources.json');
+assert.equal(itemSources.commit, readJson('tools/sources.lock.json').pokeapi.commit);
+for (const [file, expected] of Object.entries(itemSources.sha256)) {
+  assert(['items.csv', 'item_names.csv'].includes(file));
+  assert.equal(createHash('sha256').update(readFileSync(resolve(root, 'tools/vendor/pokeapi', file))).digest('hex'), expected);
+}
+console.log(`${catalog.length} species, 12 sheets, ${paths.size} original provenance hashes and ${typeSources.files.length + Object.keys(itemSources.sha256).length} pinned PokeAPI CSV hashes verified.`);

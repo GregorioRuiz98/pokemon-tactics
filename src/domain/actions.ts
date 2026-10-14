@@ -1,5 +1,6 @@
 import { effectiveness } from '../rules/types.ts';
 import { statusImmunity } from './combatant.ts';
+import { heldItemFor } from './items.ts';
 import type { Combatant, StatusKind } from './combatant.ts';
 import type { PokemonType } from '../data/type-chart.ts';
 import type { Point } from '../rules/movement.ts';
@@ -56,7 +57,7 @@ export class DamageAction extends TacticalAction {
     const multiplier = effectiveness(this.definition.type, target.types);
     const stab = actor.types.includes(this.definition.type) ? 1.5 : 1;
     const attack = this.category === 'physical' ? actor.attack * (actor.status?.kind === 'burn' ? 0.5 : 1) : actor.specialAttack;
-    const defense = this.category === 'physical' ? target.defense : target.specialDefense;
+    const defense = this.category === 'physical' ? target.defense : (heldItemFor(target.heldItem)?.specialDefense(target) ?? target.specialDefense);
     const raw = Math.max(5, 12 + attack * 0.18 - defense * 0.1) * (this.power / 40);
     const damage = multiplier === 0 ? 0 : Math.min(target.hp, Math.max(1, Math.round(raw * multiplier * stab * (target.guarded ? 0.5 : 1))));
     const statusReason = this.secondary ? (multiplier === 0 ? 'Inmune al movimiento.' : statusImmunity(target, this.secondary.kind)) : null;
