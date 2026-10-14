@@ -1,0 +1,82 @@
+{
+  "browser": "Microsoft Edge headless (Playwright)",
+  "url": "http://127.0.0.1:5173/",
+  "checks": [
+    {
+      "name": "Menu loads six local species, controls and current metadata",
+      "status": "pass"
+    },
+    {
+      "name": "Seed creates three distinct members and a connected six-layer branching route",
+      "status": "pass"
+    },
+    {
+      "name": "Keyboard opens encounter; repeated allied/enemy species have independent units and local sprites",
+      "status": "pass"
+    },
+    {
+      "name": "Reload during combat resumes the exact accepted commands, HP, PT and RNG",
+      "status": "pass"
+    },
+    {
+      "name": "Exit/continue disposes the previous scene and resumes without restarting enemies",
+      "status": "pass"
+    },
+    {
+      "name": "Between-room reload preserves wounds and permanent casualties",
+      "status": "pass"
+    },
+    {
+      "name": "Six real encounters complete via gameplay controls; surviving HP carries over and dead members never redeploy",
+      "status": "pass"
+    },
+    {
+      "name": "Provisional final summary and completed route survive a browser reload",
+      "status": "pass"
+    },
+    {
+      "name": "Preparing and cancelling a new run preserves the existing save",
+      "status": "pass"
+    },
+    {
+      "name": "A real team defeat ends the run with three permanent losses",
+      "status": "pass"
+    },
+    {
+      "name": "corrupt save stays untouched until explicit discard, then new run becomes available",
+      "status": "pass"
+    },
+    {
+      "name": "incompatible save stays untouched until explicit discard, then new run becomes available",
+      "status": "pass"
+    },
+    {
+      "name": "Mobile route/menu handle a 64-character seed, readable nodes, native scroll and visible keyboard focus",
+      "status": "pass"
+    },
+    {
+      "name": "A stale tab cannot replace the newer run; recovery loads the latest save",
+      "status": "pass"
+    },
+    {
+      "name": "Quota failure allows in-memory play, warns honestly and retries storage successfully",
+      "status": "pass"
+    },
+    {
+      "name": "Disabled local storage does not block starting a playable in-memory route",
+      "status": "pass"
+    },
+    {
+      "name": "Invalid local catalog exposes retry and recovers the run menu",
+      "status": "pass"
+    },
+    {
+      "name": "Main gameplay run has no browser errors or external resource requests",
+      "status": "pass"
+    }
+  ],
+  "consoleErrors": [],
+  "externalRequests": [],
+  "winningSeed": "route-79",
+  "losingSeed": "route-1"
+}

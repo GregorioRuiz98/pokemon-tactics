@@ -63,3 +63,14 @@ Valores de iniciativa, puntos tácticos, estados y duración siguen siendo propu
 - El usuario ha probado el sprint 4 y considera que se elimina demasiado fácilmente a los rivales en 3v3.
 - Su instrucción posterior es conservar los parámetros actuales y esperar a definir mejor el juego antes de equilibrarlo. La revisión iniciada fue solo de lectura; no cambió código ni valores.
 - Revisar el repertorio temprano de Charmander, especialmente Lanzallamas, es una posible vía para más adelante. No se ha decidido sustituirlo, reducirlo ni reservarlo para una evolución.
+
+## Sprint 5
+
+- Primera ruta de seis encuentros con diez nodos: uno inicial, cuatro tramos con dos opciones y un final de prueba. Los enlaces conectan solo capas contiguas; se puede elegir terreno y composición, sin órdenes enemigas anunciadas. No es todavía una ruta de ocho gimnasios ni incluye jefes legendarios.
+- Inicio reproducible con tres especies distintas, un candidato defensivo (Squirtle/Geodude), uno de ofensiva/control (Charmander/Butterfree/Pikachu) y un tercero entre los restantes. Se usa el catálogo local existente; es una regla provisional para probar variedad.
+- Mapas por tramo: Cantera al empezar; Paso de piedra desde el segundo; Cantera inundada desde el cuarto. Cada sala incluye Geodude y dos especies distintas más del catálogo. Todos los enemigos conservan sus estadísticas y movimientos actuales.
+- PS y bajas persisten. Estados, protección, PT y campos se restablecen por sala, manteniendo los valores iniciales del combate. No hay curación automática ni objetos todavía; Megaagotar conserva su recuperación existente.
+- `id` de unidad es independiente de `speciesId`, permitiendo la misma especie en ambos bandos. La POO y las hojas originales se reutilizan. No se añaden paquetes, datos externos ni especies.
+- Guardado local versión 1, también tras cada orden aceptada antes de animarla. Guardar incluye RNG, cola, ronda, estados, mapa, campos y recursos, para continuar sin reiniciar. Datos inválidos o incompatibles permanecen intactos hasta descarte explícito. Conflictos entre pestañas detienen la escritura antigua.
+- El fallo de almacenamiento se comunica y permite jugar en memoria, con reintento. No hay nube, cuentas, analítica ni sincronización de guardados entre puertos/dispositivos.
+- El daño y el repertorio no cambian. Una instantánea previa al sprint compara PS máximos, potencias, definiciones y previsiones de las seis especies. La curación fuera de combate y las tiendas quedan para el sprint 6; la dificultad de esta ruta sin ellas no es el balance final.

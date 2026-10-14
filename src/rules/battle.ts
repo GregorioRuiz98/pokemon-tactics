@@ -20,7 +20,7 @@ export type Battle = {
   seed: string;
   rng: number;
   variance: number;
-  composition: Composition;
+  composition: Composition | 'run';
   round: number;
   board: Board;
   fields: TerrainField[];
@@ -38,13 +38,13 @@ export const activeUnit = (state: Battle): Combatant | undefined => state.outcom
 export const distance = (a: Point, b: Point): number => Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
 const copy = (state: Battle): Battle => structuredClone(state);
 function note(state: Battle, message: string): void { state.log = [...state.log, message].slice(-40); }
-function hashSeed(seed: string): number {
+export function hashSeed(seed: string): number {
   let value = 2166136261;
   for (const character of seed)
     value = Math.imul(value ^ character.charCodeAt(0), 16777619);
   return value >>> 0;
 }
-function random(state: Battle): number {
+export function random(state: { rng: number }): number {
   state.rng = (state.rng + 0x6d2b79f5) >>> 0;
   let value = state.rng;
   value = Math.imul(value ^ (value >>> 15), value | 1);
@@ -103,6 +103,35 @@ export function createBattle(catalog: readonly PokemonSpecies[], seed = 'kanto-0
   newRound(state);
   return state;
 }
+// Instance IDs identify units; species IDs select data, actions and shared textures.
+export function createEncounter(catalog: readonly PokemonSpecies[], seed: string, variance: number, board: Board,
+  allies: readonly { id: number; speciesId: number; hp: number }[], enemies: readonly number[]): Battle {
+  if (![0.05, 0.1].includes(variance) || allies.length < 1 || allies.length > 3 || enemies.length !== 3)
+    throw new Error('Encuentro no válido.');
+  const allyPositions = [{ x: 1, y: 6 }, { x: 3, y: 6 }, { x: 2, y: 7 }];
+  const enemyPositions = [{ x: 5, y: 1 }, { x: 6, y: 2 }, { x: 5, y: 4 }];
+  const create = (id: number, speciesId: number, team: Team, position: Point, hp?: number): Combatant => {
+    const species = catalog.find(p => p.id === speciesId);
+    if (!species) throw new Error(`Falta la especie ${speciesId}.`);
+    const unit = pokemonFor(speciesId).createCombatant(species, team, position);
+    unit.id = id;
+    if (hp !== undefined) {
+      if (!Number.isInteger(hp) || hp < 1 || hp > unit.maxHp) throw new Error('PS iniciales no válidos.');
+      unit.hp = hp;
+    }
+    if (!Number.isFinite(tileCost(board, unit, unit.profile))) throw new Error('Despliegue bloqueado.');
+    return unit;
+  };
+  const units = [
+    ...allies.map((member, index) => create(member.id, member.speciesId, 'ally', allyPositions[index], member.hp)),
+    ...enemies.map((speciesId, index) => create(1000 + index, speciesId, 'enemy', enemyPositions[index])),
+  ];
+  if (new Set(units.map(unit => unit.id)).size !== units.length) throw new Error('Identidades duplicadas.');
+  const state: Battle = { seed, rng: hashSeed(seed), variance, composition: 'run', round: 0, board, fields: [], units,
+    initiative: [], queue: [], completed: [], moved: false, acted: false, outcome: 'playing', log: [] };
+  newRound(state);
+  return state;
+}
 export type RuleResult = {
   ok: true;
   state: Battle;
@@ -135,7 +164,7 @@ export function moveInBattle(state: Battle, destination: Point): RuleResult {
   note(next, `${actor.name} se mueve a ${coordinate(destination)} (${result.route.cost} puntos).`);
   return { ok: true, state: next, route: result.route };
 }
-export const basicDamage = (actor: Combatant, target: Combatant): number => pokemonFor(actor.id).action('basic')!.preview(actor, target).damage;
+export const basicDamage = (actor: Combatant, target: Combatant): number => pokemonFor(actor.speciesId).action('basic')!.preview(actor, target).damage;
 function clearShot(state: Battle, actor: Combatant, target: Combatant): boolean {
   const dx = target.x - actor.x, dy = target.y - actor.y;
   if (distance(actor, target) <= 1)
@@ -172,7 +201,7 @@ export function attackPlan(state: Battle, targetId: number, origin?: Point, acti
     return { ok: false, reason: 'El combate ha terminado.' };
   if (state.acted)
     return { ok: false, reason: 'Ya has usado la acción de esta activación.' };
-  const action = pokemonFor(active.id).action(actionId);
+  const action = pokemonFor(active.speciesId).action(actionId);
   if (!action)
     return { ok: false, reason: 'Este Pokémon no conoce esa habilidad.' };
   const definition = action.definition;
@@ -336,7 +365,7 @@ function actionScore(state: Battle, target: Combatant, plan: AttackPlan): number
 function dangerAt(state: Battle, actor: Combatant, point: Point): number {
   const placed = { ...actor, ...point };
   const exposure = living(state).filter(unit => unit.team !== actor.team).reduce((sum, enemy) => {
-    const reach = pokemonFor(enemy.id).action('basic')!;
+    const reach = pokemonFor(enemy.speciesId).action('basic')!;
     return sum + (distance(enemy, placed) <= reach.definition.range + movementBudget(enemy) ? reach.preview(enemy, placed).damage / (distance(enemy, placed) + 1) : 0);
   }, 0);
   return fieldDamage(placed, state.fields) * 2 + exposure * 0.3;
@@ -344,7 +373,7 @@ function dangerAt(state: Battle, actor: Combatant, point: Point): number {
 export function chooseFacing(state: Battle, actor: Combatant): Facing {
   return [...FACINGS].sort((a, b) => {
     const exposure = (facing: Facing) => living(state).filter(unit => unit.team !== actor.team).reduce((sum, enemy) => {
-      const basic = pokemonFor(enemy.id).action('basic')!;
+      const basic = pokemonFor(enemy.speciesId).action('basic')!;
       return sum + basic.preview(enemy, actor).damage * positionalAccuracy(basic.definition.accuracy, attackSide(enemy, { ...actor, facing })) / (distance(enemy, actor) + 1);
     }, 0);
     return exposure(a) - exposure(b) || Number(b === actor.facing) - Number(a === actor.facing) || FACINGS.indexOf(a) - FACINGS.indexOf(b);
@@ -370,7 +399,7 @@ export function chooseTacticalCommand(state: Battle): TacticalCommand {
     return { kind: 'finish' };
   const finish: TacticalCommand = { kind: 'finish', facing: chooseFacing(state, actor) };
   const targets = living(state).sort((a, b) => a.hp - b.hp || a.id - b.id);
-  const actions = pokemonFor(actor.id).actions;
+  const actions = pokemonFor(actor.speciesId).actions;
   if (!state.acted) {
     const available = targets.flatMap(target => actions.map(action => {
       const id = action.definition.id, plan = attackPlan(state, target.id, undefined, id);

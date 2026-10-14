@@ -5,6 +5,7 @@ export type Facing = 0 | 2 | 4 | 6;
 export type MovementProfile = 'ground' | 'grass' | 'swim' | 'fly';
 export type Unit = Point & {
   id: number;
+  speciesId?: number;
   budget: number;
   remaining: number;
   facing: Facing;

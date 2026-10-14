@@ -1,0 +1,1705 @@
+{
+  "policy": "Both teams use the existing tactical policy; not a human win-rate estimate.",
+  "runs": [
+    {
+      "seed": "route-0",
+      "branch": 0,
+      "team": [
+        74,
+        25,
+        4
+      ],
+      "cleared": 2,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 94
+    },
+    {
+      "seed": "route-1",
+      "branch": 1,
+      "team": [
+        74,
+        25,
+        4
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 56
+    },
+    {
+      "seed": "route-2",
+      "branch": 0,
+      "team": [
+        7,
+        25,
+        12
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 31
+    },
+    {
+      "seed": "route-3",
+      "branch": 1,
+      "team": [
+        74,
+        4,
+        25
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 38
+    },
+    {
+      "seed": "route-4",
+      "branch": 0,
+      "team": [
+        74,
+        25,
+        12
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 40
+    },
+    {
+      "seed": "route-5",
+      "branch": 1,
+      "team": [
+        7,
+        4,
+        74
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 23
+    },
+    {
+      "seed": "route-6",
+      "branch": 0,
+      "team": [
+        7,
+        4,
+        25
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 43
+    },
+    {
+      "seed": "route-7",
+      "branch": 1,
+      "team": [
+        7,
+        12,
+        1
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 47
+    },
+    {
+      "seed": "route-8",
+      "branch": 0,
+      "team": [
+        74,
+        25,
+        1
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 34
+    },
+    {
+      "seed": "route-9",
+      "branch": 1,
+      "team": [
+        7,
+        25,
+        4
+      ],
+      "cleared": 2,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 56
+    },
+    {
+      "seed": "route-10",
+      "branch": 0,
+      "team": [
+        74,
+        25,
+        1
+      ],
+      "cleared": 2,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 84
+    },
+    {
+      "seed": "route-11",
+      "branch": 1,
+      "team": [
+        7,
+        4,
+        1
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 44
+    },
+    {
+      "seed": "route-12",
+      "branch": 0,
+      "team": [
+        74,
+        4,
+        12
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 20
+    },
+    {
+      "seed": "route-13",
+      "branch": 1,
+      "team": [
+        74,
+        12,
+        7
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 21
+    },
+    {
+      "seed": "route-14",
+      "branch": 0,
+      "team": [
+        7,
+        12,
+        74
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 50
+    },
+    {
+      "seed": "route-15",
+      "branch": 1,
+      "team": [
+        7,
+        12,
+        4
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 22
+    },
+    {
+      "seed": "route-16",
+      "branch": 0,
+      "team": [
+        7,
+        12,
+        74
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 25
+    },
+    {
+      "seed": "route-17",
+      "branch": 1,
+      "team": [
+        7,
+        25,
+        4
+      ],
+      "cleared": 2,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 58
+    },
+    {
+      "seed": "route-18",
+      "branch": 0,
+      "team": [
+        74,
+        25,
+        4
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 28
+    },
+    {
+      "seed": "route-19",
+      "branch": 1,
+      "team": [
+        7,
+        12,
+        1
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 47
+    },
+    {
+      "seed": "route-20",
+      "branch": 0,
+      "team": [
+        74,
+        12,
+        4
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 19
+    },
+    {
+      "seed": "route-21",
+      "branch": 1,
+      "team": [
+        74,
+        12,
+        1
+      ],
+      "cleared": 3,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 76
+    },
+    {
+      "seed": "route-22",
+      "branch": 0,
+      "team": [
+        74,
+        4,
+        25
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 26
+    },
+    {
+      "seed": "route-23",
+      "branch": 1,
+      "team": [
+        74,
+        12,
+        4
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 33
+    },
+    {
+      "seed": "route-24",
+      "branch": 0,
+      "team": [
+        7,
+        25,
+        12
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 38
+    },
+    {
+      "seed": "route-25",
+      "branch": 1,
+      "team": [
+        7,
+        12,
+        1
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 34
+    },
+    {
+      "seed": "route-26",
+      "branch": 0,
+      "team": [
+        7,
+        12,
+        74
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 50
+    },
+    {
+      "seed": "route-27",
+      "branch": 1,
+      "team": [
+        7,
+        12,
+        4
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 29
+    },
+    {
+      "seed": "route-28",
+      "branch": 0,
+      "team": [
+        7,
+        12,
+        25
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 53
+    },
+    {
+      "seed": "route-29",
+      "branch": 1,
+      "team": [
+        7,
+        4,
+        12
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 14
+    },
+    {
+      "seed": "route-30",
+      "branch": 0,
+      "team": [
+        74,
+        25,
+        7
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 42
+    },
+    {
+      "seed": "route-31",
+      "branch": 1,
+      "team": [
+        7,
+        4,
+        12
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 42
+    },
+    {
+      "seed": "route-32",
+      "branch": 0,
+      "team": [
+        74,
+        4,
+        7
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 53
+    },
+    {
+      "seed": "route-33",
+      "branch": 1,
+      "team": [
+        74,
+        25,
+        7
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 21
+    },
+    {
+      "seed": "route-34",
+      "branch": 0,
+      "team": [
+        74,
+        12,
+        7
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 62
+    },
+    {
+      "seed": "route-35",
+      "branch": 1,
+      "team": [
+        74,
+        4,
+        25
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 30
+    },
+    {
+      "seed": "route-36",
+      "branch": 0,
+      "team": [
+        74,
+        12,
+        4
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 20
+    },
+    {
+      "seed": "route-37",
+      "branch": 1,
+      "team": [
+        7,
+        25,
+        4
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 26
+    },
+    {
+      "seed": "route-38",
+      "branch": 0,
+      "team": [
+        7,
+        4,
+        25
+      ],
+      "cleared": 2,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 62
+    },
+    {
+      "seed": "route-39",
+      "branch": 1,
+      "team": [
+        74,
+        25,
+        12
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 42
+    },
+    {
+      "seed": "route-40",
+      "branch": 0,
+      "team": [
+        7,
+        25,
+        12
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 24
+    },
+    {
+      "seed": "route-41",
+      "branch": 1,
+      "team": [
+        7,
+        4,
+        12
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 55
+    },
+    {
+      "seed": "route-42",
+      "branch": 0,
+      "team": [
+        74,
+        25,
+        7
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 32
+    },
+    {
+      "seed": "route-43",
+      "branch": 1,
+      "team": [
+        7,
+        4,
+        1
+      ],
+      "cleared": 2,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 60
+    },
+    {
+      "seed": "route-44",
+      "branch": 0,
+      "team": [
+        74,
+        25,
+        1
+      ],
+      "cleared": 3,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 104
+    },
+    {
+      "seed": "route-45",
+      "branch": 1,
+      "team": [
+        7,
+        4,
+        12
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 36
+    },
+    {
+      "seed": "route-46",
+      "branch": 0,
+      "team": [
+        7,
+        12,
+        1
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 27
+    },
+    {
+      "seed": "route-47",
+      "branch": 1,
+      "team": [
+        74,
+        25,
+        7
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 49
+    },
+    {
+      "seed": "route-48",
+      "branch": 0,
+      "team": [
+        7,
+        4,
+        1
+      ],
+      "cleared": 2,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 50
+    },
+    {
+      "seed": "route-49",
+      "branch": 1,
+      "team": [
+        7,
+        25,
+        74
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 43
+    },
+    {
+      "seed": "route-50",
+      "branch": 0,
+      "team": [
+        7,
+        4,
+        25
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 44
+    },
+    {
+      "seed": "route-51",
+      "branch": 1,
+      "team": [
+        74,
+        25,
+        12
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 62
+    },
+    {
+      "seed": "route-52",
+      "branch": 0,
+      "team": [
+        7,
+        12,
+        74
+      ],
+      "cleared": 2,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 65
+    },
+    {
+      "seed": "route-53",
+      "branch": 1,
+      "team": [
+        7,
+        4,
+        25
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 51
+    },
+    {
+      "seed": "route-54",
+      "branch": 0,
+      "team": [
+        7,
+        12,
+        1
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 41
+    },
+    {
+      "seed": "route-55",
+      "branch": 1,
+      "team": [
+        74,
+        4,
+        1
+      ],
+      "cleared": 2,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 61
+    },
+    {
+      "seed": "route-56",
+      "branch": 0,
+      "team": [
+        74,
+        25,
+        4
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 37
+    },
+    {
+      "seed": "route-57",
+      "branch": 1,
+      "team": [
+        7,
+        12,
+        4
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 22
+    },
+    {
+      "seed": "route-58",
+      "branch": 0,
+      "team": [
+        7,
+        12,
+        4
+      ],
+      "cleared": 2,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 57
+    },
+    {
+      "seed": "route-59",
+      "branch": 1,
+      "team": [
+        74,
+        4,
+        1
+      ],
+      "cleared": 2,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 75
+    },
+    {
+      "seed": "route-60",
+      "branch": 0,
+      "team": [
+        7,
+        25,
+        12
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 40
+    },
+    {
+      "seed": "route-61",
+      "branch": 1,
+      "team": [
+        7,
+        25,
+        74
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 37
+    },
+    {
+      "seed": "route-62",
+      "branch": 0,
+      "team": [
+        7,
+        12,
+        4
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 19
+    },
+    {
+      "seed": "route-63",
+      "branch": 1,
+      "team": [
+        7,
+        4,
+        1
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 62
+    },
+    {
+      "seed": "route-64",
+      "branch": 0,
+      "team": [
+        7,
+        12,
+        74
+      ],
+      "cleared": 2,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 82
+    },
+    {
+      "seed": "route-65",
+      "branch": 1,
+      "team": [
+        74,
+        12,
+        25
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 43
+    },
+    {
+      "seed": "route-66",
+      "branch": 0,
+      "team": [
+        74,
+        25,
+        7
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 39
+    },
+    {
+      "seed": "route-67",
+      "branch": 1,
+      "team": [
+        74,
+        25,
+        4
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 31
+    },
+    {
+      "seed": "route-68",
+      "branch": 0,
+      "team": [
+        74,
+        4,
+        1
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 38
+    },
+    {
+      "seed": "route-69",
+      "branch": 1,
+      "team": [
+        7,
+        25,
+        12
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 40
+    },
+    {
+      "seed": "route-70",
+      "branch": 0,
+      "team": [
+        74,
+        25,
+        1
+      ],
+      "cleared": 2,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 53
+    },
+    {
+      "seed": "route-71",
+      "branch": 1,
+      "team": [
+        74,
+        25,
+        12
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 72
+    },
+    {
+      "seed": "route-72",
+      "branch": 0,
+      "team": [
+        74,
+        25,
+        4
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 63
+    },
+    {
+      "seed": "route-73",
+      "branch": 1,
+      "team": [
+        74,
+        4,
+        12
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 55
+    },
+    {
+      "seed": "route-74",
+      "branch": 0,
+      "team": [
+        74,
+        12,
+        1
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 59
+    },
+    {
+      "seed": "route-75",
+      "branch": 1,
+      "team": [
+        7,
+        25,
+        4
+      ],
+      "cleared": 3,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 101
+    },
+    {
+      "seed": "route-76",
+      "branch": 0,
+      "team": [
+        7,
+        25,
+        1
+      ],
+      "cleared": 3,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 88
+    },
+    {
+      "seed": "route-77",
+      "branch": 1,
+      "team": [
+        7,
+        4,
+        74
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 37
+    },
+    {
+      "seed": "route-78",
+      "branch": 0,
+      "team": [
+        74,
+        12,
+        25
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 44
+    },
+    {
+      "seed": "route-79",
+      "branch": 1,
+      "team": [
+        74,
+        4,
+        1
+      ],
+      "cleared": 6,
+      "status": "victory",
+      "hp": [
+        22,
+        0,
+        34
+      ],
+      "orders": 120
+    },
+    {
+      "seed": "route-80",
+      "branch": 0,
+      "team": [
+        74,
+        4,
+        1
+      ],
+      "cleared": 3,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 79
+    },
+    {
+      "seed": "route-81",
+      "branch": 1,
+      "team": [
+        7,
+        12,
+        74
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 25
+    },
+    {
+      "seed": "route-82",
+      "branch": 0,
+      "team": [
+        7,
+        25,
+        12
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 36
+    },
+    {
+      "seed": "route-83",
+      "branch": 1,
+      "team": [
+        7,
+        12,
+        74
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 73
+    },
+    {
+      "seed": "route-84",
+      "branch": 0,
+      "team": [
+        7,
+        4,
+        74
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 40
+    },
+    {
+      "seed": "route-85",
+      "branch": 1,
+      "team": [
+        7,
+        12,
+        25
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 40
+    },
+    {
+      "seed": "route-86",
+      "branch": 0,
+      "team": [
+        74,
+        12,
+        7
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 67
+    },
+    {
+      "seed": "route-87",
+      "branch": 1,
+      "team": [
+        74,
+        25,
+        4
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 51
+    },
+    {
+      "seed": "route-88",
+      "branch": 0,
+      "team": [
+        7,
+        25,
+        12
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 22
+    },
+    {
+      "seed": "route-89",
+      "branch": 1,
+      "team": [
+        7,
+        4,
+        12
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 46
+    },
+    {
+      "seed": "route-90",
+      "branch": 0,
+      "team": [
+        74,
+        12,
+        1
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 48
+    },
+    {
+      "seed": "route-91",
+      "branch": 1,
+      "team": [
+        74,
+        25,
+        7
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 51
+    },
+    {
+      "seed": "route-92",
+      "branch": 0,
+      "team": [
+        74,
+        4,
+        12
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 49
+    },
+    {
+      "seed": "route-93",
+      "branch": 1,
+      "team": [
+        7,
+        4,
+        74
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 51
+    },
+    {
+      "seed": "route-94",
+      "branch": 0,
+      "team": [
+        74,
+        12,
+        7
+      ],
+      "cleared": 2,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 62
+    },
+    {
+      "seed": "route-95",
+      "branch": 1,
+      "team": [
+        7,
+        25,
+        1
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 60
+    },
+    {
+      "seed": "route-96",
+      "branch": 0,
+      "team": [
+        74,
+        12,
+        1
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 90
+    },
+    {
+      "seed": "route-97",
+      "branch": 1,
+      "team": [
+        7,
+        25,
+        1
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 32
+    },
+    {
+      "seed": "route-98",
+      "branch": 0,
+      "team": [
+        7,
+        4,
+        12
+      ],
+      "cleared": 0,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 26
+    },
+    {
+      "seed": "route-99",
+      "branch": 1,
+      "team": [
+        74,
+        25,
+        1
+      ],
+      "cleared": 1,
+      "status": "defeat",
+      "hp": [
+        0,
+        0,
+        0
+      ],
+      "orders": 42
+    }
+  ]
+}

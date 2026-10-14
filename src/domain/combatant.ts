@@ -8,6 +8,7 @@ export type MajorStatus = {
 };
 // Values only: class instances never enter a save/replay snapshot.
 export type Combatant = Unit & {
+  speciesId: number;
   name: string;
   team: Team;
   types: PokemonType[];

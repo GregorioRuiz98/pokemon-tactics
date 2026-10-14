@@ -10,6 +10,7 @@ export class BoardScene extends Phaser.Scene {
     Phaser.GameObjects.Sprite | Phaser.GameObjects.Text
   >();
   private missing: string[] = [];
+  private speciesByUnit = new Map<number, number>();
   private loaded = false;
   private paused = false;
   private positions: Unit[] = [];
@@ -110,12 +111,6 @@ export class BoardScene extends Phaser.Scene {
             repeat: -1,
           });
       }
-      const sprite = this.textures.exists(`${pokemon.id}-Idle`)
-        ? this.add.sprite(0, 0, `${pokemon.id}-Idle`).setScale(2)
-        : this.add
-            .text(0, 0, '?', { fontSize: '26px', color: '#172827' })
-            .setOrigin(0.5, 1);
-      this.sprites.set(pokemon.id, sprite);
     }
     this.loaded = true;
     this.sync(this.positions);
@@ -124,10 +119,11 @@ export class BoardScene extends Phaser.Scene {
   private pose(id: number, name: AnimationName, direction: number): void {
     const sprite = this.sprites.get(id);
     if (!(sprite instanceof Phaser.GameObjects.Sprite)) return;
-    const actual = this.textures.exists(`${id}-${name}`) ? name : 'Idle';
-    const data = this.catalog.find((p) => p.id === id)!.animations[actual];
+    const speciesId = this.speciesByUnit.get(id)!;
+    const actual = this.textures.exists(`${speciesId}-${name}`) ? name : 'Idle';
+    const data = this.catalog.find((p) => p.id === speciesId)!.animations[actual];
     sprite.setOrigin(data.anchorX / data.width, data.anchorY / data.height);
-    sprite.play(`${id}-${actual}-${direction}`, true);
+    sprite.play(`${speciesId}-${actual}-${direction}`, true);
     if (this.paused) sprite.anims.pause();
     else sprite.anims.resume();
   }
@@ -137,6 +133,15 @@ export class BoardScene extends Phaser.Scene {
     const visible = new Set(units.map((unit) => unit.id));
     for (const [id, sprite] of this.sprites) sprite.setVisible(visible.has(id));
     for (const unit of units) {
+      const speciesId = unit.speciesId ?? unit.id;
+      if (!this.sprites.has(unit.id)) {
+        const sprite = this.textures.exists(`${speciesId}-Idle`)
+          ? this.add.sprite(0, 0, `${speciesId}-Idle`).setScale(2)
+          : this.add.text(0, 0, '?', { fontSize: '26px', color: '#172827' }).setOrigin(0.5, 1);
+        this.sprites.set(unit.id, sprite);
+        this.speciesByUnit.set(unit.id, speciesId);
+      }
+      this.sprites.get(unit.id)!.setVisible(true);
       const p = center(unit);
       this.sprites
         .get(unit.id)

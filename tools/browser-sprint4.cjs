@@ -4,9 +4,9 @@ const { createBattle, activeUnit, living, attackPlan, chooseTacticalCommand, app
 const { routesFrom } = require('../src/rules/movement.ts');
 const { pokemonFor } = require('../src/domain/Pokemon.ts');
 const catalog = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../public/data/pokemon.json'), 'utf8'));
-const output = path.resolve(__dirname, '../docs/qa/sprint-4');
+const output = path.resolve(process.env.TACTICS_QA_DIR || path.resolve(__dirname, '../docs/qa/sprint-5/combat'));
 fs.mkdirSync(output, { recursive: true });
-const base = process.env.TACTICS_URL || 'http://127.0.0.1:5173/';
+const base = new URL('?view=battle', process.env.TACTICS_URL || 'http://127.0.0.1:5173/').href;
 const checks = [], errors = [], external = [];
 const pass = name => { checks.push({ name, status: 'pass' }); console.log('PASS', name); };
 (async () => {

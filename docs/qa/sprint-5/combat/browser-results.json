@@ -1,0 +1,90 @@
+{
+  "browser": "Microsoft Edge headless (Playwright)",
+  "url": "http://127.0.0.1:5173/?view=battle",
+  "checks": [
+    {
+      "name": "Tactical board, profiles and six orientation arrows load without covering cells",
+      "status": "pass"
+    },
+    {
+      "name": "Final facing is previewed and can be cancelled without closing the turn or spending RNG",
+      "status": "pass"
+    },
+    {
+      "name": "Confirmed facing persists while other units act and the next activation receives focus",
+      "status": "pass"
+    },
+    {
+      "name": "Area, per-target accuracy, positional side and collateral preview match pure rules",
+      "status": "pass"
+    },
+    {
+      "name": "Confirmed area affects each unit once, spends PT once and paints legal ember tiles",
+      "status": "pass"
+    },
+    {
+      "name": "A real route crosses allied sprites and ends on a free square at its exact terrain cost",
+      "status": "pass"
+    },
+    {
+      "name": "Flying movement crosses the pond using its own costs while occupancy remains legal",
+      "status": "pass"
+    },
+    {
+      "name": "Grid, cancellation and menu support keyboard focus",
+      "status": "pass"
+    },
+    {
+      "name": "Full battle reaches victory and clears defeated units without stalled rounds",
+      "status": "pass"
+    },
+    {
+      "name": "Same seed and commands replay positions, orientations, fields, HP, PT and status exactly",
+      "status": "pass"
+    },
+    {
+      "name": "Passive turns reach defeat with orientation and terrain effects resolving normally",
+      "status": "pass"
+    },
+    {
+      "name": "Alternative composition previews and resolves a real push without occupied destinations",
+      "status": "pass"
+    },
+    {
+      "name": "Long area previews and final-facing controls fit desktop, short and mobile windows",
+      "status": "pass"
+    },
+    {
+      "name": "Training and camp remain available",
+      "status": "pass"
+    },
+    {
+      "name": "Normal play has no JavaScript errors or remote asset requests",
+      "status": "pass"
+    },
+    {
+      "name": "Animated movement locks orders and resting animations support pause/resume",
+      "status": "pass"
+    },
+    {
+      "name": "Slow loading gives progress and keeps commands disabled",
+      "status": "pass"
+    },
+    {
+      "name": "Invalid/empty catalogue exposes a retry and recovers combat",
+      "status": "pass"
+    },
+    {
+      "name": "A missing sprite becomes a movable marker; reload recovers it without JS errors",
+      "status": "pass"
+    }
+  ],
+  "consoleErrors": [],
+  "externalRequests": [],
+  "victoryRound": 2,
+  "defeatRound": 4,
+  "secondComposition": {
+    "outcome": "defeat",
+    "round": 2
+  }
+}

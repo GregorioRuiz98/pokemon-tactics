@@ -23,7 +23,7 @@ export abstract class Pokemon {
       throw new Error('Especie incompatible con su clase táctica.');
     const maxHp = Math.round(35 + species.baseStats.hp / 3);
     return {
-      ...position, id: species.id, name: species.name, team, types: [...species.types] as PokemonType[],
+      ...position, id: species.id, speciesId: species.id, name: species.name, team, types: [...species.types] as PokemonType[],
       budget: this.movement, remaining: this.movement, facing: team === 'ally' ? 4 : 0,
       maxHp, hp: maxHp, attack: species.baseStats.attack, defense: species.baseStats.defense,
       specialAttack: species.baseStats['special-attack'], specialDefense: species.baseStats['special-defense'],

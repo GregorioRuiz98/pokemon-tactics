@@ -28,7 +28,7 @@ import {
   applyCommand,
   chooseTacticalCommand,
 } from './rules/battle';
-import type { TacticalCommand } from './rules/battle';
+import type { TacticalCommand, Battle } from './rules/battle';
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`;
@@ -40,15 +40,21 @@ const escape = (value: string) =>
         c
       ]!,
   );
-function render(catalog: PokemonSpecies[]): void {
-  let state = createBattle(catalog),
-    inspected = 1,
+type BattleHost = {
+  initial?: Battle; title?: string;
+  onState?: (state: Battle) => boolean;
+  onComplete?: () => void; onExit?: () => void;
+};
+export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): () => void {
+  let state = host.initial ?? createBattle(catalog),
+    inspected = state.units.find(unit => unit.team === 'ally')!.id,
     mode: 'move' | 'attack' = 'move';
   let selectedAction = 'basic';
   const statusText = (unit: Combatant): string => `${unit.status ? `${STATUS_NAMES[unit.status.kind]} · ${unit.status.remaining} activaciones` : 'Sin estado'}${unit.guarded ? ' · Protegido' : ''}`;
   let pending: TacticalCommand | null = null,
     hover: Point | null = null;
   let ready = false,
+    disposed = false,
     busy = false,
     generation = 0,
     enemyGeneration: number | null = null;
@@ -59,7 +65,7 @@ function render(catalog: PokemonSpecies[]): void {
   app.innerHTML = `
     <main id="battle-root" class="battle-main">
       <section id="gameplay" class="gameplay" aria-labelledby="game-title">
-        <header class="game-topbar"><h1 id="game-title">POKÉMON <span>TACTICS</span></h1><div class="battle-counts"><span id="ally-count"></span><span id="enemy-count"></span></div><button class="hud-utility" id="pause" aria-pressed="${paused}" disabled>${paused ? 'Reanudar' : 'Pausar'} animaciones</button><details id="game-options"><summary>Opciones</summary><div class="options-panel"><h2>Opciones de combate</h2><form id="battle-settings"><label for="seed">Semilla<input id="seed" name="seed" maxlength="64" value="kanto-001" autocomplete="off"></label><label for="variance">Variación<select id="variance"><option value="0.05">±5 %</option><option value="0.1">±10 %</option></select></label><label class="composition-setting" for="composition">Composición<select id="composition"><option value="starters">Iniciales: Bulbasaur, Charmander, Squirtle</option><option value="mixed">Control: Pikachu, Butterfree, Geodude</option></select></label><p>Los cambios se aplican al reiniciar. PT: 2 iniciales, +1 al activar, máximo 5. Estados: tres activaciones propias.</p><button id="restart" type="submit" disabled>Reiniciar combate</button></form><section class="training-roster battle-roster" aria-label="Unidades del combate">${state.units.map((u) => `<button data-unit="${u.id}" data-team="${u.team}" aria-pressed="false"><img src="${asset(`assets/pokemon/${u.id}/thumbnail.png`)}" alt="" width="32" height="32"><span><strong>${escape(u.name)}</strong><small data-unit-info="${u.id}"></small></span></button>`).join('')}</section><nav class="battle-nav" aria-label="Prototipos"><a href="?view=training">Ensayo de movimiento</a><a href="?view=camp">Campamento</a><a href="${asset('CREDITS.md')}" target="_blank" rel="noreferrer">Créditos y licencias</a></nav><details class="battle-log"><summary>Registro de combate</summary><ol id="combat-log"></ol></details></div></details></header>
+        <header class="game-topbar"><h1 id="game-title">POKÉMON <span>TACTICS</span></h1><div class="battle-counts"><span id="ally-count"></span><span id="enemy-count"></span></div><button class="hud-utility" id="pause" aria-pressed="${paused}" disabled>${paused ? 'Reanudar' : 'Pausar'} animaciones</button><details id="game-options"><summary>Opciones</summary><div class="options-panel"><h2>Opciones de combate</h2><form id="battle-settings"><label for="seed">Semilla<input id="seed" name="seed" maxlength="64" value="kanto-001" autocomplete="off"></label><label for="variance">Variación<select id="variance"><option value="0.05">±5 %</option><option value="0.1">±10 %</option></select></label><label class="composition-setting" for="composition">Composición<select id="composition"><option value="starters">Iniciales: Bulbasaur, Charmander, Squirtle</option><option value="mixed">Control: Pikachu, Butterfree, Geodude</option></select></label><p>Los cambios se aplican al reiniciar. PT: 2 iniciales, +1 al activar, máximo 5. Estados: tres activaciones propias.</p><button id="restart" type="submit" disabled>Reiniciar combate</button></form><section class="training-roster battle-roster" aria-label="Unidades del combate">${state.units.map((u) => `<button data-unit="${u.id}" data-team="${u.team}" aria-pressed="false"><img src="${asset(`assets/pokemon/${u.speciesId}/thumbnail.png`)}" alt="" width="32" height="32"><span><strong>${escape(u.name)}</strong><small data-unit-info="${u.id}"></small></span></button>`).join('')}</section><nav class="battle-nav" aria-label="Prototipos"><a href="?view=training">Ensayo de movimiento</a><a href="?view=camp">Campamento</a><a href="${asset('CREDITS.md')}" target="_blank" rel="noreferrer">Créditos y licencias</a></nav><details class="battle-log"><summary>Registro de combate</summary><ol id="combat-log"></ol></details></div></details></header>
         <section class="initiative-strip" aria-labelledby="initiative-title"><div class="round-label"><h2 id="initiative-title">Ronda <span id="round"></span></h2><span>CHARCA DE KANTO</span></div><ol id="initiative"></ol></section>
         <div id="resource-status" class="game-resource" role="status">Cargando recursos…</div>
         <section class="battlefield" aria-label="Tablero de combate">
@@ -67,9 +73,9 @@ function render(catalog: PokemonSpecies[]): void {
           <div class="terrain-legend"><span>A · Aliado</span><span>E · Enemigo</span><span>Suelo 1 / maleza 2</span><span>Roca bloquea · agua: acuáticos/voladores</span><span>Aliados atravesables · ↑ orientación</span></div>
         </section>
         <div class="hud-bottom">
-          <aside class="actor-hud hud-window" aria-label="Unidad activa"><div class="hud-unit-heading"><img id="actor-portrait" src="${asset(`assets/pokemon/${activeUnit(state)!.id}/thumbnail.png`)}" alt="" width="72" height="72"><div><p id="turn-owner"></p><h2 id="actor-name"></h2><p id="turn-status"></p></div></div><div class="hud-health"><strong id="actor-hp"></strong><div id="actor-health" class="health-track" aria-hidden="true"></div></div><div class="activation-resources"><span id="move-available"></span><span id="action-available"></span><strong id="actor-tp"></strong></div><p id="actor-stats"></p><p id="actor-status" class="unit-status"></p></aside>
+          <aside class="actor-hud hud-window" aria-label="Unidad activa"><div class="hud-unit-heading"><img id="actor-portrait" src="${asset(`assets/pokemon/${(activeUnit(state) ?? state.units[0]).speciesId}/thumbnail.png`)}" alt="" width="72" height="72"><div><p id="turn-owner"></p><h2 id="actor-name"></h2><p id="turn-status"></p></div></div><div class="hud-health"><strong id="actor-hp"></strong><div id="actor-health" class="health-track" aria-hidden="true"></div></div><div class="activation-resources"><span id="move-available"></span><span id="action-available"></span><strong id="actor-tp"></strong></div><p id="actor-stats"></p><p id="actor-status" class="unit-status"></p></aside>
           <section class="orders-hud" aria-label="Órdenes de combate"><div class="battle-actions"><button id="mode-move" aria-pressed="true">Mover</button><button id="mode-attack" aria-pressed="false">Acciones</button><button id="finish-turn" disabled>Terminar turno</button></div><div id="facing-controls" aria-label="Orientación final" hidden>${FACINGS.map(facing => `<button data-facing="${facing}" aria-pressed="false">${FACING_ARROWS[facing]} ${FACING_NAMES[facing]}</button>`).join('')}</div><div class="skill-actions" aria-label="Habilidades de la unidad activa"><button data-skill-slot="0" aria-pressed="true"></button><button data-skill-slot="1" aria-pressed="false"></button><button data-skill-slot="2" aria-pressed="false"></button></div><p id="ability-description"></p><div class="order-preview"><div id="attack-forecast" hidden><span>DAÑO <strong id="forecast-damage"></strong></span><span>ACIERTO <strong id="forecast-accuracy"></strong></span></div><p id="forecast-effect"></p><p id="order-summary">Espera tu turno.</p><p id="order-detail"></p><div class="order-buttons"><button id="confirm" disabled>Confirmar orden</button><button id="cancel" disabled>Cancelar</button></div></div><p id="feedback" role="status" aria-live="polite">Cargando el combate…</p></section>
-          <aside class="target-hud hud-window" aria-labelledby="inspect-name"><p class="target-label">FICHA CONSULTADA</p><div class="hud-unit-heading"><img id="inspect-portrait" src="${asset(`assets/pokemon/${inspected}/thumbnail.png`)}" alt="" width="64" height="64"><div><h3 id="inspect-name"></h3><span id="inspect-team"></span><div id="inspect-types" class="type-list"></div></div></div><div class="health-readout"><strong id="inspect-hp"></strong><span id="inspect-position"></span></div><div id="inspect-health" class="health-track" aria-hidden="true"></div><p id="inspect-stats"></p><p id="inspect-status" class="unit-status"></p><ul id="area-forecast" aria-label="Unidades afectadas por el área" hidden></ul></aside>
+          <aside class="target-hud hud-window" aria-labelledby="inspect-name"><p class="target-label">FICHA CONSULTADA</p><div class="hud-unit-heading"><img id="inspect-portrait" src="${asset(`assets/pokemon/${state.units.find(unit => unit.id === inspected)!.speciesId}/thumbnail.png`)}" alt="" width="64" height="64"><div><h3 id="inspect-name"></h3><span id="inspect-team"></span><div id="inspect-types" class="type-list"></div></div></div><div class="health-readout"><strong id="inspect-hp"></strong><span id="inspect-position"></span></div><div id="inspect-health" class="health-track" aria-hidden="true"></div><p id="inspect-stats"></p><p id="inspect-status" class="unit-status"></p><ul id="area-forecast" aria-label="Unidades afectadas por el área" hidden></ul></aside>
         </div>
         <p id="board-help">Flechas: recorrer · Enter: elegir · Escape: cancelar. Una acción y un desplazamiento por turno.</p>
       </section>
@@ -95,10 +101,12 @@ function render(catalog: PokemonSpecies[]): void {
     catalog,
     {
       progress: (f) => {
+        if (disposed) return;
         $('#resource-status').textContent =
           `Cargando recursos… ${Math.round(f * 100)} %`;
       },
       ready: (missing) => {
+        if (disposed) return;
         ready = true;
         const status = $('#resource-status');
         if (missing.length) {
@@ -178,7 +186,7 @@ function render(catalog: PokemonSpecies[]): void {
     const actor = activeUnit(state),
       canOrder = playerTurn(),
       root = $('#battle-root');
-    if (actor && !pokemonFor(actor.id).action(selectedAction)) selectedAction = 'basic';
+    if (actor && !pokemonFor(actor.speciesId).action(selectedAction)) selectedAction = 'basic';
     root.dataset.active = String(actor?.id ?? '');
     root.dataset.team = actor?.team ?? '';
     root.dataset.round = String(state.round);
@@ -189,9 +197,9 @@ function render(catalog: PokemonSpecies[]): void {
     root.dataset.fields = JSON.stringify(state.fields);
     $('#round').textContent = String(state.round);
     $('#ally-count').textContent =
-      `${living(state).filter((u) => u.team === 'ally').length}/3 aliados`;
+      `${living(state).filter((u) => u.team === 'ally').length}/${state.units.filter(u => u.team === 'ally').length} aliados`;
     $('#enemy-count').textContent =
-      `${living(state).filter((u) => u.team === 'enemy').length}/3 enemigos`;
+      `${living(state).filter((u) => u.team === 'enemy').length}/${state.units.filter(u => u.team === 'enemy').length} enemigos`;
     $('#turn-status').textContent = actor
       ? `${actor.team === 'ally' ? 'TU TURNO' : 'TURNO ENEMIGO'} · ${actor.name}`
       : state.outcome === 'victory'
@@ -210,11 +218,11 @@ function render(catalog: PokemonSpecies[]): void {
       state.units[0];
     $('.actor-hud').dataset.team = actorCard.team;
     $<HTMLImageElement>('#actor-portrait').src = asset(
-      `assets/pokemon/${actorCard.id}/thumbnail.png`,
+      `assets/pokemon/${actorCard.speciesId}/thumbnail.png`,
     );
     $('#actor-hp').textContent = `PS ${actorCard.hp}/${actorCard.maxHp}`;
     $('#actor-stats').textContent =
-      `${pokemonFor(actorCard.id).role} · ${PROFILE_NAMES[actorCard.profile ?? 'ground']} · mira al ${FACING_NAMES[actorCard.facing]} · velocidad ${effectiveSpeed(actorCard)}`;
+      `${pokemonFor(actorCard.speciesId).role} · ${PROFILE_NAMES[actorCard.profile ?? 'ground']} · mira al ${FACING_NAMES[actorCard.facing]} · velocidad ${effectiveSpeed(actorCard)}`;
     $('#actor-tp').textContent = `PT ${actorCard.tp}/${actorCard.maxTp}`;
     $('#actor-status').textContent = statusText(actorCard);
     $('#actor-health').innerHTML =
@@ -237,7 +245,7 @@ function render(catalog: PokemonSpecies[]): void {
         const unit = state.units.find((u) => u.id === entry.id)!,
           done = state.completed.includes(unit.id),
           fainted = unit.hp <= 0;
-        return `<li class="${unit.team} ${actor?.id === unit.id ? 'current' : ''} ${done ? 'done' : ''} ${fainted ? 'fainted' : ''}"><button data-inspect="${unit.id}" aria-label="${escape(unit.name)}, ${unit.team === 'ally' ? 'aliado' : 'enemigo'}, iniciativa ${entry.score.toFixed(1)}${actor?.id === unit.id ? ', activo' : ''}${done ? ', activación completada' : ''}${fainted ? ', fuera de combate' : ''}"><img src="${asset(`assets/pokemon/${unit.id}/thumbnail.png`)}" alt="" width="28" height="28"><span>${escape(unit.name)}<small>${fainted ? 'Fuera' : done ? 'Hecho' : `${entry.score.toFixed(1)} vel.`}</small></span></button></li>`;
+        return `<li class="${unit.team} ${actor?.id === unit.id ? 'current' : ''} ${done ? 'done' : ''} ${fainted ? 'fainted' : ''}"><button data-inspect="${unit.id}" aria-label="${escape(unit.name)}, ${unit.team === 'ally' ? 'aliado' : 'enemigo'}, iniciativa ${entry.score.toFixed(1)}${actor?.id === unit.id ? ', activo' : ''}${done ? ', activación completada' : ''}${fainted ? ', fuera de combate' : ''}"><img src="${asset(`assets/pokemon/${unit.speciesId}/thumbnail.png`)}" alt="" width="28" height="28"><span>${escape(unit.name)}<small>${fainted ? 'Fuera' : done ? 'Hecho' : `${entry.score.toFixed(1)} vel.`}</small></span></button></li>`;
       })
       .join('');
     document
@@ -253,14 +261,14 @@ function render(catalog: PokemonSpecies[]): void {
     $('#mode-move').setAttribute('aria-pressed', String(mode === 'move'));
     $('#mode-attack').setAttribute('aria-pressed', String(mode === 'attack'));
     document.querySelectorAll<HTMLButtonElement>('[data-skill-slot]').forEach((button, index) => {
-      const ability = pokemonFor(actorCard.id).actions[index].definition;
+      const ability = pokemonFor(actorCard.speciesId).actions[index].definition;
       button.dataset.action = ability.id;
       button.textContent = `${ability.name} · ${ability.cost} PT`;
       button.title = `${TYPE_NAMES[ability.type]} · alcance ${ability.range} · acierto ${ability.accuracy} %`;
       button.disabled = !canOrder || state.acted || actorCard.tp < ability.cost;
       button.setAttribute('aria-pressed', String(mode === 'attack' && selectedAction === ability.id));
     });
-    const selected = pokemonFor(actorCard.id).action(selectedAction)?.definition;
+    const selected = pokemonFor(actorCard.speciesId).action(selectedAction)?.definition;
     $('#ability-description').textContent = selected
       ? `${TYPE_NAMES[selected.type]} · alcance ${selected.range} · ${selected.description}` : '';
     $<HTMLButtonElement>('#confirm').disabled = !canOrder || !pending;
@@ -330,7 +338,7 @@ function render(catalog: PokemonSpecies[]): void {
     const selectedTarget = pending?.kind === 'attack' ? pending.target : inspected;
     const unit = state.units.find((u) => u.id === selectedTarget)!;
     $<HTMLImageElement>('#inspect-portrait').src = asset(
-      `assets/pokemon/${unit.id}/thumbnail.png`,
+      `assets/pokemon/${unit.speciesId}/thumbnail.png`,
     );
     $('.target-hud').dataset.team = unit.team;
     $('.target-label').textContent =
@@ -339,7 +347,7 @@ function render(catalog: PokemonSpecies[]): void {
     $('#inspect-team').textContent =
       unit.team === 'ally' ? 'Aliado' : 'Enemigo';
     $('#inspect-types').innerHTML = catalog
-      .find((p) => p.id === unit.id)!
+      .find((p) => p.id === unit.speciesId)!
       .types.map((t) => `<span class="type type-${t}">${TYPE_NAMES[t]}</span>`)
       .join('');
     $('#inspect-hp').textContent = `${unit.hp}/${unit.maxHp} PS`;
@@ -532,6 +540,8 @@ function render(catalog: PokemonSpecies[]): void {
       say(result.reason);
       return;
     }
+    // Persist an accepted command before its animation; reloading cannot undo it.
+    if (host.onState && !host.onState(result.state)) return;
     busy = true;
     pending = null;
     hover = null;
@@ -643,7 +653,18 @@ function render(catalog: PokemonSpecies[]): void {
     restart();
     $<HTMLDetailsElement>('#game-options').open = false;
   });
-  $('#play-again').addEventListener('click', restart);
+  $('#play-again').addEventListener('click', () => host.onComplete ? host.onComplete() : restart());
+  if (host.initial) {
+    $('#battle-settings').hidden = true;
+    $('#play-again').textContent = 'Continuar la partida';
+    $('.round-label > span').textContent = host.title ?? 'RUTA DE KANTO';
+    const leave = document.createElement('button');
+    leave.className = 'hud-utility';
+    leave.id = 'leave-run';
+    leave.textContent = 'Guardar y salir';
+    leave.addEventListener('click', () => host.onExit?.());
+    $('.game-topbar').insertBefore(leave, $('#game-options'));
+  }
   function setPaused(value: boolean): void {
     paused = value;
     scene.setPaused(value);
@@ -659,15 +680,17 @@ function render(catalog: PokemonSpecies[]): void {
   refreshPaths();
   refresh();
   const game = startGame(scene, { width: 512, height: 512 });
-  import.meta.hot?.dispose(() => {
+  const dispose = () => {
+    disposed = true;
     generation++;
     document.removeEventListener('keydown', onEscape);
     document.removeEventListener('pointerdown', closeOptions);
     preference.removeEventListener('change', motionChanged);
     game.destroy(true);
-  });
+  };
+  return dispose;
 }
-async function boot(): Promise<void> {
+export async function bootBattle(): Promise<void> {
   try {
     const response = await fetch(asset('data/pokemon.json'), {
       signal: AbortSignal.timeout(10000),
@@ -676,7 +699,8 @@ async function boot(): Promise<void> {
       throw new Error(`No se pudo cargar el catálogo (${response.status}).`);
     const catalog = validateCatalog(await response.json());
     await document.fonts.load('16px "Pixelify Sans"');
-    render(catalog);
+    const dispose = mountBattle(catalog);
+    import.meta.hot?.dispose(dispose);
   } catch (error) {
     app.innerHTML = `<main class="failure"><h1>No pudimos abrir el combate</h1><p>${escape(error instanceof Error ? error.message : 'Error de recursos locales.')}</p><button id="retry">Volver a intentar</button></main>`;
     document
@@ -684,4 +708,3 @@ async function boot(): Promise<void> {
       .addEventListener('click', () => location.reload());
   }
 }
-void boot();

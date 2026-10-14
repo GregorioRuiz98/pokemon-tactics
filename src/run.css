@@ -1,0 +1,113 @@
+.run-main { max-width: 1220px; padding: 0; margin: 20px auto; background: #243d32; border: 1px solid #71816b; color: #f7edce; }
+.run-topbar { display: flex; align-items: center; gap: 20px; padding: 16px 24px; border-bottom: 1px solid #71816b; background: #1a2c28; }
+.run-brand { font: 24px 'Pixelify Sans', sans-serif; text-decoration: none; }
+.run-brand span, .run-intro h1 span { color: var(--gold); }
+.run-topbar > span { font-size: 12px; color: #c4cebe; margin-left: auto; }
+.run-main button { border: 1px solid #9cb9bf; padding: 10px 16px; min-height: 44px; background: #193c52; color: #f7edce; font-family: 'Pixelify Sans', sans-serif; font-size: 17px; }
+.run-main button:hover:enabled { background: #275772; }
+.run-main button:disabled { cursor: default; }
+.run-main .run-primary { background: #f1c879; border-color: #f1c879; color: #172827; font-weight: 700; }
+.run-main .run-primary:hover:enabled { background: #f8dca7; }
+.run-heading { display: flex; align-items: start; justify-content: space-between; gap: 30px; padding: 28px 32px 20px; }
+.run-heading h1 { margin: 0 0 10px; font: 34px 'Pixelify Sans', sans-serif; }
+.run-heading p { max-width: 62ch; font-size: 14px; line-height: 1.5; color: #c4cebe; margin: 0; }
+.run-seed { max-width: 240px; overflow-wrap: anywhere; font-size: 12px; line-height: 1.6; padding-top: 6px; }
+.run-layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 36px; padding: 8px 32px 32px; }
+.run-party h2, .route-stage h2, .run-launch h2, .run-ending h2 { font: 24px 'Pixelify Sans', sans-serif; margin: 0 0 16px; }
+.run-party ul { list-style: none; margin: 0; padding: 0; }
+.run-party li { display: flex; align-items: center; gap: 14px; padding: 20px 0; border-bottom: 1px solid #536553; }
+.run-party img, .starter-pool img, .node-enemies img { image-rendering: pixelated; object-fit: contain; flex-shrink: 0; }
+.run-party li > div { flex: 1; }
+.run-party h3 { margin: 0 0 8px; font: 21px 'Pixelify Sans', sans-serif; }
+.run-party li p { font-size: 13px; margin: 0 0 7px; }
+.run-party small { display: block; color: #c4cebe; line-height: 1.5; font-size: 11px; margin-top: 8px; }
+.run-health { height: 6px; background: #11211b; }
+.run-health i { display: block; height: 100%; background: #b6d67e; }
+.run-party .lost img { filter: grayscale(1); opacity: .55; }
+.run-party .lost p { color: #f0bc9a; }
+.run-party > p, .run-party details { font-size: 12px; line-height: 1.6; color: #c4cebe; margin: 22px 0 0; }
+.run-party summary { color: #f7edce; cursor: pointer; min-height: 30px; }
+.route-stage { padding: 20px 24px; background: #192f29; }
+.route-stage > p { font-size: 12px; line-height: 1.5; color: #c4cebe; margin: 0; }
+.route-map { position: relative; display: flex; flex-direction: column-reverse; gap: 18px; padding: 20px 0 10px; }
+#route-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+#route-lines line { stroke: #64785c; stroke-width: 2px; }
+#route-lines line.visited { stroke: #f1c879; stroke-width: 3px; }
+.route-layer { position: relative; display: flex; justify-content: space-evenly; gap: 24px; padding-left: 22px; }
+.route-floor { position: absolute; left: 0; top: 50%; color: #c4cebe; font-size: 12px; }
+.run-main .route-node { position: relative; display: flex; flex-direction: column; align-items: center; gap: 1px; width: 220px; padding: 6px 8px; background: #203c32; border-color: #607568; font: 13px Arial, sans-serif; opacity: 1; }
+.route-node strong { font: 18px 'Pixelify Sans', sans-serif; }
+.route-node small { font-size: 11px; color: #c4cebe; }
+.node-enemies { display: flex; justify-content: center; gap: 6px; }
+.node-enemies img { width: 24px; height: 24px; }
+.node-terrain { font-size: 10px; line-height: 1.4; color: #c4cebe; }
+.run-main .route-node.available { background: #193c52; border: 2px solid #f1c879; }
+.route-node.available small { color: #f1c879; }
+.run-main .route-node.cleared { border-color: #b6d67e; }
+.route-node.cleared small { color: #cce8a7; }
+.run-main .route-node.skipped { opacity: .45; }
+.route-progress { padding-top: 12px; text-align: center; }
+.run-footer { display: flex; flex-wrap: wrap; gap: 20px; margin: 0; border-top: 1px solid #536553; padding: 18px 32px; color: #c4cebe; font-size: 12px; }
+.run-footer span { margin-right: auto; }
+.run-menu { display: grid; grid-template-columns: 1.2fr 1fr; }
+.run-menu .run-topbar, .run-menu .run-footer { grid-column: 1 / -1; }
+.run-intro { padding: 60px 40px; }
+.run-intro h1 { font: 48px/1.1 'Pixelify Sans', sans-serif; margin: 0 0 28px; }
+.run-intro > p { font-size: 16px; line-height: 1.7; max-width: 42ch; color: #d5dfce; }
+.starter-pool { display: flex; flex-wrap: wrap; gap: 22px; max-width: 340px; margin-top: 38px; }
+.starter-pool span { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 11px; width: 80px; }
+.run-intro .pool-caption { margin-top: 20px; font-size: 12px; color: #c4cebe; }
+.run-launch { padding: 40px 32px; background: #192f29; }
+.run-launch form { display: flex; flex-direction: column; align-items: start; gap: 12px; }
+.run-launch label { font-size: 14px; }
+.run-launch label span { color: #c4cebe; }
+.run-launch input, .run-launch select { width: 100%; padding: 12px; font: 16px Arial, sans-serif; color: #f7edce; border: 1px solid #9cb9bf; background: #112722; border-radius: 0; caret-color: #f1c879; }
+.run-launch input::placeholder { color: #b7c5b8; }
+.run-launch input:focus-visible, .run-launch select:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.run-launch p { font-size: 13px; line-height: 1.6; color: #c4cebe; margin: 5px 0 14px; overflow-wrap: anywhere; }
+.continue-run, .save-problem { margin-bottom: 36px; padding-bottom: 30px; border-bottom: 1px solid #536553; }
+#replace-save { padding-top: 10px; }
+#replace-save button { margin: 0 8px 8px 0; }
+.run-launch .run-scope { margin-top: 36px; font-size: 12px; }
+.run-ending { padding: 24px; background: #192f29; }
+.run-ending > p { font-size: 14px; line-height: 1.6; max-width: 58ch; color: #c4cebe; }
+.run-ending table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 30px 0; }
+.run-ending caption { text-align: left; font: 20px 'Pixelify Sans', sans-serif; margin-bottom: 16px; }
+.run-ending th, .run-ending td { padding: 12px 8px; text-align: left; border-bottom: 1px solid #536553; }
+.run-ending td:nth-child(3) { font-variant-numeric: tabular-nums; }
+.run-error { padding: 40px; }
+#save-notice { padding: 12px 24px; background: #f1c879; color: #172827; font: 13px/1.6 Arial, sans-serif; }
+#save-notice button { background: #193c52; border: 0; margin-left: 12px; padding: 8px; color: #f7edce; }
+.run-main ::selection { background: #f1c879; color: #172827; }
+.run-main a { text-underline-offset: 3px; }
+[hidden] { display: none !important; }
+@media (max-width: 760px) {
+  .run-main { margin: 0; border: 0; }
+  .run-topbar { padding: 16px; gap: 12px; flex-wrap: wrap; }
+  .run-brand { font-size: 22px; }
+  .run-topbar > span { font-size: 10px; }
+  .run-heading { padding: 24px 16px; flex-direction: column; gap: 10px; }
+  .run-heading h1 { font-size: 30px; }
+  .run-seed { max-width: 100%; }
+  .run-layout { display: flex; flex-direction: column; gap: 26px; padding: 0 16px 24px; }
+  .run-party ul { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+  .run-party li { flex: 1 1 150px; padding: 12px 0; gap: 8px; }
+  .run-party img { width: 40px; height: 40px; }
+  .run-party h3 { font-size: 18px; }
+  .run-party small { font-size: 10px; }
+  .run-party > p { margin: 12px 0 0; }
+  .route-stage { padding: 18px 12px; }
+  .route-layer { gap: 12px; padding-left: 14px; }
+  .run-main .route-node { width: 160px; min-width: 0; }
+  .route-node strong { font-size: 16px; }
+  .node-enemies { gap: 0; }
+  .node-terrain { font-size: 9px; }
+  .run-menu { display: block; }
+  .run-intro { padding: 36px 24px; }
+  .run-intro h1 { font-size: 38px; }
+  .starter-pool { margin-top: 28px; gap: 18px; }
+  .run-launch { padding: 28px 24px; }
+  .run-ending { padding: 20px 12px; }
+  .run-ending th, .run-ending td { padding: 12px 4px; }
+  .run-footer { padding: 20px 16px; }
+}

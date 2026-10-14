@@ -4,6 +4,8 @@ if (view === 'camp') {
   void import('./camp');
 } else if (view === 'training') {
   void import('./tactical');
+} else if (view === 'battle') {
+  void import('./battle').then(module => module.bootBattle());
 } else {
-  void import('./battle');
+  void import('./run');
 }

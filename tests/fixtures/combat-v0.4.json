@@ -1,0 +1,1572 @@
+[
+  {
+    "speciesId": 1,
+    "maxHp": 50,
+    "actions": [
+      {
+        "definition": {
+          "id": "basic",
+          "name": "Placaje",
+          "description": "Ataque físico básico de tipo Normal.",
+          "type": "normal",
+          "cost": 0,
+          "range": 1,
+          "accuracy": 100,
+          "target": "enemy"
+        },
+        "power": 40,
+        "category": "physical",
+        "previews": [
+          {
+            "speciesId": 4,
+            "effect": {
+              "damage": 17,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 7,
+            "effect": {
+              "damage": 14,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 25,
+            "effect": {
+              "damage": 17,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 12,
+            "effect": {
+              "damage": 16,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 74,
+            "effect": {
+              "damage": 5,
+              "heal": 0,
+              "multiplier": 0.5,
+              "stab": 1,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          }
+        ]
+      },
+      {
+        "definition": {
+          "id": "vine-whip",
+          "name": "Látigo Cepa",
+          "description": "Golpea a dos casillas con sus lianas.",
+          "type": "grass",
+          "cost": 1,
+          "range": 2,
+          "accuracy": 100,
+          "target": "enemy"
+        },
+        "power": 45,
+        "category": "physical",
+        "previews": [
+          {
+            "speciesId": 4,
+            "effect": {
+              "damage": 14,
+              "heal": 0,
+              "multiplier": 0.5,
+              "stab": 1.5,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 7,
+            "effect": {
+              "damage": 48,
+              "heal": 0,
+              "multiplier": 2,
+              "stab": 1.5,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 25,
+            "effect": {
+              "damage": 28,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1.5,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 12,
+            "effect": {
+              "damage": 7,
+              "heal": 0,
+              "multiplier": 0.25,
+              "stab": 1.5,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 74,
+            "effect": {
+              "damage": 48,
+              "heal": 0,
+              "multiplier": 4,
+              "stab": 1.5,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          }
+        ]
+      },
+      {
+        "definition": {
+          "id": "mega-drain",
+          "name": "Megaagotar",
+          "description": "Absorbe la mitad del daño causado como PS.",
+          "type": "grass",
+          "cost": 2,
+          "range": 2,
+          "accuracy": 100,
+          "target": "enemy"
+        },
+        "power": 40,
+        "category": "special",
+        "previews": [
+          {
+            "speciesId": 4,
+            "effect": {
+              "damage": 14,
+              "heal": 0,
+              "multiplier": 0.5,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 7,
+            "effect": {
+              "damage": 50,
+              "heal": 0,
+              "multiplier": 2,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 25,
+            "effect": {
+              "damage": 28,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 12,
+            "effect": {
+              "damage": 6,
+              "heal": 0,
+              "multiplier": 0.25,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 74,
+            "effect": {
+              "damage": 48,
+              "heal": 0,
+              "multiplier": 4,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "speciesId": 4,
+    "maxHp": 48,
+    "actions": [
+      {
+        "definition": {
+          "id": "basic",
+          "name": "Ascuas",
+          "description": "Ataque especial básico de tipo Fuego.",
+          "type": "fire",
+          "cost": 0,
+          "range": 2,
+          "accuracy": 100,
+          "target": "enemy"
+        },
+        "power": 40,
+        "category": "special",
+        "previews": [
+          {
+            "speciesId": 1,
+            "effect": {
+              "damage": 49,
+              "heal": 0,
+              "multiplier": 2,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 7,
+            "effect": {
+              "damage": 12,
+              "heal": 0,
+              "multiplier": 0.5,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 25,
+            "effect": {
+              "damage": 27,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 12,
+            "effect": {
+              "damage": 44,
+              "heal": 0,
+              "multiplier": 2,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 74,
+            "effect": {
+              "damage": 15,
+              "heal": 0,
+              "multiplier": 0.5,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          }
+        ]
+      },
+      {
+        "definition": {
+          "id": "flamethrower",
+          "name": "Lanzallamas",
+          "description": "Área en cruz: afecta también a aliados, deja ascuas; 10 % de quemadura.",
+          "type": "fire",
+          "cost": 3,
+          "range": 2,
+          "accuracy": 100,
+          "target": "enemy"
+        },
+        "power": 70,
+        "category": "special",
+        "previews": [
+          {
+            "speciesId": 1,
+            "effect": {
+              "damage": 50,
+              "heal": 0,
+              "multiplier": 2,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 7,
+            "effect": {
+              "damage": 22,
+              "heal": 0,
+              "multiplier": 0.5,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": {
+                "kind": "burn",
+                "chance": 10,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 25,
+            "effect": {
+              "damage": 47,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 12,
+            "effect": {
+              "damage": 55,
+              "heal": 0,
+              "multiplier": 2,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 74,
+            "effect": {
+              "damage": 26,
+              "heal": 0,
+              "multiplier": 0.5,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": {
+                "kind": "burn",
+                "chance": 10,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          }
+        ]
+      },
+      {
+        "definition": {
+          "id": "will-o-wisp",
+          "name": "Fuego Fatuo",
+          "description": "Quema: daño al cerrar turno y mitad de ataque físico.",
+          "type": "fire",
+          "cost": 2,
+          "range": 2,
+          "accuracy": 85,
+          "target": "enemy"
+        },
+        "power": null,
+        "category": null,
+        "previews": [
+          {
+            "speciesId": 1,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": false,
+              "status": {
+                "kind": "burn",
+                "chance": 100,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 7,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": false,
+              "status": {
+                "kind": "burn",
+                "chance": 100,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 25,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": false,
+              "status": {
+                "kind": "burn",
+                "chance": 100,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 12,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": false,
+              "status": {
+                "kind": "burn",
+                "chance": 100,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 74,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": false,
+              "status": {
+                "kind": "burn",
+                "chance": 100,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "speciesId": 7,
+    "maxHp": 50,
+    "actions": [
+      {
+        "definition": {
+          "id": "basic",
+          "name": "Pistola Agua",
+          "description": "Ataque especial básico de tipo Agua.",
+          "type": "water",
+          "cost": 0,
+          "range": 2,
+          "accuracy": 100,
+          "target": "enemy"
+        },
+        "power": 40,
+        "category": "special",
+        "previews": [
+          {
+            "speciesId": 1,
+            "effect": {
+              "damage": 11,
+              "heal": 0,
+              "multiplier": 0.5,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 4,
+            "effect": {
+              "damage": 48,
+              "heal": 0,
+              "multiplier": 2,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 25,
+            "effect": {
+              "damage": 24,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 12,
+            "effect": {
+              "damage": 20,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 74,
+            "effect": {
+              "damage": 48,
+              "heal": 0,
+              "multiplier": 4,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          }
+        ]
+      },
+      {
+        "definition": {
+          "id": "water-pulse",
+          "name": "Hidropulso",
+          "description": "Daño especial de Agua; adaptación sin confusión.",
+          "type": "water",
+          "cost": 2,
+          "range": 2,
+          "accuracy": 100,
+          "target": "enemy"
+        },
+        "power": 60,
+        "category": "special",
+        "previews": [
+          {
+            "speciesId": 1,
+            "effect": {
+              "damage": 16,
+              "heal": 0,
+              "multiplier": 0.5,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 4,
+            "effect": {
+              "damage": 48,
+              "heal": 0,
+              "multiplier": 2,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 25,
+            "effect": {
+              "damage": 36,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 12,
+            "effect": {
+              "damage": 29,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 74,
+            "effect": {
+              "damage": 48,
+              "heal": 0,
+              "multiplier": 4,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          }
+        ]
+      },
+      {
+        "definition": {
+          "id": "cover",
+          "name": "Cobertura",
+          "description": "Protege a un aliado cercano o a sí mismo: recibe la mitad del daño hasta su próxima activación.",
+          "type": "normal",
+          "cost": 1,
+          "range": 1,
+          "accuracy": 100,
+          "target": "friendly"
+        },
+        "power": null,
+        "category": null,
+        "previews": [
+          {
+            "speciesId": 1,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": true,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 4,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": true,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 25,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": true,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 12,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": true,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 74,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": true,
+              "status": null,
+              "statusReason": null
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "speciesId": 25,
+    "maxHp": 47,
+    "actions": [
+      {
+        "definition": {
+          "id": "basic",
+          "name": "Ataque Rápido",
+          "description": "Ataque físico básico de tipo Normal; no altera la cola.",
+          "type": "normal",
+          "cost": 0,
+          "range": 1,
+          "accuracy": 100,
+          "target": "enemy"
+        },
+        "power": 40,
+        "category": "physical",
+        "previews": [
+          {
+            "speciesId": 1,
+            "effect": {
+              "damage": 17,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 4,
+            "effect": {
+              "damage": 18,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 7,
+            "effect": {
+              "damage": 15,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 12,
+            "effect": {
+              "damage": 17,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 74,
+            "effect": {
+              "damage": 6,
+              "heal": 0,
+              "multiplier": 0.5,
+              "stab": 1,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          }
+        ]
+      },
+      {
+        "definition": {
+          "id": "thunder-shock",
+          "name": "Impactrueno",
+          "description": "Daño eléctrico; 10 % de parálisis si sobrevive.",
+          "type": "electric",
+          "cost": 1,
+          "range": 2,
+          "accuracy": 100,
+          "target": "enemy"
+        },
+        "power": 40,
+        "category": "special",
+        "previews": [
+          {
+            "speciesId": 1,
+            "effect": {
+              "damage": 11,
+              "heal": 0,
+              "multiplier": 0.5,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": {
+                "kind": "paralysis",
+                "chance": 10,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 4,
+            "effect": {
+              "damage": 24,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": {
+                "kind": "paralysis",
+                "chance": 10,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 7,
+            "effect": {
+              "damage": 44,
+              "heal": 0,
+              "multiplier": 2,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": {
+                "kind": "paralysis",
+                "chance": 10,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 12,
+            "effect": {
+              "damage": 39,
+              "heal": 0,
+              "multiplier": 2,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": {
+                "kind": "paralysis",
+                "chance": 10,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 74,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 0,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": "Inmune al movimiento."
+            }
+          }
+        ]
+      },
+      {
+        "definition": {
+          "id": "thunder-wave",
+          "name": "Onda Trueno",
+          "description": "Mitad de velocidad en la próxima ronda y mitad de movimiento.",
+          "type": "electric",
+          "cost": 2,
+          "range": 2,
+          "accuracy": 90,
+          "target": "enemy"
+        },
+        "power": null,
+        "category": null,
+        "previews": [
+          {
+            "speciesId": 1,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": false,
+              "status": {
+                "kind": "paralysis",
+                "chance": 100,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 4,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": false,
+              "status": {
+                "kind": "paralysis",
+                "chance": 100,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 7,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": false,
+              "status": {
+                "kind": "paralysis",
+                "chance": 100,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 12,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": false,
+              "status": {
+                "kind": "paralysis",
+                "chance": 100,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 74,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 0,
+              "stab": 1,
+              "category": "status",
+              "guard": false,
+              "status": null,
+              "statusReason": "Inmune al movimiento eléctrico."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "speciesId": 12,
+    "maxHp": 55,
+    "actions": [
+      {
+        "definition": {
+          "id": "basic",
+          "name": "Tornado",
+          "description": "Ataque especial básico de tipo Volador.",
+          "type": "flying",
+          "cost": 0,
+          "range": 2,
+          "accuracy": 100,
+          "target": "enemy"
+        },
+        "power": 40,
+        "category": "special",
+        "previews": [
+          {
+            "speciesId": 1,
+            "effect": {
+              "damage": 50,
+              "heal": 0,
+              "multiplier": 2,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 4,
+            "effect": {
+              "damage": 35,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 7,
+            "effect": {
+              "damage": 33,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 25,
+            "effect": {
+              "damage": 17,
+              "heal": 0,
+              "multiplier": 0.5,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 74,
+            "effect": {
+              "damage": 19,
+              "heal": 0,
+              "multiplier": 0.5,
+              "stab": 1.5,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          }
+        ]
+      },
+      {
+        "definition": {
+          "id": "poison-powder",
+          "name": "Polvo Veneno",
+          "description": "Polvo en cruz, incluidos aliados. Planta, Veneno y Acero son inmunes.",
+          "type": "poison",
+          "cost": 1,
+          "range": 2,
+          "accuracy": 75,
+          "target": "enemy"
+        },
+        "power": null,
+        "category": null,
+        "previews": [
+          {
+            "speciesId": 1,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": false,
+              "status": null,
+              "statusReason": "Los tipos Planta son inmunes al polvo."
+            }
+          },
+          {
+            "speciesId": 4,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": false,
+              "status": {
+                "kind": "poison",
+                "chance": 100,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 7,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": false,
+              "status": {
+                "kind": "poison",
+                "chance": 100,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 25,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": false,
+              "status": {
+                "kind": "poison",
+                "chance": 100,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 74,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": false,
+              "status": {
+                "kind": "poison",
+                "chance": 100,
+                "duration": 3
+              },
+              "statusReason": null
+            }
+          }
+        ]
+      },
+      {
+        "definition": {
+          "id": "confusion",
+          "name": "Confusión",
+          "description": "Daño especial Psíquico; adaptación sin estado de confusión.",
+          "type": "psychic",
+          "cost": 2,
+          "range": 2,
+          "accuracy": 100,
+          "target": "enemy"
+        },
+        "power": 50,
+        "category": "special",
+        "previews": [
+          {
+            "speciesId": 1,
+            "effect": {
+              "damage": 50,
+              "heal": 0,
+              "multiplier": 2,
+              "stab": 1,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 4,
+            "effect": {
+              "damage": 29,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 7,
+            "effect": {
+              "damage": 27,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 25,
+            "effect": {
+              "damage": 29,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 74,
+            "effect": {
+              "damage": 32,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "special",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "speciesId": 74,
+    "maxHp": 48,
+    "actions": [
+      {
+        "definition": {
+          "id": "basic",
+          "name": "Placaje",
+          "description": "Ataque físico básico de tipo Normal.",
+          "type": "normal",
+          "cost": 0,
+          "range": 1,
+          "accuracy": 100,
+          "target": "enemy"
+        },
+        "power": 40,
+        "category": "physical",
+        "previews": [
+          {
+            "speciesId": 1,
+            "effect": {
+              "damage": 22,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 4,
+            "effect": {
+              "damage": 22,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 7,
+            "effect": {
+              "damage": 20,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 25,
+            "effect": {
+              "damage": 22,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 12,
+            "effect": {
+              "damage": 21,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          }
+        ]
+      },
+      {
+        "definition": {
+          "id": "rock-throw",
+          "name": "Lanzarrocas",
+          "description": "Daño de Roca y empuje de una casilla si el destino está libre.",
+          "type": "rock",
+          "cost": 1,
+          "range": 2,
+          "accuracy": 90,
+          "target": "enemy"
+        },
+        "power": 50,
+        "category": "physical",
+        "previews": [
+          {
+            "speciesId": 1,
+            "effect": {
+              "damage": 40,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1.5,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 4,
+            "effect": {
+              "damage": 48,
+              "heal": 0,
+              "multiplier": 2,
+              "stab": 1.5,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 7,
+            "effect": {
+              "damage": 37,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1.5,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 25,
+            "effect": {
+              "damage": 42,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1.5,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 12,
+            "effect": {
+              "damage": 55,
+              "heal": 0,
+              "multiplier": 4,
+              "stab": 1.5,
+              "category": "physical",
+              "guard": false,
+              "status": null,
+              "statusReason": null
+            }
+          }
+        ]
+      },
+      {
+        "definition": {
+          "id": "harden",
+          "name": "Fortaleza",
+          "description": "Recibe la mitad del daño hasta su próxima activación.",
+          "type": "normal",
+          "cost": 1,
+          "range": 0,
+          "accuracy": 100,
+          "target": "self"
+        },
+        "power": null,
+        "category": null,
+        "previews": [
+          {
+            "speciesId": 1,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": true,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 4,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": true,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 7,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": true,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 25,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": true,
+              "status": null,
+              "statusReason": null
+            }
+          },
+          {
+            "speciesId": 12,
+            "effect": {
+              "damage": 0,
+              "heal": 0,
+              "multiplier": 1,
+              "stab": 1,
+              "category": "status",
+              "guard": true,
+              "status": null,
+              "statusReason": null
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

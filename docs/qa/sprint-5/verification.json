@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-14",
+  "version": "0.5.0",
+  "unitTests": { "passed": 57, "failed": 0 },
+  "typecheck": "passed via npm run build",
+  "build": "passed; existing Phaser chunk-size warning remains",
+  "assets": { "originalHashes": 33, "typeCsvHashes": 2, "status": "passed" },
+  "browser": {
+    "engine": "Microsoft Edge headless / Playwright 1.64.0",
+    "routeDevelopment": 18,
+    "routeProduction": 18,
+    "combatRegression": 19,
+    "movementRegression": 18,
+    "lifecycle": 3,
+    "status": "passed"
+  },
+  "simulations": { "runs": 100, "victories": 1, "defeats": 99, "note": "Existing tactical policy controls both sides; this is not a human win-rate estimate." },
+  "designDetector": { "tool": "Impeccable detect --json", "targets": ["src/run.ts", "src/run.css", "src/battle.ts", "src/main.ts"], "findings": [] },
+  "lint": "not configured; not run",
+  "coverage": "not configured; not measured",
+  "fullAccessibilityAudit": "not run",
+  "balance": "Sprint 4 parameters and moves preserved; golden fixture regression passed."
+}
