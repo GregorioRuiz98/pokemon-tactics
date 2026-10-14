@@ -57,3 +57,9 @@ Valores de iniciativa, puntos tácticos, estados y duración siguen siendo propu
 - Lanzallamas y Polvo Veneno reciben área en cruz con aliados afectados y lanzador excluido. Lanzallamas se prueba con potencia 70 y ascuas de 4 PS al cerrar turno; Lanzarrocas añade empuje de una casilla. Límites, probabilidades, inmunidades y caducidad en `SPRINT_4.md`.
 - La IA usa las mismas previsiones espaciales y rutas. Se corrige la selección parcial de ruta para que agotar presupuesto sobre un aliado no produzca una orden inválida. La orientación defensiva y la decisión táctica no consumen PRNG.
 - No se añaden especies, dependencias, recursos de red en ejecución, progresión, guardado ni encuentros de run. Equilibrio y variedad de estrategias quedan para prueba del usuario antes de avanzar.
+
+## Feedback posterior — equilibrio aplazado
+
+- El usuario ha probado el sprint 4 y considera que se elimina demasiado fácilmente a los rivales en 3v3.
+- Su instrucción posterior es conservar los parámetros actuales y esperar a definir mejor el juego antes de equilibrarlo. La revisión iniciada fue solo de lectura; no cambió código ni valores.
+- Revisar el repertorio temprano de Charmander, especialmente Lanzallamas, es una posible vía para más adelante. No se ha decidido sustituirlo, reducirlo ni reservarlo para una evolución.

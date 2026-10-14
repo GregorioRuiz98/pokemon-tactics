@@ -1,6 +1,6 @@
 # Plan de desarrollo por sprints — Pokémon táctico roguelike
 
-Fecha: 14 de octubre de 2026. Versión: 1.7. Estado: sprints 0–4 completados técnicamente; sprint 5 todavía no iniciado. POO, orientación final y paso por aliados implementados; feedback sobre equilibrio y estrategias pendiente.
+Fecha: 14 de octubre de 2026. Versión: 1.8. Estado: sprints 0–4 completados técnicamente; sprint 5 todavía no iniciado. POO, orientación final y paso por aliados implementados. Feedback inicial recibido: bajas demasiado rápidas en 3v3; el usuario aplaza el equilibrio mientras se define mejor el juego y pide conservar los parámetros actuales.
 
 Este documento conserva las decisiones del proyecto y organiza entregas pequeñas para construirlo con asistencia de IA. Cada sprint produce algo revisable y termina antes de comenzar el siguiente. El objetivo es un juego de navegador divertido para el portfolio, con pruebas locales primero y una posible publicación posterior en web propia. La viralidad es una aspiración, no un criterio garantizado de éxito.
 
@@ -275,7 +275,7 @@ Actualizar esta tabla al cerrar una entrega. Las columnas se completan con hecho
 | 2 | Completado técnicamente | 0.2.0; rama `codex/sprint-2` | 21 pruebas de reglas/datos; tipos y build; 33 hashes; 20 comprobaciones de combate y 18 de regresión | Probar combate 3 contra 3; siguiente: 3 |
 | Ajuste UI de 2 | Completado | 0.2.1; misma rama | 21 pruebas de reglas/datos; tipos y build; 33 hashes; 22 comprobaciones de combate y HUD en desarrollo y producción | Referencia del usuario integrada; siguiente: 3 |
 | 3 | Completado técnicamente | 0.3.0; rama `codex/sprint-3` | 35 pruebas; 324 relaciones de tipos y 35 hashes de recursos; tipos/build; 19 comprobaciones de navegador en desarrollo y producción | Probar dos composiciones y ajustar costes; siguiente: 4 |
-| 4 | Completado técnicamente | 0.4.0; rama `codex/sprint-4` | 49 pruebas; 20 escenarios repetidos; tipos/build y 35 hashes; 19 comprobaciones de navegador en desarrollo y producción, 18 de ensayo | Probar aproximaciones y equilibrio; siguiente: 5 |
+| 4 | Completado técnicamente | 0.4.0; rama `codex/sprint-4` | 49 pruebas; 20 escenarios repetidos; tipos/build y 35 hashes; 19 comprobaciones de navegador en desarrollo y producción, 18 de ensayo | Bajas rápidas en 3v3; equilibrio aplazado por el usuario. Conservar parámetros y repertorio; revisar Lanzallamas como opción futura. Siguiente: 5 |
 | 5–9 | Pendientes | — | Ninguna | Iniciar 5 cuando se solicite |
 | 10A–10D | Pendientes | — | Ninguna | Ejecutar un bloque por vez |
 | 11–12 | Pendientes | — | Ninguna | Pruebas y publicación posteriores |

@@ -48,3 +48,5 @@ Capturas de escritorio y móvil revisadas; la prueba comprueba previsiones activ
 La prueba con política determinista y `kanto-001` da victoria de Iniciales en 2 rondas y derrota de Control en 2. Esperar con Iniciales y `portfolio`, ±10 %, da derrota en 4. Son pruebas de funcionamiento; el mapa, el daño de área y la diferencia entre equipos requieren valoración del jugador.
 
 Entrega completada técnicamente. Pendiente de feedback: probar al menos dos aproximaciones al agua y al paso terrestre, orientar para proteger la espalda y decidir cuándo un área compensa el riesgo a aliados. Sprint 5 permanece pendiente: ruta, PS persistentes, inicio aleatorio y guardado. No se inicia automáticamente.
+
+Feedback posterior del usuario: las bajas son demasiado rápidas para el 3v3 actual. Pide mantener por ahora los parámetros y el juego tal como están, hasta definir mejor el diseño. Revisar o sustituir movimientos tempranos demasiado potentes, especialmente Lanzallamas en Charmander, queda como opción futura; no se implementa ni se modifica el equilibrio por este feedback.
