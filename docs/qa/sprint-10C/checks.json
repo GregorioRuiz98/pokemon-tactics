@@ -1,0 +1,9 @@
+{
+  "checks": [
+    "marsh escritorio",
+    "foundry móvil",
+    "dojo escritorio",
+    "mirrors móvil"
+  ],
+  "errors": []
+}

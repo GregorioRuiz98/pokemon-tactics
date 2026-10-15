@@ -113,6 +113,34 @@ class Magnemite extends Pokemon {
     new StatusAction(action('thunder-wave','Onda Trueno','Reduce movimiento y próxima iniciativa.','electric',2,2,90),{kind:'paralysis',chance:100,duration:3}),
   ]); }
 }
+class Ekans extends Pokemon {
+  constructor() { super(23,'Hostigamiento físico y veneno',4,[
+    new DamageAction(action('basic','Picotazo Veneno','Daño físico de Veneno.','poison',0,1),35,'physical'),
+    new DamageAction(action('bite','Mordisco','Cobertura de Siniestro.','dark',1,1),60,'physical'),
+    new StatusAction(action('toxic','Tóxico','Veneno de tres activaciones; adaptación sin escalado.','poison',2,2,90),{kind:'poison',chance:100,duration:3}),
+  ]); }
+}
+class Koffing extends Pokemon {
+  constructor() { super(109,'Resistencia física y área',3,[
+    new DamageAction(action('basic','Polución','Daño especial de Veneno.','poison',0,2),30,'special'),
+    new AreaDamageAction(action('sludge','Residuos','Cruz de Veneno; también aliados.','poison',2,2),55,'special',{kind:'poison',chance:10,duration:3}),
+    new GuardAction(action('harden','Fortaleza','Reduce daño hasta su próxima activación.','normal',1,0,100,'self')),
+  ]); }
+}
+class Abra extends Pokemon {
+  constructor() { super(63,'Movilidad y ataque especial',6,[
+    new DamageAction(action('basic','Confusión','Daño especial Psíquico.','psychic',0,2),40,'special'),
+    new DamageAction(action('psybeam','Psicorrayo','Daño especial concentrado.','psychic',2,2),65,'special'),
+    new GuardAction(action('barrier','Barrera','Protección personal.','psychic',1,0,100,'self')),
+  ]); }
+}
+class Drowzee extends Pokemon {
+  constructor() { super(96,'Resistencia especial y cobertura',4,[
+    new DamageAction(action('basic','Destructor','Ataque físico Normal.','normal',0,1),40,'physical'),
+    new DamageAction(action('confusion','Confusión','Daño especial Psíquico.','psychic',1,2),50,'special'),
+    new GuardAction(action('reflect','Reflejo','Protege a un aliado cercano o a sí mismo.','psychic',1,1,100,'friendly')),
+  ]); }
+}
 class Oddish extends Pokemon {
   constructor() { super(43, 'Drenaje y veneno', 3, [
     new DrainAction(action('basic','Absorber','Recupera la mitad del daño efectivo.','grass',0,2),30,'special'),
@@ -146,6 +174,7 @@ const registry: ReadonlyMap<number, Pokemon> = new Map<number, Pokemon>([
   new Articuno(), new Zapdos(), new Moltres(),
   new Mewtwo(), new Mew(),
   new Magnemite(), new Oddish(),
+  new Ekans(), new Koffing(), new Abra(), new Drowzee(),
   ...[2, 3].map(id => new EvolvedPokemon(id, new Bulbasaur(), new AreaDamageAction(action('razor-leaf', 'Hoja Afilada', 'Hojas en cruz; alcanza también a aliados.', 'grass', 2, 2, 95), 55, 'physical'))),
   ...[5, 6].map(id => new EvolvedPokemon(id, new Charmander(), new PushAction(action('dragon-tail', 'Cola Dragón', 'Desplaza al objetivo una casilla.', 'dragon', 2, 1, 90), 60, 'physical'))),
   ...[8, 9].map(id => new EvolvedPokemon(id, new Squirtle(), new AreaDamageAction(action('surf', 'Surf', 'Agua en cruz; alcanza también a aliados.', 'water', 3, 2), 65, 'special'))),

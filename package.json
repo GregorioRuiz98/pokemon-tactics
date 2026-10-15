@@ -1,6 +1,6 @@
 {
   "name": "pokemon-tactics",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "private": true,
   "type": "module",
   "description": "Roguelike táctico Pokémon con experiencia y evoluciones",

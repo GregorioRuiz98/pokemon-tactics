@@ -1042,6 +1042,254 @@
     ]
   },
   {
+    "id": 23,
+    "name": "Ekans",
+    "types": [
+      "poison"
+    ],
+    "baseStats": {
+      "hp": 35,
+      "attack": 60,
+      "defense": 44,
+      "special-attack": 40,
+      "special-defense": 54,
+      "speed": 55
+    },
+    "legendary": false,
+    "mythical": false,
+    "animations": {
+      "Idle": {
+        "width": 32,
+        "height": 48,
+        "columns": 2,
+        "rows": 8,
+        "frames": 2,
+        "durations": [
+          16,
+          16
+        ],
+        "anchorX": 15.5,
+        "anchorY": 27.5,
+        "path": "assets/pokemon/23/Idle.png"
+      },
+      "Walk": {
+        "width": 40,
+        "height": 48,
+        "columns": 6,
+        "rows": 8,
+        "frames": 6,
+        "durations": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "anchorX": 19.5,
+        "anchorY": 27.5,
+        "path": "assets/pokemon/23/Walk.png"
+      }
+    },
+    "authors": [
+      "CHUNSOFT",
+      "Emmuffin"
+    ],
+    "sources": [
+      "https://pokeapi.co/api/v2/pokemon/23",
+      "https://pokeapi.co/api/v2/pokemon-species/23"
+    ]
+  },
+  {
+    "id": 109,
+    "name": "Koffing",
+    "types": [
+      "poison"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "attack": 65,
+      "defense": 95,
+      "special-attack": 60,
+      "special-defense": 45,
+      "speed": 35
+    },
+    "legendary": false,
+    "mythical": false,
+    "animations": {
+      "Idle": {
+        "width": 32,
+        "height": 56,
+        "columns": 6,
+        "rows": 8,
+        "frames": 6,
+        "durations": [
+          10,
+          10,
+          8,
+          10,
+          10,
+          8
+        ],
+        "anchorX": 15.5,
+        "anchorY": 31.5,
+        "path": "assets/pokemon/109/Idle.png"
+      },
+      "Walk": {
+        "width": 32,
+        "height": 56,
+        "columns": 10,
+        "rows": 8,
+        "frames": 10,
+        "durations": [
+          6,
+          6,
+          6,
+          6,
+          8,
+          6,
+          6,
+          6,
+          6,
+          8
+        ],
+        "anchorX": 15.5,
+        "anchorY": 31.5,
+        "path": "assets/pokemon/109/Walk.png"
+      }
+    },
+    "authors": [
+      "CHUNSOFT"
+    ],
+    "sources": [
+      "https://pokeapi.co/api/v2/pokemon/109",
+      "https://pokeapi.co/api/v2/pokemon-species/109"
+    ]
+  },
+  {
+    "id": 63,
+    "name": "Abra",
+    "types": [
+      "psychic"
+    ],
+    "baseStats": {
+      "hp": 25,
+      "attack": 20,
+      "defense": 15,
+      "special-attack": 105,
+      "special-defense": 55,
+      "speed": 90
+    },
+    "legendary": false,
+    "mythical": false,
+    "animations": {
+      "Idle": {
+        "width": 24,
+        "height": 48,
+        "columns": 6,
+        "rows": 8,
+        "frames": 6,
+        "durations": [
+          24,
+          8,
+          8,
+          24,
+          8,
+          8
+        ],
+        "anchorX": 11.5,
+        "anchorY": 27.5,
+        "path": "assets/pokemon/63/Idle.png"
+      },
+      "Walk": {
+        "width": 32,
+        "height": 48,
+        "columns": 8,
+        "rows": 8,
+        "frames": 8,
+        "durations": [
+          8,
+          10,
+          8,
+          10,
+          8,
+          10,
+          8,
+          10
+        ],
+        "anchorX": 15.5,
+        "anchorY": 27.5,
+        "path": "assets/pokemon/63/Walk.png"
+      }
+    },
+    "authors": [
+      "CHUNSOFT",
+      "Emmuffin"
+    ],
+    "sources": [
+      "https://pokeapi.co/api/v2/pokemon/63",
+      "https://pokeapi.co/api/v2/pokemon-species/63"
+    ]
+  },
+  {
+    "id": 96,
+    "name": "Drowzee",
+    "types": [
+      "psychic"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "attack": 48,
+      "defense": 45,
+      "special-attack": 43,
+      "special-defense": 90,
+      "speed": 42
+    },
+    "legendary": false,
+    "mythical": false,
+    "animations": {
+      "Idle": {
+        "width": 32,
+        "height": 40,
+        "columns": 4,
+        "rows": 8,
+        "frames": 4,
+        "durations": [
+          40,
+          10,
+          6,
+          10
+        ],
+        "anchorX": 15.5,
+        "anchorY": 23.5,
+        "path": "assets/pokemon/96/Idle.png"
+      },
+      "Walk": {
+        "width": 32,
+        "height": 40,
+        "columns": 4,
+        "rows": 8,
+        "frames": 4,
+        "durations": [
+          8,
+          12,
+          8,
+          12
+        ],
+        "anchorX": 15.5,
+        "anchorY": 23.5,
+        "path": "assets/pokemon/96/Walk.png"
+      }
+    },
+    "authors": [
+      "CHUNSOFT"
+    ],
+    "sources": [
+      "https://pokeapi.co/api/v2/pokemon/96",
+      "https://pokeapi.co/api/v2/pokemon-species/96"
+    ]
+  },
+  {
     "id": 144,
     "name": "Articuno",
     "types": [

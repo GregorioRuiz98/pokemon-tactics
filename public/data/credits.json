@@ -127,6 +127,36 @@
     ]
   },
   {
+    "name": "Ekans",
+    "id": 23,
+    "authors": [
+      "CHUNSOFT",
+      "Emmuffin"
+    ]
+  },
+  {
+    "name": "Koffing",
+    "id": 109,
+    "authors": [
+      "CHUNSOFT"
+    ]
+  },
+  {
+    "name": "Abra",
+    "id": 63,
+    "authors": [
+      "CHUNSOFT",
+      "Emmuffin"
+    ]
+  },
+  {
+    "name": "Drowzee",
+    "id": 96,
+    "authors": [
+      "CHUNSOFT"
+    ]
+  },
+  {
     "name": "Articuno",
     "id": 144,
     "authors": [

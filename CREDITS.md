@@ -155,3 +155,19 @@ SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas
 ### 43 · Oddish
 
 SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/43/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 23 · Ekans
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT, Emmuffin. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/23/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 109 · Koffing
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/109/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 63 · Abra
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT, Emmuffin. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/63/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 96 · Drowzee
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/96/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).

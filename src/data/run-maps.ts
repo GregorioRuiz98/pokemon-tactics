@@ -4,6 +4,18 @@ import type { BoardHazard } from '../rules/hazards.ts';
 
 export type RunMap = { id: string; name: string; description: string; board: Board; hazards?: BoardHazard[] };
 export const RUN_MAPS: readonly RunMap[] = [
+  {id:'marsh',name:'Marisma de Fucsia',description:'Maleza, pequeños charcos y miasma. Veneno, Acero y voladores evitan el peligro.',board:[
+    [0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,1,1,0,0,0,0,0],[0,3,1,0,1,0,0,0],
+    [0,1,0,0,1,0,0,0],[0,0,0,1,0,3,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]],hazards:[{x:2,y:3,kind:'poison'},{x:3,y:4,kind:'poison'},{x:4,y:4,kind:'poison'}]},
+  {id:'foundry',name:'Patio de antídotos',description:'Columnas estrechan las líneas de tiro; el miasma obliga a recolocarse.',board:[
+    [0,0,0,0,0,0,0,0],[0,0,2,0,0,0,0,0],[0,0,0,0,2,0,0,0],[0,2,0,0,0,2,0,0],
+    [0,0,0,2,0,0,0,0],[0,0,0,0,0,2,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]],hazards:[{x:2,y:4,kind:'poison'},{x:4,y:3,kind:'poison'},{x:5,y:4,kind:'poison'}]},
+  {id:'dojo',name:'Patio de Azafrán',description:'Pasillos cortos y pulsos psíquicos en cruces. Usa cobertura y flancos.',board:[
+    [0,0,0,0,0,0,0,0],[0,0,0,2,0,0,0,0],[0,2,0,0,0,0,0,0],[0,0,0,2,0,2,0,0],
+    [0,0,0,0,0,0,0,0],[0,2,0,0,2,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]],hazards:[{x:2,y:3,kind:'psychic'},{x:4,y:3,kind:'psychic'},{x:3,y:4,kind:'psychic'}]},
+  {id:'mirrors',name:'Galería de espejos',description:'Bloques de cobertura dividen el avance; los pulsos dejan corredores seguros.',board:[
+    [0,0,0,0,0,0,0,0],[0,2,0,0,0,0,0,0],[0,0,0,2,0,0,0,0],[0,0,2,0,0,0,2,0],
+    [0,0,0,0,2,0,0,0],[0,0,2,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]],hazards:[{x:3,y:3,kind:'psychic'},{x:4,y:2,kind:'psychic'},{x:4,y:5,kind:'psychic'}]},
   {id:'power',name:'Central de Carmín',description:'Muros cortan disparos; corriente en el centro desde ronda 2. Eléctrico, Tierra y voladores inmunes.',board:[
     [0,0,0,0,0,0,0,0],[0,0,0,2,0,0,0,0],[0,0,2,0,0,0,0,0],[0,0,0,0,0,2,0,0],
     [0,0,2,0,0,0,0,0],[0,0,0,0,0,2,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]],hazards:[{x:3,y:3,kind:'electric'},{x:4,y:3,kind:'electric'},{x:3,y:4,kind:'electric'}]},

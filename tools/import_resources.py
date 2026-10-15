@@ -14,7 +14,7 @@ from vendor.pokesurvivor_sprites import parse_animdata, resolve, ground_anchor
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 LOCK = json.loads((ROOT / 'tools/sources.lock.json').read_text())
-SPECIES = [1, 4, 7, 25, 12, 74, 2, 3, 5, 6, 8, 9, 26, 75, 76, 81, 43, 144, 145, 146, 150, 151]
+SPECIES = [1, 4, 7, 25, 12, 74, 2, 3, 5, 6, 8, 9, 26, 75, 76, 81, 43, 23, 109, 63, 96, 144, 145, 146, 150, 151]
 CACHE = ROOT / 'tools/cache'
 MANIFEST = []
 
