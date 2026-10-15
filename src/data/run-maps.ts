@@ -1,7 +1,12 @@
 import { TACTICAL_BOARD } from '../rules/terrain.ts';
 import type { Board } from '../rules/movement.ts';
+import type { BoardHazard } from '../rules/hazards.ts';
 
-export const RUN_MAPS: readonly { id: string; name: string; description: string; board: Board }[] = [
+export type RunMap = { id: string; name: string; description: string; board: Board; hazards?: BoardHazard[] };
+export const RUN_MAPS: readonly RunMap[] = [
+  { id: 'birds', name: 'Santuario de las tres aves', description: 'Articuno, Zapdos y Moltres juntos. Sectores de escarcha, corriente y fumarolas: 4 PS al cerrar turno desde ronda 2. Volar y afinidades protegen.',
+    board: [[0,0,0,0,0,0,0,0],[0,0,0,2,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,2,0,0,2,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]],
+    hazards: [{x:1,y:2,kind:'ice'},{x:1,y:3,kind:'ice'},{x:2,y:4,kind:'ice'},{x:3,y:2,kind:'electric'},{x:4,y:3,kind:'electric'},{x:4,y:4,kind:'electric'},{x:6,y:2,kind:'fire'},{x:6,y:3,kind:'fire'},{x:5,y:4,kind:'fire'}] },
   { id: 'quarry', name: 'Cantera', description: 'Pasos entre roca y maleza.', board: [
     [0,0,0,0,2,0,2,0], [0,0,1,0,0,0,0,2], [0,1,2,0,0,1,0,0], [0,0,2,0,2,1,0,0],
     [0,1,2,0,0,0,0,0], [0,0,0,0,1,0,2,0], [0,0,0,0,0,0,1,0], [0,0,0,0,0,0,0,0],

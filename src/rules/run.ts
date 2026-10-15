@@ -30,7 +30,7 @@ export type Run = {
   nodes: RunNode[]; path: string[]; history: RunRecord[]; currentNodeId: string | null; battle: Battle | null;
   money: number; bag: Bag; purchases: Record<string, Partial<Bag>>; recruited: string[]; events: RunEvent[];
 };
-export const CURRENT_EDITION = 7;
+export const CURRENT_EDITION = 8;
 export const ROUTE_LENGTH = 6;
 export const TEAM_LIMIT = 6;
 export const STARTING_MONEY = 240;
@@ -46,6 +46,7 @@ export const maximumHp = (catalog: readonly PokemonSpecies[], speciesId: number,
   if (!species) throw new Error('Especie desconocida.');
   return atLevel(pokemonFor(speciesId).createCombatant(species, 'ally', { x: 0, y: 0 }), levelFor(xp)).maxHp;
 };
+export const routeLength = (run: Run): number => Math.max(...run.nodes.map(node => node.floor));
 export const nodeStep = (node: RunNode): number => node.kind === 'combat' ? node.floor * 2 : node.floor * 2 + 1;
 export const currentNode = (run: Run): RunNode | undefined => run.nodes.find(node => node.id === run.currentNodeId);
 export function createRun(catalog: readonly PokemonSpecies[], seed: string, variance = .05, edition = 6): Run {
@@ -55,8 +56,12 @@ export function createRun(catalog: readonly PokemonSpecies[], seed: string, vari
   const pick = <T>(values: readonly T[]): T => values[Math.floor(random(rng) * values.length)];
   const nodes: RunNode[] = legacy.nodes.map(node => ({ ...node, kind: 'combat', offers: [],
     next: node.floor === ROUTE_LENGTH ? [] : [`shop-${node.floor}`, `recruit-${node.floor}`] }));
-  for (let floor = 0; floor < ROUTE_LENGTH; floor++) {
-    const next = legacy.nodes.filter(node => node.floor === floor + 1).map(node => node.id);
+  if (edition >= 8) {
+    nodes.filter(node => node.floor === 6).forEach(node => { node.next = ['shop-6', 'recruit-6']; });
+    nodes.push({ id: 'final-birds', floor: 7, kind: 'combat', next: [], mapId: 'birds', enemies: [144,145,146], offers: [] });
+  }
+  for (let floor = 0; floor < (edition >= 8 ? 7 : ROUTE_LENGTH); floor++) {
+    const next = nodes.filter(node => node.kind === 'combat' && node.floor === floor + 1).map(node => node.id);
     const candidates: number[] = [];
     const pool = floor === 0 ? INITIAL_SPECIES.filter(id => !legacy.roster.some(member => member.speciesId === id)) : [...INITIAL_SPECIES];
     while (candidates.length < 3) candidates.push(pick(pool.filter(id => !candidates.includes(id))));
@@ -114,7 +119,7 @@ function recordResult(run: Run, event: Extract<RunEvent, { kind: 'result' }>): v
   run.roster = run.roster.filter(member => member.hp > 0);
   run.history.push({ nodeId: event.nodeId, round: event.round, outcome: event.outcome, hp: structuredClone(event.hp), ...(event.contribution ? { contribution: structuredClone(event.contribution) } : {}) });
   if (event.outcome === 'victory') { run.path.push(node.id); run.money += VICTORY_REWARD; }
-  run.status = event.outcome === 'defeat' ? 'defeat' : completedCombats(run) === ROUTE_LENGTH ? 'victory' : 'route';
+  run.status = event.outcome === 'defeat' ? 'defeat' : node.next.length === 0 ? 'victory' : 'route';
   run.currentNodeId = null; run.battle = null;
 }
 // One transition implementation serves gameplay and save replay. It consumes no battle RNG.
@@ -126,7 +131,7 @@ function applyEvent(run: Run, event: RunEvent, catalog: readonly PokemonSpecies[
       requireRule(node, 'Esta sala no está conectada a tu ruta.');
       run.currentNodeId = node.id;
       if (node.kind === 'combat') {
-        run.battle = createEncounter(catalog, encounterSeed(run, node.id), run.variance, runMap(node.mapId).board, run.roster, node.enemies, { progression: run.edition >= 7 });
+        run.battle = createEncounter(catalog, encounterSeed(run, node.id), run.variance, runMap(node.mapId).board, run.roster, node.enemies, { progression: run.edition >= 7, hazards: runMap(node.mapId).hazards });
         run.status = 'combat';
       } else run.status = 'service';
       break;

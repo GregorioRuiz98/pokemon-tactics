@@ -915,5 +915,182 @@
       "https://pokeapi.co/api/v2/pokemon/76",
       "https://pokeapi.co/api/v2/pokemon-species/76"
     ]
+  },
+  {
+    "id": 144,
+    "name": "Articuno",
+    "types": [
+      "ice",
+      "flying"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "attack": 85,
+      "defense": 100,
+      "special-attack": 95,
+      "special-defense": 125,
+      "speed": 85
+    },
+    "legendary": true,
+    "mythical": false,
+    "animations": {
+      "Idle": {
+        "width": 88,
+        "height": 88,
+        "columns": 4,
+        "rows": 8,
+        "frames": 4,
+        "durations": [
+          8,
+          10,
+          8,
+          16
+        ],
+        "anchorX": 43.5,
+        "anchorY": 47.5,
+        "path": "assets/pokemon/144/Idle.png"
+      },
+      "Walk": {
+        "width": 88,
+        "height": 88,
+        "columns": 4,
+        "rows": 8,
+        "frames": 4,
+        "durations": [
+          8,
+          10,
+          8,
+          10
+        ],
+        "anchorX": 43.5,
+        "anchorY": 47.5,
+        "path": "assets/pokemon/144/Walk.png"
+      }
+    },
+    "authors": [
+      "CHUNSOFT"
+    ],
+    "sources": [
+      "https://pokeapi.co/api/v2/pokemon/144",
+      "https://pokeapi.co/api/v2/pokemon-species/144"
+    ]
+  },
+  {
+    "id": 145,
+    "name": "Zapdos",
+    "types": [
+      "electric",
+      "flying"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "attack": 90,
+      "defense": 85,
+      "special-attack": 125,
+      "special-defense": 90,
+      "speed": 100
+    },
+    "legendary": true,
+    "mythical": false,
+    "animations": {
+      "Idle": {
+        "width": 56,
+        "height": 96,
+        "columns": 4,
+        "rows": 8,
+        "frames": 4,
+        "durations": [
+          8,
+          10,
+          8,
+          10
+        ],
+        "anchorX": 27.5,
+        "anchorY": 51.5,
+        "path": "assets/pokemon/145/Idle.png"
+      },
+      "Walk": {
+        "width": 56,
+        "height": 96,
+        "columns": 4,
+        "rows": 8,
+        "frames": 4,
+        "durations": [
+          6,
+          6,
+          6,
+          6
+        ],
+        "anchorX": 27.5,
+        "anchorY": 51.5,
+        "path": "assets/pokemon/145/Walk.png"
+      }
+    },
+    "authors": [
+      "CHUNSOFT"
+    ],
+    "sources": [
+      "https://pokeapi.co/api/v2/pokemon/145",
+      "https://pokeapi.co/api/v2/pokemon-species/145"
+    ]
+  },
+  {
+    "id": 146,
+    "name": "Moltres",
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "attack": 100,
+      "defense": 90,
+      "special-attack": 125,
+      "special-defense": 85,
+      "speed": 90
+    },
+    "legendary": true,
+    "mythical": false,
+    "animations": {
+      "Idle": {
+        "width": 80,
+        "height": 96,
+        "columns": 4,
+        "rows": 8,
+        "frames": 4,
+        "durations": [
+          8,
+          12,
+          8,
+          12
+        ],
+        "anchorX": 39.5,
+        "anchorY": 51.5,
+        "path": "assets/pokemon/146/Idle.png"
+      },
+      "Walk": {
+        "width": 80,
+        "height": 96,
+        "columns": 4,
+        "rows": 8,
+        "frames": 4,
+        "durations": [
+          8,
+          10,
+          8,
+          10
+        ],
+        "anchorX": 39.5,
+        "anchorY": 51.5,
+        "path": "assets/pokemon/146/Walk.png"
+      }
+    },
+    "authors": [
+      "CHUNSOFT"
+    ],
+    "sources": [
+      "https://pokeapi.co/api/v2/pokemon/146",
+      "https://pokeapi.co/api/v2/pokemon-species/146"
+    ]
   }
 ]

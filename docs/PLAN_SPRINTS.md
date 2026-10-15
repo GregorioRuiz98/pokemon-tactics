@@ -283,6 +283,8 @@ Actualizar esta tabla al cerrar una entrega. Las columnas se completan con hecho
 | 10A–10D | Pendientes | — | Ninguna | Ejecutar un bloque por vez |
 | 11–12 | Pendientes | — | Ninguna | Pruebas y publicación posteriores |
 
+Entrega 8: completada técnicamente, versión 0.8.0, rama codex/sprint-8. 79 pruebas, build/tipos y recursos comprobados. Ver [informe](SPRINT_8.md).
+
 Plantilla de cierre: objetivo entregado; archivos o módulos modificados; recursos reutilizados y procedencia; comprobaciones ejecutadas y resultados; prueba manual disponible; feedback; pendientes; actualización de valores provisionales.
 
 Petición sugerida para continuar, tras probar la gestión: **«Empieza únicamente el sprint 7 del PLAN_SPRINTS.md; añade experiencia, niveles simplificados y evoluciones mediante objetos».**

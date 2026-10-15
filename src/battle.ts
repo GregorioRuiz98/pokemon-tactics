@@ -1,4 +1,5 @@
 import './tactical.css';
+import { bossTrial } from './data/encounters';
 import './battle.css';
 import { validateCatalog, TYPE_NAMES } from './data/catalog';
 import type { PokemonSpecies } from './data/catalog';
@@ -20,6 +21,7 @@ import {
 } from './rules/movement';
 import type { Point, Route, Facing } from './rules/movement';
 import { FACINGS, FACING_ARROWS, FACING_NAMES, SIDE_NAMES } from './rules/position';
+import { zoneDamage, HAZARD_NAMES } from './rules/hazards';
 import { PROFILE_NAMES, fieldDamage } from './rules/terrain';
 import {
   createBattle,
@@ -71,7 +73,7 @@ export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): (
         <div id="resource-status" class="game-resource" role="status">Cargando recursos…</div>
         <section class="battlefield" aria-label="Tablero de combate">
           <div class="board-shell"><div id="game-container" aria-hidden="true"></div><div id="board-grid" role="grid" aria-label="Tablero de combate" aria-rowcount="8" aria-colcount="8" aria-describedby="board-help">${state.board.map((row, y) => `<div role="row">${row.map((_, x) => `<button role="gridcell" data-cell="${x},${y}" tabindex="${y * 8 + x === cursor ? 0 : -1}" disabled></button>`).join('')}</div>`).join('')}</div><div id="battle-result" hidden><h2 id="result-title" tabindex="-1"></h2><p id="result-description"></p><button id="play-again">Volver a combatir</button></div></div>
-          <div class="terrain-legend"><span>A · Aliado</span><span>E · Enemigo</span><span>Suelo 1 / maleza 2</span><span>Roca bloquea · agua: acuáticos/voladores</span><span>Aliados atravesables · ↑ orientación</span></div>
+          <div class="terrain-legend">${state.hazards?.length ? '<span>Peligro marcado: 4 PS al cerrar turno desde ronda 2. Voladores y tipos afines inmunes.</span>' : ''}<span>A · Aliado</span><span>E · Enemigo</span><span>Suelo 1 / maleza 2</span><span>Roca bloquea · agua: acuáticos/voladores</span><span>Aliados atravesables · ↑ orientación</span></div>
         </section>
         <div class="hud-bottom">
           <aside class="actor-hud hud-window" aria-label="Unidad activa"><div class="hud-unit-heading"><img id="actor-portrait" src="${asset(`assets/pokemon/${(activeUnit(state) ?? state.units[0]).speciesId}/thumbnail.png`)}" alt="" width="72" height="72"><div><p id="turn-owner"></p><h2 id="actor-name"></h2><p id="turn-status"></p></div></div><div class="hud-health"><strong id="actor-hp"></strong><div id="actor-health" class="health-track" aria-hidden="true"></div></div><div class="activation-resources"><span id="move-available"></span><span id="action-available"></span><strong id="actor-tp"></strong></div><p id="actor-stats"></p><p id="actor-status" class="unit-status"></p></aside>
@@ -165,16 +167,16 @@ export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): (
       const attackable =
         !!unit && playerTurn() && pending?.kind !== 'finish' && !state.acted && attackPlan(state, unit.id, undefined, selectedAction).ok;
       button.disabled = !ready || busy;
-      button.className = `tile ${unit ? 'occupied team-' + unit.team : ''} ${unit && actor && unit.id === actor.id ? 'active-unit' : ''} ${unit?.id === inspected ? 'inspected' : ''} ${mode === 'move' && reachable ? 'can-reach' : ''} ${mode === 'attack' && attackable ? 'can-attack' : ''} ${costs.has(key(p)) ? 'path-tile' : ''} ${destination && same(p, destination) && route && route.cost <= actor!.remaining ? 'destination' : ''} ${pending?.kind === 'attack' && pending.target === unit?.id ? 'attack-target' : ''} ${area.has(key(p)) ? 'effect-area' : ''} ${push && same(push, p) ? 'push-destination' : ''} ${state.fields.some(field => same(field, p)) ? 'ember-tile' : ''}`;
+      button.className = `tile ${unit ? 'occupied team-' + unit.team : ''} ${unit && actor && unit.id === actor.id ? 'active-unit' : ''} ${unit?.id === inspected ? 'inspected' : ''} ${mode === 'move' && reachable ? 'can-reach' : ''} ${mode === 'attack' && attackable ? 'can-attack' : ''} ${costs.has(key(p)) ? 'path-tile' : ''} ${destination && same(p, destination) && route && route.cost <= actor!.remaining ? 'destination' : ''} ${pending?.kind === 'attack' && pending.target === unit?.id ? 'attack-target' : ''} ${area.has(key(p)) ? 'effect-area' : ''} ${push && same(push, p) ? 'push-destination' : ''} ${state.fields.some(field => same(field, p)) ? 'ember-tile' : ''} ${state.hazards?.some(zone => same(zone,p)) ? 'zone-tile zone-' + state.hazards.find(zone=>same(zone,p))!.kind : ''}`;
       button.setAttribute(
         'aria-selected',
         String(!!unit && unit.id === inspected),
       );
       button.setAttribute(
         'aria-label',
-        `${coordinate(p)}, ${terrain.name}${unit ? `, ${unit.name}, ${unit.team === 'ally' ? 'aliado' : 'enemigo'}, ${unit.hp} de ${unit.maxHp} PS, ${statusText(unit)}, mira al ${FACING_NAMES[unit.facing]}` : ''}${unit && actor && unit.id === actor.id ? ', turno activo' : ''}${reachable ? `, alcanzable, coste ${routes.get(key(p))!.cost}` : ''}${attackable ? ', objetivo válido' : ''}${area.has(key(p)) ? ', área de efecto' : ''}${state.fields.some(field => same(field, p)) ? ', ascuas: daño al cerrar turno' : ''}${push && same(push, p) ? ', destino del empuje' : ''}`,
+        `${coordinate(p)}, ${terrain.name}${state.hazards?.some(zone=>same(zone,p)) ? ", peligro de zona desde ronda 2" : ""}${unit ? `, ${unit.name}, ${unit.team === 'ally' ? 'aliado' : 'enemigo'}, ${unit.hp} de ${unit.maxHp} PS, ${statusText(unit)}, mira al ${FACING_NAMES[unit.facing]}` : ''}${unit && actor && unit.id === actor.id ? ', turno activo' : ''}${reachable ? `, alcanzable, coste ${routes.get(key(p))!.cost}` : ''}${attackable ? ', objetivo válido' : ''}${area.has(key(p)) ? ', área de efecto' : ''}${state.fields.some(field => same(field, p)) ? ', ascuas: daño al cerrar turno' : ''}${push && same(push, p) ? ', destino del empuje' : ''}`,
       );
-      button.innerHTML = `<span class="tile-coordinate">${coordinate(p)}</span>${unit ? `<span class="team-marker" aria-hidden="true">${unit.team === 'ally' ? 'A' : 'E'}</span><span class="tile-unit">${escape(unit.name)}</span><span class="tile-health" aria-hidden="true"><i style="width:${(unit.hp / unit.maxHp) * 100}%"></i></span>` : ''}${costs.has(key(p)) ? `<span class="path-cost">${costs.get(key(p))}</span>` : ''}`;
+      button.innerHTML = `<span class="tile-coordinate">${coordinate(p)}</span>${state.hazards?.find(zone=>same(zone,p)) ? `<span class="zone-label">${HAZARD_NAMES[state.hazards.find(zone=>same(zone,p))!.kind]}</span>` : ''}${unit ? `<span class="team-marker" aria-hidden="true">${unit.team === 'ally' ? 'A' : 'E'}</span><span class="tile-unit">${escape(unit.name)}</span><span class="tile-health" aria-hidden="true"><i style="width:${(unit.hp / unit.maxHp) * 100}%"></i></span>` : ''}${costs.has(key(p)) ? `<span class="path-cost">${costs.get(key(p))}</span>` : ''}`;
       if (unit) {
         const facing = pending?.kind === 'finish' && unit.id === actor?.id ? pending.facing ?? unit.facing : unit.facing;
         button.insertAdjacentHTML('beforeend', `<span class="facing-marker ${pending?.kind === 'finish' && unit.id === actor?.id ? 'facing-preview' : ''}" aria-hidden="true">${FACING_ARROWS[facing]}</span>`);
@@ -295,7 +297,7 @@ export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): (
     if (pending?.kind === 'finish' && actor) {
       const facing = pending.facing ?? actor.facing;
       $('#order-summary').textContent = `Orientarse al ${FACING_NAMES[facing]} y terminar`;
-      $('#order-detail').textContent = `Frente: −15 puntos de precisión; flanco: −5; espalda: precisión base. ${fieldDamage(actor, state.fields) ? `Ascuas: perderá ${fieldDamage(actor, state.fields)} PS al cerrar turno.` : 'Elige una dirección y confirma.'}`;
+      $('#order-detail').textContent = `Frente: −15 puntos de precisión; flanco: −5; espalda: precisión base. ${(fieldDamage(actor, state.fields) + zoneDamage(actor, state.hazards, state.round)) ? `Ascuas: perderá ${(fieldDamage(actor, state.fields) + zoneDamage(actor, state.hazards, state.round))} PS al cerrar turno.` : 'Elige una dirección y confirma.'}`;
       $('#confirm').textContent = 'Confirmar orientación';
     } else if (pending?.kind === 'move' && actor) {
       const route = routes.get(key(pending.destination))!;
@@ -361,7 +363,7 @@ export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): (
     $('#inspect-stats').textContent =
       `AT ${unit.attack} / DF ${unit.defense} · AE ${unit.specialAttack} / DE ${heldItemFor(unit.heldItem)?.specialDefense(unit) ?? unit.specialDefense} · PT ${unit.tp}/${unit.maxTp}`;
     $('#inspect-status').textContent = `${statusText(unit)}${unit.heldItem ? ` · ${itemFor(unit.heldItem).name}` : ''}`;
-    $('#inspect-status').textContent += ` · ${FACING_ARROWS[unit.facing]} ${FACING_NAMES[unit.facing]}${fieldDamage(unit, state.fields) ? ' · Ascuas: 4 PS al cerrar turno' : ''}`;
+    $('#inspect-status').textContent += ` · ${FACING_ARROWS[unit.facing]} ${FACING_NAMES[unit.facing]}${(fieldDamage(unit, state.fields) + zoneDamage(unit, state.hazards, state.round)) ? ' · Ascuas: 4 PS al cerrar turno' : ''}`;
     unitButtons.forEach((button) => {
       const unit = state.units.find(
         (u) => u.id === Number(button.dataset.unit),
@@ -703,7 +705,8 @@ export async function bootBattle(): Promise<void> {
       throw new Error(`No se pudo cargar el catálogo (${response.status}).`);
     const catalog = validateCatalog(await response.json());
     await document.fonts.load('16px "Pixelify Sans"');
-    const dispose = mountBattle(catalog);
+    const boss = new URLSearchParams(location.search).get('boss');
+    const dispose = mountBattle(catalog, boss === 'birds' || boss === 'psychic' ? { initial: bossTrial(catalog, boss), title: 'ENSAYO · ' + (boss === 'birds' ? 'TRES AVES' : 'LABORATORIO PSÍQUICO') } : undefined);
     import.meta.hot?.dispose(dispose);
   } catch (error) {
     app.innerHTML = `<main class="failure"><h1>No pudimos abrir el combate</h1><p>${escape(error instanceof Error ? error.message : 'Error de recursos locales.')}</p><button id="retry">Volver a intentar</button></main>`;

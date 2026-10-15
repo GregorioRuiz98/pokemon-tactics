@@ -67,3 +67,75 @@ La versión actual guarda partida, equipo, bolsa y operaciones solo en el almace
 Datos de PokéAPI y hojas originales de SpriteCollab (commit fijado en tools/sources.lock.json). Ivysaur: CHUNSOFT; Venusaur: CHUNSOFT; Charmeleon: <@!199989579682414592>, CHUNSOFT, Grimlin, bwappi; Charizard: CHUNSOFT, Emboarger; Wartortle: CHUNSOFT; Blastoise: CHUNSOFT; Raichu: CHUNSOFT, Grimlin, Top_Kec; Graveler: CHUNSOFT, Emmuffin; Golem: CHUNSOFT, Emmuffin.
 
 Cada ficha conserva credits.txt. Caramelo Raro y Piedra Trueno: nombres de los CSV de PokéAPI; adaptación mecánica propia.
+
+### 1 · Bulbasaur
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/1/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 4 · Charmander
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/4/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 7 · Squirtle
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/7/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 25 · Pikachu
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/25/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 12 · Butterfree
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/12/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 74 · Geodude
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/74/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 2 · Ivysaur
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/2/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 3 · Venusaur
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/3/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 5 · Charmeleon
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: <@!199989579682414592>, CHUNSOFT, Grimlin, bwappi. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/5/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 6 · Charizard
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT, Emboarger. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/6/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 8 · Wartortle
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/8/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 9 · Blastoise
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/9/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 26 · Raichu
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT, Grimlin, Top_Kec. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/26/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 75 · Graveler
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT, Emmuffin. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/75/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 76 · Golem
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT, Emmuffin. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/76/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 144 · Articuno
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/144/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 145 · Zapdos
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/145/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 146 · Moltres
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/146/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).

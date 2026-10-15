@@ -111,5 +111,26 @@
       "CHUNSOFT",
       "Emmuffin"
     ]
+  },
+  {
+    "name": "Articuno",
+    "id": 144,
+    "authors": [
+      "CHUNSOFT"
+    ]
+  },
+  {
+    "name": "Zapdos",
+    "id": 145,
+    "authors": [
+      "CHUNSOFT"
+    ]
+  },
+  {
+    "name": "Moltres",
+    "id": 146,
+    "authors": [
+      "CHUNSOFT"
+    ]
   }
 ]

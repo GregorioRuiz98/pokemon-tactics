@@ -1,6 +1,6 @@
 export const INITIAL_SPECIES = [1, 4, 7, 25, 12, 74] as const;
-export const CATALOG_SPECIES = [...INITIAL_SPECIES, 2, 3, 5, 6, 8, 9, 26, 75, 76];
-export const BOSS_SPECIES: number[] = [];
+export const CATALOG_SPECIES = [...INITIAL_SPECIES, 2, 3, 5, 6, 8, 9, 26, 75, 76, 144, 145, 146];
+export const BOSS_SPECIES: number[] = [144, 145, 146];
 export const STAT_KEYS = ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed'] as const;
 export type StatKey = typeof STAT_KEYS[number];
 export type AnimationName = 'Idle' | 'Walk';
@@ -39,7 +39,7 @@ export function validateCatalog(value: unknown): PokemonSpecies[] {
   for (const item of value) {
     if (!isRecord(item) || !positive(item.id) || !CATALOG_SPECIES.includes(item.id) || seen.has(item.id)) throw new Error('Especie desconocida o duplicada.');
     seen.add(item.id);
-    if (typeof item.name !== 'string' || !item.name.trim() || item.name.length > 50 || item.legendary !== false || item.mythical !== false) throw new Error('Especie no válida para el campamento.');
+    if (typeof item.name !== 'string' || !item.name.trim() || item.name.length > 50 || typeof item.legendary !== 'boolean' || typeof item.mythical !== 'boolean' || ((item.legendary || item.mythical) !== BOSS_SPECIES.includes(item.id))) throw new Error('Especie no válida para el campamento.');
     if (!Array.isArray(item.types) || item.types.length < 1 || item.types.length > 2 || item.types.some(t => typeof t !== 'string' || !Object.hasOwn(TYPE_NAMES, t))) throw new Error('Tipos no válidos.');
     if (!isRecord(item.baseStats) || STAT_KEYS.some(key => !positive((item.baseStats as Record<string, unknown>)[key]))) throw new Error('Estadísticas incompletas.');
     if (!isRecord(item.animations)) throw new Error('Faltan animaciones.');

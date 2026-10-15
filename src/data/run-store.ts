@@ -27,6 +27,7 @@ function validateBattle(value: unknown, run: Run, catalog: readonly PokemonSpeci
   const battle = value as unknown as Battle;
   const node = run.nodes.find(node => node.id === run.currentNodeId)!;
   requireValid(battle.seed === encounterSeed(run, node.id) && battle.variance === run.variance && battle.composition === 'run');
+  requireValid(equal(battle.hazards, runMap(node.mapId).hazards));
   requireValid(equal(battle.board, runMap(node.mapId).board) && integer(battle.rng, 0, 0xffffffff) && integer(battle.round, 1, 100000));
   const expected = [
     ...run.roster.filter(member => member.hp > 0).map(member => ({ ...member, team: 'ally' as const })),

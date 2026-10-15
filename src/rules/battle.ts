@@ -6,6 +6,8 @@ import { TACTICAL_BOARD, blocksSight, supportsEmbers, fieldDamage } from './terr
 import type { TerrainField } from './terrain.ts';
 import type { PokemonSpecies } from '../data/catalog.ts';
 import { pokemonFor } from '../domain/Pokemon.ts';
+import { zoneDamage } from './hazards.ts';
+import type { BoardHazard } from './hazards.ts';
 import { atLevel, levelFor } from '../domain/progression.ts';
 import { heldItemFor } from '../domain/items.ts';
 import type { HeldItemId } from '../domain/items.ts';
@@ -34,6 +36,7 @@ export type Battle = {
   moved: boolean;
   acted: boolean;
   outcome: 'playing' | 'victory' | 'defeat';
+  hazards?: BoardHazard[];
   contributions?: Record<number, number>;
   log: string[];
 };
@@ -109,11 +112,11 @@ export function createBattle(catalog: readonly PokemonSpecies[], seed = 'kanto-0
 }
 // Instance IDs identify units; species IDs select data, actions and shared textures.
 export function createEncounter(catalog: readonly PokemonSpecies[], seed: string, variance: number, board: Board,
-  allies: readonly { id: number; speciesId: number; hp: number; heldItem?: HeldItemId | null; xp?: number }[], enemies: readonly number[], options: { progression?: boolean } = {}): Battle {
-  if (![0.05, 0.1].includes(variance) || allies.length < 1 || allies.length > 6 || enemies.length !== 3)
+  allies: readonly { id: number; speciesId: number; hp: number; heldItem?: HeldItemId | null; xp?: number }[], enemies: readonly number[], options: { progression?: boolean; hazards?: BoardHazard[] } = {}): Battle {
+  if (![0.05, 0.1].includes(variance) || allies.length < 1 || allies.length > 6 || enemies.length < 1 || enemies.length > 6)
     throw new Error('Encuentro no válido.');
   const allyPositions = [{ x: 1, y: 6 }, { x: 3, y: 6 }, { x: 2, y: 7 }, { x: 0, y: 6 }, { x: 4, y: 6 }, { x: 4, y: 7 }];
-  const enemyPositions = [{ x: 5, y: 1 }, { x: 6, y: 2 }, { x: 5, y: 4 }];
+  const enemyPositions = [{ x: 5, y: 1 }, { x: 6, y: 2 }, { x: 5, y: 4 }, { x: 4, y: 0 }, { x: 7, y: 1 }, { x: 7, y: 3 }];
   const create = (id: number, speciesId: number, team: Team, position: Point, hp?: number): Combatant => {
     const species = catalog.find(p => p.id === speciesId);
     if (!species) throw new Error(`Falta la especie ${speciesId}.`);
@@ -136,7 +139,7 @@ export function createEncounter(catalog: readonly PokemonSpecies[], seed: string
     ...enemies.map((speciesId, index) => create(1000 + index, speciesId, 'enemy', enemyPositions[index])),
   ];
   if (new Set(units.map(unit => unit.id)).size !== units.length) throw new Error('Identidades duplicadas.');
-  const state: Battle = { seed, rng: hashSeed(seed), variance, composition: 'run', ...(options.progression ? { contributions: {} } : {}), round: 0, board, fields: [], units,
+  const state: Battle = { seed, rng: hashSeed(seed), variance, composition: 'run', ...(options.hazards ? { hazards: structuredClone(options.hazards) } : {}), ...(options.progression ? { contributions: {} } : {}), round: 0, board, fields: [], units,
     initiative: [], queue: [], completed: [], moved: false, acted: false, outcome: 'playing', log: [] };
   newRound(state);
   return state;
@@ -333,10 +336,10 @@ export function finishTurn(state: Battle, facing?: Facing): RuleResult {
     if (!actor.status)
       note(next, `${actor.name}: termina ${STATUS_NAMES[status.kind]}.`);
   }
-  const hazard = actor.hp > 0 ? fieldDamage(actor, next.fields) : 0;
+  const hazard = actor.hp > 0 ? (fieldDamage(actor, next.fields) + zoneDamage(actor, next.hazards, next.round)) : 0;
   if (hazard) {
     actor.hp = Math.max(0, actor.hp - hazard);
-    note(next, `${actor.name}: ascuas, pierde ${hazard} PS.${actor.hp === 0 ? ' Fuera de combate.' : ''}`);
+    note(next, `${actor.name}: peligro del terreno, pierde ${hazard} PS.${actor.hp === 0 ? ' Fuera de combate.' : ''}`);
   }
   const recovery = heldItemFor(actor.heldItem)?.endTurnRecovery(actor) ?? 0;
   if (recovery) {
@@ -386,7 +389,7 @@ function dangerAt(state: Battle, actor: Combatant, point: Point): number {
     const reach = pokemonFor(enemy.speciesId).action('basic')!;
     return sum + (distance(enemy, placed) <= reach.definition.range + movementBudget(enemy) ? reach.preview(enemy, placed).damage / (distance(enemy, placed) + 1) : 0);
   }, 0);
-  return fieldDamage(placed, state.fields) * 2 + exposure * 0.3;
+  return (fieldDamage(placed, state.fields) + zoneDamage(placed, state.hazards, state.round)) * 2 + exposure * 0.3;
 }
 export function chooseFacing(state: Battle, actor: Combatant): Facing {
   return [...FACINGS].sort((a, b) => {

@@ -19,7 +19,7 @@ export abstract class Pokemon {
   }
   action(id: string): TacticalAction | undefined { return this.actions.find(action => action.definition.id === id); }
   createCombatant(species: PokemonSpecies, team: Team, position: Point): Combatant {
-    if (species.id !== this.speciesId || species.legendary || species.mythical || species.types.some(type => !(POKEMON_TYPES as readonly string[]).includes(type)))
+    if (species.id !== this.speciesId || ((species.legendary || species.mythical) && team !== 'enemy') || species.types.some(type => !(POKEMON_TYPES as readonly string[]).includes(type)))
       throw new Error('Especie incompatible con su clase táctica.');
     const maxHp = Math.round(35 + species.baseStats.hp / 3);
     return {
@@ -92,8 +92,30 @@ class EvolvedPokemon extends Pokemon {
     super(id, family.role, family.movement, [family.actions[0], family.actions[1], signature]);
   }
 }
+class Articuno extends Pokemon {
+  constructor() { super(144, 'Escarcha y resistencia', 4, [
+    new DamageAction(action('basic', 'Nieve Polvo', 'Daño especial de Hielo.', 'ice', 0, 2), 40, 'special'),
+    new AreaDamageAction(action('ice-beam', 'Rayo Hielo', 'Hielo en cruz, también aliados.', 'ice', 3, 2), 70, 'special'),
+    new GuardAction(action('mist', 'Neblina', 'Protege a un compañero o a sí mismo.', 'ice', 1, 1, 100, 'friendly')),
+  ]); }
+}
+class Zapdos extends Pokemon {
+  constructor() { super(145, 'Velocidad y parálisis', 5, [
+    new DamageAction(action('basic', 'Impactrueno', 'Daño especial eléctrico.', 'electric', 0, 2), 40, 'special'),
+    new AreaDamageAction(action('discharge', 'Chispazo', 'Cruz eléctrica, también aliados.', 'electric', 3, 2), 60, 'special', {kind:'paralysis',chance:10,duration:3}),
+    new StatusAction(action('thunder-wave', 'Onda Trueno', 'Reduce movimiento y próxima iniciativa.', 'electric', 2, 2, 90), {kind:'paralysis',chance:100,duration:3}),
+  ]); }
+}
+class Moltres extends Pokemon {
+  constructor() { super(146, 'Presión de fuego', 4, [
+    new DamageAction(action('basic', 'Ascuas', 'Daño especial de Fuego.', 'fire', 0, 2), 40, 'special'),
+    new AreaDamageAction(action('flamethrower', 'Lanzallamas', 'Cruz de fuego y ascuas; también aliados.', 'fire', 3, 2), 70, 'special', {kind:'burn',chance:10,duration:3}, true),
+    new PushAction(action('wing-attack', 'Ataque Ala', 'Empuja una casilla.', 'flying', 1, 1), 60, 'physical'),
+  ]); }
+}
 const registry: ReadonlyMap<number, Pokemon> = new Map<number, Pokemon>([
   new Bulbasaur(), new Charmander(), new Squirtle(), new Pikachu(), new Butterfree(), new Geodude(),
+  new Articuno(), new Zapdos(), new Moltres(),
   ...[2, 3].map(id => new EvolvedPokemon(id, new Bulbasaur(), new AreaDamageAction(action('razor-leaf', 'Hoja Afilada', 'Hojas en cruz; alcanza también a aliados.', 'grass', 2, 2, 95), 55, 'physical'))),
   ...[5, 6].map(id => new EvolvedPokemon(id, new Charmander(), new PushAction(action('dragon-tail', 'Cola Dragón', 'Desplaza al objetivo una casilla.', 'dragon', 2, 1, 90), 60, 'physical'))),
   ...[8, 9].map(id => new EvolvedPokemon(id, new Squirtle(), new AreaDamageAction(action('surf', 'Surf', 'Agua en cruz; alcanza también a aliados.', 'water', 3, 2), 65, 'special'))),

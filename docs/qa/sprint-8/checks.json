@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "Evolución mediante compra y controles reales; conserva PS/identidad y consume una vez",
+    "Recarga conserva evolución y progreso",
+    "Gestión utilizable a 390 px sin desbordamiento horizontal",
+    "Especie evolucionada desplegada en combate con sus recursos",
+    "Arena birds: jefes, sectores legibles y escritorio/móvil"
+  ],
+  "errors": []
+}

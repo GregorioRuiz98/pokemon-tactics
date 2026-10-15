@@ -895,3 +895,12 @@
 #game-options > summary:hover {
   background: #354f42;
 }
+/* Arena sectors remain readable through names and patterns, including on occupied tiles. */
+.zone-tile { box-shadow: inset 0 0 0 2px var(--zone-color); }
+.zone-ice { --zone-color: #9de5ed; background-color: #61929b44; }
+.zone-electric { --zone-color: #ffe385; background-color: #a5953b44; }
+.zone-fire { --zone-color: #ffaf82; background-color: #a34f3544; }
+.zone-poison { --zone-color: #e5addf; background-color: #9b619b44; }
+.zone-psychic { --zone-color: #f5bbd6; background-color: #99618b44; }
+.zone-ground { --zone-color: #eed0a1; background-color: #a38a5144; }
+.zone-label { position: absolute; bottom: 2px; left: 2px; font-size: clamp(6px, 1vw, 9px); color: #fff8dc; background: #132b27; padding: 1px; z-index: 3; pointer-events: none; }

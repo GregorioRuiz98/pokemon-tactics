@@ -30,6 +30,18 @@ fs.mkdirSync(output, { recursive: true });
     await page.locator('#leave-service').click(); await page.locator('[data-node="1-1"]').click();
     await page.waitForSelector('canvas'); await page.waitForFunction(()=>!document.body.textContent.includes('Cargando sprites'));
     await page.screenshot({path:path.join(output,'evolved-battle.png'),fullPage:true}); checks.push('Especie evolucionada desplegada en combate con sus recursos');
+    for (const boss of catalog.some(p=>p.id===150) ? ['birds','psychic'] : ['birds']) {
+      await page.setViewportSize({width:1440,height:1000});
+      await page.goto(base+'?view=battle&boss='+boss); await page.waitForLoadState('networkidle');
+      await page.waitForSelector('canvas');
+      assert(await page.locator('.zone-tile').count()>0);
+      assert(await page.locator('.tile-unit').allTextContents().then(names=>names.includes(boss==='birds'?'Articuno':'Mewtwo')));
+      await page.screenshot({path:path.join(output,boss+'-desktop.png'),fullPage:true});
+      await page.setViewportSize({width:390,height:844});
+      assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+      await page.screenshot({path:path.join(output,boss+'-mobile.png'),fullPage:true});
+      checks.push('Arena '+boss+': jefes, sectores legibles y escritorio/móvil');
+    }
     assert.deepEqual(errors,[]);
     fs.writeFileSync(path.join(output,'checks.json'),JSON.stringify({checks,errors},null,2)); console.log(JSON.stringify({passed:checks.length,errors}));
   } finally { await browser.close(); }
