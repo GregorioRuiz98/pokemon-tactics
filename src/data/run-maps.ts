@@ -4,6 +4,18 @@ import type { BoardHazard } from '../rules/hazards.ts';
 
 export type RunMap = { id: string; name: string; description: string; board: Board; hazards?: BoardHazard[] };
 export const RUN_MAPS: readonly RunMap[] = [
+  {id:'power',name:'Central de Carmín',description:'Muros cortan disparos; corriente en el centro desde ronda 2. Eléctrico, Tierra y voladores inmunes.',board:[
+    [0,0,0,0,0,0,0,0],[0,0,0,2,0,0,0,0],[0,0,2,0,0,0,0,0],[0,0,0,0,0,2,0,0],
+    [0,0,2,0,0,0,0,0],[0,0,0,0,0,2,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]],hazards:[{x:3,y:3,kind:'electric'},{x:4,y:3,kind:'electric'},{x:3,y:4,kind:'electric'}]},
+  {id:'switchyard',name:'Patio de transformadores',description:'Cruza los carriles entre bloques; corrientes alternan con pasos seguros.',board:[
+    [0,0,0,0,0,0,0,0],[0,0,2,0,0,0,0,0],[0,0,0,0,2,0,0,0],[0,2,0,0,0,0,0,0],
+    [0,0,0,2,0,0,0,0],[0,0,0,0,0,0,2,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]],hazards:[{x:2,y:3,kind:'electric'},{x:4,y:4,kind:'electric'},{x:6,y:3,kind:'electric'}]},
+  {id:'garden',name:'Jardín de Azulona',description:'Maleza densa en el centro. Planta y voladores la atraviesan mejor.',board:[
+    [0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,1,1,1,0,0,0],[0,1,1,0,1,1,0,0],
+    [0,1,1,1,1,0,0,0],[0,0,1,0,1,1,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]]},
+  {id:'grove',name:'Arboleda interior',description:'Macizos que cortan líneas y maleza por los flancos; preserva rutas de retirada.',board:[
+    [0,0,0,0,0,0,0,0],[0,1,0,0,0,0,0,0],[0,1,2,0,0,0,0,0],[0,1,0,1,0,2,0,0],
+    [0,0,0,1,1,0,0,0],[0,1,1,0,2,0,1,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]]},
   {id:'canal',name:'Canales de Celeste',description:'Dos canales y puentes centrales: nadar abre rutas por los flancos.',board:[
     [0,0,0,0,0,0,0,0],[0,3,3,0,0,0,0,0],[0,3,3,0,0,0,0,0],[0,3,3,0,0,3,3,0],
     [0,0,0,0,0,0,0,0],[0,3,3,0,0,3,3,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],

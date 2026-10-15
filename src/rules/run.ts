@@ -31,7 +31,7 @@ export type Run = {
   nodes: RunNode[]; path: string[]; history: RunRecord[]; currentNodeId: string | null; battle: Battle | null;
   money: number; bag: Bag; purchases: Record<string, Partial<Bag>>; recruited: string[]; events: RunEvent[];
 };
-export const CURRENT_EDITION = 10;
+export const CURRENT_EDITION = 11;
 export const ROUTE_LENGTH = 6;
 export const TEAM_LIMIT = 6;
 export const STARTING_MONEY = 240;
@@ -70,7 +70,7 @@ export function createRun(catalog: readonly PokemonSpecies[], seed: string, vari
   for (let floor = 0; floor < (edition >= 8 ? stages+1 : ROUTE_LENGTH); floor++) {
     const next = nodes.filter(node => node.kind === 'combat' && node.floor === floor + 1).map(node => node.id);
     const candidates: number[] = [];
-    const pool = floor === 0 ? INITIAL_SPECIES.filter(id => !legacy.roster.some(member => member.speciesId === id)) : [...INITIAL_SPECIES];
+    const pool = floor === 0 ? INITIAL_SPECIES.filter(id => !legacy.roster.some(member => member.speciesId === id)) : [...new Set([...INITIAL_SPECIES, ...zones.flatMap(zone=>zone.enemies.flat()).filter(id=>![2,3,5,6,8,9,26,75,76].includes(id))])];
     while (candidates.length < 3) candidates.push(pick(pool.filter(id => !candidates.includes(id))));
     nodes.push({ id: `shop-${floor}`, floor, kind: 'shop', mapId: '', enemies: [], offers: [], next });
     nodes.push({ id: `recruit-${floor}`, floor, kind: 'recruit', mapId: '', enemies: [], next,

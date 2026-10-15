@@ -917,6 +917,131 @@
     ]
   },
   {
+    "id": 81,
+    "name": "Magnemite",
+    "types": [
+      "electric",
+      "steel"
+    ],
+    "baseStats": {
+      "hp": 25,
+      "attack": 35,
+      "defense": 70,
+      "special-attack": 95,
+      "special-defense": 55,
+      "speed": 45
+    },
+    "legendary": false,
+    "mythical": false,
+    "animations": {
+      "Idle": {
+        "width": 24,
+        "height": 32,
+        "columns": 4,
+        "rows": 8,
+        "frames": 4,
+        "durations": [
+          10,
+          14,
+          10,
+          14
+        ],
+        "anchorX": 11.5,
+        "anchorY": 19.5,
+        "path": "assets/pokemon/81/Idle.png"
+      },
+      "Walk": {
+        "width": 24,
+        "height": 32,
+        "columns": 6,
+        "rows": 8,
+        "frames": 6,
+        "durations": [
+          8,
+          6,
+          6,
+          8,
+          6,
+          6
+        ],
+        "anchorX": 11.5,
+        "anchorY": 19.5,
+        "path": "assets/pokemon/81/Walk.png"
+      }
+    },
+    "authors": [
+      "CHUNSOFT"
+    ],
+    "sources": [
+      "https://pokeapi.co/api/v2/pokemon/81",
+      "https://pokeapi.co/api/v2/pokemon-species/81"
+    ]
+  },
+  {
+    "id": 43,
+    "name": "Oddish",
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "baseStats": {
+      "hp": 45,
+      "attack": 50,
+      "defense": 55,
+      "special-attack": 75,
+      "special-defense": 65,
+      "speed": 30
+    },
+    "legendary": false,
+    "mythical": false,
+    "animations": {
+      "Idle": {
+        "width": 24,
+        "height": 40,
+        "columns": 5,
+        "rows": 8,
+        "frames": 5,
+        "durations": [
+          30,
+          4,
+          4,
+          4,
+          4
+        ],
+        "anchorX": 11.5,
+        "anchorY": 23.5,
+        "path": "assets/pokemon/43/Idle.png"
+      },
+      "Walk": {
+        "width": 24,
+        "height": 40,
+        "columns": 8,
+        "rows": 8,
+        "frames": 8,
+        "durations": [
+          8,
+          4,
+          8,
+          6,
+          8,
+          4,
+          8,
+          6
+        ],
+        "anchorX": 11.5,
+        "anchorY": 23.5,
+        "path": "assets/pokemon/43/Walk.png"
+      }
+    },
+    "authors": [
+      "CHUNSOFT"
+    ],
+    "sources": [
+      "https://pokeapi.co/api/v2/pokemon/43",
+      "https://pokeapi.co/api/v2/pokemon-species/43"
+    ]
+  },
+  {
     "id": 144,
     "name": "Articuno",
     "types": [

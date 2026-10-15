@@ -1,0 +1,9 @@
+{
+  "checks": [
+    "power escritorio",
+    "switchyard móvil",
+    "garden escritorio",
+    "grove móvil"
+  ],
+  "errors": []
+}
