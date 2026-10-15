@@ -132,5 +132,21 @@
     "authors": [
       "CHUNSOFT"
     ]
+  },
+  {
+    "name": "Mewtwo",
+    "id": 150,
+    "authors": [
+      "CHUNSOFT",
+      "JFain"
+    ]
+  },
+  {
+    "name": "Mew",
+    "id": 151,
+    "authors": [
+      "CHUNSOFT",
+      "JFain"
+    ]
   }
 ]

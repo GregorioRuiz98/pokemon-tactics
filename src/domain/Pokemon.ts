@@ -99,6 +99,20 @@ class Articuno extends Pokemon {
     new GuardAction(action('mist', 'Neblina', 'Protege a un compañero o a sí mismo.', 'ice', 1, 1, 100, 'friendly')),
   ]); }
 }
+class Mewtwo extends Pokemon {
+  constructor() { super(150, 'Presión especial y control de líneas', 4, [
+    new DamageAction(action('basic', 'Confusión', 'Daño especial Psíquico.', 'psychic', 0, 2), 50, 'special'),
+    new AreaDamageAction(action('psychic', 'Psíquico', 'Cruz psíquica, incluidos aliados.', 'psychic', 3, 2), 80, 'special'),
+    new GuardAction(action('barrier', 'Barrera', 'Reduce el daño recibido hasta su siguiente activación.', 'psychic', 1, 0, 100, 'self')),
+  ]); }
+}
+class Mew extends Pokemon {
+  constructor() { super(151, 'Movilidad y versatilidad', 6, [
+    new DamageAction(action('basic', 'Destructor', 'Ataque físico Normal.', 'normal', 0, 1), 40, 'physical'),
+    new DrainAction(action('giga-drain', 'Gigadrenado', 'Recupera la mitad del daño efectivo.', 'grass', 2, 2), 60, 'special'),
+    new PushAction(action('ancient-power', 'Poder Pasado', 'Presión de Roca y desplazamiento de una casilla.', 'rock', 2, 2), 60, 'special'),
+  ]); }
+}
 class Zapdos extends Pokemon {
   constructor() { super(145, 'Velocidad y parálisis', 5, [
     new DamageAction(action('basic', 'Impactrueno', 'Daño especial eléctrico.', 'electric', 0, 2), 40, 'special'),
@@ -116,6 +130,7 @@ class Moltres extends Pokemon {
 const registry: ReadonlyMap<number, Pokemon> = new Map<number, Pokemon>([
   new Bulbasaur(), new Charmander(), new Squirtle(), new Pikachu(), new Butterfree(), new Geodude(),
   new Articuno(), new Zapdos(), new Moltres(),
+  new Mewtwo(), new Mew(),
   ...[2, 3].map(id => new EvolvedPokemon(id, new Bulbasaur(), new AreaDamageAction(action('razor-leaf', 'Hoja Afilada', 'Hojas en cruz; alcanza también a aliados.', 'grass', 2, 2, 95), 55, 'physical'))),
   ...[5, 6].map(id => new EvolvedPokemon(id, new Charmander(), new PushAction(action('dragon-tail', 'Cola Dragón', 'Desplaza al objetivo una casilla.', 'dragon', 2, 1, 90), 60, 'physical'))),
   ...[8, 9].map(id => new EvolvedPokemon(id, new Squirtle(), new AreaDamageAction(action('surf', 'Surf', 'Agua en cruz; alcanza también a aliados.', 'water', 3, 2), 65, 'special'))),

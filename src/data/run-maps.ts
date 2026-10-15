@@ -4,6 +4,9 @@ import type { BoardHazard } from '../rules/hazards.ts';
 
 export type RunMap = { id: string; name: string; description: string; board: Board; hazards?: BoardHazard[] };
 export const RUN_MAPS: readonly RunMap[] = [
+  { id: 'psychic', name: 'Laboratorio del origen', description: 'Mewtwo presiona a distancia; Mew cruza el sector natural. Pulsos psíquicos: 4 PS desde ronda 2; Psíquico y Siniestro inmunes.',
+    board: [[0,0,0,0,0,0,0,0],[0,0,2,0,0,0,0,0],[0,1,0,2,0,0,0,0],[0,1,0,0,0,2,0,0],[0,1,1,0,0,0,0,0],[0,0,0,0,2,0,1,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]],
+    hazards: [{x:3,y:4,kind:'psychic'},{x:4,y:4,kind:'psychic'},{x:4,y:3,kind:'psychic'},{x:6,y:3,kind:'psychic'},{x:6,y:4,kind:'psychic'}] },
   { id: 'birds', name: 'Santuario de las tres aves', description: 'Articuno, Zapdos y Moltres juntos. Sectores de escarcha, corriente y fumarolas: 4 PS al cerrar turno desde ronda 2. Volar y afinidades protegen.',
     board: [[0,0,0,0,0,0,0,0],[0,0,0,2,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,2,0,0,2,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]],
     hazards: [{x:1,y:2,kind:'ice'},{x:1,y:3,kind:'ice'},{x:2,y:4,kind:'ice'},{x:3,y:2,kind:'electric'},{x:4,y:3,kind:'electric'},{x:4,y:4,kind:'electric'},{x:6,y:2,kind:'fire'},{x:6,y:3,kind:'fire'},{x:5,y:4,kind:'fire'}] },

@@ -30,7 +30,7 @@ export type Run = {
   nodes: RunNode[]; path: string[]; history: RunRecord[]; currentNodeId: string | null; battle: Battle | null;
   money: number; bag: Bag; purchases: Record<string, Partial<Bag>>; recruited: string[]; events: RunEvent[];
 };
-export const CURRENT_EDITION = 8;
+export const CURRENT_EDITION = 9;
 export const ROUTE_LENGTH = 6;
 export const TEAM_LIMIT = 6;
 export const STARTING_MONEY = 240;
@@ -58,6 +58,7 @@ export function createRun(catalog: readonly PokemonSpecies[], seed: string, vari
     next: node.floor === ROUTE_LENGTH ? [] : [`shop-${node.floor}`, `recruit-${node.floor}`] }));
   if (edition >= 8) {
     nodes.filter(node => node.floor === 6).forEach(node => { node.next = ['shop-6', 'recruit-6']; });
+    if (edition >= 9) nodes.push({ id: 'final-psychic', floor: 7, kind: 'combat', next: [], mapId: 'psychic', enemies: [150,151], offers: [] });
     nodes.push({ id: 'final-birds', floor: 7, kind: 'combat', next: [], mapId: 'birds', enemies: [144,145,146], offers: [] });
   }
   for (let floor = 0; floor < (edition >= 8 ? 7 : ROUTE_LENGTH); floor++) {

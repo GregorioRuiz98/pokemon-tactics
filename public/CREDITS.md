@@ -139,3 +139,11 @@ SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas
 ### 146 · Moltres
 
 SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/146/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 150 · Mewtwo
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT, JFain. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/150/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+### 151 · Mew
+
+SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT, JFain. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/151/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).

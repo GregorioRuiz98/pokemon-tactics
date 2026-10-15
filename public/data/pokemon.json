@@ -1092,5 +1092,131 @@
       "https://pokeapi.co/api/v2/pokemon/146",
       "https://pokeapi.co/api/v2/pokemon-species/146"
     ]
+  },
+  {
+    "id": 150,
+    "name": "Mewtwo",
+    "types": [
+      "psychic"
+    ],
+    "baseStats": {
+      "hp": 106,
+      "attack": 110,
+      "defense": 90,
+      "special-attack": 154,
+      "special-defense": 90,
+      "speed": 130
+    },
+    "legendary": true,
+    "mythical": false,
+    "animations": {
+      "Idle": {
+        "width": 32,
+        "height": 64,
+        "columns": 8,
+        "rows": 8,
+        "frames": 8,
+        "durations": [
+          40,
+          2,
+          4,
+          6,
+          8,
+          6,
+          4,
+          2
+        ],
+        "anchorX": 15.5,
+        "anchorY": 35.5,
+        "path": "assets/pokemon/150/Idle.png"
+      },
+      "Walk": {
+        "width": 48,
+        "height": 56,
+        "columns": 6,
+        "rows": 8,
+        "frames": 6,
+        "durations": [
+          12,
+          6,
+          6,
+          12,
+          6,
+          6
+        ],
+        "anchorX": 23.5,
+        "anchorY": 31.5,
+        "path": "assets/pokemon/150/Walk.png"
+      }
+    },
+    "authors": [
+      "CHUNSOFT",
+      "JFain"
+    ],
+    "sources": [
+      "https://pokeapi.co/api/v2/pokemon/150",
+      "https://pokeapi.co/api/v2/pokemon-species/150"
+    ]
+  },
+  {
+    "id": 151,
+    "name": "Mew",
+    "types": [
+      "psychic"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "attack": 100,
+      "defense": 100,
+      "special-attack": 100,
+      "special-defense": 100,
+      "speed": 100
+    },
+    "legendary": false,
+    "mythical": true,
+    "animations": {
+      "Idle": {
+        "width": 32,
+        "height": 56,
+        "columns": 4,
+        "rows": 8,
+        "frames": 4,
+        "durations": [
+          12,
+          8,
+          12,
+          8
+        ],
+        "anchorX": 15.5,
+        "anchorY": 31.5,
+        "path": "assets/pokemon/151/Idle.png"
+      },
+      "Walk": {
+        "width": 40,
+        "height": 64,
+        "columns": 6,
+        "rows": 8,
+        "frames": 6,
+        "durations": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "anchorX": 19.5,
+        "anchorY": 35.5,
+        "path": "assets/pokemon/151/Walk.png"
+      }
+    },
+    "authors": [
+      "CHUNSOFT",
+      "JFain"
+    ],
+    "sources": [
+      "https://pokeapi.co/api/v2/pokemon/151",
+      "https://pokeapi.co/api/v2/pokemon-species/151"
+    ]
   }
 ]
