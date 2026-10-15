@@ -4,7 +4,9 @@
 
 ## Platform
 
-web. Objetivo inicial: PC y navegador local; publicación posterior en web propia.
+Entrega jugable actual: web local con Phaser y TypeScript, versión 0.12.0. Objetivo confirmado para la siguiente etapa: ejecutable de Windows, completamente offline, con recursos y guardado locales. El usuario ha descargado `Godot_v4.7.2-stable_win64`; no se ha comprobado su ubicación, ejecución ni la disponibilidad de las plantillas de exportación.
+
+**15 de octubre de 2026: registrar requisitos y propuestas; no iniciar el port a Godot hasta que el usuario lo indique expresamente.** Este documento y el plan de sprints no autorizan crear el proyecto Godot, convertir código, instalar complementos, exportar ni modificar el juego actual. La publicación continúa aplazada.
 
 ## Users
 
@@ -12,7 +14,7 @@ Fans de Pokémon y RPG tácticos. El creador prueba el loop en local y después 
 
 ## Product Purpose
 
-Roguelike táctico por turnos contra la máquina, con control manual, equipos de hasta seis Pokémon de Kanto, evolución y objetos. Prioridades expresadas: diversión, calidad de portfolio y posibilidad de difusión.
+RPG táctico contra la máquina que recorre la historia de Pokémon Rojo original, con capturas locales aleatorias y bajas definitivas. Campaña larga con guardado entre sesiones, un inicial elegido de Oak y equipos de hasta seis Pokémon desplegados. Prioridades expresadas: diversión, identidad Pokémon, calidad de portfolio y posibilidad de difusión; no se promete viralidad.
 
 ## Operating Context
 
@@ -28,7 +30,7 @@ POO solicitada por el usuario para facilitar la herencia de comportamiento. Base
 
 Decisiones confirmadas, backlog y valores provisionales en `docs/PLAN_SPRINTS.md`; código, recursos y comprobaciones en los informes de sprint. Los valores de daño, movilidad y salud de esta primera batalla son hipótesis de ensayo, no decisiones definitivas de balance.
 
-El usuario pide aplazar el equilibrio hasta terminar las mecánicas y conservar parámetros y repertorios base del sprint 4. El sprint 6 incorpora economía, consumibles curativos fuera de combate, tres equipables y reclutamiento/sustitución hasta seis miembros. Objetos recuperados al caer o sustituir. La economía y efectos nuevos se prueban como mecánicas; no representan equilibrio definitivo. El sexto encuentro es provisional, sin los jefes legendarios previstos.
+La versión 0.12.0 contiene ocho zonas, dos finales, progresión y economía; no implementa todavía esta nueva campaña. El [informe de balance](docs/reports/balance-2026-10-15/INFORME.md) registra 2.000 recorridos y 14.587 combates de IA: reunir seis pronto domina esas simulaciones, la oferta inicial homogeneiza equipos y hay ciclos defensivos de IA. Son resultados de las reglas actuales, no tasas de victoria humanas ni evidencia del balance de la futura campaña. Las recomendaciones del informe no se aplican automáticamente.
 
 ## Brand Commitments
 
@@ -36,4 +38,91 @@ El usuario ha pedido integrar las órdenes dentro del gameplay, con paneles de a
 
 ## Estado de entrega
 
-Encargo del 15 de octubre: completar los sprints restantes con hitos de Git separados. Publicar después, por decisión del usuario. Preparar versión local, paquete y guía. Pruebas externas aún sin realizar.
+Sprints 0–12 cerrados técnicamente para la versión web, con publicación y pruebas externas pendientes. La nueva petición del 15 de octubre autoriza incorporar los inputs a documentación y backlog; **ningún sprint de implementación de la siguiente etapa está iniciado**. No cambiar versión, reglas, guardados, recursos ni dependencias por actualizar este documento.
+
+## Campaña de Kanto — requisitos confirmados
+
+Esta sección sustituye, como objetivo futuro, el inicio con tres aleatorios, las ocho zonas abstractas y el cierre directo en legendarios. El código y las partidas de la versión web conservan su funcionamiento. Las propuestas de la sección siguiente quedan registradas sin convertir sus detalles en decisiones del usuario.
+
+| ID | Requisito confirmado | Resultado esperado cuando se implemente |
+| --- | --- | --- |
+| K01 | Ejecutable de Windows offline | Jugar y guardar sin navegador, servidor de juego, cuentas ni servicios remotos; el jugador no necesita Godot instalado |
+| K02 | Campaña larga con guardado | Continuar entre sesiones; conservar progreso, PS, compras, capturas y bajas; reinicio si cae todo el equipo |
+| K03 | Un inicial de Oak | Elegir Bulbasaur, Charmander o Squirtle al comenzar; completar el equipo mediante capturas |
+| K04 | Historia de Pokémon Rojo original | Recorrer sus rutas, ciudades y acontecimientos; distinguirlo de Azul, Amarillo y Rojo Fuego |
+| K05 | Un combate por ruta | Encuentro temático con las especies de la ruta original; añadir gimnasios y acontecimientos como encuentros diferenciados |
+| K06 | Mapas más grandes | Más espacio y decisiones de terreno que los tableros actuales; tamaño y número de enemigos pendientes de prueba |
+| K07 | Gachapón tras cada combate ganado | Obtener un Pokémon aleatorio de la ruta o zona, con presentación de captura; no comprar reclutas de una oferta genérica como mecanismo principal |
+| K08 | Tienda después de la captura | Flujo de victoria → captura → tienda → preparación → siguiente encuentro |
+| K09 | Caramelos Raros para evolucionar | Poder adquirir progreso evolutivo en la tienda; requisitos exactos por especie pendientes |
+| K10 | Mejorar estadísticas en tienda | Invertir recursos en miembros concretos; límites, precios y magnitud aún sin fijar |
+| K11 | Liga Pokémon y rival | Cierre principal de la campaña; no sustituirlo por un combate legendario |
+| K12 | Legendarios después de la Liga | Dos desafíos alternativos: Articuno/Zapdos/Moltres y Mew/Mewtwo; siguen excluidos de capturas, inicio y reclutamiento |
+| K13 | Port pendiente de indicación expresa | Guardar estos requisitos y planificar; no comenzar Godot por una autorización anterior para terminar los sprints web |
+
+Se mantienen las decisiones tácticas anteriores: control manual, cuadrícula cuadrada superior, máximo seis desplegados, tipos modernos y dobles, cola por velocidad recalculada por ronda, movimiento y acción en ambos órdenes, orientación final, aliados atravesables y previsión sin consumir RNG. Los PS y las bajas persisten; consumibles curativos fuera de combate, un equipable por miembro y recuperación del objeto al morir o ser sustituido. La POO comparte comportamiento; tipos y evoluciones siguen siendo datos, no jerarquías de herencia.
+
+## Ideas registradas para acercarlo a Pokémon
+
+Son propuestas para evaluar dentro de las funcionalidades pedidas. Incorporarlas al backlog no fija cantidades, precios, excepciones ni todas las reglas nuevas.
+
+| ID | Propuesta | Decisión o prueba necesaria |
+| --- | --- | --- |
+| P01 | Mapa regional con ciudades, rutas y lugares reconocibles; trayecto del entrenador entre encuentros | Conservar ritmo de aventura sin construir todavía un mundo completo de exploración libre |
+| P02 | Desvíos como Ruta 22 temprana, Camino de Bicis o costa hacia Fucsia | Decidir qué rutas son obligatorias, alternativas y opcionales; volver a una ubicación no implica automáticamente otro combate ni otra recompensa |
+| P03 | Probar primero 16×16 y 24×24; cámara y zoom sin ocultar casillas bajo el HUD | Son tamaños de ensayo, no límites aprobados ni prueba de que más superficie resulte más divertida |
+| P04 | Grupos enemigos que se incorporen al acercarse, con señales claras | Definir activación, iniciativa y persistencia; evitar rondas de enemigos lejanos y desplazamiento vacío |
+| P05 | Objetivos puntuales de salida, rescate o derrota del entrenador principal | Empezar por eliminar enemigos; decidir recompensas y qué ocurre con los grupos que quedan vivos |
+| P06 | Captura con animación de encuentro/Poké Ball, mote, origen y rarezas locales | Separar la tabla de captura de la plantilla de enemigos; un Pokémon de entrenador no pasa automáticamente a la tabla salvaje |
+| P07 | Una captura por ubicación, al estilo Nuzlocke; cláusula de duplicados por familia | **Alternativa pendiente a K07**, que pide una captura tras cada combate; no imponerla ni retirar premios de gimnasio sin decisión del usuario |
+| P08 | Recompensas propias de gimnasios y eventos: medallas, MT u objetos | Si reemplazan el gachapón, constituyen una excepción pendiente a K07; si lo acompañan, definir la tabla local aplicable |
+| P09 | PC de reserva con seis desplegados; registro de bajas con mote y procedencia | Capacidad, momentos de intercambio, equipables en reserva y tratamiento de derrota con reservas pendientes |
+| P10 | Capturas con nivel adecuado a la zona | Medir si pueden incorporarse al equipo; evitar reposiciones inutilizables por llegar siempre a nivel uno |
+| P11 | Vitaminas: Proteína, Hierro, Calcio, Zinc, Carburante y Más PS | Forma propuesta de K10; topes por miembro, disponibilidad por medalla y costes crecientes aún sin aprobar; revisar velocidad por su efecto en iniciativa |
+| P12 | Experiencia por combate, Caramelo Raro que acelera niveles y evolución por requisitos de especie | Comparar con el uso directo evolutivo solicitado en K09; conservar piedras y resolver intercambios mediante un objeto local si se adopta |
+| P13 | Cuatro movimientos configurables, aprendizaje gradual y MT | Decidir si el básico ocupa una plaza, compatibilidad con PT/PP y conservación del rol al evolucionar |
+| P14 | Rival recurrente con equipo que evoluciona; gimnasios reconocibles con mecánicas propias | Equipos, apariciones y adaptación táctica pendientes de documentar por tramo |
+| P15 | Medallas que amplían entrenamiento/catálogos; Pokédex con vistos, capturados y origen | Evitar desbloqueos arbitrarios o mejoras sin límite; definir los datos que persisten al reiniciar |
+| P16 | Escenas breves con Oak, Bill, Team Rocket y personajes clave | Apoyar el recorrido sin rehacer todos los diálogos o puzzles originales |
+| P17 | Presentar PC y servicios como parte de ciudades y Centros Pokémon; tiendas de ruta con catálogo menor | Mantener tienda tras cada combate; curación gratuita de Centro no está aprobada y no sustituye la regla de objetos fuera de combate |
+
+## Recorrido y recursos de referencia
+
+Orden narrativo de referencia: Paleta → Ruta 1 / Ciudad Verde / Ruta 2 / Bosque Verde → Plateada y Brock → Ruta 3 / Monte Moon / Ruta 4 → Celeste, Misty y Bill en rutas 24–25 → rutas 5–6 / Carmín / S. S. Anne / Lt. Surge → rutas 9–10 / Túnel Roca / Lavanda → rutas 8–7 / Azulona / Erika / guarida Rocket → Torre Pokémon, Silph S. A., Azafrán y Fucsia con sus gimnasios → rutas marítimas / Islas Espuma / Canela / Mansión Pokémon / Blaine → Ciudad Verde y Giovanni → rutas 22–23 / Calle Victoria → Alto Mando y rival → desafíos legendarios.
+
+Es una referencia de hitos, no la especificación de todas las rutas ni un orden único obligatorio: el original permite alternativas. Las rutas 11–18 y 21, Cueva Diglett, Safari y Central de Energía deben clasificarse al cerrar el grafo. No se omiten por no aparecer en la línea abreviada. Las rutas 24–25 no van después de la 23 por su número. El número de combates en mazmorras y gimnasios sigue pendiente.
+
+- [Recorrido de Rojo/Azul original](https://bulbapedia.bulbagarden.net/wiki/Walkthrough:Pok%C3%A9mon_Red_and_Blue): referencia de localizaciones y acontecimientos, no de nuestras reglas de combate.
+- [Tablas de encuentros de pret/pokered](https://github.com/pret/pokered/tree/master/data/wild/maps): consultar la variante `_RED`, separar hierba/agua/pesca y definir acceso a métodos especiales. Ejemplos verificados: Ruta 1, Pidgey/Rattata; Ruta 2, Pidgey/Rattata/Weedle en Rojo; Bosque Verde, predominio de Weedle/Kakuna y apariciones de Caterpie/Metapod/Pikachu. No copiar una tabla conjunta de todas las versiones.
+- Reutilizar sprites, retratos, metadatos de duración/anclaje, audio y fuente locales existentes. Importar solo las especies necesarias por tramo; registrar commit, hash, autores y licencia antes de incorporar material nuevo. Ninguna descarga durante una partida.
+- [Tiny Town de Kenney](https://kenney.nl/assets/tiny-town): candidato para terreno si encaja con los sprites; no importado ni adoptado por este documento.
+- Godot estándar 4.7.2 y sus plantillas: herramientas previstas. GDScript tipado es una preferencia técnica propuesta; [GUT](https://github.com/bitwes/Gut) para pruebas y [Godot MCP](https://github.com/Coding-Solo/godot-mcp) para asistencia son opcionales y requieren verificar compatibilidad. No se han instalado ni configurado. No hay complementos de pago imprescindibles identificados.
+
+Las fuentes se registran como referencias de diseño. Este encargo no descarga recursos, integra código de esos repositorios ni modifica los créditos de la entrega actual.
+
+## Contrato previsto y casos límite
+
+Superficies futuras: elección de inicial, mapa de viaje, combate táctico, recompensa de captura, tienda/entrenamiento, gestión de equipo, guardado y resumen de campaña/postgame. Un único jugador controla su equipo; no se añaden servicios remotos.
+
+Transición propuesta: elegir inicial → viajar al encuentro disponible → combatir → registrar victoria y bajas → resolver captura → tienda → preparar siguiente encuentro. El cierre de la Liga habilita el postgame. La derrota conduce a fin de campaña conforme a la política de reservas que se acuerde. Guardar también dentro de los combates, conservando RNG, cola y orientación, es el punto de partida del sistema actual.
+
+Implicaciones de datos que habrá que especificar antes de programar:
+
+- IDs estables de ubicación, encuentro y tabla de captura/versionado; separar especies salvajes de equipos de entrenador, gimnasio y jefe.
+- Inicial, medallas, hitos narrativos, rutas visitadas, capturas reclamadas, resultado del sorteo y estado de la tienda. Semilla y reglas de generación persistidas; inspeccionar una recompensa no la vuelve a sortear.
+- IDs individuales, especie, PS, EXP, origen/mote, equipable, estadísticas entrenadas y movimientos si se adoptan; separar activos, reservas y bajas sin duplicar miembros.
+- Transacciones únicas de captura, compra, entrenamiento y evolución: cerrar o recargar no concede otra recompensa ni cobra dos veces. Definir recuperación ante cierre a mitad de guardado y conservar copia de datos inválidos antes de descartarlos.
+- Guardado nativo con esquema/edición propios o un importador explícito. No prometer lectura automática del localStorage web desde el ejecutable, ni sobrescribir partidas anteriores. La compatibilidad exacta está por decidir.
+- Conservar PRNG, reglas de redondeo y desempates cuando se exija paridad. Usar pruebas y simulador actuales como referencia; añadir escenarios para un único inicial, encuentros de mayor tamaño y la economía nueva.
+
+Antes de aceptar cada entrega: comprobar que las capturas pertenecen a su tabla y respetan exclusiones; que solo hay seis desplegados; que no se revive al evolucionar, cambiar de equipo o recargar; que el inventario y las mejoras no se duplican; y que la campaña puede continuar tras guardar en cada superficie. Las pruebas de diversión requieren partidas humanas; las simulaciones no fijan su duración en minutos.
+
+## Decisiones pendientes y siguiente entrega
+
+1. Política del gachapón en gimnasios/eventos, revisitas, duplicados y tablas agotadas; resolver K07 frente a P07/P08 antes de programar recompensas.
+2. PC de reserva, cambios permitidos y si perder los seis desplegados termina la campaña aun teniendo reservas. El usuario confirmó bajas definitivas y reinicio al perder el equipo; no inventar rescates desde el PC.
+3. Escala de niveles, requisitos evolutivos/caramelos/piedras, aprendizaje de movimientos y límites/coste del entrenamiento. El sistema actual de cinco niveles no queda ampliado por este documento.
+4. Rutas obligatorias/desvíos, número de combates especiales, escala de mapas, condiciones de activación y objetivos; decidir cómo se elige uno de los dos desafíos de postgame y qué ocurre al completarlo.
+5. Formato y compatibilidad de guardados; localización de Godot, plantillas y distribución del ejecutable cuando se autorice el port. Un único archivo `.exe` o `.exe` acompañado de recursos es una decisión de empaquetado, no un requisito ya confirmado.
+
+Estado del traspaso: requisitos registrados; hay decisiones de producto por cerrar y **falta autorización expresa para iniciar Godot**. La futura primera muestra de campaña abarcará Paleta hasta Brock como propuesta de alcance, precedida por una prueba técnica pequeña. La secuencia y criterios de cierre están en [PLAN_SPRINTS.md](docs/PLAN_SPRINTS.md#11-siguiente-etapa-kanto-y-ejecutable).

@@ -1,8 +1,10 @@
 # Plan de desarrollo por sprints — Pokémon táctico roguelike
 
-Fecha: 15 de octubre de 2026. Versión: 1.11. Estado: sprints 0–11 completados técnicamente y sprint 12 preparado para publicar. Publicación aplazada por el usuario; pruebas con personas pendientes. Tras completar las mecánicas se aplicó un ajuste inicial de campaña en la edición 14, conservando reglas de las partidas anteriores.
+Fecha: 15 de octubre de 2026. Versión documental: 1.12. Estado: sprints 0–11 completados técnicamente y sprint 12 preparado para publicar. Publicación aplazada por el usuario; pruebas con personas pendientes. Tras completar las mecánicas se aplicó un ajuste inicial de campaña en la edición 14, conservando reglas de las partidas anteriores. La versión del juego continúa en 0.12.0.
 
-Este documento conserva las decisiones del proyecto y organiza entregas pequeñas para construirlo con asistencia de IA. Cada sprint produce algo revisable y termina antes de comenzar el siguiente. El objetivo es un juego de navegador divertido para el portfolio, con pruebas locales primero y una posible publicación posterior en web propia. La viralidad es una aspiración, no un criterio garantizado de éxito.
+Este documento conserva las decisiones del proyecto y organiza entregas pequeñas para construirlo con asistencia de IA. Cada sprint produce algo revisable y termina antes de comenzar el siguiente. Los sprints 0–12 corresponden al objetivo inicial de navegador. La siguiente etapa apunta a un ejecutable Windows offline y una campaña larga basada en Rojo; el detalle está en [PRODUCT.md](../PRODUCT.md#campaña-de-kanto--requisitos-confirmados) y la secuencia futura en la [sección 11](#11-siguiente-etapa-kanto-y-ejecutable). La viralidad es una aspiración, no un criterio garantizado de éxito.
+
+**Instrucción vigente: no empezar el port a Godot hasta que el usuario lo indique expresamente.** Esta entrega solo incorpora inputs a documentación y backlog. Ningún sprint 13 o posterior está iniciado o autorizado por el encargo anterior de completar los sprints web.
 
 ## 1. Forma de trabajar
 
@@ -16,7 +18,9 @@ Este documento conserva las decisiones del proyecto y organiza entregas pequeña
 - No fijar fechas hasta conocer el ritmo real de las primeras entregas. Un sprint es una unidad de resultado, no necesariamente una semana.
 - La publicación se trata en su propio sprint; este plan no ejecuta ni autoriza por sí mismo un despliegue.
 
-## 2. Decisiones confirmadas
+## 2. Decisiones de la etapa web 0–12
+
+Registro histórico y reglas de la implementación 0.12.0. Para trabajo futuro prevalecen las decisiones nuevas de PRODUCT.md: ejecutable offline, un inicial de Oak, campaña larga de Rojo, captura/tienda y Liga antes de legendarios. Documentar ese objetivo no cambia las partidas existentes.
 
 | Área | Regla |
 | --- | --- |
@@ -70,7 +74,7 @@ Estos puntos son propuestas de arranque; no deben presentarse como decisiones ex
 | Metaprogresión | No añadir aumentos permanentes de poder al principio; decidir tras probar la ruta | Después del sprint 9 |
 | Idioma y dispositivos | Español y PC con ratón como objetivo inicial | Sprint 0 y 11 |
 
-Las fórmulas de daño, precisión por ángulo y costes de terreno son provisionales y se conservan por instrucción del usuario. Sprint 5 restablece PT, protección y estados por encuentro; conserva PS y bajas. La recuperación del objeto de una unidad derrotada queda por decidir en sprint 6. Deben quedar parametrizados y documentarse cuando se decidan. El coste de vida persistente debe probarse antes de aumentar la longitud de la partida.
+Las fórmulas de daño, precisión por ángulo y costes de terreno son provisionales. El historial de la edición 14 y el informe de balance describen su estado actual; la actualización documental no modifica parámetros. Sprint 5 restablece PT, protección y estados por encuentro; conserva PS y bajas. La recuperación del equipable al morir o sustituir fue confirmada e implementada en sprint 6. El coste de vida persistente debe probarse de nuevo al aumentar la longitud de la campaña.
 
 ## 4. Reutilización de repositorios públicos
 
@@ -100,7 +104,7 @@ No se necesita servidor de juego para la primera versión. Cuentas, nube, multij
 
 ## 6. Sprints y criterios de cierre
 
-Sprints 0–6 completados técnicamente; resto pendiente. Los criterios siguientes describen el cierre de cada entrega. Las comprobaciones ejecutadas figuran en los informes de cada sprint.
+Sprints 0–12 completados técnicamente; publicación y pruebas humanas pendientes. Los criterios siguientes conservan el alcance histórico de cada entrega. Las comprobaciones ejecutadas figuran en los informes de cada sprint. Los sprints futuros se registran en la sección 11.
 
 ### Sprint 0 — Preparación y recursos mínimos
 
@@ -302,7 +306,7 @@ Entrega 12: completada técnicamente, versión 0.12.0, rama codex/sprint-12. 93 
 
 Plantilla de cierre: objetivo entregado; archivos o módulos modificados; recursos reutilizados y procedencia; comprobaciones ejecutadas y resultados; prueba manual disponible; feedback; pendientes; actualización de valores provisionales.
 
-Petición sugerida para continuar, tras probar la gestión: **«Empieza únicamente el sprint 7 del PLAN_SPRINTS.md; añade experiencia, niveles simplificados y evoluciones mediante objetos».**
+No hay un sprint de implementación activo. Registrar o revisar requisitos es compatible con la espera; iniciar el port requiere una nueva indicación expresa del usuario.
 
 ## 9. Historial de entregas
 
@@ -328,3 +332,30 @@ Sprint 4: orientación final con confirmación, precisión por ángulo, rutas en
 ## Alcance final del encargo conjunto
 
 El usuario autorizó el 15 de octubre completar los sprints restantes en una sesión, conservando hitos separados. La restricción original de una entrega por petición queda sustituida en este encargo. No se ha delegado ni enviado mensajes externos. Posteriormente eligió preparar la versión y publicar después: el cierre 12 cubre compilación, paquete, textos, guía y reversión; no despliegue real, HTTPS público ni dominio. Las pruebas externas del sprint 11 esperan que el creador comparta la demo.
+
+## 11. Siguiente etapa: Kanto y ejecutable
+
+Registro del 15 de octubre de 2026, **documentado y sin implementación autorizada**. La petición actual incorpora todos los inputs al proyecto y prohíbe iniciar Godot hasta nueva indicación. [PRODUCT.md](../PRODUCT.md) es la fuente única de requisitos K01–K13, ideas P01–P17, conflictos y decisiones pendientes; esta sección organiza su entrega sin duplicar sus reglas.
+
+Cambios de objetivo confirmados: campaña larga con guardado y bajas definitivas; un inicial de Oak; historia y encuentros de Rojo original; mapas grandes; captura aleatoria local tras victoria y tienda con Caramelos Raros/entrenamiento; Liga y rival como cierre, dos desafíos legendarios alternativos después; ejecutable Windows offline. La reserva del PC, cuatro movimientos, vitaminas, objetivos nuevos y tamaños concretos se registran como propuestas cuyo detalle debe cerrarse antes de implementarlo.
+
+| Sprint futuro | Alcance propuesto | Criterio de cierre previsto | Estado |
+| --- | --- | --- | --- |
+| 13 — Base técnica y paridad | Tras autorización expresa, localizar Godot/plantillas y preparar un combate pequeño con recursos existentes, POO y guardado nativo; contrastar reglas con el motor web | Ejecutable local sin red; mismas órdenes/semilla y previsión sin alterar RNG; no modificar ni sobrescribir guardados web | Pendiente; no iniciar |
+| 14 — Paleta hasta Brock | Muestra completa: elección de inicial, rutas iniciales/Bosque Verde, captura local, tienda/evolución/entrenamiento mínimos y gimnasio; recursos solo de este tramo | Poder jugar, guardar y continuar el ciclo completo; captura y compras se conceden una vez; recoger feedback antes de ampliar Kanto | Pendiente; cerrar política de premios y gestión del equipo |
+| 15 — Escala y ritmo táctico | Comparar mapas amplios, cámara, grupos enemigos y objetivos puntuales propuestos | Tiempo de desplazamiento y espera evaluados jugando; reglas compartidas con IA, sin ciclos defensivos; tamaños no fijados por intuición | Pendiente |
+| 16 — Equipo y progresión | Ampliar capturas, reserva si se aprueba, movimientos/MT y requisitos evolutivos/entrenamiento acordados | Comprobar máximo desplegado, bajas, intercambio, límites y recuperación de guardado; reposiciones útiles sin duplicar mejoras | Pendiente |
+| 17 — Celeste y Carmín | Monte Moon, rutas del tramo, Bill, Misty, S. S. Anne, Lt. Surge y rival | Encuentros y premios trazables a Rojo; tramo completo desde una partida continuada | Pendiente |
+| 18 — Lavanda, Azulona y Team Rocket | Túnel Roca, conexiones, Erika, guarida y Torre Pokémon; hitos y desvíos según grafo acordado | Hitos habilitan sus destinos sin saltos accidentales; gacha local separado del equipo de entrenadores | Pendiente |
+| 19 — Fucsia, Azafrán y sur de Kanto | Ramas hacia Fucsia, Safari/Silph, Koga/Sabrina, mar, Canela/Blaine y regreso a Giovanni; dividir por tramo si excede una entrega revisable | Cada tramo con prueba de continuidad, equipos temáticos y guardado; no prometer un orden único donde hay alternativas | Pendiente |
+| 20 — Liga y rival | Acceso por rutas 22–23/Calle Victoria, Alto Mando, rival y cierre principal | Campaña completa desde el inicio; reglas de curación y continuidad entre miembros de la Liga explícitas | Pendiente |
+| 21 — Postgame legendario | Tras la Liga, desafíos alternativos de tres aves o Mew/Mewtwo; elección y cierre según regla acordada | Legendarios nunca capturables; desbloqueo y exclusión de destinos comprobados, con escenarios temáticos | Pendiente |
+| 22 — Balance y distribución | Nuevas simulaciones con un inicial/economía de captura, pruebas humanas y paquete Windows | Guardado, recursos, créditos e integridad comprobados; jugar sin conexión y sin Godot instalado; publicar solo cuando el usuario lo autorice | Pendiente |
+
+Dependencias: 13 precede a la muestra 14; la muestra se prueba antes de ampliar contenido. Los sistemas mínimos de captura/tienda necesarios para 14 no esperan a sus ampliaciones de 16. La división anterior es propuesta, no una orden para ejecutar toda la tabla. No se fijan fechas ni duración de campaña sin mediciones humanas.
+
+Antes de empezar cada bloque, cerrar únicamente las decisiones que lo afectan: premio por combate frente a captura única por ubicación; reservas y derrota; caramelos, evolución y entrenamiento; movimientos; acceso a rutas/mazmorras; compatibilidad de guardados. No resolver silenciosamente esos conflictos usando las antiguas reglas web.
+
+El informe de balance de la web se conserva como evidencia previa. Sus cifras no representan el nuevo recorrido ni autorizan rebajar daño, cambiar kits o alterar precios durante esta entrega. Tras portar las reglas y añadir la campaña, repetir pruebas con semillas comparables y partidas humanas.
+
+Entrega documental actual: actualización de PRODUCT.md, este plan, README.md y AGENTS.md. Sin nuevos recursos, dependencias, código de Godot ni cambios en la versión jugable.

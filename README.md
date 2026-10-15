@@ -2,6 +2,8 @@
 
 Roguelike táctico de navegador: tres Pokémon iniciales aleatorios, equipo de hasta seis, ocho zonas de Kanto y dos finales excluyentes. Proyecto de fans para portfolio, desarrollado con asistencia de IA. Publicación pendiente de decisión del creador.
 
+**Siguiente etapa documentada, sin implementar:** ejecutable Windows offline, campaña larga de Pokémon Rojo, un inicial de Oak, mapas amplios, capturas por zona, tienda con evolución/entrenamiento y Liga antes del postgame legendario. [Requisitos y propuestas](PRODUCT.md#campaña-de-kanto--requisitos-confirmados) · [Sprints futuros](docs/PLAN_SPRINTS.md#11-siguiente-etapa-kanto-y-ejecutable). El port a Godot espera una indicación expresa del usuario; la versión jugable descrita abajo sigue siendo la web 0.12.0.
+
 ![Combate táctico contra las aves](docs/portfolio/final-aves.png)
 
 ## Probar en local
