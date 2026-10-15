@@ -23,7 +23,14 @@
     "test:browser:package": "node tools/browser-package.cjs",
     "simulate:balance": "node --experimental-strip-types tools/balance/audit.ts",
     "simulate:balance:opening": "node --experimental-strip-types tools/balance/opening_probe.ts",
-    "verify:balance": "node --experimental-strip-types tools/balance/verify_audit.ts"
+    "verify:balance": "node --experimental-strip-types tools/balance/verify_audit.ts",
+    "godot:import": "node --experimental-strip-types tools/godot/import-lab.ts",
+    "godot:verify": "node tools/godot/run.mjs verify",
+    "godot:prepare": "node tools/godot/run.mjs editor-import",
+    "godot:test": "node tools/godot/run.mjs test",
+    "godot:qa": "node tools/godot/run.mjs qa",
+    "godot:export": "node tools/godot/run.mjs export",
+    "godot:qa:export": "node tools/godot/run.mjs qa-export"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

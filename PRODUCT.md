@@ -4,9 +4,9 @@
 
 ## Platform
 
-Entrega jugable actual: web local con Phaser y TypeScript, versión 0.12.0. Objetivo confirmado para la siguiente etapa: ejecutable de Windows, completamente offline, con recursos y guardado locales. El usuario ha descargado `Godot_v4.7.2-stable_win64`; no se ha comprobado su ubicación, ejecución ni la disponibilidad de las plantillas de exportación.
+Entregas actuales: campaña web local 0.12.0 y laboratorio táctico Windows offline 0.13.0 en godot/. Godot 4.7.2 estándar y plantillas oficiales verificados. El ejecutable contiene un ensayo 3v3, recursos y guardado propios; la campaña larga de Kanto aún es el objetivo futuro.
 
-**15 de octubre de 2026: registrar requisitos y propuestas; no iniciar el port a Godot hasta que el usuario lo indique expresamente.** Este documento y el plan de sprints no autorizan crear el proyecto Godot, convertir código, instalar complementos, exportar ni modificar el juego actual. La publicación continúa aplazada.
+**15 de octubre de 2026:** primero se documentaron los inputs sin iniciar Godot. Después el usuario indicó «pues empieza», autorizando el sprint 13 de base técnica. Esta indicación no inicia automáticamente los sprints 14–22 ni resuelve las propuestas pendientes. La publicación continúa aplazada.
 
 ## Users
 
@@ -38,7 +38,7 @@ El usuario ha pedido integrar las órdenes dentro del gameplay, con paneles de a
 
 ## Estado de entrega
 
-Sprints 0–12 cerrados técnicamente para la versión web, con publicación y pruebas externas pendientes. La nueva petición del 15 de octubre autoriza incorporar los inputs a documentación y backlog; **ningún sprint de implementación de la siguiente etapa está iniciado**. No cambiar versión, reglas, guardados, recursos ni dependencias por actualizar este documento.
+Sprints 0–12 cerrados técnicamente para la versión web, con publicación y pruebas externas pendientes. Sprint 13 aporta la base Godot y su ensayo/guardado/exportación; ver [informe](docs/SPRINT_13.md). El código, parámetros y recursos web permanecen intactos. El prototipo nativo no implementa todavía la campaña de los requisitos siguientes.
 
 ## Campaña de Kanto — requisitos confirmados
 
@@ -58,7 +58,7 @@ Esta sección sustituye, como objetivo futuro, el inicio con tres aleatorios, la
 | K10 | Mejorar estadísticas en tienda | Invertir recursos en miembros concretos; límites, precios y magnitud aún sin fijar |
 | K11 | Liga Pokémon y rival | Cierre principal de la campaña; no sustituirlo por un combate legendario |
 | K12 | Legendarios después de la Liga | Dos desafíos alternativos: Articuno/Zapdos/Moltres y Mew/Mewtwo; siguen excluidos de capturas, inicio y reclutamiento |
-| K13 | Port pendiente de indicación expresa | Guardar estos requisitos y planificar; no comenzar Godot por una autorización anterior para terminar los sprints web |
+| K13 | Inicio por indicación expresa | El usuario autorizó sprint 13 con «pues empieza»; no extenderlo automáticamente al resto de la campaña ni a publicación |
 
 Se mantienen las decisiones tácticas anteriores: control manual, cuadrícula cuadrada superior, máximo seis desplegados, tipos modernos y dobles, cola por velocidad recalculada por ronda, movimiento y acción en ambos órdenes, orientación final, aliados atravesables y previsión sin consumir RNG. Los PS y las bajas persisten; consumibles curativos fuera de combate, un equipable por miembro y recuperación del objeto al morir o ser sustituido. La POO comparte comportamiento; tipos y evoluciones siguen siendo datos, no jerarquías de herencia.
 
@@ -125,4 +125,4 @@ Antes de aceptar cada entrega: comprobar que las capturas pertenecen a su tabla 
 4. Rutas obligatorias/desvíos, número de combates especiales, escala de mapas, condiciones de activación y objetivos; decidir cómo se elige uno de los dos desafíos de postgame y qué ocurre al completarlo.
 5. Formato y compatibilidad de guardados; localización de Godot, plantillas y distribución del ejecutable cuando se autorice el port. Un único archivo `.exe` o `.exe` acompañado de recursos es una decisión de empaquetado, no un requisito ya confirmado.
 
-Estado del traspaso: requisitos registrados; hay decisiones de producto por cerrar y **falta autorización expresa para iniciar Godot**. La futura primera muestra de campaña abarcará Paleta hasta Brock como propuesta de alcance, precedida por una prueba técnica pequeña. La secuencia y criterios de cierre están en [PLAN_SPRINTS.md](docs/PLAN_SPRINTS.md#11-siguiente-etapa-kanto-y-ejecutable).
+Estado del traspaso: base técnica del sprint 13 entregada tras autorización expresa; decisiones de producto pendientes para la campaña. La futura primera muestra abarcará Paleta hasta Brock, sprint 14 propuesto. La secuencia y criterios de cierre están en [PLAN_SPRINTS.md](docs/PLAN_SPRINTS.md#11-siguiente-etapa-kanto-y-ejecutable).

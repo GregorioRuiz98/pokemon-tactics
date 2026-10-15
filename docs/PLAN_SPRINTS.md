@@ -1,10 +1,10 @@
 # Plan de desarrollo por sprints — Pokémon táctico roguelike
 
-Fecha: 15 de octubre de 2026. Versión documental: 1.12. Estado: sprints 0–11 completados técnicamente y sprint 12 preparado para publicar. Publicación aplazada por el usuario; pruebas con personas pendientes. Tras completar las mecánicas se aplicó un ajuste inicial de campaña en la edición 14, conservando reglas de las partidas anteriores. La versión del juego continúa en 0.12.0.
+Fecha: 15 de octubre de 2026. Versión documental: 1.13. Sprints 0–12 completados para la web 0.12.0; sprint 13 aporta el laboratorio nativo Windows 0.13.0. Publicación aplazada por el usuario; pruebas con personas pendientes. La web conserva las reglas de la edición 14 y sus partidas anteriores.
 
 Este documento conserva las decisiones del proyecto y organiza entregas pequeñas para construirlo con asistencia de IA. Cada sprint produce algo revisable y termina antes de comenzar el siguiente. Los sprints 0–12 corresponden al objetivo inicial de navegador. La siguiente etapa apunta a un ejecutable Windows offline y una campaña larga basada en Rojo; el detalle está en [PRODUCT.md](../PRODUCT.md#campaña-de-kanto--requisitos-confirmados) y la secuencia futura en la [sección 11](#11-siguiente-etapa-kanto-y-ejecutable). La viralidad es una aspiración, no un criterio garantizado de éxito.
 
-**Instrucción vigente: no empezar el port a Godot hasta que el usuario lo indique expresamente.** Esta entrega solo incorpora inputs a documentación y backlog. Ningún sprint 13 o posterior está iniciado o autorizado por el encargo anterior de completar los sprints web.
+**Autorización vigente:** después de documentar los inputs, el usuario indicó «pues empieza» para iniciar el sprint 13 de base Godot. No se interpreta como autorización para ejecutar toda la campaña 14–22 ni para publicar. La versión web permanece disponible.
 
 ## 1. Forma de trabajar
 
@@ -306,7 +306,7 @@ Entrega 12: completada técnicamente, versión 0.12.0, rama codex/sprint-12. 93 
 
 Plantilla de cierre: objetivo entregado; archivos o módulos modificados; recursos reutilizados y procedencia; comprobaciones ejecutadas y resultados; prueba manual disponible; feedback; pendientes; actualización de valores provisionales.
 
-No hay un sprint de implementación activo. Registrar o revisar requisitos es compatible con la espera; iniciar el port requiere una nueva indicación expresa del usuario.
+Sprint 13 de base Godot cerrado; siguiente entrega propuesta: 14, muestra de Paleta hasta Brock, con las decisiones de campaña que la afecten aún por cerrar.
 
 ## 9. Historial de entregas
 
@@ -335,13 +335,13 @@ El usuario autorizó el 15 de octubre completar los sprints restantes en una ses
 
 ## 11. Siguiente etapa: Kanto y ejecutable
 
-Registro del 15 de octubre de 2026, **documentado y sin implementación autorizada**. La petición actual incorpora todos los inputs al proyecto y prohíbe iniciar Godot hasta nueva indicación. [PRODUCT.md](../PRODUCT.md) es la fuente única de requisitos K01–K13, ideas P01–P17, conflictos y decisiones pendientes; esta sección organiza su entrega sin duplicar sus reglas.
+Registro del 15 de octubre de 2026. El usuario pidió primero documentar sin iniciar Godot y posteriormente indicó «pues empieza»: sprint 13 de base técnica autorizado y entregado. [PRODUCT.md](../PRODUCT.md) es la fuente única de requisitos K01–K13, ideas P01–P17, conflictos y decisiones pendientes. Los sprints restantes se conservan como propuesta.
 
 Cambios de objetivo confirmados: campaña larga con guardado y bajas definitivas; un inicial de Oak; historia y encuentros de Rojo original; mapas grandes; captura aleatoria local tras victoria y tienda con Caramelos Raros/entrenamiento; Liga y rival como cierre, dos desafíos legendarios alternativos después; ejecutable Windows offline. La reserva del PC, cuatro movimientos, vitaminas, objetivos nuevos y tamaños concretos se registran como propuestas cuyo detalle debe cerrarse antes de implementarlo.
 
 | Sprint futuro | Alcance propuesto | Criterio de cierre previsto | Estado |
 | --- | --- | --- | --- |
-| 13 — Base técnica y paridad | Tras autorización expresa, localizar Godot/plantillas y preparar un combate pequeño con recursos existentes, POO y guardado nativo; contrastar reglas con el motor web | Ejecutable local sin red; mismas órdenes/semilla y previsión sin alterar RNG; no modificar ni sobrescribir guardados web | Pendiente; no iniciar |
+| 13 — Base técnica y paridad | Godot/plantillas verificados, laboratorio 3v3 con recursos existentes, POO, guardado y exportación Windows; contraste con el motor web | 16 combates/506 órdenes y 25 escenarios coinciden; cuatro batallas por controles en fuente y ejecutable; guardados web intactos | Completado 0.13.0; [informe](SPRINT_13.md) |
 | 14 — Paleta hasta Brock | Muestra completa: elección de inicial, rutas iniciales/Bosque Verde, captura local, tienda/evolución/entrenamiento mínimos y gimnasio; recursos solo de este tramo | Poder jugar, guardar y continuar el ciclo completo; captura y compras se conceden una vez; recoger feedback antes de ampliar Kanto | Pendiente; cerrar política de premios y gestión del equipo |
 | 15 — Escala y ritmo táctico | Comparar mapas amplios, cámara, grupos enemigos y objetivos puntuales propuestos | Tiempo de desplazamiento y espera evaluados jugando; reglas compartidas con IA, sin ciclos defensivos; tamaños no fijados por intuición | Pendiente |
 | 16 — Equipo y progresión | Ampliar capturas, reserva si se aprueba, movimientos/MT y requisitos evolutivos/entrenamiento acordados | Comprobar máximo desplegado, bajas, intercambio, límites y recuperación de guardado; reposiciones útiles sin duplicar mejoras | Pendiente |
@@ -358,4 +358,4 @@ Antes de empezar cada bloque, cerrar únicamente las decisiones que lo afectan: 
 
 El informe de balance de la web se conserva como evidencia previa. Sus cifras no representan el nuevo recorrido ni autorizan rebajar daño, cambiar kits o alterar precios durante esta entrega. Tras portar las reglas y añadir la campaña, repetir pruebas con semillas comparables y partidas humanas.
 
-Entrega documental actual: actualización de PRODUCT.md, este plan, README.md y AGENTS.md. Sin nuevos recursos, dependencias, código de Godot ni cambios en la versión jugable.
+Entrega documental anterior: inputs registrados en PRODUCT.md, este plan, README.md y AGENTS.md, sin iniciar el port. Entrega actual 13: laboratorio Godot independiente y herramientas de comprobación/exportación. No se ha implementado la campaña larga ni aplicado propuestas de balance.

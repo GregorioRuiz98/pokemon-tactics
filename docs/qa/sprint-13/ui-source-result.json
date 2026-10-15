@@ -1,0 +1,47 @@
+{
+  "assertions": 706,
+  "completed": [
+    {
+      "commands": 69,
+      "composition": "starters",
+      "mode": "current",
+      "outcome": "victory",
+      "round": 6
+    },
+    {
+      "commands": 40,
+      "composition": "mixed",
+      "mode": "current",
+      "outcome": "defeat",
+      "round": 3
+    },
+    {
+      "commands": 9,
+      "composition": "starters",
+      "mode": "classic",
+      "outcome": "victory",
+      "round": 1
+    },
+    {
+      "commands": 21,
+      "composition": "mixed",
+      "mode": "classic",
+      "outcome": "defeat",
+      "round": 2
+    }
+  ],
+  "engine": "4.7.2-stable (official)",
+  "failures": [],
+  "playerOrders": 73,
+  "screenshots": [
+    "01-new-game.png",
+    "02-preview-move.png",
+    "02-preview-attack.png",
+    "02-preview-attack-small.png",
+    "02-preview-finish.png",
+    "03-result.png",
+    "04-1024x720.png",
+    "05-1440x1000.png",
+    "06-credits.png"
+  ]
+}

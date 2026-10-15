@@ -1,0 +1,86 @@
+import { spawnSync } from 'node:child_process';
+import { existsSync, readFileSync, mkdirSync, writeFileSync, cpSync } from 'node:fs';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
+import { gunzipSync } from 'node:zlib';
+
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
+const project = resolve(root, 'godot');
+const work = resolve(root, '../../work/qa-sprint-13');
+const output = resolve(root, '../releases/pokemon-tactics-0.13.0/windows');
+const operation = process.argv[2] ?? 'test';
+const binary = process.env.GODOT_BIN ?? resolve(root, '../../work/godot-4.7.2/Godot_v4.7.2-stable_win64_console.exe');
+mkdirSync(work, { recursive: true });
+function run(executable, args, label, cwd = root) {
+  const logIndex = args.indexOf('--log-file');
+  if (logIndex >= 0) writeFileSync(args[logIndex + 1], '');
+  const result = spawnSync(executable, args, { cwd, encoding: 'utf8', windowsHide: true, timeout: 240_000, maxBuffer: 12 * 1024 * 1024 });
+  const log = (result.stdout ?? '') + (result.stderr ?? '') + (logIndex >= 0 && existsSync(args[logIndex + 1]) ? '\n' + readFileSync(args[logIndex + 1], 'utf8') : '');
+  writeFileSync(resolve(work, `${label}.log`), log);
+  const clean = log.replace(/\x1b\[[0-9;]*m/g, '');
+  const summary = [...new Set(clean.split(/\r?\n/).filter(line => /Godot Engine|^\{|^QA |ERROR:|SCRIPT ERROR:|Parse Error|Imported|Shader|OpenGL/.test(line)))];
+  console.log(summary.join('\n'));
+  if (result.error || result.status !== 0 || /(?:SCRIPT ERROR:|Parse Error|^ERROR:)/m.test(clean)) throw new Error(`${label} failed; see ${resolve(work, `${label}.log`)}${result.error ? ': ' + result.error.message : ''}`);
+  return clean;
+}
+function verifyUi(directory) {
+  const report = JSON.parse(readFileSync(resolve(directory, 'ui-result.json'), 'utf8'));
+  if (report.failures.length || report.completed.length !== 4 || !report.playerOrders) throw new Error('Native UI regression failed.');
+  for (const file of report.screenshots) if (!existsSync(resolve(directory, file))) throw new Error('Missing screenshot: ' + file);
+  console.log(`UI verified: ${report.assertions} assertions, ${report.playerOrders} player orders, four completed battles.`);
+}
+function verify() {
+  const manifest = JSON.parse(readFileSync(resolve(project, 'data/provenance.json'), 'utf8'));
+  for (const entry of manifest.files) {
+    for (const [path, hash] of [[resolve(root, entry.source), entry.sourceSha256], [resolve(project, entry.target), entry.sha256]]) {
+      if (createHash('sha256').update(readFileSync(path)).digest('hex') !== hash) throw new Error(`Asset hash mismatch: ${path}`);
+    }
+    if (entry.target.endsWith('.wav')) {
+      const source = readFileSync(resolve(root, entry.source)), native = readFileSync(resolve(project, entry.target));
+      if (native.length % 2 || native.readUInt32LE(4) !== native.length - 8) throw new Error('Invalid native RIFF container: ' + entry.target);
+      const samples = source.readUInt32LE(40);
+      if (native.readUInt32LE(40) !== samples || !source.subarray(44, 44 + samples).equals(native.subarray(44, 44 + samples))) throw new Error('Audio samples changed: ' + entry.target);
+    }
+  }
+  for (const entry of manifest.ruleSources) {
+    if (createHash('sha256').update(readFileSync(resolve(root, entry.source))).digest('hex') !== entry.sha256) throw new Error(`Reference is stale: ${entry.source}. Run npm run godot:import and review the differences.`);
+  }
+  const fixtures = JSON.parse(gunzipSync(readFileSync(resolve(project, 'tests/parity.json.gz'))).toString('utf8'));
+  console.log(`Verified ${manifest.files.length} assets and ${manifest.ruleSources.length} reference source hashes; ${fixtures.games.length} complete battles.`);
+}
+if (operation === 'verify') { verify(); process.exit(0); }
+if (operation !== 'qa-export') {
+  if (!existsSync(binary)) throw new Error('Godot not found. Set GODOT_BIN to the standard Godot 4.7.2 executable.');
+  const version = spawnSync(binary, ['--version'], { encoding: 'utf8', windowsHide: true });
+  if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
+}
+const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
+if (operation === 'test') {
+  verify();
+  run(binary, ['--headless', ...common, '--script', 'res://tests/parity.gd', '--', `--save-dir=${work}`], 'parity');
+} else if (operation === 'qa') {
+  verify();
+  run(binary, [...common, '--position', '-10000,-10000', '--audio-driver', 'Dummy', '--', `--qa-dir=${resolve(work, 'source')}`], 'ui-source');
+  verifyUi(resolve(work, 'source'));
+} else if (operation === 'editor-import') {
+  verify();
+  run(binary, ['--headless', ...common, '--import'], 'editor-import');
+} else if (operation === 'export') {
+  verify();
+  mkdirSync(output, { recursive: true });
+  run(binary, ['--headless', ...common, '--export-release', 'Windows Desktop', resolve(output, 'PokemonTactics.exe')], 'export-windows');
+  cpSync(resolve(project, 'licenses'), resolve(output, 'licenses'), { recursive: true });
+  cpSync(resolve(project, 'CREDITS.md'), resolve(output, 'CREDITS.md'));
+  writeFileSync(resolve(output, 'LEEME.txt'), 'Pokémon Tactics 0.13.0 — laboratorio táctico offline\n\nAbre PokemonTactics.exe. No necesitas Godot, Node ni un servidor.\nEsta entrega contiene un ensayo 3v3; la campaña de Kanto aún no está implementada.\n\nM: mover; 1/2/3: movimientos; F: orientar y terminar; flechas/Enter: casillas; Esc: cancelar; F8: continuar.\nGuardado local: %APPDATA%/PokemonTacticsLab/laboratory-save.json\nCréditos y licencias acompañan al ejecutable.\n', 'utf8');
+  const digest = createHash('sha256').update(readFileSync(resolve(output, 'PokemonTactics.exe'))).digest('hex');
+  writeFileSync(resolve(output, 'SHA256SUMS.txt'), `${digest}  PokemonTactics.exe\n`);
+  console.log(`Windows executable: ${resolve(output, 'PokemonTactics.exe')}\nSHA256: ${digest}`);
+} else if (operation === 'qa-export') {
+  const release = resolve(output, 'PokemonTactics.exe');
+  if (!existsSync(release)) throw new Error('Run npm run godot:export first.');
+  run(release, ['--position', '-10000,-10000', '--audio-driver', 'Dummy', '--log-file', resolve(work, 'engine-release.log'), '--', `--qa-dir=${resolve(work, 'release')}`], 'ui-release', output);
+  verifyUi(resolve(work, 'release'));
+} else {
+  throw new Error(`Unknown operation: ${operation}`);
+}

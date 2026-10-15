@@ -4,6 +4,8 @@ tools/cache/
 __pycache__/
 *.pyc
 work/
+godot/.godot/
+godot/export_credentials.cfg
 .DS_Store
 .env
 .env.*

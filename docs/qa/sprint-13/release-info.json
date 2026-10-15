@@ -1,0 +1,20 @@
+{
+  "version": "0.13.0",
+  "platform": "Windows x86_64",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "executable": "PokemonTactics.exe",
+  "bytes": 109394264,
+  "sha256": "a05c40a21130ed59e984f44ab3f469a590b52ca856db3bd0e3ec804500234a10",
+  "embeddedPck": true,
+  "sourceEditorRequired": false,
+  "sourceEditorPathDuringTest": "C:/no-editor-installed/godot.exe",
+  "campaignImplemented": false,
+  "referenceBattles": 16,
+  "referenceCommands": 506,
+  "ruleScenarios": 25,
+  "sourceUiAssertions": 706,
+  "releaseUiAssertions": 706,
+  "webTests": 96,
+  "cleanImport": true,
+  "webSourceAndAssetsUnchanged": true
+}

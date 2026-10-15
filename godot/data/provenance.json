@@ -1,0 +1,306 @@
+{
+  "origin": "Existing local assets; documented RIFF padding adaptation for Godot",
+  "files": [
+    {
+      "source": "public/assets/pokemon/1/Idle.png",
+      "target": "assets/pokemon/1/Idle.png",
+      "sha256": "bae238b6ae50dc97781a03b2210dc3ee1954c9f6207826e49091227bb9c783d1",
+      "sourceSha256": "bae238b6ae50dc97781a03b2210dc3ee1954c9f6207826e49091227bb9c783d1"
+    },
+    {
+      "source": "public/assets/pokemon/1/Walk.png",
+      "target": "assets/pokemon/1/Walk.png",
+      "sha256": "84e8e7a58f68204a47f990becc7e8c324e486e5127557261e8ccbe55e9e979b2",
+      "sourceSha256": "84e8e7a58f68204a47f990becc7e8c324e486e5127557261e8ccbe55e9e979b2"
+    },
+    {
+      "source": "public/assets/pokemon/1/thumbnail.png",
+      "target": "assets/pokemon/1/thumbnail.png",
+      "sha256": "b6922b7725a74a05859e29787da9f7f19b55b6c171b85ce305bbbb5ec74d3463",
+      "sourceSha256": "b6922b7725a74a05859e29787da9f7f19b55b6c171b85ce305bbbb5ec74d3463"
+    },
+    {
+      "source": "public/assets/pokemon/1/credits.txt",
+      "target": "assets/pokemon/1/credits.txt",
+      "sha256": "2f679733e9ac56ed51dd2cb1efd9376abc3b69f1993cc1d5f1fadec402faec47",
+      "sourceSha256": "2f679733e9ac56ed51dd2cb1efd9376abc3b69f1993cc1d5f1fadec402faec47"
+    },
+    {
+      "source": "public/assets/pokemon/1/AnimData.xml",
+      "target": "assets/pokemon/1/AnimData.xml",
+      "sha256": "c7722f5da724f40f35fccabb1135fbd1b70e770b2a38db3d9fbe7643af626162",
+      "sourceSha256": "c7722f5da724f40f35fccabb1135fbd1b70e770b2a38db3d9fbe7643af626162"
+    },
+    {
+      "source": "public/assets/pokemon/4/Idle.png",
+      "target": "assets/pokemon/4/Idle.png",
+      "sha256": "304a2a2d7f07e6a81bec42270b585b57d4ce0af78b20a6905a1bc704e2415350",
+      "sourceSha256": "304a2a2d7f07e6a81bec42270b585b57d4ce0af78b20a6905a1bc704e2415350"
+    },
+    {
+      "source": "public/assets/pokemon/4/Walk.png",
+      "target": "assets/pokemon/4/Walk.png",
+      "sha256": "3e120c93b743fe30d10766114d54e230e851a43e4ffc174bcb7eb424a452a05a",
+      "sourceSha256": "3e120c93b743fe30d10766114d54e230e851a43e4ffc174bcb7eb424a452a05a"
+    },
+    {
+      "source": "public/assets/pokemon/4/thumbnail.png",
+      "target": "assets/pokemon/4/thumbnail.png",
+      "sha256": "b3c9587bc5aae4cab25f2624ce57c44891f7bb10ec5cb0ecd2ac8f2e602f59e9",
+      "sourceSha256": "b3c9587bc5aae4cab25f2624ce57c44891f7bb10ec5cb0ecd2ac8f2e602f59e9"
+    },
+    {
+      "source": "public/assets/pokemon/4/credits.txt",
+      "target": "assets/pokemon/4/credits.txt",
+      "sha256": "cc37827c20b6eff5f8fb6218cda14d008257980c4db66d9ef49527484bb7e2cf",
+      "sourceSha256": "cc37827c20b6eff5f8fb6218cda14d008257980c4db66d9ef49527484bb7e2cf"
+    },
+    {
+      "source": "public/assets/pokemon/4/AnimData.xml",
+      "target": "assets/pokemon/4/AnimData.xml",
+      "sha256": "d14356987aafc0bc86c2bdd46fd026a479499032056dad58a0c8f13fbf0686ff",
+      "sourceSha256": "d14356987aafc0bc86c2bdd46fd026a479499032056dad58a0c8f13fbf0686ff"
+    },
+    {
+      "source": "public/assets/pokemon/7/Idle.png",
+      "target": "assets/pokemon/7/Idle.png",
+      "sha256": "d796b3b94475e4e2a5089bf10f392559989d4104d29c2fe387cfe003bcba5447",
+      "sourceSha256": "d796b3b94475e4e2a5089bf10f392559989d4104d29c2fe387cfe003bcba5447"
+    },
+    {
+      "source": "public/assets/pokemon/7/Walk.png",
+      "target": "assets/pokemon/7/Walk.png",
+      "sha256": "0e71a8bf34299cf73e59eccebc0b9fc16dfb9bd9554d8009b2323c8e3c00504f",
+      "sourceSha256": "0e71a8bf34299cf73e59eccebc0b9fc16dfb9bd9554d8009b2323c8e3c00504f"
+    },
+    {
+      "source": "public/assets/pokemon/7/thumbnail.png",
+      "target": "assets/pokemon/7/thumbnail.png",
+      "sha256": "4a6eb581a63d3c3d5bf8d78f5f28e66b2d3d66242d63b23d47adbd6a2f50651f",
+      "sourceSha256": "4a6eb581a63d3c3d5bf8d78f5f28e66b2d3d66242d63b23d47adbd6a2f50651f"
+    },
+    {
+      "source": "public/assets/pokemon/7/credits.txt",
+      "target": "assets/pokemon/7/credits.txt",
+      "sha256": "b21862e27005032445b4c380713439f4908e72fbd2c6f881c9585931b03af0fb",
+      "sourceSha256": "b21862e27005032445b4c380713439f4908e72fbd2c6f881c9585931b03af0fb"
+    },
+    {
+      "source": "public/assets/pokemon/7/AnimData.xml",
+      "target": "assets/pokemon/7/AnimData.xml",
+      "sha256": "cd5137917a3d4fcf7131ad9b395edae4c0cc69a926c1ecfcd0e3b3cbb173bfc7",
+      "sourceSha256": "cd5137917a3d4fcf7131ad9b395edae4c0cc69a926c1ecfcd0e3b3cbb173bfc7"
+    },
+    {
+      "source": "public/assets/pokemon/25/Idle.png",
+      "target": "assets/pokemon/25/Idle.png",
+      "sha256": "f1021ac60879698076fdb80705f893d0646d2b9ddf2bdb8c81803fbb7e87ad86",
+      "sourceSha256": "f1021ac60879698076fdb80705f893d0646d2b9ddf2bdb8c81803fbb7e87ad86"
+    },
+    {
+      "source": "public/assets/pokemon/25/Walk.png",
+      "target": "assets/pokemon/25/Walk.png",
+      "sha256": "5cfc2c775708c28c11f98e027e883261ab3ae4276e51621eec11c979598651f9",
+      "sourceSha256": "5cfc2c775708c28c11f98e027e883261ab3ae4276e51621eec11c979598651f9"
+    },
+    {
+      "source": "public/assets/pokemon/25/thumbnail.png",
+      "target": "assets/pokemon/25/thumbnail.png",
+      "sha256": "c185550d55e33fb586b81662078554b19a244dd75ee69c1b204de014b79ef1f2",
+      "sourceSha256": "c185550d55e33fb586b81662078554b19a244dd75ee69c1b204de014b79ef1f2"
+    },
+    {
+      "source": "public/assets/pokemon/25/credits.txt",
+      "target": "assets/pokemon/25/credits.txt",
+      "sha256": "e5868696fdb34c89de896f1b6b0c4e7c874281ce8de8e1853186e44b337860e9",
+      "sourceSha256": "e5868696fdb34c89de896f1b6b0c4e7c874281ce8de8e1853186e44b337860e9"
+    },
+    {
+      "source": "public/assets/pokemon/25/AnimData.xml",
+      "target": "assets/pokemon/25/AnimData.xml",
+      "sha256": "0666eaa460b7e702dc6c6ecf4cf5095ca652052d4bd92ae4e859da2cd42b2418",
+      "sourceSha256": "0666eaa460b7e702dc6c6ecf4cf5095ca652052d4bd92ae4e859da2cd42b2418"
+    },
+    {
+      "source": "public/assets/pokemon/12/Idle.png",
+      "target": "assets/pokemon/12/Idle.png",
+      "sha256": "936ff1e2ef4d01aa3a30dc8436465bc179dea60142f5c34461091011bf934aea",
+      "sourceSha256": "936ff1e2ef4d01aa3a30dc8436465bc179dea60142f5c34461091011bf934aea"
+    },
+    {
+      "source": "public/assets/pokemon/12/Walk.png",
+      "target": "assets/pokemon/12/Walk.png",
+      "sha256": "36da453a32e920275d475f669d3e58ece66f5dffda5f95c998b0aac660819ad5",
+      "sourceSha256": "36da453a32e920275d475f669d3e58ece66f5dffda5f95c998b0aac660819ad5"
+    },
+    {
+      "source": "public/assets/pokemon/12/thumbnail.png",
+      "target": "assets/pokemon/12/thumbnail.png",
+      "sha256": "1694d3bf9e09f8c315034d8f288ee438fdd167be7b356c9d1bea4882efa2b0e7",
+      "sourceSha256": "1694d3bf9e09f8c315034d8f288ee438fdd167be7b356c9d1bea4882efa2b0e7"
+    },
+    {
+      "source": "public/assets/pokemon/12/credits.txt",
+      "target": "assets/pokemon/12/credits.txt",
+      "sha256": "8bf440ca74ce2ddb7f907216f15d8e73638fe3d18890b3fa670683380bac0717",
+      "sourceSha256": "8bf440ca74ce2ddb7f907216f15d8e73638fe3d18890b3fa670683380bac0717"
+    },
+    {
+      "source": "public/assets/pokemon/12/AnimData.xml",
+      "target": "assets/pokemon/12/AnimData.xml",
+      "sha256": "1996c162997730ee183fa53d5d3ac0305395a5fcaa99010cb02ad57ee83238c6",
+      "sourceSha256": "1996c162997730ee183fa53d5d3ac0305395a5fcaa99010cb02ad57ee83238c6"
+    },
+    {
+      "source": "public/assets/pokemon/74/Idle.png",
+      "target": "assets/pokemon/74/Idle.png",
+      "sha256": "bbb71a05296140ae78b132f62a5408f5830a3c10e30127b23022bf9a9486d93f",
+      "sourceSha256": "bbb71a05296140ae78b132f62a5408f5830a3c10e30127b23022bf9a9486d93f"
+    },
+    {
+      "source": "public/assets/pokemon/74/Walk.png",
+      "target": "assets/pokemon/74/Walk.png",
+      "sha256": "a0d4753f962a93ee469bfb66e3a0acd8799f5d0a989f1527397689470384e0b2",
+      "sourceSha256": "a0d4753f962a93ee469bfb66e3a0acd8799f5d0a989f1527397689470384e0b2"
+    },
+    {
+      "source": "public/assets/pokemon/74/thumbnail.png",
+      "target": "assets/pokemon/74/thumbnail.png",
+      "sha256": "bfd7cf0cf16371d5ababde3933723d4f30523b1340d9de1f778cc3c050a43146",
+      "sourceSha256": "bfd7cf0cf16371d5ababde3933723d4f30523b1340d9de1f778cc3c050a43146"
+    },
+    {
+      "source": "public/assets/pokemon/74/credits.txt",
+      "target": "assets/pokemon/74/credits.txt",
+      "sha256": "9fa93fd45cce8581d83373f822597dbc4e33a00d749a7d183951f36dc6b2af33",
+      "sourceSha256": "9fa93fd45cce8581d83373f822597dbc4e33a00d749a7d183951f36dc6b2af33"
+    },
+    {
+      "source": "public/assets/pokemon/74/AnimData.xml",
+      "target": "assets/pokemon/74/AnimData.xml",
+      "sha256": "9964d5585586be10f3d9185d81c0cfae44535fe6ee760ee43699f9c2bf37cbe0",
+      "sourceSha256": "9964d5585586be10f3d9185d81c0cfae44535fe6ee760ee43699f9c2bf37cbe0"
+    },
+    {
+      "source": "public/assets/audio/select.wav",
+      "target": "assets/audio/select.wav",
+      "sha256": "1fbce7f3627bf56013a7996958e7f9cc2ccafba7434e266931df4e79c4f7ddf5",
+      "sourceSha256": "1fbce7f3627bf56013a7996958e7f9cc2ccafba7434e266931df4e79c4f7ddf5"
+    },
+    {
+      "source": "public/assets/audio/hit.wav",
+      "target": "assets/audio/hit.wav",
+      "sha256": "54c8b27f95bd611a490a7ce38d82245cf2033c79f9e071ee0ae71ff97307a224",
+      "sourceSha256": "54c8b27f95bd611a490a7ce38d82245cf2033c79f9e071ee0ae71ff97307a224"
+    },
+    {
+      "source": "public/assets/audio/victory.wav",
+      "target": "assets/audio/victory.wav",
+      "sha256": "41a5081fa5bcd087d3889d4cb76b6288951476a16a287e6c2ad2eb6e81b638ed",
+      "sourceSha256": "5c90a6d568db89f38f7802cb513ea462d3e652b1a5defac487cb04328bbdbc1d",
+      "modification": "One RIFF padding byte and updated RIFF length; PCM data and chunk length unchanged."
+    },
+    {
+      "source": "public/assets/fonts/PixelifySans.ttf",
+      "target": "assets/fonts/PixelifySans.ttf",
+      "sha256": "9ba86cd010a4de309d263ceff8e8044092c9db7efda869620cb9ff1c4389e8a5",
+      "sourceSha256": "9ba86cd010a4de309d263ceff8e8044092c9db7efda869620cb9ff1c4389e8a5"
+    },
+    {
+      "source": "CREDITS.md",
+      "target": "licenses/web-CREDITS.md",
+      "sha256": "7ab47baf373d2b3b0b4a0fddcab481f5668b2f60f92e9516730d36ce8a10e2c0",
+      "sourceSha256": "7ab47baf373d2b3b0b4a0fddcab481f5668b2f60f92e9516730d36ce8a10e2c0"
+    },
+    {
+      "source": "public/licenses/SpriteCollab-CC-BY-NC-4.0.md",
+      "target": "licenses/SpriteCollab-CC-BY-NC-4.0.md",
+      "sha256": "284233a8bc62ac54d878552845ef66ab94b25112e6fc8f902fcdfa6149748c31",
+      "sourceSha256": "284233a8bc62ac54d878552845ef66ab94b25112e6fc8f902fcdfa6149748c31"
+    },
+    {
+      "source": "public/licenses/PokeAPI-BSD-3-Clause.txt",
+      "target": "licenses/PokeAPI-BSD-3-Clause.txt",
+      "sha256": "1c04595dc662981c20956ae4251dfa7b62b475c345eddf98bc9b904cb2373f2c",
+      "sourceSha256": "1c04595dc662981c20956ae4251dfa7b62b475c345eddf98bc9b904cb2373f2c"
+    },
+    {
+      "source": "public/licenses/PixelifySans-OFL.txt",
+      "target": "licenses/PixelifySans-OFL.txt",
+      "sha256": "b66ba46f511a851ab09998b5a5a9fdbb102545a3864cb993095e1745996873a7",
+      "sourceSha256": "b66ba46f511a851ab09998b5a5a9fdbb102545a3864cb993095e1745996873a7"
+    },
+    {
+      "source": "public/licenses/jsfxr-UNLICENSE.txt",
+      "target": "licenses/jsfxr-UNLICENSE.txt",
+      "sha256": "7b30c10d168b77d43ddaa3269e7bef3e1a9dd68a54a5f23f1630a653d7e2e2f4",
+      "sourceSha256": "7b30c10d168b77d43ddaa3269e7bef3e1a9dd68a54a5f23f1630a653d7e2e2f4"
+    },
+    {
+      "source": "public/licenses/EasyStar-MIT.txt",
+      "target": "licenses/EasyStar-MIT.txt",
+      "sha256": "dbb23ecd59fbe6d317945837e986daa8a4c9bdf2f228d01c1834db7f109a5f6d",
+      "sourceSha256": "dbb23ecd59fbe6d317945837e986daa8a4c9bdf2f228d01c1834db7f109a5f6d"
+    },
+    {
+      "source": "public/licenses/heap-PSF.md",
+      "target": "licenses/heap-PSF.md",
+      "sha256": "456d890fda8c20d4ecd87df3678edf0fc90a540b51ba7e16d2470b3ff851222f",
+      "sourceSha256": "456d890fda8c20d4ecd87df3678edf0fc90a540b51ba7e16d2470b3ff851222f"
+    }
+  ],
+  "ruleSources": [
+    {
+      "source": "src/domain/Pokemon.ts",
+      "sha256": "143dd818e6db4f6c5dd7874ad342eab0b69cad02cb0fab0e6a14de52d302c77a"
+    },
+    {
+      "source": "src/domain/actions.ts",
+      "sha256": "e1f98554629a20097c4f22a8fcea73776576fcb2967304f0d4ce1c901c1706a6"
+    },
+    {
+      "source": "src/domain/combatant.ts",
+      "sha256": "e30b7d90d4a8d74bb1b36979197d2179aa222e9a824de0b5bb873a3b4fddc4b2"
+    },
+    {
+      "source": "src/domain/items.ts",
+      "sha256": "cfa0d47537e1d40566e5f6a309abc14be3ba74de4e7b797ff549b755ba6a3f8c"
+    },
+    {
+      "source": "src/domain/progression.ts",
+      "sha256": "a269f4fcd968c77aaf2bd5c47170d506d45e89f5285fb321c035393ae0032de9"
+    },
+    {
+      "source": "src/rules/battle.ts",
+      "sha256": "f90e7e9f0e7708ecf8ba3074c7e251221c4cebf89e75d9599ed97610e1a8b6c9"
+    },
+    {
+      "source": "src/rules/movement.ts",
+      "sha256": "91b9c676645e76c02fef0c62e20bcb196a432b8556a5d29f813334826751286a"
+    },
+    {
+      "source": "src/rules/position.ts",
+      "sha256": "dc85139d7ad55c9fccb3600fbd4c3a73afd929d7fc26d1544c1257ce472a18c2"
+    },
+    {
+      "source": "src/rules/terrain.ts",
+      "sha256": "f4d9a794c7cc5f8e43ef7933be251477f395d5ecfc96f7526052a42626de323e"
+    },
+    {
+      "source": "src/rules/hazards.ts",
+      "sha256": "daf85ab157a47e0adf2d8e5f21f5c16b054ebcddf3ffab8329149f998024400f"
+    },
+    {
+      "source": "src/data/type-chart.ts",
+      "sha256": "2ab593d09a8564cedf0695db6debb237fa334c22acd9c4772b9f40f83dcf0fae"
+    },
+    {
+      "source": "public/data/pokemon.json",
+      "sha256": "08fe1e9d3a12947bbac38a2c3296adc25f91f1f1baa3dbe0b0354285543b6a6c"
+    },
+    {
+      "source": "tools/godot/import-lab.ts",
+      "sha256": "5f74c70ed651a8fc5ac08b113eb25cc43170c1c7af0e42c606bd124cfb6915ca"
+    }
+  ]
+}
