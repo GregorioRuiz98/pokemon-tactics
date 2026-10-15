@@ -41,7 +41,8 @@ function validateBattle(value: unknown, run: Run, catalog: readonly PokemonSpeci
     requireValid(unit.heldItem === ('heldItem' in template ? template.heldItem : null));
     const species = catalog.find(species => species.id === unit.speciesId)!;
     const xp = 'xp' in template ? template.xp : 0;
-    const original = atLevel(pokemonFor(unit.speciesId).createCombatant(species, unit.team, { x: 0, y: 0 }), run.edition >= 7 && typeof xp === 'number' ? levelFor(xp) : 1);
+    const original = atLevel(pokemonFor(unit.speciesId).createCombatant(species, unit.team, { x: 0, y: 0 }), run.edition >= 7 && typeof xp === 'number' ? levelFor(xp) : 1, run.edition);
+    requireValid(unit.ruleset === (run.edition >= 14 ? run.edition : undefined));
     for (const field of ['name', 'types', 'maxHp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed', 'range', 'budget', 'maxTp', 'profile'] as const)
       requireValid(equal(unit[field], original[field]));
     requireValid(integer(unit.hp, 0, unit.maxHp) && integer(unit.tp, 0, unit.maxTp) && integer(unit.remaining, 0, unit.budget));

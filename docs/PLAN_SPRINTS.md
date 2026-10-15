@@ -295,6 +295,8 @@ Entrega 10C: completada técnicamente, versión 0.10.2, rama codex/sprint-10C. 8
 
 Entrega 10D: completada técnicamente, versión 0.10.3, rama codex/sprint-10D. 90 pruebas, build/tipos y recursos comprobados. Ver [informe](SPRINT_10D.md).
 
+Entrega 11: completada técnicamente, versión 0.11.0, rama codex/sprint-11. 93 pruebas, build/tipos y recursos comprobados. Ver [informe](SPRINT_11.md).
+
 Plantilla de cierre: objetivo entregado; archivos o módulos modificados; recursos reutilizados y procedencia; comprobaciones ejecutadas y resultados; prueba manual disponible; feedback; pendientes; actualización de valores provisionales.
 
 Petición sugerida para continuar, tras probar la gestión: **«Empieza únicamente el sprint 7 del PLAN_SPRINTS.md; añade experiencia, niveles simplificados y evoluciones mediante objetos».**

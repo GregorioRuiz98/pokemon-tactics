@@ -1,5 +1,6 @@
 import './tactical.css';
 import {
+  INITIAL_SPECIES,
   validateCatalog,
   TYPE_NAMES,
   STAT_NAMES,
@@ -360,7 +361,7 @@ async function boot(): Promise<void> {
       throw new Error(`No se pudo cargar el catálogo (${response.status}).`);
     const catalog = validateCatalog(await response.json());
     await document.fonts.load('16px "Pixelify Sans"');
-    render(catalog);
+    render(catalog.filter(species=>(INITIAL_SPECIES as readonly number[]).includes(species.id)));
   } catch (error) {
     app.innerHTML = `<main class="failure"><p class="eyebrow">POKÉMON TACTICS</p><h1>No pudimos abrir el tablero</h1><p>${esc(error instanceof Error ? error.message : 'Error de recursos locales.')}</p><button id="retry">Volver a intentar</button></main>`;
     document

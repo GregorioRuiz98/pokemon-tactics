@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "birds: recarga en combate conserva RNG/cola/PS",
+    "birds: nueve combates reales desde nueva partida hasta victoria; todas las órdenes aliadas mediante UI y guardado exacto",
+    "psychic: recarga en combate conserva RNG/cola/PS",
+    "psychic: nueve combates reales desde nueva partida hasta victoria; todas las órdenes aliadas mediante UI y guardado exacto"
+  ],
+  "errors": [],
+  "external": []
+}

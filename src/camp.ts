@@ -1,5 +1,5 @@
 import './style.css';
-import { STAT_KEYS, STAT_NAMES, TYPE_NAMES, validateCatalog } from './data/catalog';
+import { INITIAL_SPECIES, STAT_KEYS, STAT_NAMES, TYPE_NAMES, validateCatalog } from './data/catalog';
 import type { AnimationName, PokemonSpecies } from './data/catalog';
 import { ROLES } from './rules/design';
 import { CampScene } from './game/CampScene';
@@ -144,7 +144,7 @@ async function boot(): Promise<void> {
   try {
     const catalog = await loadCatalog();
     await document.fonts.load('16px "Pixelify Sans"');
-    render(catalog);
+    render(catalog.filter(species=>(INITIAL_SPECIES as readonly number[]).includes(species.id)));
   } catch (error) {
     showFailure(error instanceof Error ? error.message : 'No se pudieron leer los recursos locales.');
   }

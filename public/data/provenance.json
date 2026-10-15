@@ -1518,6 +1518,45 @@
       "license": "MIT",
       "modification": "None",
       "sha256": "aee4244863487a2d54b8ba545c49e1852b90dbbc4a617b7ea28b8605e4ae3687"
+    },
+    {
+      "path": "public/assets/audio/select.wav",
+      "source": "https://github.com/chr15m/jsfxr/tree/b7b6aa27d62f8f356db267276bf54b451555c49d",
+      "license": "Unlicense",
+      "authors": [
+        "Eric Fredricksen",
+        "Chris McCormick",
+        "Dr. Petter",
+        "Pedro Ladaria"
+      ],
+      "modification": "Seeded blipSelect preset; volume 0.16; WAV generated locally",
+      "sha256": "1fbce7f3627bf56013a7996958e7f9cc2ccafba7434e266931df4e79c4f7ddf5"
+    },
+    {
+      "path": "public/assets/audio/hit.wav",
+      "source": "https://github.com/chr15m/jsfxr/tree/b7b6aa27d62f8f356db267276bf54b451555c49d",
+      "license": "Unlicense",
+      "authors": [
+        "Eric Fredricksen",
+        "Chris McCormick",
+        "Dr. Petter",
+        "Pedro Ladaria"
+      ],
+      "modification": "Seeded hitHurt preset; volume 0.16; WAV generated locally",
+      "sha256": "54c8b27f95bd611a490a7ce38d82245cf2033c79f9e071ee0ae71ff97307a224"
+    },
+    {
+      "path": "public/assets/audio/victory.wav",
+      "source": "https://github.com/chr15m/jsfxr/tree/b7b6aa27d62f8f356db267276bf54b451555c49d",
+      "license": "Unlicense",
+      "authors": [
+        "Eric Fredricksen",
+        "Chris McCormick",
+        "Dr. Petter",
+        "Pedro Ladaria"
+      ],
+      "modification": "Seeded powerUp preset; volume 0.16; WAV generated locally",
+      "sha256": "5c90a6d568db89f38f7802cb513ea462d3e652b1a5defac487cb04328bbdbc1d"
     }
   ]
 }

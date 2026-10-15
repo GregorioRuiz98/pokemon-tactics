@@ -10,6 +10,7 @@ export type MajorStatus = {
 // Values only: class instances never enter a save/replay snapshot.
 export type Combatant = Unit & {
   speciesId: number;
+  ruleset?: number;
   heldItem: HeldItemId | null;
   name: string;
   team: Team;

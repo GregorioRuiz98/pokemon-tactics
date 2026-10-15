@@ -17,7 +17,8 @@ export abstract class Pokemon {
     this.movement = movement;
     this.actions = Object.freeze([...actions]);
   }
-  action(id: string): TacticalAction | undefined { return this.actions.find(action => action.definition.id === id); }
+  actionsFor(_unit?: Combatant): readonly TacticalAction[] { return this.actions; }
+  action(id: string, unit?: Combatant): TacticalAction | undefined { return this.actionsFor(unit).find(action => action.definition.id === id); }
   createCombatant(species: PokemonSpecies, team: Team, position: Point): Combatant {
     if (species.id !== this.speciesId || ((species.legendary || species.mythical) && team !== 'enemy') || species.types.some(type => !(POKEMON_TYPES as readonly string[]).includes(type)))
       throw new Error('Especie incompatible con su clase táctica.');
@@ -43,6 +44,9 @@ export class Bulbasaur extends Pokemon {
   }
 }
 export class Charmander extends Pokemon {
+  override actionsFor(unit?: Combatant): readonly TacticalAction[] {
+    return unit?.ruleset && unit.ruleset >= 14 ? [this.actions[0], new AreaDamageAction(action('flame-burst', 'Pirotecnia', 'Fuego en cruz; incluye aliados. Sin ascuas persistentes.', 'fire', 2, 2), 50, 'special'), this.actions[2]] : this.actions;
+  }
   constructor() {
     super(4, 'Ofensiva especial y quemadura', 4, [
       new DamageAction(action('basic', 'Ascuas', 'Ataque especial básico de tipo Fuego.', 'fire', 0, 2), 40, 'special'),

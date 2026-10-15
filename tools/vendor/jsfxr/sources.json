@@ -1,0 +1,22 @@
+{
+  "repository": "https://github.com/chr15m/jsfxr",
+  "commit": "b7b6aa27d62f8f356db267276bf54b451555c49d",
+  "license": "Unlicense",
+  "files": [
+    {
+      "file": "sfxr.js",
+      "source": "https://raw.githubusercontent.com/chr15m/jsfxr/b7b6aa27d62f8f356db267276bf54b451555c49d/sfxr.js",
+      "sha256": "6095a6358e654bc3ffd55d9ccecf694f187953d78b1391ee2823a6fcb92551c5"
+    },
+    {
+      "file": "riffwave.js",
+      "source": "https://raw.githubusercontent.com/chr15m/jsfxr/b7b6aa27d62f8f356db267276bf54b451555c49d/riffwave.js",
+      "sha256": "ab3cea2bd157746d7b01b440a38d1eefc0c7b3bcb464b5aa80ccbd66be4daaec"
+    },
+    {
+      "file": "UNLICENSE",
+      "source": "https://raw.githubusercontent.com/chr15m/jsfxr/b7b6aa27d62f8f356db267276bf54b451555c49d/UNLICENSE",
+      "sha256": "7b30c10d168b77d43ddaa3269e7bef3e1a9dd68a54a5f23f1630a653d7e2e2f4"
+    }
+  ]
+}

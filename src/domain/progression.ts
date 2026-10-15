@@ -3,10 +3,11 @@ import type { Combatant } from './combatant.ts';
 export const MAX_LEVEL = 5;
 export const levelFor = (xp: number): number => Math.min(MAX_LEVEL, 1 + Math.floor(xp / 60));
 export const xpToNext = (xp: number): number => levelFor(xp) === MAX_LEVEL ? 0 : levelFor(xp) * 60 - xp;
-export function atLevel(unit: Combatant, level = 1): Combatant {
+export function atLevel(unit: Combatant, level = 1, ruleset = 6): Combatant {
   if (!Number.isInteger(level) || level < 1 || level > MAX_LEVEL) throw new Error('Nivel no válido.');
   const gain = level - 1;
-  return { ...unit, maxHp: unit.maxHp + gain * 5, hp: unit.hp + gain * 5,
+  const scale = ruleset >= 14 ? 2 : 1;
+  return { ...unit, ...(ruleset >= 14 ? { ruleset } : {}), maxHp: (unit.maxHp + gain * 5) * scale, hp: (unit.hp + gain * 5) * scale,
     attack: unit.attack + gain * 4, defense: unit.defense + gain * 4,
     specialAttack: unit.specialAttack + gain * 4, specialDefense: unit.specialDefense + gain * 4 };
 }

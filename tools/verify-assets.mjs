@@ -45,3 +45,8 @@ for (const [file, expected] of Object.entries(itemSources.sha256)) {
   assert.equal(createHash('sha256').update(readFileSync(resolve(root, 'tools/vendor/pokeapi', file))).digest('hex'), expected);
 }
 console.log(`${catalog.length} species, ${catalog.length * 2} sheets, ${paths.size} original provenance hashes and ${typeSources.files.length + Object.keys(itemSources.sha256).length} pinned PokeAPI CSV hashes verified.`);
+
+const audioSources=readJson('tools/vendor/jsfxr/sources.json');
+for(const file of audioSources.files) assert.equal(createHash('sha256').update(readFileSync(resolve(root,'tools/vendor/jsfxr',file.file))).digest('hex'),file.sha256);
+assert(existsSync(resolve(root,'public/licenses/jsfxr-UNLICENSE.txt')));
+console.log('Three audio source hashes and jsfxr license verified.');

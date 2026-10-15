@@ -16,11 +16,11 @@ Roguelike táctico por turnos contra la máquina, con control manual, equipos de
 
 ## Operating Context
 
-Una entrega por sprint; código subido a GitHub después de las comprobaciones. Los sprints 0 y 1 proporcionan catálogo, sprites, campamento y ensayo de movimiento. El sprint 2 permite un combate completo 3 contra 3. El sprint 3 incorpora POO, tipos, dos habilidades por especie, puntos tácticos, estados y dos composiciones fijas para comparar. El sprint 4 añade orientación final, precisión por ángulo, tránsito aliado, perfiles de terreno, áreas, empuje y ascuas. El sprint 5 incorpora tres compañeros aleatorios, seis encuentros conectados, PS y bajas persistentes, guardado local y resultado de partida. El sprint 6 incorpora tienda, reclutamiento, curación fuera de combate, equipables y hasta seis aliados. Experiencia y evoluciones permanecen en el plan.
+Una entrega por sprint; código subido a GitHub después de las comprobaciones. Los sprints 0 y 1 proporcionan catálogo, sprites, campamento y ensayo de movimiento. El sprint 2 permite un combate completo 3 contra 3. El sprint 3 incorpora POO, tipos, dos habilidades por especie, puntos tácticos, estados y dos composiciones fijas para comparar. El sprint 4 añade orientación final, precisión por ángulo, tránsito aliado, perfiles de terreno, áreas, empuje y ascuas. El sprint 5 incorpora tres compañeros aleatorios, seis encuentros conectados, PS y bajas persistentes, guardado local y resultado de partida. El sprint 6 incorpora tienda, reclutamiento, curación fuera de combate, equipables y hasta seis aliados. Sprints 7–10 incorporan experiencia, evoluciones, dos finales y ocho zonas. Sprint 11 añade tutorial, sonido local, pruebas completas y un ajuste inicial de campaña.
 
 ## Capabilities and Constraints
 
-Velocidad con variación de 5–10 % determina la cola de una ronda; una activación por unidad, desplazamiento y acción en ambos órdenes. Recursos locales. Reutilizar repositorios públicos con atribución y conservar las hojas originales. No hay cuentas, multijugador ni IA generativa durante el juego. Pokémon es un requisito del usuario; los legendarios quedan reservados para jefes en sprints posteriores.
+Velocidad con variación de 5–10 % determina la cola de una ronda; una activación por unidad, desplazamiento y acción en ambos órdenes. Recursos locales. Reutilizar repositorios públicos con atribución y conservar las hojas originales. No hay cuentas, multijugador ni IA generativa durante el juego. Pokémon es un requisito del usuario; los legendarios solo aparecen como jefes.
 
 POO solicitada por el usuario para facilitar la herencia de comportamiento. Base común de Pokémon y especializaciones con acciones compartidas; tipos dobles y evoluciones futuras como datos. Contrato en `docs/ARCHITECTURE.md`. El estado serializable sigue separado de las clases con comportamiento.
 
@@ -33,3 +33,7 @@ El usuario pide aplazar el equilibrio hasta terminar las mecánicas y conservar 
 ## Brand Commitments
 
 El usuario ha pedido integrar las órdenes dentro del gameplay, con paneles de atacante/objetivo y previsión de ataque inspirados en la captura de RPG táctico aportada el 14 de octubre. Se adapta esa organización a Pokémon y al tablero en vista superior. La composición es una preferencia confirmada para las siguientes entregas.
+
+## Estado de entrega
+
+Encargo del 15 de octubre: completar los sprints restantes con hitos de Git separados. Publicar después, por decisión del usuario. Preparar versión local, paquete y guía. Pruebas externas aún sin realizar.

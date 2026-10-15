@@ -19,7 +19,7 @@ export class HealingItem extends Item {
     super(id, name, price, `Recupera hasta ${recovery} PS. Solo fuera de combate; no revive.`);
     this.recovery = recovery;
   }
-  restored(hp: number, maximum: number): number { return Math.min(maximum - hp, this.recovery); }
+  restored(hp: number, maximum: number, scale = 1): number { return Math.min(maximum - hp, this.recovery * scale); }
 }
 export class EvolutionItem extends Item {
   constructor(id: 'rare-candy' | 'thunder-stone', name: string) {

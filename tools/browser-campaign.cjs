@@ -27,7 +27,7 @@ fs.mkdirSync(output, { recursive: true });
     await page.setViewportSize({width:390,height:844});
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
     await page.screenshot({path:path.join(output,'evolution-mobile.png'),fullPage:true}); checks.push('Gestión utilizable a 390 px sin desbordamiento horizontal');
-    await page.locator('#leave-service').click(); await page.locator('[data-node="1-1"]').click();
+    await page.locator('#leave-service').click(); await page.locator('[data-node]:enabled').first().click();
     await page.waitForSelector('canvas'); await page.waitForFunction(()=>!document.body.textContent.includes('Cargando sprites'));
     await page.screenshot({path:path.join(output,'evolved-battle.png'),fullPage:true}); checks.push('Especie evolucionada desplegada en combate con sus recursos');
     for (const boss of catalog.some(p=>p.id===150) ? ['birds','psychic'] : ['birds']) {

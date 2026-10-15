@@ -904,3 +904,8 @@
 .zone-psychic { --zone-color: #f5bbd6; background-color: #99618b44; }
 .zone-ground { --zone-color: #eed0a1; background-color: #a38a5144; }
 .zone-label { position: absolute; bottom: 2px; left: 2px; font-size: clamp(6px, 1vw, 9px); color: #fff8dc; background: #132b27; padding: 1px; z-index: 3; pointer-events: none; }
+
+.options-panel .sound-control { display:grid; grid-template-columns:1fr auto; gap:8px; margin:12px 0; }
+.options-panel input[type=range] { grid-column:1 / -1; width:100%; accent-color:#f2cd82; }
+.options-panel .game-guide { max-width:60ch; line-height:1.5; margin:18px 0; }
+.options-panel .game-guide li { margin:12px 0; }

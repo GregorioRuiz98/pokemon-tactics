@@ -121,7 +121,11 @@ export class BoardScene extends Phaser.Scene {
     if (!(sprite instanceof Phaser.GameObjects.Sprite)) return;
     const speciesId = this.speciesByUnit.get(id)!;
     const actual = this.textures.exists(`${speciesId}-${name}`) ? name : 'Idle';
-    const data = this.catalog.find((p) => p.id === speciesId)!.animations[actual];
+    const species = this.catalog.find((p) => p.id === speciesId)!;
+    const data = species.animations[actual];
+    // Large boss sheets keep their original pixels; their displayed footprint fits the board.
+    const frameSize = Math.max(...Object.values(species.animations).flatMap(animation => [animation.width, animation.height]));
+    sprite.setScale(Math.min(2, 76 / frameSize));
     sprite.setOrigin(data.anchorX / data.width, data.anchorY / data.height);
     sprite.play(`${speciesId}-${actual}-${direction}`, true);
     if (this.paused) sprite.anims.pause();

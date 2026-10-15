@@ -179,3 +179,7 @@ SpriteCollab, commit fijado en tools/sources.lock.json. Autores: CHUNSOFT. Hojas
 ### 27 · Sandshrew
 
 SpriteCollab, commit fijado en tools/sources.lock.json. Autores: 3P1C, CHUNSOFT, Emboarger. Hojas originales; miniatura recortada. Créditos completos: assets/pokemon/27/credits.txt. Datos: PokéAPI (API v2; instantánea local y hashes).
+
+## Sonido del sprint 11
+
+Tres WAV generados localmente con presets deterministas de jsfxr, revisión b7b6aa27d62f8f356db267276bf54b451555c49d. jsfxr: Eric Fredricksen y Chris McCormick, basado en sfxr de Dr. Petter; RIFFWAVE: Pedro Ladaria. Unlicense/dominio público; originales y hashes en tools/vendor/jsfxr y public/licenses/jsfxr-UNLICENSE.txt. Se reduce el volumen en los presets. No se utiliza música ni audio de Pokémon.

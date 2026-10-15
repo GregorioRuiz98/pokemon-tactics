@@ -1,38 +1,24 @@
 # Pokémon Tactics
 
-- Leer `docs/PLAN_SPRINTS.md` y el informe del último sprint antes de continuar.
-- Sprints 0–6 completados técnicamente; próximo sprint: 7. No incorporar experiencia, niveles, evoluciones ni jefes sin la petición del sprint correspondiente.
-- Usar los scripts reales de `package.json`. Node 24 es la versión comprobada.
-- Reglas independientes de Phaser en `src/rules`; catálogo validado en `src/data`; representación en `src/game`.
-- Reutilizar recursos públicos y registrar fuente, commit, licencia, autores y cambios. No modificar las hojas originales de SpriteCollab.
-- Los datos y sprites se sirven localmente. Las importaciones de red son tareas explícitas de desarrollo, nunca del arranque del juego.
-- La partida empieza con tres especies distintas al azar dentro de las seis actuales. Puede reclutar hasta seis miembros; todos los vivos se despliegan frente a tres enemigos. Las bajas salen del roster y quedan en `departed`; IDs monotónicos, independientes de especie. Sustituir permite liberar un miembro con confirmación, también antes de llenar el equipo.
-- `src/rules/movement.ts` contiene navegación con EasyStar, terreno, ocupación y presupuesto; nunca duplicar esas reglas en Phaser. El desplazamiento se confirma y se revalida antes de cobrar puntos.
-- Sprint 4 incorpora orientación final con confirmación/cancelación y precisión por frente/flanco/espalda; rutas que atraviesan aliados sin terminar en casilla ocupada, con enemigos bloqueando. Costes por perfil y previsiones compartidas con IA. Ver `docs/SPRINT_4.md`.
-- POO de dominio en `src/domain`: base `Pokemon`, seis especializaciones y acciones polimórficas. Tipos y evoluciones son relaciones de datos; no crear herencia por tipo ni convertir evoluciones en subclases de preevoluciones. Contrato en `docs/ARCHITECTURE.md`.
-- `src/rules/battle.ts` contiene PRNG, cola, activaciones, resolución de acciones y política táctica. No consumir tiradas al inspeccionar, previsualizar o animar. Una cola estable por ronda; una acción y un desplazamiento continuo por activación, en cualquier orden. Mantener `Battle`/`Combatant` serializables; los objetos con comportamiento quedan fuera del estado.
-- Las bajas se conservan con PS 0 para el registro, pero se excluyen de ocupación, representación y turnos futuros. Una baja final resuelve el resultado inmediatamente.
-- Posición/terreno en `src/rules/position.ts` y `terrain.ts`. Agua deja pasar disparos; roca/unidades intermedias bloquean. Áreas incluyen aliados y excluyen al lanzador, con una previsión por afectado; daño, tiradas y PT no se duplican. Empuje valida el perfil y la ocupación del objetivo. Campos temporales serializables, caducidad por ronda.
-- Fórmulas, perfiles terrestres y costes son provisionales. Tabla moderna de 18 tipos, daño físico/especial, afinidad ×1,5, habilidades, PT y tres estados implementados. Reglas y adaptaciones en `docs/SPRINT_3.md`; tabla generada desde CSV locales mediante `tools/import-types.mjs`.
-- El usuario aplaza el equilibrio hasta terminar todas las mecánicas. Conservar los valores base y movimientos actuales; no ajustar daños, precisión, PS ni repertorios por el feedback de bajas rápidas. Los efectos de objetos/progresión son mecánicas de sus sprints. Revisar Lanzallamas temprano en Charmander sigue siendo una opción futura.
-- Ruta principal: menú de partida y ruta; `?view=battle` conserva el combate de ensayo con composiciones fijas. `?view=training` conserva el ensayo; `?view=camp`, la galería. Contratos en `docs/DESIGN_SPRINT_2.md`, `docs/DESIGN_SPRINT_1.md` y `docs/DESIGN.md`.
-- Preferencia visual confirmada el 14 de octubre: HUD de RPG táctico integrado en el gameplay, retratos/fichas en esquinas y órdenes/previsión en el centro. Mantener los controles dentro del marco del juego, reservar espacio para ellos y no tapar casillas. La vista sigue siendo superior.
-- Semilla, composiciones, reinicio y registro están en Opciones del ensayo; en partida no hay reinicio. Conservar Escape y foco. Versión 0.6.0; informe `docs/SPRINT_6.md`, presentación `docs/DESIGN_SPRINT_6.md`. Orientación dentro de `#facing-controls`; `data-facing` aparece también en fichas.
-- El bucle de IA debe invalidar turnos programados al reiniciar; conservar el bloqueo de órdenes durante transiciones y el acceso a pausa/reanudación.
-- `id` identifica unidad; `speciesId`, perfil/recursos. `run.ts` controla transiciones y operaciones; PS/bajas persisten y estados/PT se restablecen por sala. Tienda y reclutamiento son elecciones excluyentes antes de cada combate, con ofertas limitadas. Consumibles solo fuera de combate, sin revivir. Un hueco equipado por miembro; devolver su objeto a la bolsa al sustituir o caer, decisión confirmada del usuario.
-- Esquema 2 en `localStorage`: reconstruir saldo, bolsa, ofertas y roster mediante `replayRun`. Conservar RNG/cola del combate; guardar cada orden antes de animarla. Migración de esquema 1 mediante módulos `legacy-*`, con copia anterior. No cambiar precios/recompensas/generación ni contrato de estados sin revisar versión y migración: el diario depende de esos valores. Preservar guardados inválidos hasta descarte y comprobar conflictos de otras pestañas.
-- Conservar pruebas de integridad de recursos y comprobar la UI en navegador cuando cambie. `tests/fixtures/combat-v0.4.json` protege los parámetros y repertorios aplazados; no regenerarlo para ocultar cambios.
-- Un sprint activo; sin delegación automática ni despliegue implícito.
+- Responder en español. Leer docs/PLAN_SPRINTS.md y el último informe antes de continuar.
+- Encargo del 15 de octubre: completar todos los sprints pendientes con entregas separadas. No delegación automática. El usuario ha decidido **preparar versión y publicar después**; no desplegar, cambiar visibilidad ni comprar dominio.
+- Versión 0.11.0, rama codex/sprint-11. Sprints 0–10D completos; 11 completado técnicamente con pruebas humanas pendientes. Preparación de publicación en 12.
+- Scripts reales en package.json, Node 24. Dominio POO en src/domain, reglas puras en src/rules, catálogo en src/data, representación en src/game. No convertir tipos o evoluciones en jerarquías de herencia.
+- Battle/Combatant/Run serializables; solo datos. RNG no se consume al inspeccionar/previsualizar/animar. Cola fija por ronda, una activación por vivo; movimiento y acción en ambos órdenes.
+- Aliados atravesables, destinos ocupados inválidos; enemigos bloquean. Orientación cardinal final con confirmación/cancelación. Precisión frontal/lateral/trasera; áreas incluyen aliados. Reutilizar reglas compartidas con IA.
+- Estados/PT se restablecen por combate; PS, XP, equipo y bajas persisten. Hasta seis vivos, tres iniciales dentro de INITIAL_SPECIES. IDs monotónicos distintos de speciesId. Muertos no reviven; equipo vuelve a la bolsa al morir o ser sustituido.
+- Un equipable por miembro; consumibles/evolución fuera de combate. Evolucionar/subir nivel conserva PS actuales. XP por victoria/contribución, cinco niveles. EVOLUTIONS es una tabla de datos; familias seleccionadas, no toda Kanto.
+- Legendarios/míticos solo enemigos. Tres aves juntas o Mew/Mewtwo; destinos excluyentes. Ocho zonas temáticas, dos mapas por zona y dos arenas. ZONES declara orden y composiciones; peligros etiquetados, daño desde ronda 2.
+- Guardado esquema 3 y edición de reglas persistida. replayRun reconstruye transacciones. No cambiar generación/economía o contratos de una edición ya publicada sin migración o nueva edición. Módulos legacy y *-v2 congelados para migrar esquemas 1/2 con copia. Conservar RNG/cola de peleas en curso, detectar conflictos de pestañas y preservar guardados inválidos hasta descarte.
+- Ediciones 6–13 mantienen recorridos/reglas anteriores. Edición 14 ajusta campaña tras completar mecánicas: PS efectivos ×2, curación 40/100, victoria 150, objetos evolutivos por avance y Pirotecnia en Charmander. La instantánea combat-v0.4.json protege el ensayo clásico; no regenerarla para ocultar cambios. Ver docs/BALANCE.md.
+- UI: HUD táctico dentro del juego, órdenes/previsión centrales, fichas laterales; tablero superior cuadrado. No tapar casillas. Mantener teclado/Escape/foco y movimiento reducido. Reutilizar docs/DESIGN_CAMPAIGN.md y PRODUCT.md.
+- Recursos locales de repositorios públicos con commit/hash/licencia/autores. No modificar hojas originales SpriteCollab. Importadores explícitos; ninguna consulta a PokéAPI/SpriteCollab al jugar. Preservar WAV al reimportar sprites. Prototipos training/camp limitados a sus seis unidades originales.
+- Guardar cada orden aceptada antes de animar; invalidar callbacks/turnos IA al salir. Cargar en combate solo especies desplegadas. Sonido y volumen no afectan al PRNG.
+- Verificar con scripts pertinentes, revisar diff y registrar evidencia real. No declarar probados navegadores/personas no comprobados. No hay linter ni cobertura; Phaser avisa de tamaño. Prueba de release completa ambos destinos desde nueva partida mediante UI.
 
-## Cierre y subida de cada sprint
+## Cierre y GitHub
 
-- El usuario ha autorizado crear el repositorio y subir los cambios al terminar cada sprint. Esta instrucción persiste entre sesiones; no pedir de nuevo permiso para el commit y push de ese trabajo.
-- Repositorio: `https://github.com/GregorioRuiz98/pokemon-tactics`, privado inicialmente. Rama de esta entrega: `codex/sprint-6`; las ramas anteriores conservan sus entregas.
-- La rama predeterminada de GitHub apunta a la última entrega comprobada. Actualizarla tras una subida verificada para que el repositorio abra esa versión; conservar las ramas anteriores.
-- Revisar `git status`, conservar cambios ajenos y comprobar el remoto y la rama antes de actuar. No incluir cachés, dependencias instaladas, compilados ni credenciales.
-- Ejecutar las comprobaciones pertinentes de `package.json`; actualizar `docs/PLAN_SPRINTS.md` y `docs/SPRINT_N.md` con resultados reales y pendientes. Revisar el diff, crear un commit descriptivo y hacer push a la rama de entrega acordada (o a una rama `codex/sprint-N` para una nueva entrega).
-- Verificar que el SHA remoto coincide con el commit local e informar del enlace y las comprobaciones. No usar force push ni sobrescribir trabajo remoto. Si la subida falla, conservar el commit y explicar el bloqueo; no afirmar que está subido.
-- Subir código no inicia automáticamente otro sprint, publica una web ni cambia la visibilidad del repositorio.
-
-## Encargo del 15 de octubre
-El usuario autoriza completar en esta sesión todos los sprints restantes, con entregas separadas. Sustituye la restricción anterior de un sprint por petición. No delegación automática. Publicación aplazada por decisión expresa: preparar versión y guía; no desplegar. Sprint 7: esquema 3, edición persistida, EXP/evoluciones; conservar módulos *-v2 para migración.
+- Autorización persistente para commit/push al terminar cada sprint; no pedirla de nuevo. Repositorio privado: https://github.com/GregorioRuiz98/pokemon-tactics.
+- Revisar status y conservar cambios ajenos. Ramas codex/sprint-N, sin force push. No incluir cachés, node_modules, dist, credenciales o ZIP de publicación en Git.
+- Actualizar informe, plan, versión y créditos con hechos. Verificar SHA remoto después del push; actualizar rama predeterminada a la última entrega comprobada. Subir código no publica la web ni cambia visibilidad.
+- Usar GIT_CONFIG_GLOBAL=NUL y GIT_CONFIG_NOSYSTEM=1 por el entorno local. Preferir credential.helper=manager por comando. Nunca imprimir ni persistir tokens.

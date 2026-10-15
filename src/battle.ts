@@ -1,6 +1,8 @@
 import './tactical.css';
 import { bossTrial, mapTrial } from './data/encounters';
 import './battle.css';
+import { tutorialHtml } from './tutorial';
+import { bindSound, soundControls, playSound } from './audio';
 import { validateCatalog, TYPE_NAMES } from './data/catalog';
 import type { PokemonSpecies } from './data/catalog';
 import { pokemonFor } from './domain/Pokemon';
@@ -68,7 +70,7 @@ export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): (
   app.innerHTML = `
     <main id="battle-root" class="battle-main">
       <section id="gameplay" class="gameplay" aria-labelledby="game-title">
-        <header class="game-topbar"><h1 id="game-title">POKÉMON <span>TACTICS</span></h1><div class="battle-counts"><span id="ally-count"></span><span id="enemy-count"></span></div><button class="hud-utility" id="pause" aria-pressed="${paused}" disabled>${paused ? 'Reanudar' : 'Pausar'} animaciones</button><details id="game-options"><summary>Opciones</summary><div class="options-panel"><h2>Opciones de combate</h2><form id="battle-settings"><label for="seed">Semilla<input id="seed" name="seed" maxlength="64" value="kanto-001" autocomplete="off"></label><label for="variance">Variación<select id="variance"><option value="0.05">±5 %</option><option value="0.1">±10 %</option></select></label><label class="composition-setting" for="composition">Composición<select id="composition"><option value="starters">Iniciales: Bulbasaur, Charmander, Squirtle</option><option value="mixed">Control: Pikachu, Butterfree, Geodude</option></select></label><p>Los cambios se aplican al reiniciar. PT: 2 iniciales, +1 al activar, máximo 5. Estados: tres activaciones propias.</p><button id="restart" type="submit" disabled>Reiniciar combate</button></form><section class="training-roster battle-roster" aria-label="Unidades del combate">${state.units.map((u) => `<button data-unit="${u.id}" data-team="${u.team}" aria-pressed="false"><img src="${asset(`assets/pokemon/${u.speciesId}/thumbnail.png`)}" alt="" width="32" height="32"><span><strong>${escape(u.name)}</strong><small data-unit-info="${u.id}"></small></span></button>`).join('')}</section><nav class="battle-nav" aria-label="Prototipos"><a href="?view=training">Ensayo de movimiento</a><a href="?view=camp">Campamento</a><a href="${asset('CREDITS.md')}" target="_blank" rel="noreferrer">Créditos y licencias</a></nav><details class="battle-log"><summary>Registro de combate</summary><ol id="combat-log"></ol></details></div></details></header>
+        <header class="game-topbar"><h1 id="game-title">POKÉMON <span>TACTICS</span></h1><div class="battle-counts"><span id="ally-count"></span><span id="enemy-count"></span></div><button class="hud-utility" id="pause" aria-pressed="${paused}" disabled>${paused ? 'Reanudar' : 'Pausar'} animaciones</button><details id="game-options"><summary>Opciones</summary><div class="options-panel"><h2>Opciones de combate</h2>${soundControls()}${tutorialHtml()}<form id="battle-settings"><label for="seed">Semilla<input id="seed" name="seed" maxlength="64" value="kanto-001" autocomplete="off"></label><label for="variance">Variación<select id="variance"><option value="0.05">±5 %</option><option value="0.1">±10 %</option></select></label><label class="composition-setting" for="composition">Composición<select id="composition"><option value="starters">Iniciales: Bulbasaur, Charmander, Squirtle</option><option value="mixed">Control: Pikachu, Butterfree, Geodude</option></select></label><p>Los cambios se aplican al reiniciar. PT: 2 iniciales, +1 al activar, máximo 5. Estados: tres activaciones propias.</p><button id="restart" type="submit" disabled>Reiniciar combate</button></form><section class="training-roster battle-roster" aria-label="Unidades del combate">${state.units.map((u) => `<button data-unit="${u.id}" data-team="${u.team}" aria-pressed="false"><img src="${asset(`assets/pokemon/${u.speciesId}/thumbnail.png`)}" alt="" width="32" height="32"><span><strong>${escape(u.name)}</strong><small data-unit-info="${u.id}"></small></span></button>`).join('')}</section><nav class="battle-nav" aria-label="Prototipos"><a href="?view=training">Ensayo de movimiento</a><a href="?view=camp">Campamento</a><a href="${asset('CREDITS.md')}" target="_blank" rel="noreferrer">Créditos y licencias</a></nav><details class="battle-log"><summary>Registro de combate</summary><ol id="combat-log"></ol></details></div></details></header>
         <section class="initiative-strip" aria-labelledby="initiative-title"><div class="round-label"><h2 id="initiative-title">Ronda <span id="round"></span></h2><span>CHARCA DE KANTO</span></div><ol id="initiative"></ol></section>
         <div id="resource-status" class="game-resource" role="status">Cargando recursos…</div>
         <section class="battlefield" aria-label="Tablero de combate">
@@ -101,7 +103,7 @@ export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): (
   const playerTurn = (): boolean =>
     ready && !busy && activeUnit(state)?.team === 'ally';
   const scene = new BoardScene(
-    catalog,
+    catalog.filter(species=>state.units.some(unit=>unit.speciesId===species.id)),
     {
       progress: (f) => {
         if (disposed) return;
@@ -189,7 +191,7 @@ export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): (
     const actor = activeUnit(state),
       canOrder = playerTurn(),
       root = $('#battle-root');
-    if (actor && !pokemonFor(actor.speciesId).action(selectedAction)) selectedAction = 'basic';
+    if (actor && !pokemonFor(actor.speciesId).action(selectedAction, actor)) selectedAction = 'basic';
     root.dataset.active = String(actor?.id ?? '');
     root.dataset.team = actor?.team ?? '';
     root.dataset.round = String(state.round);
@@ -264,7 +266,7 @@ export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): (
     $('#mode-move').setAttribute('aria-pressed', String(mode === 'move'));
     $('#mode-attack').setAttribute('aria-pressed', String(mode === 'attack'));
     document.querySelectorAll<HTMLButtonElement>('[data-skill-slot]').forEach((button, index) => {
-      const action = pokemonFor(actorCard.speciesId).actions[index], ability = action.definition;
+      const action = pokemonFor(actorCard.speciesId).actionsFor(actorCard)[index], ability = action.definition;
       const blocked = heldItemFor(actorCard.heldItem)?.allowsStatus() === false && action.preview(actorCard, actorCard).category === 'status';
       button.dataset.action = ability.id;
       button.textContent = `${ability.name} · ${ability.cost} PT`;
@@ -273,7 +275,7 @@ export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): (
       if (blocked) button.title += ' · Bloqueado por Chaleco Asalto';
       button.setAttribute('aria-pressed', String(mode === 'attack' && selectedAction === ability.id));
     });
-    const selected = pokemonFor(actorCard.speciesId).action(selectedAction)?.definition;
+    const selected = pokemonFor(actorCard.speciesId).action(selectedAction, actorCard)?.definition;
     $('#ability-description').textContent = selected
       ? `${TYPE_NAMES[selected.type]} · alcance ${selected.range} · ${selected.description}` : '';
     $<HTMLButtonElement>('#confirm').disabled = !canOrder || !pending;
@@ -297,7 +299,7 @@ export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): (
     if (pending?.kind === 'finish' && actor) {
       const facing = pending.facing ?? actor.facing;
       $('#order-summary').textContent = `Orientarse al ${FACING_NAMES[facing]} y terminar`;
-      $('#order-detail').textContent = `Frente: −15 puntos de precisión; flanco: −5; espalda: precisión base. ${(fieldDamage(actor, state.fields) + zoneDamage(actor, state.hazards, state.round)) ? `Ascuas: perderá ${(fieldDamage(actor, state.fields) + zoneDamage(actor, state.hazards, state.round))} PS al cerrar turno.` : 'Elige una dirección y confirma.'}`;
+      $('#order-detail').textContent = `Frente: −15 puntos de precisión; flanco: −5; espalda: precisión base. ${(fieldDamage(actor, state.fields) + zoneDamage(actor, state.hazards, state.round)) ? `Peligros: perderá ${(fieldDamage(actor, state.fields) + zoneDamage(actor, state.hazards, state.round))} PS al cerrar turno.` : 'Elige una dirección y confirma.'}`;
       $('#confirm').textContent = 'Confirmar orientación';
     } else if (pending?.kind === 'move' && actor) {
       const route = routes.get(key(pending.destination))!;
@@ -363,7 +365,7 @@ export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): (
     $('#inspect-stats').textContent =
       `AT ${unit.attack} / DF ${unit.defense} · AE ${unit.specialAttack} / DE ${heldItemFor(unit.heldItem)?.specialDefense(unit) ?? unit.specialDefense} · PT ${unit.tp}/${unit.maxTp}`;
     $('#inspect-status').textContent = `${statusText(unit)}${unit.heldItem ? ` · ${itemFor(unit.heldItem).name}` : ''}`;
-    $('#inspect-status').textContent += ` · ${FACING_ARROWS[unit.facing]} ${FACING_NAMES[unit.facing]}${(fieldDamage(unit, state.fields) + zoneDamage(unit, state.hazards, state.round)) ? ' · Ascuas: 4 PS al cerrar turno' : ''}`;
+    $('#inspect-status').textContent += ` · ${FACING_ARROWS[unit.facing]} ${FACING_NAMES[unit.facing]}${(fieldDamage(unit, state.fields) + zoneDamage(unit, state.hazards, state.round)) ? ' · Peligro: 4 PS al cerrar turno' : ''}`;
     unitButtons.forEach((button) => {
       const unit = state.units.find(
         (u) => u.id === Number(button.dataset.unit),
@@ -548,6 +550,7 @@ export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): (
     }
     // Persist an accepted command before its animation; reloading cannot undo it.
     if (host.onState && !host.onState(result.state)) return;
+    playSound(result.state.outcome === 'victory' ? 'victory' : command.kind === 'attack' ? 'hit' : 'select');
     busy = true;
     pending = null;
     hover = null;
@@ -685,6 +688,7 @@ export function mountBattle(catalog: PokemonSpecies[], host: BattleHost = {}): (
   scene.showFields(state.fields);
   refreshPaths();
   refresh();
+  bindSound(app);
   const game = startGame(scene, { width: 512, height: 512 });
   const dispose = () => {
     disposed = true;

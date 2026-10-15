@@ -116,6 +116,9 @@ def main():
     for path, key, remote, license_name in extras:
         MANIFEST.append({'path': path, 'source': f"{LOCK[key]['raw']}/{remote}", 'license': license_name,
                          'modification': 'None', 'sha256': hashlib.sha256((ROOT/path).read_bytes()).hexdigest()})
+    old_manifest = ROOT/'public/data/provenance.json'
+    if old_manifest.exists():
+        MANIFEST.extend(f for f in json.loads(old_manifest.read_text())['files'] if f['path'].startswith('public/assets/audio/'))
     (ROOT/'public/data/provenance.json').write_bytes(formatted({'repositories': LOCK, 'files': MANIFEST}))
     (ROOT/'public/data/credits.json').write_bytes(formatted([{'name': s['name'], 'id': s['id'], 'authors': s['authors']} for s in species]))
 

@@ -112,7 +112,7 @@ export function createBattle(catalog: readonly PokemonSpecies[], seed = 'kanto-0
 }
 // Instance IDs identify units; species IDs select data, actions and shared textures.
 export function createEncounter(catalog: readonly PokemonSpecies[], seed: string, variance: number, board: Board,
-  allies: readonly { id: number; speciesId: number; hp: number; heldItem?: HeldItemId | null; xp?: number }[], enemies: readonly number[], options: { progression?: boolean; hazards?: BoardHazard[] } = {}): Battle {
+  allies: readonly { id: number; speciesId: number; hp: number; heldItem?: HeldItemId | null; xp?: number }[], enemies: readonly number[], options: { progression?: boolean; ruleset?: number; hazards?: BoardHazard[] } = {}): Battle {
   if (![0.05, 0.1].includes(variance) || allies.length < 1 || allies.length > 6 || enemies.length < 1 || enemies.length > 6)
     throw new Error('Encuentro no válido.');
   const allyPositions = [{ x: 1, y: 6 }, { x: 3, y: 6 }, { x: 2, y: 7 }, { x: 0, y: 6 }, { x: 4, y: 6 }, { x: 4, y: 7 }];
@@ -121,7 +121,7 @@ export function createEncounter(catalog: readonly PokemonSpecies[], seed: string
     const species = catalog.find(p => p.id === speciesId);
     if (!species) throw new Error(`Falta la especie ${speciesId}.`);
     const xp = team === 'ally' ? allies.find(member => member.id === id)?.xp ?? 0 : 0;
-    const unit = atLevel(pokemonFor(speciesId).createCombatant(species, team, position), options.progression ? levelFor(xp) : 1);
+    const unit = atLevel(pokemonFor(speciesId).createCombatant(species, team, position), options.progression ? levelFor(xp) : 1, options.ruleset);
     unit.id = id;
     if (hp !== undefined) {
       if (!Number.isInteger(hp) || hp < 1 || hp > unit.maxHp) throw new Error('PS iniciales no válidos.');
@@ -176,7 +176,7 @@ export function moveInBattle(state: Battle, destination: Point): RuleResult {
   note(next, `${actor.name} se mueve a ${coordinate(destination)} (${result.route.cost} puntos).`);
   return { ok: true, state: next, route: result.route };
 }
-export const basicDamage = (actor: Combatant, target: Combatant): number => pokemonFor(actor.speciesId).action('basic')!.preview(actor, target).damage;
+export const basicDamage = (actor: Combatant, target: Combatant): number => pokemonFor(actor.speciesId).action('basic', actor)!.preview(actor, target).damage;
 function clearShot(state: Battle, actor: Combatant, target: Combatant): boolean {
   const dx = target.x - actor.x, dy = target.y - actor.y;
   if (distance(actor, target) <= 1)
@@ -213,7 +213,7 @@ export function attackPlan(state: Battle, targetId: number, origin?: Point, acti
     return { ok: false, reason: 'El combate ha terminado.' };
   if (state.acted)
     return { ok: false, reason: 'Ya has usado la acción de esta activación.' };
-  const action = pokemonFor(active.speciesId).action(actionId);
+  const action = pokemonFor(active.speciesId).action(actionId, active);
   if (!action)
     return { ok: false, reason: 'Este Pokémon no conoce esa habilidad.' };
   const definition = action.definition;
@@ -386,7 +386,7 @@ function actionScore(state: Battle, target: Combatant, plan: AttackPlan): number
 function dangerAt(state: Battle, actor: Combatant, point: Point): number {
   const placed = { ...actor, ...point };
   const exposure = living(state).filter(unit => unit.team !== actor.team).reduce((sum, enemy) => {
-    const reach = pokemonFor(enemy.speciesId).action('basic')!;
+    const reach = pokemonFor(enemy.speciesId).action('basic', enemy)!;
     return sum + (distance(enemy, placed) <= reach.definition.range + movementBudget(enemy) ? reach.preview(enemy, placed).damage / (distance(enemy, placed) + 1) : 0);
   }, 0);
   return (fieldDamage(placed, state.fields) + zoneDamage(placed, state.hazards, state.round)) * 2 + exposure * 0.3;
@@ -394,7 +394,7 @@ function dangerAt(state: Battle, actor: Combatant, point: Point): number {
 export function chooseFacing(state: Battle, actor: Combatant): Facing {
   return [...FACINGS].sort((a, b) => {
     const exposure = (facing: Facing) => living(state).filter(unit => unit.team !== actor.team).reduce((sum, enemy) => {
-      const basic = pokemonFor(enemy.speciesId).action('basic')!;
+      const basic = pokemonFor(enemy.speciesId).action('basic', enemy)!;
       return sum + basic.preview(enemy, actor).damage * positionalAccuracy(basic.definition.accuracy, attackSide(enemy, { ...actor, facing })) / (distance(enemy, actor) + 1);
     }, 0);
     return exposure(a) - exposure(b) || Number(b === actor.facing) - Number(a === actor.facing) || FACINGS.indexOf(a) - FACINGS.indexOf(b);
@@ -420,7 +420,7 @@ export function chooseTacticalCommand(state: Battle): TacticalCommand {
     return { kind: 'finish' };
   const finish: TacticalCommand = { kind: 'finish', facing: chooseFacing(state, actor) };
   const targets = living(state).sort((a, b) => a.hp - b.hp || a.id - b.id);
-  const actions = pokemonFor(actor.speciesId).actions;
+  const actions = pokemonFor(actor.speciesId).actionsFor(actor);
   if (!state.acted) {
     const available = targets.flatMap(target => actions.map(action => {
       const id = action.definition.id, plan = attackPlan(state, target.id, undefined, id);

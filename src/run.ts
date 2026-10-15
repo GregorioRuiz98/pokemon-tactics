@@ -1,11 +1,13 @@
 import './run.css';
+import { tutorialHtml } from './tutorial';
+import { bindSound, soundControls, playSound } from './audio';
 import { INITIAL_SPECIES, validateCatalog } from './data/catalog.ts';
 import type { PokemonSpecies } from './data/catalog.ts';
 import { runMap } from './data/run-maps.ts';
 import { RunStore } from './data/run-store.ts';
 import type { SaveRead } from './data/run-store.ts';
 import { levelFor } from './domain/progression.ts';
-import { createRun, maximumHp, CURRENT_EDITION, routeLength, availableNodes, enterRoom, leaveService, completeEncounter, withBattle, completedCombats, currentNode, nodeStep, performRunEvent, TEAM_LIMIT, VICTORY_REWARD } from './rules/run.ts';
+import { createRun, maximumHp, CURRENT_EDITION, routeLength, availableNodes, enterRoom, leaveService, completeEncounter, withBattle, completedCombats, currentNode, nodeStep, performRunEvent, TEAM_LIMIT, victoryReward } from './rules/run.ts';
 import type { Run, RunEvent } from './rules/run.ts';
 import { itemFor } from './domain/items.ts';
 import type { ItemId } from './domain/items.ts';
@@ -33,7 +35,7 @@ function warning(): void {
   notice.innerHTML = saveUnavailable ? 'Guardado local no disponible. Puedes seguir jugando, pero recargar perderá el progreso nuevo. <button id="retry-save">Reintentar guardado</button>' : '';
   notice.querySelector('button')?.addEventListener('click', () => {
     if (run && persist(run) && !saveUnavailable && migrationNotice.includes('en memoria')) {
-      migrationNotice = 'Partida actualizada al sprint 10A. Se conserva una copia del guardado anterior; PS y tiradas se mantienen.';
+      migrationNotice = 'Partida actualizada al versión candidata. Se conserva una copia del guardado anterior; PS y tiradas se mantienen.';
       const message = app.querySelector<HTMLElement>('.migration-notice');
       if (message) message.textContent = migrationNotice;
     }
@@ -54,17 +56,18 @@ function persist(next: Run): boolean {
   return true;
 }
 const species = (id: number) => catalog.find(species => species.id === id)!;
-const maximum = (speciesId: number, xp = 0): number => maximumHp(catalog, speciesId, xp);
+const maximum = (speciesId: number, xp = 0): number => maximumHp(catalog, speciesId, xp, run?.edition ?? 6);
 const portrait = (id: number, size = 40) => `<img src="${asset(`assets/pokemon/${id}/thumbnail.png`)}" alt="" width="${size}" height="${size}">`;
 function party(): string {
   return `<section class="run-party" aria-labelledby="party-title"><h2 id="party-title">Tu equipo</h2><ul>${run!.roster.map(member => {
     const max = maximum(member.speciesId, member.xp);
     return `<li data-member="${member.id}" data-hp="${member.hp}" data-held="${member.heldItem ?? ''}">${portrait(member.speciesId, 48)}<div><h3>${escape(species(member.speciesId).name)} <small class="member-number">#${member.id}</small></h3><p>${member.hp}/${max} PS · Nv. ${levelFor(member.xp)} · ${member.xp} EXP</p><div class="run-health" aria-hidden="true"><i style="width:${member.hp / max * 100}%"></i></div><small>${member.heldItem ? itemFor(member.heldItem).name : 'Sin objeto equipado'}</small></div></li>`;
-  }).join('')}</ul>${run!.roster.length === 0 ? '<p>No quedan compañeros en pie.</p>' : `<p>${run!.roster.length}/${TEAM_LIMIT} miembros · Todos los vivos se despliegan.</p>`}<p>PS persistentes. Los perdidos no reviven; su objeto vuelve a la bolsa.</p>${run!.departed.length ? `<details class="departed-members"><summary>Registro: ${run!.departed.filter(member => member.reason === 'fallen').length} bajas · ${run!.departed.filter(member => member.reason === 'released').length} liberados</summary><ul>${run!.departed.map(member => `<li data-departed="${member.id}" class="${member.reason === 'fallen' ? 'lost' : ''}">${portrait(member.speciesId, 32)}<span>${escape(species(member.speciesId).name)} #${member.id}<small>${member.reason === 'fallen' ? 'Perdido en esta partida' : 'Liberado al sustituirlo'}</small></span></li>`).join('')}</ul></details>` : ''}<details><summary>Reglas de esta prueba</summary><p>Una visita de servicios antes de cada zona y del final. Al entrar a combate se restablecen estados y PT. Daño y movimientos conservan los valores base actuales.</p></details></section>`;
+  }).join('')}</ul>${run!.roster.length === 0 ? '<p>No quedan compañeros en pie.</p>' : `<p>${run!.roster.length}/${TEAM_LIMIT} miembros · Todos los vivos se despliegan.</p>`}<p>PS persistentes. Los perdidos no reviven; su objeto vuelve a la bolsa.</p>${run!.departed.length ? `<details class="departed-members"><summary>Registro: ${run!.departed.filter(member => member.reason === 'fallen').length} bajas · ${run!.departed.filter(member => member.reason === 'released').length} liberados</summary><ul>${run!.departed.map(member => `<li data-departed="${member.id}" class="${member.reason === 'fallen' ? 'lost' : ''}">${portrait(member.speciesId, 32)}<span>${escape(species(member.speciesId).name)} #${member.id}<small>${member.reason === 'fallen' ? 'Perdido en esta partida' : 'Liberado al sustituirlo'}</small></span></li>`).join('')}</ul></details>` : ''}<details><summary>Reglas de esta prueba</summary><p>Una visita de servicios antes de cada zona y del final. Al entrar a combate se restablecen estados y PT. Tipos modernos, cinco niveles y evolución por objetos. Las nuevas partidas tienen PS ampliados y recursos ajustados; los guardados anteriores conservan sus reglas.</p></details></section>`;
 }
 function frame(title: string, content: string, subtitle: string): void {
   cleanup();
-  app.innerHTML = `<main class="run-main"><header class="run-topbar"><a class="run-brand" href="${import.meta.env.BASE_URL}">POKÉMON <span>TACTICS</span></a><span>Prototipo local · 0.10</span>${run ? `<strong id="run-money">${run.money} monedas</strong>` : ''}<button id="run-menu">Menú</button></header><div class="run-heading"><div><h1 tabindex="-1">${title}</h1><p>${subtitle}</p></div>${run ? `<span class="run-seed">Semilla <strong>${escape(run.seed)}</strong> · ±${run.variance * 100} %</span>` : ''}</div><p id="management-feedback" class="management-feedback" role="status" aria-live="polite">${escape(lastFeedback)}</p>${content}<footer class="run-footer"><span>Proyecto de fans · sin afiliación oficial</span><a href="?view=battle">Combate de ensayo</a><a href="?view=battle&boss=birds">Ensayar aves</a><a href="?view=battle&boss=psychic">Ensayar laboratorio</a><a href="${asset('CREDITS.md')}" target="_blank" rel="noreferrer">Créditos</a></footer></main>`;
+  app.innerHTML = `<main class="run-main"><header class="run-topbar"><a class="run-brand" href="${import.meta.env.BASE_URL}">POKÉMON <span>TACTICS</span></a><span>Prototipo local · 0.11</span>${run ? `<strong id="run-money">${run.money} monedas</strong>` : ''}<button id="run-menu">Menú</button></header><div class="run-heading"><div><h1 tabindex="-1">${title}</h1><p>${subtitle}</p></div>${run ? `<span class="run-seed">Semilla <strong>${escape(run.seed)}</strong> · ±${run.variance * 100} %</span>` : ''}</div><p id="management-feedback" class="management-feedback" role="status" aria-live="polite">${escape(lastFeedback)}</p>${content}<section class="run-help">${tutorialHtml()}${soundControls()}</section><footer class="run-footer"><span>Proyecto de fans · sin afiliación oficial</span><a href="?view=battle">Combate de ensayo</a><a href="?view=battle&boss=birds">Ensayar aves</a><a href="?view=battle&boss=psychic">Ensayar laboratorio</a><a href="${asset('CREDITS.md')}" target="_blank" rel="noreferrer">Créditos</a></footer></main>`;
+  bindSound(app);
   $('#run-menu').addEventListener('click', menu);
   $('h1').focus({ preventScroll: true });
 }
@@ -73,7 +76,7 @@ function menu(): void {
   const current = run ?? (saved.kind === 'valid' ? saved.run : null);
   const broken = saved.kind === 'invalid' || saved.kind === 'incompatible';
   const survivors = current?.battle ? current.battle.units.filter(unit => unit.team === 'ally' && unit.hp > 0).length : current?.roster.filter(member => member.hp > 0).length;
-  app.innerHTML = `<main class="run-main run-menu"><header class="run-topbar"><a class="run-brand" href="${import.meta.env.BASE_URL}">POKÉMON <span>TACTICS</span></a><span>Prototipo local · sprint 10A</span></header><section class="run-intro"><h1>Elige tu camino.<br><span>Cuida a tu equipo.</span></h1><p>Una ruta táctica por Kanto. Tres compañeros al azar, decisiones de equipo y dos destinos legendarios.</p><div class="starter-pool" aria-label="Seis especies disponibles">${catalog.filter(p => INITIAL_SPECIES.includes(p.id as typeof INITIAL_SPECIES[number])).map(p => `<span>${portrait(p.id, 56)}${escape(p.name)}</span>`).join('')}</div><p class="pool-caption">Pool inicial de prueba · sin legendarios</p></section><section class="run-launch" aria-label="Comenzar o continuar">${migrationNotice ? `<p class="migration-notice">${escape(migrationNotice)}</p>` : ''}${current ? `<div class="continue-run"><h2>${current.status === 'victory' || current.status === 'defeat' ? 'Partida terminada' : 'Tu partida'}</h2><p>${completedCombats(current)}/${routeLength(current)} encuentros superados · ${survivors}/6 compañeros en pie</p><p>Semilla ${escape(current.seed)}</p><button class="run-primary" id="continue-run">${current.status === 'combat' ? 'Continuar combate' : current.status === 'route' ? 'Continuar ruta' : current.status === 'service' ? 'Continuar visita' : 'Ver resultado'}</button></div>` : ''}${broken ? `<div class="save-problem" role="alert"><h2>${saved.kind === 'incompatible' ? 'Guardado de otra versión' : 'No se pudo leer el guardado'}</h2><p>Se conserva en este navegador. Para iniciar una nueva partida, descártalo explícitamente.</p><button id="discard-save">Descartar guardado</button></div>` : ''}<form id="new-run"><h2>${current ? 'Otra partida' : 'Nueva partida'}</h2><label for="run-seed">Semilla <span>(opcional)</span></label><input id="run-seed" maxlength="64" placeholder="Se generará al empezar" autocomplete="off"><label for="run-variance">Variación de iniciativa</label><select id="run-variance"><option value="0.05">±5 %</option><option value="0.1">±10 %</option></select><p>La misma semilla reproduce equipo, ruta y tiradas.</p><button class="${current ? '' : 'run-primary'}" type="submit" ${broken ? 'disabled' : ''}>${current ? 'Preparar nueva partida' : 'Empezar partida'}</button><div id="replace-save" hidden><p>Esto reemplazará tu partida actual y su progreso.</p><button type="button" id="confirm-new">Reemplazar y empezar</button><button type="button" id="cancel-new">Conservar partida</button></div></form><p class="run-scope">Tienda, reclutamiento, experiencia y evolución. Dos finales alternativos: las tres aves o Mew y Mewtwo.</p></section><footer class="run-footer"><span>Proyecto de fans · sin afiliación oficial</span><a href="?view=battle">Combate de ensayo</a><a href="${asset('CREDITS.md')}" target="_blank" rel="noreferrer">Créditos</a></footer></main>`;
+  app.innerHTML = `<main class="run-main run-menu"><header class="run-topbar"><a class="run-brand" href="${import.meta.env.BASE_URL}">POKÉMON <span>TACTICS</span></a><span>Prototipo local · versión candidata</span></header><section class="run-intro"><h1>Elige tu camino.<br><span>Cuida a tu equipo.</span></h1><p>Una ruta táctica por Kanto. Tres compañeros al azar, decisiones de equipo y dos destinos legendarios.</p><div class="starter-pool" aria-label="Seis especies disponibles">${catalog.filter(p => INITIAL_SPECIES.includes(p.id as typeof INITIAL_SPECIES[number])).map(p => `<span>${portrait(p.id, 56)}${escape(p.name)}</span>`).join('')}</div><p class="pool-caption">Pool inicial de prueba · sin legendarios</p></section><section class="run-launch" aria-label="Comenzar o continuar">${migrationNotice ? `<p class="migration-notice">${escape(migrationNotice)}</p>` : ''}${current ? `<div class="continue-run"><h2>${current.status === 'victory' || current.status === 'defeat' ? 'Partida terminada' : 'Tu partida'}</h2><p>${completedCombats(current)}/${routeLength(current)} encuentros superados · ${survivors}/6 compañeros en pie</p><p>Semilla ${escape(current.seed)}</p><button class="run-primary" id="continue-run">${current.status === 'combat' ? 'Continuar combate' : current.status === 'route' ? 'Continuar ruta' : current.status === 'service' ? 'Continuar visita' : 'Ver resultado'}</button></div>` : ''}${broken ? `<div class="save-problem" role="alert"><h2>${saved.kind === 'incompatible' ? 'Guardado de otra versión' : 'No se pudo leer el guardado'}</h2><p>Se conserva en este navegador. Para iniciar una nueva partida, descártalo explícitamente.</p><button id="discard-save">Descartar guardado</button></div>` : ''}<form id="new-run"><h2>${current ? 'Otra partida' : 'Nueva partida'}</h2><label for="run-seed">Semilla <span>(opcional)</span></label><input id="run-seed" maxlength="64" placeholder="Se generará al empezar" autocomplete="off"><label for="run-variance">Variación de iniciativa</label><select id="run-variance"><option value="0.05">±5 %</option><option value="0.1">±10 %</option></select><p>La misma semilla reproduce equipo, ruta y tiradas.</p><button class="${current ? '' : 'run-primary'}" type="submit" ${broken ? 'disabled' : ''}>${current ? 'Preparar nueva partida' : 'Empezar partida'}</button><div id="replace-save" hidden><p>Esto reemplazará tu partida actual y su progreso.</p><button type="button" id="confirm-new">Reemplazar y empezar</button><button type="button" id="cancel-new">Conservar partida</button></div></form>${tutorialHtml()}${soundControls()}<p class="run-scope">Tienda, reclutamiento, experiencia y evolución. Dos finales alternativos: las tres aves o Mew y Mewtwo.</p></section><footer class="run-footer"><span>Proyecto de fans · sin afiliación oficial</span><a href="?view=battle">Combate de ensayo</a><a href="${asset('CREDITS.md')}" target="_blank" rel="noreferrer">Créditos</a></footer></main>`;
   $('#continue-run')?.addEventListener('click', () => { run = current; show(); });
   $('#discard-save')?.addEventListener('click', () => {
     const result = store.discard();
@@ -86,6 +89,7 @@ function menu(): void {
     const next = createRun(catalog, seed, Number($<HTMLSelectElement>('#run-variance').value), CURRENT_EDITION);
     if (persist(next)) { saved = { kind: 'valid', run: next }; managing = false; pendingRecruitId = null; selectedMemberId = 1; lastFeedback = ''; migrationNotice = ''; show(); }
   };
+  bindSound(app);
   $('#new-run').addEventListener('submit', event => {
     event.preventDefault();
     if (broken) return;
@@ -138,6 +142,7 @@ function perform(event: RunEvent, message: string, focus: string): void {
   try {
     const next = performRunEvent(run!, event, catalog);
     if (!persist(next)) return;
+    playSound(event.kind === 'evolve' ? 'victory' : 'select');
     lastFeedback = message; pendingRecruitId = null; show();
     const target = app.querySelector<HTMLElement>(focus);
     (target && !target.matches(':disabled') ? target : app.querySelector<HTMLElement>('#manage-member, #tab-service'))?.focus({ preventScroll: true });
@@ -186,7 +191,7 @@ document.addEventListener('keydown', onEscape);
 function result(): void {
   const current = run!, won = current.status === 'victory';
   const survivors = current.roster.filter(member => member.hp > 0).length;
-  frame(won ? 'Ruta superada' : 'El equipo ha caído', `<div class="run-layout">${party()}<section class="run-ending"><h2>${won ? 'Has llegado al final de la prueba' : 'Cada elección deja huella'}</h2><p>${won ? 'Has despejado el destino de esta partida. El equipo superviviente y el recorrido quedan registrados.' : 'Los compañeros perdidos no pueden volver durante esta partida. Puedes empezar otra con una nueva semilla.'}</p><table><caption>Recorrido de la partida</caption><thead><tr><th>Tramo</th><th>Escenario</th><th>Rondas</th><th>Resultado</th></tr></thead><tbody>${current.history.map(record => `<tr><td>${record.nodeId.split('-')[0]}</td><td>${runMap(current.nodes.find(node => node.id === record.nodeId)!.mapId).name}</td><td>${record.round}</td><td>${record.outcome === 'victory' ? 'Victoria' : 'Derrota'}</td></tr>`).join('')}</tbody></table><button class="run-primary" id="result-menu">Volver al menú</button></section></div>`, `${completedCombats(current)}/${routeLength(current)} encuentros superados · ${survivors}/6 compañeros en pie`);
+  frame(won ? 'Ruta superada' : 'El equipo ha caído', `<div class="run-layout">${party()}<section class="run-ending"><h2>${won ? 'Has llegado al final de la prueba' : 'Cada elección deja huella'}</h2><p>${won ? 'Has despejado el destino de esta partida. El equipo superviviente y el recorrido quedan registrados.' : 'Los compañeros perdidos no pueden volver durante esta partida. Puedes empezar otra con una nueva semilla.'}</p><table><caption>Recorrido de la partida</caption><thead><tr><th>Tramo</th><th>Escenario</th><th>Rondas</th><th>Resultado</th></tr></thead><tbody>${current.history.map(record => `<tr><td>${current.nodes.find(node => node.id === record.nodeId)!.floor}</td><td>${runMap(current.nodes.find(node => node.id === record.nodeId)!.mapId).name}</td><td>${record.round}</td><td>${record.outcome === 'victory' ? 'Victoria' : 'Derrota'}</td></tr>`).join('')}</tbody></table><button class="run-primary" id="result-menu">Volver al menú</button></section></div>`, `${completedCombats(current)}/${routeLength(current)} encuentros superados · ${survivors}/6 compañeros en pie`);
   $('#result-menu').addEventListener('click', menu);
 }
 function show(): void {
@@ -203,7 +208,7 @@ function show(): void {
     onExit: menu,
     onComplete: () => {
       const won = run!.battle!.outcome === 'victory';
-      if (persist(completeEncounter(run!, catalog))) { managing = false; lastFeedback = won ? `Victoria: +${VICTORY_REWARD} monedas. PS y bajas registrados.` : 'Derrota: el equipo ha caído. Sus objetos equipados vuelven a la bolsa.'; show(); }
+      if (persist(completeEncounter(run!, catalog))) { managing = false; lastFeedback = won ? `Victoria: +${victoryReward(run!)} monedas. EXP, PS y bajas registrados.${run!.edition >= 14 && run!.history.at(-1) && Number(run!.nodes.find(n=>n.id===run!.history.at(-1)!.nodeId)?.floor) % 2 === 0 ? ' Revisa los objetos evolutivos de la bolsa.' : ''}` : 'Derrota: el equipo ha caído. Sus objetos equipados vuelven a la bolsa.'; show(); }
     },
   });
 }
@@ -220,7 +225,7 @@ async function boot(): Promise<void> {
     saved = store.read();
     if (saved.kind === 'valid' && saved.migrated) {
       if (!persist(saved.run)) return;
-      migrationNotice = saveUnavailable ? 'Partida anterior adaptada en memoria. El guardado original sigue intacto.' : 'Partida actualizada al sprint 10A. Se conserva una copia del guardado anterior; PS y tiradas se mantienen.';
+      migrationNotice = saveUnavailable ? 'Partida anterior adaptada en memoria. El guardado original sigue intacto.' : 'Partida actualizada al versión candidata. Se conserva una copia del guardado anterior; PS y tiradas se mantienen.';
     }
     saveUnavailable = saved.kind === 'unavailable';
     warning();
