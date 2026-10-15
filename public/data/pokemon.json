@@ -1290,6 +1290,125 @@
     ]
   },
   {
+    "id": 37,
+    "name": "Vulpix",
+    "types": [
+      "fire"
+    ],
+    "baseStats": {
+      "hp": 38,
+      "attack": 41,
+      "defense": 40,
+      "special-attack": 50,
+      "special-defense": 65,
+      "speed": 65
+    },
+    "legendary": false,
+    "mythical": false,
+    "animations": {
+      "Idle": {
+        "width": 32,
+        "height": 32,
+        "columns": 4,
+        "rows": 8,
+        "frames": 4,
+        "durations": [
+          40,
+          12,
+          20,
+          12
+        ],
+        "anchorX": 15.5,
+        "anchorY": 19.5,
+        "path": "assets/pokemon/37/Idle.png"
+      },
+      "Walk": {
+        "width": 32,
+        "height": 40,
+        "columns": 5,
+        "rows": 8,
+        "frames": 5,
+        "durations": [
+          6,
+          4,
+          4,
+          4,
+          6
+        ],
+        "anchorX": 15.5,
+        "anchorY": 23.5,
+        "path": "assets/pokemon/37/Walk.png"
+      }
+    },
+    "authors": [
+      "CHUNSOFT"
+    ],
+    "sources": [
+      "https://pokeapi.co/api/v2/pokemon/37",
+      "https://pokeapi.co/api/v2/pokemon-species/37"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Sandshrew",
+    "types": [
+      "ground"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "attack": 75,
+      "defense": 85,
+      "special-attack": 20,
+      "special-defense": 30,
+      "speed": 40
+    },
+    "legendary": false,
+    "mythical": false,
+    "animations": {
+      "Idle": {
+        "width": 32,
+        "height": 40,
+        "columns": 4,
+        "rows": 8,
+        "frames": 4,
+        "durations": [
+          40,
+          2,
+          2,
+          2
+        ],
+        "anchorX": 15.5,
+        "anchorY": 23.5,
+        "path": "assets/pokemon/27/Idle.png"
+      },
+      "Walk": {
+        "width": 32,
+        "height": 32,
+        "columns": 4,
+        "rows": 8,
+        "frames": 4,
+        "durations": [
+          6,
+          10,
+          6,
+          10
+        ],
+        "anchorX": 15.5,
+        "anchorY": 19.5,
+        "path": "assets/pokemon/27/Walk.png"
+      }
+    },
+    "authors": [
+      "3P1C",
+      "CHUNSOFT",
+      "Emboarger"
+    ],
+    "sources": [
+      "https://pokeapi.co/api/v2/pokemon/27",
+      "https://pokeapi.co/api/v2/pokemon-species/27"
+    ]
+  },
+  {
     "id": 144,
     "name": "Articuno",
     "types": [

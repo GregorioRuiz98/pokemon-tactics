@@ -1,0 +1,9 @@
+{
+  "checks": [
+    "caldera escritorio",
+    "kiln móvil",
+    "badlands escritorio",
+    "canyon móvil"
+  ],
+  "errors": []
+}

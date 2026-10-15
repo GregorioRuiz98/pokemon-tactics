@@ -4,6 +4,18 @@ import type { BoardHazard } from '../rules/hazards.ts';
 
 export type RunMap = { id: string; name: string; description: string; board: Board; hazards?: BoardHazard[] };
 export const RUN_MAPS: readonly RunMap[] = [
+  {id:'caldera',name:'Caldera de Canela',description:'Fumarolas entre muros de piedra. Fuego y voladores evitan su daño.',board:[
+    [0,0,0,0,0,0,0,0],[0,0,2,0,0,0,0,0],[0,0,0,0,2,0,0,0],[0,0,2,0,0,2,0,0],
+    [0,0,0,0,0,0,0,0],[0,2,0,0,0,0,2,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]],hazards:[{x:3,y:3,kind:'fire'},{x:4,y:3,kind:'fire'},{x:3,y:4,kind:'fire'},{x:4,y:4,kind:'fire'}]},
+  {id:'kiln',name:'Hornos de la isla',description:'Tres accesos entre fumarolas; rodear permite evitar áreas de fuego.',board:[
+    [0,0,0,0,0,0,0,0],[0,0,0,2,0,0,0,0],[0,2,0,0,0,0,0,0],[0,0,0,2,0,0,0,0],
+    [0,0,2,0,0,0,2,0],[0,0,0,0,2,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]],hazards:[{x:2,y:3,kind:'fire'},{x:4,y:4,kind:'fire'},{x:5,y:3,kind:'fire'}]},
+  {id:'badlands',name:'Tierras de Verde',description:'Arena entre rocas y rutas de tierra firme. Tierra, Roca, Acero y voladores inmunes.',board:[
+    [0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,2,0,0,0,0,0],[0,0,0,0,0,2,0,0],
+    [0,2,0,0,2,0,0,0],[0,0,0,0,0,0,2,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]],hazards:[{x:2,y:4,kind:'ground'},{x:3,y:4,kind:'ground'},{x:4,y:3,kind:'ground'}]},
+  {id:'canyon',name:'Desfiladero final',description:'Pasos estrechos, arena y líneas cortadas; reorganiza antes del santuario o laboratorio.',board:[
+    [0,0,0,0,0,0,0,0],[0,0,2,0,0,0,0,0],[0,0,2,0,2,0,0,0],[0,0,0,0,2,0,0,0],
+    [0,0,2,0,0,0,0,0],[0,0,2,0,0,2,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]],hazards:[{x:3,y:3,kind:'ground'},{x:3,y:4,kind:'ground'},{x:5,y:3,kind:'ground'}]},
   {id:'marsh',name:'Marisma de Fucsia',description:'Maleza, pequeños charcos y miasma. Veneno, Acero y voladores evitan el peligro.',board:[
     [0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,1,1,0,0,0,0,0],[0,3,1,0,1,0,0,0],
     [0,1,0,0,1,0,0,0],[0,0,0,1,0,3,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]],hazards:[{x:2,y:3,kind:'poison'},{x:3,y:4,kind:'poison'},{x:4,y:4,kind:'poison'}]},

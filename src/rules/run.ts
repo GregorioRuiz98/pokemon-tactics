@@ -31,7 +31,7 @@ export type Run = {
   nodes: RunNode[]; path: string[]; history: RunRecord[]; currentNodeId: string | null; battle: Battle | null;
   money: number; bag: Bag; purchases: Record<string, Partial<Bag>>; recruited: string[]; events: RunEvent[];
 };
-export const CURRENT_EDITION = 12;
+export const CURRENT_EDITION = 13;
 export const ROUTE_LENGTH = 6;
 export const TEAM_LIMIT = 6;
 export const STARTING_MONEY = 240;

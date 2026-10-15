@@ -1128,6 +1128,116 @@
       "sha256": "b7fc0638cb6fc11bb3f447793c42108ca625c78ef1cd9a6c26777479423db100"
     },
     {
+      "path": "public/assets/pokemon/37/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0037/credits.txt",
+      "license": "SpriteCollab CC BY-NC 4.0; underlying rights retained",
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "modification": "None",
+      "sha256": "1ce879fcef8a4e0fd1c6ac4921a321505fc613837dfad81a31f1a7f38f3eacc5"
+    },
+    {
+      "path": "public/assets/pokemon/37/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0037/AnimData.xml",
+      "license": "SpriteCollab CC BY-NC 4.0",
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "modification": "None",
+      "sha256": "d6b486c0c54950b1da64ac3649f5960003adc2da705f7f4f22384d92ac962890"
+    },
+    {
+      "path": "public/assets/pokemon/37/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0037/Idle-Anim.png",
+      "license": "SpriteCollab CC BY-NC 4.0",
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "modification": "None",
+      "sha256": "365953294d7e2fc734e7ae2889cde72ef085ce3e6e5896f6b964bf36022a386a"
+    },
+    {
+      "path": "public/assets/pokemon/37/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0037/Idle-Anim.png",
+      "license": "SpriteCollab CC BY-NC 4.0",
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "modification": "First down-facing frame cropped; no recoloring",
+      "sha256": "0373291bba5e117eb5dc2d3c10cc112c70d733032a6fc179f77feb3e42b20f07"
+    },
+    {
+      "path": "public/assets/pokemon/37/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0037/Walk-Anim.png",
+      "license": "SpriteCollab CC BY-NC 4.0",
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "modification": "None",
+      "sha256": "e2d911614423ffa3675f60d653d947394d5a587cf53a688cd13ab3322c157925"
+    },
+    {
+      "path": "public/assets/pokemon/27/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0027/credits.txt",
+      "license": "SpriteCollab CC BY-NC 4.0; underlying rights retained",
+      "authors": [
+        "3P1C",
+        "CHUNSOFT",
+        "Emboarger"
+      ],
+      "modification": "None",
+      "sha256": "448753b3321adfc13559e0da7236257976423922a6d822d11e49a04161b5c7cb"
+    },
+    {
+      "path": "public/assets/pokemon/27/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0027/AnimData.xml",
+      "license": "SpriteCollab CC BY-NC 4.0",
+      "authors": [
+        "3P1C",
+        "CHUNSOFT",
+        "Emboarger"
+      ],
+      "modification": "None",
+      "sha256": "37abe681deb81eb8eca55ed2e5156d11b2871c085b048e160d33f1c9994776da"
+    },
+    {
+      "path": "public/assets/pokemon/27/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0027/Idle-Anim.png",
+      "license": "SpriteCollab CC BY-NC 4.0",
+      "authors": [
+        "3P1C",
+        "CHUNSOFT",
+        "Emboarger"
+      ],
+      "modification": "None",
+      "sha256": "d17af3f49298103936ed3726b5402be7413f1cee3c789b763e74b453fd65f0d0"
+    },
+    {
+      "path": "public/assets/pokemon/27/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0027/Idle-Anim.png",
+      "license": "SpriteCollab CC BY-NC 4.0",
+      "authors": [
+        "3P1C",
+        "CHUNSOFT",
+        "Emboarger"
+      ],
+      "modification": "First down-facing frame cropped; no recoloring",
+      "sha256": "61e7364f896a1e57ccce0e5e01b2d2c0b4aba90fa5794113186c7f5850f1d83e"
+    },
+    {
+      "path": "public/assets/pokemon/27/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0027/Walk-Anim.png",
+      "license": "SpriteCollab CC BY-NC 4.0",
+      "authors": [
+        "3P1C",
+        "CHUNSOFT",
+        "Emboarger"
+      ],
+      "modification": "None",
+      "sha256": "23fc8ce093564ac34e54c1fe41b185c93364c35a3e6ff37c1583c47c9ae02e99"
+    },
+    {
       "path": "public/assets/pokemon/144/credits.txt",
       "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0144/credits.txt",
       "license": "SpriteCollab CC BY-NC 4.0; underlying rights retained",
@@ -1393,7 +1503,7 @@
       "license": "Data/characters retain their original rights",
       "authors": [],
       "modification": "Selected fields and animation metadata",
-      "sha256": "3da58504e5fa1c39da51e72af2eb5195a6506277973155eb965715ec3c2284c5"
+      "sha256": "08fe1e9d3a12947bbac38a2c3296adc25f91f1f1baa3dbe0b0354285543b6a6c"
     },
     {
       "path": "public/assets/fonts/PixelifySans.ttf",

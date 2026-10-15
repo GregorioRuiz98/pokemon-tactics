@@ -1,5 +1,5 @@
 export const INITIAL_SPECIES = [1, 4, 7, 25, 12, 74] as const;
-export const CATALOG_SPECIES = [...INITIAL_SPECIES, 2, 3, 5, 6, 8, 9, 26, 75, 76, 81, 43, 23, 109, 63, 96, 144, 145, 146, 150, 151];
+export const CATALOG_SPECIES = [...INITIAL_SPECIES, 2, 3, 5, 6, 8, 9, 26, 75, 76, 81, 43, 23, 109, 63, 96, 37, 27, 144, 145, 146, 150, 151];
 export const BOSS_SPECIES: number[] = [144, 145, 146, 150, 151];
 export const STAT_KEYS = ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed'] as const;
 export type StatKey = typeof STAT_KEYS[number];

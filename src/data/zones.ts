@@ -6,5 +6,7 @@ export const ZONES: Zone[] = [
   {id:'grass',name:'Planta · Ciudad Azulona',maps:['garden','grove'],enemies:[[1,43,12],[43,1,25]]},
   {id:'poison',name:'Veneno · Ciudad Fucsia',maps:['marsh','foundry'],enemies:[[23,109,1],[109,23,43]]},
   {id:'psychic',name:'Psíquico · Ciudad Azafrán',maps:['dojo','mirrors'],enemies:[[63,96,12],[96,63,81]]},
+  {id:'fire',name:'Fuego · Isla Canela',maps:['caldera','kiln'],enemies:[[4,37,74],[37,5,81]]},
+  {id:'ground',name:'Tierra · Ciudad Verde',maps:['badlands','canyon'],enemies:[[27,74,75],[75,27,96]]},
 ];
 export const zonesForEdition = (edition: number): Zone[] => ZONES.slice(0,Math.min(8,(edition-9)*2));

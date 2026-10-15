@@ -120,6 +120,20 @@ class Ekans extends Pokemon {
     new StatusAction(action('toxic','Tóxico','Veneno de tres activaciones; adaptación sin escalado.','poison',2,2,90),{kind:'poison',chance:100,duration:3}),
   ]); }
 }
+class Vulpix extends Pokemon {
+  constructor() { super(37,'Fuego y control de estado',5,[
+    new DamageAction(action('basic','Ascuas','Daño especial de Fuego.','fire',0,2),40,'special'),
+    new DamageAction(action('quick-attack','Ataque Rápido','Cobertura física de Normal; no cambia la cola.','normal',1,1),40,'physical'),
+    new StatusAction(action('will-o-wisp','Fuego Fatuo','Quemadura de tres activaciones.','fire',2,2,85),{kind:'burn',chance:100,duration:3}),
+  ]); }
+}
+class Sandshrew extends Pokemon {
+  constructor() { super(27,'Resistencia física y empuje',4,[
+    new DamageAction(action('basic','Arañazo','Daño físico Normal.','normal',0,1),40,'physical'),
+    new PushAction(action('dig','Excavar','Adaptación inmediata de Tierra con empuje.','ground',2,1),60,'physical'),
+    new GuardAction(action('defense-curl','Rizo Defensa','Protección personal.','normal',1,0,100,'self')),
+  ]); }
+}
 class Koffing extends Pokemon {
   constructor() { super(109,'Resistencia física y área',3,[
     new DamageAction(action('basic','Polución','Daño especial de Veneno.','poison',0,2),30,'special'),
@@ -175,6 +189,7 @@ const registry: ReadonlyMap<number, Pokemon> = new Map<number, Pokemon>([
   new Mewtwo(), new Mew(),
   new Magnemite(), new Oddish(),
   new Ekans(), new Koffing(), new Abra(), new Drowzee(),
+  new Vulpix(), new Sandshrew(),
   ...[2, 3].map(id => new EvolvedPokemon(id, new Bulbasaur(), new AreaDamageAction(action('razor-leaf', 'Hoja Afilada', 'Hojas en cruz; alcanza también a aliados.', 'grass', 2, 2, 95), 55, 'physical'))),
   ...[5, 6].map(id => new EvolvedPokemon(id, new Charmander(), new PushAction(action('dragon-tail', 'Cola Dragón', 'Desplaza al objetivo una casilla.', 'dragon', 2, 1, 90), 60, 'physical'))),
   ...[8, 9].map(id => new EvolvedPokemon(id, new Squirtle(), new AreaDamageAction(action('surf', 'Surf', 'Agua en cruz; alcanza también a aliados.', 'water', 3, 2), 65, 'special'))),
