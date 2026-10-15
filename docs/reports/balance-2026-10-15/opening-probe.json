@@ -1,0 +1,4858 @@
+{
+  "scope": "Isolated first fight with the original three starters; no changes to campaign rules or parameters",
+  "summary": [
+    {
+      "variant": "current",
+      "n": 200,
+      "wins": 118,
+      "rate": 0.59,
+      "ci": [
+        0.5207645903369208,
+        0.6558432509151711
+      ],
+      "deaths": 1.72,
+      "rounds": 3.975,
+      "difference": 0,
+      "differenceCI": [
+        0,
+        0
+      ]
+    },
+    {
+      "variant": "two-enemies",
+      "n": 200,
+      "wins": 194,
+      "rate": 0.97,
+      "ci": [
+        0.9361057075454807,
+        0.9861796856598887
+      ],
+      "deaths": 0.7,
+      "rounds": 4.21,
+      "difference": 0.38,
+      "differenceCI": [
+        0.315,
+        0.445
+      ]
+    },
+    {
+      "variant": "no-graveler",
+      "n": 200,
+      "wins": 131,
+      "rate": 0.655,
+      "ci": [
+        0.5867558925905368,
+        0.7174020562325106
+      ],
+      "deaths": 1.525,
+      "rounds": 6.065,
+      "difference": 0.065,
+      "differenceCI": [
+        0.02,
+        0.115
+      ]
+    }
+  ],
+  "results": [
+    {
+      "seed": "balance-v012-0",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-0",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-0",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-1",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-1",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-1",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-2",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-2",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-2",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-3",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-3",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-3",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-4",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-4",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-4",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 9,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-5",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-5",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-5",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-6",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-6",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 8,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-6",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 8,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-7",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-7",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-7",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-8",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-8",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-8",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-9",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-9",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-9",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-10",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-10",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 11,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-10",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 10,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-11",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 10,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-11",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-11",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 11,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-12",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-12",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-12",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-13",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-13",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-13",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-14",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-14",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-14",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-15",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-15",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-15",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-16",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 2,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-16",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 9,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-16",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-17",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-17",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 10,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-17",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 8,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-18",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-18",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-18",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-19",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-19",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-19",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-20",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-20",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 8,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-20",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-21",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-21",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-21",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-22",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-22",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-22",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 14,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-23",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-23",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 7,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-23",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-24",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-24",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 11,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-24",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-25",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-25",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-25",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-26",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-26",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 8,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-26",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "playing",
+      "rounds": 101,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-27",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-27",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-27",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-28",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-28",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-28",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-29",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-29",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 7,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-29",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 8,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-30",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-30",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-30",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-31",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-31",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-31",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-32",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-32",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-32",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-33",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-33",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-33",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-34",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-34",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-34",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-35",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-35",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 12,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-35",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-36",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-36",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-36",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-37",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-37",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 7,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-37",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 10,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-38",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-38",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-38",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-39",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-39",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-39",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-40",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-40",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-40",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "playing",
+      "rounds": 101,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-41",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-41",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 10,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-41",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-42",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-42",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-42",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-43",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-43",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-43",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-44",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 2,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-44",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-44",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 8,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-45",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-45",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-45",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-46",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-46",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-46",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-47",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-47",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-47",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-48",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 7,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-48",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-48",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-49",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 9,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-49",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-49",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 9,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-50",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 2,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-50",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-50",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-51",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-51",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 13,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-51",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 10,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-52",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-52",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-52",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-53",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-53",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-53",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-54",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-54",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-54",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-55",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-55",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-55",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-56",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-56",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-56",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-57",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-57",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-57",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-58",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-58",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-58",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-59",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-59",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-59",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-60",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-60",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-60",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-61",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-61",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-61",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-62",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-62",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-62",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-63",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-63",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-63",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-64",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-64",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-64",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-65",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-65",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-65",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-66",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-66",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-66",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-67",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-67",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-67",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-68",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-68",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-68",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-69",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-69",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-69",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-70",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-70",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-70",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 8,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-71",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-71",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-71",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-72",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-72",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-72",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-73",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-73",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-73",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-74",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-74",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-74",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-75",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-75",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-75",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-76",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-76",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 7,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-76",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-77",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-77",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 11,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-77",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-78",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-78",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-78",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-79",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-79",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-79",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-80",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 2,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-80",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-80",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-81",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-81",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-81",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-82",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-82",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 7,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-82",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-83",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-83",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-83",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-84",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-84",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-84",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-85",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-85",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-85",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-86",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-86",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 10,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-86",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 9,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-87",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-87",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-87",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-88",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-88",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-88",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-89",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-89",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 10,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-89",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-90",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-90",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-90",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-91",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-91",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-91",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-92",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-92",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-92",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-93",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-93",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-93",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-94",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-94",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-94",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-95",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 9,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-95",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-95",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-96",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-96",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-96",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-97",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-97",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-97",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-98",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-98",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-98",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-99",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-99",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-99",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-100",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-100",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 10,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-100",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-101",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-101",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-101",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 8,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-102",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 7,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-102",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-102",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-103",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-103",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-103",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-104",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-104",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-104",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 9,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-105",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-105",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 8,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-105",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 10,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-106",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-106",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-106",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-107",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-107",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 11,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-107",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-108",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-108",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-108",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-109",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-109",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-109",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-110",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-110",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-110",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-111",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-111",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-111",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-112",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-112",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-112",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-113",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-113",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-113",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-114",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-114",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-114",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-115",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-115",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-115",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-116",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-116",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-116",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-117",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-117",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 8,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-117",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 9,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-118",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-118",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-118",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-119",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-119",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 11,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-119",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 15,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-120",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-120",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-120",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-121",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-121",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-121",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-122",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-122",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-122",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-123",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-123",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-123",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-124",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-124",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-124",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 10,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-125",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-125",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-125",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-126",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-126",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-126",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-127",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-127",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-127",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-128",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-128",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-128",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-129",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-129",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-129",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-130",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-130",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-130",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-131",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-131",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-131",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-132",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-132",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-132",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-133",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-133",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-133",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-134",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-134",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-134",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-135",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-135",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-135",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-136",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-136",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-136",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-137",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-137",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-137",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-138",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-138",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-138",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-139",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-139",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 7,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-139",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-140",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-140",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-140",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-141",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-141",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-141",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-142",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-142",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-142",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-143",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-143",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 7,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-143",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-144",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-144",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-144",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 7,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-145",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 2,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-145",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 9,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-145",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-146",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-146",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 12,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-146",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-147",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-147",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-147",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-148",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-148",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-148",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-149",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-149",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-149",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-150",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-150",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-150",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-151",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-151",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 11,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-151",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-152",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-152",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-152",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-153",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-153",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-153",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-154",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-154",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-154",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-155",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-155",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-155",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-156",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-156",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-156",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-157",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-157",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-157",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-158",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-158",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-158",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 7,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-159",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-159",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-159",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-160",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-160",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-160",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-161",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 2,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-161",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-161",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-162",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-162",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-162",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-163",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-163",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-163",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-164",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-164",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-164",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-165",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-165",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 10,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-165",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-166",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-166",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-166",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-167",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-167",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 12,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-167",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-168",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-168",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-168",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-169",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 2,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-169",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 7,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-169",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 8,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-170",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-170",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-170",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-171",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-171",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-171",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 8,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-172",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-172",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-172",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-173",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-173",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-173",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-174",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-174",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-174",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-175",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-175",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-175",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-176",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-176",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-176",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-177",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-177",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-177",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 9,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-178",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-178",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-178",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-179",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-179",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-179",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-180",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 5,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-180",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 8,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-180",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 8,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-181",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-181",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-181",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-182",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-182",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-182",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-183",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-183",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-183",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-184",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-184",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-184",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-185",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-185",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-185",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-186",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-186",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-186",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-187",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-187",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-187",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-188",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-188",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-188",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-189",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 4,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-189",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-189",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 6,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-190",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-190",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-190",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-191",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-191",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-191",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-192",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-192",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-192",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-193",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-193",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-193",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-194",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-194",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-194",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-195",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-195",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 5,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-195",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 6,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-196",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 10,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-196",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 9,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-196",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-197",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-197",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-197",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 1
+    },
+    {
+      "seed": "balance-v012-198",
+      "variant": "current",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 3,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-198",
+      "variant": "two-enemies",
+      "mapId": "pass",
+      "outcome": "victory",
+      "rounds": 2,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-198",
+      "variant": "no-graveler",
+      "mapId": "pass",
+      "outcome": "defeat",
+      "rounds": 7,
+      "deaths": 3
+    },
+    {
+      "seed": "balance-v012-199",
+      "variant": "current",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 4,
+      "deaths": 0
+    },
+    {
+      "seed": "balance-v012-199",
+      "variant": "two-enemies",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 7,
+      "deaths": 2
+    },
+    {
+      "seed": "balance-v012-199",
+      "variant": "no-graveler",
+      "mapId": "quarry",
+      "outcome": "victory",
+      "rounds": 3,
+      "deaths": 1
+    }
+  ]
+}

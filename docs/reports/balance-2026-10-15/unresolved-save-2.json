@@ -1,0 +1,1570 @@
+{
+  "schema": "pokemon-tactics/run",
+  "version": 3,
+  "run": {
+    "edition": 14,
+    "seed": "balance-v012-176",
+    "variance": 0.05,
+    "status": "combat",
+    "roster": [
+      {
+        "id": 3,
+        "speciesId": 2,
+        "hp": 150,
+        "xp": 240,
+        "heldItem": null
+      },
+      {
+        "id": 4,
+        "speciesId": 4,
+        "hp": 116,
+        "xp": 160,
+        "heldItem": null
+      },
+      {
+        "id": 5,
+        "speciesId": 27,
+        "hp": 104,
+        "xp": 40,
+        "heldItem": null
+      }
+    ],
+    "departed": [
+      {
+        "id": 2,
+        "speciesId": 12,
+        "hp": 0,
+        "xp": 48,
+        "heldItem": null,
+        "reason": "fallen"
+      },
+      {
+        "id": 1,
+        "speciesId": 8,
+        "hp": 0,
+        "xp": 136,
+        "heldItem": null,
+        "reason": "fallen"
+      }
+    ],
+    "nextMemberId": 6,
+    "nodes": [
+      {
+        "id": "zone-1-1",
+        "floor": 1,
+        "kind": "combat",
+        "mapId": "quarry",
+        "enemies": [
+          74,
+          75,
+          12
+        ],
+        "offers": [],
+        "next": [
+          "shop-1",
+          "recruit-1"
+        ]
+      },
+      {
+        "id": "zone-1-2",
+        "floor": 1,
+        "kind": "combat",
+        "mapId": "pass",
+        "enemies": [
+          75,
+          74,
+          4
+        ],
+        "offers": [],
+        "next": [
+          "shop-1",
+          "recruit-1"
+        ]
+      },
+      {
+        "id": "zone-2-1",
+        "floor": 2,
+        "kind": "combat",
+        "mapId": "pond",
+        "enemies": [
+          7,
+          8,
+          12
+        ],
+        "offers": [],
+        "next": [
+          "shop-2",
+          "recruit-2"
+        ]
+      },
+      {
+        "id": "zone-2-2",
+        "floor": 2,
+        "kind": "combat",
+        "mapId": "canal",
+        "enemies": [
+          8,
+          7,
+          25
+        ],
+        "offers": [],
+        "next": [
+          "shop-2",
+          "recruit-2"
+        ]
+      },
+      {
+        "id": "zone-3-1",
+        "floor": 3,
+        "kind": "combat",
+        "mapId": "power",
+        "enemies": [
+          25,
+          81,
+          74
+        ],
+        "offers": [],
+        "next": [
+          "shop-3",
+          "recruit-3"
+        ]
+      },
+      {
+        "id": "zone-3-2",
+        "floor": 3,
+        "kind": "combat",
+        "mapId": "switchyard",
+        "enemies": [
+          81,
+          25,
+          7
+        ],
+        "offers": [],
+        "next": [
+          "shop-3",
+          "recruit-3"
+        ]
+      },
+      {
+        "id": "zone-4-1",
+        "floor": 4,
+        "kind": "combat",
+        "mapId": "garden",
+        "enemies": [
+          1,
+          43,
+          12
+        ],
+        "offers": [],
+        "next": [
+          "shop-4",
+          "recruit-4"
+        ]
+      },
+      {
+        "id": "zone-4-2",
+        "floor": 4,
+        "kind": "combat",
+        "mapId": "grove",
+        "enemies": [
+          43,
+          1,
+          25
+        ],
+        "offers": [],
+        "next": [
+          "shop-4",
+          "recruit-4"
+        ]
+      },
+      {
+        "id": "zone-5-1",
+        "floor": 5,
+        "kind": "combat",
+        "mapId": "marsh",
+        "enemies": [
+          23,
+          109,
+          1
+        ],
+        "offers": [],
+        "next": [
+          "shop-5",
+          "recruit-5"
+        ]
+      },
+      {
+        "id": "zone-5-2",
+        "floor": 5,
+        "kind": "combat",
+        "mapId": "foundry",
+        "enemies": [
+          109,
+          23,
+          43
+        ],
+        "offers": [],
+        "next": [
+          "shop-5",
+          "recruit-5"
+        ]
+      },
+      {
+        "id": "zone-6-1",
+        "floor": 6,
+        "kind": "combat",
+        "mapId": "dojo",
+        "enemies": [
+          63,
+          96,
+          12
+        ],
+        "offers": [],
+        "next": [
+          "shop-6",
+          "recruit-6"
+        ]
+      },
+      {
+        "id": "zone-6-2",
+        "floor": 6,
+        "kind": "combat",
+        "mapId": "mirrors",
+        "enemies": [
+          96,
+          63,
+          81
+        ],
+        "offers": [],
+        "next": [
+          "shop-6",
+          "recruit-6"
+        ]
+      },
+      {
+        "id": "zone-7-1",
+        "floor": 7,
+        "kind": "combat",
+        "mapId": "caldera",
+        "enemies": [
+          4,
+          37,
+          74
+        ],
+        "offers": [],
+        "next": [
+          "shop-7",
+          "recruit-7"
+        ]
+      },
+      {
+        "id": "zone-7-2",
+        "floor": 7,
+        "kind": "combat",
+        "mapId": "kiln",
+        "enemies": [
+          37,
+          5,
+          81
+        ],
+        "offers": [],
+        "next": [
+          "shop-7",
+          "recruit-7"
+        ]
+      },
+      {
+        "id": "zone-8-1",
+        "floor": 8,
+        "kind": "combat",
+        "mapId": "badlands",
+        "enemies": [
+          27,
+          74,
+          75
+        ],
+        "offers": [],
+        "next": [
+          "shop-8",
+          "recruit-8"
+        ]
+      },
+      {
+        "id": "zone-8-2",
+        "floor": 8,
+        "kind": "combat",
+        "mapId": "canyon",
+        "enemies": [
+          75,
+          27,
+          96
+        ],
+        "offers": [],
+        "next": [
+          "shop-8",
+          "recruit-8"
+        ]
+      },
+      {
+        "id": "final-psychic",
+        "floor": 9,
+        "kind": "combat",
+        "next": [],
+        "mapId": "psychic",
+        "enemies": [
+          150,
+          151
+        ],
+        "offers": []
+      },
+      {
+        "id": "final-birds",
+        "floor": 9,
+        "kind": "combat",
+        "next": [],
+        "mapId": "birds",
+        "enemies": [
+          144,
+          145,
+          146
+        ],
+        "offers": []
+      },
+      {
+        "id": "shop-0",
+        "floor": 0,
+        "kind": "shop",
+        "mapId": "",
+        "enemies": [],
+        "offers": [],
+        "next": [
+          "zone-1-1",
+          "zone-1-2"
+        ]
+      },
+      {
+        "id": "recruit-0",
+        "floor": 0,
+        "kind": "recruit",
+        "mapId": "",
+        "enemies": [],
+        "next": [
+          "zone-1-1",
+          "zone-1-2"
+        ],
+        "offers": [
+          {
+            "id": "recruit-0:0",
+            "speciesId": 25,
+            "price": 80
+          },
+          {
+            "id": "recruit-0:1",
+            "speciesId": 4,
+            "price": 80
+          },
+          {
+            "id": "recruit-0:2",
+            "speciesId": 74,
+            "price": 80
+          }
+        ]
+      },
+      {
+        "id": "shop-1",
+        "floor": 1,
+        "kind": "shop",
+        "mapId": "",
+        "enemies": [],
+        "offers": [],
+        "next": [
+          "zone-2-1",
+          "zone-2-2"
+        ]
+      },
+      {
+        "id": "recruit-1",
+        "floor": 1,
+        "kind": "recruit",
+        "mapId": "",
+        "enemies": [],
+        "next": [
+          "zone-2-1",
+          "zone-2-2"
+        ],
+        "offers": [
+          {
+            "id": "recruit-1:0",
+            "speciesId": 25,
+            "price": 80
+          },
+          {
+            "id": "recruit-1:1",
+            "speciesId": 96,
+            "price": 80
+          },
+          {
+            "id": "recruit-1:2",
+            "speciesId": 23,
+            "price": 80
+          }
+        ]
+      },
+      {
+        "id": "shop-2",
+        "floor": 2,
+        "kind": "shop",
+        "mapId": "",
+        "enemies": [],
+        "offers": [],
+        "next": [
+          "zone-3-1",
+          "zone-3-2"
+        ]
+      },
+      {
+        "id": "recruit-2",
+        "floor": 2,
+        "kind": "recruit",
+        "mapId": "",
+        "enemies": [],
+        "next": [
+          "zone-3-1",
+          "zone-3-2"
+        ],
+        "offers": [
+          {
+            "id": "recruit-2:0",
+            "speciesId": 4,
+            "price": 80
+          },
+          {
+            "id": "recruit-2:1",
+            "speciesId": 63,
+            "price": 80
+          },
+          {
+            "id": "recruit-2:2",
+            "speciesId": 96,
+            "price": 80
+          }
+        ]
+      },
+      {
+        "id": "shop-3",
+        "floor": 3,
+        "kind": "shop",
+        "mapId": "",
+        "enemies": [],
+        "offers": [],
+        "next": [
+          "zone-4-1",
+          "zone-4-2"
+        ]
+      },
+      {
+        "id": "recruit-3",
+        "floor": 3,
+        "kind": "recruit",
+        "mapId": "",
+        "enemies": [],
+        "next": [
+          "zone-4-1",
+          "zone-4-2"
+        ],
+        "offers": [
+          {
+            "id": "recruit-3:0",
+            "speciesId": 12,
+            "price": 80
+          },
+          {
+            "id": "recruit-3:1",
+            "speciesId": 63,
+            "price": 80
+          },
+          {
+            "id": "recruit-3:2",
+            "speciesId": 7,
+            "price": 80
+          }
+        ]
+      },
+      {
+        "id": "shop-4",
+        "floor": 4,
+        "kind": "shop",
+        "mapId": "",
+        "enemies": [],
+        "offers": [],
+        "next": [
+          "zone-5-1",
+          "zone-5-2"
+        ]
+      },
+      {
+        "id": "recruit-4",
+        "floor": 4,
+        "kind": "recruit",
+        "mapId": "",
+        "enemies": [],
+        "next": [
+          "zone-5-1",
+          "zone-5-2"
+        ],
+        "offers": [
+          {
+            "id": "recruit-4:0",
+            "speciesId": 27,
+            "price": 80
+          },
+          {
+            "id": "recruit-4:1",
+            "speciesId": 1,
+            "price": 80
+          },
+          {
+            "id": "recruit-4:2",
+            "speciesId": 23,
+            "price": 80
+          }
+        ]
+      },
+      {
+        "id": "shop-5",
+        "floor": 5,
+        "kind": "shop",
+        "mapId": "",
+        "enemies": [],
+        "offers": [],
+        "next": [
+          "zone-6-1",
+          "zone-6-2"
+        ]
+      },
+      {
+        "id": "recruit-5",
+        "floor": 5,
+        "kind": "recruit",
+        "mapId": "",
+        "enemies": [],
+        "next": [
+          "zone-6-1",
+          "zone-6-2"
+        ],
+        "offers": [
+          {
+            "id": "recruit-5:0",
+            "speciesId": 27,
+            "price": 80
+          },
+          {
+            "id": "recruit-5:1",
+            "speciesId": 23,
+            "price": 80
+          },
+          {
+            "id": "recruit-5:2",
+            "speciesId": 63,
+            "price": 80
+          }
+        ]
+      },
+      {
+        "id": "shop-6",
+        "floor": 6,
+        "kind": "shop",
+        "mapId": "",
+        "enemies": [],
+        "offers": [],
+        "next": [
+          "zone-7-1",
+          "zone-7-2"
+        ]
+      },
+      {
+        "id": "recruit-6",
+        "floor": 6,
+        "kind": "recruit",
+        "mapId": "",
+        "enemies": [],
+        "next": [
+          "zone-7-1",
+          "zone-7-2"
+        ],
+        "offers": [
+          {
+            "id": "recruit-6:0",
+            "speciesId": 63,
+            "price": 80
+          },
+          {
+            "id": "recruit-6:1",
+            "speciesId": 1,
+            "price": 80
+          },
+          {
+            "id": "recruit-6:2",
+            "speciesId": 23,
+            "price": 80
+          }
+        ]
+      },
+      {
+        "id": "shop-7",
+        "floor": 7,
+        "kind": "shop",
+        "mapId": "",
+        "enemies": [],
+        "offers": [],
+        "next": [
+          "zone-8-1",
+          "zone-8-2"
+        ]
+      },
+      {
+        "id": "recruit-7",
+        "floor": 7,
+        "kind": "recruit",
+        "mapId": "",
+        "enemies": [],
+        "next": [
+          "zone-8-1",
+          "zone-8-2"
+        ],
+        "offers": [
+          {
+            "id": "recruit-7:0",
+            "speciesId": 25,
+            "price": 80
+          },
+          {
+            "id": "recruit-7:1",
+            "speciesId": 27,
+            "price": 80
+          },
+          {
+            "id": "recruit-7:2",
+            "speciesId": 7,
+            "price": 80
+          }
+        ]
+      },
+      {
+        "id": "shop-8",
+        "floor": 8,
+        "kind": "shop",
+        "mapId": "",
+        "enemies": [],
+        "offers": [],
+        "next": [
+          "final-psychic",
+          "final-birds"
+        ]
+      },
+      {
+        "id": "recruit-8",
+        "floor": 8,
+        "kind": "recruit",
+        "mapId": "",
+        "enemies": [],
+        "next": [
+          "final-psychic",
+          "final-birds"
+        ],
+        "offers": [
+          {
+            "id": "recruit-8:0",
+            "speciesId": 27,
+            "price": 80
+          },
+          {
+            "id": "recruit-8:1",
+            "speciesId": 25,
+            "price": 80
+          },
+          {
+            "id": "recruit-8:2",
+            "speciesId": 4,
+            "price": 80
+          }
+        ]
+      }
+    ],
+    "path": [
+      "shop-0",
+      "zone-1-2",
+      "shop-1",
+      "zone-2-1",
+      "recruit-2",
+      "zone-3-2",
+      "shop-3",
+      "zone-4-1",
+      "recruit-4",
+      "zone-5-1",
+      "shop-5"
+    ],
+    "history": [
+      {
+        "nodeId": "zone-1-2",
+        "round": 3,
+        "outcome": "victory",
+        "hp": [
+          {
+            "id": 1,
+            "hp": 100
+          },
+          {
+            "id": 2,
+            "hp": 55
+          },
+          {
+            "id": 3,
+            "hp": 99
+          }
+        ],
+        "contribution": [
+          {
+            "id": 1,
+            "points": 12
+          },
+          {
+            "id": 2,
+            "points": 28
+          },
+          {
+            "id": 3,
+            "points": 20
+          }
+        ]
+      },
+      {
+        "nodeId": "zone-2-1",
+        "round": 6,
+        "outcome": "victory",
+        "hp": [
+          {
+            "id": 1,
+            "hp": 100
+          },
+          {
+            "id": 2,
+            "hp": 0
+          },
+          {
+            "id": 3,
+            "hp": 52
+          }
+        ],
+        "contribution": [
+          {
+            "id": 1,
+            "points": 34
+          },
+          {
+            "id": 2,
+            "points": 32
+          },
+          {
+            "id": 3,
+            "points": 58
+          }
+        ]
+      },
+      {
+        "nodeId": "zone-3-2",
+        "round": 4,
+        "outcome": "victory",
+        "hp": [
+          {
+            "id": 1,
+            "hp": 38
+          },
+          {
+            "id": 3,
+            "hp": 86
+          },
+          {
+            "id": 4,
+            "hp": 72
+          }
+        ],
+        "contribution": [
+          {
+            "id": 1,
+            "points": 30
+          },
+          {
+            "id": 3,
+            "points": 30
+          },
+          {
+            "id": 4,
+            "points": 38
+          }
+        ]
+      },
+      {
+        "nodeId": "zone-4-1",
+        "round": 4,
+        "outcome": "victory",
+        "hp": [
+          {
+            "id": 1,
+            "hp": 0
+          },
+          {
+            "id": 3,
+            "hp": 39
+          },
+          {
+            "id": 4,
+            "hp": 72
+          }
+        ],
+        "contribution": [
+          {
+            "id": 1,
+            "points": 30
+          },
+          {
+            "id": 3,
+            "points": 38
+          },
+          {
+            "id": 4,
+            "points": 32
+          }
+        ]
+      },
+      {
+        "nodeId": "zone-5-1",
+        "round": 3,
+        "outcome": "victory",
+        "hp": [
+          {
+            "id": 3,
+            "hp": 11
+          },
+          {
+            "id": 4,
+            "hp": 18
+          },
+          {
+            "id": 5,
+            "hp": 64
+          }
+        ],
+        "contribution": [
+          {
+            "id": 3,
+            "points": 30
+          },
+          {
+            "id": 4,
+            "points": 30
+          },
+          {
+            "id": 5,
+            "points": 20
+          }
+        ]
+      }
+    ],
+    "currentNodeId": "zone-6-1",
+    "battle": {
+      "seed": "98bb0f88-zone-6-1",
+      "rng": 1079253417,
+      "variance": 0.05,
+      "composition": "run",
+      "hazards": [
+        {
+          "x": 2,
+          "y": 3,
+          "kind": "psychic"
+        },
+        {
+          "x": 4,
+          "y": 3,
+          "kind": "psychic"
+        },
+        {
+          "x": 3,
+          "y": 4,
+          "kind": "psychic"
+        }
+      ],
+      "contributions": {
+        "3": 20,
+        "4": 42,
+        "5": 1000,
+        "1000": 10,
+        "1001": 1000,
+        "1002": 30
+      },
+      "round": 101,
+      "board": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "fields": [],
+      "units": [
+        {
+          "x": 0,
+          "y": 6,
+          "id": 3,
+          "speciesId": 2,
+          "heldItem": null,
+          "name": "Ivysaur",
+          "team": "ally",
+          "types": [
+            "grass",
+            "poison"
+          ],
+          "budget": 4,
+          "remaining": 4,
+          "facing": 2,
+          "maxHp": 150,
+          "hp": 0,
+          "attack": 78,
+          "defense": 79,
+          "specialAttack": 96,
+          "specialDefense": 96,
+          "speed": 60,
+          "range": 1,
+          "profile": "grass",
+          "tp": 1,
+          "maxTp": 5,
+          "status": null,
+          "guarded": false,
+          "ruleset": 14
+        },
+        {
+          "x": 4,
+          "y": 4,
+          "id": 4,
+          "speciesId": 4,
+          "heldItem": null,
+          "name": "Charmander",
+          "team": "ally",
+          "types": [
+            "fire"
+          ],
+          "budget": 4,
+          "remaining": 4,
+          "facing": 4,
+          "maxHp": 116,
+          "hp": 0,
+          "attack": 60,
+          "defense": 51,
+          "specialAttack": 68,
+          "specialDefense": 58,
+          "speed": 65,
+          "range": 2,
+          "profile": "ground",
+          "tp": 3,
+          "maxTp": 5,
+          "status": null,
+          "guarded": false,
+          "ruleset": 14
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "id": 5,
+          "speciesId": 27,
+          "heldItem": null,
+          "name": "Sandshrew",
+          "team": "ally",
+          "types": [
+            "ground"
+          ],
+          "budget": 4,
+          "remaining": 4,
+          "facing": 2,
+          "maxHp": 104,
+          "hp": 69,
+          "attack": 75,
+          "defense": 85,
+          "specialAttack": 20,
+          "specialDefense": 30,
+          "speed": 40,
+          "range": 1,
+          "profile": "ground",
+          "tp": 0,
+          "maxTp": 5,
+          "status": null,
+          "guarded": true,
+          "ruleset": 14
+        },
+        {
+          "x": 3,
+          "y": 5,
+          "id": 1000,
+          "speciesId": 63,
+          "heldItem": null,
+          "name": "Abra",
+          "team": "enemy",
+          "types": [
+            "psychic"
+          ],
+          "budget": 6,
+          "remaining": 0,
+          "facing": 0,
+          "maxHp": 86,
+          "hp": 0,
+          "attack": 20,
+          "defense": 15,
+          "specialAttack": 105,
+          "specialDefense": 55,
+          "speed": 90,
+          "range": 2,
+          "profile": "ground",
+          "tp": 1,
+          "maxTp": 5,
+          "status": null,
+          "guarded": false,
+          "ruleset": 14
+        },
+        {
+          "x": 4,
+          "y": 3,
+          "id": 1001,
+          "speciesId": 96,
+          "heldItem": null,
+          "name": "Drowzee",
+          "team": "enemy",
+          "types": [
+            "psychic"
+          ],
+          "budget": 4,
+          "remaining": 4,
+          "facing": 4,
+          "maxHp": 110,
+          "hp": 5,
+          "attack": 48,
+          "defense": 45,
+          "specialAttack": 43,
+          "specialDefense": 90,
+          "speed": 42,
+          "range": 1,
+          "profile": "ground",
+          "tp": 3,
+          "maxTp": 5,
+          "status": null,
+          "guarded": false,
+          "ruleset": 14
+        },
+        {
+          "x": 2,
+          "y": 6,
+          "id": 1002,
+          "speciesId": 12,
+          "heldItem": null,
+          "name": "Butterfree",
+          "team": "enemy",
+          "types": [
+            "bug",
+            "flying"
+          ],
+          "budget": 4,
+          "remaining": 0,
+          "facing": 4,
+          "maxHp": 110,
+          "hp": 0,
+          "attack": 45,
+          "defense": 50,
+          "specialAttack": 90,
+          "specialDefense": 80,
+          "speed": 70,
+          "range": 2,
+          "profile": "fly",
+          "tp": 5,
+          "maxTp": 5,
+          "status": null,
+          "guarded": false,
+          "ruleset": 14
+        }
+      ],
+      "initiative": [
+        {
+          "id": 1001,
+          "score": 40.98697773185558,
+          "tie": 0.565218671457842
+        },
+        {
+          "id": 5,
+          "score": 40.106027773581445,
+          "tie": 0.9968965244479477
+        }
+      ],
+      "queue": [
+        1001,
+        5
+      ],
+      "completed": [],
+      "moved": false,
+      "acted": false,
+      "outcome": "playing",
+      "log": [
+        "Drowzee termina su activación mirando al Norte.",
+        "Sandshrew usa Rizo Defensa (1 PT).",
+        "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+        "Sandshrew termina su activación mirando al Este.",
+        "Ronda 96: nueva cola de iniciativa.",
+        "Drowzee usa Reflejo (1 PT).",
+        "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+        "Drowzee termina su activación mirando al Norte.",
+        "Sandshrew usa Rizo Defensa (1 PT).",
+        "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+        "Sandshrew termina su activación mirando al Este.",
+        "Ronda 97: nueva cola de iniciativa.",
+        "Sandshrew usa Rizo Defensa (1 PT).",
+        "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+        "Sandshrew termina su activación mirando al Este.",
+        "Drowzee usa Reflejo (1 PT).",
+        "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+        "Drowzee termina su activación mirando al Norte.",
+        "Ronda 98: nueva cola de iniciativa.",
+        "Drowzee usa Reflejo (1 PT).",
+        "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+        "Drowzee termina su activación mirando al Norte.",
+        "Sandshrew usa Rizo Defensa (1 PT).",
+        "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+        "Sandshrew termina su activación mirando al Este.",
+        "Ronda 99: nueva cola de iniciativa.",
+        "Drowzee usa Reflejo (1 PT).",
+        "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+        "Drowzee termina su activación mirando al Norte.",
+        "Sandshrew usa Rizo Defensa (1 PT).",
+        "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+        "Sandshrew termina su activación mirando al Este.",
+        "Ronda 100: nueva cola de iniciativa.",
+        "Drowzee usa Reflejo (1 PT).",
+        "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+        "Drowzee termina su activación mirando al Norte.",
+        "Sandshrew usa Rizo Defensa (1 PT).",
+        "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+        "Sandshrew termina su activación mirando al Este.",
+        "Ronda 101: nueva cola de iniciativa."
+      ]
+    },
+    "money": 440,
+    "bag": {
+      "potion": 0,
+      "super-potion": 0,
+      "leftovers": 0,
+      "assault-vest": 0,
+      "heavy-duty-boots": 0,
+      "rare-candy": 0,
+      "thunder-stone": 1
+    },
+    "purchases": {
+      "shop-3": {
+        "super-potion": 1,
+        "potion": 1
+      },
+      "shop-5": {
+        "super-potion": 2,
+        "potion": 2
+      }
+    },
+    "recruited": [
+      "recruit-2:0",
+      "recruit-4:0"
+    ],
+    "events": [
+      {
+        "kind": "enter",
+        "nodeId": "shop-0"
+      },
+      {
+        "kind": "leave"
+      },
+      {
+        "kind": "enter",
+        "nodeId": "zone-1-2"
+      },
+      {
+        "kind": "result",
+        "nodeId": "zone-1-2",
+        "outcome": "victory",
+        "round": 3,
+        "hp": [
+          {
+            "id": 1,
+            "hp": 100
+          },
+          {
+            "id": 2,
+            "hp": 55
+          },
+          {
+            "id": 3,
+            "hp": 99
+          }
+        ],
+        "contribution": [
+          {
+            "id": 1,
+            "points": 12
+          },
+          {
+            "id": 2,
+            "points": 28
+          },
+          {
+            "id": 3,
+            "points": 20
+          }
+        ]
+      },
+      {
+        "kind": "heal",
+        "itemId": "potion",
+        "memberId": 2
+      },
+      {
+        "kind": "enter",
+        "nodeId": "shop-1"
+      },
+      {
+        "kind": "leave"
+      },
+      {
+        "kind": "enter",
+        "nodeId": "zone-2-1"
+      },
+      {
+        "kind": "result",
+        "nodeId": "zone-2-1",
+        "outcome": "victory",
+        "round": 6,
+        "hp": [
+          {
+            "id": 1,
+            "hp": 100
+          },
+          {
+            "id": 2,
+            "hp": 0
+          },
+          {
+            "id": 3,
+            "hp": 52
+          }
+        ],
+        "contribution": [
+          {
+            "id": 1,
+            "points": 34
+          },
+          {
+            "id": 2,
+            "points": 32
+          },
+          {
+            "id": 3,
+            "points": 58
+          }
+        ]
+      },
+      {
+        "kind": "evolve",
+        "memberId": 1
+      },
+      {
+        "kind": "enter",
+        "nodeId": "recruit-2"
+      },
+      {
+        "kind": "recruit",
+        "offerId": "recruit-2:0",
+        "replaceId": null
+      },
+      {
+        "kind": "leave"
+      },
+      {
+        "kind": "enter",
+        "nodeId": "zone-3-2"
+      },
+      {
+        "kind": "result",
+        "nodeId": "zone-3-2",
+        "outcome": "victory",
+        "round": 4,
+        "hp": [
+          {
+            "id": 1,
+            "hp": 38
+          },
+          {
+            "id": 3,
+            "hp": 86
+          },
+          {
+            "id": 4,
+            "hp": 72
+          }
+        ],
+        "contribution": [
+          {
+            "id": 1,
+            "points": 30
+          },
+          {
+            "id": 3,
+            "points": 30
+          },
+          {
+            "id": 4,
+            "points": 38
+          }
+        ]
+      },
+      {
+        "kind": "enter",
+        "nodeId": "shop-3"
+      },
+      {
+        "kind": "buy",
+        "itemId": "super-potion"
+      },
+      {
+        "kind": "heal",
+        "itemId": "super-potion",
+        "memberId": 1
+      },
+      {
+        "kind": "buy",
+        "itemId": "potion"
+      },
+      {
+        "kind": "heal",
+        "itemId": "potion",
+        "memberId": 3
+      },
+      {
+        "kind": "leave"
+      },
+      {
+        "kind": "enter",
+        "nodeId": "zone-4-1"
+      },
+      {
+        "kind": "result",
+        "nodeId": "zone-4-1",
+        "outcome": "victory",
+        "round": 4,
+        "hp": [
+          {
+            "id": 1,
+            "hp": 0
+          },
+          {
+            "id": 3,
+            "hp": 39
+          },
+          {
+            "id": 4,
+            "hp": 72
+          }
+        ],
+        "contribution": [
+          {
+            "id": 1,
+            "points": 30
+          },
+          {
+            "id": 3,
+            "points": 38
+          },
+          {
+            "id": 4,
+            "points": 32
+          }
+        ]
+      },
+      {
+        "kind": "evolve",
+        "memberId": 3
+      },
+      {
+        "kind": "enter",
+        "nodeId": "recruit-4"
+      },
+      {
+        "kind": "recruit",
+        "offerId": "recruit-4:0",
+        "replaceId": null
+      },
+      {
+        "kind": "leave"
+      },
+      {
+        "kind": "enter",
+        "nodeId": "zone-5-1"
+      },
+      {
+        "kind": "result",
+        "nodeId": "zone-5-1",
+        "outcome": "victory",
+        "round": 3,
+        "hp": [
+          {
+            "id": 3,
+            "hp": 11
+          },
+          {
+            "id": 4,
+            "hp": 18
+          },
+          {
+            "id": 5,
+            "hp": 64
+          }
+        ],
+        "contribution": [
+          {
+            "id": 3,
+            "points": 30
+          },
+          {
+            "id": 4,
+            "points": 30
+          },
+          {
+            "id": 5,
+            "points": 20
+          }
+        ]
+      },
+      {
+        "kind": "enter",
+        "nodeId": "shop-5"
+      },
+      {
+        "kind": "buy",
+        "itemId": "super-potion"
+      },
+      {
+        "kind": "heal",
+        "itemId": "super-potion",
+        "memberId": 3
+      },
+      {
+        "kind": "buy",
+        "itemId": "super-potion"
+      },
+      {
+        "kind": "heal",
+        "itemId": "super-potion",
+        "memberId": 4
+      },
+      {
+        "kind": "buy",
+        "itemId": "potion"
+      },
+      {
+        "kind": "heal",
+        "itemId": "potion",
+        "memberId": 5
+      },
+      {
+        "kind": "buy",
+        "itemId": "potion"
+      },
+      {
+        "kind": "heal",
+        "itemId": "potion",
+        "memberId": 3
+      },
+      {
+        "kind": "leave"
+      },
+      {
+        "kind": "enter",
+        "nodeId": "zone-6-1"
+      }
+    ]
+  }
+}

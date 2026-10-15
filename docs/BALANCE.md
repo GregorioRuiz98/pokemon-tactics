@@ -9,3 +9,7 @@ En 16 simulaciones emparejadas, ocho semillas y dos destinos, se comparó la edi
 Esta comparación observa el conjunto de cambios; no aísla causalmente cada parámetro. No mide diversión, tiempo humano, comprensión ni una tasa de victoria deseada. Persisten bajas definitivas y rutas difíciles. Antes de otro ajuste, recoger el feedback de `PLAYTEST.md` y comparar estrategias manuales, no únicamente la política de IA.
 
 Resultado emparejado: edición 13, 137/787 golpes contra PS completos terminan en KO (17,4 %), 2/16 victorias; edición 14, 75/1994 (3,8 %), 7/16 victorias. El número de rondas acumuladas sube de 265 a 558: el combate dura más y necesita valoración humana. La muestra ampliada de edición 14 obtiene 8/24 victorias.
+
+## Auditoría ampliada del 15 de octubre
+
+Se analizaron 2.000 recorridos, 1.790 finales emparejados, 1.600 pruebas de objetos y 600 aperturas aisladas sin cambiar parámetros del juego. El [informe detallado](reports/balance-2026-10-15/INFORME.md) incluye limitaciones, diez estrategias, presión por tamaño de equipo, encuentros, IA, objetos y recomendaciones. Datos y scripts reproducibles acompañan al informe. Los siete casos sin resolución a 100 rondas se conservan aparte; tres intervenciones legales confirman que el motor puede continuar.

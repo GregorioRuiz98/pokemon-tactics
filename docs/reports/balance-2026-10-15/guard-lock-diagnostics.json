@@ -1,0 +1,158 @@
+[
+  {
+    "example": 1,
+    "initialRound": 101,
+    "outcome": "defeat",
+    "extraRounds": 0,
+    "commands": 4,
+    "firstOrders": [
+      {
+        "kind": "move",
+        "destination": {
+          "x": 0,
+          "y": 5
+        }
+      },
+      {
+        "kind": "attack",
+        "target": 1000,
+        "actionId": "confusion"
+      },
+      {
+        "kind": "finish",
+        "facing": 2
+      },
+      {
+        "kind": "attack",
+        "target": 13,
+        "actionId": "basic"
+      }
+    ],
+    "lastLog": [
+      "Ronda 101: nueva cola de iniciativa.",
+      "Drowzee se mueve a A6 (1 puntos).",
+      "Drowzee usa Confusión (1 PT).",
+      "Sandshrew: 16 PS.",
+      "Drowzee termina su activación mirando al Este.",
+      "Sandshrew usa Arañazo (0 PT).",
+      "Drowzee: 10 PS. Fuera de combate.",
+      "Derrota: el equipo ha caído."
+    ]
+  },
+  {
+    "example": 2,
+    "initialRound": 101,
+    "outcome": "victory",
+    "extraRounds": 2,
+    "commands": 12,
+    "firstOrders": [
+      {
+        "kind": "attack",
+        "target": 1001,
+        "actionId": "reflect"
+      },
+      {
+        "kind": "finish",
+        "facing": 4
+      },
+      {
+        "kind": "move",
+        "destination": {
+          "x": 4,
+          "y": 2
+        }
+      },
+      {
+        "kind": "attack",
+        "target": 1001,
+        "actionId": "basic"
+      },
+      {
+        "kind": "finish",
+        "facing": 0
+      },
+      {
+        "kind": "attack",
+        "target": 5,
+        "actionId": "confusion"
+      },
+      {
+        "kind": "finish",
+        "facing": 4
+      },
+      {
+        "kind": "attack",
+        "target": 1001,
+        "actionId": "basic"
+      },
+      {
+        "kind": "finish",
+        "facing": 0
+      },
+      {
+        "kind": "attack",
+        "target": 5,
+        "actionId": "confusion"
+      },
+      {
+        "kind": "finish",
+        "facing": 4
+      },
+      {
+        "kind": "attack",
+        "target": 1001,
+        "actionId": "basic"
+      }
+    ],
+    "lastLog": [
+      "Sandshrew termina su activación mirando al Sur.",
+      "Ronda 103: nueva cola de iniciativa.",
+      "Drowzee usa Confusión (1 PT).",
+      "Sandshrew: 31 PS.",
+      "Drowzee termina su activación mirando al Norte.",
+      "Sandshrew usa Arañazo (0 PT).",
+      "Drowzee: 5 PS. Fuera de combate.",
+      "Victoria: zona despejada."
+    ]
+  },
+  {
+    "example": 3,
+    "initialRound": 101,
+    "outcome": "victory",
+    "extraRounds": 0,
+    "commands": 4,
+    "firstOrders": [
+      {
+        "kind": "attack",
+        "target": 1001,
+        "actionId": "reflect"
+      },
+      {
+        "kind": "finish",
+        "facing": 0
+      },
+      {
+        "kind": "move",
+        "destination": {
+          "x": 4,
+          "y": 2
+        }
+      },
+      {
+        "kind": "attack",
+        "target": 1001,
+        "actionId": "basic"
+      }
+    ],
+    "lastLog": [
+      "Ronda 101: nueva cola de iniciativa.",
+      "Drowzee usa Reflejo (1 PT).",
+      "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+      "Drowzee termina su activación mirando al Sur.",
+      "Koffing se mueve a E3 (1 puntos).",
+      "Koffing usa Polución (0 PT).",
+      "Drowzee: 4 PS. Fuera de combate.",
+      "Victoria: zona despejada."
+    ]
+  }
+]

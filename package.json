@@ -20,7 +20,10 @@
     "simulate": "node --experimental-strip-types tools/simulate-campaign.ts",
     "release:prepare": "node tools/prepare-release.mjs",
     "verify:build": "node tools/verify-build.mjs",
-    "test:browser:package": "node tools/browser-package.cjs"
+    "test:browser:package": "node tools/browser-package.cjs",
+    "simulate:balance": "node --experimental-strip-types tools/balance/audit.ts",
+    "simulate:balance:opening": "node --experimental-strip-types tools/balance/opening_probe.ts",
+    "verify:balance": "node --experimental-strip-types tools/balance/verify_audit.ts"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

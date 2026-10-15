@@ -1,0 +1,688 @@
+[
+  {
+    "seed": "balance-v012-63",
+    "policy": "reference",
+    "node": "zone-8-1",
+    "battleSeed": "c4313801-zone-8-1",
+    "round": 101,
+    "units": [
+      {
+        "speciesId": 96,
+        "team": "ally",
+        "hp": 10,
+        "x": 0,
+        "y": 4
+      },
+      {
+        "speciesId": 26,
+        "team": "ally",
+        "hp": 0,
+        "x": 6,
+        "y": 3
+      },
+      {
+        "speciesId": 74,
+        "team": "ally",
+        "hp": 0,
+        "x": 4,
+        "y": 6
+      },
+      {
+        "speciesId": 96,
+        "team": "ally",
+        "hp": 0,
+        "x": 4,
+        "y": 6
+      },
+      {
+        "speciesId": 81,
+        "team": "ally",
+        "hp": 0,
+        "x": 5,
+        "y": 6
+      },
+      {
+        "speciesId": 96,
+        "team": "ally",
+        "hp": 0,
+        "x": 7,
+        "y": 6
+      },
+      {
+        "speciesId": 27,
+        "team": "enemy",
+        "hp": 51,
+        "x": 1,
+        "y": 5
+      },
+      {
+        "speciesId": 74,
+        "team": "enemy",
+        "hp": 0,
+        "x": 0,
+        "y": 6
+      },
+      {
+        "speciesId": 75,
+        "team": "enemy",
+        "hp": 0,
+        "x": 5,
+        "y": 5
+      }
+    ],
+    "log": [
+      "Drowzee termina su activación mirando al Sur.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Oeste.",
+      "Ronda 96: nueva cola de iniciativa.",
+      "Drowzee usa Reflejo (1 PT).",
+      "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+      "Drowzee termina su activación mirando al Sur.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Oeste.",
+      "Ronda 97: nueva cola de iniciativa.",
+      "Drowzee usa Reflejo (1 PT).",
+      "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+      "Drowzee termina su activación mirando al Sur.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Oeste.",
+      "Ronda 98: nueva cola de iniciativa.",
+      "Drowzee usa Reflejo (1 PT).",
+      "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+      "Drowzee termina su activación mirando al Sur.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Oeste.",
+      "Ronda 99: nueva cola de iniciativa.",
+      "Drowzee usa Reflejo (1 PT).",
+      "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+      "Drowzee termina su activación mirando al Sur.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Oeste.",
+      "Ronda 100: nueva cola de iniciativa.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Oeste.",
+      "Drowzee usa Reflejo (1 PT).",
+      "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+      "Drowzee termina su activación mirando al Sur.",
+      "Ronda 101: nueva cola de iniciativa."
+    ]
+  },
+  {
+    "seed": "balance-v012-176",
+    "policy": "trio",
+    "node": "zone-6-1",
+    "battleSeed": "98bb0f88-zone-6-1",
+    "round": 101,
+    "units": [
+      {
+        "speciesId": 2,
+        "team": "ally",
+        "hp": 0,
+        "x": 0,
+        "y": 6
+      },
+      {
+        "speciesId": 4,
+        "team": "ally",
+        "hp": 0,
+        "x": 4,
+        "y": 4
+      },
+      {
+        "speciesId": 27,
+        "team": "ally",
+        "hp": 69,
+        "x": 3,
+        "y": 2
+      },
+      {
+        "speciesId": 63,
+        "team": "enemy",
+        "hp": 0,
+        "x": 3,
+        "y": 5
+      },
+      {
+        "speciesId": 96,
+        "team": "enemy",
+        "hp": 5,
+        "x": 4,
+        "y": 3
+      },
+      {
+        "speciesId": 12,
+        "team": "enemy",
+        "hp": 0,
+        "x": 2,
+        "y": 6
+      }
+    ],
+    "log": [
+      "Drowzee termina su activación mirando al Norte.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Este.",
+      "Ronda 96: nueva cola de iniciativa.",
+      "Drowzee usa Reflejo (1 PT).",
+      "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+      "Drowzee termina su activación mirando al Norte.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Este.",
+      "Ronda 97: nueva cola de iniciativa.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Este.",
+      "Drowzee usa Reflejo (1 PT).",
+      "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+      "Drowzee termina su activación mirando al Norte.",
+      "Ronda 98: nueva cola de iniciativa.",
+      "Drowzee usa Reflejo (1 PT).",
+      "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+      "Drowzee termina su activación mirando al Norte.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Este.",
+      "Ronda 99: nueva cola de iniciativa.",
+      "Drowzee usa Reflejo (1 PT).",
+      "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+      "Drowzee termina su activación mirando al Norte.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Este.",
+      "Ronda 100: nueva cola de iniciativa.",
+      "Drowzee usa Reflejo (1 PT).",
+      "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+      "Drowzee termina su activación mirando al Norte.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Este.",
+      "Ronda 101: nueva cola de iniciativa."
+    ]
+  },
+  {
+    "seed": "balance-v012-30",
+    "policy": "four",
+    "node": "zone-6-1",
+    "battleSeed": "bf3dfc15-zone-6-1",
+    "round": 101,
+    "units": [
+      {
+        "speciesId": 109,
+        "team": "ally",
+        "hp": 10,
+        "x": 3,
+        "y": 2
+      },
+      {
+        "speciesId": 43,
+        "team": "ally",
+        "hp": 0,
+        "x": 3,
+        "y": 6
+      },
+      {
+        "speciesId": 109,
+        "team": "ally",
+        "hp": 0,
+        "x": 5,
+        "y": 5
+      },
+      {
+        "speciesId": 4,
+        "team": "ally",
+        "hp": 0,
+        "x": 6,
+        "y": 1
+      },
+      {
+        "speciesId": 63,
+        "team": "enemy",
+        "hp": 0,
+        "x": 6,
+        "y": 5
+      },
+      {
+        "speciesId": 96,
+        "team": "enemy",
+        "hp": 4,
+        "x": 4,
+        "y": 1
+      },
+      {
+        "speciesId": 12,
+        "team": "enemy",
+        "hp": 0,
+        "x": 6,
+        "y": 4
+      }
+    ],
+    "log": [
+      "Drowzee termina su activación mirando al Sur.",
+      "Koffing usa Fortaleza (1 PT).",
+      "Koffing: 0 PS. Protegido hasta su próxima activación.",
+      "Koffing termina su activación mirando al Este.",
+      "Ronda 96: nueva cola de iniciativa.",
+      "Drowzee usa Reflejo (1 PT).",
+      "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+      "Drowzee termina su activación mirando al Sur.",
+      "Koffing usa Fortaleza (1 PT).",
+      "Koffing: 0 PS. Protegido hasta su próxima activación.",
+      "Koffing termina su activación mirando al Este.",
+      "Ronda 97: nueva cola de iniciativa.",
+      "Drowzee usa Reflejo (1 PT).",
+      "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+      "Drowzee termina su activación mirando al Sur.",
+      "Koffing usa Fortaleza (1 PT).",
+      "Koffing: 0 PS. Protegido hasta su próxima activación.",
+      "Koffing termina su activación mirando al Este.",
+      "Ronda 98: nueva cola de iniciativa.",
+      "Drowzee usa Reflejo (1 PT).",
+      "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+      "Drowzee termina su activación mirando al Sur.",
+      "Koffing usa Fortaleza (1 PT).",
+      "Koffing: 0 PS. Protegido hasta su próxima activación.",
+      "Koffing termina su activación mirando al Este.",
+      "Ronda 99: nueva cola de iniciativa.",
+      "Drowzee usa Reflejo (1 PT).",
+      "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+      "Drowzee termina su activación mirando al Sur.",
+      "Koffing usa Fortaleza (1 PT).",
+      "Koffing: 0 PS. Protegido hasta su próxima activación.",
+      "Koffing termina su activación mirando al Este.",
+      "Ronda 100: nueva cola de iniciativa.",
+      "Drowzee usa Reflejo (1 PT).",
+      "Drowzee: 0 PS. Protegido hasta su próxima activación.",
+      "Drowzee termina su activación mirando al Sur.",
+      "Koffing usa Fortaleza (1 PT).",
+      "Koffing: 0 PS. Protegido hasta su próxima activación.",
+      "Koffing termina su activación mirando al Este.",
+      "Ronda 101: nueva cola de iniciativa."
+    ]
+  },
+  {
+    "seed": "balance-v012-56",
+    "policy": "four",
+    "node": "zone-8-1",
+    "battleSeed": "3938abf5-zone-8-1",
+    "round": 101,
+    "units": [
+      {
+        "speciesId": 96,
+        "team": "ally",
+        "hp": 0,
+        "x": 5,
+        "y": 6
+      },
+      {
+        "speciesId": 27,
+        "team": "ally",
+        "hp": 0,
+        "x": 0,
+        "y": 1
+      },
+      {
+        "speciesId": 109,
+        "team": "ally",
+        "hp": 0,
+        "x": 3,
+        "y": 2
+      },
+      {
+        "speciesId": 27,
+        "team": "ally",
+        "hp": 48,
+        "x": 1,
+        "y": 1
+      },
+      {
+        "speciesId": 27,
+        "team": "enemy",
+        "hp": 14,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "speciesId": 74,
+        "team": "enemy",
+        "hp": 0,
+        "x": 4,
+        "y": 3
+      },
+      {
+        "speciesId": 75,
+        "team": "enemy",
+        "hp": 0,
+        "x": 5,
+        "y": 4
+      }
+    ],
+    "log": [
+      "Sandshrew termina su activación mirando al Sur.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Oeste.",
+      "Ronda 96: nueva cola de iniciativa.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Sur.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Oeste.",
+      "Ronda 97: nueva cola de iniciativa.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Oeste.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Sur.",
+      "Ronda 98: nueva cola de iniciativa.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Sur.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Oeste.",
+      "Ronda 99: nueva cola de iniciativa.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Oeste.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Sur.",
+      "Ronda 100: nueva cola de iniciativa.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Oeste.",
+      "Sandshrew usa Rizo Defensa (1 PT).",
+      "Sandshrew: 0 PS. Protegido hasta su próxima activación.",
+      "Sandshrew termina su activación mirando al Sur.",
+      "Ronda 101: nueva cola de iniciativa."
+    ]
+  },
+  {
+    "seed": "balance-v012-66",
+    "policy": "four",
+    "node": "zone-3-1",
+    "battleSeed": "c7313cba-zone-3-1",
+    "round": 101,
+    "units": [
+      {
+        "speciesId": 8,
+        "team": "ally",
+        "hp": 0,
+        "x": 1,
+        "y": 3
+      },
+      {
+        "speciesId": 74,
+        "team": "ally",
+        "hp": 22,
+        "x": 3,
+        "y": 4
+      },
+      {
+        "speciesId": 63,
+        "team": "ally",
+        "hp": 1,
+        "x": 4,
+        "y": 5
+      },
+      {
+        "speciesId": 25,
+        "team": "enemy",
+        "hp": 0,
+        "x": 2,
+        "y": 3
+      },
+      {
+        "speciesId": 81,
+        "team": "enemy",
+        "hp": 0,
+        "x": 4,
+        "y": 3
+      },
+      {
+        "speciesId": 74,
+        "team": "enemy",
+        "hp": 28,
+        "x": 5,
+        "y": 4
+      }
+    ],
+    "log": [
+      "Abra usa Barrera (1 PT).",
+      "Abra: 0 PS. Protegido hasta su próxima activación.",
+      "Abra termina su activación mirando al Norte.",
+      "Geodude usa Fortaleza (1 PT).",
+      "Geodude: 0 PS. Protegido hasta su próxima activación.",
+      "Geodude termina su activación mirando al Este.",
+      "Geodude usa Fortaleza (1 PT).",
+      "Geodude: 0 PS. Protegido hasta su próxima activación.",
+      "Geodude termina su activación mirando al Oeste.",
+      "Ronda 98: nueva cola de iniciativa.",
+      "Abra usa Barrera (1 PT).",
+      "Abra: 0 PS. Protegido hasta su próxima activación.",
+      "Abra termina su activación mirando al Norte.",
+      "Geodude usa Fortaleza (1 PT).",
+      "Geodude: 0 PS. Protegido hasta su próxima activación.",
+      "Geodude termina su activación mirando al Oeste.",
+      "Geodude usa Fortaleza (1 PT).",
+      "Geodude: 0 PS. Protegido hasta su próxima activación.",
+      "Geodude termina su activación mirando al Este.",
+      "Ronda 99: nueva cola de iniciativa.",
+      "Abra usa Barrera (1 PT).",
+      "Abra: 0 PS. Protegido hasta su próxima activación.",
+      "Abra termina su activación mirando al Norte.",
+      "Geodude usa Fortaleza (1 PT).",
+      "Geodude: 0 PS. Protegido hasta su próxima activación.",
+      "Geodude termina su activación mirando al Este.",
+      "Geodude usa Fortaleza (1 PT).",
+      "Geodude: 0 PS. Protegido hasta su próxima activación.",
+      "Geodude termina su activación mirando al Oeste.",
+      "Ronda 100: nueva cola de iniciativa.",
+      "Abra usa Barrera (1 PT).",
+      "Abra: 0 PS. Protegido hasta su próxima activación.",
+      "Abra termina su activación mirando al Norte.",
+      "Geodude usa Fortaleza (1 PT).",
+      "Geodude: 0 PS. Protegido hasta su próxima activación.",
+      "Geodude termina su activación mirando al Oeste.",
+      "Geodude usa Fortaleza (1 PT).",
+      "Geodude: 0 PS. Protegido hasta su próxima activación.",
+      "Geodude termina su activación mirando al Este.",
+      "Ronda 101: nueva cola de iniciativa."
+    ]
+  },
+  {
+    "seed": "balance-v012-79",
+    "policy": "trio-leftovers",
+    "node": "zone-2-1",
+    "battleSeed": "be336d26-zone-2-1",
+    "round": 101,
+    "units": [
+      {
+        "speciesId": 7,
+        "team": "ally",
+        "hp": 32,
+        "x": 5,
+        "y": 5
+      },
+      {
+        "speciesId": 4,
+        "team": "ally",
+        "hp": 0,
+        "x": 5,
+        "y": 1
+      },
+      {
+        "speciesId": 74,
+        "team": "ally",
+        "hp": 0,
+        "x": 7,
+        "y": 6
+      },
+      {
+        "speciesId": 7,
+        "team": "enemy",
+        "hp": 39,
+        "x": 6,
+        "y": 4
+      },
+      {
+        "speciesId": 8,
+        "team": "enemy",
+        "hp": 110,
+        "x": 7,
+        "y": 5
+      },
+      {
+        "speciesId": 12,
+        "team": "enemy",
+        "hp": 0,
+        "x": 5,
+        "y": 2
+      }
+    ],
+    "log": [
+      "Squirtle: 0 PS. Protegido hasta su próxima activación.",
+      "Squirtle termina su activación mirando al Este.",
+      "Squirtle: Restos, recupera 6 PS.",
+      "Squirtle usa Cobertura (1 PT).",
+      "Squirtle: 0 PS. Protegido hasta su próxima activación.",
+      "Squirtle termina su activación mirando al Sur.",
+      "Ronda 98: nueva cola de iniciativa.",
+      "Wartortle usa Hidropulso (2 PT).",
+      "Squirtle: 10 PS, eficacia ×0.5.",
+      "Wartortle termina su activación mirando al Oeste.",
+      "Squirtle usa Cobertura (1 PT).",
+      "Squirtle: 0 PS. Protegido hasta su próxima activación.",
+      "Squirtle termina su activación mirando al Este.",
+      "Squirtle: Restos, recupera 6 PS.",
+      "Squirtle usa Cobertura (1 PT).",
+      "Squirtle: 0 PS. Protegido hasta su próxima activación.",
+      "Squirtle termina su activación mirando al Sur.",
+      "Ronda 99: nueva cola de iniciativa.",
+      "Wartortle usa Pistola Agua (0 PT).",
+      "Squirtle: 6 PS, eficacia ×0.5.",
+      "Wartortle termina su activación mirando al Oeste.",
+      "Squirtle usa Cobertura (1 PT).",
+      "Squirtle: 0 PS. Protegido hasta su próxima activación.",
+      "Squirtle termina su activación mirando al Este.",
+      "Squirtle: Restos, recupera 6 PS.",
+      "Squirtle usa Cobertura (1 PT).",
+      "Squirtle: 0 PS. Protegido hasta su próxima activación.",
+      "Squirtle termina su activación mirando al Sur.",
+      "Ronda 100: nueva cola de iniciativa.",
+      "Wartortle usa Hidropulso (2 PT).",
+      "Squirtle: 10 PS, eficacia ×0.5.",
+      "Wartortle termina su activación mirando al Oeste.",
+      "Squirtle usa Cobertura (1 PT).",
+      "Squirtle: 0 PS. Protegido hasta su próxima activación.",
+      "Squirtle termina su activación mirando al Sur.",
+      "Squirtle usa Cobertura (1 PT).",
+      "Squirtle: 0 PS. Protegido hasta su próxima activación.",
+      "Squirtle termina su activación mirando al Este.",
+      "Squirtle: Restos, recupera 6 PS.",
+      "Ronda 101: nueva cola de iniciativa."
+    ]
+  },
+  {
+    "seed": "balance-v012-114",
+    "policy": "trio-leftovers",
+    "node": "zone-2-1",
+    "battleSeed": "6c039e0-zone-2-1",
+    "round": 101,
+    "units": [
+      {
+        "speciesId": 7,
+        "team": "ally",
+        "hp": 51,
+        "x": 3,
+        "y": 6
+      },
+      {
+        "speciesId": 4,
+        "team": "ally",
+        "hp": 0,
+        "x": 3,
+        "y": 2
+      },
+      {
+        "speciesId": 96,
+        "team": "ally",
+        "hp": 0,
+        "x": 5,
+        "y": 4
+      },
+      {
+        "speciesId": 7,
+        "team": "enemy",
+        "hp": 0,
+        "x": 7,
+        "y": 5
+      },
+      {
+        "speciesId": 8,
+        "team": "enemy",
+        "hp": 23,
+        "x": 3,
+        "y": 4
+      },
+      {
+        "speciesId": 12,
+        "team": "enemy",
+        "hp": 0,
+        "x": 5,
+        "y": 2
+      }
+    ],
+    "log": [
+      "Wartortle usa Hidropulso (2 PT).",
+      "Squirtle: 10 PS, eficacia ×0.5.",
+      "Wartortle termina su activación mirando al Sur.",
+      "Squirtle usa Cobertura (1 PT).",
+      "Squirtle: 0 PS. Protegido hasta su próxima activación.",
+      "Squirtle termina su activación mirando al Norte.",
+      "Squirtle: Restos, recupera 6 PS.",
+      "Ronda 97: nueva cola de iniciativa.",
+      "Wartortle usa Pistola Agua (0 PT).",
+      "Squirtle: 6 PS, eficacia ×0.5.",
+      "Wartortle termina su activación mirando al Sur.",
+      "Squirtle usa Cobertura (1 PT).",
+      "Squirtle: 0 PS. Protegido hasta su próxima activación.",
+      "Squirtle termina su activación mirando al Norte.",
+      "Squirtle: Restos, recupera 6 PS.",
+      "Ronda 98: nueva cola de iniciativa.",
+      "Wartortle usa Hidropulso (2 PT).",
+      "Squirtle: 10 PS, eficacia ×0.5.",
+      "Wartortle termina su activación mirando al Sur.",
+      "Squirtle usa Cobertura (1 PT).",
+      "Squirtle: 0 PS. Protegido hasta su próxima activación.",
+      "Squirtle termina su activación mirando al Norte.",
+      "Squirtle: Restos, recupera 6 PS.",
+      "Ronda 99: nueva cola de iniciativa.",
+      "Wartortle usa Pistola Agua (0 PT).",
+      "Squirtle: el ataque falla (85 %).",
+      "Wartortle termina su activación mirando al Sur.",
+      "Squirtle usa Cobertura (1 PT).",
+      "Squirtle: 0 PS. Protegido hasta su próxima activación.",
+      "Squirtle termina su activación mirando al Norte.",
+      "Squirtle: Restos, recupera 6 PS.",
+      "Ronda 100: nueva cola de iniciativa.",
+      "Wartortle usa Hidropulso (2 PT).",
+      "Squirtle: 10 PS, eficacia ×0.5.",
+      "Wartortle termina su activación mirando al Sur.",
+      "Squirtle usa Cobertura (1 PT).",
+      "Squirtle: 0 PS. Protegido hasta su próxima activación.",
+      "Squirtle termina su activación mirando al Norte.",
+      "Squirtle: Restos, recupera 6 PS.",
+      "Ronda 101: nueva cola de iniciativa."
+    ]
+  }
+]
