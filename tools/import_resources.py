@@ -7,13 +7,14 @@ import io
 import json
 import pathlib
 import time
+import argparse
 import urllib.request
 from PIL import Image
 from vendor.pokesurvivor_sprites import parse_animdata, resolve, ground_anchor
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 LOCK = json.loads((ROOT / 'tools/sources.lock.json').read_text())
-SPECIES = [1, 4, 7, 25, 12, 74]
+SPECIES = [1, 4, 7, 25, 12, 74, 2, 3, 5, 6, 8, 9, 26, 75, 76]
 CACHE = ROOT / 'tools/cache'
 MANIFEST = []
 
@@ -58,7 +59,7 @@ def main():
         species_api = f'https://pokeapi.co/api/v2/pokemon-species/{dex}'
         pokemon = json.loads(fetch(api))
         details = json.loads(fetch(species_api))
-        assert not details['is_legendary'] and not details['is_mythical']
+        assert dex in [144, 145, 146, 150, 151] or (not details['is_legendary'] and not details['is_mythical'])
         base = f"{LOCK['sprites']['raw']}/sprite/{dex:04d}"
         credits = fetch(f'{base}/credits.txt')
         authors = sorted({names.get(line.split('\t')[1], line.split('\t')[1])

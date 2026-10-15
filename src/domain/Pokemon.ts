@@ -87,8 +87,18 @@ export class Geodude extends Pokemon {
     ]);
   }
 }
+class EvolvedPokemon extends Pokemon {
+  constructor(id: number, family: Pokemon, signature: TacticalAction) {
+    super(id, family.role, family.movement, [family.actions[0], family.actions[1], signature]);
+  }
+}
 const registry: ReadonlyMap<number, Pokemon> = new Map<number, Pokemon>([
   new Bulbasaur(), new Charmander(), new Squirtle(), new Pikachu(), new Butterfree(), new Geodude(),
+  ...[2, 3].map(id => new EvolvedPokemon(id, new Bulbasaur(), new AreaDamageAction(action('razor-leaf', 'Hoja Afilada', 'Hojas en cruz; alcanza también a aliados.', 'grass', 2, 2, 95), 55, 'physical'))),
+  ...[5, 6].map(id => new EvolvedPokemon(id, new Charmander(), new PushAction(action('dragon-tail', 'Cola Dragón', 'Desplaza al objetivo una casilla.', 'dragon', 2, 1, 90), 60, 'physical'))),
+  ...[8, 9].map(id => new EvolvedPokemon(id, new Squirtle(), new AreaDamageAction(action('surf', 'Surf', 'Agua en cruz; alcanza también a aliados.', 'water', 3, 2), 65, 'special'))),
+  new EvolvedPokemon(26, new Pikachu(), new AreaDamageAction(action('discharge', 'Chispazo', 'Cruz eléctrica, incluidos aliados; 10 % de parálisis.', 'electric', 3, 2), 60, 'special', { kind: 'paralysis', chance: 10, duration: 3 })),
+  ...[75, 76].map(id => new EvolvedPokemon(id, new Geodude(), new AreaDamageAction(action('bulldoze', 'Terratemblor', 'Tierra en cruz; alcanza también a aliados.', 'ground', 2, 2), 60, 'physical'))),
 ].map(pokemon => [pokemon.speciesId, pokemon]));
 export function pokemonFor(id: number): Pokemon {
   const pokemon = registry.get(id);

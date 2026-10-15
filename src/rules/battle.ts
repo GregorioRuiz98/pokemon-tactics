@@ -6,6 +6,7 @@ import { TACTICAL_BOARD, blocksSight, supportsEmbers, fieldDamage } from './terr
 import type { TerrainField } from './terrain.ts';
 import type { PokemonSpecies } from '../data/catalog.ts';
 import { pokemonFor } from '../domain/Pokemon.ts';
+import { atLevel, levelFor } from '../domain/progression.ts';
 import { heldItemFor } from '../domain/items.ts';
 import type { HeldItemId } from '../domain/items.ts';
 import { effectiveSpeed, movementBudget, STATUS_NAMES } from '../domain/combatant.ts';
@@ -33,6 +34,7 @@ export type Battle = {
   moved: boolean;
   acted: boolean;
   outcome: 'playing' | 'victory' | 'defeat';
+  contributions?: Record<number, number>;
   log: string[];
 };
 export const living = (state: Battle): Combatant[] => state.units.filter(u => u.hp > 0);
@@ -107,7 +109,7 @@ export function createBattle(catalog: readonly PokemonSpecies[], seed = 'kanto-0
 }
 // Instance IDs identify units; species IDs select data, actions and shared textures.
 export function createEncounter(catalog: readonly PokemonSpecies[], seed: string, variance: number, board: Board,
-  allies: readonly { id: number; speciesId: number; hp: number; heldItem?: HeldItemId | null }[], enemies: readonly number[]): Battle {
+  allies: readonly { id: number; speciesId: number; hp: number; heldItem?: HeldItemId | null; xp?: number }[], enemies: readonly number[], options: { progression?: boolean } = {}): Battle {
   if (![0.05, 0.1].includes(variance) || allies.length < 1 || allies.length > 6 || enemies.length !== 3)
     throw new Error('Encuentro no válido.');
   const allyPositions = [{ x: 1, y: 6 }, { x: 3, y: 6 }, { x: 2, y: 7 }, { x: 0, y: 6 }, { x: 4, y: 6 }, { x: 4, y: 7 }];
@@ -115,7 +117,8 @@ export function createEncounter(catalog: readonly PokemonSpecies[], seed: string
   const create = (id: number, speciesId: number, team: Team, position: Point, hp?: number): Combatant => {
     const species = catalog.find(p => p.id === speciesId);
     if (!species) throw new Error(`Falta la especie ${speciesId}.`);
-    const unit = pokemonFor(speciesId).createCombatant(species, team, position);
+    const xp = team === 'ally' ? allies.find(member => member.id === id)?.xp ?? 0 : 0;
+    const unit = atLevel(pokemonFor(speciesId).createCombatant(species, team, position), options.progression ? levelFor(xp) : 1);
     unit.id = id;
     if (hp !== undefined) {
       if (!Number.isInteger(hp) || hp < 1 || hp > unit.maxHp) throw new Error('PS iniciales no válidos.');
@@ -133,7 +136,7 @@ export function createEncounter(catalog: readonly PokemonSpecies[], seed: string
     ...enemies.map((speciesId, index) => create(1000 + index, speciesId, 'enemy', enemyPositions[index])),
   ];
   if (new Set(units.map(unit => unit.id)).size !== units.length) throw new Error('Identidades duplicadas.');
-  const state: Battle = { seed, rng: hashSeed(seed), variance, composition: 'run', round: 0, board, fields: [], units,
+  const state: Battle = { seed, rng: hashSeed(seed), variance, composition: 'run', ...(options.progression ? { contributions: {} } : {}), round: 0, board, fields: [], units,
     initiative: [], queue: [], completed: [], moved: false, acted: false, outcome: 'playing', log: [] };
   newRound(state);
   return state;
@@ -274,6 +277,7 @@ export function attackInBattle(state: Battle, targetId: number, actionId = 'basi
   const next = copy(state), actor = activeUnit(next)!, primary = next.units.find(unit => unit.id === targetId)!;
   actor.tp -= plan.cost;
   next.acted = true;
+  if (next.contributions) next.contributions[actor.id] = (next.contributions[actor.id] ?? 0) + 8;
   if (actor.id !== primary.id)
     actor.facing = facingFrom(actor, primary);
   const hits: NonNullable<Extract<RuleResult, {
@@ -339,6 +343,7 @@ export function finishTurn(state: Battle, facing?: Facing): RuleResult {
     actor.hp += recovery;
     note(next, `${actor.name}: Restos, recupera ${recovery} PS.`);
   }
+  if (next.contributions) next.contributions[actor.id] = (next.contributions[actor.id] ?? 0) + 2;
   next.completed = [...next.completed, actor.id];
   next.queue = next.queue.slice(1);
   next.moved = false;

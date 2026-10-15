@@ -3,13 +3,15 @@ import { runMap } from './run-maps.ts';
 import { pokemonFor } from '../domain/Pokemon.ts';
 import { supportsEmbers } from '../rules/terrain.ts';
 import { tileCost, key } from '../rules/movement.ts';
+import { atLevel, levelFor } from '../domain/progression.ts';
+import { validateRun as validateV2 } from './run-store-v2.ts';
 import { replayRun, migrateLegacyRun, encounterSeed } from '../rules/run.ts';
 import { validateLegacyRun } from './legacy-run-store.ts';
 import type { Run } from '../rules/run.ts';
 import type { Battle } from '../rules/battle.ts';
 
 export const SAVE_KEY = 'pokemon-tactics.run';
-export const SAVE_VERSION = 2;
+export const SAVE_VERSION = 3;
 export const LEGACY_BACKUP_KEY = 'pokemon-tactics.run.v1-backup';
 export type StorageLike = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
 export type SaveRead = { kind: 'valid'; run: Run; migrated?: true } | { kind: 'empty' | 'invalid' | 'incompatible' | 'unavailable' };
@@ -37,7 +39,8 @@ function validateBattle(value: unknown, run: Run, catalog: readonly PokemonSpeci
     requireValid(object(unit) && unit.id === template.id && unit.speciesId === template.speciesId && unit.team === template.team);
     requireValid(unit.heldItem === ('heldItem' in template ? template.heldItem : null));
     const species = catalog.find(species => species.id === unit.speciesId)!;
-    const original = pokemonFor(unit.speciesId).createCombatant(species, unit.team, { x: 0, y: 0 });
+    const xp = 'xp' in template ? template.xp : 0;
+    const original = atLevel(pokemonFor(unit.speciesId).createCombatant(species, unit.team, { x: 0, y: 0 }), run.edition >= 7 && typeof xp === 'number' ? levelFor(xp) : 1);
     for (const field of ['name', 'types', 'maxHp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed', 'range', 'budget', 'maxTp', 'profile'] as const)
       requireValid(equal(unit[field], original[field]));
     requireValid(integer(unit.hp, 0, unit.maxHp) && integer(unit.tp, 0, unit.maxTp) && integer(unit.remaining, 0, unit.budget));
@@ -49,6 +52,9 @@ function validateBattle(value: unknown, run: Run, catalog: readonly PokemonSpeci
       occupied.add(key(unit));
     }
   }
+  if (run.edition >= 7) {
+    requireValid(object(battle.contributions) && Object.entries(battle.contributions).every(([id, points]) => battle.units.some(unit => unit.id === Number(id)) && integer(points, 0, battle.round * 30)));
+  } else requireValid(battle.contributions === undefined);
   const ids = battle.units.map(unit => unit.id);
   const list = (value: unknown): value is number[] => Array.isArray(value) && value.every(id => ids.includes(id)) && new Set(value).size === value.length;
   requireValid(Array.isArray(battle.initiative) && battle.initiative.length > 0 && battle.initiative.length <= ids.length);
@@ -70,7 +76,8 @@ export function validateRun(value: unknown, catalog: readonly PokemonSpecies[]):
   requireValid(object(value));
   const run = value as unknown as Run;
   requireValid(typeof run.seed === 'string' && run.seed.trim() === run.seed && run.seed.length > 0 && run.seed.length <= 64 && [0.05, 0.1].includes(run.variance));
-  const replayed = replayRun(catalog, run.seed, run.variance, run.events);
+  requireValid(integer(run.edition, 6, 15));
+  const replayed = replayRun(catalog, run.seed, run.variance, run.events, run.edition);
   // Replaying legal transactions reconstructs money, stock, bag, equipment, IDs and route.
   requireValid(equal({ ...run, battle: null }, { ...replayed, battle: null }));
   if (run.status === 'combat') {
@@ -83,6 +90,7 @@ export function validateRun(value: unknown, catalog: readonly PokemonSpecies[]):
 export class RunStore {
   private lastRaw: string | null = null;
   private pendingBackup: string | null = null;
+  private backupKey = LEGACY_BACKUP_KEY;
   private readonly storage: StorageLike | null;
   private readonly catalog: readonly PokemonSpecies[];
   constructor(storage: StorageLike | null, catalog: readonly PokemonSpecies[]) {
@@ -103,6 +111,14 @@ export class RunStore {
         this.pendingBackup = this.lastRaw;
         return { kind: 'valid', run, migrated: true };
       }
+      if (envelope.version === 2) {
+        const old = validateV2(envelope.run, this.catalog);
+        const run = replayRun(this.catalog, old.seed, old.variance, old.events, 6);
+        run.battle = structuredClone(old.battle);
+        validateRun(run, this.catalog);
+        this.pendingBackup = this.lastRaw; this.backupKey = 'pokemon-tactics.run.v2-backup';
+        return { kind: 'valid', run, migrated: true };
+      }
       if (envelope.version !== SAVE_VERSION) return { kind: 'incompatible' };
       return { kind: 'valid', run: validateRun(envelope.run, this.catalog) };
     } catch {
@@ -114,8 +130,8 @@ export class RunStore {
     try {
       if (!this.storage) return 'unavailable';
       if (this.storage.getItem(SAVE_KEY) !== this.lastRaw) return 'conflict';
-      if (this.pendingBackup !== null && this.storage.getItem(LEGACY_BACKUP_KEY) === null)
-        this.storage.setItem(LEGACY_BACKUP_KEY, this.pendingBackup);
+      if (this.pendingBackup !== null && this.storage.getItem(this.backupKey) === null)
+        this.storage.setItem(this.backupKey, this.pendingBackup);
       const raw = JSON.stringify({ schema: 'pokemon-tactics/run', version: SAVE_VERSION, run });
       this.storage.setItem(SAVE_KEY, raw);
       this.lastRaw = raw;

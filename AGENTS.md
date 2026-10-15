@@ -33,3 +33,6 @@
 - Ejecutar las comprobaciones pertinentes de `package.json`; actualizar `docs/PLAN_SPRINTS.md` y `docs/SPRINT_N.md` con resultados reales y pendientes. Revisar el diff, crear un commit descriptivo y hacer push a la rama de entrega acordada (o a una rama `codex/sprint-N` para una nueva entrega).
 - Verificar que el SHA remoto coincide con el commit local e informar del enlace y las comprobaciones. No usar force push ni sobrescribir trabajo remoto. Si la subida falla, conservar el commit y explicar el bloqueo; no afirmar que está subido.
 - Subir código no inicia automáticamente otro sprint, publica una web ni cambia la visibilidad del repositorio.
+
+## Encargo del 15 de octubre
+El usuario autoriza completar en esta sesión todos los sprints restantes, con entregas separadas. Sustituye la restricción anterior de un sprint por petición. No delegación automática. Publicación aplazada por decisión expresa: preparar versión y guía; no desplegar. Sprint 7: esquema 3, edición persistida, EXP/evoluciones; conservar módulos *-v2 para migración.

@@ -19,5 +19,13 @@ export const ITEM_METADATA = {
   "heavy-duty-boots": {
     "pokeApiId": 1178,
     "name": "Botas Gruesas"
+  },
+  "rare-candy": {
+    "pokeApiId": 50,
+    "name": "Caramelo Raro"
+  },
+  "thunder-stone": {
+    "pokeApiId": 83,
+    "name": "Piedra Trueno"
   }
 } as const;

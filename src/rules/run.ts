@@ -1,5 +1,6 @@
 import type { PokemonSpecies } from '../data/catalog.ts';
 import { INITIAL_SPECIES } from '../data/catalog.ts';
+import { atLevel, levelFor, EVOLUTIONS } from '../domain/progression.ts';
 import { runMap } from '../data/run-maps.ts';
 import { pokemonFor } from '../domain/Pokemon.ts';
 import { emptyBag, HealingItem, HeldItem, ITEMS, itemFor } from '../domain/items.ts';
@@ -9,43 +10,45 @@ import type { Battle } from './battle.ts';
 import { createRun as createLegacyRun } from './legacy-run.ts';
 import type { Run as LegacyRun } from './legacy-run.ts';
 
-export type RunMember = { id: number; speciesId: number; hp: number; heldItem: HeldItemId | null };
+export type RunMember = { id: number; speciesId: number; hp: number; xp: number; heldItem: HeldItemId | null };
 export type DepartedMember = RunMember & { reason: 'fallen' | 'released' };
 export type RecruitOffer = { id: string; speciesId: number; price: number };
 export type RunNode = { id: string; floor: number; kind: 'combat' | 'shop' | 'recruit'; next: string[]; mapId: string; enemies: number[]; offers: RecruitOffer[] };
-export type RunRecord = { nodeId: string; outcome: 'victory' | 'defeat'; round: number; hp: { id: number; hp: number }[] };
+export type RunRecord = { nodeId: string; outcome: 'victory' | 'defeat'; round: number; hp: { id: number; hp: number }[]; contribution?: { id: number; points: number }[] };
 export type RunEvent =
   | { kind: 'enter'; nodeId: string }
   | { kind: 'leave' }
   | { kind: 'buy'; itemId: ItemId }
   | { kind: 'heal'; itemId: ItemId; memberId: number }
+  | { kind: 'evolve'; memberId: number }
   | { kind: 'equip'; itemId: HeldItemId | null; memberId: number }
   | { kind: 'recruit'; offerId: string; replaceId: number | null }
   | ({ kind: 'result' } & RunRecord);
 export type Run = {
-  seed: string; variance: number; status: 'route' | 'combat' | 'service' | 'victory' | 'defeat';
+  edition: number; seed: string; variance: number; status: 'route' | 'combat' | 'service' | 'victory' | 'defeat';
   roster: RunMember[]; departed: DepartedMember[]; nextMemberId: number;
   nodes: RunNode[]; path: string[]; history: RunRecord[]; currentNodeId: string | null; battle: Battle | null;
   money: number; bag: Bag; purchases: Record<string, Partial<Bag>>; recruited: string[]; events: RunEvent[];
 };
+export const CURRENT_EDITION = 7;
 export const ROUTE_LENGTH = 6;
 export const TEAM_LIMIT = 6;
 export const STARTING_MONEY = 240;
 export const VICTORY_REWARD = 100;
 export const RECRUIT_PRICE = 80;
 export const EVENT_LIMIT = 10000;
-export const SHOP_STOCK: Bag = { potion: 4, 'super-potion': 2, leftovers: 1, 'assault-vest': 1, 'heavy-duty-boots': 1 };
+export const SHOP_STOCK: Bag = { potion: 4, 'super-potion': 2, leftovers: 1, 'assault-vest': 1, 'heavy-duty-boots': 1, 'rare-candy': 2, 'thunder-stone': 1 };
 export const normalizeSeed = (seed: string): string => seed.trim().slice(0, 64) || 'kanto-001';
 export const encounterSeed = (run: Pick<Run, 'seed'>, nodeId: string): string => `${hashSeed(run.seed).toString(16)}-${nodeId}`;
 export const completedCombats = (run: Run): number => run.history.filter(record => record.outcome === 'victory').length;
-export const maximumHp = (catalog: readonly PokemonSpecies[], speciesId: number): number => {
+export const maximumHp = (catalog: readonly PokemonSpecies[], speciesId: number, xp = 0): number => {
   const species = catalog.find(species => species.id === speciesId);
   if (!species) throw new Error('Especie desconocida.');
-  return pokemonFor(speciesId).createCombatant(species, 'ally', { x: 0, y: 0 }).maxHp;
+  return atLevel(pokemonFor(speciesId).createCombatant(species, 'ally', { x: 0, y: 0 }), levelFor(xp)).maxHp;
 };
 export const nodeStep = (node: RunNode): number => node.kind === 'combat' ? node.floor * 2 : node.floor * 2 + 1;
 export const currentNode = (run: Run): RunNode | undefined => run.nodes.find(node => node.id === run.currentNodeId);
-export function createRun(catalog: readonly PokemonSpecies[], seed: string, variance = .05): Run {
+export function createRun(catalog: readonly PokemonSpecies[], seed: string, variance = .05, edition = 6): Run {
   // Keep the existing team, combat maps and encounter seeds unchanged.
   const legacy = createLegacyRun(catalog, seed, variance);
   const rng = { rng: hashSeed(`services:${legacy.seed}`) };
@@ -61,7 +64,7 @@ export function createRun(catalog: readonly PokemonSpecies[], seed: string, vari
     nodes.push({ id: `recruit-${floor}`, floor, kind: 'recruit', mapId: '', enemies: [], next,
       offers: candidates.map((speciesId, index) => ({ id: `recruit-${floor}:${index}`, speciesId, price: RECRUIT_PRICE })) });
   }
-  return { seed: legacy.seed, variance, status: 'route', roster: legacy.roster.map(member => ({ ...member, heldItem: null })),
+  return { edition, seed: legacy.seed, variance, status: 'route', roster: legacy.roster.map(member => ({ ...member, xp: 0, heldItem: null })),
     departed: [], nextMemberId: 4, nodes, path: [], history: [], currentNodeId: null, battle: null,
     money: STARTING_MONEY, bag: { ...emptyBag(), potion: 1 }, purchases: {}, recruited: [], events: [] };
 }
@@ -98,10 +101,18 @@ function recordResult(run: Run, event: Extract<RunEvent, { kind: 'result' }>): v
     member.hp = entry.hp;
   });
   requireRule(event.outcome === 'defeat' ? run.roster.every(member => member.hp === 0) : run.roster.some(member => member.hp > 0), 'El resultado no coincide con los supervivientes.');
+  if (run.edition >= 7) {
+    requireRule(Array.isArray(event.contribution) && event.contribution.length === run.roster.length, 'Falta la contribución individual.');
+    run.roster.forEach((member, index) => {
+      const receipt = event.contribution![index];
+      requireRule(receipt.id === member.id && Number.isInteger(receipt.points) && receipt.points >= 0 && receipt.points <= event.round * 30, 'Contribución no válida.');
+      if (member.hp > 0 && event.outcome === 'victory') member.xp = Math.min(240, member.xp + 20 + Math.min(40, receipt.points));
+    });
+  }
   const fallen = run.roster.filter(member => member.hp === 0);
   fallen.forEach(member => { returnEquipment(run, member); run.departed.push({ ...member, reason: 'fallen' }); });
   run.roster = run.roster.filter(member => member.hp > 0);
-  run.history.push({ nodeId: event.nodeId, round: event.round, outcome: event.outcome, hp: structuredClone(event.hp) });
+  run.history.push({ nodeId: event.nodeId, round: event.round, outcome: event.outcome, hp: structuredClone(event.hp), ...(event.contribution ? { contribution: structuredClone(event.contribution) } : {}) });
   if (event.outcome === 'victory') { run.path.push(node.id); run.money += VICTORY_REWARD; }
   run.status = event.outcome === 'defeat' ? 'defeat' : completedCombats(run) === ROUTE_LENGTH ? 'victory' : 'route';
   run.currentNodeId = null; run.battle = null;
@@ -115,7 +126,7 @@ function applyEvent(run: Run, event: RunEvent, catalog: readonly PokemonSpecies[
       requireRule(node, 'Esta sala no está conectada a tu ruta.');
       run.currentNodeId = node.id;
       if (node.kind === 'combat') {
-        run.battle = createEncounter(catalog, encounterSeed(run, node.id), run.variance, runMap(node.mapId).board, run.roster, node.enemies);
+        run.battle = createEncounter(catalog, encounterSeed(run, node.id), run.variance, runMap(node.mapId).board, run.roster, node.enemies, { progression: run.edition >= 7 });
         run.status = 'combat';
       } else run.status = 'service';
       break;
@@ -139,9 +150,18 @@ function applyEvent(run: Run, event: RunEvent, catalog: readonly PokemonSpecies[
     case 'heal': {
       const member = readyMember(run, event.memberId), item = itemFor(event.itemId);
       requireRule(item instanceof HealingItem && run.bag[item.id] > 0, 'No tienes ese consumible curativo.');
-      const recovery = item.restored(member.hp, maximumHp(catalog, member.speciesId));
+      const recovery = item.restored(member.hp, maximumHp(catalog, member.speciesId, member.xp));
       requireRule(recovery > 0, 'Este Pokémon ya tiene todos sus PS.');
       member.hp += recovery; run.bag[item.id]--;
+      break;
+    }
+    case 'evolve': {
+      const member = readyMember(run, event.memberId), evolution = EVOLUTIONS[member.speciesId];
+      requireRule(run.edition >= 7 && evolution, 'Esta especie no tiene evolución disponible.');
+      requireRule(run.bag[evolution.item] > 0, 'No tienes el objeto evolutivo compatible.');
+      member.speciesId = evolution.target; run.bag[evolution.item]--;
+      // Preserve absolute current HP: evolution and levels never replace healing.
+      member.hp = Math.min(member.hp, maximumHp(catalog, member.speciesId, member.xp));
       break;
     }
     case 'equip': {
@@ -169,7 +189,7 @@ function applyEvent(run: Run, event: RunEvent, catalog: readonly PokemonSpecies[
         run.roster = run.roster.filter(member => member.id !== replaced.id);
       } else requireRule(run.roster.length < TEAM_LIMIT, 'El equipo está completo. Elige a quién sustituir y confirma.');
       run.money -= offer.price; run.recruited.push(offer.id);
-      run.roster.push({ id: run.nextMemberId++, speciesId: offer.speciesId, hp: maximumHp(catalog, offer.speciesId), heldItem: null });
+      run.roster.push({ id: run.nextMemberId++, speciesId: offer.speciesId, hp: maximumHp(catalog, offer.speciesId), xp: 0, heldItem: null });
       break;
     }
     case 'result': recordResult(run, event); break;
@@ -183,9 +203,9 @@ export function performRunEvent(run: Run, event: RunEvent, catalog: readonly Pok
   next.events.push(structuredClone(event));
   return next;
 }
-export function replayRun(catalog: readonly PokemonSpecies[], seed: string, variance: number, events: readonly RunEvent[]): Run {
+export function replayRun(catalog: readonly PokemonSpecies[], seed: string, variance: number, events: readonly RunEvent[], edition = 6): Run {
   requireRule(Array.isArray(events) && events.length <= EVENT_LIMIT, 'Registro de operaciones no válido.');
-  const run = createRun(catalog, seed, variance);
+  const run = createRun(catalog, seed, variance, edition);
   events.forEach(event => applyEvent(run, event, catalog));
   run.events = structuredClone([...events]);
   return run;
@@ -203,7 +223,8 @@ export function withBattle(run: Run, battle: Battle): Run {
 export function completeEncounter(run: Run, catalog: readonly PokemonSpecies[]): Run {
   requireRule(run.status === 'combat' && run.battle && run.battle.outcome !== 'playing' && run.currentNodeId, 'El combate todavía no ha terminado.');
   return performRunEvent(run, { kind: 'result', nodeId: run.currentNodeId, outcome: run.battle.outcome, round: run.battle.round,
-    hp: run.roster.map(member => ({ id: member.id, hp: run.battle!.units.find(unit => unit.team === 'ally' && unit.id === member.id)!.hp })) }, catalog);
+    hp: run.roster.map(member => ({ id: member.id, hp: run.battle!.units.find(unit => unit.team === 'ally' && unit.id === member.id)!.hp })),
+    ...(run.edition >= 7 ? { contribution: run.roster.map(member => ({ id: member.id, points: run.battle!.contributions?.[member.id] ?? 0 })) } : {}) }, catalog);
 }
 export function migrateLegacyRun(legacy: LegacyRun, catalog: readonly PokemonSpecies[]): Run {
   let run = createRun(catalog, legacy.seed, legacy.variance);

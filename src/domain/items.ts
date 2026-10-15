@@ -1,6 +1,6 @@
 import type { Combatant } from './combatant.ts';
 import { ITEM_METADATA } from '../data/item-metadata.ts';
-export const ITEM_IDS = ['potion', 'super-potion', 'leftovers', 'assault-vest', 'heavy-duty-boots'] as const;
+export const ITEM_IDS = ['potion', 'super-potion', 'leftovers', 'assault-vest', 'heavy-duty-boots', 'rare-candy', 'thunder-stone'] as const;
 export type ItemId = typeof ITEM_IDS[number];
 export type HeldItemId = 'leftovers' | 'assault-vest' | 'heavy-duty-boots';
 export abstract class Item {
@@ -20,6 +20,11 @@ export class HealingItem extends Item {
     this.recovery = recovery;
   }
   restored(hp: number, maximum: number): number { return Math.min(maximum - hp, this.recovery); }
+}
+export class EvolutionItem extends Item {
+  constructor(id: 'rare-candy' | 'thunder-stone', name: string) {
+    super(id, name, 100, id === 'rare-candy' ? 'Adaptación: evoluciona una etapa de una familia compatible. No cura.' : 'Evoluciona a Pikachu en Raichu. No cura.');
+  }
 }
 export abstract class HeldItem extends Item {
   declare readonly id: HeldItemId;
@@ -43,6 +48,7 @@ class HeavyDutyBoots extends HeldItem {
 }
 export const ITEMS: readonly Item[] = Object.freeze([
   new HealingItem('potion', 'Poción', 40, 20), new HealingItem('super-potion', 'Superpoción', 90, 50),
+  new EvolutionItem('rare-candy', 'Caramelo Raro'), new EvolutionItem('thunder-stone', 'Piedra Trueno'),
   new Leftovers(), new AssaultVest(), new HeavyDutyBoots(),
 ]);
 export function itemFor(id: ItemId): Item {
@@ -57,4 +63,4 @@ export function heldItemFor(id: HeldItemId | null | undefined): HeldItem | null 
   return item;
 }
 export type Bag = Record<ItemId, number>;
-export const emptyBag = (): Bag => ({ potion: 0, 'super-potion': 0, leftovers: 0, 'assault-vest': 0, 'heavy-duty-boots': 0 });
+export const emptyBag = (): Bag => ({ potion: 0, 'super-potion': 0, leftovers: 0, 'assault-vest': 0, 'heavy-duty-boots': 0, 'rare-candy': 0, 'thunder-stone': 0 });

@@ -44,4 +44,4 @@ for (const [file, expected] of Object.entries(itemSources.sha256)) {
   assert(['items.csv', 'item_names.csv'].includes(file));
   assert.equal(createHash('sha256').update(readFileSync(resolve(root, 'tools/vendor/pokeapi', file))).digest('hex'), expected);
 }
-console.log(`${catalog.length} species, 12 sheets, ${paths.size} original provenance hashes and ${typeSources.files.length + Object.keys(itemSources.sha256).length} pinned PokeAPI CSV hashes verified.`);
+console.log(`${catalog.length} species, ${catalog.length * 2} sheets, ${paths.size} original provenance hashes and ${typeSources.files.length + Object.keys(itemSources.sha256).length} pinned PokeAPI CSV hashes verified.`);

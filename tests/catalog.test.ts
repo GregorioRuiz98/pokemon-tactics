@@ -7,7 +7,7 @@ const fixture = () => JSON.parse(readFileSync(new URL('../public/data/pokemon.js
 
 test('snapshot contains all six starter candidates and preserves their modern types', () => {
   const catalog = validateCatalog(fixture());
-  assert.equal(catalog.length, 6);
+  assert.equal(catalog.length, 15);
   assert.deepEqual(catalog.find(p => p.id === 1)?.types, ['grass', 'poison']);
   assert.deepEqual(catalog.find(p => p.id === 12)?.types, ['bug', 'flying']);
   assert.equal(catalog.find(p => p.id === 25)?.baseStats.speed, 90);

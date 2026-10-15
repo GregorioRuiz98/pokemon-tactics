@@ -278,7 +278,8 @@ Actualizar esta tabla al cerrar una entrega. Las columnas se completan con hecho
 | 4 | Completado técnicamente | 0.4.0; rama `codex/sprint-4` | 49 pruebas; 20 escenarios repetidos; tipos/build y 35 hashes; 19 comprobaciones de navegador en desarrollo y producción, 18 de ensayo | Bajas rápidas en 3v3; equilibrio aplazado por el usuario. Conservar parámetros y repertorio; revisar Lanzallamas como opción futura. Siguiente: 5 |
 | 5 | Completado técnicamente | 0.5.0; rama `codex/sprint-5` | 57 pruebas; 100 rutas simuladas; tipos/build y 35 hashes; 18 comprobaciones de ruta en desarrollo y producción local, 19 de combate y 18 de ensayo | Probar continuidad y desgaste. Parámetros intactos; curación y economía en 6 |
 | 6 | Completado técnicamente | 0.6.0; rama `codex/sprint-6` | 72 pruebas; tipos/build y 37 hashes; 18 comprobaciones de gestión en desarrollo y producción local, 19 de combate y 3 de ciclo de vida | Probar economía y composición. Equilibrio aplazado; siguiente: 7 |
-| 7–9 | Pendientes | — | Ninguna | Iniciar 7 cuando se solicite |
+| 7 | Completado técnicamente | 0.7.0; codex/sprint-7 | 76 pruebas; build/tipos; 78 hashes; 4 comprobaciones de navegador | EXP y evolución disponibles |
+| 8–9 | Pendientes | — | Ninguna | Encargo conjunto autorizado |
 | 10A–10D | Pendientes | — | Ninguna | Ejecutar un bloque por vez |
 | 11–12 | Pendientes | — | Ninguna | Pruebas y publicación posteriores |
 

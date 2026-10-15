@@ -40,5 +40,76 @@
     "authors": [
       "CHUNSOFT"
     ]
+  },
+  {
+    "name": "Ivysaur",
+    "id": 2,
+    "authors": [
+      "CHUNSOFT"
+    ]
+  },
+  {
+    "name": "Venusaur",
+    "id": 3,
+    "authors": [
+      "CHUNSOFT"
+    ]
+  },
+  {
+    "name": "Charmeleon",
+    "id": 5,
+    "authors": [
+      "<@!199989579682414592>",
+      "CHUNSOFT",
+      "Grimlin",
+      "bwappi"
+    ]
+  },
+  {
+    "name": "Charizard",
+    "id": 6,
+    "authors": [
+      "CHUNSOFT",
+      "Emboarger"
+    ]
+  },
+  {
+    "name": "Wartortle",
+    "id": 8,
+    "authors": [
+      "CHUNSOFT"
+    ]
+  },
+  {
+    "name": "Blastoise",
+    "id": 9,
+    "authors": [
+      "CHUNSOFT"
+    ]
+  },
+  {
+    "name": "Raichu",
+    "id": 26,
+    "authors": [
+      "CHUNSOFT",
+      "Grimlin",
+      "Top_Kec"
+    ]
+  },
+  {
+    "name": "Graveler",
+    "id": 75,
+    "authors": [
+      "CHUNSOFT",
+      "Emmuffin"
+    ]
+  },
+  {
+    "name": "Golem",
+    "id": 76,
+    "authors": [
+      "CHUNSOFT",
+      "Emmuffin"
+    ]
   }
 ]

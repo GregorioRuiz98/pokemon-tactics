@@ -15,7 +15,7 @@ function duel() {
   return battle;
 }
 test('item classes use the five names and identifiers imported from pinned public PokeAPI data',()=>{
-  assert.equal(ITEMS.length,5);assert(itemFor('potion') instanceof HealingItem);assert(itemFor('leftovers') instanceof HeldItem);
+  assert.equal(ITEMS.length,7);assert(itemFor('potion') instanceof HealingItem);assert(itemFor('leftovers') instanceof HeldItem);
   for(const item of ITEMS)assert.equal(item.name,ITEM_METADATA[item.id].name);
   assert.equal(ITEM_METADATA['heavy-duty-boots'].pokeApiId,1178);
   const sources=JSON.parse(readFileSync(new URL('../tools/vendor/pokeapi/items-sources.json',import.meta.url),'utf8'));

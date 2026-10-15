@@ -1,6 +1,7 @@
 import { TYPE_NAMES } from './data/catalog.ts';
 import type { PokemonSpecies } from './data/catalog.ts';
 import { pokemonFor } from './domain/Pokemon.ts';
+import { EVOLUTIONS, levelFor, xpToNext } from './domain/progression.ts';
 import { ITEMS, HealingItem, HeldItem, itemFor } from './domain/items.ts';
 import type { HeldItemId, ItemId } from './domain/items.ts';
 import { maximumHp, currentNode, remainingStock, TEAM_LIMIT } from './rules/run.ts';
@@ -8,11 +9,15 @@ import type { Run, RunEvent } from './rules/run.ts';
 export const escapeHtml = (value: string): string => value.replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]!);
 const speciesFor = (catalog: readonly PokemonSpecies[], id: number) => catalog.find(species => species.id === id)!;
 const asset = (path: string): string => `${import.meta.env.BASE_URL}${path}`;
+function progressionHtml(run: Run, catalog: readonly PokemonSpecies[], member: Run['roster'][number]): string {
+  const evolution = EVOLUTIONS[member.speciesId];
+  return `<h3>Progresión</h3><p>Nivel ${levelFor(member.xp)} · ${member.xp} EXP · ${xpToNext(member.xp) ? `${xpToNext(member.xp)} EXP al siguiente nivel` : 'Nivel máximo'}.</p>${run.edition >= 7 && evolution ? `<p>Evolución: ${escapeHtml(speciesFor(catalog, evolution.target).name)} · ${itemFor(evolution.item).name} (${run.bag[evolution.item]} en bolsa). Conserva PS actuales, EXP y objeto.</p><button id="evolve-member" ${run.bag[evolution.item] === 0 ? 'disabled' : ''}>Evolucionar a ${escapeHtml(speciesFor(catalog, evolution.target).name)}</button>` : '<p>Sin evolución disponible para esta especie.</p>'}`;
+}
 export function managementHtml(run: Run, catalog: readonly PokemonSpecies[], selectedId: number): string {
   const member = run.roster.find(member => member.id === selectedId) ?? run.roster[0];
   if (!member) return '<p>El equipo ha caído. No se pueden usar objetos para revivir.</p>';
-  const maximum = maximumHp(catalog, member.speciesId);
-  return `<section class="team-management" aria-labelledby="management-title"><h2 id="management-title">Bolsa y equipo</h2><label for="manage-member">Pokémon que recibirá el objeto</label><select id="manage-member">${run.roster.map(candidate => `<option value="${candidate.id}" ${candidate.id === member.id ? 'selected' : ''}>${escapeHtml(speciesFor(catalog, candidate.speciesId).name)} #${candidate.id} · ${candidate.hp}/${maximumHp(catalog, candidate.speciesId)} PS</option>`).join('')}</select><p class="gear-slot">Objeto equipado: <strong>${member.heldItem ? itemFor(member.heldItem).name : 'Ninguno'}</strong> ${member.heldItem ? '<button data-equip="">Retirar a la bolsa</button>' : ''}</p><h3>Consumibles</h3><ul class="bag-list">${ITEMS.filter(item => item instanceof HealingItem).map(item => {
+  const maximum = maximumHp(catalog, member.speciesId, member.xp);
+  return `<section class="team-management" aria-labelledby="management-title"><h2 id="management-title">Bolsa y equipo</h2><label for="manage-member">Pokémon que recibirá el objeto</label><select id="manage-member">${run.roster.map(candidate => `<option value="${candidate.id}" ${candidate.id === member.id ? 'selected' : ''}>${escapeHtml(speciesFor(catalog, candidate.speciesId).name)} #${candidate.id} · ${candidate.hp}/${maximumHp(catalog, candidate.speciesId, candidate.xp)} PS</option>`).join('')}</select><p class="gear-slot">Objeto equipado: <strong>${member.heldItem ? itemFor(member.heldItem).name : 'Ninguno'}</strong> ${member.heldItem ? '<button data-equip="">Retirar a la bolsa</button>' : ''}</p>${progressionHtml(run, catalog, member)}<h3>Consumibles</h3><ul class="bag-list">${ITEMS.filter(item => item instanceof HealingItem).map(item => {
     const healing = item as HealingItem, recovery = healing.restored(member.hp, maximum);
     return `<li><div><strong>${item.name}</strong><p>${recovery ? `${member.hp} → ${member.hp + recovery} PS · recupera ${recovery}` : 'PS completos'} · ${run.bag[item.id]} en la bolsa</p></div><button data-heal="${item.id}" ${recovery === 0 || run.bag[item.id] === 0 ? 'disabled' : ''}>Usar ${item.name}</button></li>`;
   }).join('')}</ul><h3>Equipables</h3><ul class="bag-list">${ITEMS.filter(item => item instanceof HeldItem).map(item => `<li><div><strong>${item.name}</strong><p>${item.description}</p><small>${run.bag[item.id]} en la bolsa${member.heldItem === item.id ? ' · equipado en este Pokémon' : ''}</small></div><button data-equip="${item.id}" ${run.bag[item.id] === 0 || member.heldItem === item.id ? 'disabled' : ''}>Equipar</button></li>`).join('')}</ul><p class="management-note">Los consumibles solo se usan fuera de combate. Al cambiar un objeto o perder un Pokémon, el equipable vuelve a la bolsa.</p></section>`;
@@ -30,6 +35,7 @@ export function serviceHtml(run: Run, catalog: readonly PokemonSpecies[], pendin
   }).join('')}</div>${pending ? `<section id="replace-panel" class="replace-panel" aria-labelledby="replace-title"><h3 id="replace-title">Incorporar a ${escapeHtml(speciesFor(catalog, pending.speciesId).name)}</h3><label for="replace-member">¿A quién sustituyes?</label><select id="replace-member">${run.roster.map(member => `<option value="${member.id}">${escapeHtml(speciesFor(catalog, member.speciesId).name)} #${member.id} · ${member.hp} PS${member.heldItem ? ` · ${itemFor(member.heldItem).name}` : ''}</option>`).join('')}</select><p>El miembro saliente quedará liberado de esta partida. Su objeto vuelve a la bolsa. Coste: ${pending.price} monedas.</p><button id="confirm-recruit">Confirmar sustitución</button><button id="cancel-recruit">Conservar equipo</button></section>` : ''}</section>`;
 }
 export function bindManagement(root: HTMLElement, memberId: number, changeMember: (id: number) => void, perform: (event: RunEvent, message: string, focus: string) => void): void {
+  root.querySelector('#evolve-member')?.addEventListener('click', () => perform({ kind: 'evolve', memberId }, 'Evolución registrada. Conserva PS actuales, experiencia y objeto.', '#manage-member'));
   root.querySelector<HTMLSelectElement>('#manage-member')?.addEventListener('change', event => changeMember(Number((event.target as HTMLSelectElement).value)));
   root.querySelectorAll<HTMLButtonElement>('[data-heal]').forEach(button => button.addEventListener('click', () => {
     const itemId = button.dataset.heal as ItemId;

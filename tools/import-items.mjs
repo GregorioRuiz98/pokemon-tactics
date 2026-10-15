@@ -22,7 +22,7 @@ const csvRows = file => {
   if (field || row.length) { row.push(field); rows.push(row); }
   return rows.slice(1);
 };
-const selected = ['potion', 'super-potion', 'leftovers', 'assault-vest', 'heavy-duty-boots'];
+const selected = ['potion', 'super-potion', 'leftovers', 'assault-vest', 'heavy-duty-boots', 'rare-candy', 'thunder-stone'];
 const items = csvRows('items.csv'), names = csvRows('item_names.csv');
 const metadata = Object.fromEntries(selected.map(identifier => {
   const item = items.find(row => row[1] === identifier);

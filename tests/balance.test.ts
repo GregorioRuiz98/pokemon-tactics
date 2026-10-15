@@ -1,9 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { validateCatalog } from '../src/data/catalog.ts';
+import { INITIAL_SPECIES, validateCatalog } from '../src/data/catalog.ts';
 import { pokemonFor } from '../src/domain/Pokemon.ts';
-const catalog = validateCatalog(JSON.parse(readFileSync(new URL('../public/data/pokemon.json',import.meta.url),'utf8')));
+const catalog = validateCatalog(JSON.parse(readFileSync(new URL('../public/data/pokemon.json',import.meta.url),'utf8'))).filter(p => (INITIAL_SPECIES as readonly number[]).includes(p.id));
 test('sprint 4 HP, move definitions, powers and all target previews remain exactly unchanged', () => {
   const fixture = JSON.parse(readFileSync(new URL('./fixtures/combat-v0.4.json', import.meta.url), 'utf8'));
   const actual = catalog.map(species => {

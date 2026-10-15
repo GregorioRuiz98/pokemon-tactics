@@ -61,3 +61,9 @@ En el código fuente las licencias están bajo `public/licenses`; en la web se s
 Nombres españoles e identificadores de cinco objetos reutilizados de [PokeAPI/pokeapi](https://github.com/PokeAPI/pokeapi/tree/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv), commit `81d20919845b6a445969b9265aab5cec6b04cece`. CSV originales `items.csv` e `item_names.csv` en `tools/vendor/pokeapi`, hashes en `items-sources.json`; generación mediante `tools/import-items.mjs`. Licencia del código BSD-3-Clause conservada en `licenses/PokeAPI-BSD-3-Clause.txt`. Precios, recompensas y adaptación táctica son del prototipo. No se han modificado los sprites ni añadido descargas al arranque.
 
 La versión actual guarda partida, equipo, bolsa y operaciones solo en el almacenamiento local del navegador, sin cuentas, analítica ni envío de esos datos. Al actualizar una partida del sprint 5 conserva una copia anterior local. Borrar los datos del sitio elimina partida y copia. No se incorpora música ni sonido en este sprint.
+
+## Evoluciones del sprint 7
+
+Datos de PokéAPI y hojas originales de SpriteCollab (commit fijado en tools/sources.lock.json). Ivysaur: CHUNSOFT; Venusaur: CHUNSOFT; Charmeleon: <@!199989579682414592>, CHUNSOFT, Grimlin, bwappi; Charizard: CHUNSOFT, Emboarger; Wartortle: CHUNSOFT; Blastoise: CHUNSOFT; Raichu: CHUNSOFT, Grimlin, Top_Kec; Graveler: CHUNSOFT, Emmuffin; Golem: CHUNSOFT, Emmuffin.
+
+Cada ficha conserva credits.txt. Caramelo Raro y Piedra Trueno: nombres de los CSV de PokéAPI; adaptación mecánica propia.

@@ -145,7 +145,7 @@ test('legacy ongoing save migrates once with an original backup, preserving batt
     assert.equal(store.write(read.run),'saved');assert.equal(memory.getItem(LEGACY_BACKUP_KEY),original);
     const second=new RunStore(memory,catalog).read();assert.equal(second.kind,'valid');if(second.kind==='valid'){assert.equal(second.migrated,undefined);assert.deepEqual(second.run,read.run);}
   }
-  assert.equal(SAVE_VERSION,2);
+  assert.equal(SAVE_VERSION,3);
 });
 test('corrupt/incompatible saves remain untouched, stale tabs cannot overwrite, and unavailable storage is explicit', () => {
   const memory=new Memory();for(const raw of ['{',JSON.stringify({schema:'pokemon-tactics/run',version:999})]){memory.setItem(SAVE_KEY,raw);assert.equal(new RunStore(memory,catalog).read().kind,raw==='{'?'invalid':'incompatible');assert.equal(memory.getItem(SAVE_KEY),raw);}
