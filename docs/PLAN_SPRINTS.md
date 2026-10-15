@@ -279,9 +279,10 @@ Actualizar esta tabla al cerrar una entrega. Las columnas se completan con hecho
 | 5 | Completado técnicamente | 0.5.0; rama `codex/sprint-5` | 57 pruebas; 100 rutas simuladas; tipos/build y 35 hashes; 18 comprobaciones de ruta en desarrollo y producción local, 19 de combate y 18 de ensayo | Probar continuidad y desgaste. Parámetros intactos; curación y economía en 6 |
 | 6 | Completado técnicamente | 0.6.0; rama `codex/sprint-6` | 72 pruebas; tipos/build y 37 hashes; 18 comprobaciones de gestión en desarrollo y producción local, 19 de combate y 3 de ciclo de vida | Probar economía y composición. Equilibrio aplazado; siguiente: 7 |
 | 7 | Completado técnicamente | 0.7.0; codex/sprint-7 | 76 pruebas; build/tipos; 78 hashes; 4 comprobaciones de navegador | EXP y evolución disponibles |
-| 8–9 | Pendientes | — | Ninguna | Encargo conjunto autorizado |
-| 10A–10D | Pendientes | — | Ninguna | Ejecutar un bloque por vez |
-| 11–12 | Pendientes | — | Ninguna | Pruebas y publicación posteriores |
+| 8–9 | Completados técnicamente | 0.8.0–0.9.0; ramas de entrega | 81 pruebas al cerrar 9; ambos finales y exclusión, build/tipos, recursos y navegador | Finales disponibles |
+| 10A–10D | Completados técnicamente | 0.10.0–0.10.3; cuatro ramas | 90 pruebas al cerrar 10D; 16 mapas y continuidad; build/tipos y navegador por bloque | Ocho zonas de Kanto |
+| 11 | Completado técnicamente; pruebas humanas pendientes | 0.11.0; codex/sprint-11 | 93 pruebas; dos campañas completas por UI, regresiones, capturas y vídeo | Feedback externo por organizar cuando el creador comparta |
+| 12 | Preparación completada; publicación aplazada | 0.12.0; codex/sprint-12 | Build, integridad, raíz/subcarpeta, instalación limpia, guardado y ambos finales en producción local | Sin alojamiento/dominio ni URL pública por decisión del usuario |
 
 Entrega 8: completada técnicamente, versión 0.8.0, rama codex/sprint-8. 79 pruebas, build/tipos y recursos comprobados. Ver [informe](SPRINT_8.md).
 
@@ -296,6 +297,8 @@ Entrega 10C: completada técnicamente, versión 0.10.2, rama codex/sprint-10C. 8
 Entrega 10D: completada técnicamente, versión 0.10.3, rama codex/sprint-10D. 90 pruebas, build/tipos y recursos comprobados. Ver [informe](SPRINT_10D.md).
 
 Entrega 11: completada técnicamente, versión 0.11.0, rama codex/sprint-11. 93 pruebas, build/tipos y recursos comprobados. Ver [informe](SPRINT_11.md).
+
+Entrega 12: completada técnicamente, versión 0.12.0, rama codex/sprint-12. 93 pruebas, build/tipos y recursos comprobados. Ver [informe](SPRINT_12.md).
 
 Plantilla de cierre: objetivo entregado; archivos o módulos modificados; recursos reutilizados y procedencia; comprobaciones ejecutadas y resultados; prueba manual disponible; feedback; pendientes; actualización de valores provisionales.
 
@@ -321,3 +324,7 @@ Sprint 2: combate 3 contra 3 con cola por velocidad, semilla reproducible, despl
 Sprint 3: POO de Pokémon y acciones, tabla moderna reutilizada de PokéAPI, daño físico/especial, básicos y dos habilidades por especie, PT, estados y dos composiciones fijas para comparar. Informe: [SPRINT_3.md](SPRINT_3.md). Rama de entrega: `codex/sprint-3`.
 
 Sprint 4: orientación final con confirmación, precisión por ángulo, rutas entre aliados, perfiles terrestres/de hierba/acuáticos/voladores, mapa Charca, áreas con daño a aliados, empuje y ascuas. Informe: [SPRINT_4.md](SPRINT_4.md). Rama de entrega: `codex/sprint-4`.
+
+## Alcance final del encargo conjunto
+
+El usuario autorizó el 15 de octubre completar los sprints restantes en una sesión, conservando hitos separados. La restricción original de una entrega por petición queda sustituida en este encargo. No se ha delegado ni enviado mensajes externos. Posteriormente eligió preparar la versión y publicar después: el cierre 12 cubre compilación, paquete, textos, guía y reversión; no despliegue real, HTTPS público ni dominio. Las pruebas externas del sprint 11 esperan que el creador comparta la demo.

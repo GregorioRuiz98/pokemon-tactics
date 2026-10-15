@@ -1,0 +1,11 @@
+{
+  "version": "0.12.0",
+  "saveSchema": 3,
+  "ruleset": 14,
+  "published": false,
+  "prepared": "2026-10-15",
+  "finales": [
+    "birds",
+    "psychic"
+  ]
+}

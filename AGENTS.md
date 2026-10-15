@@ -2,7 +2,7 @@
 
 - Responder en español. Leer docs/PLAN_SPRINTS.md y el último informe antes de continuar.
 - Encargo del 15 de octubre: completar todos los sprints pendientes con entregas separadas. No delegación automática. El usuario ha decidido **preparar versión y publicar después**; no desplegar, cambiar visibilidad ni comprar dominio.
-- Versión 0.11.0, rama codex/sprint-11. Sprints 0–10D completos; 11 completado técnicamente con pruebas humanas pendientes. Preparación de publicación en 12.
+- Versión 0.12.0, rama codex/sprint-12. Sprints 0–10D y 11 completos técnicamente; 12 preparado para publicar. Pruebas humanas y despliegue público pendientes por decisión del usuario. Guía en docs/DEPLOY.md; paquetes en outputs/releases fuera del repositorio.
 - Scripts reales en package.json, Node 24. Dominio POO en src/domain, reglas puras en src/rules, catálogo en src/data, representación en src/game. No convertir tipos o evoluciones en jerarquías de herencia.
 - Battle/Combatant/Run serializables; solo datos. RNG no se consume al inspeccionar/previsualizar/animar. Cola fija por ronda, una activación por vivo; movimiento y acción en ambos órdenes.
 - Aliados atravesables, destinos ocupados inválidos; enemigos bloquean. Orientación cardinal final con confirmación/cancelación. Precisión frontal/lateral/trasera; áreas incluyen aliados. Reutilizar reglas compartidas con IA.

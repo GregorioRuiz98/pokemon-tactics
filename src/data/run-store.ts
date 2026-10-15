@@ -5,7 +5,7 @@ import { supportsEmbers } from '../rules/terrain.ts';
 import { tileCost, key } from '../rules/movement.ts';
 import { atLevel, levelFor } from '../domain/progression.ts';
 import { validateRun as validateV2 } from './run-store-v2.ts';
-import { replayRun, migrateLegacyRun, encounterSeed } from '../rules/run.ts';
+import { replayRun, migrateLegacyRun, encounterSeed, CURRENT_EDITION } from '../rules/run.ts';
 import { validateLegacyRun } from './legacy-run-store.ts';
 import type { Run } from '../rules/run.ts';
 import type { Battle } from '../rules/battle.ts';
@@ -78,7 +78,7 @@ export function validateRun(value: unknown, catalog: readonly PokemonSpecies[]):
   requireValid(object(value));
   const run = value as unknown as Run;
   requireValid(typeof run.seed === 'string' && run.seed.trim() === run.seed && run.seed.length > 0 && run.seed.length <= 64 && [0.05, 0.1].includes(run.variance));
-  requireValid(integer(run.edition, 6, 15));
+  requireValid(integer(run.edition, 6, CURRENT_EDITION));
   const replayed = replayRun(catalog, run.seed, run.variance, run.events, run.edition);
   // Replaying legal transactions reconstructs money, stock, bag, equipment, IDs and route.
   requireValid(equal({ ...run, battle: null }, { ...replayed, battle: null }));

@@ -1,6 +1,6 @@
 {
   "name": "pokemon-tactics",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "private": true,
   "type": "module",
   "description": "Roguelike táctico Pokémon con experiencia y evoluciones",
@@ -17,7 +17,10 @@
     "test:browser:training": "node tools/browser-sprint1.cjs",
     "test:browser:release": "node --experimental-strip-types tools/browser-release.cjs",
     "test:browser:zones": "node --experimental-strip-types tools/browser-zones.cjs",
-    "simulate": "node --experimental-strip-types tools/simulate-campaign.ts"
+    "simulate": "node --experimental-strip-types tools/simulate-campaign.ts",
+    "release:prepare": "node tools/prepare-release.mjs",
+    "verify:build": "node tools/verify-build.mjs",
+    "test:browser:package": "node tools/browser-package.cjs"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

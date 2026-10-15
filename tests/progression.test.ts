@@ -65,6 +65,7 @@ test('candidate campaign scales both teams HP, previews the legal early Charmand
   assert.equal(charm.ruleset,14);assert(pokemonFor(4).action('flame-burst',charm));assert.equal(pokemonFor(4).action('flamethrower',charm),undefined);
   assert(pokemonFor(4).action('flamethrower'));
   assert.deepEqual(validateRun(run,catalog),run);
+  assert.throws(()=>validateRun({...run,edition:15},catalog));
 });
 test('candidate healing uses the same scaled recovery and damage bounds as management previews',()=>{
   let run=enterRoom(createRun(catalog,'healing',.05,14),'shop-0',catalog);

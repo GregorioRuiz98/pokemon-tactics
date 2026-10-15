@@ -1,0 +1,11 @@
+{
+  "checks": [
+    "Instalación limpia en subcarpeta",
+    "Textos locales legal/privacidad y enlaces de regreso; móvil sin desbordamiento",
+    "Ruta completa, semilla larga y recursos locales en subcarpeta",
+    "Ambas arenas cargan desde recursos de producción bajo /juego/",
+    "Tres WAV servidos desde el paquete"
+  ],
+  "errors": [],
+  "failed": []
+}
