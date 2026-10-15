@@ -1,12 +1,12 @@
 # Plan de desarrollo por sprints — Pokémon táctico roguelike
 
-Fecha: 14 de octubre de 2026. Versión: 1.10. Estado: sprints 0–6 completados técnicamente; sprint 7 todavía no iniciado. POO, orientación final y paso por aliados implementados. Feedback inicial recibido: bajas demasiado rápidas en 3v3; el usuario aplaza el equilibrio hasta completar las mecánicas y pide conservar los parámetros actuales.
+Fecha: 15 de octubre de 2026. Versión: 1.11. Estado: sprints 0–11 completados técnicamente y sprint 12 preparado para publicar. Publicación aplazada por el usuario; pruebas con personas pendientes. Tras completar las mecánicas se aplicó un ajuste inicial de campaña en la edición 14, conservando reglas de las partidas anteriores.
 
 Este documento conserva las decisiones del proyecto y organiza entregas pequeñas para construirlo con asistencia de IA. Cada sprint produce algo revisable y termina antes de comenzar el siguiente. El objetivo es un juego de navegador divertido para el portfolio, con pruebas locales primero y una posible publicación posterior en web propia. La viralidad es una aspiración, no un criterio garantizado de éxito.
 
 ## 1. Forma de trabajar
 
-- Mantener **un solo sprint activo**. No ejecutar toda esta hoja de ruta en una misma petición.
+- Mantener **un solo sprint activo a la vez**, cerrando y subiendo cada bloque. En el encargo del 15 de octubre el usuario ha autorizado expresamente completar los sprints 7–12 en una misma petición.
 - Al recibir «empieza el sprint X», implementar únicamente ese alcance y las correcciones necesarias para que funcione. Las funciones futuras permanecen en el backlog.
 - Revisar las instrucciones, el estado de Git y los scripts reales antes de editar. Preservar cambios ajenos. No inventar comandos ni dar por ejecutadas comprobaciones.
 - Antes de construir una utilidad o un recurso desde cero, comprobar si los candidatos de la sección 4 resuelven la necesidad con una adaptación pequeña.
