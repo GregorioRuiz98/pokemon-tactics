@@ -1,5 +1,5 @@
 import './tactical.css';
-import { bossTrial } from './data/encounters';
+import { bossTrial, mapTrial } from './data/encounters';
 import './battle.css';
 import { validateCatalog, TYPE_NAMES } from './data/catalog';
 import type { PokemonSpecies } from './data/catalog';
@@ -705,8 +705,8 @@ export async function bootBattle(): Promise<void> {
       throw new Error(`No se pudo cargar el catálogo (${response.status}).`);
     const catalog = validateCatalog(await response.json());
     await document.fonts.load('16px "Pixelify Sans"');
-    const boss = new URLSearchParams(location.search).get('boss');
-    const dispose = mountBattle(catalog, boss === 'birds' || boss === 'psychic' ? { initial: bossTrial(catalog, boss), title: 'ENSAYO · ' + (boss === 'birds' ? 'TRES AVES' : 'LABORATORIO PSÍQUICO') } : undefined);
+    const boss = new URLSearchParams(location.search).get('boss'), mapId = new URLSearchParams(location.search).get('map');
+    const dispose = mountBattle(catalog, mapId ? { initial: mapTrial(catalog,mapId), title: 'ENSAYO · ' + mapId.toUpperCase() } : boss === 'birds' || boss === 'psychic' ? { initial: bossTrial(catalog, boss), title: 'ENSAYO · ' + (boss === 'birds' ? 'TRES AVES' : 'LABORATORIO PSÍQUICO') } : undefined);
     import.meta.hot?.dispose(dispose);
   } catch (error) {
     app.innerHTML = `<main class="failure"><h1>No pudimos abrir el combate</h1><p>${escape(error instanceof Error ? error.message : 'Error de recursos locales.')}</p><button id="retry">Volver a intentar</button></main>`;

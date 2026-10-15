@@ -1,6 +1,7 @@
 import type { PokemonSpecies } from '../data/catalog.ts';
 import { INITIAL_SPECIES } from '../data/catalog.ts';
 import { atLevel, levelFor, EVOLUTIONS } from '../domain/progression.ts';
+import { zonesForEdition } from '../data/zones.ts';
 import { runMap } from '../data/run-maps.ts';
 import { pokemonFor } from '../domain/Pokemon.ts';
 import { emptyBag, HealingItem, HeldItem, ITEMS, itemFor } from '../domain/items.ts';
@@ -30,7 +31,7 @@ export type Run = {
   nodes: RunNode[]; path: string[]; history: RunRecord[]; currentNodeId: string | null; battle: Battle | null;
   money: number; bag: Bag; purchases: Record<string, Partial<Bag>>; recruited: string[]; events: RunEvent[];
 };
-export const CURRENT_EDITION = 9;
+export const CURRENT_EDITION = 10;
 export const ROUTE_LENGTH = 6;
 export const TEAM_LIMIT = 6;
 export const STARTING_MONEY = 240;
@@ -54,14 +55,19 @@ export function createRun(catalog: readonly PokemonSpecies[], seed: string, vari
   const legacy = createLegacyRun(catalog, seed, variance);
   const rng = { rng: hashSeed(`services:${legacy.seed}`) };
   const pick = <T>(values: readonly T[]): T => values[Math.floor(random(rng) * values.length)];
-  const nodes: RunNode[] = legacy.nodes.map(node => ({ ...node, kind: 'combat', offers: [],
+  let nodes: RunNode[] = legacy.nodes.map(node => ({ ...node, kind: 'combat', offers: [],
     next: node.floor === ROUTE_LENGTH ? [] : [`shop-${node.floor}`, `recruit-${node.floor}`] }));
-  if (edition >= 8) {
-    nodes.filter(node => node.floor === 6).forEach(node => { node.next = ['shop-6', 'recruit-6']; });
-    if (edition >= 9) nodes.push({ id: 'final-psychic', floor: 7, kind: 'combat', next: [], mapId: 'psychic', enemies: [150,151], offers: [] });
-    nodes.push({ id: 'final-birds', floor: 7, kind: 'combat', next: [], mapId: 'birds', enemies: [144,145,146], offers: [] });
+  const zones = edition >= 10 ? zonesForEdition(edition) : [];
+  if (edition >= 10) {
+    nodes = zones.flatMap((zone,index)=>zone.maps.map((mapId,branch)=>({id: 'zone-'+(index+1)+'-'+(branch+1),floor:index+1,kind:'combat' as const,mapId,enemies:[...zone.enemies[branch]],offers:[],next:['shop-'+(index+1),'recruit-'+(index+1)]})));
   }
-  for (let floor = 0; floor < (edition >= 8 ? 7 : ROUTE_LENGTH); floor++) {
+  const stages = edition >= 10 ? zones.length : ROUTE_LENGTH;
+  if (edition >= 8) {
+    nodes.filter(node => node.floor === stages).forEach(node => { node.next = ['shop-'+stages, 'recruit-'+stages]; });
+    if (edition >= 9) nodes.push({ id: 'final-psychic', floor: stages+1, kind: 'combat', next: [], mapId: 'psychic', enemies: [150,151], offers: [] });
+    nodes.push({ id: 'final-birds', floor: stages+1, kind: 'combat', next: [], mapId: 'birds', enemies: [144,145,146], offers: [] });
+  }
+  for (let floor = 0; floor < (edition >= 8 ? stages+1 : ROUTE_LENGTH); floor++) {
     const next = nodes.filter(node => node.kind === 'combat' && node.floor === floor + 1).map(node => node.id);
     const candidates: number[] = [];
     const pool = floor === 0 ? INITIAL_SPECIES.filter(id => !legacy.roster.some(member => member.speciesId === id)) : [...INITIAL_SPECIES];

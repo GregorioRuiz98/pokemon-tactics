@@ -1,0 +1,9 @@
+{
+  "checks": [
+    "quarry escritorio",
+    "pass móvil",
+    "pond escritorio",
+    "canal móvil"
+  ],
+  "errors": []
+}

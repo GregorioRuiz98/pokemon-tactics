@@ -1,13 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { validateCatalog } from '../src/data/catalog.ts';
+import { CATALOG_SPECIES, validateCatalog } from '../src/data/catalog.ts';
 
 const fixture = () => JSON.parse(readFileSync(new URL('../public/data/pokemon.json', import.meta.url), 'utf8'));
 
 test('snapshot contains all six starter candidates and preserves their modern types', () => {
   const catalog = validateCatalog(fixture());
-  assert.equal(catalog.length, 20);
+  assert.equal(catalog.length, CATALOG_SPECIES.length);
   assert.deepEqual(catalog.find(p => p.id === 1)?.types, ['grass', 'poison']);
   assert.deepEqual(catalog.find(p => p.id === 12)?.types, ['bug', 'flying']);
   assert.equal(catalog.find(p => p.id === 25)?.baseStats.speed, 90);
