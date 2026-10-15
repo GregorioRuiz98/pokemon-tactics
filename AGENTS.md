@@ -23,5 +23,5 @@
 
 - Autorización persistente para commit/push al terminar cada sprint; no pedirla de nuevo. Repositorio privado: https://github.com/GregorioRuiz98/pokemon-tactics.
 - Revisar status y conservar cambios ajenos. Ramas codex/sprint-N, sin force push. No incluir cachés, node_modules, dist, credenciales o ZIP de publicación en Git.
-- Actualizar informe, plan, versión y créditos con hechos. Verificar SHA remoto después del push; actualizar rama predeterminada a la última entrega comprobada. Subir código no publica la web ni cambia visibilidad.
+- Actualizar informe, plan, versión y créditos con hechos. Verificar SHA remoto después del push; conservar la rama predeterminada salvo indicación expresa del usuario para cambiarla. La revisión automática del sprint 13 rechazó cambiar esa configuración sin dicha autorización; no reintentar por otra vía. Subir código no publica la web ni cambia visibilidad.
 - Usar GIT_CONFIG_GLOBAL=NUL y GIT_CONFIG_NOSYSTEM=1 por el entorno local. Preferir credential.helper=manager por comando. Nunca imprimir ni persistir tokens.

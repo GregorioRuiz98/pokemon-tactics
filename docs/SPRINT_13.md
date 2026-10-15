@@ -4,6 +4,8 @@
 
 El usuario autorizó el inicio mediante «pues empieza», después de registrar la nueva dirección de Kanto. Esta entrega cierra la base técnica: un ensayo táctico manual 3v3 en Godot, guardado nativo y ejecutable Windows. No ejecuta los sprints 14–22 ni publica el juego.
 
+Código subido a la rama codex/sprint-13 y SHA remoto verificado. La revisión automática rechazó el cambio adicional de rama predeterminada y el uso de una credencial para esa operación por falta de autorización explícita. Se conserva la configuración existente; esto no impide usar la rama ni el paquete local. No reintentar ese cambio por otra vía sin indicación del usuario.
+
 ## Qué se puede probar
 
 - Tablero 8×8 y seis especies originales. Elegir entre iniciales contra Pikachu/Butterfree/Geodude o la composición inversa; semilla y variación de iniciativa ±5 %/±10 %.
