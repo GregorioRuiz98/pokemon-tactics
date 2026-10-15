@@ -27,7 +27,7 @@ const current=results.filter(r=>r.variant==='current');
 const summary=['current','two-enemies','no-graveler'].map(variant=>{
   const rows=results.filter(r=>r.variant===variant),wins=rows.filter(r=>r.outcome==='victory').length;
   const delta=rows.map((r,i)=>Number(r.outcome==='victory')-Number(current[i].outcome==='victory'));
-  return {variant,n:rows.length,wins,rate:wins/rows.length,ci:wilson(wins,rows.length),deaths:mean(rows.map(r=>r.deaths)),rounds:mean(rows.map(r=>r.rounds)),difference:mean(delta),differenceCI:pairedInterval(delta)};
+  return {variant,n:rows.length,wins,unresolved:rows.filter(r=>r.outcome==='playing').length,resolvedRounds:mean(rows.filter(r=>r.outcome!=='playing').map(r=>r.rounds)),rate:wins/rows.length,ci:wilson(wins,rows.length),deaths:mean(rows.map(r=>r.deaths)),rounds:mean(rows.map(r=>r.rounds)),difference:mean(delta),differenceCI:pairedInterval(delta)};
 });
 writeFileSync(resolve(root,'opening-probe.json'),JSON.stringify({scope:'Isolated first fight with the original three starters; no changes to campaign rules or parameters',summary,results},null,2)+'\n');
 console.log(JSON.stringify(summary));

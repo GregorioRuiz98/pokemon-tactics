@@ -5,6 +5,8 @@
       "variant": "current",
       "n": 200,
       "wins": 118,
+      "unresolved": 0,
+      "resolvedRounds": 3.975,
       "rate": 0.59,
       "ci": [
         0.5207645903369208,
@@ -22,6 +24,8 @@
       "variant": "two-enemies",
       "n": 200,
       "wins": 194,
+      "unresolved": 0,
+      "resolvedRounds": 4.21,
       "rate": 0.97,
       "ci": [
         0.9361057075454807,
@@ -39,6 +43,8 @@
       "variant": "no-graveler",
       "n": 200,
       "wins": 131,
+      "unresolved": 2,
+      "resolvedRounds": 5.106060606060606,
       "rate": 0.655,
       "ci": [
         0.5867558925905368,

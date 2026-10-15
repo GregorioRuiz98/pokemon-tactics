@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { gunzipSync } from 'node:zlib';
 import { createHash } from 'node:crypto';
@@ -31,3 +31,9 @@ assert.equal(prefixes,summary.metadata.prefixes);assert.equal(battles,summary.me
 for(const [path,hash] of Object.entries(summary.metadata.sourceHashes))assert.equal(createHash('sha256').update(readFileSync(path)).digest('hex'),hash,path);
 assert.equal(createHash('sha256').update(readFileSync('public/data/pokemon.json')).digest('hex'),summary.metadata.catalogSha256);
 console.log(`Verified ${prefixes} campaign prefixes, ${battles} zone battles and ${finals} paired finales; HP accounting, raw aggregates and gameplay source hashes match.`);
+
+if(existsSync(resolve(root,'opening-probe.json'))) {
+  const opening=JSON.parse(readFileSync(resolve(root,'opening-probe.json'),'utf8'));
+  for(const aggregate of opening.summary) {const rows=opening.results.filter((r:{variant:string})=>r.variant===aggregate.variant);assert.equal(rows.length,aggregate.n);assert.equal(rows.filter((r:{outcome:string})=>r.outcome==='playing').length,aggregate.unresolved);assert.equal(rows.filter((r:{outcome:string})=>r.outcome==='victory').length,aggregate.wins);}
+  console.log('Opening probes: '+opening.results.length+'; censored: '+opening.results.filter((r:{outcome:string})=>r.outcome==='playing').length+'. Item probes: '+summary.metadata.microBattles+'; censored: '+summary.micro.reduce((sum:number,m:{unresolved:number})=>sum+m.unresolved,0)+'.');
+}

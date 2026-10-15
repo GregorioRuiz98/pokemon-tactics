@@ -16,7 +16,7 @@ Los parámetros del juego permanecen intactos. Las recomendaciones de este docum
 
 Se utiliza el motor real y `chooseTacticalCommand` para ambos bandos. Las compras, bajas, EXP y evoluciones pasan por las operaciones reales y la validación del guardado. La ruta usa un generador separado del RNG del combate; la misma semilla toma las mismas bifurcaciones en todas las políticas. Se corrige así el sesgo del simulador anterior, que dependía de la longitud del texto de semilla.
 
-Cada combate se observa hasta 100 rondas completas o 3.000 órdenes. Hubo **7 recorridos detenidos por este límite**, registrados aparte, y ningún final sin resolver. No se contabilizan como derrotas normales. Las tasas son victorias observadas dentro de este presupuesto, incluyendo las partidas que no alcanzan el final.
+Cada combate se observa hasta 100 rondas completas o 3.000 órdenes. Hubo **7 recorridos detenidos por este límite**, registrados aparte, y ningún final sin resolver. El ensayo alternativo de apertura añade otros dos combates detenidos al sustituir Graveler por Geodude. Los siete de campaña y los dos experimentales no se contabilizan como derrotas normales. Las tasas son victorias observadas dentro de este presupuesto, incluyendo las partidas que no alcanzan el final.
 
 La incertidumbre se calcula con Wilson al 95 % para cada destino y bootstrap emparejado por semilla para diferencias entre políticas. Los dos finales permanecen juntos al remuestrear. Estos intervalos describen variación entre semillas con este bot; **no estiman la tasa de victoria de jugadores humanos**. No se han probado aquí ±10 %, búsqueda táctica avanzada ni estrategias humanas de espera o explotación de recursos.
 
@@ -51,13 +51,13 @@ Esto debilita dos elecciones: empezar en tienda y conservar un equipo pequeño, 
 
 La apertura aislada ayuda a localizar el problema:
 
-| Primer encuentro, tres iniciales y sin compras | Victorias | Bajas aliadas medias | Rondas medias |
-| --- | ---: | ---: | ---: |
-| Actual: tres enemigos, incluido Graveler | 118/200 · **59,0 %** | 1,72 | 3,98 |
-| Variante: dos enemigos, retirando Graveler | 194/200 · **97,0 %** | 0,70 | 4,21 |
-| Variante: tres enemigos, Graveler sustituido por Geodude | 131/200 · **65,5 %** | 1,53 | 6,07 |
+| Primer encuentro, tres iniciales y sin compras | Victorias | Bajas observadas medias | Rondas medias resueltas | Sin resolver |
+| --- | ---: | ---: | ---: | ---: |
+| Actual: tres enemigos, incluido Graveler | 118/200 · **59,0 %** | 1,72 | 3,98 | 0 |
+| Variante: dos enemigos, retirando Graveler | 194/200 · **97,0 %** | 0,70 | 4,21 | 0 |
+| Variante: tres enemigos, Graveler sustituido por Geodude | 131/200 · **65,5 %** | 1,53 | 5,11 | 2 |
 
-Retirar una unidad mejora la victoria de apertura en **38 puntos** —intervalo emparejado +31,5 a +44,5—. Sustituir solo la evolución mejora 6,5 puntos y alarga el combate. La primera variante es una candidata para un encuentro introductorio; **no se ha simulado una campaña completa con ese cambio**, ni se ha definido una dificultad humana objetivo.
+Retirar una unidad mejora la victoria de apertura en **38 puntos** —intervalo emparejado +31,5 a +44,5—. Sustituir solo la evolución mejora 6,5 puntos, alarga los combates resueltos y añade dos casos detenidos. La primera variante es una candidata para un encuentro introductorio; **no se ha simulado una campaña completa con ese cambio**, ni se ha definido una dificultad humana objetivo.
 
 Propuesta: probar primero una apertura de dos enemigos, manteniendo el daño y la tabla de tipos. Después, revisar el primer reclutamiento para evitar completar automáticamente el mismo sexteto: la pool disponible ya contiene otras especies básicas de Kanto. Limitar reclutas sin suavizar antes el arranque podría aumentar la dificultad.
 
