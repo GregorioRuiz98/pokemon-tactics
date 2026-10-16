@@ -70,3 +70,8 @@ Sonidos miss/immune/level-up: generados de forma determinista con la copia jsfxr
 ## Tienda y cobertura — 0.14.2
 
 shop.json añade Demolición y compatibilidad de seis MT por entradas de aprendizaje mediante máquina de las26 especies en PokéAPI, unión de versiones; no es una lista exclusiva de Rojo ni de una generación. Potencia75, Lucha/físico/precisión100 de Demolición son datos factuales; 2PT/alcance1 y precios son adaptaciones. Numeración de MT combina generaciones. shop-provenance.json registra28 respuestas con URL/SHA-256 y el catálogo derivado. Fuente: https://pokeapi.co/api/v2/move/brick-break y https://pokeapi.co/api/v2/pokemon/4, entre las demás entradas enumeradas. Metadatos de Vidaesfera contrastados en https://pokeapi.co/api/v2/item/life-orb. Importador explícito tools/godot/import-shop.py; ninguna llamada durante el juego. Se reutilizan catálogos, traducciones de objetos, retratos, sprites, fuente, tema y sonidos existentes; no se incorporan imágenes/audio externos nuevos.
+
+
+## Crecimiento — 0.14.3
+
+No se importan activos ni datos externos nuevos. growth.json y growth.gd son configuración/lógica de este proyecto: Caramelo25, evolución automática, Pikachu Cola Férrea7 y aprendizajes de Beedrill/Butterfree. Se reutilizan los52 movimientos y26 especies con su procedencia ya registrada, los retratos/sprites y el jingle de nivel existentes. Pikachu20/Graveler36 son adaptaciones expresamente confirmadas; los aprendizajes nuevos no se presentan como una copia del cartucho.

@@ -1,0 +1,9 @@
+{
+  "candyPrice": 25,
+  "ironTailLevel": 7,
+  "evolutionMoves": {
+    "12": {"move": "mega-drain", "level": 10, "role": 1},
+    "15": {"move": "brick-break", "level": 10, "role": 0}
+  },
+  "adaptedEvolutions": {"25": 20, "75": 36}
+}

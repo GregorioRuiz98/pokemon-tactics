@@ -1,0 +1,151 @@
+{
+  "bugBeforeBrock": true,
+  "checks": 1194,
+  "failures": [],
+  "probe": {
+    "brickBreak": 39,
+    "charmanderLevel": 13,
+    "ember": 11,
+    "metalClaw": 26,
+    "onixHp": 140,
+    "onixLevel": 14
+  },
+  "runs": [
+    {
+      "cleared": 1,
+      "money": 270,
+      "party": [
+        {
+          "hp": 0,
+          "level": 7,
+          "moves": [
+            "vine-whip",
+            "growl",
+            "mega-drain"
+          ],
+          "speciesId": 1
+        },
+        {
+          "hp": 0,
+          "level": 4,
+          "moves": [
+            "gust"
+          ],
+          "speciesId": 16
+        }
+      ],
+      "phase": "defeat",
+      "starter": 1,
+      "transactions": 72
+    },
+    {
+      "cleared": 3,
+      "money": 35,
+      "party": [
+        {
+          "hp": 0,
+          "level": 10,
+          "moves": [
+            "ember",
+            "growl",
+            "brick-break",
+            "metal-claw"
+          ],
+          "speciesId": 4
+        },
+        {
+          "hp": 0,
+          "level": 11,
+          "moves": [
+            "gust",
+            "quick-attack"
+          ],
+          "speciesId": 16
+        },
+        {
+          "hp": 0,
+          "level": 7,
+          "moves": [
+            "bite",
+            "tail-whip",
+            "quick-attack"
+          ],
+          "speciesId": 19
+        },
+        {
+          "hp": 0,
+          "level": 10,
+          "moves": [
+            "poison-sting",
+            "string-shot",
+            "harden",
+            "brick-break"
+          ],
+          "speciesId": 15
+        }
+      ],
+      "phase": "defeat",
+      "starter": 4,
+      "transactions": 242
+    },
+    {
+      "cleared": 4,
+      "money": 145,
+      "party": [
+        {
+          "hp": 184,
+          "level": 16,
+          "moves": [
+            "water-gun",
+            "withdraw",
+            "bite",
+            "water-pulse"
+          ],
+          "speciesId": 8
+        },
+        {
+          "hp": 0,
+          "level": 7,
+          "moves": [
+            "gust",
+            "quick-attack"
+          ],
+          "speciesId": 16
+        },
+        {
+          "hp": 0,
+          "level": 2,
+          "moves": [
+            "bite"
+          ],
+          "speciesId": 19
+        },
+        {
+          "hp": 176,
+          "level": 14,
+          "moves": [
+            "poison-sting",
+            "string-shot",
+            "harden",
+            "brick-break"
+          ],
+          "speciesId": 15
+        },
+        {
+          "hp": 140,
+          "level": 14,
+          "moves": [
+            "bind",
+            "harden",
+            "rock-throw",
+            "rock-tomb"
+          ],
+          "speciesId": 95
+        }
+      ],
+      "phase": "complete",
+      "starter": 7,
+      "transactions": 227
+    }
+  ]
+}

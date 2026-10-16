@@ -29,3 +29,11 @@
 - Brock concede Onix14 por ser el enemigo no legendario/mítico de mayor nivel. Rutas conservan tablas. Tres ofertas con una copia por casilla, seis MT compatibles y cuatro equipables. Primer stock de Charmander garantiza MT Demolición80. Garra Metal ya se aprendía al9. Precios de renovación25,50,75… ₽ y reset por tienda, provisionales.
 - stock/rerolls/shopRandom separados del PRNG de rutas, persistidos y reconstruidos por diario. Comprar/equipar/aprender solo fuera de combate. Una MT por uso, máximo4 preparados+básico. Sustituir/quitar devuelve equipado; bajas lo devuelven al terminar combate. Vidaesfera afecta básico/tipados, nunca fallo/inmunidad/apoyo; retroceso una vez por acción, incluso área. Resolver KO propio/cola y derrota simultánea.
 - shop.json/shop-provenance con datos PokéAPI e importador explícito, sin activos visuales ni dependencias nuevas. Pruebas godot:test:shop, regresión2/clásica/laboratorio y QA de fuente/ejecutable. Informe docs/SPRINT_14_SHOP.md. No ampliar mapas ni dar balance por resuelto.
+
+
+## Revisión vigente — 0.14.3
+
+- Crecimiento en edición4: growth_run hereda shop_run y comparte Growth con el motor/perfiles. Growth hereda Progression y aplica sobre su instancia las adiciones de growth.json; módulos/datos publicados1/2/3 congelados. KantoStore selecciona4 sin convertir partidas antiguas.
+- Caramelo25 ₽/+1 nivel; compra/uso en tienda. Conserva EXP parcial, PS y equipable; cap100 y bajas bloqueadas. Evolución automática al cruzar umbral por EXP o Caramelo; no comando evolve ni botón manual en4. Mantener por confirmación del usuario Pikachu20/Graveler36 adaptados. Los encuentros mantienen sus especies configuradas; evolución se resuelve al subir de nivel.
+- Beedrill/Demolición y Butterfree/Megaagotar al evolucionar al10; Pikachu/Cola Férrea al7, también accesible a Raichu. Prioridad al aprender con hueco, nunca más de4 preparados+básico ni reemplazar elecciones. Si está lleno, va a biblioteca. Roles cuentan las nuevas entradas. Compartir repertorios con IA.
+- godot:test:growth prueba precio, uso, evolución, aprendizajes, cap, PS/EXP/objeto y replay1/2/3/4. QA usa controles/guardados aislados y prepara un Beedrill antes de Brock. Paquete0.14.3 offline fuera de Git. Ver docs/SPRINT_14_GROWTH.md. Sin nuevos recursos/dependencias ni balance global.

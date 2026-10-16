@@ -1,7 +1,7 @@
 extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
-const Advanced = preload("res://core/shop_run.gd")
+const Advanced = preload("res://core/growth_run.gd")
 const CampaignStore = preload("res://core/kanto_store.gd")
 var campaign: RefCounted = Advanced.new()
 var last_presentation: Dictionary = {}
@@ -102,7 +102,7 @@ func _load_game() -> void:
 	run = result.state
 	transactions = result.commands
 	save_warning = ""
-	message = "Campaña recuperada." if run.get("edition",1) == 3 else "Partida clásica %s: conserva sus reglas. Nueva campaña para probar tienda y premio insignia." % ("0.14.1" if run.get("edition",1)==2 else "0.14")
+	message = "Campaña recuperada." if run.get("edition",1) == 4 else "Partida clásica %s: conserva sus reglas. Nueva campaña para probar Caramelos y evolución automática." % _classic_version()
 	pending = {}
 	selecting = "auto"
 	action_page = false
@@ -130,6 +130,7 @@ func _event(command: Dictionary) -> void:
 	selecting = "finish" if _player_turn() and state.moved and state.acted else "auto"
 	_save()
 	_refresh()
+	if command.kind=="level-up": _play("level-up")
 	if run.phase == "battle": board.grab_focus()
 
 func _commit(command: Dictionary) -> void:
@@ -190,7 +191,7 @@ func _render_travel() -> void:
 	header.add_child(_button("Laboratorio",func(): _menu_selected(7)))
 	header.add_child(_button("Ayuda",func(): help_dialog.popup_centered(Vector2i(630,450))))
 	var classic: String = ""
-	if not run.is_empty() and run.get("edition",1)<3: classic = "Clásica %s: Nueva campaña para tienda y premio insignia." % ("0.14.1" if run.get("edition",1)==2 else "0.14")
+	if not run.is_empty() and run.get("edition",1)<4: classic = "Clásica %s: Nueva campaña para Caramelos y evolución automática." % _classic_version()
 	var status: Label = _label(save_warning if not save_warning.is_empty() else (message if not message.is_empty() else (classic if not classic.is_empty() else "Guardado automático local · bajas definitivas")),17,MUTED)
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	travel_content.add_child(status)
@@ -270,12 +271,14 @@ func _render_travel() -> void:
 			text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos Raros: %d\n\nUn Caramelo evoluciona una etapa sin requisito de nivel. No cura. Entrenar añade +5; máximo dos compras por Pokémon.\n\nSelecciona un miembro a la derecha para usar objetos o entrenar." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
 			if run.get("edition",1) >= 2:
 				text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos Raros: %d\n\nLas estadísticas crecen al subir de nivel. La EXP se gana con victorias.\n\nEvolución: nivel requerido + un Caramelo Raro. No cura ni da niveles. Preparar movimientos es gratis." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
-			if run.get("edition",1) == 3:
+			if run.get("edition",1) >= 3:
 				text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos: %d\nNivel mínimo + Caramelo para evolucionar; no cura.\nCompra MT/equipo y úsalo con un miembro a la derecha." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
+				if run.get("edition",1)>=4: text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos: %d\nCaramelo: +1 nivel. Evolución automática al alcanzar el nivel.\nCompra y usa objetos con un miembro a la derecha." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
 				_render_stock(narrative)
-			for item: String in Campaign.ITEMS:
-				var button: Button = _travel_button("buy_"+item,"Comprar %s · %d ₽" % [Campaign.ITEMS[item].name,Campaign.ITEMS[item].price],narrative,{"kind":"buy","item":item})
-				button.disabled = run.money < Campaign.ITEMS[item].price
+			var consumables: Dictionary = campaign.consumables if run.get("edition",1)>=4 else Campaign.ITEMS
+			for item: String in consumables:
+				var button: Button = _travel_button("buy_"+item,"Comprar %s · %d ₽" % [consumables[item].name,consumables[item].price],narrative,{"kind":"buy","item":item})
+				button.disabled = run.money < consumables[item].price
 			_travel_button("continue","Seguir viaje" if run.stage < 3 else "Cerrar el tramo",narrative,{"kind":"continue"})
 		"complete": text.text = "Has vencido a Geodude y Onix. Conservas tu equipo, dinero, objetos y bajas.\n\nLa muestra termina en Brock. Las siguientes rutas, Liga y legendarios pertenecen a otros sprints."
 		"defeat": text.text = "Las bajas son definitivas. Esta campaña ha terminado y queda guardada para consultar el equipo.\n\nPuedes comenzar de nuevo con otro inicial o semilla."
@@ -313,13 +316,23 @@ func _render_travel() -> void:
 	var info: Label = _label("%s · %s\nOrigen: %s\nAtaque %d / %d · Defensa %d / %d · Velocidad %d" % [unit.name,_type_names(unit.types),selected.origin,unit.attack,unit.specialAttack,unit.defense,unit.specialDefense,unit.speed],17)
 	info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	team.add_child(info)
-	if run.get("edition",1) == 3: _render_inventory(team,selected)
+	if run.get("edition",1) >= 3: _render_inventory(team,selected)
 	if run.get("edition",1) >= 2 and run.phase != "shop":
 		_render_moves(team,selected)
 	if run.phase == "shop":
 		for item: String in ["potion","super-potion"]:
 			var button: Button = _travel_button("heal_"+item,"Usar %s · +%d PS" % [Campaign.ITEMS[item].name,Campaign.ITEMS[item].heal],team,{"kind":"heal","item":item,"member":selected_member})
 			button.disabled = selected.hp <= 0 or selected.hp >= unit.maxHp or run.bag[item] <= 0
+		if run.get("edition",1)>=4:
+			var candy: Button = _travel_button("level-up","Usar Caramelo Raro · +1 nivel",team,{"kind":"level-up","member":selected_member})
+			candy.disabled = selected.hp<=0 or selected.level>=campaign.progression.data.levelCap or run.bag["rare-candy"]<=0
+			candy.tooltip_text = "Conserva EXP parcial y PS actuales. La evolución ocurre automáticamente al alcanzar su nivel."
+			var automatic: Dictionary = campaign.progression.evolution(selected)
+			var evolution_label: Label = _label("Evolución automática: %s · Nv. %d" % [rules.profiles[int(automatic.speciesId)].data.name,automatic.level] if not automatic.is_empty() else "Sin otra evolución de Kanto",17,MUTED)
+			evolution_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			team.add_child(evolution_label)
+			_render_moves(team,selected)
+			return
 		var evolve: Button = _travel_button("evolve","Evolucionar · 1 Caramelo Raro",team,{"kind":"evolve","member":selected_member})
 		evolve.disabled = selected.hp <= 0 or not Campaign.EVOLUTIONS.has(int(selected.speciesId)) or run.bag["rare-candy"] <= 0
 		if run.get("edition",1) >= 2:
@@ -353,6 +366,7 @@ func _progress_summary() -> String:
 	for entry: Dictionary in run.get("lastProgress",[]):
 		var text: String = "%s: +%d EXP" % [entry.name,entry.xp]
 		if entry.level > entry.before: text += " · Nv. %d → %d" % [entry.before,entry.level]
+		for evolution: Dictionary in entry.get("evolutions",[]): text += " · %s → %s" % [rules.profiles[int(evolution.from)].data.name,rules.profiles[int(evolution.to)].data.name]
 		if not entry.learned.is_empty(): text += " · aprende " + ", ".join(entry.learned.map(func(id):return campaign.progression.data.moves[id].name))
 		lines.append(text)
 	return "\n".join(lines)
@@ -398,8 +412,11 @@ func _toggle_move(enabled: bool, member_id: int, identity: String, revision: int
 
 func _default_hint() -> String:
 	var classic: String = ""
-	if not run.is_empty() and run.get("edition",1)<3: classic = "Clásica %s: menú → Nueva campaña para tienda.\n" % ("0.14.1" if run.get("edition",1)==2 else "0.14")
+	if not run.is_empty() and run.get("edition",1)<4: classic = "Clásica %s: menú → Nueva campaña para evolución automática.\n" % _classic_version()
 	return classic + super._default_hint()
+
+func _classic_version() -> String:
+	return {1:"0.14",2:"0.14.1",3:"0.14.2"}.get(int(run.get("edition",1)),"0.14")
 
 func _render_stock(parent: VBoxContainer) -> void:
 	parent.add_child(_label("OFERTAS · MT Y EQUIPO",21,GOLD))

@@ -162,3 +162,10 @@ El usuario sustituye expresamente el premio salvaje del gimnasio por su Pokémon
 Edición3: tres ofertas distintas con una copia, al menos una MT útil y un equipable mientras haya MT por aprender; restantes aleatorios. Renovación25×(n+1) ₽ por visita; reponer las tres puede volver a ofrecer objetos anteriores. Primer stock de Charmander incluye Demolición80 antes de Brock. Garra Metal ya se aprende al9. Seis MT y cuatro equipables; un uso por MT y un equipable por miembro. Compatibilidad por máquina verificada en PokéAPI, unión de versiones. Pociones/Caramelos permanecen aparte. Precios provisionales; no se cambian estadísticas ni fórmulas base de daño.
 
 Guardado conserva oferta, compras, coste y PRNG de tienda separado del de capturas. Equipables retornan a bolsa al sustituir/quitar o al cerrar combate con bajas. Vidaesfera ×1,3 con retroceso10% de PS máximos una vez por acción dañina, incluido básico neutro; no por fallo/inmunidad/apoyo. Puede causar baja. Ediciones1/2 siguen sus motores; Nueva campaña para estas reglas con copia del archivo anterior. Isometría y ampliación de Kanto continúan pendientes.
+
+
+### Crecimiento automático — 16 de octubre, 0.14.3
+
+El usuario sustituye expresamente el Caramelo que evoluciona por Caramelo que compra un nivel más barato. La evolución ocurre al alcanzar el umbral, por EXP o Caramelo, sin consumir otro objeto. Confirma mantener por ahora Pikachu20 y Graveler36 como umbrales adaptados. Pide Demolición al evolucionar a Beedrill, Megaagotar al evolucionar a Butterfree y Cola Férrea temprana para Pikachu.
+
+Edición4: Caramelo25 ₽ por +1 nivel, uso en tienda, conservando EXP parcial y PS. Tope100, sin revivir. Umbrales normales de las líneas existentes; insectos7/10 y primeros iniciales16. Movimientos de evolución al10, Pikachu al7 como decisión provisional. Hasta4 preparados+básico; si no hay hueco se aprende en biblioteca sin sustituir otros. Se retiran botón/orden de evolución manual para nuevas partidas. Nueva campaña para reglas4;1/2/3 conservadas con copia. Tienda/MT/equipables y premio Onix sin otros cambios. Balance humano pendiente, sin iniciar15.

@@ -391,3 +391,10 @@ Adelanta sistemas mínimos de 16; 15 sigue pendiente. No equivale a completar PC
 Petición del16 de octubre completada como ampliación del14, adelantando MT/equipables mínimos de16. Brock entrega Onix14 en vez de captura del bosque; tres ofertas distintas con compras individuales y rerolls25,50,75… ₽ por visita. Seis MT, cuatro equipables y cobertura accesible para Charmander. Edición3 conserva1/2 y laboratorio. [Informe y límites](SPRINT_14_SHOP.md).
 
 El15 sigue pendiente: escala/cámara, evaluación de isometría/alturas. Quedan PC y equipo completo, más especies/contenido de Kanto, pasivas, Liga/legendarios y balance con pruebas humanas. La tienda nueva no equivale a completar16 ni arreglar todo el balance. No publicar hasta indicación del usuario.
+
+
+## Revisión0.14.3 — niveles comprables y evolución automática
+
+Petición del16 de octubre: Caramelo25 ₽ por un nivel, evolución automática en sus umbrales con EXP o Caramelo; Beedrill/Demolición, Butterfree/Megaagotar al10 y Pikachu/Cola Férrea al7. El usuario confirma las adaptaciones Pikachu20/Graveler36. Edición4 conserva reglas1/2/3 y laboratorio. [Informe y comprobaciones](SPRINT_14_GROWTH.md).
+
+Amplía progresión mínima de16; no completa PC ni mapas/cámara/isometría de15, contenido de Kanto o balance. Publicación sigue pendiente por decisión del usuario.

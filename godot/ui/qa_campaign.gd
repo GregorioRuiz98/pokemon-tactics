@@ -39,7 +39,29 @@ func shop(app: Control) -> void:
 			if entry.hp <= 0: continue
 			app._select_member(int(entry.id))
 			var requirement: Dictionary = app.campaign.progression.evolution(entry)
-			if not requirement.is_empty() and entry.level >= requirement.level:
+			if app.run.get("edition",1)>=4:
+				check(not app.travel_buttons.has("evolve"),"No manual evolution button in new rules")
+				var goal: int = entry.level
+				if app.run.stage==2 and int(entry.speciesId) in [10,11,13,14]: goal = 10
+				if app.run.stage==2 and entry.speciesId==25: goal = 7
+				var current: Dictionary = app.campaign.target(app.run,int(entry.id))
+				while current.level<goal and (app.run.bag["rare-candy"]>0 or app.run.money>=25):
+					if app.run.bag["rare-candy"]==0:
+						var balance: int = app.run.money
+						check("25" in app.travel_buttons["buy_rare-candy"].text,"Candy displays cheaper price")
+						button(app,"buy_rare-candy")
+						check(app.run.money==balance-25,"Candy charges exactly 25")
+					var hp: int = current.hp
+					var xp: int = current.xp
+					var level: int = current.level
+					button(app,"level-up")
+					current = app.campaign.target(app.run,int(entry.id))
+					check(current.level==level+1 and current.hp==hp and current.xp==xp,"UI candy grants one level without healing or discarding partial EXP")
+				if int(current.speciesId) in [12,15]:
+					var coverage: String = "mega-drain" if current.speciesId==12 else "brick-break"
+					check(coverage in current.knownMoves,"Evolution coverage is learned through real candy UI")
+					captured.growth = true
+			elif not requirement.is_empty() and entry.level >= requirement.level:
 				if app.run.bag["rare-candy"] == 0 and app.run.money >= 100: button(app,"buy_rare-candy")
 				if app.run.bag["rare-candy"] > 0:
 					var hp: int = app.campaign.target(app.run,int(entry.id)).hp
@@ -184,6 +206,13 @@ func run(app: Control, directory: String) -> void:
 					await app.get_tree().process_frame
 					captured.shop = true
 				shop(app)
+				if captured.has("growth") and not captured.has("growth_image"):
+					for member: Dictionary in app.run.party:
+						if member.hp>0 and int(member.speciesId) in [12,15]:
+							app._select_member(int(member.id))
+							break
+					await capture(app,directory,"12-automatic-evolution")
+					captured.growth_image = true
 				var before: Dictionary = app.run.duplicate(true)
 				app._load_game()
 				check(app.save_warning.is_empty(),"Continue validates campaign journal")
@@ -203,6 +232,7 @@ func run(app: Control, directory: String) -> void:
 	check(captured.has("miss"),"Natural attack failure displayed with dedicated image/audio")
 	check(captured.has("five"),"Five action menu exercised")
 	check(captured.has("loadout"),"Real UI swaps a learned move without exceeding four slots")
+	check(captured.has("growth"),"Real UI reaches bug evolution with learned coverage before Brock")
 	await _immune_preview(app,directory)
 	await _orb_preview(app,directory)
 	await _legacy_preview(app,directory)
