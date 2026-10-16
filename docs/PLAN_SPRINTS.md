@@ -306,7 +306,7 @@ Entrega 12: completada técnicamente, versión 0.12.0, rama codex/sprint-12. 93 
 
 Plantilla de cierre: objetivo entregado; archivos o módulos modificados; recursos reutilizados y procedencia; comprobaciones ejecutadas y resultados; prueba manual disponible; feedback; pendientes; actualización de valores provisionales.
 
-Sprint 13 de base Godot cerrado; siguiente entrega propuesta: 14, muestra de Paleta hasta Brock, con las decisiones de campaña que la afecten aún por cerrar.
+Sprints 13 y 14 cerrados técnicamente. La muestra Paleta–Brock espera pruebas del creador; siguiente bloque propuesto: 15, escala, cámara e isometría/alturas.
 
 ## 9. Historial de entregas
 
@@ -342,8 +342,8 @@ Cambios de objetivo confirmados: campaña larga con guardado y bajas definitivas
 | Sprint futuro | Alcance propuesto | Criterio de cierre previsto | Estado |
 | --- | --- | --- | --- |
 | 13 — Base técnica y paridad | Godot/plantillas verificados, laboratorio 3v3 con recursos existentes, POO, guardado y exportación Windows; contraste con el motor web | 16 combates/506 órdenes y 25 escenarios coinciden; cuatro batallas por controles en fuente y ejecutable; guardados web intactos | Completado 0.13.0; [informe](SPRINT_13.md) |
-| 14 — Paleta hasta Brock | Muestra completa: elección de inicial, rutas iniciales/Bosque Verde, captura local, tienda/evolución/entrenamiento mínimos y gimnasio; recursos solo de este tramo | Poder jugar, guardar y continuar el ciclo completo; captura y compras se conceden una vez; recoger feedback antes de ampliar Kanto | Pendiente; cerrar política de premios y gestión del equipo |
-| 15 — Escala y ritmo táctico | Comparar mapas amplios, cámara, grupos enemigos y objetivos puntuales propuestos | Tiempo de desplazamiento y espera evaluados jugando; reglas compartidas con IA, sin ciclos defensivos; tamaños no fijados por intuición | Pendiente |
+| 14 — Paleta hasta Brock | Inicial de Oak, Ruta 1, Ruta 2, Bosque Verde y Brock; captura, tienda, evolución/entrenamiento mínimos | Ciclo completo con guardado y premios únicos; ver informe | Completado 0.14.0; pruebas humanas/balance pendientes; [informe](SPRINT_14.md) |
+| 15 — Escala y ritmo táctico | Evaluar isometría/alturas y comparar mapas amplios, cámara, grupos enemigos y objetivos puntuales propuestos | Tiempo de desplazamiento y espera evaluados jugando; reglas compartidas con IA, sin ciclos defensivos; tamaños no fijados por intuición | Pendiente |
 | 16 — Equipo y progresión | Ampliar capturas, reserva si se aprueba, movimientos/MT y requisitos evolutivos/entrenamiento acordados | Comprobar máximo desplegado, bajas, intercambio, límites y recuperación de guardado; reposiciones útiles sin duplicar mejoras | Pendiente |
 | 17 — Celeste y Carmín | Monte Moon, rutas del tramo, Bill, Misty, S. S. Anne, Lt. Surge y rival | Encuentros y premios trazables a Rojo; tramo completo desde una partida continuada | Pendiente |
 | 18 — Lavanda, Azulona y Team Rocket | Túnel Roca, conexiones, Erika, guarida y Torre Pokémon; hitos y desvíos según grafo acordado | Hitos habilitan sus destinos sin saltos accidentales; gacha local separado del equipo de entrenadores | Pendiente |
@@ -369,4 +369,11 @@ Solicitud adicional del usuario: integrar la interfaz en el juego y reducir clic
 
 16 de octubre: el usuario concreta su referencia. Menú vertical flotante a la derecha en turnos aliados, movimiento directo sin botón, rectificación exclusiva del movimiento antes de actuar y retratos PMD en esquinas. La acción realizada antes del movimiento también impide rectificar. Implementación y prueba en [SPRINT_13_CONTEXT_MENU.md](SPRINT_13_CONTEXT_MENU.md).
 
-Isometría y alturas se posponen expresamente a otro sprint. Añadir su evaluación al bloque de escala/mapas (15), antes de ampliar escenarios definitivos; no forman parte de 0.13.2. La campaña 14 sigue pendiente. No hay cambio de balance ni de contratos de guardado.
+Isometría y alturas se posponen expresamente a otro sprint. Añadir su evaluación al bloque de escala/mapas (15), antes de ampliar escenarios definitivos; no forman parte de 0.13.2. En aquella revisión la campaña 14 seguía pendiente. No hubo cambio de balance ni de contratos de guardado.
+
+
+## Sprint 14 — Paleta hasta Brock, 0.14.0
+
+Muestra nativa entregada en codex/sprint-14. Cuatro encuentros, tres iniciales, 24 especies locales, capturas con pesos de Rojo, tienda y evolución/entrenamiento mínimos. Brock concede medalla/dinero/captura del bosque. Caramelo por etapa sin nivel y +5/dos entrenamientos confirmados por el usuario. Duplicados permitidos provisionalmente; no se necesita PC para un máximo de cinco miembros.
+
+Guardado propio kanto/1 y laboratorio conservado. Tableros 12×10; mapas grandes, cámara, isometría y alturas quedan para evaluar en 15. EXP/progresión completa en 16. Rival inicial, Ruta 22 y entrenadores secundarios no implementados; acontecimientos de paquete/Pokédex comprimidos en texto. Informe, pruebas y límites en [SPRINT_14.md](SPRINT_14.md). No iniciar automáticamente el siguiente bloque ni publicar.

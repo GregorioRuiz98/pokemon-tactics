@@ -38,7 +38,7 @@ El usuario ha pedido integrar las órdenes dentro del gameplay, con paneles de a
 
 ## Estado de entrega
 
-Sprints 0–12 cerrados técnicamente para la versión web, con publicación y pruebas externas pendientes. Sprint 13 aporta la base Godot y su ensayo/guardado/exportación; ver [informe](docs/SPRINT_13.md). El código, parámetros y recursos web permanecen intactos. El prototipo nativo no implementa todavía la campaña de los requisitos siguientes.
+Sprints 0–12 cerrados técnicamente para la versión web, con publicación y pruebas externas pendientes. Sprint 13 aporta la base Godot y su ensayo/guardado/exportación; ver [informe](docs/SPRINT_13.md). El código, parámetros y recursos web permanecen intactos. La muestra nativa 0.14.0 implementa Paleta hasta Brock y el ciclo mínimo de captura/tienda; el resto de la campaña sigue pendiente. Ver docs/SPRINT_14.md.
 
 ## Campaña de Kanto — requisitos confirmados
 
@@ -54,8 +54,8 @@ Esta sección sustituye, como objetivo futuro, el inicio con tres aleatorios, la
 | K06 | Mapas más grandes | Más espacio y decisiones de terreno que los tableros actuales; tamaño y número de enemigos pendientes de prueba |
 | K07 | Gachapón tras cada combate ganado | Obtener un Pokémon aleatorio de la ruta o zona, con presentación de captura; no comprar reclutas de una oferta genérica como mecanismo principal |
 | K08 | Tienda después de la captura | Flujo de victoria → captura → tienda → preparación → siguiente encuentro |
-| K09 | Caramelos Raros para evolucionar | Poder adquirir progreso evolutivo en la tienda; requisitos exactos por especie pendientes |
-| K10 | Mejorar estadísticas en tienda | Invertir recursos en miembros concretos; límites, precios y magnitud aún sin fijar |
+| K09 | Caramelos Raros para evolucionar | Muestra 14: un caramelo por etapa sin requisito de nivel, decisión provisional confirmada; requisitos posteriores pendientes |
+| K10 | Mejorar estadísticas en tienda | Muestra 14: +5 a una estadística por compra, máximo dos compras totales por Pokémon; precio provisional 80 |
 | K11 | Liga Pokémon y rival | Cierre principal de la campaña; no sustituirlo por un combate legendario |
 | K12 | Legendarios después de la Liga | Dos desafíos alternativos: Articuno/Zapdos/Moltres y Mew/Mewtwo; siguen excluidos de capturas, inicio y reclutamiento |
 | K13 | Inicio por indicación expresa | El usuario autorizó sprint 13 con «pues empieza»; no extenderlo automáticamente al resto de la campaña ni a publicación |
@@ -119,13 +119,13 @@ Antes de aceptar cada entrega: comprobar que las capturas pertenecen a su tabla 
 
 ## Decisiones pendientes y siguiente entrega
 
-1. Política del gachapón en gimnasios/eventos, revisitas, duplicados y tablas agotadas; resolver K07 frente a P07/P08 antes de programar recompensas.
+1. Para Brock se confirma medalla, dinero y captura del Bosque Verde. Otros gimnasios/eventos, revisitas, cláusula de duplicados y tablas agotadas siguen pendientes; la muestra permite duplicados y solo cuatro victorias sin revisita.
 2. PC de reserva, cambios permitidos y si perder los seis desplegados termina la campaña aun teniendo reservas. El usuario confirmó bajas definitivas y reinicio al perder el equipo; no inventar rescates desde el PC.
 3. Escala de niveles, requisitos evolutivos/caramelos/piedras, aprendizaje de movimientos y límites/coste del entrenamiento. El sistema actual de cinco niveles no queda ampliado por este documento.
 4. Rutas obligatorias/desvíos, número de combates especiales, escala de mapas, condiciones de activación y objetivos; decidir cómo se elige uno de los dos desafíos de postgame y qué ocurre al completarlo.
 5. Formato y compatibilidad de guardados; localización de Godot, plantillas y distribución del ejecutable cuando se autorice el port. Un único archivo `.exe` o `.exe` acompañado de recursos es una decisión de empaquetado, no un requisito ya confirmado.
 
-Estado del traspaso: base técnica del sprint 13 entregada tras autorización expresa; decisiones de producto pendientes para la campaña. La futura primera muestra abarcará Paleta hasta Brock, sprint 14 propuesto. La secuencia y criterios de cierre están en [PLAN_SPRINTS.md](docs/PLAN_SPRINTS.md#11-siguiente-etapa-kanto-y-ejecutable).
+Estado del traspaso: base técnica 13 y muestra 14 autorizadas y entregadas. Paleta hasta Brock disponible en Windows 0.14.0; los sprints posteriores siguen pendientes. La secuencia y criterios de cierre están en [PLAN_SPRINTS.md](docs/PLAN_SPRINTS.md#11-siguiente-etapa-kanto-y-ejecutable).
 
 
 ### Interfaz confirmada — 16 de octubre de 2026
@@ -133,3 +133,14 @@ Estado del traspaso: base técnica del sprint 13 entregada tras autorización ex
 Menú de órdenes vertical a la derecha dentro de la escena, visible automáticamente al empezar el turno aliado. Movimiento directo por casillas, sin botón Mover. Añadir Rectificar movimiento, disponible solo antes de cualquier acción o fin de turno; atacar primero y moverse después también lo bloquea. Nunca deshacer ataques, PS/PT, estados o RNG.
 
 Retratos de diálogo de Pokémon Mundo Misterioso, referencia Exploradores del Cielo: activo abajo a la izquierda y objetivo/previsión abajo a la derecha. Mantener básico directo y habilidades en submenú como elección de implementación mientras se valida la composición. El usuario prefiere isometría y alturas, pero ha elegido resolver primero la interfaz y tratarlas en otro sprint.
+
+
+### Muestra confirmada — sprint 14, 16 de octubre
+
+El usuario confirma tras Brock medalla/dinero/captura de la última zona salvaje y acepta para probar un Caramelo Raro por evolución sin nivel y entrenamiento +5 con dos compras totales por Pokémon. Se conservan PS y topes al evolucionar. Oak entrega 120 y dos pociones; victoria 150; precios de poción40/super90/caramelo100 y entrenamiento80 son provisionales de implementación.
+
+La muestra incluye cuatro encuentros (Ruta 1, Ruta 2, Bosque Verde y Brock), tablas de hierba de Rojo y cinco miembros como máximo contando el premio final. Duplicados permitidos provisionalmente, sin cláusula por familia. PC, intercambio, equipables, EXP, MT y niveles completos se concretarán en 16. Tras morir todo el equipo termina la campaña.
+
+Mapas cenitales de prueba 12×10; no cumplen aún el objetivo de escala/isometría/alturas, reservado a 15. Paleta/Ciudad Verde/Plateada aparecen mediante pantallas de viaje y textos; no hay exploración libre ni recreación completa de acontecimientos. Paquete/Pokédex resumidos narrativamente; combate inicial del rival, Ruta 22 opcional y entrenadores secundarios pendientes. El final de la muestra es Brock; no la Liga.
+
+Guardado de campaña independiente kanto/versión 1, con sorteo y órdenes persistidos, sin importar ni sobrescribir web/laboratorio. Regenerar futuras reglas exige edición nueva o migración. Las simulaciones de 14 son diagnóstico provisional, sin autorización automática para cambiar fórmulas de daño del laboratorio.

@@ -1,0 +1,1037 @@
+{
+  "spriteCommit": "6ad5f1c6229af6b055de2c64442e5e508664290c",
+  "files": [
+    {
+      "target": "assets/kanto/2/Idle.png",
+      "source": "public/assets/pokemon/2/Idle.png",
+      "sha256": "d251cbd9aaf3f9ff6ee6f6119a9ce87267e2548124fd499c0c62fe1083fc72b9",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/2/Walk.png",
+      "source": "public/assets/pokemon/2/Walk.png",
+      "sha256": "294de55669bceca7e4c0904ce5f41203368c0f24261cedae09ed699cd2002576",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/2/thumbnail.png",
+      "source": "public/assets/pokemon/2/thumbnail.png",
+      "sha256": "1686fa5c23f6b028a7ff9924b46a967471b4b402d454bfc89d51ffb9d9758f29",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/2/AnimData.xml",
+      "source": "public/assets/pokemon/2/AnimData.xml",
+      "sha256": "e1c494c9d795980bb77622e8ce782b4fba62bd1e5103165351748dc3924702c0",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/2/credits.txt",
+      "source": "public/assets/pokemon/2/credits.txt",
+      "sha256": "e88df37b264785baaa6cb9755bb5d32bb7b2b6e8834957a9fa062f50f92ebcdd",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/2/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0002/Normal.png",
+      "sha256": "9ed265687bfa0f543605bc80d923ab637d3c36808d56965ef6677e1a53416377",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/2/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0002/credits.txt",
+      "sha256": "afb3ac0d6ba6f8e599c3eac5b9839ecde4e85fb4dc705f023359aec32c9ac2e7",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/3/Idle.png",
+      "source": "public/assets/pokemon/3/Idle.png",
+      "sha256": "53547ad2b27a60f270a9cd698ab53fe55df8352d6ebc54fecae955362d8563c3",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/3/Walk.png",
+      "source": "public/assets/pokemon/3/Walk.png",
+      "sha256": "53547ad2b27a60f270a9cd698ab53fe55df8352d6ebc54fecae955362d8563c3",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/3/thumbnail.png",
+      "source": "public/assets/pokemon/3/thumbnail.png",
+      "sha256": "e8f200c8e91318c9d06ba9ed0c07e6e07d4fa978dbae21a9f08a0c53f3b4d1be",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/3/AnimData.xml",
+      "source": "public/assets/pokemon/3/AnimData.xml",
+      "sha256": "b5b556e42df4322440f63da430e918bbad794c83cdf58dbff2393138f96c15d3",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/3/credits.txt",
+      "source": "public/assets/pokemon/3/credits.txt",
+      "sha256": "a0f0cc61b3bb93661a1eda2d526f07660bb1d735d298fb74a091ea46aeb5b608",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/3/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0003/Normal.png",
+      "sha256": "ad837a186afb8399c9c2a1ac832dc77256709e832d71851e2ebade2497daf191",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/3/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0003/credits.txt",
+      "sha256": "4b79281b2b326ee502daca849ddf952672a7af705974ad9618c24e89fd2dfdd0",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/5/Idle.png",
+      "source": "public/assets/pokemon/5/Idle.png",
+      "sha256": "8addf741bbf9ff03ee6834012f7e63205db731c3f108dbd7e628c7141e10d9c3",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/5/Walk.png",
+      "source": "public/assets/pokemon/5/Walk.png",
+      "sha256": "851542353e3b77af75abde27abd0f4f9cafc8e025c6b0351d2230f2a14e9c54e",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/5/thumbnail.png",
+      "source": "public/assets/pokemon/5/thumbnail.png",
+      "sha256": "7e6207ed5488f2885c1895cb9b5bdfba7a44333a7ffa0b494b5286d26d913511",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/5/AnimData.xml",
+      "source": "public/assets/pokemon/5/AnimData.xml",
+      "sha256": "9273a9f5df20312a76cace12aaa4ab7ac7eadf7e44c56ab595f5a53a70c6edf1",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/5/credits.txt",
+      "source": "public/assets/pokemon/5/credits.txt",
+      "sha256": "d55df22912ec9d65baec27efab03f777ab1488396b5abc3ecfd859e1a8873b7d",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/5/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0005/Normal.png",
+      "sha256": "8420abc5ed79d9c7bd2be9072671afd38c5141a3876d1bc4a63e237b2cdd437d",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/5/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0005/credits.txt",
+      "sha256": "ce490e7754f8971f23822acc1bedc8825473038bbd00b87aa4a308c490c5d16e",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/6/Idle.png",
+      "source": "public/assets/pokemon/6/Idle.png",
+      "sha256": "ceeb33e0db05817c2566e964d7b2264d0fb8fdecd480f7245faeafc864bc0d9b",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/6/Walk.png",
+      "source": "public/assets/pokemon/6/Walk.png",
+      "sha256": "ceeb33e0db05817c2566e964d7b2264d0fb8fdecd480f7245faeafc864bc0d9b",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/6/thumbnail.png",
+      "source": "public/assets/pokemon/6/thumbnail.png",
+      "sha256": "f7e00d97bfbeced8b92b4047b96ac82756185612758013517bdea6bb162729e0",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/6/AnimData.xml",
+      "source": "public/assets/pokemon/6/AnimData.xml",
+      "sha256": "2501f5c474cc624f18840933f7df291808f302c8ba1a0b6e4c8c5a2f601bd145",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/6/credits.txt",
+      "source": "public/assets/pokemon/6/credits.txt",
+      "sha256": "3a275f456ec2bc3fa899ce4b84bd584f27daab8d5e04101435b2db5c39088088",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/6/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0006/Normal.png",
+      "sha256": "0f35ef09a0a2fbc6d9187bcb270954b30aa2dbb51c2f13f21ed9ce648f67a591",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/6/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0006/credits.txt",
+      "sha256": "0ec63dcb7bce399c4bfc6267270ad93d105b2de6c05edcaf741438ad4ac0d44d",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/8/Idle.png",
+      "source": "public/assets/pokemon/8/Idle.png",
+      "sha256": "f08eadc10f327c5137631733ee406f53f642547ae1c375d65bccf09c8dd6a1f3",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/8/Walk.png",
+      "source": "public/assets/pokemon/8/Walk.png",
+      "sha256": "215892752dc98e5039fbe67d25c06ebe041d1ba9d7189ec329d4f998cc7e95dd",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/8/thumbnail.png",
+      "source": "public/assets/pokemon/8/thumbnail.png",
+      "sha256": "ad3b9461e62053c212961f0ae9eb460554d9c8ab0788d50d449531ab1add81eb",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/8/AnimData.xml",
+      "source": "public/assets/pokemon/8/AnimData.xml",
+      "sha256": "0c08e4fdb76e1da231193615c12d0abd3d8afeb59ceb757db0b1faa9152b2746",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/8/credits.txt",
+      "source": "public/assets/pokemon/8/credits.txt",
+      "sha256": "f6584e33621120bc23eb53a95cc370c460465744b3296555faf239d96dba52c9",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/8/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0008/Normal.png",
+      "sha256": "623588f3d602be694872ea614aa4f5cb9db7706451d3b1ecc3bb94bbb3af66a4",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/8/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0008/credits.txt",
+      "sha256": "1391a6723c259dc1bcc968ed8062e69a7d7c1cea3565338ad6bcc7b058525c57",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/9/Idle.png",
+      "source": "public/assets/pokemon/9/Idle.png",
+      "sha256": "eb9bca8db6a6fda567302db7815bf122829a07c2fb77ab5e5fb69fb67779815e",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/9/Walk.png",
+      "source": "public/assets/pokemon/9/Walk.png",
+      "sha256": "90074aa6cea5dc4fd11a5ca2bd756f71d83798e2efc346d8d609907489f70350",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/9/thumbnail.png",
+      "source": "public/assets/pokemon/9/thumbnail.png",
+      "sha256": "0ac677a584e759a0cea8543035512bbb41970ad0dc439827ff4ce6394baafbbe",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/9/AnimData.xml",
+      "source": "public/assets/pokemon/9/AnimData.xml",
+      "sha256": "4ccb8ab3596721a434c3d561b8930a9988bb314d403e8b4cfc7a4daaea9732a8",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/9/credits.txt",
+      "source": "public/assets/pokemon/9/credits.txt",
+      "sha256": "2fc33440148a7c3cc3211c2ad517af3613750b3ff8cb3cb44db8200e9cb04276",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/9/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0009/Normal.png",
+      "sha256": "32d5f208c19f55eecb713eea1eb02e81d435ee85a46cee97c15da7f060d7fabf",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/9/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0009/credits.txt",
+      "sha256": "95608678dad69704348af45df94291bf400749a0dccca0b7439e596f03c973f7",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/10.json",
+      "source": "https://pokeapi.co/api/v2/pokemon/10",
+      "sha256": "e39d8ccf9e371654f2b120fd19425749f3877239285e3eaf06e0d259e40afab2",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/10-species.json",
+      "source": "https://pokeapi.co/api/v2/pokemon-species/10",
+      "sha256": "65d71b38b0b00f8e0028f5c36ebd0f1ac89b630582f81179d11a267d0e670441",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/10/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0010/AnimData.xml",
+      "sha256": "67fe60fcdf8f43033107aa2c0d6679cb6dfc527333758dae35eccff612cc00b7",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/10/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0010/credits.txt",
+      "sha256": "cef72539781e8f44564f1ffcdca300821f37094f9fcc4bf5ea59009f7a4cdfba",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/10/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0010/Idle-Anim.png",
+      "sha256": "2d89d59aa7f7112381a9e1fdc62f4317e35410b093eabc048a66364610ac24bd",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/10/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0010/Idle-Anim.png",
+      "sha256": "24169ef1d4425b98f58134590f95646812375c2c3b880c8f196cb5c2b217eabe",
+      "modification": "First down-facing frame cropped; no recoloring"
+    },
+    {
+      "target": "assets/kanto/10/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0010/Walk-Anim.png",
+      "sha256": "7f19cdd3ec4c88795243999b3f090aa2192c87f5c4399d491ac473908ca09a06",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/10/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0010/Normal.png",
+      "sha256": "8c06969fb305e6c9e37095f34f8d99079ca1fa77a4e22a43b4a59faa83d71d43",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/10/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0010/credits.txt",
+      "sha256": "c187b27c66bf58c97f28355f50a3c2a07ff4712fbd5322358e7e24a57e2581db",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/11.json",
+      "source": "https://pokeapi.co/api/v2/pokemon/11",
+      "sha256": "014ba3a882e9b00d434ef6fae000375faa6152bb9898fd4cb40cb1003022379c",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/11-species.json",
+      "source": "https://pokeapi.co/api/v2/pokemon-species/11",
+      "sha256": "209efae829a0359747856759002135fcbc155920ba5078a5b946ec9c8967f1c7",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/11/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0011/AnimData.xml",
+      "sha256": "9b88de1540c77530ef121a0241aaeff5c66c9328adc21a33d154427a307f2231",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/11/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0011/credits.txt",
+      "sha256": "ce7ff557dcf4204f93401b3e2d2d05d400c25de4b502c9b02a1d67325d04661b",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/11/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0011/Idle-Anim.png",
+      "sha256": "d3b3a68e8952a73ab7b76a370a02da4e405e44842fe3c90eade0d3cbe16ef423",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/11/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0011/Idle-Anim.png",
+      "sha256": "5f538e5537e788c4f1f8eff39fd384a813c6fdefab1a5faf0248210037cc8936",
+      "modification": "First down-facing frame cropped; no recoloring"
+    },
+    {
+      "target": "assets/kanto/11/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0011/Walk-Anim.png",
+      "sha256": "4345551b61fdc6e7b3c881fbc983e49c6ca2e69a01f4083b8d7d7d8735857a34",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/11/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0011/Normal.png",
+      "sha256": "2df60c5f0f2114131e502aec7a8ccd2d36ea7efa7ffef5a54c1dbb5bf6a9b6dc",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/11/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0011/credits.txt",
+      "sha256": "32e0f7e429dbdffee97b935a44002cc5c11a5f1ed8ecfed8beae10a21f21984c",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/13.json",
+      "source": "https://pokeapi.co/api/v2/pokemon/13",
+      "sha256": "678312eea8430435cc45ac09939b01298956f43123eac9838136a1138f1894c7",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/13-species.json",
+      "source": "https://pokeapi.co/api/v2/pokemon-species/13",
+      "sha256": "3bd98fa0fdd5f271319c1f4d278750f512202ef028b4276dc28d09ed1442633b",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/13/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0013/AnimData.xml",
+      "sha256": "ee13d6f7c9c0f584a069906fe423f214d639e91be53564dd04b17833ab3b8b2c",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/13/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0013/credits.txt",
+      "sha256": "77d3d4c7301ca66d7cede0604649516d7d191a8d2b4031f6455503c7c57baaf8",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/13/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0013/Idle-Anim.png",
+      "sha256": "b7264b9f909623871b612e049ed4a3f5a6fe266f867a1099714a161809bd66a7",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/13/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0013/Idle-Anim.png",
+      "sha256": "6d2a115efc97ffc20ae89f980b6318a5a5a5d6ad3416d43639be887a7bb8309a",
+      "modification": "First down-facing frame cropped; no recoloring"
+    },
+    {
+      "target": "assets/kanto/13/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0013/Walk-Anim.png",
+      "sha256": "b7001ca5de802874a0777663f7c1a846e824937d73b6ee68b328410d719b3969",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/13/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0013/Normal.png",
+      "sha256": "8a8c5b92d9273fcab4ecd564ba728a3a4a4de1248665b6c76cd7bfc54a357e97",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/13/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0013/credits.txt",
+      "sha256": "039820695ce9ed11ac552347a4f0611b5d48dcb0948c93eaf2b3e6eb377d6764",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/14.json",
+      "source": "https://pokeapi.co/api/v2/pokemon/14",
+      "sha256": "aa3cb40e9c2c2594f9ed857ed9931e41bcb036e51c2fcc96108c3a984429fa03",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/14-species.json",
+      "source": "https://pokeapi.co/api/v2/pokemon-species/14",
+      "sha256": "1f23d9e168ba550fe1b615b1c248e9d30fab8f6fb4f4cb608ae71d2249effe41",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/14/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0014/AnimData.xml",
+      "sha256": "977d4d4b7ce1018a55d8f7a35ab4fee36f249ca31ecceca3de1ccf0d0bba1ad0",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/14/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0014/credits.txt",
+      "sha256": "f049fa651c26aa0a4cb5500671275460969bfd1ee68c9cb59da78bbe643dd50a",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/14/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0014/Idle-Anim.png",
+      "sha256": "47dc90664ac2ab1e82a82223b5e5086bbcdc9c6a7201370f99636079b75034fa",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/14/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0014/Idle-Anim.png",
+      "sha256": "9e415abac30af04311f2e9e6271d579c92dffbdb3d4467fba41e554e693da1ec",
+      "modification": "First down-facing frame cropped; no recoloring"
+    },
+    {
+      "target": "assets/kanto/14/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0014/Walk-Anim.png",
+      "sha256": "5e959aa36cf5217424f86140ca15d2df28869522167f9f01584300e459563baf",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/14/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0014/Normal.png",
+      "sha256": "f45f549d367225806b055e8808cb49c226cf687c258af238e7b66fe1b55af690",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/14/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0014/credits.txt",
+      "sha256": "113a22ab2189147c06844333c62b6a6986c09e39228d41b80ed6ce7f19ec35e4",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/15.json",
+      "source": "https://pokeapi.co/api/v2/pokemon/15",
+      "sha256": "7c64441b7c88ba7b53f37fc5b21ece45bd055b3491d62014db4a325b2a8d18e9",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/15-species.json",
+      "source": "https://pokeapi.co/api/v2/pokemon-species/15",
+      "sha256": "cc7b4619df07be59ccfe172f79d9022fb78bd40750bd57b803b5d9d1733df89f",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/15/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0015/AnimData.xml",
+      "sha256": "99a360f037affb80ee03424b9fa4f301c4d629850543a2a8cd2c2bd61cfb4eca",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/15/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0015/credits.txt",
+      "sha256": "1a9a06986a6895ec217513479bdf125d483c010624d63117aabad77cc2011dff",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/15/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0015/Walk-Anim.png",
+      "sha256": "832dfdb59cdd0cd8a17671e077266028198d9497fcc0c31f5016f3abe4ddb0b0",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/15/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0015/Walk-Anim.png",
+      "sha256": "19215717610d5e5ec0c941eb474d04cf83c203a8f8fe8f6346ddcbf0d7422177",
+      "modification": "First down-facing frame cropped; no recoloring"
+    },
+    {
+      "target": "assets/kanto/15/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0015/Walk-Anim.png",
+      "sha256": "832dfdb59cdd0cd8a17671e077266028198d9497fcc0c31f5016f3abe4ddb0b0",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/15/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0015/Normal.png",
+      "sha256": "c7b8a8bbc62ac0e6cf5eebb18b1ce87f5b054c0d4f9afbdcd790fbb62ee6771e",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/15/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0015/credits.txt",
+      "sha256": "512196632b51893f25800d309d1b9134a83a41ede48940cf096853dee1af41e9",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/16.json",
+      "source": "https://pokeapi.co/api/v2/pokemon/16",
+      "sha256": "f58f19272fafdae2d7ced77e80835ecd778bd8d2bb48e22f7d049efeb8311032",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/16-species.json",
+      "source": "https://pokeapi.co/api/v2/pokemon-species/16",
+      "sha256": "1bac4a09ce9159004bbb9f2e3dd3b8c921f7e2d79b04b4c2b6ebafe45ab163f0",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/16/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0016/AnimData.xml",
+      "sha256": "d9d18301f30338227648309215f10546f0b3317d8f8ef35793e1f833e86e28c8",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/16/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0016/credits.txt",
+      "sha256": "6481b0d0dc5fe5867e138f25a8f7fbe29e642f67bd14af1c258b46a7bcbdbcd0",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/16/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0016/Idle-Anim.png",
+      "sha256": "1546828e0683aed0ed68fdc43d6c39a63df1d087693f1eb9291fa502134eb68c",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/16/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0016/Idle-Anim.png",
+      "sha256": "5d41fb08117193aa87da3976601dde239ceadc8fba7e2eba436cf33645803425",
+      "modification": "First down-facing frame cropped; no recoloring"
+    },
+    {
+      "target": "assets/kanto/16/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0016/Walk-Anim.png",
+      "sha256": "239ccd62395cf202188561697daf990ea4a41e347cfa6b314bee17ed3832448c",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/16/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0016/Normal.png",
+      "sha256": "690ae834990266ea66e4853dc95d3297f83328bf146524bdfd4c19c467cadd2f",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/16/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0016/credits.txt",
+      "sha256": "6379a5466461de3095712a8986f2b4b178666583766898820f47a7ebc4e2e96a",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/17.json",
+      "source": "https://pokeapi.co/api/v2/pokemon/17",
+      "sha256": "5425b84f445bb0a37441c9f30cb375e6a32471c184414fa32bf2d8f5d2f28b5a",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/17-species.json",
+      "source": "https://pokeapi.co/api/v2/pokemon-species/17",
+      "sha256": "5497329185fa1a64455f7cd89ca934359569eeb1b02396328916c67cf54f0457",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/17/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0017/AnimData.xml",
+      "sha256": "20e0a24c720b82e58651f33c4c57ac42af3703c22ef78e349b33c22a1a5cb530",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/17/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0017/credits.txt",
+      "sha256": "7a6f0a9716dfa4cfb66b16cfae4354f20986d2df3490744d887f3ffbb8b5b9f8",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/17/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0017/Idle-Anim.png",
+      "sha256": "bdaf24a02e4625e1ec0f5ac9ff2d6c61ebaad9ecd136151176cc95b0ebeb4a06",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/17/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0017/Idle-Anim.png",
+      "sha256": "189071736007a1394ec241a1420a71d35dc795a42ea260d7efda57fee8d29369",
+      "modification": "First down-facing frame cropped; no recoloring"
+    },
+    {
+      "target": "assets/kanto/17/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0017/Walk-Anim.png",
+      "sha256": "f0b6c635e6f285a1eab19ea64e9f394925bd291b7b78133968af8778d0fb7237",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/17/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0017/Normal.png",
+      "sha256": "5ea09da2e7d45f840d1dc6d608211ad46f1b84ca22e9eb277198a552ad759422",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/17/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0017/credits.txt",
+      "sha256": "0e37df6f92397cae20a19b1df27dc42bb2ceaf21cc8c8540b72f1978a5bf2359",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/18.json",
+      "source": "https://pokeapi.co/api/v2/pokemon/18",
+      "sha256": "f61e7bc7c4cad68f446a046db774ada0f9bf37418f955697ef357ace7443f18f",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/18-species.json",
+      "source": "https://pokeapi.co/api/v2/pokemon-species/18",
+      "sha256": "1de15664fe3ec3b5b5eaef7e8af5372153d91e317f45efd71bf6d30a37e93907",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/18/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0018/AnimData.xml",
+      "sha256": "88e45dc21d78f72637d6b300b7ca1732f6bbf55add43716fe151ccdc5cd4e974",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/18/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0018/credits.txt",
+      "sha256": "93e2662ad74a1803c0b00082b078fbeae092478d7ac23694713dbfa8075799b0",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/18/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0018/Idle-Anim.png",
+      "sha256": "5396ba5a5185250dc886137c36a219ac793726850c2590265f8fa2ff2701d0cc",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/18/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0018/Idle-Anim.png",
+      "sha256": "40b7e0c09b4c88146a6e2d00af4c6929fd1167f61e675eb481db227ae2c1ba1f",
+      "modification": "First down-facing frame cropped; no recoloring"
+    },
+    {
+      "target": "assets/kanto/18/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0018/Walk-Anim.png",
+      "sha256": "8861506f95b77d7a3ead8d972cab92ed943195f7fdc6ab79535bf6ff4b706978",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/18/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0018/Normal.png",
+      "sha256": "dcef887c04360edb5d7687997e49212d6ea17f89627461bfd0fc9ec9e8b7befe",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/18/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0018/credits.txt",
+      "sha256": "7b923d6574f73970476a7900cb92809f10edb4f805247601631c13b53be706ba",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/19.json",
+      "source": "https://pokeapi.co/api/v2/pokemon/19",
+      "sha256": "786c766559f105583e66f6f60b174701e3bc63f8c311f11b8c6ebce80e77c331",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/19-species.json",
+      "source": "https://pokeapi.co/api/v2/pokemon-species/19",
+      "sha256": "a90b63ba156df69d1e76a626fbbd127b66fb7786f169f1291df65cfe27028151",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/19/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0019/AnimData.xml",
+      "sha256": "04f971ca4f6e3ea5a50340bdb27328b865a1aa3cb9f9a1f39ceb6401b6e2969f",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/19/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0019/credits.txt",
+      "sha256": "23794e8016b3e013b4ed892f2e33fb4e514f4a689c77bafb23939f072c0e1614",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/19/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0019/Idle-Anim.png",
+      "sha256": "d6a6ce5590dc7685e38f7b5c9b368ce6d9e808a6099aec23a6959a292f08e050",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/19/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0019/Idle-Anim.png",
+      "sha256": "9261e782cc64a04f54de64ddd90b137cb6e51c97d53d344e1ce6f970af8a0b5d",
+      "modification": "First down-facing frame cropped; no recoloring"
+    },
+    {
+      "target": "assets/kanto/19/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0019/Walk-Anim.png",
+      "sha256": "45f20530831dd09046c2c9ac42a6322eaea6c63427e723940b798f5ba89374ed",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/19/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0019/Normal.png",
+      "sha256": "d6dce854b5d7366a0506181aa6b613e4b5981d431579bf5488d2522cebc88ac1",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/19/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0019/credits.txt",
+      "sha256": "d22a7944a73d5b25b49d87e0dac0842d318514a34eed2d850e1695b96913a911",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/20.json",
+      "source": "https://pokeapi.co/api/v2/pokemon/20",
+      "sha256": "37a28cd66db602f858d9708929c2aa81c628211c275b673fbd07c660b31b838d",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/20-species.json",
+      "source": "https://pokeapi.co/api/v2/pokemon-species/20",
+      "sha256": "f9ad7b0e3e9df770762467dfe43cd892b89ca3195b1878eee933e82c95961f2b",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/20/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0020/AnimData.xml",
+      "sha256": "22312af7ca048853d056431ad6b43840db28f7698e213704bbb6e77e1639f5f9",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/20/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0020/credits.txt",
+      "sha256": "ccb22fe9d24bb2f1395838183a99d1b199e6bf95621c42908eb603f184a2114a",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/20/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0020/Idle-Anim.png",
+      "sha256": "da1755f71efe7cb316588cb0ad2e76c94f35f5168a343a387337ef11fd9790ac",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/20/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0020/Idle-Anim.png",
+      "sha256": "6cc461c63aa17ca4bb9d4fc8534d2b47dc1e83caee524f90af2a4e492c2e1121",
+      "modification": "First down-facing frame cropped; no recoloring"
+    },
+    {
+      "target": "assets/kanto/20/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0020/Walk-Anim.png",
+      "sha256": "0625cf3772af91cf2e2c15ecce28a62383535821322f8dfca707688605bc2d0c",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/20/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0020/Normal.png",
+      "sha256": "56d1fd3191ab25fc43deb55c79e58301ae29906a4941ecb386ff03d70cd4c185",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/20/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0020/credits.txt",
+      "sha256": "dae119d1461d44566fbf0dc9cfbc364e5cbd8d81dc8ce3b88d2a06e2b4f79180",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/26/Idle.png",
+      "source": "public/assets/pokemon/26/Idle.png",
+      "sha256": "1277a3583989551b251b87fbe60ad04bd01ea19b23f2ba43e7aef5b3fecdd366",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/26/Walk.png",
+      "source": "public/assets/pokemon/26/Walk.png",
+      "sha256": "6526184cf16f5b97a1fc2d051e423f96b83843e2bf052ac9b1f1b12f90c90a70",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/26/thumbnail.png",
+      "source": "public/assets/pokemon/26/thumbnail.png",
+      "sha256": "cc02a733ce8d2e8c85f939b766e5e9f7097f8841dba995e67f996ef85ae3dfda",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/26/AnimData.xml",
+      "source": "public/assets/pokemon/26/AnimData.xml",
+      "sha256": "c96116b40239edb3fbb0843ae50b35b2dd98f6f17aa430d6b70e2c12c9a1244b",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/26/credits.txt",
+      "source": "public/assets/pokemon/26/credits.txt",
+      "sha256": "08c60c70039e35d247d06e181bc9f800bd932c518faf085741f1174bde12927a",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/26/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0026/Normal.png",
+      "sha256": "f0f636171aab8b200c8ce47781b79e0b179325a1613f94d4667c94aaab20b903",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/26/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0026/credits.txt",
+      "sha256": "9f1607ea49b3bf9f7b03e612ca90c39a8240da52418468172badfb28b5f8002f",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/95.json",
+      "source": "https://pokeapi.co/api/v2/pokemon/95",
+      "sha256": "7a419a324a31e3bcad081fddadaa7e8ab9c1fb7f88b06824318acafedcf66c2a",
+      "modification": "None"
+    },
+    {
+      "target": "data/kanto-sources/95-species.json",
+      "source": "https://pokeapi.co/api/v2/pokemon-species/95",
+      "sha256": "0860760bbb3cc721f09acf303eb44f522dc17ab09cee30fc6a7accae2b560958",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/95/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0095/AnimData.xml",
+      "sha256": "bef58e51370ba3aa112a6d680a268c826e39bce0b249f0cc0f2626fd70429de1",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/95/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0095/credits.txt",
+      "sha256": "1975948437d6b6b148172cfb79dcec512dfac58ce90e7e79b740c63cec2b8df7",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/95/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0095/Idle-Anim.png",
+      "sha256": "905c8e04bef0f755573db9daf33457a8ac288721301ef366641b6aa1f4a9ac9d",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/95/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0095/Idle-Anim.png",
+      "sha256": "b03dcb87d47b3caea80f9ce63d6c2ea865a09b3dbab38091f67fa3b47af6f5c8",
+      "modification": "First down-facing frame cropped; no recoloring"
+    },
+    {
+      "target": "assets/kanto/95/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0095/Walk-Anim.png",
+      "sha256": "f6a619b7f34f8dab42165d9f1a61b92113f42675d175c6d75ccdf7c68acf03b0",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/95/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0095/Normal.png",
+      "sha256": "95edb26aa78c4c58de551e45f6e4bc517df613a0dbcad995f7f450978108694b",
+      "modification": "None"
+    },
+    {
+      "target": "assets/kanto/95/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0095/credits.txt",
+      "sha256": "4f6445f6ebbb462aac95049592fafd747a955f4f13bdc60623bf14a42bb74a92",
+      "modification": "None"
+    }
+  ],
+  "sources": [
+    {
+      "id": "Route1",
+      "url": "https://raw.githubusercontent.com/pret/pokered/af519899719f0754965776faac0e836a3b906e6d/data/wild/maps/Route1.asm",
+      "sha256": "51e6ce11b3541e837344829733708a8c27f1857953d10a19b4f56b0079115a92",
+      "slots": [
+        {
+          "level": 3,
+          "speciesId": 16
+        },
+        {
+          "level": 3,
+          "speciesId": 19
+        },
+        {
+          "level": 3,
+          "speciesId": 19
+        },
+        {
+          "level": 2,
+          "speciesId": 19
+        },
+        {
+          "level": 2,
+          "speciesId": 16
+        },
+        {
+          "level": 3,
+          "speciesId": 16
+        },
+        {
+          "level": 3,
+          "speciesId": 16
+        },
+        {
+          "level": 4,
+          "speciesId": 19
+        },
+        {
+          "level": 4,
+          "speciesId": 16
+        },
+        {
+          "level": 5,
+          "speciesId": 16
+        }
+      ]
+    },
+    {
+      "id": "Route2",
+      "url": "https://raw.githubusercontent.com/pret/pokered/af519899719f0754965776faac0e836a3b906e6d/data/wild/maps/Route2.asm",
+      "sha256": "9c3409e9b9e78c7eddb6af4a4168de49e59e84a046f5b8f1efee7f01dc82190f",
+      "slots": [
+        {
+          "level": 3,
+          "speciesId": 19
+        },
+        {
+          "level": 3,
+          "speciesId": 16
+        },
+        {
+          "level": 4,
+          "speciesId": 16
+        },
+        {
+          "level": 4,
+          "speciesId": 19
+        },
+        {
+          "level": 5,
+          "speciesId": 16
+        },
+        {
+          "level": 3,
+          "speciesId": 13
+        },
+        {
+          "level": 2,
+          "speciesId": 19
+        },
+        {
+          "level": 5,
+          "speciesId": 19
+        },
+        {
+          "level": 4,
+          "speciesId": 13
+        },
+        {
+          "level": 5,
+          "speciesId": 13
+        }
+      ]
+    },
+    {
+      "id": "ViridianForest",
+      "url": "https://raw.githubusercontent.com/pret/pokered/af519899719f0754965776faac0e836a3b906e6d/data/wild/maps/ViridianForest.asm",
+      "sha256": "c4b6ddaad14dd8bd29923408c38e8a32385e9a047f62ea8ba79967447d20efa8",
+      "slots": [
+        {
+          "level": 4,
+          "speciesId": 13
+        },
+        {
+          "level": 5,
+          "speciesId": 14
+        },
+        {
+          "level": 3,
+          "speciesId": 13
+        },
+        {
+          "level": 5,
+          "speciesId": 13
+        },
+        {
+          "level": 4,
+          "speciesId": 14
+        },
+        {
+          "level": 6,
+          "speciesId": 14
+        },
+        {
+          "level": 4,
+          "speciesId": 11
+        },
+        {
+          "level": 3,
+          "speciesId": 10
+        },
+        {
+          "level": 3,
+          "speciesId": 25
+        },
+        {
+          "level": 5,
+          "speciesId": 25
+        }
+      ]
+    }
+  ],
+  "authors": "Individual sprite and portrait credits beside each imported asset; existing licenses retained."
+}

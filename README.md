@@ -1,12 +1,12 @@
 # Pokémon Tactics
 
-Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: laboratorio táctico Windows 0.13.2 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
+Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: muestra de Kanto Windows 0.14.0 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
 
-**Base nativa disponible:** ensayo manual 3v3, seis especies, dos composiciones, tipos/acciones/terreno, IA, orientación y guardado independiente en Godot 4.7.2. El ejecutable funciona offline, sin editor ni Node. [Cómo jugar/abrir Godot](godot/README.md) · [Base Godot](docs/SPRINT_13.md) · [Menú flotante y rectificación](docs/SPRINT_13_CONTEXT_MENU.md).
+**Muestra nativa disponible:** elige un inicial de Oak y juega Ruta 1 → Ruta 2 → Bosque Verde → Brock, con capturas locales, tienda, evolución, entrenamiento y guardado persistente. El ejecutable funciona offline, sin editor ni Node. Conserva el laboratorio anterior. [Cómo jugar/abrir Godot](godot/README.md) · [Sprint 14 y comprobaciones](docs/SPRINT_14.md).
 
-La campaña larga de Rojo, un inicial de Oak, mapas amplios, capturas, tienda/entrenamiento y Liga antes del postgame legendario siguen pendientes. [Requisitos y propuestas](PRODUCT.md#campaña-de-kanto--requisitos-confirmados) · [Sprints siguientes](docs/PLAN_SPRINTS.md#11-siguiente-etapa-kanto-y-ejecutable). La entrega 13 no cambia las reglas de la web.
+Mapas de prueba 12×10 y 24 especies. Balance provisional; la campaña larga, isometría/alturas, mapas amplios, PC y Liga/postgame se desarrollarán por etapas. [Requisitos](PRODUCT.md#campaña-de-kanto--requisitos-confirmados) · [Sprints siguientes](docs/PLAN_SPRINTS.md#11-siguiente-etapa-kanto-y-ejecutable). La versión web mantiene sus reglas y guardados.
 
-![Menú flotante y retratos en el laboratorio nativo](docs/qa/sprint-13-context-menu/native-menu.png)
+![Elección de inicial en Oak](docs/qa/sprint-14/native-oak.png)
 
 ## Campaña web 0.12.0
 

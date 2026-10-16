@@ -1,0 +1,86 @@
+{
+  "checks": 3406,
+  "failures": [],
+  "runs": [
+    {
+      "cleared": 2,
+      "medals": [],
+      "orders": 147,
+      "phase": "defeat",
+      "seed": "kanto-14",
+      "starter": 1
+    },
+    {
+      "cleared": 2,
+      "medals": [],
+      "orders": 147,
+      "phase": "defeat",
+      "seed": "paleta",
+      "starter": 1
+    },
+    {
+      "cleared": 4,
+      "medals": [
+        "Medalla Roca"
+      ],
+      "orders": 229,
+      "phase": "complete",
+      "seed": "rojo",
+      "starter": 1
+    },
+    {
+      "cleared": 3,
+      "medals": [],
+      "orders": 174,
+      "phase": "defeat",
+      "seed": "kanto-14",
+      "starter": 4
+    },
+    {
+      "cleared": 3,
+      "medals": [],
+      "orders": 213,
+      "phase": "defeat",
+      "seed": "paleta",
+      "starter": 4
+    },
+    {
+      "cleared": 3,
+      "medals": [],
+      "orders": 207,
+      "phase": "defeat",
+      "seed": "rojo",
+      "starter": 4
+    },
+    {
+      "cleared": 4,
+      "medals": [
+        "Medalla Roca"
+      ],
+      "orders": 199,
+      "phase": "complete",
+      "seed": "kanto-14",
+      "starter": 7
+    },
+    {
+      "cleared": 4,
+      "medals": [
+        "Medalla Roca"
+      ],
+      "orders": 189,
+      "phase": "complete",
+      "seed": "paleta",
+      "starter": 7
+    },
+    {
+      "cleared": 4,
+      "medals": [
+        "Medalla Roca"
+      ],
+      "orders": 181,
+      "phase": "complete",
+      "seed": "rojo",
+      "starter": 7
+    }
+  ]
+}

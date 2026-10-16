@@ -2,6 +2,9 @@
 * text=auto eol=lf
 public/** -text
 godot/assets/** -text
+godot/assets/** whitespace=-blank-at-eol
+# Raw API snapshots retain the exact bytes recorded in their manifest.
+godot/data/kanto-sources/** -text
 godot/licenses/** -text
 tools/vendor/** -text
 # Upstream license whitespace is retained verbatim.

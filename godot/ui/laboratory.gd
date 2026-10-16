@@ -38,6 +38,7 @@ var actor_hp: ProgressBar
 var faces: Dictionary = {}
 var direction_buttons: Dictionary = {}
 var board
+var battle_overlay: Control
 var timeline: HBoxContainer
 var menu: MenuButton
 var details_dialog: AcceptDialog
@@ -65,7 +66,7 @@ func _ready():
 	qa_running = not qa_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(qa_dir)
 	store = Store.new(qa_dir.path_join("ui-save.json") if qa_running else "user://laboratory-save.json")
-	for record in rules.data.species: portraits[int(record.id)] = load("res://assets/pokemon/%d/thumbnail.png" % record.id)
+	for record in rules.data.species: portraits[int(record.id)] = load("res://" + record.animations.Idle.path.get_base_dir() + "/thumbnail.png")
 	var face_manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/portraits.json"))
 	for record: Dictionary in face_manifest.records: faces[int(record.id)] = load("res://" + record.files[0].target)
 	_make_theme()
@@ -75,6 +76,9 @@ func _ready():
 	sound.volume_db = -15
 	add_child(sound)
 	_refresh()
+	_boot()
+
+func _boot():
 	if qa_running:
 		call_deferred("_run_qa")
 	elif FileAccess.file_exists(store.file_path):
@@ -144,6 +148,7 @@ func _build_interface() -> void:
 	board.cancelled.connect(_cancel)
 	add_child(board)
 	var overlay: Control = Control.new()
+	battle_overlay = overlay
 	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(overlay)
@@ -178,6 +183,7 @@ func _build_interface() -> void:
 	popup.add_check_item("Animación", 5)
 	popup.set_item_checked(popup.get_item_index(5), true)
 	popup.add_item("Créditos", 6)
+	popup.add_item("Campaña de Kanto", 7)
 	popup.id_pressed.connect(_menu_selected)
 	timeline = HBoxContainer.new()
 	timeline.alignment = BoxContainer.ALIGNMENT_CENTER
@@ -322,6 +328,7 @@ func _menu_selected(identity: int):
 		4: _toggle_sound()
 		5: _toggle_motion()
 		6: credits_dialog.popup_centered(Vector2i(720, 550))
+		7: get_tree().change_scene_to_file("res://scenes/campaign.tscn")
 
 func _build_dialogs():
 	new_dialog = ConfirmationDialog.new()

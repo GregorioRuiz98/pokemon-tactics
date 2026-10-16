@@ -30,3 +30,8 @@
 
 
 - Revisión 0.13.2 confirmada por el usuario: menú flotante a la derecha al empezar turnos aliados; movimiento directo sin botón Mover; retratos de diálogo PMD de CHUNSOFT. Rectificar solo el movimiento mientras no se haya realizado ninguna acción ni terminado el turno; atacar antes de moverse también lo bloquea. No deshacer ataques, recursos o RNG. Isometría y alturas quedan para otro sprint. Ver docs/SPRINT_13_CONTEXT_MENU.md; sustituye la composición inferior de 0.13.1.
+
+
+- Sprint 14 autorizado el 16 de octubre con «ponte con el siguiente sprint»: muestra nativa 0.14.0 Paleta–Brock, no ejecución de 15–22. Entrada campaña, laboratorio separado. Ver godot/AGENTS.md e informe docs/SPRINT_14.md.
+- Decisiones confirmadas para esta prueba: Brock da medalla, dinero y captura de la última zona salvaje; Caramelo Raro evoluciona una etapa sin nivel; entrenamiento +5 a una estadística con dos compras totales por Pokémon. Precios provisionales. No curar al evolucionar/entrenar PS.
+- Campaña Kanto tiene archivo/contrato propios (kanto-save.json, kanto/1); conservar edición o migrar si cambian generación/economía. Duplicados permitidos en la muestra; PC y progresión completa pendientes. Isometría/alturas y cámara se evalúan en 15. Paridad web/laboratorio intacta; no presentar las simulaciones de campaña como balance humano.

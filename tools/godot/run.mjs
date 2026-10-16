@@ -7,8 +7,8 @@ import { gunzipSync } from 'node:zlib';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const project = resolve(root, 'godot');
-const work = resolve(root, '../../work/qa-sprint-13-context-menu');
-const output = resolve(root, '../releases/pokemon-tactics-0.13.2/windows');
+const work = resolve(root, '../../work/qa-sprint-14');
+const output = resolve(root, '../releases/pokemon-tactics-0.14.0/windows');
 const operation = process.argv[2] ?? 'test';
 const binary = process.env.GODOT_BIN ?? resolve(root, '../../work/godot-4.7.2/Godot_v4.7.2-stable_win64_console.exe');
 mkdirSync(work, { recursive: true });
@@ -29,6 +29,11 @@ function verifyUi(directory) {
   if (report.failures.length || report.completed.length !== 4 || !report.playerOrders || !report.friendlyFireChecked || !report.movementRevisions || !report.lockedRevisionChecks) throw new Error('Native UI regression failed.');
   for (const file of report.screenshots) if (!existsSync(resolve(directory, file))) throw new Error('Missing screenshot: ' + file);
   console.log(`UI verified: ${report.assertions} assertions, ${report.playerOrders} player orders, four completed battles.`);
+}
+function verifyCampaign(directory) {
+  const report=JSON.parse(readFileSync(resolve(directory,'campaign-ui-result.json'),'utf8'));
+  if(report.failures.length || report.completed.length !== 3 || !report.completed.some(entry=>entry.phase==='complete')) throw new Error('Campaign UI failed.');
+  for(const file of report.screenshots) if(!existsSync(resolve(directory,file))) throw new Error('Missing campaign screenshot.');
 }
 function verify() {
   const manifest = JSON.parse(readFileSync(resolve(project, 'data/provenance.json'), 'utf8'));
@@ -51,19 +56,35 @@ function verify() {
     if (createHash('sha256').update(readFileSync(resolve(project, file.target))).digest('hex') !== file.sha256) throw new Error('Portrait hash mismatch: ' + file.target);
   }
   console.log('Verified six portraits and individual credits from ' + portraits.commit);
+  const kanto = JSON.parse(readFileSync(resolve(project, 'data/kanto-provenance.json'),'utf8'));
+  for (const entry of kanto.files) if (createHash('sha256').update(readFileSync(resolve(project,entry.target))).digest('hex') !== entry.sha256) throw new Error('Kanto hash mismatch: '+entry.target);
+  console.log('Verified '+kanto.files.length+' Kanto source/asset files.');
   const fixtures = JSON.parse(gunzipSync(readFileSync(resolve(project, 'tests/parity.json.gz'))).toString('utf8'));
   console.log(`Verified ${manifest.files.length} assets and ${manifest.ruleSources.length} reference source hashes; ${fixtures.games.length} complete battles.`);
 }
 if (operation === 'verify') { verify(); process.exit(0); }
-if (operation !== 'qa-export') {
+if (!['qa-export','qa-campaign-export'].includes(operation)) {
   if (!existsSync(binary)) throw new Error('Godot not found. Set GODOT_BIN to the standard Godot 4.7.2 executable.');
   const version = spawnSync(binary, ['--version'], { encoding: 'utf8', windowsHide: true });
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if (operation === 'test') {
+if (operation === 'test-campaign-edges') {
+  verify();
+  run(binary,['--headless',...common,'--script','res://tests/campaign_edges.gd','--','--save-dir='+work],'campaign-edges');
+} else if (operation === 'test-campaign') {
+  verify();
+  run(binary, ['--headless', ...common, '--script', 'res://tests/campaign.gd', '--', '--save-dir=' + work], 'campaign-core');
+} else if (operation === 'test') {
   verify();
   run(binary, ['--headless', ...common, '--script', 'res://tests/parity.gd', '--', `--save-dir=${work}`], 'parity');
+} else if (operation === 'qa-campaign') {
+  verify();
+  run(binary, [...common, '--position', '-10000,-10000', '--audio-driver', 'Dummy', '--', '--campaign-qa-dir=' + resolve(work, 'campaign-source')], 'campaign-source');
+  verifyCampaign(resolve(work,'campaign-source'));
+} else if (operation === 'qa-campaign-export') {
+  run(resolve(output, 'PokemonTactics.exe'), ['--position','-10000,-10000','--audio-driver','Dummy','--log-file',resolve(work,'engine-campaign-release.log'),'--','--campaign-qa-dir='+resolve(work,'campaign-release')], 'campaign-release', output);
+  verifyCampaign(resolve(work,'campaign-release'));
 } else if (operation === 'qa') {
   verify();
   run(binary, [...common, '--position', '-10000,-10000', '--audio-driver', 'Dummy', '--', `--qa-dir=${resolve(work, 'source')}`], 'ui-source');
@@ -77,7 +98,7 @@ if (operation === 'test') {
   run(binary, ['--headless', ...common, '--export-release', 'Windows Desktop', resolve(output, 'PokemonTactics.exe')], 'export-windows');
   cpSync(resolve(project, 'licenses'), resolve(output, 'licenses'), { recursive: true });
   cpSync(resolve(project, 'CREDITS.md'), resolve(output, 'CREDITS.md'));
-  writeFileSync(resolve(output, 'LEEME.txt'), 'Pokémon Tactics 0.13.2 — laboratorio táctico offline\n\nAbre PokemonTactics.exe. No necesitas Godot, Node ni un servidor.\nEsta entrega contiene un ensayo 3v3; la campaña de Kanto aún no está implementada.\n\nPasa el cursor para prever. Clic en casilla azul: mover; clic en enemigo: básico.\n1/2/3: habilidades; A: menú de habilidades; R: rectificar solo movimiento, antes de actuar; F: orientar desde tablero.\nFlechas/Enter: casillas; clic derecho/Esc: cancelar selección; F8: continuar; F1: menú.\nEl menú de órdenes aparece a la derecha en turnos aliados. Solo se confirma un ataque con riesgo para aliados.\nGuardado local: %APPDATA%/PokemonTacticsLab/laboratory-save.json\nCréditos y licencias acompañan al ejecutable.\n', 'utf8');
+  writeFileSync(resolve(output, 'LEEME.txt'), 'Pokémon Tactics 0.14.0 — Paleta hasta Brock · offline\n\nAbre PokemonTactics.exe. No necesitas Godot, Node ni un servidor.\nElige un inicial de Oak y recorre Ruta 1, Ruta 2, Bosque Verde y Brock.\nCaptura local tras cada victoria, tienda, evolución y entrenamiento.\nEl resto de Kanto aún no está implementado. Laboratorio anterior accesible desde el menú.\n\nPasa el cursor para prever. Clic en casilla azul: mover; clic en enemigo: básico.\n1/2/3: habilidades; A: menú de habilidades; R: rectificar solo movimiento, antes de actuar; F: orientar desde tablero.\nFlechas/Enter: casillas; clic derecho/Esc: cancelar selección; F8: continuar; F1: menú.\nEl menú de órdenes aparece a la derecha en turnos aliados. Solo se confirma un ataque con riesgo para aliados.\nCampaña: %APPDATA%/PokemonTacticsLab/kanto-save.json.\nLaboratorio independiente: laboratory-save.json\nCréditos y licencias acompañan al ejecutable.\n', 'utf8');
   const digest = createHash('sha256').update(readFileSync(resolve(output, 'PokemonTactics.exe'))).digest('hex');
   writeFileSync(resolve(output, 'SHA256SUMS.txt'), `${digest}  PokemonTactics.exe\n`);
   console.log(`Windows executable: ${resolve(output, 'PokemonTactics.exe')}\nSHA256: ${digest}`);

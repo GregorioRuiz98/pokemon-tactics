@@ -6,11 +6,11 @@ const Store = preload("res://core/save_store.gd")
 static func available(state: Dictionary, commands: Array) -> bool:
 	return not state.is_empty() and state.outcome == "playing" and Rules.active(state).team == "ally" and state.moved and not state.acted and not commands.is_empty() and commands[-1].kind == "move"
 
-static func rectify(state: Dictionary, commands: Array, mode: String, rules: Rules) -> Dictionary:
+static func rectify(state: Dictionary, commands: Array, mode: String, rules: Rules, initial: Dictionary = {}) -> Dictionary:
 	if not available(state, commands): return {"ok": false, "reason": "Solo puedes rectificar el movimiento antes de actuar o terminar el turno."}
 	# Reconstruct before the last move. The move must reproduce the current state
 	# exactly: attacks, resources, RNG and any later order can never be rewound.
-	var previous: Dictionary = rules.create(state.seed, state.variance, state.composition, mode)
+	var previous: Dictionary = initial.duplicate(true) if not initial.is_empty() else rules.create(state.seed, state.variance, state.composition, mode)
 	var kept: Array = commands.slice(0, commands.size() - 1).duplicate(true)
 	for command: Dictionary in kept:
 		var step: Dictionary = rules.apply_command(previous, command)

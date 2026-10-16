@@ -1,12 +1,12 @@
-; Native tactical laboratory. Campaign content starts in sprint 14.
+; Offline Kanto slice and independent tactical laboratory.
 config_version=5
 
 [application]
-config/name="Pokémon Tactics — Laboratorio"
-config/version="0.13.2"
+config/name="Pokémon Tactics — Kanto"
+config/version="0.14.0"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="PokemonTacticsLab"
-run/main_scene="res://scenes/laboratory.tscn"
+run/main_scene="res://scenes/campaign.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [display]

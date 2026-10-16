@@ -34,11 +34,14 @@ func play_area() -> Rect2:
 	# Space inside the game scene reserved for the floating HUD.
 	return Rect2(Vector2(24, 124), size - Vector2(332, 378))
 
+func dimensions() -> Vector2i:
+	return Vector2i(state.board[0].size(), state.board.size()) if not state.is_empty() else Vector2i(8,8)
+
 func cell_size() -> float:
-	return floorf(minf(play_area().size.x, play_area().size.y) / 8)
+	return floorf(minf(play_area().size.x / dimensions().x, play_area().size.y / dimensions().y))
 
 func board_origin() -> Vector2:
-	return play_area().position + (play_area().size - Vector2.ONE * cell_size() * 8) / 2
+	return play_area().position + (play_area().size - Vector2(dimensions()) * cell_size()) / 2
 
 func center(point: Dictionary) -> Vector2:
 	return board_origin() + Vector2(point.x + 0.5, point.y + 0.5) * cell_size()
@@ -58,7 +61,7 @@ func _gui_input(event):
 	if event is InputEventMouseMotion or event is InputEventMouseButton:
 		var local = (event.position - board_origin()) / cell_size()
 		var point = Vector2i(floori(local.x), floori(local.y))
-		if point.x >= 0 and point.x < 8 and point.y >= 0 and point.y < 8:
+		if point.x >= 0 and point.x < dimensions().x and point.y >= 0 and point.y < dimensions().y:
 			cursor = point
 			if event is InputEventMouseMotion: tile_hovered.emit({"x": point.x, "y": point.y})
 			if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -69,9 +72,9 @@ func _gui_input(event):
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.keycode:
 			KEY_LEFT: cursor.x = maxi(0, cursor.x - 1)
-			KEY_RIGHT: cursor.x = mini(7, cursor.x + 1)
+			KEY_RIGHT: cursor.x = mini(dimensions().x - 1, cursor.x + 1)
 			KEY_UP: cursor.y = maxi(0, cursor.y - 1)
-			KEY_DOWN: cursor.y = mini(7, cursor.y + 1)
+			KEY_DOWN: cursor.y = mini(dimensions().y - 1, cursor.y + 1)
 			KEY_ENTER, KEY_KP_ENTER: tile_selected.emit({"x": cursor.x, "y": cursor.y})
 			_: return
 		if event.keycode not in [KEY_ENTER, KEY_KP_ENTER]: tile_hovered.emit({"x": cursor.x, "y": cursor.y})
@@ -84,9 +87,9 @@ func _draw():
 	var cell = cell_size()
 	var origin = board_origin()
 	var font = get_theme_default_font()
-	draw_style_box(_border(), Rect2(origin - Vector2(3, 3), Vector2.ONE * (cell * 8 + 6)))
-	for y in 8:
-		for x in 8:
+	draw_style_box(_border(), Rect2(origin - Vector2(3, 3), Vector2(dimensions()) * cell + Vector2.ONE * 6))
+	for y in dimensions().y:
+		for x in dimensions().x:
 			var rect = Rect2(origin + Vector2(x, y) * cell, Vector2.ONE * cell)
 			var tile = int(state.board[y][x])
 			var color = Color("879d71") if (x + y) % 2 == 0 else Color("81966b")
@@ -158,8 +161,9 @@ func _draw():
 		if unit.status != null: draw_circle(c + Vector2(cell * 0.28, -cell * 0.25), 4, Color("e9c2f1"))
 	var cursor_rect = Rect2(origin + Vector2(cursor) * cell + Vector2(2, 2), Vector2.ONE * (cell - 4))
 	draw_rect(cursor_rect, Color("f3d286"), false, 2)
-	for index in 8:
+	for index in dimensions().x:
 		draw_string(font, origin + Vector2(index * cell + cell * 0.45, -5), String.chr(65 + index), HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color("d0d8bd"))
+	for index in dimensions().y:
 		draw_string(font, origin + Vector2(-13, index * cell + cell * 0.6), str(index + 1), HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color("d0d8bd"))
 
 func _border() -> StyleBoxFlat:

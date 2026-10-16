@@ -1,45 +1,47 @@
-# Pokémon Tactics — laboratorio Windows 0.13.2
+# Pokémon Tactics — Kanto Windows 0.14.0
 
-Primera entrega del port. Combate manual 3 contra 3 con Bulbasaur, Charmander, Squirtle, Pikachu, Butterfree y Geodude. Incluye tipos modernos, tres acciones por especie, PT, precisión por orientación, estados, áreas, empuje, terreno e IA. Dos composiciones; reglas actuales con PS de campaña/Pirotecnia o ensayo clásico con sus PS/Lanzallamas originales. Las reglas y estadísticas proceden del motor web sin balance adicional.
-
-No es todavía la campaña de Kanto: no contiene elección de inicial de Oak, rutas narrativas, capturas, tienda, evoluciones, reserva del PC ni legendarios. La siguiente muestra prevista es Paleta hasta Brock, sprint 14.
+Muestra jugable de Pueblo Paleta hasta Brock: elige un inicial de Oak, supera Ruta 1, Ruta 2 y Bosque Verde y desafía a Geodude/Onix. Cada victoria concede dinero, captura local garantizada y tienda. Tras Brock: Medalla Roca, dinero y captura del Bosque Verde, como decidió el creador.
 
 ## Jugar
 
-Desde la carpeta de distribución, abrir PokemonTactics.exe. No instalar Godot, Node ni un servidor. El juego utiliza únicamente sus recursos locales y puede jugarse sin conexión. LEEME.txt, CREDITS.md, licenses y SHA256SUMS.txt acompañan al ejecutable.
+Abrir PokemonTactics.exe en la distribución. Funciona offline, sin editor, Node ni servidor. LEEME.txt, CREDITS.md, licenses y SHA256SUMS.txt acompañan al ejecutable.
 
-- El menú de órdenes flota a la derecha y aparece automáticamente al empezar un turno aliado.
-- Clic en casilla azul: moverse, sin botón Mover. Clic en rival al alcance: básico.
-- Habilidades / A abre un submenú; 1/2/3 seleccionan directamente los movimientos. Las habilidades propias se ejecutan al pulsarlas.
-- Rectificar movimiento / R devuelve a la casilla, orientación y presupuesto previos. Solo funciona antes de usar cualquier acción o terminar el turno; tampoco permite volver atrás si atacaste antes de moverte. No recupera PS, PT, ataques, estados ni RNG. Está disponible después de cargar una partida que cumpla esas condiciones.
-- Orientar y terminar / F abre la elección cardinal; también puedes hacer clic en una dirección sobre el tablero.
-- Pasar el cursor muestra trayectoria, área y previsión; los ataques con riesgo aliado conservan confirmación.
-- Retrato de diálogo de Mundo Misterioso y PS/PT del activo abajo a la izquierda; retrato del objetivo y previsión abajo a la derecha.
-- Flechas/Enter: navegar y seleccionar casilla; Escape/clic derecho: cancelar selección. F8 continúa; F1 abre opciones, ayuda, equipo/registro, créditos y ajustes.
-- El tablero sigue cenital y sin alturas. La vista isométrica y las alturas se reservan para otro sprint.
+- Oak entrega un único inicial, dos pociones y 120 ₽. Los PS y las bajas persisten; estados/PT se reinician por combate. Caer termina la campaña si no quedan vivos.
+- El sorteo usa las tablas de hierba de Pokémon Rojo original. El premio ya está guardado al mostrarse; cargar no lo vuelve a sortear. Esta muestra admite duplicados y llega a cinco miembros como máximo; todavía no necesita PC.
+- Tienda tras cada captura: Poción 40 ₽ (+40 PS), Superpoción 90 ₽ (+100 PS), Caramelo Raro 100 ₽. Curación solo fuera de combate, sin revivir. Un Caramelo evoluciona una etapa sin requisito de nivel y sin curar. Entrenamiento 80 ₽: +5 a una estadística, dos compras totales por Pokémon, conservadas al evolucionar. Valores provisionales.
+- Movimiento directo por casillas azules y básico al pulsar un rival al alcance. Menú flotante derecho visible en turnos aliados; Habilidades/A o 1/2/3 para los movimientos.
+- Rectificar/R solo devuelve el último movimiento antes de actuar o terminar; atacar primero también lo bloquea. Nunca devuelve PS, PT, estados, ataques ni RNG.
+- Orientar y terminar/F elige la dirección final. Previsión al señalar; confirmar solo ataques con riesgo aliado. Flechas/Enter para casillas, Escape/clic derecho para cancelar, F8 para cargar y F1 para opciones, ayuda, créditos y ajustes.
+- Laboratorio táctico conserva el ensayo anterior 3v3/8×8, composiciones y guardado propio. Se accede desde la cabecera o el menú.
 
-La partida se guarda tras cada orden aceptada en `%APPDATA%/PokemonTacticsLab/laboratory-save.json`. Al abrir continúa automáticamente si es válida. «Nuevo ensayo» conserva una copia anterior; una carga inválida informa y preserva el archivo. Un error de escritura permite seguir en memoria, con aviso. Se conservan los guardados nativos 0.13.0: el contrato de reglas/diario sigue en esquema 1 y versión 0.13.0. No se importan automáticamente partidas web.
+La campaña se guarda tras cada orden en `%APPDATA%/PokemonTacticsLab/kanto-save.json`. Nuevo inicio conserva copia del archivo anterior. Carga por reconstrucción, checksum, escritura temporal/copia y detección de otra instancia; los archivos inválidos se preservan. Si falla escribir se avisa y se continúa solo en memoria. Contrato de campaña `kanto`, versión 1; laboratorio `laboratory-save.json`, esquema 1/contrato 0.13.0 conservado. No se leen partidas web.
 
-## Abrir y comprobar el proyecto
+## Alcance de esta muestra
 
-En Godot 4.7.2 estándar, importar este project.godot y pulsar F5. Los recursos necesarios están en el repositorio; no se consulta PokéAPI ni SpriteCollab al jugar. Para exportar hacen falta las plantillas oficiales 4.7.2; no se requieren complementos de pago ni GUT/MCP.
+Cuatro encuentros y mapas de prueba 12×10 en vista cenital. No incluye aún isometría, alturas, cámara de mapas grandes, PC, equipables en campaña, EXP/niveles, MT, Liga ni legendarios. La entrega del paquete/Pokédex se resume en texto; no hay mundo de exploración libre, combate inicial del rival, Ruta 22 opcional ni entrenadores secundarios. Evoluciones y mejoras mínimas sirven para probar el ciclo; no representan todos los requisitos de la campaña futura.
 
-Desde la raíz del repositorio, Node 24 y dependencias instaladas con npm ci:
+Balance provisional: nueve simulaciones, tres por inicial; completaron Brock 1/3 con Bulbasaur, 0/3 con Charmander y 3/3 con Squirtle bajo la política automática usada. No son tasas humanas. Para recorrer todo el tramo con una configuración comprobada: Squirtle y semilla `kanto-14`.
+
+## Desarrollo y comprobación
+
+Godot 4.7.2 estándar, importar project.godot y F5. Recursos incluidos, sin plugins nuevos. Exportar requiere las plantillas oficiales 4.7.2. Desde la raíz, Node 24 y npm ci:
 
 ```powershell
 $env:GODOT_BIN='C:\ruta\Godot_v4.7.2-stable_win64_console.exe'
 npm run godot:verify
 npm run godot:prepare
 npm run godot:test
+npm run godot:test:campaign
+npm run godot:test:campaign:edges
 npm run godot:qa
+npm run godot:qa:campaign
 npm run godot:export
 npm run godot:qa:export
+npm run godot:qa:campaign:export
 ```
 
-El entorno de esta entrega tiene un motor portable en ../../work/godot-4.7.2; GODOT_BIN permite usar otra instalación. No se suben binarios, plantillas ni cachés a Git. El código de Godot es independiente de Node; Node se usa para herramientas de desarrollo y la referencia de pruebas.
+El motor portable del entorno está en ../../work/godot-4.7.2; GODOT_BIN admite otra instalación. El binario exportado se prueba sin consultar el editor. Resultados temporales en ../../work/qa-sprint-14; distribución en ../releases/pokemon-tactics-0.14.0/windows respecto a la raíz del repositorio. No subir motores, cachés ni paquetes a Git.
 
-`godot:import` regenera datos, copias y referencias **desde el motor web actual**. No ejecutarlo para aceptar diferencias sin revisarlas: el verificador detecta cambios de las fuentes. Son 16 combates completos y 25 escenarios, incluyendo la resolución de las 18 acciones del ensayo. La UI automatizada usa señales de controles, eventos locales de ratón del tablero y eventos reales de teclado/ratón enviados al viewport; no sustituye probarlo con personas.
+`godot:import` regenera las referencias de laboratorio desde la web: no ejecutarlo para ocultar discrepancias. `python tools/godot/import-kanto.py` importa solo esta ampliación; requiere Pillow instalado y acceso de red en desarrollo o caché local. En este entorno Pillow ya está en ../../work/balance-python, seleccionable mediante PYTHONPATH; no se ha instalado una dependencia nueva. Commits fijados, fuentes y hashes en los manifiestos. La reproducción de futuras reglas de campaña exige conservar esta edición o migrarla expresamente.
 
-La exportación aparece en ../releases/pokemon-tactics-0.13.2/windows respecto a la raíz del repositorio. Para probar el binario empaquetado, godot:qa:export no consulta el editor. Los informes temporales van a ../../work/qa-sprint-13-context-menu; evidencia seleccionada en docs/qa/sprint-13-context-menu de la raíz.
-
-[Diseño](DESIGN.md) · [Créditos](CREDITS.md) · [Base Godot](../docs/SPRINT_13.md) · [Interfaz directa anterior](../docs/SPRINT_13_UI.md) · [Menú flotante 0.13.2](../docs/SPRINT_13_CONTEXT_MENU.md)
+[Informe del sprint 14](../docs/SPRINT_14.md) · [Diseño del HUD](DESIGN.md) · [Créditos](CREDITS.md) · [Base Godot](../docs/SPRINT_13.md)

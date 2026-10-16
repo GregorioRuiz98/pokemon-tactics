@@ -1,8 +1,8 @@
-# Pokémon Tactics — laboratorio nativo 0.13.0
+# Pokémon Tactics — Kanto y laboratorio nativo 0.14.0
 
 Proyecto de fans para portfolio, sin afiliación ni aprobación oficial. Pokémon y sus personajes pertenecen a sus respectivos titulares.
 
-Esta entrega reutiliza únicamente las seis especies del ensayo: Bulbasaur, Charmander, Squirtle, Pikachu, Butterfree y Geodude. Hojas Idle/Walk originales y metadatos de SpriteCollab; miniaturas y datos locales del proyecto web. Autores registrados de estas seis especies: CHUNSOFT. Cada carpeta conserva credits.txt. El manifiesto data/provenance.json registra SHA-256 de cada archivo, su origen local y las fuentes de reglas usadas en las pruebas.
+El laboratorio original reutiliza las seis especies del ensayo: Bulbasaur, Charmander, Squirtle, Pikachu, Butterfree y Geodude. Hojas Idle/Walk originales y metadatos de SpriteCollab; miniaturas y datos locales del proyecto web. Autores registrados de estas seis especies: CHUNSOFT. Cada carpeta conserva credits.txt. El manifiesto data/provenance.json registra SHA-256 de cada archivo, su origen local y las fuentes de reglas usadas en las pruebas.
 
 - SpriteCollab, PMDCollab: https://github.com/PMDCollab/SpriteCollab. Commit 6ad5f1c6229af6b055de2c64442e5e508664290c; condiciones publicadas CC BY-NC 4.0 y atribución individual, sin convertirlas en autorización sobre derechos subyacentes. Aviso en licenses/SpriteCollab-CC-BY-NC-4.0.md.
 - Datos de PokéAPI y tabla moderna de tipos: instantáneas locales existentes. Licencia del código BSD-3-Clause en licenses/PokeAPI-BSD-3-Clause.txt. No hay consultas a la API al jugar.
@@ -11,7 +11,7 @@ Esta entrega reutiliza únicamente las seis especies del ensayo: Bulbasaur, Char
 - La navegación GDScript adapta el orden A* de EasyStar.js 0.4.4 y las operaciones de heap.js 0.2.6 para conservar recorridos equivalentes. EasyStar: Bryce Neal, MIT; heap.js: Xueqiao Xu, licencia PSF y avisos de Python Software Foundation. Textos en licenses/EasyStar-MIT.txt y licenses/heap-PSF.md.
 - Godot 4.7.2 estándar: motor de código abierto, licencia MIT. Su texto de licencia y los avisos de bibliotecas de terceros se muestran desde el menú Créditos mediante los datos incluidos en el propio motor.
 
-El registro completo de las fuentes del proyecto web se conserva, sin modificar, en licenses/web-CREDITS.md; incluye especies y dependencias que no se distribuyen en este laboratorio nativo. No se incorpora música, un catálogo de 151 especies ni contenido de campaña nuevo.
+El registro completo de las fuentes del proyecto web se conserva, sin modificar, en licenses/web-CREDITS.md; incluye especies y dependencias que no se distribuyen en este laboratorio nativo. No se incorpora música ni un catálogo completo de 151 especies. La ampliación de campaña se detalla a continuación.
 
 
 ## Retratos de diálogo — revisión 0.13.2
@@ -19,3 +19,40 @@ El registro completo de las fuentes del proyecto web se conserva, sin modificar,
 Retratos Normal de Bulbasaur, Charmander, Squirtle, Pikachu, Butterfree y Geodude, estilo Pokémon Mundo Misterioso / Exploradores. Autor registrado: CHUNSOFT. Proceden de portrait/NNNN/Normal.png de SpriteCollab, commit 6ad5f1c6229af6b055de2c64442e5e508664290c, el mismo origen fijado para los sprites. Se conservan los PNG originales de 40×40 y sus créditos individuales en assets/portraits/ID; solo se escalan con nearest al mostrar. data/portraits.json registra URLs, hashes y créditos. No se atribuyen al autor del juego ni se consulta el repositorio al jugar.
 
 Herramienta explícita: npm run godot:import:portraits. Aviso de SpriteCollab ya incluido en licenses/SpriteCollab-CC-BY-NC-4.0.md. La atribución y condiciones de recursos comunitarios no sustituyen los derechos subyacentes de Pokémon.
+
+## Campaña hasta Brock — 0.14.0
+
+24 especies: números 1–20, 25, 26, 74 y 95. Se reutilizan las seis anteriores y siete ampliaciones de la web; once especies adicionales usan datos locales de PokéAPI y sprites de SpriteCollab del mismo commit fijado. Hojas Idle/Walk, AnimData y retratos Normal originales sin editar; miniaturas nuevas recortadas del primer fotograma. Los retratos conservan sus créditos propios, incluidos colaboradores comunitarios además de CHUNSOFT. La tabla enumera autores presentes en los historiales distribuidos; el detalle de contribuciones está junto a cada recurso.
+
+| Especie | Autores registrados de sprites y retratos |
+| --- | --- |
+| 1 · Bulbasaur | CHUNSOFT |
+| 2 · Ivysaur | CHUNSOFT, Emmuffin |
+| 3 · Venusaur | <@!276175146304405514>, CHUNSOFT, G〜 |
+| 4 · Charmander | CHUNSOFT, Emboarger, baronessfaron |
+| 5 · Charmeleon | 0palite, <@!199989579682414592>, CHUNSOFT, Grimlin, bwappi |
+| 6 · Charizard | 0palite, CHUNSOFT, Emboarger |
+| 7 · Squirtle | CHUNSOFT |
+| 8 · Wartortle | CHUNSOFT, Emmuffin |
+| 9 · Blastoise | CHUNSOFT, Emmuffin, Top_Kec |
+| 10 · Caterpie | CHUNSOFT, Frostdrop1, baronessfaron |
+| 11 · Metapod | Blanky, CHUNSOFT, Emboarger, baronessfaron |
+| 12 · Butterfree | CHUNSOFT, Emmuffin |
+| 13 · Weedle | CHUNSOFT, Novie |
+| 14 · Kakuna | CHUNSOFT, Caitemis |
+| 15 · Beedrill | CHUNSOFT, Fable |
+| 16 · Pidgey | CHUNSOFT, JFain |
+| 17 · Pidgeotto | CHUNSOFT, Tainted#3886 |
+| 18 · Pidgeot | CHUNSOFT, FalafelPorpoise |
+| 19 · Rattata | CHUNSOFT, Frostdrop1 |
+| 20 · Raticate | CHUNSOFT, G〜, baronessfaron |
+| 25 · Pikachu | CHUNSOFT |
+| 26 · Raichu | 3Monika4, CHUNSOFT, C_Pariah, Grimlin, G〜, Top_Kec |
+| 74 · Geodude | CHUNSOFT, JustAGunk |
+| 95 · Onix | CHUNSOFT, baronessfaron |
+
+Archivos individuales en assets/kanto/ID/credits.txt y portrait-credits.txt para las ampliaciones; las seis originales conservan assets/pokemon y assets/portraits. data/kanto-provenance.json registra 148 archivos con SHA-256, procedencia y modificaciones. Las instantáneas PokéAPI en data/kanto-sources se conservan en el repositorio para desarrollo; el ejecutable usa el catálogo procesado.
+
+Tablas locales de encuentros de Rojo: [pret/pokered](https://github.com/pret/pokered/tree/af519899719f0754965776faac0e836a3b906e6d/data/wild/maps), commit af519899719f0754965776faac0e836a3b906e6d. Se han transcrito datos factuales de Ruta 1, Ruta 2 y Bosque Verde, con pesos de aparición originales sobre 256; no se distribuyen su código ensamblador ni ROMs. El catálogo conserva URL y hash de las tablas consultadas. Equipos enemigos, mapas tácticos, precios y repertorios son adaptaciones de este proyecto.
+
+El importador explícito tools/godot/import-kanto.py reutiliza el ayudante MIT procedente de PokéSurvivor ya registrado en licenses/web-CREDITS.md y tools/vendor. Requiere Python/Pillow y Node durante la importación, sin añadir dependencias al juego. No hay consultas de red durante las partidas.
