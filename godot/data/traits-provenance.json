@@ -1,0 +1,40 @@
+{
+  "pokeapiCommit": "81d20919845b6a445969b9265aab5cec6b04cece",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/nature_names.csv",
+      "sha256": "a6bf8bedb9822d0e966a3036885e33e1306172b3a6566edc22d02ff2e7155031"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/natures.csv",
+      "sha256": "3536990f6adeaa1735551a6afe798649d22426e161c937da09d3ae9a5381309c"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/abilities.csv",
+      "sha256": "74c3588ad48e08e54ff01f432899a4028c3e91508bbd53201df85e1f6b9e9ef3"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/ability_names.csv",
+      "sha256": "8acb80c42210f86ae747dc3347b060d69cd2574a9dbfaf74774ae632ca6348da"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/pokemon_abilities.csv",
+      "sha256": "4a79ee53d386a8ad3a89657483ddfd31594e05a5d52400fe131e5e4dfd7ec04a"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/moves.csv",
+      "sha256": "8aafd37bf78f19471495c05b201545180f50f0a08a2a2a844d69f9837dd39ac9"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/move_flag_map.csv",
+      "sha256": "399cf005933418f406b94729903bd1528e9088bddc3bc1966be6c442a625da1b"
+    }
+  ],
+  "files": [
+    {
+      "target": "data/traits.json",
+      "sha256": "402068b7d211f568b9864d05e0dcf02b62dde7821563ea6abd31ea93bd095a8a"
+    }
+  ],
+  "changes": "Selected 32 species, 25 natures and 15 normal abilities; Spanish descriptions and tactical timing supplied by project. 13 active abilities; climate/escape dependencies disclosed. No hidden abilities."
+}

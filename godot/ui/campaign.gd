@@ -1,7 +1,7 @@
 extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
-const Advanced = preload("res://core/revive_run.gd")
+const Advanced = preload("res://core/traits_run.gd")
 const CampaignStore = preload("res://core/kanto_store.gd")
 var campaign: RefCounted = Advanced.new()
 var last_presentation: Dictionary = {}
@@ -12,6 +12,7 @@ var travel_content: VBoxContainer
 var travel_buttons: Dictionary = {}
 var journey_seed: LineEdit
 var selected_member: int = 1
+var selected_mint: String = "adamant"
 var training_choice: OptionButton
 var campaign_confirm: ConfirmationDialog
 var message: String = ""
@@ -102,7 +103,7 @@ func _load_game() -> void:
 	run = result.state
 	transactions = result.commands
 	save_warning = ""
-	message = "Campaña recuperada." if run.get("edition",1) == 9 else "Partida clásica %s: conserva sus reglas. Nueva campaña para usar Revivir en la tienda." % _classic_version()
+	message = "Campaña recuperada." if run.get("edition",1) == 10 else "Partida clásica %s: conserva sus reglas. Nueva campaña para naturalezas y habilidades." % _classic_version()
 	pending = {}
 	selecting = "auto"
 	action_page = false
@@ -126,6 +127,8 @@ func _event(command: Dictionary) -> void:
 	action_page = false
 	message = ""
 	if command.kind=="revive": message = "Pokémon recuperado con el 50 % de sus PS máximos."
+	if command.kind=="mint": message = "Menta aplicada: cambian los modificadores, se conserva la naturaleza original."
+	if command.kind=="capsule": message = "Cápsula aplicada: cambia la habilidad normal, sin ocupar el objeto equipado."
 	state = run.battle
 	history = run.battleCommands
 	selecting = "finish" if _player_turn() and state.moved and state.acted else "auto"
@@ -141,6 +144,7 @@ func _commit(command: Dictionary) -> void:
 	_event({"kind":"battle","order":command,"at":revision})
 	if run.revision == revision: return
 	if command.kind == "attack": combat_feedback.present(before,plan,last_presentation.get("hits",[]))
+	if not last_presentation.get("abilityEvents",[]).is_empty(): combat_feedback.present_abilities(state,last_presentation.abilityEvents,command.kind!="attack")
 	var leveled: bool = run.get("lastProgress",[]).any(func(entry):return entry.level > entry.before)
 	_play(("level-up" if leveled else "victory") if state.outcome == "victory" else (combat_feedback.last_sound if command.kind == "attack" else "select"))
 
@@ -168,6 +172,7 @@ func _refresh() -> void:
 		if active.has("level"):
 			actor_info.text = "Nv. %d · " % active.level + actor_info.text
 			actor_info.tooltip_text = campaign.progression.roles(active)
+			if active.has("abilityDescription"): actor_info.tooltip_text += "\n"+active.natureText+"\n"+active.abilityDescription
 	else: _render_travel()
 
 func _travel_button(key: String, text: String, parent: Node, command: Dictionary) -> Button:
@@ -192,7 +197,7 @@ func _render_travel() -> void:
 	header.add_child(_button("Laboratorio",func(): _menu_selected(7)))
 	header.add_child(_button("Ayuda",func(): help_dialog.popup_centered(Vector2i(630,450))))
 	var classic: String = ""
-	if not run.is_empty() and run.get("edition",1)<9: classic = "Clásica %s: Nueva campaña para usar Revivir en la tienda." % _classic_version()
+	if not run.is_empty() and run.get("edition",1)<10: classic = "Clásica %s: Nueva campaña para naturalezas y habilidades." % _classic_version()
 	var status: Label = _label(save_warning if not save_warning.is_empty() else (message if not message.is_empty() else (classic if not classic.is_empty() else ("Guardado automático local · Revivir disponible en tienda" if run.get("edition",1)>=9 else "Guardado automático local · bajas definitivas"))),17,MUTED)
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	travel_content.add_child(status)
@@ -289,6 +294,7 @@ func _render_travel() -> void:
 				var button: Button = _travel_button("buy_"+item,"Comprar %s · %d ₽" % [consumables[item].name,consumables[item].price],narrative,{"kind":"buy","item":item})
 				button.disabled = run.money < consumables[item].price
 				if item=="revive": button.tooltip_text = "Recupera a un Pokémon debilitado con el 50 % de sus PS máximos. Solo en la tienda; consume una unidad de la bolsa."
+			if run.get("edition",1)>=10: _render_mint_shop(narrative)
 			if run.get("edition",1)>=5:
 				var stone: Button = _travel_button("buy_leaf-stone","Comprar Piedra Hoja · 80 ₽",narrative,{"kind":"buy-stone"})
 				stone.disabled = run.money<80
@@ -330,6 +336,7 @@ func _render_travel() -> void:
 	var info: Label = _label("%s · %s\nOrigen: %s\nAtaque %d / %d · Defensa %d / %d · Velocidad %d" % [unit.name,_type_names(unit.types),selected.origin,unit.attack,unit.specialAttack,unit.defense,unit.specialDefense,unit.speed],17)
 	info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	team.add_child(info)
+	if run.get("edition",1)>=10: _render_traits(team,selected)
 	if run.get("edition",1) >= 3: _render_inventory(team,selected)
 	if run.get("edition",1) >= 2 and run.phase != "shop":
 		_render_moves(team,selected)
@@ -381,6 +388,54 @@ func _render_travel() -> void:
 func _select_member(identity: int) -> void:
 	selected_member = identity
 	_refresh()
+
+func _render_mint_shop(parent: VBoxContainer) -> void:
+	var study: RefCounted = campaign.progression
+	parent.add_child(_label("MENTAS · modificadores de naturaleza",20,GOLD))
+	var choices: Array = study.mintable()
+	var picker: OptionButton = OptionButton.new()
+	picker.name = "MintPicker"
+	picker.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	for identity: String in choices: picker.add_item("Menta %s · bolsa: %d" % [study.traits.natures[identity].name,run.bag["mint-"+identity]])
+	picker.select(choices.find(selected_mint))
+	picker.item_selected.connect(func(index: int): selected_mint = choices[index]; _refresh())
+	parent.add_child(picker)
+	var buy: Button = _travel_button("buy_mint","Comprar Menta %s · %d ₽" % [study.traits.natures[selected_mint].name,study.traits.mintPrice],parent,{"kind":"buy","item":"mint-"+selected_mint})
+	buy.disabled = run.money<int(study.traits.mintPrice)
+	buy.tooltip_text = "Una menta de un uso. Elige su efecto y comprueba los atributos en la ficha antes de aplicarla."
+
+func _render_traits(parent: VBoxContainer, member: Dictionary) -> void:
+	var study: RefCounted = campaign.progression
+	var identity: String = study.ability(member)
+	var nature: Label = _label(study.nature_text(member),17,GOLD)
+	nature.name = "NatureSummary"
+	nature.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	parent.add_child(nature)
+	var passive: Label = _label("Habilidad: "+study.traits.abilities[identity].name,18,GOLD)
+	passive.name = "AbilitySummary"
+	passive.tooltip_text = study.traits.abilities[identity].description
+	passive.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	parent.add_child(passive)
+	if run.phase!="shop": return
+	var before: Dictionary = study.member_stats(member)
+	var copy: Dictionary = member.duplicate(true)
+	copy.mint = selected_mint
+	var after: Dictionary = study.member_stats(copy)
+	var lines: Array[String] = []
+	for key: String in study.STAT_KEYS:
+		if before[key]!=after[key]: lines.append("%s %d → %d" % [study.STAT_NAMES[key],before[key],after[key]])
+	var preview: Label = _label("Menta %s: %s" % [study.traits.natures[selected_mint].name,", ".join(lines) if not lines.is_empty() else "los valores redondeados no cambian a este nivel"],16,MUTED)
+	preview.name = "MintPreview"
+	preview.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	parent.add_child(preview)
+	var mint: Button = _travel_button("use_mint","Usar Menta %s · bolsa: %d" % [study.traits.natures[selected_mint].name,run.bag["mint-"+selected_mint]],parent,{"kind":"mint","member":member.id,"nature":selected_mint})
+	mint.disabled = member.hp<=0 or run.bag["mint-"+selected_mint]<=0 or not study.mint_changes(member,selected_mint)
+	var next: int = study.next_slot(member)
+	copy.abilitySlot = next
+	var next_ability: String = study.ability(copy)
+	var capsule: Button = _travel_button("use_capsule","Usar Cápsula Habilidad · bolsa: %d\n" % run.bag["ability-capsule"]+(study.traits.abilities[next_ability].name if next!=0 else "Una sola habilidad normal"),parent,{"kind":"capsule","member":member.id})
+	capsule.disabled = member.hp<=0 or next==0 or run.bag["ability-capsule"]<=0
+	capsule.tooltip_text = study.traits.abilities[next_ability].description if next!=0 else "No se consume en especies con una única habilidad normal. Las habilidades ocultas requieren Parche Habilidad, reservado para después."
 
 func _train(revision: int) -> void:
 	_event({"kind":"train","stat":Campaign.STATS.keys()[training_choice.selected],"member":selected_member,"at":revision})
@@ -445,11 +500,11 @@ func _toggle_move(enabled: bool, member_id: int, identity: String, revision: int
 
 func _default_hint() -> String:
 	var classic: String = ""
-	if not run.is_empty() and run.get("edition",1)<9: classic = "Clásica %s: menú → Nueva campaña para usar Revivir en la tienda.\n" % _classic_version()
+	if not run.is_empty() and run.get("edition",1)<10: classic = "Clásica %s: menú → Nueva campaña para naturalezas y habilidades.\n" % _classic_version()
 	return classic + super._default_hint()
 
 func _classic_version() -> String:
-	return {1:"0.14",2:"0.14.1",3:"0.14.2",4:"0.14.3",5:"0.14.4",6:"0.14.5",7:"0.14.6",8:"0.14.7"}.get(int(run.get("edition",1)),"0.14")
+	return {1:"0.14",2:"0.14.1",3:"0.14.2",4:"0.14.3",5:"0.14.4",6:"0.14.5",7:"0.14.6",8:"0.14.7",9:"0.14.8"}.get(int(run.get("edition",1)),"0.14")
 
 func _render_stock(parent: VBoxContainer) -> void:
 	parent.add_child(_label("OFERTAS · MT Y EQUIPO",21,GOLD))

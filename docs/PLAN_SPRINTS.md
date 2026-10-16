@@ -344,7 +344,7 @@ Cambios de objetivo confirmados: campaña larga con guardado y bajas definitivas
 | 13 — Base técnica y paridad | Godot/plantillas verificados, laboratorio 3v3 con recursos existentes, POO, guardado y exportación Windows; contraste con el motor web | 16 combates/506 órdenes y 25 escenarios coinciden; cuatro batallas por controles en fuente y ejecutable; guardados web intactos | Completado 0.13.0; [informe](SPRINT_13.md) |
 | 14 — Paleta hasta Brock | Inicial de Oak, Ruta 1, Ruta 2, Bosque Verde y Brock; captura, tienda, evolución/entrenamiento mínimos | Ciclo completo con guardado y premios únicos; ver informe | Completado 0.14.0; pruebas humanas/balance pendientes; [informe](SPRINT_14.md) |
 | 15 — Escala y ritmo táctico | Evaluar isometría/alturas y comparar mapas amplios, cámara, grupos enemigos y objetivos puntuales propuestos | Tiempo de desplazamiento y espera evaluados jugando; reglas compartidas con IA, sin ciclos defensivos; tamaños no fijados por intuición | Pendiente |
-| 16 — Equipo y progresión | Ampliar capturas, reserva si se aprueba, movimientos/MT y evolución acordada | Comprobar máximo desplegado, bajas, intercambio, límites y guardado | Parcial adelantado en 0.14.1: niveles, roles y movimientos; PC/MT/equipables pendientes |
+| 16 — Equipo y progresión | Ampliar capturas, reserva si se aprueba, movimientos/MT y evolución acordada | Comprobar máximo desplegado, bajas, intercambio, límites y guardado | Parcial adelantado en0.14.1–0.14.9: niveles, roles, movimientos/MT, equipables, naturalezas y habilidades; PC/reserva y ampliación pendientes |
 | 17 — Celeste y Carmín | Monte Moon, rutas del tramo, Bill, Misty, S. S. Anne, Lt. Surge y rival | Encuentros y premios trazables a Rojo; tramo completo desde una partida continuada | Pendiente |
 | 18 — Lavanda, Azulona y Team Rocket | Túnel Roca, conexiones, Erika, guarida y Torre Pokémon; hitos y desvíos según grafo acordado | Hitos habilitan sus destinos sin saltos accidentales; gacha local separado del equipo de entrenadores | Pendiente |
 | 19 — Fucsia, Azafrán y sur de Kanto | Ramas hacia Fucsia, Safari/Silph, Koga/Sabrina, mar, Canela/Blaine y regreso a Giovanni; dividir por tramo si excede una entrega revisable | Cada tramo con prueba de continuidad, equipos temáticos y guardado; no prometer un orden único donde hay alternativas | Pendiente |
@@ -422,3 +422,7 @@ Edición8 limita EXP y Caramelos al nivel del insignia del próximo líder pendi
 ## Revisión0.14.8 — Revivir en tienda
 
 Edición9 añade Revivir150 ₽ fuera de combate, recuperando un debilitado con50% de PS máximos, sin cambiar progreso ni duplicar equipable. Todo el equipo KO sigue siendo derrota. Topes por gimnasio/PS por nivel y partidas1–8 conservados. [Informe y comprobaciones](SPRINT_14_REVIVE.md). No inicia15 ni publica.
+
+## Revisión0.14.9 — naturalezas y habilidades antes del15
+
+Bloque14.9A/B solicitado y reunido en edición10:25 naturalezas,21 mentas100 ₽ con vista previa,13 pasivas activas y Cápsula Habilidad150 ₽ entre opciones normales. Clorofila/Fuga esperan clima/huida; ocultas/Parche quedan para ampliación posterior. IV15/EV0 y la muestra hasta Brock conservados; rasgos persistentes, topes y Revivir vigentes. [Informe y comprobaciones](SPRINT_14_TRAITS.md). El siguiente bloque sigue siendo15, mapas/cámara/evaluación de isometría y alturas; no se inicia automáticamente.

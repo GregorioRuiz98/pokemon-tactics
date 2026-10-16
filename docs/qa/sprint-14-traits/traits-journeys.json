@@ -1,0 +1,84 @@
+{
+  "checks": 1894,
+  "failures": [],
+  "runs": [
+    {
+      "cleared": 4,
+      "commands": 268,
+      "phase": "complete",
+      "seed": "tactics-1",
+      "starter": 1
+    },
+    {
+      "cleared": 2,
+      "commands": 201,
+      "phase": "defeat",
+      "seed": "tactics-1",
+      "starter": 4
+    },
+    {
+      "cleared": 4,
+      "commands": 318,
+      "phase": "complete",
+      "seed": "tactics-4",
+      "starter": 4
+    },
+    {
+      "cleared": 0,
+      "commands": 14,
+      "phase": "defeat",
+      "seed": "tactics-1",
+      "starter": 7
+    },
+    {
+      "cleared": 0,
+      "commands": 14,
+      "phase": "defeat",
+      "seed": "tactics-4",
+      "starter": 7
+    },
+    {
+      "cleared": 0,
+      "commands": 22,
+      "phase": "defeat",
+      "seed": "trait-ui-3",
+      "starter": 7
+    },
+    {
+      "cleared": 0,
+      "commands": 32,
+      "phase": "defeat",
+      "seed": "lgpe-9",
+      "starter": 7
+    },
+    {
+      "cleared": 0,
+      "commands": 14,
+      "phase": "defeat",
+      "seed": "lgpe-1",
+      "starter": 7
+    },
+    {
+      "cleared": 0,
+      "commands": 22,
+      "phase": "defeat",
+      "seed": "kanto-14",
+      "starter": 7
+    },
+    {
+      "cleared": 0,
+      "commands": 22,
+      "phase": "defeat",
+      "seed": "tactics-2",
+      "starter": 7
+    },
+    {
+      "cleared": 0,
+      "commands": 31,
+      "phase": "defeat",
+      "seed": "tactics-3",
+      "starter": 7
+    }
+  ],
+  "shopSeed": "trait-ui-3"
+}

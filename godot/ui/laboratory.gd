@@ -529,6 +529,7 @@ func _refresh():
 	actor_hp.max_value = actor.maxHp
 	actor_hp.value = actor.hp
 	actor_info.text = "%s%s\n%d / %d PS\n%d / %d PT\n%s · %s" % [actor.name, " · IA" if actor.team == "enemy" else "", actor.hp, actor.maxHp, actor.tp, actor.maxTp, "Mov. usado" if state.moved else "Mov. %d" % actor.remaining, "Acc. usada" if state.acted else "Acc. lista"]
+	if actor.has("abilityName"): actor_info.text += "\n"+actor.abilityName
 	for index in rules.profile(actor).actions_for(actor).size():
 		var definition = rules.profile(actor).actions_for(actor)[index].definition
 		var button = _button("%d · %s\n%d PT · %d cas." % [index + 1, definition.name, definition.cost, definition.range], _select_action.bind(definition.id))
@@ -588,6 +589,9 @@ func _show_plan(unit: Dictionary, plan: Dictionary):
 	target_panel.visible = true
 	target_portrait.texture = faces[int(unit.speciesId)]
 	target_info.text = "%s · %d / %d PS\n%s" % [unit.name + (" · Nv. %d" % unit.level if unit.has("level") else ""), unit.hp, unit.maxHp, _type_names(unit.types)]
+	if unit.has("abilityName"):
+		target_info.text += " · "+unit.abilityName
+		target_info.tooltip_text = unit.natureText+"\n"+unit.abilityDescription
 	if unit.status != null: target_info.text += " · " + _status_name(unit.status.kind)
 	if not plan.ok:
 		target_info.text += "\n\n" + plan.reason
@@ -609,6 +613,10 @@ func _show_plan(unit: Dictionary, plan: Dictionary):
 	for change: Dictionary in plan.get("changes",[]): target_info.text += "\n%s: %s%d etapas%s" % [Indicators.STATS[change.stat][1],"+" if change.stages>0 else "",change.stages," propias" if plan.get("changesSelf",false) else ""]
 	if plan.has("volatile"): target_info.text += "\n%s: %d %% · %d turnos" % [_status_name(plan.volatile.kind),plan.volatile.chance,plan.volatile.duration]
 	if plan.get("clearStages",false): target_info.text += "\nElimina las etapas de atributos del objetivo."
+	if plan.get("sturdy",false): target_info.text += "\nRobustez puede dejarlo en 1 PS."
+	if plan.get("staticChance",0)>0: target_info.text += "\nElec. Estática: 30 % al contacto."
+	var passive_hints: Array = plan.get("abilityHints",[])+plan.get("accuracyHints",[])
+	if not passive_hints.is_empty(): target_info.text += "\nHabilidad: "+", ".join(passive_hints)
 	if plan.guard: target_info.text += "\nProtege hasta su próximo turno."
 	if plan.status != null: target_info.text += "\n%s: %d %% · %d turnos" % [_status_name(plan.status.kind), plan.status.chance, plan.status.duration]
 	if plan.push != null: target_info.text += "\nEmpuja a " + Rules.coordinate(plan.push)
@@ -641,6 +649,9 @@ func _hover_tile(point: Dictionary):
 		else:
 			target_indicators.show_unit(unit)
 			target_info.text = "%s · %d / %d PS\n%s\n%d PT · velocidad %d\n%s" % [unit.name, unit.hp, unit.maxHp, _type_names(unit.types), unit.tp, unit.speed, _status_name(unit.status.kind) if unit.status != null else "Sin estado"]
+			if unit.has("abilityName"):
+				target_info.text += "\n"+unit.abilityName
+				target_info.tooltip_text = unit.natureText+"\n"+unit.abilityDescription
 	elif board.available.has(Movement.key(point)):
 		target_panel.visible = false
 		var route = board.available[Movement.key(point)]

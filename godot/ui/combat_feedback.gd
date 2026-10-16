@@ -66,6 +66,20 @@ func _process(delta: float) -> void:
 	if age >= 0.95: marks = []
 	queue_redraw()
 
+func present_abilities(before: Dictionary, events: Array, reset: bool = false) -> void:
+	if reset: clear()
+	age = 0
+	var count: Dictionary = {}
+	for event: Dictionary in events:
+		var unit: Dictionary = Rules.unit_by_id(before,int(event.targetId))
+		if unit.is_empty(): continue
+		var key: String = str(int(unit.id))+event.name
+		if count.has(key): continue
+		count[key] = true
+		marks.append({"point":{"x":unit.x,"y":unit.y},"kind":"ability","text":event.name,"color":Color("a4e9b3"),"offset":40})
+		last_kinds.append("ability")
+	queue_redraw()
+
 func _draw() -> void:
 	if board == null or not board.visible: return
 	var font: Font = get_theme_default_font()
@@ -73,6 +87,7 @@ func _draw() -> void:
 		var point: Vector2 = board.center(mark.point)
 		point.y -= board.cell_size()*0.55 + (0 if board.reduced_motion else age*16)
 		if mark.kind == "recoil": point.y -= 30
+		point.y -= mark.get("offset",0)
 		var alpha: float = 1 if board.reduced_motion else minf(1,(0.95-age)*3)
 		var color: Color = mark.color
 		color.a = alpha

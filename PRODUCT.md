@@ -195,3 +195,7 @@ El usuario pide que ningún miembro supere al insignia del siguiente gimnasio. E
 ### Revivir en tienda — 16 de octubre, 0.14.8
 
 El usuario pide comprar Revivir y recuperar solo media vida. Edición9 fija150 ₽ (una recompensa de victoria actual); compra/uso en tienda, un consumible por debilitado recuperado con50% de PS máximos. Conserva progreso y no duplica equipable devuelto al caer. Sustituye las bajas individuales definitivas en campañas nuevas; todo el equipo KO sigue terminando la campaña. Pociones posteriores y límites por gimnasio conservados. Guardados anteriores mantienen edición. Ver docs/SPRINT_14_REVIVE.md.
+
+### Naturalezas, habilidades y objetos — 16 de octubre, 0.14.9
+
+El usuario aprueba añadir ahora naturalezas/mentas y habilidades normales/cápsulas antes del15, con dependencias de clima/huida y ocultas para después. Edición10:25 naturalezas,21 efectos de menta100 ₽, cápsula150 ₽ entre slots normales,13 habilidades funcionales de las15 normales de las32 especies actuales. Clorofila/Fuga muestran explícitamente su dependencia no disponible. Naturaleza original y slot conservados al evolucionar; menta modifica solo atributos efectivos. IV15/EV0 y movimientos/encuentros LGPE conservados. Topes, PS y Revivir siguen vigentes. No completa Kanto ni inicia mapas/isometría15. Ver docs/SPRINT_14_TRAITS.md.

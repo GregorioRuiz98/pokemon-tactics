@@ -98,3 +98,7 @@ Aprendizajes/compatibilidad por grupo Let’s Go en PokéAPI y encuentros/máqui
 ## Reglas tácticas — 0.14.5
 
 Sin nuevos activos externos. Se reutilizan tipografía, sprites/retratos, sonidos y datos LGPE ya atribuidos. Tablas factuales de probabilidad/daño crítico moderno contrastadas en https://github.com/smogon/pokemon-showdown/blob/master/sim/battle-actions.ts; no se incorpora código de ese proyecto. Reglas de orientación, temporalidad, costes y prototipos de movilidad son implementación de este proyecto en tactics_*.gd/data/tactics.json.
+
+## Naturalezas y habilidades0.14.9
+
+Metadatos factuales y nombres españoles de25 naturalezas y15 habilidades normales, slots de32 especies y contacto de39 acciones (incluido básico propio), reutilizados desde7 CSV de PokéAPI, commit81d20919845b6a445969b9265aab5cec6b04cece. URL/SHA256 de fuentes y catálogo derivado en data/traits-provenance.json; importador tools/godot/import-traits.py. Se mantiene el aviso BSD-3-Clause de PokéAPI ya incluido. Descripciones españolas de efectos/adaptaciones, precios, cálculo y representación propios. Clorofila/Fuga no activas hasta añadir clima/huida; multiimpactos conservan agregación táctica. Sin imágenes, sonidos ni fuentes nuevos; ninguna consulta al jugar.

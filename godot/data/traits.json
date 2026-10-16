@@ -1,0 +1,481 @@
+{
+  "version": 10,
+  "reference": "Modern main-series normal ability slots; LGPE moves and tactical adaptations retained",
+  "natures": {
+    "hardy": {
+      "name": "Fuerte",
+      "up": "",
+      "down": ""
+    },
+    "bold": {
+      "name": "Osada",
+      "up": "defense",
+      "down": "attack"
+    },
+    "modest": {
+      "name": "Modesta",
+      "up": "specialAttack",
+      "down": "attack"
+    },
+    "calm": {
+      "name": "Serena",
+      "up": "specialDefense",
+      "down": "attack"
+    },
+    "timid": {
+      "name": "Miedosa",
+      "up": "speed",
+      "down": "attack"
+    },
+    "lonely": {
+      "name": "Huraña",
+      "up": "attack",
+      "down": "defense"
+    },
+    "docile": {
+      "name": "Dócil",
+      "up": "",
+      "down": ""
+    },
+    "mild": {
+      "name": "Afable",
+      "up": "specialAttack",
+      "down": "defense"
+    },
+    "gentle": {
+      "name": "Amable",
+      "up": "specialDefense",
+      "down": "defense"
+    },
+    "hasty": {
+      "name": "Activa",
+      "up": "speed",
+      "down": "defense"
+    },
+    "adamant": {
+      "name": "Firme",
+      "up": "attack",
+      "down": "specialAttack"
+    },
+    "impish": {
+      "name": "Agitada",
+      "up": "defense",
+      "down": "specialAttack"
+    },
+    "bashful": {
+      "name": "Tímida",
+      "up": "",
+      "down": ""
+    },
+    "careful": {
+      "name": "Cauta",
+      "up": "specialDefense",
+      "down": "specialAttack"
+    },
+    "rash": {
+      "name": "Alocada",
+      "up": "specialAttack",
+      "down": "specialDefense"
+    },
+    "jolly": {
+      "name": "Alegre",
+      "up": "speed",
+      "down": "specialAttack"
+    },
+    "naughty": {
+      "name": "Pícara",
+      "up": "attack",
+      "down": "specialDefense"
+    },
+    "lax": {
+      "name": "Floja",
+      "up": "defense",
+      "down": "specialDefense"
+    },
+    "quirky": {
+      "name": "Rara",
+      "up": "",
+      "down": ""
+    },
+    "naive": {
+      "name": "Ingenua",
+      "up": "speed",
+      "down": "specialDefense"
+    },
+    "brave": {
+      "name": "Audaz",
+      "up": "attack",
+      "down": "speed"
+    },
+    "relaxed": {
+      "name": "Plácida",
+      "up": "defense",
+      "down": "speed"
+    },
+    "quiet": {
+      "name": "Mansa",
+      "up": "specialAttack",
+      "down": "speed"
+    },
+    "sassy": {
+      "name": "Grosera",
+      "up": "specialDefense",
+      "down": "speed"
+    },
+    "serious": {
+      "name": "Seria",
+      "up": "",
+      "down": ""
+    }
+  },
+  "abilities": {
+    "sturdy": {
+      "name": "Robustez",
+      "description": "Robustez: con todos sus PS resiste un golpe que lo debilitaría, quedando en 1 PS. No evita daño residual o costes propios. Los multiimpactos actuales se resuelven como un golpe táctico agregado.",
+      "available": true
+    },
+    "static": {
+      "name": "Electricidad Estática",
+      "description": "Elec. Estática: 30 % de paralizar a quien le acierte con contacto. El atacante debe seguir vivo, admitir parálisis y no tener otro estado principal.",
+      "available": true
+    },
+    "compound-eyes": {
+      "name": "Ojo Compuesto",
+      "description": "Ojo Compuesto: multiplica la precisión de sus movimientos por 1,3.",
+      "available": true
+    },
+    "shield-dust": {
+      "name": "Polvo Escudo",
+      "description": "Polvo Escudo: bloquea efectos secundarios de movimientos dañinos enemigos; no movimientos de estado, empujes ni sus efectos propios.",
+      "available": true
+    },
+    "chlorophyll": {
+      "name": "Clorofila",
+      "description": "Clorofila: duplica la Velocidad con sol. Pendiente del sistema de clima; no tiene efecto en los escenarios actuales.",
+      "available": false
+    },
+    "run-away": {
+      "name": "Fuga",
+      "description": "Fuga: garantiza la huida ante Pokémon salvajes. Pendiente de la acción de huida; no tiene efecto en los encuentros actuales.",
+      "available": false
+    },
+    "keen-eye": {
+      "name": "Vista Lince",
+      "description": "Vista Lince: evita bajadas de precisión e ignora etapas positivas de evasión del objetivo.",
+      "available": true
+    },
+    "shed-skin": {
+      "name": "Mudar",
+      "description": "Mudar: probabilidad de 1/3 de curar el estado principal al terminar su activación, antes del daño residual. No cura confusión ni Drenadoras.",
+      "available": true
+    },
+    "guts": {
+      "name": "Agallas",
+      "description": "Agallas: Ataque ×1,5 al tener un estado principal; evita la reducción ofensiva de quemadura.",
+      "available": true
+    },
+    "overgrow": {
+      "name": "Espesura",
+      "description": "Espesura: potencia de movimientos Planta ×1,5 con un tercio de PS o menos.",
+      "available": true
+    },
+    "blaze": {
+      "name": "Mar Llamas",
+      "description": "Mar Llamas: potencia de movimientos Fuego ×1,5 con un tercio de PS o menos.",
+      "available": true
+    },
+    "torrent": {
+      "name": "Torrente",
+      "description": "Torrente: potencia de movimientos Agua ×1,5 con un tercio de PS o menos.",
+      "available": true
+    },
+    "swarm": {
+      "name": "Enjambre",
+      "description": "Enjambre: potencia de movimientos Bicho ×1,5 con un tercio de PS o menos.",
+      "available": true
+    },
+    "rock-head": {
+      "name": "Cabeza Roca",
+      "description": "Cabeza Roca: evita el retroceso de movimientos. No evita Vidaesfera ni el coste de Autodestrucción.",
+      "available": true
+    },
+    "tangled-feet": {
+      "name": "Tumbos",
+      "description": "Tumbos: duplica su evasión mientras está confuso.",
+      "available": true
+    }
+  },
+  "species": {
+    "1": [
+      {
+        "slot": 1,
+        "id": "overgrow"
+      }
+    ],
+    "2": [
+      {
+        "slot": 1,
+        "id": "overgrow"
+      }
+    ],
+    "3": [
+      {
+        "slot": 1,
+        "id": "overgrow"
+      }
+    ],
+    "4": [
+      {
+        "slot": 1,
+        "id": "blaze"
+      }
+    ],
+    "5": [
+      {
+        "slot": 1,
+        "id": "blaze"
+      }
+    ],
+    "6": [
+      {
+        "slot": 1,
+        "id": "blaze"
+      }
+    ],
+    "7": [
+      {
+        "slot": 1,
+        "id": "torrent"
+      }
+    ],
+    "8": [
+      {
+        "slot": 1,
+        "id": "torrent"
+      }
+    ],
+    "9": [
+      {
+        "slot": 1,
+        "id": "torrent"
+      }
+    ],
+    "10": [
+      {
+        "slot": 1,
+        "id": "shield-dust"
+      }
+    ],
+    "11": [
+      {
+        "slot": 1,
+        "id": "shed-skin"
+      }
+    ],
+    "12": [
+      {
+        "slot": 1,
+        "id": "compound-eyes"
+      }
+    ],
+    "13": [
+      {
+        "slot": 1,
+        "id": "shield-dust"
+      }
+    ],
+    "14": [
+      {
+        "slot": 1,
+        "id": "shed-skin"
+      }
+    ],
+    "15": [
+      {
+        "slot": 1,
+        "id": "swarm"
+      }
+    ],
+    "16": [
+      {
+        "slot": 1,
+        "id": "keen-eye"
+      },
+      {
+        "slot": 2,
+        "id": "tangled-feet"
+      }
+    ],
+    "17": [
+      {
+        "slot": 1,
+        "id": "keen-eye"
+      },
+      {
+        "slot": 2,
+        "id": "tangled-feet"
+      }
+    ],
+    "18": [
+      {
+        "slot": 1,
+        "id": "keen-eye"
+      },
+      {
+        "slot": 2,
+        "id": "tangled-feet"
+      }
+    ],
+    "19": [
+      {
+        "slot": 1,
+        "id": "run-away"
+      },
+      {
+        "slot": 2,
+        "id": "guts"
+      }
+    ],
+    "20": [
+      {
+        "slot": 1,
+        "id": "run-away"
+      },
+      {
+        "slot": 2,
+        "id": "guts"
+      }
+    ],
+    "25": [
+      {
+        "slot": 1,
+        "id": "static"
+      }
+    ],
+    "26": [
+      {
+        "slot": 1,
+        "id": "static"
+      }
+    ],
+    "43": [
+      {
+        "slot": 1,
+        "id": "chlorophyll"
+      }
+    ],
+    "44": [
+      {
+        "slot": 1,
+        "id": "chlorophyll"
+      }
+    ],
+    "45": [
+      {
+        "slot": 1,
+        "id": "chlorophyll"
+      }
+    ],
+    "69": [
+      {
+        "slot": 1,
+        "id": "chlorophyll"
+      }
+    ],
+    "70": [
+      {
+        "slot": 1,
+        "id": "chlorophyll"
+      }
+    ],
+    "71": [
+      {
+        "slot": 1,
+        "id": "chlorophyll"
+      }
+    ],
+    "74": [
+      {
+        "slot": 1,
+        "id": "rock-head"
+      },
+      {
+        "slot": 2,
+        "id": "sturdy"
+      }
+    ],
+    "75": [
+      {
+        "slot": 1,
+        "id": "rock-head"
+      },
+      {
+        "slot": 2,
+        "id": "sturdy"
+      }
+    ],
+    "76": [
+      {
+        "slot": 1,
+        "id": "rock-head"
+      },
+      {
+        "slot": 2,
+        "id": "sturdy"
+      }
+    ],
+    "95": [
+      {
+        "slot": 1,
+        "id": "rock-head"
+      },
+      {
+        "slot": 2,
+        "id": "sturdy"
+      }
+    ]
+  },
+  "contact": [
+    "aqua-jet",
+    "bide",
+    "bind",
+    "bite",
+    "brick-break",
+    "counter",
+    "crunch",
+    "dig",
+    "double-edge",
+    "double-kick",
+    "fake-out",
+    "flare-blitz",
+    "fury-attack",
+    "fury-swipes",
+    "headbutt",
+    "hyper-fang",
+    "iron-tail",
+    "leech-life",
+    "mega-punch",
+    "outrage",
+    "peck",
+    "petal-dance",
+    "poison-jab",
+    "power-whip",
+    "quick-attack",
+    "rage",
+    "scratch",
+    "skull-bash",
+    "slam",
+    "slash",
+    "sucker-punch",
+    "super-fang",
+    "tackle",
+    "take-down",
+    "thunder-punch",
+    "vine-whip",
+    "wing-attack",
+    "wrap",
+    "basic"
+  ],
+  "mintPrice": 100,
+  "capsulePrice": 150
+}

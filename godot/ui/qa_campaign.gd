@@ -109,6 +109,8 @@ func shop(app: Control) -> void:
 func run(app: Control, directory: String) -> void:
 	app._show_oak()
 	await capture(app,directory,"01-oak")
+	if app.campaign.has_method("gym_limit") and app.run.is_empty():
+		if app.campaign.progression.data.version>=10: await _traits_shop_flow(app,directory)
 	var completed: Array = []
 	for starter: int in [1,4,7]:
 		app._show_oak()
@@ -288,6 +290,7 @@ func run(app: Control, directory: String) -> void:
 	await _orb_preview(app,directory)
 	if app.run.get("edition",1)>=5: await _indicator_preview(app,directory)
 	if app.run.get("edition",1)>=6: await _tactics_preview(app,directory)
+	if app.run.get("edition",1)>=10: await _passive_preview(app,directory)
 	await _legacy_preview(app,directory)
 	var output: Dictionary = {"assertions":assertions,"completed":completed,"playerOrders":player_orders,"screenshots":captures,"failures":failures}
 	var file: FileAccess = FileAccess.open(directory.path_join("campaign-ui-result.json"),FileAccess.WRITE)
@@ -295,6 +298,92 @@ func run(app: Control, directory: String) -> void:
 	file.close()
 	print(JSON.stringify(output))
 	app.get_tree().quit(0 if failures.is_empty() else 1)
+
+func _traits_shop_flow(app: Control, directory: String) -> void:
+	app._show_oak()
+	app.journey_seed.text = "trait-ui-3"
+	button(app,"starter1")
+	for step: int in 200:
+		if app.run.phase in ["shop","defeat"]: break
+		match app.run.phase:
+			"map": button(app,"enter")
+			"capture": button(app,"capture")
+			"battle":
+				if app.rules.active(app.state).team=="ally": player_orders += 1
+				app._commit(app.rules.choose_command(app.state))
+		await app.get_tree().process_frame
+	check(app.run.phase=="shop","Trait test reaches a real first shop")
+	if app.run.phase!="shop": return
+	var study: RefCounted = app.campaign.progression
+	var member: Dictionary = app.campaign.target(app.run,1)
+	var chosen: String = "modest" if study.effective_nature(member)=="adamant" else "adamant"
+	var picker: OptionButton = app.find_child("MintPicker",true,false)
+	picker.item_selected.emit(study.mintable().find(chosen))
+	var original: Dictionary = member.duplicate(true)
+	var money: int = app.run.money
+	button(app,"buy_mint")
+	check(app.run.money==money-100 and app.run.bag["mint-"+chosen]==1,"Mint selected through UI costs exactly 100")
+	var snapshot: Dictionary = app.run.duplicate(true)
+	app._refresh()
+	check(Store.equivalent(snapshot,app.run),"Inspecting trait previews does not mutate saved state or RNG")
+	await capture(app,directory,"20-mint-preview")
+	button(app,"use_mint")
+	var expected: Dictionary = original.duplicate(true)
+	expected.mint = chosen
+	check(Store.equivalent(app.campaign.target(app.run,1),expected) and app.run.bag["mint-"+chosen]==0,"Real mint button preserves original nature and all unrelated fields")
+	var dual: Array = app.run.party.filter(func(entry):return study.abilities(int(entry.speciesId)).size()==2 and entry.hp>0)
+	check(not dual.is_empty(),"Local capture offers a species with two normal abilities")
+	if dual.is_empty(): return
+	app._select_member(int(dual[0].id))
+	expected = dual[0].duplicate(true)
+	expected.abilitySlot = study.next_slot(expected)
+	money = app.run.money
+	button(app,"buy_ability-capsule")
+	check(app.run.money==money-150,"Real capsule purchase costs 150")
+	button(app,"use_capsule")
+	check(Store.equivalent(app.campaign.target(app.run,int(expected.id)),expected) and app.run.bag["ability-capsule"]==0,"Actual capsule swaps only the normal ability slot")
+	check(app.travel_buttons.use_capsule.disabled,"No capsule remains after use")
+	await capture(app,directory,"21-capsule-after")
+	snapshot = app.run.duplicate(true)
+	app._load_game()
+	check(app.save_warning.is_empty() and Store.equivalent(snapshot,app.run),"Mint, nature and new ability survive exact journal replay")
+	captured.traits = true
+
+func _passive_preview(app: Control, directory: String) -> void:
+	var original: Dictionary = app.run
+	var study: RefCounted = app.campaign.progression
+	var member: Dictionary = study.create_member(1,1,"QA",13)
+	member.moves = ["vine-whip"]
+	var defender: Dictionary = study.create_member(10000,95,"QA",5)
+	defender.abilitySlot = 2
+	var fixture: Dictionary = app.rules.encounter(app.campaign.create("passive-ui",1),app.campaign.locations[0])
+	fixture.units = [app.rules.member_unit(member,{"x":2,"y":7}),app.rules.member_unit(defender,{"x":3,"y":7})]
+	fixture.units[1].team = "enemy"
+	fixture.units[1].facing = 2
+	fixture.queue = [1,10000]
+	var snapshot: Dictionary = fixture.duplicate(true)
+	var plan: Dictionary = app.rules.attack_plan(fixture,10000,{},"vine-whip")
+	check(plan.ok and plan.sturdy and Store.equivalent(fixture,snapshot),"Sturdy forecast is visible without RNG or mutation")
+	var result: Dictionary = app.rules.attack(fixture,10000,"vine-whip")
+	check(result.ok and result.state.units[1].hp==1,"Displayed passive comes from an actual survival result")
+	app.run = original.duplicate(true)
+	app.run.phase = "battle"
+	app.run.stage = 0
+	app.run.battle = fixture
+	app._refresh()
+	app._show_plan(fixture.units[1],plan)
+	check("Robustez" in app.target_info.text,"Target card explains the passive")
+	await capture(app,directory,"22-sturdy-preview")
+	app.run.battle = result.state
+	app._refresh()
+	app._show_plan(result.state.units[1],{"ok":false,"reason":"Robustez ha resistido: conserva 1 PS."})
+	app.combat_feedback.present(fixture,plan,result.hits)
+	app.combat_feedback.present_abilities(result.state,result.state.abilityEvents)
+	check("ability" in app.combat_feedback.last_kinds,"Actual passive gets a dedicated on-board label")
+	await capture(app,directory,"23-sturdy-trigger")
+	app.run = original
+	app.combat_feedback.clear()
+	app._refresh()
 
 func _bounds(node: Node, app: Control, viewport: Rect2) -> void:
 	if node is Window: return

@@ -18,7 +18,7 @@ func load_campaign(_rules: RefCounted) -> Dictionary:
 	if not envelope.get("payload") is String or not envelope.get("checksum") is String or envelope.payload.sha256_text() != envelope.checksum: return {"ok":false,"reason":"Campaña incompleta o alterada. Se conserva el archivo."}
 	if parser.parse(envelope.payload) != OK or not parser.data is Dictionary: return {"ok":false,"reason":"Contenido de campaña no válido."}
 	var payload: Dictionary = parser.data
-	if payload.get("schema") != "kanto" or (payload.get("version") != 1 and payload.get("version") != 2 and payload.get("version") != 3 and payload.get("version") != 4 and payload.get("version") != 5 and payload.get("version") != 6 and payload.get("version") != 7 and payload.get("version") != 8 and payload.get("version") != 9) or not payload.get("seed") is String or payload.seed.length() > 64 or not (payload.get("starter") is int or payload.get("starter") is float) or payload.starter != int(payload.starter) or int(payload.starter) not in [1,4,7] or not payload.get("commands") is Array or payload.commands.size() > 4000 or not payload.get("state") is Dictionary: return {"ok":false,"reason":"Formato de campaña incompatible. Se conserva el archivo."}
+	if payload.get("schema") != "kanto" or (payload.get("version") != 1 and payload.get("version") != 2 and payload.get("version") != 3 and payload.get("version") != 4 and payload.get("version") != 5 and payload.get("version") != 6 and payload.get("version") != 7 and payload.get("version") != 8 and payload.get("version") != 9 and payload.get("version") != 10) or not payload.get("seed") is String or payload.seed.length() > 64 or not (payload.get("starter") is int or payload.get("starter") is float) or payload.starter != int(payload.starter) or int(payload.starter) not in [1,4,7] or not payload.get("commands") is Array or payload.commands.size() > 4000 or not payload.get("state") is Dictionary: return {"ok":false,"reason":"Formato de campaña incompatible. Se conserva el archivo."}
 	var edition_rules: RefCounted
 	match int(payload.version):
 		1: edition_rules = load("res://core/kanto_run.gd").new()
@@ -30,6 +30,7 @@ func load_campaign(_rules: RefCounted) -> Dictionary:
 		7: edition_rules = load("res://core/vitality_run.gd").new()
 		8: edition_rules = load("res://core/gym_run.gd").new()
 		9: edition_rules = load("res://core/revive_run.gd").new()
+		10: edition_rules = load("res://core/traits_run.gd").new()
 	var replay: Dictionary = edition_rules.create(payload.seed,int(payload.starter))
 	for command: Variant in payload.commands:
 		if not command is Dictionary: return {"ok":false,"reason":"Historial de campaña no válido."}

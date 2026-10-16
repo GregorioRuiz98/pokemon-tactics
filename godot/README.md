@@ -1,10 +1,10 @@
-# Pokémon Tactics — Kanto Windows 0.14.8
+# Pokémon Tactics — Kanto Windows 0.14.9
 
-Muestra de Paleta hasta Brock con elección de inicial, cuatro encuentros, captura local, tienda y debilitados recuperables con Revivir. Esta revisión añade Revivir por150 ₽ y50% de PS máximos, solo en la tienda. Mantiene el límite por gimnasio. Mantiene encuentros y repertorios de Let’s Go combinados.
+Muestra de Paleta hasta Brock con elección de inicial, cuatro encuentros, captura local, tienda y debilitados recuperables con Revivir. Esta revisión añade25 naturalezas, habilidades normales y objetos para modificarlas. Mantiene Revivir150 ₽/50% de PS y el límite por gimnasio. Mantiene encuentros y repertorios de Let’s Go combinados.
 
 ## Jugar
 
-Abrir PokemonTactics.exe desde la distribución. Funciona offline sin editor, Node ni servidor. Incluye LEEME, créditos/licencias y SHA256SUMS. Elige **Nueva campaña** para usar las reglas nuevas; los guardados0.14.0–0.14.7 continúan como Clásica con su versión original, conservando sus reglas y batalla. Al empezar otra se guarda copia de la anterior.
+Abrir PokemonTactics.exe desde la distribución. Funciona offline sin editor, Node ni servidor. Incluye LEEME, créditos/licencias y SHA256SUMS. Elige **Nueva campaña** para usar las reglas nuevas; los guardados0.14.0–0.14.8 continúan como Clásica con su versión original, conservando sus reglas y batalla. Al empezar otra se guarda copia de la anterior.
 
 - Oak entrega un inicial de nivel5, dos pociones y120 ₽. PS/bajas persisten; estados/PT y etapas de atributos se restablecen por combate. Si no quedan vivos termina la campaña.
 - Tras victoria, cada superviviente gana EXP y puede subir/aprender. Cada subida recupera tantos PS como aumenten sus PS máximos, incluida la evolución automática. Un Pokémon a 20/30 pasa a 23/33; los debilitados no reviven por subir de nivel. Captura local ya sorteada y guardada, luego tienda. Brock da medalla, dinero y su Onix de nivel14, como insignia de mayor nivel. Se admiten duplicados provisionalmente.
@@ -27,7 +27,7 @@ Guardado después de cada orden en `%APPDATA%/PokemonTacticsLab/kanto-save.json`
 
 Cuatro mapas cenitales12×10 y catálogo de32 especies/doce líneas, con104 adaptaciones de movimientos reales. Los Pokémon capturables siguen siendo los de las tablas terrestres de Let’s Go combinadas, no todo el catálogo. Aprendizaje, PT, alcance y algunos efectos están adaptados: no es una réplica completa del cartucho. Pikachu20 y Graveler36 siguen como umbrales adaptados de evolución automática, confirmados por el usuario en lugar de piedra/intercambio. Los aprendizajes proceden de Let’s Go; los efectos que se traducen al sistema táctico se explican en cada habilidad. Oddish/Bellsprout evolucionan al21; Gloom/Weepinbell con Piedra Hoja80 ₽, sin curar.
 
-Bases reales, IV15/EV0/naturaleza neutra y PS×4 tácticos. EXP220/350/500/650 por encuentro, coste siguiente nivel40+10L, techo técnico100 y límite activo14 por Brock. El equilibrio no está cerrado: la política automática de prueba completa con Bulbasaur/lgpe-9 y Charmander/lgpe-1, mientras Squirtle pierde pronto en las semillas ensayadas (Burbuja al9). No son tasas humanas.
+Bases reales, IV15/EV0 y modificadores de naturaleza y PS×4 tácticos. EXP220/350/500/650 por encuentro, coste siguiente nivel40+10L, techo técnico100 y límite activo14 por Brock. El equilibrio no está cerrado: la política automática de prueba completa con Bulbasaur/lgpe-9 y Charmander/lgpe-1, mientras Squirtle pierde pronto en las semillas ensayadas (Burbuja al9). No son tasas humanas.
 
 Sin isometría, alturas/cámara de mapas grandes, PC, pasivas, clima ni todos los estados. Se mantienen los límites narrativos del14: textos de viaje y paquete/Pokédex resumidos, sin exploración libre, rival inicial, Ruta22 opcional o entrenadores secundarios. Liga/legendarios pertenecen a entregas posteriores.
 
@@ -43,6 +43,8 @@ npm run godot:test:tactics
 npm run godot:test:level-hp
 npm run godot:test:gym-caps
 npm run godot:test:revive
+npm run godot:test:traits
+npm run godot:test:traits:journey
 npm run godot:test:tactics:journey
 npm run godot:test:letsgo
 npm run godot:test:letsgo:journey
@@ -58,7 +60,7 @@ npm run godot:qa:export
 npm run godot:qa:campaign:export
 ```
 
-Resultados temporales ../../work/qa-sprint-14-revive; paquete ../releases/pokemon-tactics-0.14.8/windows respecto a la raíz. Las pruebas del .exe no consultan el editor. QA usa archivos aislados, controles y eventos de viewport; no sustituye partidas humanas. Motor/plantillas/cachés/ZIP fuera de Git.
+Resultados temporales ../../work/qa-sprint-14-traits; paquete ../releases/pokemon-tactics-0.14.9/windows respecto a la raíz. Las pruebas del .exe no consultan el editor. QA usa archivos aislados, controles y eventos de viewport; no sustituye partidas humanas. Motor/plantillas/cachés/ZIP fuera de Git.
 
 Importadores explícitos: import-progression.py (Python/Pillow ya disponibles mediante PYTHONPATH=../../work/balance-python) e import-feedback.mjs (jsfxr local). import-shop.py añade datos/compatibilidad de MT reutilizando PokéAPI y los recursos existentes. Referencias/hashes en progression-provenance, feedback-provenance y shop-provenance. No ejecutar godot:import para ocultar discrepancias: regenera referencias del laboratorio desde la web, que deben conservarse.
 
@@ -80,4 +82,12 @@ Parálisis solo reduce movimiento a la mitad, sin alterar iniciativa ni perder a
 
 [Límites por gimnasio0.14.7](../docs/SPRINT_14_GYM_CAPS.md): Nueva campaña usa edición8. Tope del siguiente líder pendiente, calculado desde el insignia de mayor nivel. Actualmente solo Brock,14; al terminar la muestra se conserva14. No se implementan los gimnasios siguientes en esta revisión.
 
-[Revivir0.14.8](../docs/SPRINT_14_REVIVE.md): Nueva campaña usa edición9. Los archivos anteriores conservan sus reglas; la copia al reiniciar se mantiene.
+[Revivir0.14.8](../docs/SPRINT_14_REVIVE.md): Esa regla de Revivir continúa en edición10. Los archivos anteriores conservan sus reglas; la copia al reiniciar se mantiene.
+
+## Naturalezas y habilidades0.14.9
+
+Nueva campaña usa edición10. Un Pokémon recibe naturaleza y habilidad normal al obtenerlo, con sorteo separado y persistido; inspeccionar/cargar/evolucionar no lo vuelve a sortear. Las25 naturalezas aplican+10%/−10% a los atributos correspondientes (cinco son neutras), sin modificar PS.
+
+Mentas100 ₽: el selector de tienda permite elegir uno de21 efectos y la ficha muestra los valores antes/después. Se conserva el nombre de la naturaleza original. Cápsula Habilidad150 ₽: alterna dos habilidades normales cuando la especie dispone de ambas; vista previa y sin ocupar el equipable. Solo en tienda y en miembros vivos; no consumir si no puede cambiar nada. No hay habilidades ocultas ni Parche Habilidad en esta entrega.
+
+Trece pasivas activas: Espesura, Mar Llamas, Torrente, Enjambre, Polvo Escudo, Mudar, Ojo Compuesto, Vista Lince, Tumbos, Agallas, Elec. Estática, Cabeza Roca y Robustez. Clorofila y Fuga conservan su descripción pero esperan clima/huida: no tienen efecto en los escenarios actuales. Robustez respeta el golpe agregado de los multiimpactos del prototipo; no se implementan impactos individuales aquí. [Reglas, adaptaciones y evidencia](../docs/SPRINT_14_TRAITS.md).
