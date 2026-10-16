@@ -59,6 +59,10 @@ var composition_input: OptionButton
 var mode_input: OptionButton
 var variance_input: OptionButton
 var sound: AudioStreamPlayer
+var combat_feedback: Control
+var last_sound_requested: String = ""
+const Feedback = preload("res://ui/combat_feedback.gd")
+const AUDIO = {"select":preload("res://assets/audio/select.wav"),"hit":preload("res://assets/audio/hit.wav"),"victory":preload("res://assets/audio/victory.wav"),"miss":preload("res://assets/audio/miss.wav"),"immune":preload("res://assets/audio/immune.wav"),"level-up":preload("res://assets/audio/level-up.wav")}
 
 func _ready():
 	for argument in OS.get_cmdline_user_args():
@@ -75,6 +79,9 @@ func _ready():
 	sound = AudioStreamPlayer.new()
 	sound.volume_db = -15
 	add_child(sound)
+	combat_feedback = Feedback.new()
+	combat_feedback.board = board
+	add_child(combat_feedback)
 	_refresh()
 	_boot()
 
@@ -303,6 +310,7 @@ func _rectify_movement() -> void:
 	if not result.ok:
 		hint.text = result.reason
 		return
+	combat_feedback.clear()
 	state = result.state
 	history = result.commands
 	pending = {}
@@ -361,7 +369,7 @@ func _build_dialogs():
 	add_child(new_dialog)
 	help_dialog = AcceptDialog.new()
 	help_dialog.title = "Cómo jugar"
-	help_dialog.dialog_text = "Un desplazamiento y una acción, en cualquier orden.\nEl menú de órdenes aparece a la derecha en turnos aliados.\n\nClic en casilla azul: mover. Clic en rival: ataque básico.\nHabilidades / A abre los movimientos; 1/2/3 son atajos directos.\nLas habilidades propias se ejecutan al pulsarlas.\nSolo se confirma si puedes dañar o alterar a un aliado.\n\nRectificar movimiento / R devuelve a la casilla anterior,\ncon su orientación y presupuesto. No funciona si ya has\natacado, usado otra acción o terminado el turno.\nNo recupera PS, PT, ataques, estados ni tiradas.\n\nOrientar y terminar / F permite elegir una dirección.\nFlechas y Enter: recorrer / seleccionar casilla.\nClic derecho o Escape: cancelar selección; F8: continuar.\nAliados atravesables; destinos ocupados inválidos.\nGuardado tras cada orden; independiente de la versión web."
+	help_dialog.dialog_text = "Un desplazamiento y una acción, en cualquier orden.\nEl menú de órdenes aparece a la derecha en turnos aliados.\n\nClic en casilla azul: mover. Clic en rival: ataque básico.\nHabilidades / A abre los movimientos; 1 a 5 son atajos directos.\nLas habilidades propias se ejecutan al pulsarlas.\nSolo se confirma si puedes dañar o alterar a un aliado.\n\nRectificar movimiento / R devuelve a la casilla anterior,\ncon su orientación y presupuesto. No funciona si ya has\natacado, usado otra acción o terminado el turno.\nNo recupera PS, PT, ataques, estados ni tiradas.\n\nOrientar y terminar / F permite elegir una dirección.\nFlechas y Enter: recorrer / seleccionar casilla.\nClic derecho o Escape: cancelar selección; F8: continuar.\nAliados atravesables; destinos ocupados inválidos.\nGuardado tras cada orden; independiente de la versión web."
 	add_child(help_dialog)
 	credits_dialog = AcceptDialog.new()
 	credits_dialog.title = "Créditos y recursos"
@@ -396,6 +404,7 @@ func _start_from_dialog():
 		save_warning = preserved.reason
 		_refresh()
 		return
+	combat_feedback.clear()
 	mode = "current" if mode_input.selected == 0 else "classic"
 	state = rules.create(seed_input.text, 0.05 if variance_input.selected == 0 else 0.1, "starters" if composition_input.selected == 0 else "mixed", mode)
 	history = []
@@ -419,6 +428,7 @@ func _load_game():
 		save_warning = result.reason
 		_refresh()
 		return
+	combat_feedback.clear()
 	state = result.state
 	history = result.commands
 	mode = result.mode
@@ -460,7 +470,7 @@ func _refresh():
 	saved.tooltip_text = save_warning
 	saved.add_theme_color_override("font_color", MUTED if save_warning.is_empty() else GOLD)
 	command_panel.visible = _player_turn()
-	var menu_height: float = 330 if action_page else (170 if selecting in ["attack", "finish"] or not pending.is_empty() else 240)
+	var menu_height: float = minf(size.y - 160,170 + 54 * (rules.profile(Rules.active(state)).actions_for(Rules.active(state)).size() if not state.is_empty() and state.outcome == "playing" else 3)) if action_page else (170 if selecting in ["attack", "finish"] or not pending.is_empty() else 240)
 	command_panel.offset_top = -menu_height / 2
 	command_panel.offset_bottom = menu_height / 2
 	main_commands.visible = pending.is_empty() and selecting == "auto" and not action_page
@@ -561,13 +571,15 @@ func _friendly_risk(plan: Dictionary) -> bool:
 func _show_plan(unit: Dictionary, plan: Dictionary):
 	target_panel.visible = true
 	target_portrait.texture = faces[int(unit.speciesId)]
-	target_info.text = "%s · %d / %d PS\n%s" % [unit.name, unit.hp, unit.maxHp, _type_names(unit.types)]
+	target_info.text = "%s · %d / %d PS\n%s" % [unit.name + (" · Nv. %d" % unit.level if unit.has("level") else ""), unit.hp, unit.maxHp, _type_names(unit.types)]
 	if unit.status != null: target_info.text += " · " + _status_name(unit.status.kind)
 	if not plan.ok:
 		target_info.text += "\n\n" + plan.reason
 		return
 	if _friendly_risk(plan): target_info.text = "¡PELIGRO: alcanza a aliados!\n" + target_info.text
 	target_info.text += "\n\n%s · %d PT\n%d PS · %d %% · ×%s" % [plan.name, plan.cost, plan.damage, plan.accuracy, str(plan.multiplier)]
+	if plan.category != "status": target_info.text += "\nSTAB ×%s · tipos ×%s" % [str(plan.stab),str(plan.multiplier)]
+	if plan.get("statChange") != null: target_info.text += "\n%s: %s%d etapas" % [{"attack":"Ataque","defense":"Defensa","speed":"Velocidad"}.get(plan.statChange.stat,plan.statChange.stat),"+" if plan.statChange.stages > 0 else "",plan.statChange.stages]
 	if plan.side != null: target_info.text += " · " + {"front": "frente", "flank": "flanco", "rear": "espalda"}[plan.side]
 	if plan.heal: target_info.text += "\nRecupera %d PS" % plan.heal
 	if plan.guard: target_info.text += "\nProtege hasta su próximo turno."
@@ -672,6 +684,8 @@ func _confirm():
 	_commit(pending.duplicate(true))
 
 func _commit(command: Dictionary):
+	var before: Dictionary = state
+	var plan: Dictionary = rules.attack_plan(state,int(command.target),{},command.get("actionId","basic")) if command.kind == "attack" else {}
 	var result = rules.apply_command(state, command)
 	if not result.ok:
 		hint.text = result.reason
@@ -685,11 +699,13 @@ func _commit(command: Dictionary):
 	_save() # Persist accepted orders before presentation or sound.
 	_refresh()
 	board.grab_focus()
-	_play("victory" if state.outcome == "victory" else ("hit" if command.kind == "attack" else "select"))
+	if command.kind == "attack": combat_feedback.present(before,plan,result.get("hits",[]))
+	_play("victory" if state.outcome == "victory" else (combat_feedback.last_sound if command.kind == "attack" else "select"))
 
 func _play(name: String):
-	if muted or qa_running: return
-	sound.stream = load("res://assets/audio/%s.wav" % name)
+	last_sound_requested = name
+	if muted or qa_running or not AUDIO.has(name): return
+	sound.stream = AUDIO[name]
 	sound.play()
 
 func _toggle_sound():
@@ -719,7 +735,7 @@ func _unhandled_key_input(event):
 		KEY_F: _select_finish()
 		KEY_F8: _load_game()
 		KEY_F1: menu.show_popup()
-		KEY_1, KEY_2, KEY_3:
+		KEY_1, KEY_2, KEY_3, KEY_4, KEY_5:
 			if not _player_turn(): return
 			var index = event.keycode - KEY_1
 			var entries = rules.profile(Rules.active(state)).actions_for(Rules.active(state))

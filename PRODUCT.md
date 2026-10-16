@@ -54,8 +54,8 @@ Esta sección sustituye, como objetivo futuro, el inicio con tres aleatorios, la
 | K06 | Mapas más grandes | Más espacio y decisiones de terreno que los tableros actuales; tamaño y número de enemigos pendientes de prueba |
 | K07 | Gachapón tras cada combate ganado | Obtener un Pokémon aleatorio de la ruta o zona, con presentación de captura; no comprar reclutas de una oferta genérica como mecanismo principal |
 | K08 | Tienda después de la captura | Flujo de victoria → captura → tienda → preparación → siguiente encuentro |
-| K09 | Caramelos Raros para evolucionar | Muestra 14: un caramelo por etapa sin requisito de nivel, decisión provisional confirmada; requisitos posteriores pendientes |
-| K10 | Mejorar estadísticas en tienda | Muestra 14: +5 a una estadística por compra, máximo dos compras totales por Pokémon; precio provisional 80 |
+| K09 | Caramelos Raros para evolucionar | Revisión 0.14.1: nivel mínimo + un caramelo por etapa; no concede niveles, última decisión del usuario |
+| K10 | Crecimiento de estadísticas por nivel | Sustituye entrenamiento por dinero en partidas nuevas; moneda reservada para caramelos/consumibles y futuras compras |
 | K11 | Liga Pokémon y rival | Cierre principal de la campaña; no sustituirlo por un combate legendario |
 | K12 | Legendarios después de la Liga | Dos desafíos alternativos: Articuno/Zapdos/Moltres y Mew/Mewtwo; siguen excluidos de capturas, inicio y reclutamiento |
 | K13 | Inicio por indicación expresa | El usuario autorizó sprint 13 con «pues empieza»; no extenderlo automáticamente al resto de la campaña ni a publicación |
@@ -144,3 +144,12 @@ La muestra incluye cuatro encuentros (Ruta 1, Ruta 2, Bosque Verde y Brock), tab
 Mapas cenitales de prueba 12×10; no cumplen aún el objetivo de escala/isometría/alturas, reservado a 15. Paleta/Ciudad Verde/Plateada aparecen mediante pantallas de viaje y textos; no hay exploración libre ni recreación completa de acontecimientos. Paquete/Pokédex resumidos narrativamente; combate inicial del rival, Ruta 22 opcional y entrenadores secundarios pendientes. El final de la muestra es Brock; no la Liga.
 
 Guardado de campaña independiente kanto/versión 1, con sorteo y órdenes persistidos, sin importar ni sobrescribir web/laboratorio. Regenerar futuras reglas exige edición nueva o migración. Las simulaciones de 14 son diagnóstico provisional, sin autorización automática para cambiar fórmulas de daño del laboratorio.
+
+
+### Revisión de progresión — decisión posterior del 16 de octubre
+
+El usuario sustituye el entrenamiento por dinero por niveles que aumentan estadísticas y pide dos roles por línea, definidos mediante movimientos. Confirma cuatro movimientos configurables **más** un básico fijo sin tipo ni STAB (cinco acciones) y evolución mediante Caramelo Raro con restricción de nivel. El Caramelo no sube niveles. La regla anterior de evolución sin nivel y entrenamiento +5 pagado queda vigente solo en edición1.
+
+Edición2 implementada en 0.14.1: inicial5, EXP por victoria a cada superviviente, curvas deterministas sin curación, aprendizaje/biblioteca y preparación gratuita, diez líneas y 26 especies con 51 adaptaciones tácticas. Pikachu20 y Graveler36 son umbrales provisionales de métodos antes por piedra/intercambio. Lectura de STAB en previsión, fallos/inmunidades con imágenes y audio diferentes. Datos exactos, roles, límites y propuestas propias en docs/DESIGN_LEVELS_ROLES.md.
+
+Las propuestas de amenazas por casilla, habilidades pasivas, apoyos por flanqueo, MT, alturas e interacciones elementales quedan como futuras entregas. Se adelanta parte de 16, sin iniciar mapas/isometría de 15, extender Kanto ni publicar. Guardados1 siguen sus reglas y los nuevos usan2; se conserva copia al reiniciar para probar la progresión nueva.

@@ -1,0 +1,5719 @@
+{
+  "version": 2,
+  "species": [
+    {
+      "id": 1,
+      "name": "Bulbasaur",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 45,
+        "attack": 49,
+        "defense": 49,
+        "special-attack": 65,
+        "special-defense": 65,
+        "speed": 45
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 40,
+          "columns": 3,
+          "rows": 8,
+          "frames": 3,
+          "durations": [
+            40,
+            6,
+            6
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/pokemon/1/Idle.png"
+        },
+        "Walk": {
+          "width": 40,
+          "height": 40,
+          "columns": 6,
+          "rows": 8,
+          "frames": 6,
+          "durations": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "anchorX": 19.5,
+          "anchorY": 23.5,
+          "path": "assets/pokemon/1/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/1",
+        "https://pokeapi.co/api/v2/pokemon-species/1"
+      ],
+      "role": "Desgaste y recuperación",
+      "movement": 4,
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Placaje",
+            "description": "Ataque físico básico de tipo Normal.",
+            "type": "normal",
+            "cost": 0,
+            "range": 1,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "vine-whip",
+            "name": "Látigo Cepa",
+            "description": "Golpea a dos casillas con sus lianas.",
+            "type": "grass",
+            "cost": 1,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 45,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "mega-drain",
+            "name": "Megaagotar",
+            "description": "Absorbe la mitad del daño causado como PS.",
+            "type": "grass",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "drain",
+            "power": 40,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Placaje",
+            "description": "Ataque físico básico de tipo Normal.",
+            "type": "normal",
+            "cost": 0,
+            "range": 1,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "vine-whip",
+            "name": "Látigo Cepa",
+            "description": "Golpea a dos casillas con sus lianas.",
+            "type": "grass",
+            "cost": 1,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 45,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "mega-drain",
+            "name": "Megaagotar",
+            "description": "Absorbe la mitad del daño causado como PS.",
+            "type": "grass",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "drain",
+            "power": 40,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          }
+        ]
+      },
+      "face": "assets/portraits/1/Normal.png"
+    },
+    {
+      "id": 2,
+      "name": "Ivysaur",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 62,
+        "defense": 63,
+        "special-attack": 80,
+        "special-defense": 80,
+        "speed": 60
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            40,
+            12,
+            12,
+            12
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/2/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/2/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/2",
+        "https://pokeapi.co/api/v2/pokemon-species/2"
+      ],
+      "face": "assets/kanto/2/Normal.png",
+      "movement": 4,
+      "role": "Desgaste y recuperación",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Placaje",
+            "description": "Ataque físico básico de tipo Normal.",
+            "type": "normal",
+            "cost": 0,
+            "range": 1,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "vine-whip",
+            "name": "Látigo Cepa",
+            "description": "Golpea a dos casillas con sus lianas.",
+            "type": "grass",
+            "cost": 1,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 45,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "razor-leaf",
+            "name": "Hoja Afilada",
+            "description": "Hojas en cruz; alcanza también a aliados.",
+            "type": "grass",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 95,
+            "target": "enemy",
+            "kind": "area-damage",
+            "power": 55,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Placaje",
+            "description": "Ataque físico básico de tipo Normal.",
+            "type": "normal",
+            "cost": 0,
+            "range": 1,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "vine-whip",
+            "name": "Látigo Cepa",
+            "description": "Golpea a dos casillas con sus lianas.",
+            "type": "grass",
+            "cost": 1,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 45,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "razor-leaf",
+            "name": "Hoja Afilada",
+            "description": "Hojas en cruz; alcanza también a aliados.",
+            "type": "grass",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 95,
+            "target": "enemy",
+            "kind": "area-damage",
+            "power": 55,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "name": "Venusaur",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 82,
+        "defense": 83,
+        "special-attack": 100,
+        "special-defense": 100,
+        "speed": 80
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            30,
+            16,
+            12,
+            16
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/3/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/3/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/3",
+        "https://pokeapi.co/api/v2/pokemon-species/3"
+      ],
+      "face": "assets/kanto/3/Normal.png",
+      "movement": 4,
+      "role": "Desgaste y recuperación",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Placaje",
+            "description": "Ataque físico básico de tipo Normal.",
+            "type": "normal",
+            "cost": 0,
+            "range": 1,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "vine-whip",
+            "name": "Látigo Cepa",
+            "description": "Golpea a dos casillas con sus lianas.",
+            "type": "grass",
+            "cost": 1,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 45,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "razor-leaf",
+            "name": "Hoja Afilada",
+            "description": "Hojas en cruz; alcanza también a aliados.",
+            "type": "grass",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 95,
+            "target": "enemy",
+            "kind": "area-damage",
+            "power": 55,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Placaje",
+            "description": "Ataque físico básico de tipo Normal.",
+            "type": "normal",
+            "cost": 0,
+            "range": 1,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "vine-whip",
+            "name": "Látigo Cepa",
+            "description": "Golpea a dos casillas con sus lianas.",
+            "type": "grass",
+            "cost": 1,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 45,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "razor-leaf",
+            "name": "Hoja Afilada",
+            "description": "Hojas en cruz; alcanza también a aliados.",
+            "type": "grass",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 95,
+            "target": "enemy",
+            "kind": "area-damage",
+            "power": 55,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "name": "Charmander",
+      "types": [
+        "fire"
+      ],
+      "baseStats": {
+        "hp": 39,
+        "attack": 52,
+        "defense": 43,
+        "special-attack": 60,
+        "special-defense": 50,
+        "speed": 65
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            12,
+            8,
+            8,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/pokemon/4/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            6,
+            8,
+            6,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/pokemon/4/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/4",
+        "https://pokeapi.co/api/v2/pokemon-species/4"
+      ],
+      "role": "Ofensiva especial y quemadura",
+      "movement": 4,
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Ascuas",
+            "description": "Ataque especial básico de tipo Fuego.",
+            "type": "fire",
+            "cost": 0,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "flame-burst",
+            "name": "Pirotecnia",
+            "description": "Fuego en cruz; incluye aliados. Sin ascuas persistentes.",
+            "type": "fire",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "area-damage",
+            "power": 50,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "will-o-wisp",
+            "name": "Fuego Fatuo",
+            "description": "Quema: daño al cerrar turno y mitad de ataque físico.",
+            "type": "fire",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 85,
+            "target": "enemy",
+            "kind": "status",
+            "effect": {
+              "kind": "burn",
+              "chance": 100,
+              "duration": 3
+            },
+            "powder": false,
+            "embers": false
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Ascuas",
+            "description": "Ataque especial básico de tipo Fuego.",
+            "type": "fire",
+            "cost": 0,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "flame-burst",
+            "name": "Pirotecnia",
+            "description": "Fuego en cruz; incluye aliados. Sin ascuas persistentes.",
+            "type": "fire",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "area-damage",
+            "power": 50,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "will-o-wisp",
+            "name": "Fuego Fatuo",
+            "description": "Quema: daño al cerrar turno y mitad de ataque físico.",
+            "type": "fire",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 85,
+            "target": "enemy",
+            "kind": "status",
+            "effect": {
+              "kind": "burn",
+              "chance": 100,
+              "duration": 3
+            },
+            "powder": false,
+            "embers": false
+          }
+        ]
+      },
+      "face": "assets/portraits/4/Normal.png"
+    },
+    {
+      "id": 5,
+      "name": "Charmeleon",
+      "types": [
+        "fire"
+      ],
+      "baseStats": {
+        "hp": 58,
+        "attack": 64,
+        "defense": 58,
+        "special-attack": 80,
+        "special-defense": 65,
+        "speed": 80
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 56,
+          "columns": 6,
+          "rows": 8,
+          "frames": 6,
+          "durations": [
+            40,
+            2,
+            3,
+            3,
+            3,
+            2
+          ],
+          "anchorX": 15.5,
+          "anchorY": 31.5,
+          "path": "assets/kanto/5/Idle.png"
+        },
+        "Walk": {
+          "width": 24,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "anchorX": 11.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/5/Walk.png"
+        }
+      },
+      "authors": [
+        "<@!199989579682414592>",
+        "CHUNSOFT",
+        "Grimlin",
+        "bwappi"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/5",
+        "https://pokeapi.co/api/v2/pokemon-species/5"
+      ],
+      "face": "assets/kanto/5/Normal.png",
+      "movement": 4,
+      "role": "Ofensiva especial y quemadura",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Ascuas",
+            "description": "Ataque especial básico de tipo Fuego.",
+            "type": "fire",
+            "cost": 0,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "flamethrower",
+            "name": "Lanzallamas",
+            "description": "Área en cruz: afecta también a aliados, deja ascuas; 10 % de quemadura.",
+            "type": "fire",
+            "cost": 3,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "area-damage",
+            "power": 70,
+            "category": "special",
+            "secondary": {
+              "kind": "burn",
+              "chance": 10,
+              "duration": 3
+            },
+            "embers": true
+          },
+          {
+            "id": "dragon-tail",
+            "name": "Cola Dragón",
+            "description": "Desplaza al objetivo una casilla.",
+            "type": "dragon",
+            "cost": 2,
+            "range": 1,
+            "accuracy": 90,
+            "target": "enemy",
+            "kind": "push",
+            "power": 60,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Ascuas",
+            "description": "Ataque especial básico de tipo Fuego.",
+            "type": "fire",
+            "cost": 0,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "flamethrower",
+            "name": "Lanzallamas",
+            "description": "Área en cruz: afecta también a aliados, deja ascuas; 10 % de quemadura.",
+            "type": "fire",
+            "cost": 3,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "area-damage",
+            "power": 70,
+            "category": "special",
+            "secondary": {
+              "kind": "burn",
+              "chance": 10,
+              "duration": 3
+            },
+            "embers": true
+          },
+          {
+            "id": "dragon-tail",
+            "name": "Cola Dragón",
+            "description": "Desplaza al objetivo una casilla.",
+            "type": "dragon",
+            "cost": 2,
+            "range": 1,
+            "accuracy": 90,
+            "target": "enemy",
+            "kind": "push",
+            "power": 60,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "name": "Charizard",
+      "types": [
+        "fire",
+        "flying"
+      ],
+      "baseStats": {
+        "hp": 78,
+        "attack": 84,
+        "defense": 78,
+        "special-attack": 109,
+        "special-defense": 85,
+        "speed": 100
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 40,
+          "height": 48,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            15,
+            15,
+            15,
+            15
+          ],
+          "anchorX": 19.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/6/Idle.png"
+        },
+        "Walk": {
+          "width": 40,
+          "height": 48,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "anchorX": 19.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/6/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT",
+        "Emboarger"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/6",
+        "https://pokeapi.co/api/v2/pokemon-species/6"
+      ],
+      "face": "assets/kanto/6/Normal.png",
+      "movement": 4,
+      "role": "Ofensiva especial y quemadura",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Ascuas",
+            "description": "Ataque especial básico de tipo Fuego.",
+            "type": "fire",
+            "cost": 0,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "flamethrower",
+            "name": "Lanzallamas",
+            "description": "Área en cruz: afecta también a aliados, deja ascuas; 10 % de quemadura.",
+            "type": "fire",
+            "cost": 3,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "area-damage",
+            "power": 70,
+            "category": "special",
+            "secondary": {
+              "kind": "burn",
+              "chance": 10,
+              "duration": 3
+            },
+            "embers": true
+          },
+          {
+            "id": "dragon-tail",
+            "name": "Cola Dragón",
+            "description": "Desplaza al objetivo una casilla.",
+            "type": "dragon",
+            "cost": 2,
+            "range": 1,
+            "accuracy": 90,
+            "target": "enemy",
+            "kind": "push",
+            "power": 60,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Ascuas",
+            "description": "Ataque especial básico de tipo Fuego.",
+            "type": "fire",
+            "cost": 0,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "flamethrower",
+            "name": "Lanzallamas",
+            "description": "Área en cruz: afecta también a aliados, deja ascuas; 10 % de quemadura.",
+            "type": "fire",
+            "cost": 3,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "area-damage",
+            "power": 70,
+            "category": "special",
+            "secondary": {
+              "kind": "burn",
+              "chance": 10,
+              "duration": 3
+            },
+            "embers": true
+          },
+          {
+            "id": "dragon-tail",
+            "name": "Cola Dragón",
+            "description": "Desplaza al objetivo una casilla.",
+            "type": "dragon",
+            "cost": 2,
+            "range": 1,
+            "accuracy": 90,
+            "target": "enemy",
+            "kind": "push",
+            "power": 60,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "name": "Squirtle",
+      "types": [
+        "water"
+      ],
+      "baseStats": {
+        "hp": 44,
+        "attack": 48,
+        "defense": 65,
+        "special-attack": 50,
+        "special-defense": 64,
+        "speed": 43
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 32,
+          "columns": 8,
+          "rows": 8,
+          "frames": 8,
+          "durations": [
+            30,
+            2,
+            2,
+            4,
+            4,
+            4,
+            2,
+            2
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/pokemon/7/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            12,
+            8,
+            12,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/pokemon/7/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/7",
+        "https://pokeapi.co/api/v2/pokemon-species/7"
+      ],
+      "role": "Defensa y cobertura",
+      "movement": 4,
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Pistola Agua",
+            "description": "Ataque especial básico de tipo Agua.",
+            "type": "water",
+            "cost": 0,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "water-pulse",
+            "name": "Hidropulso",
+            "description": "Daño especial de Agua; adaptación sin confusión.",
+            "type": "water",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 60,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "cover",
+            "name": "Cobertura",
+            "description": "Protege a un aliado cercano o a sí mismo: recibe la mitad del daño hasta su próxima activación.",
+            "type": "normal",
+            "cost": 1,
+            "range": 1,
+            "accuracy": 100,
+            "target": "friendly",
+            "kind": "guard",
+            "embers": false
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Pistola Agua",
+            "description": "Ataque especial básico de tipo Agua.",
+            "type": "water",
+            "cost": 0,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "water-pulse",
+            "name": "Hidropulso",
+            "description": "Daño especial de Agua; adaptación sin confusión.",
+            "type": "water",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 60,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "cover",
+            "name": "Cobertura",
+            "description": "Protege a un aliado cercano o a sí mismo: recibe la mitad del daño hasta su próxima activación.",
+            "type": "normal",
+            "cost": 1,
+            "range": 1,
+            "accuracy": 100,
+            "target": "friendly",
+            "kind": "guard",
+            "embers": false
+          }
+        ]
+      },
+      "face": "assets/portraits/7/Normal.png"
+    },
+    {
+      "id": 8,
+      "name": "Wartortle",
+      "types": [
+        "water"
+      ],
+      "baseStats": {
+        "hp": 59,
+        "attack": 63,
+        "defense": 80,
+        "special-attack": 65,
+        "special-defense": 80,
+        "speed": 58
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 24,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            40,
+            2,
+            2,
+            2
+          ],
+          "anchorX": 11.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/8/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/8/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/8",
+        "https://pokeapi.co/api/v2/pokemon-species/8"
+      ],
+      "face": "assets/kanto/8/Normal.png",
+      "movement": 4,
+      "role": "Defensa y cobertura",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Pistola Agua",
+            "description": "Ataque especial básico de tipo Agua.",
+            "type": "water",
+            "cost": 0,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "water-pulse",
+            "name": "Hidropulso",
+            "description": "Daño especial de Agua; adaptación sin confusión.",
+            "type": "water",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 60,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "surf",
+            "name": "Surf",
+            "description": "Agua en cruz; alcanza también a aliados.",
+            "type": "water",
+            "cost": 3,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "area-damage",
+            "power": 65,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Pistola Agua",
+            "description": "Ataque especial básico de tipo Agua.",
+            "type": "water",
+            "cost": 0,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "water-pulse",
+            "name": "Hidropulso",
+            "description": "Daño especial de Agua; adaptación sin confusión.",
+            "type": "water",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 60,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "surf",
+            "name": "Surf",
+            "description": "Agua en cruz; alcanza también a aliados.",
+            "type": "water",
+            "cost": 3,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "area-damage",
+            "power": 65,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "name": "Blastoise",
+      "types": [
+        "water"
+      ],
+      "baseStats": {
+        "hp": 79,
+        "attack": 83,
+        "defense": 100,
+        "special-attack": 85,
+        "special-defense": 105,
+        "speed": 78
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 40,
+          "height": 40,
+          "columns": 8,
+          "rows": 8,
+          "frames": 8,
+          "durations": [
+            32,
+            12,
+            4,
+            4,
+            4,
+            4,
+            4,
+            8
+          ],
+          "anchorX": 19.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/9/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            14,
+            8,
+            14
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/9/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/9",
+        "https://pokeapi.co/api/v2/pokemon-species/9"
+      ],
+      "face": "assets/kanto/9/Normal.png",
+      "movement": 4,
+      "role": "Defensa y cobertura",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Pistola Agua",
+            "description": "Ataque especial básico de tipo Agua.",
+            "type": "water",
+            "cost": 0,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "water-pulse",
+            "name": "Hidropulso",
+            "description": "Daño especial de Agua; adaptación sin confusión.",
+            "type": "water",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 60,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "surf",
+            "name": "Surf",
+            "description": "Agua en cruz; alcanza también a aliados.",
+            "type": "water",
+            "cost": 3,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "area-damage",
+            "power": 65,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Pistola Agua",
+            "description": "Ataque especial básico de tipo Agua.",
+            "type": "water",
+            "cost": 0,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "water-pulse",
+            "name": "Hidropulso",
+            "description": "Daño especial de Agua; adaptación sin confusión.",
+            "type": "water",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 60,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "surf",
+            "name": "Surf",
+            "description": "Agua en cruz; alcanza también a aliados.",
+            "type": "water",
+            "cost": 3,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "area-damage",
+            "power": 65,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "name": "Caterpie",
+      "types": [
+        "bug"
+      ],
+      "baseStats": {
+        "hp": 45,
+        "attack": 30,
+        "defense": 35,
+        "special-attack": 20,
+        "special-defense": 20,
+        "speed": 45
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 32,
+          "columns": 10,
+          "rows": 8,
+          "frames": 10,
+          "durations": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            4,
+            10,
+            4
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/10/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 32,
+          "columns": 3,
+          "rows": 8,
+          "frames": 3,
+          "durations": [
+            10,
+            10,
+            10
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/10/Walk.png"
+        }
+      },
+      "face": "assets/kanto/10/Normal.png",
+      "movement": 4,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Placaje",
+            "type": "normal",
+            "power": 40,
+            "cost": 0,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Placaje · adaptación táctica para Kanto."
+          },
+          {
+            "id": "bug-bite",
+            "name": "Picadura",
+            "type": "bug",
+            "power": 60,
+            "cost": 2,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Picadura · adaptación táctica para Kanto."
+          },
+          {
+            "id": "protect",
+            "name": "Protección",
+            "type": "normal",
+            "power": 40,
+            "cost": 1,
+            "range": 0,
+            "kind": "guard",
+            "target": "self",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Protección · adaptación táctica para Kanto."
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Placaje",
+            "type": "normal",
+            "power": 40,
+            "cost": 0,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Placaje · adaptación táctica para Kanto."
+          },
+          {
+            "id": "bug-bite",
+            "name": "Picadura",
+            "type": "bug",
+            "power": 60,
+            "cost": 2,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Picadura · adaptación táctica para Kanto."
+          },
+          {
+            "id": "protect",
+            "name": "Protección",
+            "type": "normal",
+            "power": 40,
+            "cost": 1,
+            "range": 0,
+            "kind": "guard",
+            "target": "self",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Protección · adaptación táctica para Kanto."
+          }
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "name": "Metapod",
+      "types": [
+        "bug"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 20,
+        "defense": 55,
+        "special-attack": 25,
+        "special-defense": 25,
+        "speed": 30
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            10,
+            14,
+            10,
+            14
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/11/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 48,
+          "columns": 10,
+          "rows": 8,
+          "frames": 10,
+          "durations": [
+            4,
+            2,
+            2,
+            2,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "anchorX": 15.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/11/Walk.png"
+        }
+      },
+      "face": "assets/kanto/11/Normal.png",
+      "movement": 3,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Placaje",
+            "type": "normal",
+            "power": 40,
+            "cost": 0,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Placaje · adaptación táctica para Kanto."
+          },
+          {
+            "id": "harden",
+            "name": "Fortaleza",
+            "type": "normal",
+            "power": 40,
+            "cost": 1,
+            "range": 0,
+            "kind": "guard",
+            "target": "self",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Fortaleza · adaptación táctica para Kanto."
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Placaje",
+            "type": "normal",
+            "power": 40,
+            "cost": 0,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Placaje · adaptación táctica para Kanto."
+          },
+          {
+            "id": "harden",
+            "name": "Fortaleza",
+            "type": "normal",
+            "power": 40,
+            "cost": 1,
+            "range": 0,
+            "kind": "guard",
+            "target": "self",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Fortaleza · adaptación táctica para Kanto."
+          }
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "name": "Butterfree",
+      "types": [
+        "bug",
+        "flying"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 45,
+        "defense": 50,
+        "special-attack": 90,
+        "special-defense": 80,
+        "speed": 70
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 56,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 31.5,
+          "path": "assets/pokemon/12/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 56,
+          "columns": 12,
+          "rows": 8,
+          "frames": 12,
+          "durations": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 31.5,
+          "path": "assets/pokemon/12/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/12",
+        "https://pokeapi.co/api/v2/pokemon-species/12"
+      ],
+      "role": "Control y cobertura de tipos",
+      "movement": 4,
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Tornado",
+            "description": "Ataque especial básico de tipo Volador.",
+            "type": "flying",
+            "cost": 0,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "poison-powder",
+            "name": "Polvo Veneno",
+            "description": "Polvo en cruz, incluidos aliados. Planta, Veneno y Acero son inmunes.",
+            "type": "poison",
+            "cost": 1,
+            "range": 2,
+            "accuracy": 75,
+            "target": "enemy",
+            "kind": "area-status",
+            "effect": {
+              "kind": "poison",
+              "chance": 100,
+              "duration": 3
+            },
+            "powder": true,
+            "embers": false
+          },
+          {
+            "id": "confusion",
+            "name": "Confusión",
+            "description": "Daño especial Psíquico; adaptación sin estado de confusión.",
+            "type": "psychic",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 50,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Tornado",
+            "description": "Ataque especial básico de tipo Volador.",
+            "type": "flying",
+            "cost": 0,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "poison-powder",
+            "name": "Polvo Veneno",
+            "description": "Polvo en cruz, incluidos aliados. Planta, Veneno y Acero son inmunes.",
+            "type": "poison",
+            "cost": 1,
+            "range": 2,
+            "accuracy": 75,
+            "target": "enemy",
+            "kind": "area-status",
+            "effect": {
+              "kind": "poison",
+              "chance": 100,
+              "duration": 3
+            },
+            "powder": true,
+            "embers": false
+          },
+          {
+            "id": "confusion",
+            "name": "Confusión",
+            "description": "Daño especial Psíquico; adaptación sin estado de confusión.",
+            "type": "psychic",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 50,
+            "category": "special",
+            "secondary": null,
+            "embers": false
+          }
+        ]
+      },
+      "face": "assets/portraits/12/Normal.png"
+    },
+    {
+      "id": 13,
+      "name": "Weedle",
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 40,
+        "attack": 35,
+        "defense": 30,
+        "special-attack": 20,
+        "special-defense": 20,
+        "speed": 50
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            40,
+            8,
+            8,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/13/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 40,
+          "columns": 3,
+          "rows": 8,
+          "frames": 3,
+          "durations": [
+            8,
+            10,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/13/Walk.png"
+        }
+      },
+      "face": "assets/kanto/13/Normal.png",
+      "movement": 4,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Picotazo Veneno",
+            "type": "poison",
+            "power": 40,
+            "cost": 0,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": {
+              "kind": "poison",
+              "chance": 10,
+              "duration": 3
+            },
+            "embers": false,
+            "description": "Picotazo Veneno · adaptación táctica para Kanto."
+          },
+          {
+            "id": "bug-bite",
+            "name": "Picadura",
+            "type": "bug",
+            "power": 60,
+            "cost": 2,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Picadura · adaptación táctica para Kanto."
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Picotazo Veneno",
+            "type": "poison",
+            "power": 40,
+            "cost": 0,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": {
+              "kind": "poison",
+              "chance": 10,
+              "duration": 3
+            },
+            "embers": false,
+            "description": "Picotazo Veneno · adaptación táctica para Kanto."
+          },
+          {
+            "id": "bug-bite",
+            "name": "Picadura",
+            "type": "bug",
+            "power": 60,
+            "cost": 2,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Picadura · adaptación táctica para Kanto."
+          }
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "name": "Kakuna",
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 45,
+        "attack": 25,
+        "defense": 50,
+        "special-attack": 25,
+        "special-defense": 25,
+        "speed": 35
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 24,
+          "height": 40,
+          "columns": 6,
+          "rows": 8,
+          "frames": 6,
+          "durations": [
+            40,
+            1,
+            1,
+            4,
+            1,
+            1
+          ],
+          "anchorX": 11.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/14/Idle.png"
+        },
+        "Walk": {
+          "width": 24,
+          "height": 40,
+          "columns": 5,
+          "rows": 8,
+          "frames": 5,
+          "durations": [
+            8,
+            4,
+            4,
+            4,
+            10
+          ],
+          "anchorX": 11.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/14/Walk.png"
+        }
+      },
+      "face": "assets/kanto/14/Normal.png",
+      "movement": 3,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Picotazo Veneno",
+            "type": "poison",
+            "power": 40,
+            "cost": 0,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": {
+              "kind": "poison",
+              "chance": 10,
+              "duration": 3
+            },
+            "embers": false,
+            "description": "Picotazo Veneno · adaptación táctica para Kanto."
+          },
+          {
+            "id": "harden",
+            "name": "Fortaleza",
+            "type": "normal",
+            "power": 40,
+            "cost": 1,
+            "range": 0,
+            "kind": "guard",
+            "target": "self",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Fortaleza · adaptación táctica para Kanto."
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Picotazo Veneno",
+            "type": "poison",
+            "power": 40,
+            "cost": 0,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": {
+              "kind": "poison",
+              "chance": 10,
+              "duration": 3
+            },
+            "embers": false,
+            "description": "Picotazo Veneno · adaptación táctica para Kanto."
+          },
+          {
+            "id": "harden",
+            "name": "Fortaleza",
+            "type": "normal",
+            "power": 40,
+            "cost": 1,
+            "range": 0,
+            "kind": "guard",
+            "target": "self",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Fortaleza · adaptación táctica para Kanto."
+          }
+        ]
+      }
+    },
+    {
+      "id": 15,
+      "name": "Beedrill",
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 90,
+        "defense": 40,
+        "special-attack": 45,
+        "special-defense": 80,
+        "speed": 75
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 48,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "anchorX": 15.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/15/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 48,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "anchorX": 15.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/15/Walk.png"
+        }
+      },
+      "face": "assets/kanto/15/Normal.png",
+      "movement": 4,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Picotazo Veneno",
+            "type": "poison",
+            "power": 40,
+            "cost": 0,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": {
+              "kind": "poison",
+              "chance": 10,
+              "duration": 3
+            },
+            "embers": false,
+            "description": "Picotazo Veneno · adaptación táctica para Kanto."
+          },
+          {
+            "id": "bug-bite",
+            "name": "Picadura",
+            "type": "bug",
+            "power": 60,
+            "cost": 2,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Picadura · adaptación táctica para Kanto."
+          },
+          {
+            "id": "rock-smash",
+            "name": "Golpe Roca",
+            "type": "fighting",
+            "power": 40,
+            "cost": 2,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Golpe Roca · adaptación táctica para Kanto."
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Picotazo Veneno",
+            "type": "poison",
+            "power": 40,
+            "cost": 0,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": {
+              "kind": "poison",
+              "chance": 10,
+              "duration": 3
+            },
+            "embers": false,
+            "description": "Picotazo Veneno · adaptación táctica para Kanto."
+          },
+          {
+            "id": "bug-bite",
+            "name": "Picadura",
+            "type": "bug",
+            "power": 60,
+            "cost": 2,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Picadura · adaptación táctica para Kanto."
+          },
+          {
+            "id": "rock-smash",
+            "name": "Golpe Roca",
+            "type": "fighting",
+            "power": 40,
+            "cost": 2,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Golpe Roca · adaptación táctica para Kanto."
+          }
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "name": "Pidgey",
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "baseStats": {
+        "hp": 40,
+        "attack": 45,
+        "defense": 40,
+        "special-attack": 35,
+        "special-defense": 35,
+        "speed": 56
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 24,
+          "height": 40,
+          "columns": 5,
+          "rows": 8,
+          "frames": 5,
+          "durations": [
+            30,
+            4,
+            4,
+            4,
+            4
+          ],
+          "anchorX": 11.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/16/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 32,
+          "columns": 5,
+          "rows": 8,
+          "frames": 5,
+          "durations": [
+            6,
+            4,
+            4,
+            4,
+            4
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/16/Walk.png"
+        }
+      },
+      "face": "assets/kanto/16/Normal.png",
+      "movement": 4,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Tornado",
+            "type": "flying",
+            "power": 40,
+            "cost": 0,
+            "range": 2,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "special",
+            "secondary": null,
+            "embers": false,
+            "description": "Tornado · adaptación táctica para Kanto."
+          },
+          {
+            "id": "wing-attack",
+            "name": "Ataque Ala",
+            "type": "flying",
+            "power": 60,
+            "cost": 1,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Ataque Ala · adaptación táctica para Kanto."
+          },
+          {
+            "id": "whirlwind",
+            "name": "Remolino",
+            "type": "flying",
+            "power": 40,
+            "cost": 2,
+            "range": 2,
+            "kind": "push",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "special",
+            "secondary": null,
+            "embers": false,
+            "description": "Remolino · adaptación táctica para Kanto."
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Tornado",
+            "type": "flying",
+            "power": 40,
+            "cost": 0,
+            "range": 2,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "special",
+            "secondary": null,
+            "embers": false,
+            "description": "Tornado · adaptación táctica para Kanto."
+          },
+          {
+            "id": "wing-attack",
+            "name": "Ataque Ala",
+            "type": "flying",
+            "power": 60,
+            "cost": 1,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Ataque Ala · adaptación táctica para Kanto."
+          },
+          {
+            "id": "whirlwind",
+            "name": "Remolino",
+            "type": "flying",
+            "power": 40,
+            "cost": 2,
+            "range": 2,
+            "kind": "push",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "special",
+            "secondary": null,
+            "embers": false,
+            "description": "Remolino · adaptación táctica para Kanto."
+          }
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "name": "Pidgeotto",
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "baseStats": {
+        "hp": 63,
+        "attack": 60,
+        "defense": 55,
+        "special-attack": 50,
+        "special-defense": 50,
+        "speed": 71
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 48,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            40,
+            2,
+            4,
+            2
+          ],
+          "anchorX": 15.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/17/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            6,
+            10,
+            6,
+            10
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/17/Walk.png"
+        }
+      },
+      "face": "assets/kanto/17/Normal.png",
+      "movement": 4,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Tornado",
+            "type": "flying",
+            "power": 40,
+            "cost": 0,
+            "range": 2,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "special",
+            "secondary": null,
+            "embers": false,
+            "description": "Tornado · adaptación táctica para Kanto."
+          },
+          {
+            "id": "wing-attack",
+            "name": "Ataque Ala",
+            "type": "flying",
+            "power": 60,
+            "cost": 1,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Ataque Ala · adaptación táctica para Kanto."
+          },
+          {
+            "id": "whirlwind",
+            "name": "Remolino",
+            "type": "flying",
+            "power": 40,
+            "cost": 2,
+            "range": 2,
+            "kind": "push",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "special",
+            "secondary": null,
+            "embers": false,
+            "description": "Remolino · adaptación táctica para Kanto."
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Tornado",
+            "type": "flying",
+            "power": 40,
+            "cost": 0,
+            "range": 2,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "special",
+            "secondary": null,
+            "embers": false,
+            "description": "Tornado · adaptación táctica para Kanto."
+          },
+          {
+            "id": "wing-attack",
+            "name": "Ataque Ala",
+            "type": "flying",
+            "power": 60,
+            "cost": 1,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Ataque Ala · adaptación táctica para Kanto."
+          },
+          {
+            "id": "whirlwind",
+            "name": "Remolino",
+            "type": "flying",
+            "power": 40,
+            "cost": 2,
+            "range": 2,
+            "kind": "push",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "special",
+            "secondary": null,
+            "embers": false,
+            "description": "Remolino · adaptación táctica para Kanto."
+          }
+        ]
+      }
+    },
+    {
+      "id": 18,
+      "name": "Pidgeot",
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "baseStats": {
+        "hp": 83,
+        "attack": 80,
+        "defense": 75,
+        "special-attack": 70,
+        "special-defense": 70,
+        "speed": 101
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 48,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            40,
+            2,
+            4,
+            2
+          ],
+          "anchorX": 15.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/18/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/18/Walk.png"
+        }
+      },
+      "face": "assets/kanto/18/Normal.png",
+      "movement": 4,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Tornado",
+            "type": "flying",
+            "power": 40,
+            "cost": 0,
+            "range": 2,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "special",
+            "secondary": null,
+            "embers": false,
+            "description": "Tornado · adaptación táctica para Kanto."
+          },
+          {
+            "id": "wing-attack",
+            "name": "Ataque Ala",
+            "type": "flying",
+            "power": 60,
+            "cost": 1,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Ataque Ala · adaptación táctica para Kanto."
+          },
+          {
+            "id": "whirlwind",
+            "name": "Remolino",
+            "type": "flying",
+            "power": 40,
+            "cost": 2,
+            "range": 2,
+            "kind": "push",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "special",
+            "secondary": null,
+            "embers": false,
+            "description": "Remolino · adaptación táctica para Kanto."
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Tornado",
+            "type": "flying",
+            "power": 40,
+            "cost": 0,
+            "range": 2,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "special",
+            "secondary": null,
+            "embers": false,
+            "description": "Tornado · adaptación táctica para Kanto."
+          },
+          {
+            "id": "wing-attack",
+            "name": "Ataque Ala",
+            "type": "flying",
+            "power": 60,
+            "cost": 1,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Ataque Ala · adaptación táctica para Kanto."
+          },
+          {
+            "id": "whirlwind",
+            "name": "Remolino",
+            "type": "flying",
+            "power": 40,
+            "cost": 2,
+            "range": 2,
+            "kind": "push",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "special",
+            "secondary": null,
+            "embers": false,
+            "description": "Remolino · adaptación táctica para Kanto."
+          }
+        ]
+      }
+    },
+    {
+      "id": 19,
+      "name": "Rattata",
+      "types": [
+        "normal"
+      ],
+      "baseStats": {
+        "hp": 30,
+        "attack": 56,
+        "defense": 35,
+        "special-attack": 25,
+        "special-defense": 35,
+        "speed": 72
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 32,
+          "columns": 8,
+          "rows": 8,
+          "frames": 8,
+          "durations": [
+            40,
+            2,
+            2,
+            2,
+            4,
+            2,
+            2,
+            2
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/19/Idle.png"
+        },
+        "Walk": {
+          "width": 48,
+          "height": 40,
+          "columns": 7,
+          "rows": 8,
+          "frames": 7,
+          "durations": [
+            6,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "anchorX": 23.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/19/Walk.png"
+        }
+      },
+      "face": "assets/kanto/19/Normal.png",
+      "movement": 4,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Placaje",
+            "type": "normal",
+            "power": 40,
+            "cost": 0,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Placaje · adaptación táctica para Kanto."
+          },
+          {
+            "id": "bite",
+            "name": "Mordisco",
+            "type": "dark",
+            "power": 60,
+            "cost": 1,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Mordisco · adaptación táctica para Kanto."
+          },
+          {
+            "id": "hyper-fang",
+            "name": "Hipercolmillo",
+            "type": "normal",
+            "power": 80,
+            "cost": 2,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 90,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Hipercolmillo · adaptación táctica para Kanto."
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Placaje",
+            "type": "normal",
+            "power": 40,
+            "cost": 0,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Placaje · adaptación táctica para Kanto."
+          },
+          {
+            "id": "bite",
+            "name": "Mordisco",
+            "type": "dark",
+            "power": 60,
+            "cost": 1,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Mordisco · adaptación táctica para Kanto."
+          },
+          {
+            "id": "hyper-fang",
+            "name": "Hipercolmillo",
+            "type": "normal",
+            "power": 80,
+            "cost": 2,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 90,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Hipercolmillo · adaptación táctica para Kanto."
+          }
+        ]
+      }
+    },
+    {
+      "id": 20,
+      "name": "Raticate",
+      "types": [
+        "normal"
+      ],
+      "baseStats": {
+        "hp": 55,
+        "attack": 81,
+        "defense": 60,
+        "special-attack": 50,
+        "special-defense": 70,
+        "speed": 97
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 48,
+          "columns": 6,
+          "rows": 8,
+          "frames": 6,
+          "durations": [
+            30,
+            6,
+            3,
+            4,
+            3,
+            6
+          ],
+          "anchorX": 15.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/20/Idle.png"
+        },
+        "Walk": {
+          "width": 40,
+          "height": 48,
+          "columns": 6,
+          "rows": 8,
+          "frames": 6,
+          "durations": [
+            4,
+            6,
+            4,
+            4,
+            4,
+            4
+          ],
+          "anchorX": 19.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/20/Walk.png"
+        }
+      },
+      "face": "assets/kanto/20/Normal.png",
+      "movement": 4,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Placaje",
+            "type": "normal",
+            "power": 40,
+            "cost": 0,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Placaje · adaptación táctica para Kanto."
+          },
+          {
+            "id": "bite",
+            "name": "Mordisco",
+            "type": "dark",
+            "power": 60,
+            "cost": 1,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Mordisco · adaptación táctica para Kanto."
+          },
+          {
+            "id": "hyper-fang",
+            "name": "Hipercolmillo",
+            "type": "normal",
+            "power": 80,
+            "cost": 2,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 90,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Hipercolmillo · adaptación táctica para Kanto."
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Placaje",
+            "type": "normal",
+            "power": 40,
+            "cost": 0,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Placaje · adaptación táctica para Kanto."
+          },
+          {
+            "id": "bite",
+            "name": "Mordisco",
+            "type": "dark",
+            "power": 60,
+            "cost": 1,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Mordisco · adaptación táctica para Kanto."
+          },
+          {
+            "id": "hyper-fang",
+            "name": "Hipercolmillo",
+            "type": "normal",
+            "power": 80,
+            "cost": 2,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 90,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Hipercolmillo · adaptación táctica para Kanto."
+          }
+        ]
+      }
+    },
+    {
+      "id": 25,
+      "name": "Pikachu",
+      "types": [
+        "electric"
+      ],
+      "baseStats": {
+        "hp": 35,
+        "attack": 55,
+        "defense": 40,
+        "special-attack": 50,
+        "special-defense": 50,
+        "speed": 90
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 40,
+          "height": 56,
+          "columns": 6,
+          "rows": 8,
+          "frames": 6,
+          "durations": [
+            40,
+            2,
+            3,
+            3,
+            3,
+            2
+          ],
+          "anchorX": 19.5,
+          "anchorY": 31.5,
+          "path": "assets/pokemon/25/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/pokemon/25/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/25",
+        "https://pokeapi.co/api/v2/pokemon-species/25"
+      ],
+      "role": "Movilidad y parálisis",
+      "movement": 5,
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Ataque Rápido",
+            "description": "Ataque físico básico de tipo Normal; no altera la cola.",
+            "type": "normal",
+            "cost": 0,
+            "range": 1,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "thunder-shock",
+            "name": "Impactrueno",
+            "description": "Daño eléctrico; 10 % de parálisis si sobrevive.",
+            "type": "electric",
+            "cost": 1,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": {
+              "kind": "paralysis",
+              "chance": 10,
+              "duration": 3
+            },
+            "embers": false
+          },
+          {
+            "id": "thunder-wave",
+            "name": "Onda Trueno",
+            "description": "Mitad de velocidad en la próxima ronda y mitad de movimiento.",
+            "type": "electric",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 90,
+            "target": "enemy",
+            "kind": "status",
+            "effect": {
+              "kind": "paralysis",
+              "chance": 100,
+              "duration": 3
+            },
+            "powder": false,
+            "embers": false
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Ataque Rápido",
+            "description": "Ataque físico básico de tipo Normal; no altera la cola.",
+            "type": "normal",
+            "cost": 0,
+            "range": 1,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "thunder-shock",
+            "name": "Impactrueno",
+            "description": "Daño eléctrico; 10 % de parálisis si sobrevive.",
+            "type": "electric",
+            "cost": 1,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": {
+              "kind": "paralysis",
+              "chance": 10,
+              "duration": 3
+            },
+            "embers": false
+          },
+          {
+            "id": "thunder-wave",
+            "name": "Onda Trueno",
+            "description": "Mitad de velocidad en la próxima ronda y mitad de movimiento.",
+            "type": "electric",
+            "cost": 2,
+            "range": 2,
+            "accuracy": 90,
+            "target": "enemy",
+            "kind": "status",
+            "effect": {
+              "kind": "paralysis",
+              "chance": 100,
+              "duration": 3
+            },
+            "powder": false,
+            "embers": false
+          }
+        ]
+      },
+      "face": "assets/portraits/25/Normal.png"
+    },
+    {
+      "id": 26,
+      "name": "Raichu",
+      "types": [
+        "electric"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 90,
+        "defense": 55,
+        "special-attack": 90,
+        "special-defense": 80,
+        "speed": 110
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 40,
+          "height": 56,
+          "columns": 6,
+          "rows": 8,
+          "frames": 6,
+          "durations": [
+            40,
+            2,
+            4,
+            4,
+            4,
+            2
+          ],
+          "anchorX": 19.5,
+          "anchorY": 31.5,
+          "path": "assets/kanto/26/Idle.png"
+        },
+        "Walk": {
+          "width": 40,
+          "height": 48,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "anchorX": 19.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/26/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT",
+        "Grimlin",
+        "Top_Kec"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/26",
+        "https://pokeapi.co/api/v2/pokemon-species/26"
+      ],
+      "face": "assets/kanto/26/Normal.png",
+      "movement": 5,
+      "role": "Movilidad y parálisis",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Ataque Rápido",
+            "description": "Ataque físico básico de tipo Normal; no altera la cola.",
+            "type": "normal",
+            "cost": 0,
+            "range": 1,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "thunder-shock",
+            "name": "Impactrueno",
+            "description": "Daño eléctrico; 10 % de parálisis si sobrevive.",
+            "type": "electric",
+            "cost": 1,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": {
+              "kind": "paralysis",
+              "chance": 10,
+              "duration": 3
+            },
+            "embers": false
+          },
+          {
+            "id": "discharge",
+            "name": "Chispazo",
+            "description": "Cruz eléctrica, incluidos aliados; 10 % de parálisis.",
+            "type": "electric",
+            "cost": 3,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "area-damage",
+            "power": 60,
+            "category": "special",
+            "secondary": {
+              "kind": "paralysis",
+              "chance": 10,
+              "duration": 3
+            },
+            "embers": false
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Ataque Rápido",
+            "description": "Ataque físico básico de tipo Normal; no altera la cola.",
+            "type": "normal",
+            "cost": 0,
+            "range": 1,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "thunder-shock",
+            "name": "Impactrueno",
+            "description": "Daño eléctrico; 10 % de parálisis si sobrevive.",
+            "type": "electric",
+            "cost": 1,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "special",
+            "secondary": {
+              "kind": "paralysis",
+              "chance": 10,
+              "duration": 3
+            },
+            "embers": false
+          },
+          {
+            "id": "discharge",
+            "name": "Chispazo",
+            "description": "Cruz eléctrica, incluidos aliados; 10 % de parálisis.",
+            "type": "electric",
+            "cost": 3,
+            "range": 2,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "area-damage",
+            "power": 60,
+            "category": "special",
+            "secondary": {
+              "kind": "paralysis",
+              "chance": 10,
+              "duration": 3
+            },
+            "embers": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 74,
+      "name": "Geodude",
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "baseStats": {
+        "hp": 40,
+        "attack": 80,
+        "defense": 100,
+        "special-attack": 30,
+        "special-defense": 30,
+        "speed": 20
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 24,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "anchorX": 15.5,
+          "anchorY": 15.5,
+          "path": "assets/pokemon/74/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/pokemon/74/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/74",
+        "https://pokeapi.co/api/v2/pokemon-species/74"
+      ],
+      "role": "Resistencia y ataque físico",
+      "movement": 3,
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Placaje",
+            "description": "Ataque físico básico de tipo Normal.",
+            "type": "normal",
+            "cost": 0,
+            "range": 1,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "rock-throw",
+            "name": "Lanzarrocas",
+            "description": "Daño de Roca y empuje de una casilla si el destino está libre.",
+            "type": "rock",
+            "cost": 1,
+            "range": 2,
+            "accuracy": 90,
+            "target": "enemy",
+            "kind": "push",
+            "power": 50,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "harden",
+            "name": "Fortaleza",
+            "description": "Recibe la mitad del daño hasta su próxima activación.",
+            "type": "normal",
+            "cost": 1,
+            "range": 0,
+            "accuracy": 100,
+            "target": "self",
+            "kind": "guard",
+            "embers": false
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Placaje",
+            "description": "Ataque físico básico de tipo Normal.",
+            "type": "normal",
+            "cost": 0,
+            "range": 1,
+            "accuracy": 100,
+            "target": "enemy",
+            "kind": "damage",
+            "power": 40,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "rock-throw",
+            "name": "Lanzarrocas",
+            "description": "Daño de Roca y empuje de una casilla si el destino está libre.",
+            "type": "rock",
+            "cost": 1,
+            "range": 2,
+            "accuracy": 90,
+            "target": "enemy",
+            "kind": "push",
+            "power": 50,
+            "category": "physical",
+            "secondary": null,
+            "embers": false
+          },
+          {
+            "id": "harden",
+            "name": "Fortaleza",
+            "description": "Recibe la mitad del daño hasta su próxima activación.",
+            "type": "normal",
+            "cost": 1,
+            "range": 0,
+            "accuracy": 100,
+            "target": "self",
+            "kind": "guard",
+            "embers": false
+          }
+        ]
+      },
+      "face": "assets/portraits/74/Normal.png"
+    },
+    {
+      "id": 95,
+      "name": "Onix",
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "baseStats": {
+        "hp": 35,
+        "attack": 45,
+        "defense": 160,
+        "special-attack": 30,
+        "special-defense": 45,
+        "speed": 70
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 96,
+          "height": 104,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "anchorX": 47.5,
+          "anchorY": 55.5,
+          "path": "assets/kanto/95/Idle.png"
+        },
+        "Walk": {
+          "width": 88,
+          "height": 112,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            10,
+            14,
+            10,
+            14
+          ],
+          "anchorX": 43.5,
+          "anchorY": 59.5,
+          "path": "assets/kanto/95/Walk.png"
+        }
+      },
+      "face": "assets/kanto/95/Normal.png",
+      "movement": 3,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "classic": [
+          {
+            "id": "basic",
+            "name": "Atadura",
+            "type": "normal",
+            "power": 40,
+            "cost": 0,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Atadura · adaptación táctica para Kanto."
+          },
+          {
+            "id": "rock-throw",
+            "name": "Lanzarrocas",
+            "type": "rock",
+            "power": 50,
+            "cost": 1,
+            "range": 2,
+            "kind": "push",
+            "target": "enemy",
+            "accuracy": 90,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Lanzarrocas · adaptación táctica para Kanto."
+          },
+          {
+            "id": "harden",
+            "name": "Fortaleza",
+            "type": "normal",
+            "power": 40,
+            "cost": 1,
+            "range": 0,
+            "kind": "guard",
+            "target": "self",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Fortaleza · adaptación táctica para Kanto."
+          }
+        ],
+        "current": [
+          {
+            "id": "basic",
+            "name": "Atadura",
+            "type": "normal",
+            "power": 40,
+            "cost": 0,
+            "range": 1,
+            "kind": "damage",
+            "target": "enemy",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Atadura · adaptación táctica para Kanto."
+          },
+          {
+            "id": "rock-throw",
+            "name": "Lanzarrocas",
+            "type": "rock",
+            "power": 50,
+            "cost": 1,
+            "range": 2,
+            "kind": "push",
+            "target": "enemy",
+            "accuracy": 90,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Lanzarrocas · adaptación táctica para Kanto."
+          },
+          {
+            "id": "harden",
+            "name": "Fortaleza",
+            "type": "normal",
+            "power": 40,
+            "cost": 1,
+            "range": 0,
+            "kind": "guard",
+            "target": "self",
+            "accuracy": 100,
+            "category": "physical",
+            "secondary": null,
+            "embers": false,
+            "description": "Fortaleza · adaptación táctica para Kanto."
+          }
+        ]
+      }
+    },
+    {
+      "id": 75,
+      "name": "Graveler",
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "baseStats": {
+        "hp": 55,
+        "attack": 95,
+        "defense": 115,
+        "special-attack": 45,
+        "special-defense": 45,
+        "speed": 35
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 40,
+          "height": 48,
+          "columns": 14,
+          "rows": 8,
+          "frames": 14,
+          "durations": [
+            60,
+            10,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            10
+          ],
+          "anchorX": 19.5,
+          "anchorY": 27.5,
+          "path": "assets/progression/pokemon/75/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 48,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            6,
+            10,
+            6,
+            10
+          ],
+          "anchorX": 15.5,
+          "anchorY": 27.5,
+          "path": "assets/progression/pokemon/75/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT",
+        "Emmuffin"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/75",
+        "https://pokeapi.co/api/v2/pokemon-species/75"
+      ],
+      "face": "assets/progression/pokemon/75/Normal.png"
+    },
+    {
+      "id": 76,
+      "name": "Golem",
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 120,
+        "defense": 130,
+        "special-attack": 55,
+        "special-defense": 65,
+        "speed": 45
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 40,
+          "columns": 2,
+          "rows": 8,
+          "frames": 2,
+          "durations": [
+            30,
+            25
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/progression/pokemon/76/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/progression/pokemon/76/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT",
+        "Emmuffin"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/76",
+        "https://pokeapi.co/api/v2/pokemon-species/76"
+      ],
+      "face": "assets/progression/pokemon/76/Normal.png"
+    }
+  ],
+  "slots": [
+    {
+      "id": "Route1",
+      "url": "https://raw.githubusercontent.com/pret/pokered/af519899719f0754965776faac0e836a3b906e6d/data/wild/maps/Route1.asm",
+      "sha256": "51e6ce11b3541e837344829733708a8c27f1857953d10a19b4f56b0079115a92",
+      "slots": [
+        {
+          "level": 3,
+          "speciesId": 16
+        },
+        {
+          "level": 3,
+          "speciesId": 19
+        },
+        {
+          "level": 3,
+          "speciesId": 19
+        },
+        {
+          "level": 2,
+          "speciesId": 19
+        },
+        {
+          "level": 2,
+          "speciesId": 16
+        },
+        {
+          "level": 3,
+          "speciesId": 16
+        },
+        {
+          "level": 3,
+          "speciesId": 16
+        },
+        {
+          "level": 4,
+          "speciesId": 19
+        },
+        {
+          "level": 4,
+          "speciesId": 16
+        },
+        {
+          "level": 5,
+          "speciesId": 16
+        }
+      ]
+    },
+    {
+      "id": "Route2",
+      "url": "https://raw.githubusercontent.com/pret/pokered/af519899719f0754965776faac0e836a3b906e6d/data/wild/maps/Route2.asm",
+      "sha256": "9c3409e9b9e78c7eddb6af4a4168de49e59e84a046f5b8f1efee7f01dc82190f",
+      "slots": [
+        {
+          "level": 3,
+          "speciesId": 19
+        },
+        {
+          "level": 3,
+          "speciesId": 16
+        },
+        {
+          "level": 4,
+          "speciesId": 16
+        },
+        {
+          "level": 4,
+          "speciesId": 19
+        },
+        {
+          "level": 5,
+          "speciesId": 16
+        },
+        {
+          "level": 3,
+          "speciesId": 13
+        },
+        {
+          "level": 2,
+          "speciesId": 19
+        },
+        {
+          "level": 5,
+          "speciesId": 19
+        },
+        {
+          "level": 4,
+          "speciesId": 13
+        },
+        {
+          "level": 5,
+          "speciesId": 13
+        }
+      ]
+    },
+    {
+      "id": "ViridianForest",
+      "url": "https://raw.githubusercontent.com/pret/pokered/af519899719f0754965776faac0e836a3b906e6d/data/wild/maps/ViridianForest.asm",
+      "sha256": "c4b6ddaad14dd8bd29923408c38e8a32385e9a047f62ea8ba79967447d20efa8",
+      "slots": [
+        {
+          "level": 4,
+          "speciesId": 13
+        },
+        {
+          "level": 5,
+          "speciesId": 14
+        },
+        {
+          "level": 3,
+          "speciesId": 13
+        },
+        {
+          "level": 5,
+          "speciesId": 13
+        },
+        {
+          "level": 4,
+          "speciesId": 14
+        },
+        {
+          "level": 6,
+          "speciesId": 14
+        },
+        {
+          "level": 4,
+          "speciesId": 11
+        },
+        {
+          "level": 3,
+          "speciesId": 10
+        },
+        {
+          "level": 3,
+          "speciesId": 25
+        },
+        {
+          "level": 5,
+          "speciesId": 25
+        }
+      ]
+    }
+  ],
+  "slotWeights": [
+    51,
+    51,
+    39,
+    25,
+    25,
+    25,
+    13,
+    13,
+    11,
+    3
+  ],
+  "pokeredCommit": "af519899719f0754965776faac0e836a3b906e6d",
+  "families": [
+    {
+      "id": "bulbasaur",
+      "members": [
+        1,
+        2,
+        3
+      ],
+      "roles": [
+        "Drenador",
+        "Controlador"
+      ],
+      "learnset": [
+        {
+          "id": "vine-whip",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "id": "growl",
+          "level": 3,
+          "role": 1,
+          "forms": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "id": "mega-drain",
+          "level": 7,
+          "role": 0,
+          "forms": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "id": "poison-powder",
+          "level": 9,
+          "role": 1,
+          "forms": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "id": "razor-leaf",
+          "level": 12,
+          "role": 0,
+          "forms": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "id": "giga-drain",
+          "level": 20,
+          "role": 0,
+          "forms": [
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charmander",
+      "members": [
+        4,
+        5,
+        6
+      ],
+      "roles": [
+        "Artillero",
+        "Escaramuzador"
+      ],
+      "learnset": [
+        {
+          "id": "ember",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "growl",
+          "level": 3,
+          "role": 1,
+          "forms": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "metal-claw",
+          "level": 9,
+          "role": 1,
+          "forms": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "flame-burst",
+          "level": 15,
+          "role": 0,
+          "forms": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "slash",
+          "level": 20,
+          "role": 1,
+          "forms": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "flamethrower",
+          "level": 34,
+          "role": 0,
+          "forms": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "wing-attack",
+          "level": 36,
+          "role": 1,
+          "forms": [
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "squirtle",
+      "members": [
+        7,
+        8,
+        9
+      ],
+      "roles": [
+        "Baluarte",
+        "Tirador"
+      ],
+      "learnset": [
+        {
+          "id": "water-gun",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "withdraw",
+          "level": 3,
+          "role": 0,
+          "forms": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "bite",
+          "level": 8,
+          "role": 0,
+          "forms": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "water-pulse",
+          "level": 12,
+          "role": 1,
+          "forms": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "protect",
+          "level": 16,
+          "role": 0,
+          "forms": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "surf",
+          "level": 28,
+          "role": 1,
+          "forms": [
+            8,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "caterpie",
+      "members": [
+        10,
+        11,
+        12
+      ],
+      "roles": [
+        "Controlador",
+        "Artillero"
+      ],
+      "learnset": [
+        {
+          "id": "string-shot",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            10
+          ]
+        },
+        {
+          "id": "bug-bite",
+          "level": 5,
+          "role": 1,
+          "forms": [
+            10
+          ]
+        },
+        {
+          "id": "harden",
+          "level": 7,
+          "role": 0,
+          "forms": [
+            11
+          ]
+        },
+        {
+          "id": "confusion",
+          "level": 10,
+          "role": 1,
+          "forms": [
+            12
+          ]
+        },
+        {
+          "id": "poison-powder",
+          "level": 11,
+          "role": 0,
+          "forms": [
+            12
+          ]
+        },
+        {
+          "id": "stun-spore",
+          "level": 12,
+          "role": 0,
+          "forms": [
+            12
+          ]
+        },
+        {
+          "id": "gust",
+          "level": 13,
+          "role": 1,
+          "forms": [
+            12
+          ]
+        },
+        {
+          "id": "psybeam",
+          "level": 18,
+          "role": 1,
+          "forms": [
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weedle",
+      "members": [
+        13,
+        14,
+        15
+      ],
+      "roles": [
+        "Asaltante",
+        "Hostigador"
+      ],
+      "learnset": [
+        {
+          "id": "poison-sting",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            13
+          ]
+        },
+        {
+          "id": "string-shot",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            13
+          ]
+        },
+        {
+          "id": "harden",
+          "level": 7,
+          "role": 1,
+          "forms": [
+            14
+          ]
+        },
+        {
+          "id": "twineedle",
+          "level": 10,
+          "role": 0,
+          "forms": [
+            15
+          ]
+        },
+        {
+          "id": "pin-missile",
+          "level": 12,
+          "role": 1,
+          "forms": [
+            15
+          ]
+        },
+        {
+          "id": "agility",
+          "level": 16,
+          "role": 0,
+          "forms": [
+            15
+          ]
+        },
+        {
+          "id": "poison-jab",
+          "level": 22,
+          "role": 0,
+          "forms": [
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pidgey",
+      "members": [
+        16,
+        17,
+        18
+      ],
+      "roles": [
+        "Escaramuzador",
+        "Apoyo"
+      ],
+      "learnset": [
+        {
+          "id": "gust",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            16,
+            17,
+            18
+          ]
+        },
+        {
+          "id": "quick-attack",
+          "level": 7,
+          "role": 0,
+          "forms": [
+            16,
+            17,
+            18
+          ]
+        },
+        {
+          "id": "wing-attack",
+          "level": 12,
+          "role": 0,
+          "forms": [
+            16,
+            17,
+            18
+          ]
+        },
+        {
+          "id": "roost",
+          "level": 18,
+          "role": 1,
+          "forms": [
+            16,
+            17,
+            18
+          ]
+        },
+        {
+          "id": "feather-dance",
+          "level": 22,
+          "role": 1,
+          "forms": [
+            17,
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rattata",
+      "members": [
+        19,
+        20
+      ],
+      "roles": [
+        "Duelista",
+        "Debilitador"
+      ],
+      "learnset": [
+        {
+          "id": "bite",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "tail-whip",
+          "level": 3,
+          "role": 1,
+          "forms": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "quick-attack",
+          "level": 7,
+          "role": 0,
+          "forms": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "scary-face",
+          "level": 12,
+          "role": 1,
+          "forms": [
+            20
+          ]
+        },
+        {
+          "id": "hyper-fang",
+          "level": 16,
+          "role": 0,
+          "forms": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "crunch",
+          "level": 24,
+          "role": 0,
+          "forms": [
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pikachu",
+      "members": [
+        25,
+        26
+      ],
+      "roles": [
+        "Artillero",
+        "Paralizador"
+      ],
+      "learnset": [
+        {
+          "id": "thunder-shock",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "growl",
+          "level": 3,
+          "role": 1,
+          "forms": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "thunder-wave",
+          "level": 7,
+          "role": 1,
+          "forms": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "spark",
+          "level": 11,
+          "role": 1,
+          "forms": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "agility",
+          "level": 15,
+          "role": 1,
+          "forms": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "nuzzle",
+          "level": 18,
+          "role": 1,
+          "forms": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "thunderbolt",
+          "level": 24,
+          "role": 0,
+          "forms": [
+            25,
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geodude",
+      "members": [
+        74,
+        75,
+        76
+      ],
+      "roles": [
+        "Baluarte",
+        "Rompelineas"
+      ],
+      "learnset": [
+        {
+          "id": "rock-throw",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            74,
+            75,
+            76
+          ]
+        },
+        {
+          "id": "defense-curl",
+          "level": 3,
+          "role": 0,
+          "forms": [
+            74,
+            75,
+            76
+          ]
+        },
+        {
+          "id": "rock-tomb",
+          "level": 9,
+          "role": 1,
+          "forms": [
+            74,
+            75,
+            76
+          ]
+        },
+        {
+          "id": "bulldoze",
+          "level": 15,
+          "role": 1,
+          "forms": [
+            74,
+            75,
+            76
+          ]
+        },
+        {
+          "id": "protect",
+          "level": 18,
+          "role": 0,
+          "forms": [
+            74,
+            75,
+            76
+          ]
+        },
+        {
+          "id": "earthquake",
+          "level": 30,
+          "role": 1,
+          "forms": [
+            75,
+            76
+          ]
+        }
+      ]
+    },
+    {
+      "id": "onix",
+      "members": [
+        95
+      ],
+      "roles": [
+        "Muro",
+        "Controlador"
+      ],
+      "learnset": [
+        {
+          "id": "bind",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "harden",
+          "level": 3,
+          "role": 0,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "rock-throw",
+          "level": 7,
+          "role": 1,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "rock-tomb",
+          "level": 10,
+          "role": 1,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "screech",
+          "level": 14,
+          "role": 0,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "dragon-breath",
+          "level": 18,
+          "role": 1,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "iron-tail",
+          "level": 26,
+          "role": 0,
+          "forms": [
+            95
+          ]
+        }
+      ]
+    }
+  ],
+  "moves": {
+    "vine-whip": {
+      "id": "vine-whip",
+      "name": "Látigo Cepa",
+      "type": "grass",
+      "power": 45,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 2,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Látigo Cepa · adaptación táctica. PT y alcance propios del juego."
+    },
+    "growl": {
+      "id": "growl",
+      "name": "Gruñido",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 2,
+      "kind": "stages",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Gruñido · adaptación táctica. PT y alcance propios del juego. attack: -1 etapas; límite táctico de -2 a +2.",
+      "statChange": {
+        "stat": "attack",
+        "stages": -1
+      }
+    },
+    "mega-drain": {
+      "id": "mega-drain",
+      "name": "Megaagotar",
+      "type": "grass",
+      "power": 40,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 2,
+      "kind": "drain",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Megaagotar · adaptación táctica. PT y alcance propios del juego. Recupera la mitad del daño causado."
+    },
+    "poison-powder": {
+      "id": "poison-powder",
+      "name": "Polvo Veneno",
+      "type": "poison",
+      "power": 0,
+      "category": "status",
+      "accuracy": 75,
+      "cost": 2,
+      "range": 2,
+      "kind": "status",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Polvo Veneno · adaptación táctica. PT y alcance propios del juego. Estado durante tres activaciones del objetivo; respeta inmunidades.",
+      "effect": {
+        "kind": "poison",
+        "chance": 100,
+        "duration": 3
+      },
+      "powder": true
+    },
+    "razor-leaf": {
+      "id": "razor-leaf",
+      "name": "Hoja Afilada",
+      "type": "grass",
+      "power": 55,
+      "category": "physical",
+      "accuracy": 95,
+      "cost": 2,
+      "range": 2,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Hoja Afilada · adaptación táctica. PT y alcance propios del juego."
+    },
+    "giga-drain": {
+      "id": "giga-drain",
+      "name": "Gigadrenado",
+      "type": "grass",
+      "power": 75,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 3,
+      "range": 2,
+      "kind": "drain",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Gigadrenado · adaptación táctica. PT y alcance propios del juego. Recupera la mitad del daño causado."
+    },
+    "ember": {
+      "id": "ember",
+      "name": "Ascuas",
+      "type": "fire",
+      "power": 40,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "burn",
+        "chance": 10,
+        "duration": 3
+      },
+      "embers": false,
+      "description": "Ascuas · adaptación táctica. PT y alcance propios del juego."
+    },
+    "metal-claw": {
+      "id": "metal-claw",
+      "name": "Garra Metal",
+      "type": "steel",
+      "power": 50,
+      "category": "physical",
+      "accuracy": 95,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Garra Metal · adaptación táctica. PT y alcance propios del juego."
+    },
+    "flame-burst": {
+      "id": "flame-burst",
+      "name": "Pirotecnia",
+      "type": "fire",
+      "power": 70,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 3,
+      "range": 2,
+      "kind": "area-damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "burn",
+        "chance": 10,
+        "duration": 3
+      },
+      "embers": true,
+      "description": "Pirotecnia · adaptación táctica. PT y alcance propios del juego. Área en cruz: también alcanza a aliados."
+    },
+    "slash": {
+      "id": "slash",
+      "name": "Cuchillada",
+      "type": "normal",
+      "power": 70,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Cuchillada · adaptación táctica. PT y alcance propios del juego."
+    },
+    "flamethrower": {
+      "id": "flamethrower",
+      "name": "Lanzallamas",
+      "type": "fire",
+      "power": 90,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 4,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "burn",
+        "chance": 10,
+        "duration": 3
+      },
+      "embers": false,
+      "description": "Lanzallamas · adaptación táctica. PT y alcance propios del juego."
+    },
+    "wing-attack": {
+      "id": "wing-attack",
+      "name": "Ataque Ala",
+      "type": "flying",
+      "power": 60,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Ataque Ala · adaptación táctica. PT y alcance propios del juego."
+    },
+    "water-gun": {
+      "id": "water-gun",
+      "name": "Pistola Agua",
+      "type": "water",
+      "power": 40,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Pistola Agua · adaptación táctica. PT y alcance propios del juego."
+    },
+    "withdraw": {
+      "id": "withdraw",
+      "name": "Refugio",
+      "type": "water",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "description": "Refugio · adaptación táctica. PT y alcance propios del juego.",
+      "statChange": {
+        "stat": "defense",
+        "stages": 1
+      }
+    },
+    "bite": {
+      "id": "bite",
+      "name": "Mordisco",
+      "type": "dark",
+      "power": 60,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Mordisco · adaptación táctica. PT y alcance propios del juego."
+    },
+    "water-pulse": {
+      "id": "water-pulse",
+      "name": "Hidropulso",
+      "type": "water",
+      "power": 60,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Hidropulso · adaptación táctica. PT y alcance propios del juego."
+    },
+    "protect": {
+      "id": "protect",
+      "name": "Protección",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 0,
+      "kind": "guard",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "description": "Protección · adaptación táctica. PT y alcance propios del juego."
+    },
+    "surf": {
+      "id": "surf",
+      "name": "Surf",
+      "type": "water",
+      "power": 90,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 4,
+      "range": 2,
+      "kind": "area-damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Surf · adaptación táctica. PT y alcance propios del juego. Área en cruz: también alcanza a aliados."
+    },
+    "string-shot": {
+      "id": "string-shot",
+      "name": "Disparo Demora",
+      "type": "bug",
+      "power": 0,
+      "category": "status",
+      "accuracy": 95,
+      "cost": 1,
+      "range": 2,
+      "kind": "stages",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Disparo Demora · adaptación táctica. PT y alcance propios del juego. speed: -1 etapas; límite táctico de -2 a +2.",
+      "statChange": {
+        "stat": "speed",
+        "stages": -1
+      }
+    },
+    "bug-bite": {
+      "id": "bug-bite",
+      "name": "Picadura",
+      "type": "bug",
+      "power": 60,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Picadura · adaptación táctica. PT y alcance propios del juego."
+    },
+    "harden": {
+      "id": "harden",
+      "name": "Fortaleza",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "description": "Fortaleza · adaptación táctica. PT y alcance propios del juego. defense: +1 etapas; límite táctico de -2 a +2.",
+      "statChange": {
+        "stat": "defense",
+        "stages": 1
+      }
+    },
+    "confusion": {
+      "id": "confusion",
+      "name": "Confusión",
+      "type": "psychic",
+      "power": 50,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Confusión · adaptación táctica. PT y alcance propios del juego."
+    },
+    "stun-spore": {
+      "id": "stun-spore",
+      "name": "Paralizador",
+      "type": "grass",
+      "power": 0,
+      "category": "status",
+      "accuracy": 75,
+      "cost": 2,
+      "range": 2,
+      "kind": "status",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Paralizador · adaptación táctica. PT y alcance propios del juego. Estado durante tres activaciones del objetivo; respeta inmunidades.",
+      "effect": {
+        "kind": "paralysis",
+        "chance": 100,
+        "duration": 3
+      },
+      "powder": true
+    },
+    "gust": {
+      "id": "gust",
+      "name": "Tornado",
+      "type": "flying",
+      "power": 40,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 2,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Tornado · adaptación táctica. PT y alcance propios del juego."
+    },
+    "psybeam": {
+      "id": "psybeam",
+      "name": "Psicorrayo",
+      "type": "psychic",
+      "power": 65,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Psicorrayo · adaptación táctica. PT y alcance propios del juego."
+    },
+    "poison-sting": {
+      "id": "poison-sting",
+      "name": "Picotazo Veneno",
+      "type": "poison",
+      "power": 15,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 2,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "poison",
+        "chance": 30,
+        "duration": 3
+      },
+      "embers": false,
+      "description": "Picotazo Veneno · adaptación táctica. PT y alcance propios del juego."
+    },
+    "twineedle": {
+      "id": "twineedle",
+      "name": "Doble Ataque",
+      "type": "bug",
+      "power": 50,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "poison",
+        "chance": 20,
+        "duration": 3
+      },
+      "embers": false,
+      "description": "Doble Ataque · adaptación táctica. PT y alcance propios del juego. Dos impactos agregados en una sola tirada."
+    },
+    "pin-missile": {
+      "id": "pin-missile",
+      "name": "Pin Misil",
+      "type": "bug",
+      "power": 50,
+      "category": "physical",
+      "accuracy": 95,
+      "cost": 2,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Pin Misil · adaptación táctica. PT y alcance propios del juego. Dos impactos agregados en una sola tirada."
+    },
+    "agility": {
+      "id": "agility",
+      "name": "Agilidad",
+      "type": "psychic",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "description": "Agilidad · adaptación táctica. PT y alcance propios del juego. speed: +1 etapas; límite táctico de -2 a +2.",
+      "statChange": {
+        "stat": "speed",
+        "stages": 1
+      }
+    },
+    "poison-jab": {
+      "id": "poison-jab",
+      "name": "Puya Nociva",
+      "type": "poison",
+      "power": 80,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "poison",
+        "chance": 30,
+        "duration": 3
+      },
+      "embers": false,
+      "description": "Puya Nociva · adaptación táctica. PT y alcance propios del juego."
+    },
+    "quick-attack": {
+      "id": "quick-attack",
+      "name": "Ataque Rápido",
+      "type": "normal",
+      "power": 40,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Ataque Rápido: golpe de corto alcance por 1 PT. No cambia la cola fija de iniciativa."
+    },
+    "roost": {
+      "id": "roost",
+      "name": "Respiro",
+      "type": "flying",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 0,
+      "kind": "heal",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "description": "Respiro: recupera un cuarto de los PS máximos. Adaptación táctica; conserva el tipo."
+    },
+    "feather-dance": {
+      "id": "feather-dance",
+      "name": "Danza Pluma",
+      "type": "flying",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 2,
+      "kind": "stages",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Danza Pluma · adaptación táctica. PT y alcance propios del juego. attack: -2 etapas; límite táctico de -2 a +2.",
+      "statChange": {
+        "stat": "attack",
+        "stages": -2
+      }
+    },
+    "tail-whip": {
+      "id": "tail-whip",
+      "name": "Agitacola",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 2,
+      "kind": "stages",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Agitacola · adaptación táctica. PT y alcance propios del juego. defense: -1 etapas; límite táctico de -2 a +2.",
+      "statChange": {
+        "stat": "defense",
+        "stages": -1
+      }
+    },
+    "scary-face": {
+      "id": "scary-face",
+      "name": "Cara Susto",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 2,
+      "kind": "stages",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Cara Susto · adaptación táctica. PT y alcance propios del juego. speed: -2 etapas; límite táctico de -2 a +2.",
+      "statChange": {
+        "stat": "speed",
+        "stages": -2
+      }
+    },
+    "hyper-fang": {
+      "id": "hyper-fang",
+      "name": "Hipercolmillo",
+      "type": "normal",
+      "power": 80,
+      "category": "physical",
+      "accuracy": 90,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Hipercolmillo · adaptación táctica. PT y alcance propios del juego."
+    },
+    "crunch": {
+      "id": "crunch",
+      "name": "Triturar",
+      "type": "dark",
+      "power": 80,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Triturar · adaptación táctica. PT y alcance propios del juego."
+    },
+    "thunder-shock": {
+      "id": "thunder-shock",
+      "name": "Impactrueno",
+      "type": "electric",
+      "power": 40,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "paralysis",
+        "chance": 10,
+        "duration": 3
+      },
+      "embers": false,
+      "description": "Impactrueno · adaptación táctica. PT y alcance propios del juego."
+    },
+    "thunder-wave": {
+      "id": "thunder-wave",
+      "name": "Onda Trueno",
+      "type": "electric",
+      "power": 0,
+      "category": "status",
+      "accuracy": 90,
+      "cost": 2,
+      "range": 2,
+      "kind": "status",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Onda Trueno · adaptación táctica. PT y alcance propios del juego. Estado durante tres activaciones del objetivo; respeta inmunidades.",
+      "effect": {
+        "kind": "paralysis",
+        "chance": 100,
+        "duration": 3
+      },
+      "powder": false
+    },
+    "spark": {
+      "id": "spark",
+      "name": "Chispa",
+      "type": "electric",
+      "power": 65,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "paralysis",
+        "chance": 30,
+        "duration": 3
+      },
+      "embers": false,
+      "description": "Chispa · adaptación táctica. PT y alcance propios del juego."
+    },
+    "nuzzle": {
+      "id": "nuzzle",
+      "name": "Moflete Estático",
+      "type": "electric",
+      "power": 20,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "paralysis",
+        "chance": 100,
+        "duration": 3
+      },
+      "embers": false,
+      "description": "Moflete Estático · adaptación táctica. PT y alcance propios del juego."
+    },
+    "thunderbolt": {
+      "id": "thunderbolt",
+      "name": "Rayo",
+      "type": "electric",
+      "power": 90,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 3,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "paralysis",
+        "chance": 10,
+        "duration": 3
+      },
+      "embers": false,
+      "description": "Rayo · adaptación táctica. PT y alcance propios del juego."
+    },
+    "rock-throw": {
+      "id": "rock-throw",
+      "name": "Lanzarrocas",
+      "type": "rock",
+      "power": 50,
+      "category": "physical",
+      "accuracy": 90,
+      "cost": 1,
+      "range": 2,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Lanzarrocas · adaptación táctica. PT y alcance propios del juego."
+    },
+    "defense-curl": {
+      "id": "defense-curl",
+      "name": "Rizo Defensa",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "description": "Rizo Defensa · adaptación táctica. PT y alcance propios del juego. defense: +1 etapas; límite táctico de -2 a +2.",
+      "statChange": {
+        "stat": "defense",
+        "stages": 1
+      }
+    },
+    "rock-tomb": {
+      "id": "rock-tomb",
+      "name": "Tumba Rocas",
+      "type": "rock",
+      "power": 60,
+      "category": "physical",
+      "accuracy": 95,
+      "cost": 2,
+      "range": 2,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Tumba Rocas · adaptación táctica. PT y alcance propios del juego. speed: -1 etapas; límite táctico de -2 a +2.",
+      "statChange": {
+        "stat": "speed",
+        "stages": -1
+      }
+    },
+    "bulldoze": {
+      "id": "bulldoze",
+      "name": "Terratemblor",
+      "type": "ground",
+      "power": 60,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 3,
+      "range": 2,
+      "kind": "area-damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Terratemblor · adaptación táctica. PT y alcance propios del juego. speed: -1 etapas; límite táctico de -2 a +2. Área en cruz: también alcanza a aliados.",
+      "statChange": {
+        "stat": "speed",
+        "stages": -1
+      }
+    },
+    "earthquake": {
+      "id": "earthquake",
+      "name": "Terremoto",
+      "type": "ground",
+      "power": 100,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 4,
+      "range": 2,
+      "kind": "area-damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Terremoto · adaptación táctica. PT y alcance propios del juego. Área en cruz: también alcanza a aliados."
+    },
+    "bind": {
+      "id": "bind",
+      "name": "Atadura",
+      "type": "normal",
+      "power": 15,
+      "category": "physical",
+      "accuracy": 85,
+      "cost": 1,
+      "range": 2,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Atadura · adaptación táctica. PT y alcance propios del juego."
+    },
+    "screech": {
+      "id": "screech",
+      "name": "Chirrido",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 85,
+      "cost": 2,
+      "range": 2,
+      "kind": "stages",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Chirrido · adaptación táctica. PT y alcance propios del juego. defense: -2 etapas; límite táctico de -2 a +2.",
+      "statChange": {
+        "stat": "defense",
+        "stages": -2
+      }
+    },
+    "dragon-breath": {
+      "id": "dragon-breath",
+      "name": "Dragoaliento",
+      "type": "dragon",
+      "power": 60,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 2,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "paralysis",
+        "chance": 30,
+        "duration": 3
+      },
+      "embers": false,
+      "description": "Dragoaliento · adaptación táctica. PT y alcance propios del juego."
+    },
+    "iron-tail": {
+      "id": "iron-tail",
+      "name": "Cola Férrea",
+      "type": "steel",
+      "power": 100,
+      "category": "physical",
+      "accuracy": 75,
+      "cost": 3,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "description": "Cola Férrea · adaptación táctica. PT y alcance propios del juego."
+    }
+  },
+  "levelCap": 100,
+  "xpRewards": [
+    220,
+    350,
+    500,
+    650
+  ],
+  "enemyLevels": [
+    [
+      4
+    ],
+    [
+      6,
+      5
+    ],
+    [
+      8,
+      8,
+      7
+    ],
+    [
+      12,
+      14
+    ]
+  ],
+  "evolutions": {
+    "1": [
+      2,
+      16
+    ],
+    "2": [
+      3,
+      32
+    ],
+    "4": [
+      5,
+      16
+    ],
+    "5": [
+      6,
+      36
+    ],
+    "7": [
+      8,
+      16
+    ],
+    "8": [
+      9,
+      36
+    ],
+    "10": [
+      11,
+      7
+    ],
+    "11": [
+      12,
+      10
+    ],
+    "13": [
+      14,
+      7
+    ],
+    "14": [
+      15,
+      10
+    ],
+    "16": [
+      17,
+      18
+    ],
+    "17": [
+      18,
+      36
+    ],
+    "19": [
+      20,
+      20
+    ],
+    "25": [
+      26,
+      20
+    ],
+    "74": [
+      75,
+      25
+    ],
+    "75": [
+      76,
+      36
+    ]
+  }
+}

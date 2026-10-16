@@ -1,0 +1,23 @@
+{
+  "version": "0.14.1",
+  "platform": "Windows x86_64",
+  "executableSha256": "84758b4b09606c2583ef44cf9a1e6cfe918f3ac3168bee21dc02280471e596f7",
+  "zipSha256": "324a8847beab7e7174e4e81a94eb5d24201e4421783563665ff2729d479ee51b",
+  "zipBytes": 39782971,
+  "entries": [
+    "windows/CREDITS.md",
+    "windows/LEEME.txt",
+    "windows/PokemonTactics.exe",
+    "windows/SHA256SUMS.txt",
+    "windows/licenses/EasyStar-MIT.txt",
+    "windows/licenses/heap-PSF.md",
+    "windows/licenses/jsfxr-UNLICENSE.txt",
+    "windows/licenses/Kenney-Particle-Pack-CC0.txt",
+    "windows/licenses/PixelifySans-OFL.txt",
+    "windows/licenses/PokeAPI-BSD-3-Clause.txt",
+    "windows/licenses/SpriteCollab-CC-BY-NC-4.0.md",
+    "windows/licenses/web-CREDITS.md"
+  ],
+  "executableMatchesZip": true,
+  "published": false
+}

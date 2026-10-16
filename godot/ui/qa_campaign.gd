@@ -34,6 +34,31 @@ func shop(app: Control) -> void:
 			if app.run.bag.potion == 0: break
 			button(app,"heal_potion")
 			member = app.campaign.target(app.run,int(entry.id))
+	if app.run.get("edition",1) == 2:
+		for entry: Dictionary in app.run.party:
+			if entry.hp <= 0: continue
+			app._select_member(int(entry.id))
+			var requirement: Dictionary = app.campaign.progression.evolution(entry)
+			if not requirement.is_empty() and entry.level >= requirement.level:
+				if app.run.bag["rare-candy"] == 0 and app.run.money >= 100: button(app,"buy_rare-candy")
+				if app.run.bag["rare-candy"] > 0:
+					var hp: int = app.campaign.target(app.run,int(entry.id)).hp
+					var level: int = entry.level
+					button(app,"evolve")
+					check(app.campaign.target(app.run,int(entry.id)).hp == hp and app.campaign.target(app.run,int(entry.id)).level == level,"Candy respects level gate and does not heal or add levels")
+			var member: Dictionary = app.campaign.target(app.run,int(entry.id))
+			if member.moves.size() == 4 and member.knownMoves.size() > 4 and not captured.has("loadout"):
+				var extra: String = member.knownMoves.filter(func(id):return id not in member.moves)[0]
+				check(app.travel_buttons["move_"+extra].disabled,"Fifth optional move cannot be selected")
+				var old: String = member.moves[0]
+				var money: int = app.run.money
+				app.travel_buttons["move_"+old].toggled.emit(false)
+				check(not app.travel_buttons["move_"+extra].disabled,"Removing one unlocks a free slot")
+				app.travel_buttons["move_"+extra].toggled.emit(true)
+				check(app.campaign.target(app.run,int(entry.id)).moves.size()==4 and app.run.money==money,"Four freely mixed moves cost no money")
+				captured.loadout = true
+		app._select_member(1)
+		return
 	app._select_member(1)
 	if app.run.money >= 100 and app.campaign.EVOLUTIONS.has(int(app.run.party[0].speciesId)) and app.run.party[0].hp > 0:
 		button(app,"buy_rare-candy")
@@ -72,6 +97,29 @@ func run(app: Control, directory: String) -> void:
 				if app.rules.active(app.state).team == "enemy": app._commit(command)
 				else:
 					player_orders += 1
+					if app.rules.profile(app.rules.active(app.state)).actions_for(app.rules.active(app.state)).size() == 5 and not captured.has("five"):
+						var rng: Variant = app.state.rng
+						app.buttons.actions.pressed.emit()
+						check(app.action_buttons.size()==5,"Basic plus four moves shown in battle menu")
+						await capture(app,directory,"03-five-actions")
+						DisplayServer.window_set_size(Vector2i(1024,720))
+						await app.get_tree().process_frame
+						await app.get_tree().process_frame
+						await capture(app,directory,"03-five-small")
+						DisplayServer.window_set_size(Vector2i(1280,900))
+						await app.get_tree().process_frame
+						await app.get_tree().process_frame
+						var fifth: Dictionary = app.rules.profile(app.rules.active(app.state)).actions_for(app.rules.active(app.state))[4].definition
+						if fifth.target != "self":
+							var key: InputEventKey = InputEventKey.new()
+							key.keycode = KEY_5
+							key.pressed = true
+							app.get_viewport().push_input(key)
+							await app.get_tree().process_frame
+							check(app.selected_action==fifth.id,"Fifth movement is reachable with keyboard 5")
+						app._cancel()
+						check(app.state.rng==rng,"Opening/cancelling five actions consumes no RNG")
+						captured.five = true
 					if not captured.has("battle"):
 						await capture(app,directory,"03-battle")
 						captured.battle = true
@@ -97,6 +145,11 @@ func run(app: Control, directory: String) -> void:
 						app.direction_buttons[int(command.facing)].pressed.emit()
 				check(Store.equivalent(app.state,expected.state),"GUI uses shared campaign combat result")
 				check(app.save_warning.is_empty(),"Battle command saved")
+				if command.kind == "attack" and app.run.phase == "battle" and "miss" in app.combat_feedback.last_kinds:
+					if app.combat_feedback.last_sound == "miss": check(app.last_sound_requested == "miss","A failed attack requests miss audio, never hit audio")
+					if not captured.has("miss"):
+						await capture(app,directory,"04-miss")
+						captured.miss = true
 			elif phase == "capture":
 				var reward: Dictionary = app.run.reward.duplicate(true)
 				app._load_game()
@@ -112,6 +165,8 @@ func run(app: Control, directory: String) -> void:
 				check(Store.equivalent(app.run,before),"Stale capture button cannot duplicate reward")
 			elif phase == "shop":
 				if not captured.has("shop"):
+					app.message = ""
+					app._refresh()
 					await capture(app,directory,"05-shop")
 					DisplayServer.window_set_size(Vector2i(1024,720))
 					await app.get_tree().process_frame
@@ -138,6 +193,11 @@ func run(app: Control, directory: String) -> void:
 		await app.get_tree().process_frame
 		await capture(app,directory,"07-%dx%d" % [dimensions.x,dimensions.y])
 		_bounds(app,app,app.get_global_rect().grow(2))
+	check(captured.has("miss"),"Natural attack failure displayed with dedicated image/audio")
+	check(captured.has("five"),"Five action menu exercised")
+	check(captured.has("loadout"),"Real UI swaps a learned move without exceeding four slots")
+	await _immune_preview(app,directory)
+	await _legacy_preview(app,directory)
 	var output: Dictionary = {"assertions":assertions,"completed":completed,"playerOrders":player_orders,"screenshots":captures,"failures":failures}
 	var file: FileAccess = FileAccess.open(directory.path_join("campaign-ui-result.json"),FileAccess.WRITE)
 	file.store_string(JSON.stringify(output,"  "))
@@ -150,3 +210,54 @@ func _bounds(node: Node, app: Control, viewport: Rect2) -> void:
 	if node is Control and node.is_visible_in_tree(): check(viewport.encloses(node.get_global_rect()),"Control fits: " + str(node.get_path()))
 	if node is ScrollContainer: return
 	for child: Node in node.get_children(): _bounds(child,app,viewport)
+
+func _immune_preview(app: Control, directory: String) -> void:
+	var original: Dictionary = app.run
+	var study: RefCounted = app.campaign.progression
+	var actor: Dictionary = app.rules.member_unit(study.create_member(1,25,"QA",10),{"x":2,"y":7})
+	var target: Dictionary = app.rules.member_unit(study.create_member(10000,95,"QA",10),{"x":3,"y":7})
+	target.team = "enemy"
+	target.facing = 2
+	var fixture: Dictionary = app.rules.encounter(app.campaign.create("immune",7),app.campaign.locations[0])
+	fixture.units = [actor,target]
+	fixture.queue = [1,10000]
+	var before_rng: Variant = fixture.rng
+	var plan: Dictionary = app.rules.attack_plan(fixture,10000,{},"thunder-shock")
+	var result: Dictionary = app.rules.apply_command(fixture,{"kind":"attack","target":10000,"actionId":"thunder-shock"})
+	check(result.ok and result.hits[0].hit and result.hits[0].damage==0,"Immunity is distinct from accuracy failure")
+	app.run = original.duplicate(true)
+	app.run.phase = "battle"
+	app.run.stage = 0
+	app.run.battle = fixture
+	app._refresh()
+	app.combat_feedback.present(fixture,plan,result.hits)
+	app._play(app.combat_feedback.last_sound)
+	check(app.last_sound_requested=="immune" and "immune" in app.combat_feedback.last_kinds,"Immunity has a dedicated signal")
+	check(fixture.rng==before_rng,"Showing feedback does not consume combat RNG")
+	await capture(app,directory,"08-immune")
+	app.run = original
+	app.combat_feedback.clear()
+	app._refresh()
+
+func _legacy_preview(app: Control, directory: String) -> void:
+	var original: Dictionary = app.run
+	var campaign: RefCounted = app.campaign
+	var store: RefCounted = app.store
+	var orders: Array = app.transactions
+	var legacy: RefCounted = load("res://core/kanto_run.gd").new()
+	var initial: Dictionary = legacy.create("legacy-ui",7)
+	var command: Dictionary = {"kind":"enter","at":0}
+	var entered: Dictionary = legacy.transact(initial,command)
+	var archive: RefCounted = Store.new(directory.path_join("legacy-ui.json"))
+	check(archive.save(entered.state,[command],"").ok,"Isolated edition-1 UI save prepared")
+	app.store = archive
+	app._load_game()
+	check(not app.run.has("edition") and app.hint.text.begins_with("Clásica 0.14"),"Legacy battle UI clearly identifies its retained rules")
+	check(Store.equivalent(app.state,entered.state.battle),"Legacy UI loads battle and RNG exactly")
+	await capture(app,directory,"09-legacy")
+	app.store = store
+	app.campaign = campaign
+	app.rules = campaign.engine
+	app.run = original
+	app.transactions = orders
+	app._refresh()

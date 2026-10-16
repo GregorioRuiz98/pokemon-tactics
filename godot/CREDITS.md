@@ -1,4 +1,4 @@
-# Pokémon Tactics — Kanto y laboratorio nativo 0.14.0
+# Pokémon Tactics — Kanto y laboratorio nativo 0.14.1
 
 Proyecto de fans para portfolio, sin afiliación ni aprobación oficial. Pokémon y sus personajes pertenecen a sus respectivos titulares.
 
@@ -56,3 +56,12 @@ Archivos individuales en assets/kanto/ID/credits.txt y portrait-credits.txt para
 Tablas locales de encuentros de Rojo: [pret/pokered](https://github.com/pret/pokered/tree/af519899719f0754965776faac0e836a3b906e6d/data/wild/maps), commit af519899719f0754965776faac0e836a3b906e6d. Se han transcrito datos factuales de Ruta 1, Ruta 2 y Bosque Verde, con pesos de aparición originales sobre 256; no se distribuyen su código ensamblador ni ROMs. El catálogo conserva URL y hash de las tablas consultadas. Equipos enemigos, mapas tácticos, precios y repertorios son adaptaciones de este proyecto.
 
 El importador explícito tools/godot/import-kanto.py reutiliza el ayudante MIT procedente de PokéSurvivor ya registrado en licenses/web-CREDITS.md y tools/vendor. Requiere Python/Pillow y Node durante la importación, sin añadir dependencias al juego. No hay consultas de red durante las partidas.
+
+
+## Progresión y efectos — 0.14.1
+
+26 especies: se añaden Graveler75 y Golem76 a las 24 anteriores, reutilizando sus hojas originales y metadatos de la web. Retratos Normal del mismo commit SpriteCollab fijado. Atribución original en assets/progression/pokemon/75 y 76, archivos credits.txt y portrait-credits.txt, sin editar. Los datos de 51 movimientos y sus listas de compatibilidad proceden de PokéAPI: nombres, tipos, categoría y potencia, con adaptación explícita de aprendizaje/alcance/PT/efectos. progression-provenance.json registra 18 archivos y 77 respuestas de referencia con SHA-256; no hay llamadas al jugar.
+
+Imágenes de fallo e inmunidad: star_01.png y circle_01.png originales del Particle Pack1.1 de Kenney Vleugels, CC0, mostrados con tamaño/color del juego sin editar los archivos. Fuente: https://kenney.nl/assets/particle-pack. Archivo descargado y SHA-256 en progression-provenance.json; aviso original en licenses/Kenney-Particle-Pack-CC0.txt, que también conserva los créditos adicionales de plantillas de filtro. Se distribuyen solo dos PNG, no todo el paquete.
+
+Sonidos miss/immune/level-up: generados de forma determinista con la copia jsfxr ya incluida, commit b7b6aa27d62f8f356db267276bf54b451555c49d; autores/Unlicense indicados arriba. Herramienta tools/godot/import-feedback.mjs; presets, semilla y hashes en data/feedback-provenance.json. No son grabaciones ni sonidos extraídos de Pokémon. WAV select/hit/victory anteriores sin modificar.

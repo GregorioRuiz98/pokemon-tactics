@@ -1,0 +1,407 @@
+{
+  "version": 1,
+  "spriteCommit": "6ad5f1c6229af6b055de2c64442e5e508664290c",
+  "kenneyArchiveSha256": "b631d4b07f7002549fdcf155f01141ad482f79f3440e4e301eed49ce5f1d8958",
+  "files": [
+    {
+      "target": "assets/progression/pokemon/75/Idle.png",
+      "source": "public/assets/pokemon/75/Idle.png",
+      "sha256": "65dc9f5b6e74823220ae1391ea6425e371ba412025441e28e2953754aa34a00b"
+    },
+    {
+      "target": "assets/progression/pokemon/75/Walk.png",
+      "source": "public/assets/pokemon/75/Walk.png",
+      "sha256": "998b9819389dd9a56b6d6bbc3d1c388b0dcb805f601488cee3d2a8ca926e3f7b"
+    },
+    {
+      "target": "assets/progression/pokemon/75/thumbnail.png",
+      "source": "public/assets/pokemon/75/thumbnail.png",
+      "sha256": "52d95c80a4eb7e73786707293f18e059a164eff0ff4e266823ebe197513b9e56"
+    },
+    {
+      "target": "assets/progression/pokemon/75/AnimData.xml",
+      "source": "public/assets/pokemon/75/AnimData.xml",
+      "sha256": "5eab065202dcd7fdf3a469d8d5703090f30114db852af448d7225dc84d29f596"
+    },
+    {
+      "target": "assets/progression/pokemon/75/credits.txt",
+      "source": "public/assets/pokemon/75/credits.txt",
+      "sha256": "fbb985f756cd5f4564d31ee5ba4db8c905e07eb13aea2091b04c3c960c50459a"
+    },
+    {
+      "target": "assets/progression/pokemon/75/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0075/Normal.png",
+      "sha256": "0400b41589439d4ef0c29ade42702bfc727d9b55fb411bfb6fd909c7b3af309c"
+    },
+    {
+      "target": "assets/progression/pokemon/75/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0075/credits.txt",
+      "sha256": "6fabeecc136fbca1f0183ea5ec04a55ffc18d1ebd66f8ba735b855462ccefa73"
+    },
+    {
+      "target": "assets/progression/pokemon/76/Idle.png",
+      "source": "public/assets/pokemon/76/Idle.png",
+      "sha256": "5444c9399764673a6d21b047d61ac3d42f031340f39c9c62a4be3142561bd337"
+    },
+    {
+      "target": "assets/progression/pokemon/76/Walk.png",
+      "source": "public/assets/pokemon/76/Walk.png",
+      "sha256": "b90f014a4a216feab9af0d149d1517930070dadb15c65316e4d55a7ab8d62ddc"
+    },
+    {
+      "target": "assets/progression/pokemon/76/thumbnail.png",
+      "source": "public/assets/pokemon/76/thumbnail.png",
+      "sha256": "a1a663c6c89e5f7607435c5ba26d16ec1d4ba4771e285f7fc1f2864539a5de69"
+    },
+    {
+      "target": "assets/progression/pokemon/76/AnimData.xml",
+      "source": "public/assets/pokemon/76/AnimData.xml",
+      "sha256": "14597d8cd51fe93c3996abe4276eadbe6d5756fbbefa2439c2d673de306d2b99"
+    },
+    {
+      "target": "assets/progression/pokemon/76/credits.txt",
+      "source": "public/assets/pokemon/76/credits.txt",
+      "sha256": "0dd43a7a6e5173f6bf61ef66cc7654ff03ee1dc3324df2e5ec2740aa655fc87e"
+    },
+    {
+      "target": "assets/progression/pokemon/76/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0076/Normal.png",
+      "sha256": "b01989c5b3533bd0cef4b7dfd2fa3ed2e6fd99d77d718f5590765cc6f5d0fc35"
+    },
+    {
+      "target": "assets/progression/pokemon/76/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0076/credits.txt",
+      "sha256": "1b3a6deb120aa56b0c382ef50436b3a2f0bbf1e5e77692b236c43ac80b7050dd"
+    },
+    {
+      "target": "assets/progression/miss.png",
+      "source": "https://kenney.nl/media/pages/assets/particle-pack/f8fe0f8cb8-1677578741/kenney_particle-pack.zip#PNG (Transparent)/star_01.png",
+      "sha256": "3ba3999c944a0767677449412d306c1f230daa1743b31f929533cf77a22ecf5d"
+    },
+    {
+      "target": "assets/progression/immune.png",
+      "source": "https://kenney.nl/media/pages/assets/particle-pack/f8fe0f8cb8-1677578741/kenney_particle-pack.zip#PNG (Transparent)/circle_01.png",
+      "sha256": "4b2d03683bf0fe4a946567adc3bd86b8ba045da84cee58dc2cf8aef63bbfaa06"
+    },
+    {
+      "target": "licenses/Kenney-Particle-Pack-CC0.txt",
+      "source": "https://kenney.nl/media/pages/assets/particle-pack/f8fe0f8cb8-1677578741/kenney_particle-pack.zip#License.txt",
+      "sha256": "f9e70b81d8cc07c4e07c9f2eff1d94fd371a06070b18cb67c651c41158ec2975"
+    },
+    {
+      "target": "data/progression.json",
+      "source": "Curated tactical rules; PokeAPI/SpriteCollab source hashes in progression-provenance.json",
+      "sha256": "d0950e7cb052ac4cdd3a47693e5085d6a69bc816b9402504fcd5a955f59d077c"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://pokeapi.co/api/v2/move/vine-whip",
+      "sha256": "1938f3bf7214c29bd8a50e8e7e6da84d0aadf0425fe756e582a939efc7d80604"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/growl",
+      "sha256": "5001a2b9c84aa8b84b151dd3f0a54fa2c35c904768a5b41454b85f09e4d66f60"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/mega-drain",
+      "sha256": "c7a88644491421b879e43b96cd917551f3f20eea6c72200e764c5109c7098a8d"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/poison-powder",
+      "sha256": "9a8bde108c3dc5644bb7642758ebce5fc2113d95d4d091f4b116bfef734b757c"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/razor-leaf",
+      "sha256": "5d8c981d97aa36733ee82e94bcdc3edd96635e0aba0547a4f92fc4cc345987c1"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/giga-drain",
+      "sha256": "0c5b1e9bf1ba4bb2969a291d5c03db4859a2b78ca6282d3624c1d91ebd124853"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/ember",
+      "sha256": "6f4e0733d5ca5b35634a198e6f4d602da37d03066caa758f55ce6dc9956160a4"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/metal-claw",
+      "sha256": "fbc9ffd1a7671c282f8c3bda6f156f31cdc30df979b40adfef724bbea3733d17"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/flame-burst",
+      "sha256": "3f641c6efe4894b18f3cdf09284eafd550e010a8b9b75cd00340f2ee86c91524"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/slash",
+      "sha256": "6a89d084d41ad927864375f3e1446d48b6a3d64093f227642c19bb14deeff299"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/flamethrower",
+      "sha256": "31e81bd835108a45a70b4ae5ce088f1299fd82217fc0d83499fb3b8ceaaa50eb"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/wing-attack",
+      "sha256": "7870b075d543779ded5a37da7ef4677a331c6671a86345388e5363b357482bcf"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/water-gun",
+      "sha256": "5b73fddd63a577c330b449867246a8a04e7ca5ed059cfd2e6e4b8fd92f17b3c7"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/withdraw",
+      "sha256": "e2adcb5bfd3dde3e1248e0d05b0dd8ec4194443e6db8d79747d289e1979b0283"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/bite",
+      "sha256": "d7d73dc6ac7b5fb3855e93cec924cabeaa478b2bd2b73587cb379f6e9bdf6ec0"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/water-pulse",
+      "sha256": "6de10ad9ded88ba01b9d1dca2a98d63e33bae6c14e093b30de1c55e7c1e5acab"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/protect",
+      "sha256": "01b049e2f0030c47cc7f15ae6542e33d8915f389e93689dc0feb602fcb185aa3"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/surf",
+      "sha256": "1bca0fda4b0e7348f6fd8e67c3dc705dff5020e4583b61eb04d6d6511483952c"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/string-shot",
+      "sha256": "af598fee38cc35435156ab53db4f75a493e63bc2e8e6a0a4a842d79dea42e8c4"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/bug-bite",
+      "sha256": "0a67330ef2fa5e467cf87f588f5c08df30d02b70eaea9149d201128a6a2f27c5"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/harden",
+      "sha256": "fc24b28f7f5626fd6bebb71243d512d82c0192d4c8eac8359562c5acae010e98"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/confusion",
+      "sha256": "63305f2a8a78909a155b98b951ee3c5a524714cd2571a7df467e96529b26efb2"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/stun-spore",
+      "sha256": "a49cc3eb7b9cebd4cb77b17e69c8fe61d9c760a1cc9da0a1aa01240e63f51144"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/gust",
+      "sha256": "0718ef2050c2ea48245ae430d6ea1061d4c9a300d967610a999ba04d756a7621"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/psybeam",
+      "sha256": "3869a8afdc3e9fa5cb48b40c69b43df02120ff14af13f29e56ab7ccf8ab83f7d"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/poison-sting",
+      "sha256": "2d207c73ead9ad4f44a6ec15a6906234fb3a599028c79d18f81116de229e91d6"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/twineedle",
+      "sha256": "caaf06e93923fa66c17a29707b1783f4a8ac66b9d61f274c485e50dde73916e7"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/pin-missile",
+      "sha256": "c10c292c3a16f3ce54a00846cbdbcc9e10c59282f9a65382fadd8a604c3f6192"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/agility",
+      "sha256": "5892e2ab3c33aa57449fa0eefb5624f29694cf46673c2458417abc3a6b8ae008"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/poison-jab",
+      "sha256": "76965d5baa19de267a6fa9c60627fe2b1cfc54e6d5395412dd88325df8c9f0d3"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/quick-attack",
+      "sha256": "08e1eaa2915032bc52b1fdc656c509a6148ef35a38f1fbe0c517be14862536d7"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/roost",
+      "sha256": "67ef4cc01c51d87d890fd46f5507b37c175fa52262f4f01f6e315454e6f5a9ba"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/feather-dance",
+      "sha256": "a1483a21679a6fd7927d255c46ecad8fd06a0e1c8ff437f55cc0369516c489c3"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/tail-whip",
+      "sha256": "2e84534f89e28280393b4c71baef5d3e23ef413f38dfdd340afb394c958afc00"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/scary-face",
+      "sha256": "e90fbfe33836f8ed0bec5526a2def958fb2ae208f12a3269c68f2d27a72c853d"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/hyper-fang",
+      "sha256": "8ee2cc27655a15932348719cddca2eb40f972ef977c7c078062b75d11a6d7623"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/crunch",
+      "sha256": "5d200264560cd46ed8b93abddb8c52bf22c8e522cf8952958f72eb22b05194ad"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/thunder-shock",
+      "sha256": "3d550e8e28a90fed5f4e4f81dc566eba1a4e86af6b982c69d39ae175fdcc24e4"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/thunder-wave",
+      "sha256": "3970b549c3385395d707688310726d24cc3b62047401d5b3391c8edeb17e4bb5"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/spark",
+      "sha256": "ca7aa2761c960554d7b4d7c2aa0942e3f2d217a39933c65ff6c0166b90c090d7"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/nuzzle",
+      "sha256": "a9bee355c6d0bfca32082be572c074685a133142805965fffc3c4f573d1295ea"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/thunderbolt",
+      "sha256": "53622ac5bfa8c588777061abecf54f12db6e3c0274857e4c806f450ff14c372d"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/rock-throw",
+      "sha256": "9ad1cc3a9e05bb647369402a974341c490bd8288f102fc162ec8ededcae95850"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/defense-curl",
+      "sha256": "a1d203f4fb8eab485ba0ee7ef25808d18c60d8bbfd4c431c0dbc35cfb4c68cd9"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/rock-tomb",
+      "sha256": "a64e5b5652d17968a95abeef3147b22728b4f85013e3d0c350fab03babf38099"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/bulldoze",
+      "sha256": "ea6736a0318e289ed6df92412831bb18a32f50ebd1eb24b2f9f86d307aa17cad"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/earthquake",
+      "sha256": "50bf4486496f6723d5b199c20f2ee2a3d1b9c9de0c4b5d2a17d005af2b7879e0"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/bind",
+      "sha256": "d107e1fa64de080f63f0ce93649c0d598f477167229cb27454f3cc0c638f0638"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/screech",
+      "sha256": "5f8664f739dc045665ab9a439951e10686e767b48f653390fb3675f30ad75f6f"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/dragon-breath",
+      "sha256": "8a32a7f241a24ee3fc941b0b0e21d33305c07abdfaafe601653709e40156ad5d"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/iron-tail",
+      "sha256": "a4b3fd2a0053dd0de9634a3d3a0dc534fc3dad0ffec9cf09c3b49e102239fe14"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/1",
+      "sha256": "365bbd36d6570728dc41c94809fc69f0fc79e33f032feef7c178dc6ae20da905"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/2",
+      "sha256": "cf6e5be37044783741dc216672218222d3ffc19f6cb5096a1ccd3b4a14d6a070"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/3",
+      "sha256": "668c8d0394c8c6ba088e0ef6dbe0e1d565250d083e809ff8fda573d5329506d4"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/4",
+      "sha256": "7ad4a4fe18e8aee377bdc1b017dd53c2a94eb5dec1f8fbe4bd88361babd7f9b3"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/5",
+      "sha256": "78237c3348513c0e67d496252238186f3a3d2d42803ef4cc2910491dd1734574"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/6",
+      "sha256": "2d638ac4be71a9da3d1e2236088b787a762d4628ed3dd0980e21b276743a3ee4"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/7",
+      "sha256": "4599ef2969f961323ecf84e33a85750079f761f7e2cfb62e1232607716f978c2"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/8",
+      "sha256": "4055b0a689afe3324258b36981d06b32408afedc65e7d65a0e15f22952a63c9a"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/9",
+      "sha256": "62e56befcd52c7f90ff5107b2494c073847b4594f573b94c83c2df0971486028"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/10",
+      "sha256": "e39d8ccf9e371654f2b120fd19425749f3877239285e3eaf06e0d259e40afab2"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/11",
+      "sha256": "014ba3a882e9b00d434ef6fae000375faa6152bb9898fd4cb40cb1003022379c"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/12",
+      "sha256": "3dd77a800131927bf695032c6573002619b63b6724d1819b8426ee64ad99d581"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/13",
+      "sha256": "678312eea8430435cc45ac09939b01298956f43123eac9838136a1138f1894c7"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/14",
+      "sha256": "aa3cb40e9c2c2594f9ed857ed9931e41bcb036e51c2fcc96108c3a984429fa03"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/15",
+      "sha256": "7c64441b7c88ba7b53f37fc5b21ece45bd055b3491d62014db4a325b2a8d18e9"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/16",
+      "sha256": "f58f19272fafdae2d7ced77e80835ecd778bd8d2bb48e22f7d049efeb8311032"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/17",
+      "sha256": "5425b84f445bb0a37441c9f30cb375e6a32471c184414fa32bf2d8f5d2f28b5a"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/18",
+      "sha256": "f61e7bc7c4cad68f446a046db774ada0f9bf37418f955697ef357ace7443f18f"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/19",
+      "sha256": "786c766559f105583e66f6f60b174701e3bc63f8c311f11b8c6ebce80e77c331"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/20",
+      "sha256": "37a28cd66db602f858d9708929c2aa81c628211c275b673fbd07c660b31b838d"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/25",
+      "sha256": "b964b99e20ec163d9f6a865de060992a637c01eb46500e7bf74bbff37886a0db"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/26",
+      "sha256": "2ed08182487f97e1ad0f404e9167f18b77ea4cef4463734bda4c9fb0d046a65f"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/74",
+      "sha256": "8f5444c4ce93701ed737f5ba7511468cedc6a48e4e4781060fceb03fc56b2933"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/95",
+      "sha256": "7a419a324a31e3bcad081fddadaa7e8ab9c1fb7f88b06824318acafedcf66c2a"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/75",
+      "sha256": "b3e5b6195c05c5ac2a234a7bdc60af671e0aa6894f631cda87d38f88a29ee3a0"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/76",
+      "sha256": "4bc4579fff41f1ebd0242927f68eed0d5e922af9c79f6112be0d0e876748ac77"
+    }
+  ]
+}

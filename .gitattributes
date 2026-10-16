@@ -2,7 +2,7 @@
 * text=auto eol=lf
 public/** -text
 godot/assets/** -text
-godot/assets/** whitespace=-blank-at-eol
+godot/assets/** whitespace=-blank-at-eol,-space-before-tab
 # Raw API snapshots retain the exact bytes recorded in their manifest.
 godot/data/kanto-sources/** -text
 godot/licenses/** -text

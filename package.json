@@ -35,7 +35,8 @@
     "godot:test": "node tools/godot/run.mjs test",
     "godot:qa": "node tools/godot/run.mjs qa",
     "godot:export": "node tools/godot/run.mjs export",
-    "godot:qa:export": "node tools/godot/run.mjs qa-export"
+    "godot:qa:export": "node tools/godot/run.mjs qa-export",
+    "godot:test:progression": "node tools/godot/run.mjs test-progression"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

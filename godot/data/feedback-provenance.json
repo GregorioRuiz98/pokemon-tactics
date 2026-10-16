@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "target": "assets/audio/miss.wav",
+      "source": "tools/vendor/jsfxr/sfxr.js",
+      "preset": "jump",
+      "seed": 16514,
+      "sha256": "c8e136897686a4f758babc57c2e2313d5560b7b0e1c7e3b46f8f35326c0d29fd",
+      "license": "Unlicense",
+      "modification": "Deterministic native WAV; PCM volume 0.16; RIFF padding corrected"
+    },
+    {
+      "target": "assets/audio/immune.wav",
+      "source": "tools/vendor/jsfxr/sfxr.js",
+      "preset": "blipSelect",
+      "seed": 16514,
+      "sha256": "de42db2f3efd634efd1a42f2fc630944f1cedcde3a1be2cff856aa799468b4b5",
+      "license": "Unlicense",
+      "modification": "Deterministic native WAV; PCM volume 0.16; RIFF padding corrected"
+    },
+    {
+      "target": "assets/audio/level-up.wav",
+      "source": "tools/vendor/jsfxr/sfxr.js",
+      "preset": "powerUp",
+      "seed": 16514,
+      "sha256": "a9f329bc94a1d3bbd213c0c6bd25d983c283108a9adb609d2806509c1efd5b21",
+      "license": "Unlicense",
+      "modification": "Deterministic native WAV; PCM volume 0.16; RIFF padding corrected"
+    }
+  ]
+}

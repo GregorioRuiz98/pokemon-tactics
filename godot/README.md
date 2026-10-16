@@ -1,38 +1,41 @@
-# Pokémon Tactics — Kanto Windows 0.14.0
+# Pokémon Tactics — Kanto Windows 0.14.1
 
-Muestra jugable de Pueblo Paleta hasta Brock: elige un inicial de Oak, supera Ruta 1, Ruta 2 y Bosque Verde y desafía a Geodude/Onix. Cada victoria concede dinero, captura local garantizada y tienda. Tras Brock: Medalla Roca, dinero y captura del Bosque Verde, como decidió el creador.
+Muestra de Paleta hasta Brock con elección de inicial, cuatro encuentros, captura local, tienda y bajas definitivas. Esta revisión añade EXP/niveles, movimientos configurables, dos orientaciones de rol por línea y señales distintas para fallo/inmunidad.
 
 ## Jugar
 
-Abrir PokemonTactics.exe en la distribución. Funciona offline, sin editor, Node ni servidor. LEEME.txt, CREDITS.md, licenses y SHA256SUMS.txt acompañan al ejecutable.
+Abrir PokemonTactics.exe desde la distribución. Funciona offline sin editor, Node ni servidor. Incluye LEEME, créditos/licencias y SHA256SUMS. Elige **Nueva campaña** para usar las reglas nuevas; un guardado0.14.0 continúa como Clásica0.14, conservando sus reglas y batalla. Al empezar otra se guarda copia de la anterior.
 
-- Oak entrega un único inicial, dos pociones y 120 ₽. Los PS y las bajas persisten; estados/PT se reinician por combate. Caer termina la campaña si no quedan vivos.
-- El sorteo usa las tablas de hierba de Pokémon Rojo original. El premio ya está guardado al mostrarse; cargar no lo vuelve a sortear. Esta muestra admite duplicados y llega a cinco miembros como máximo; todavía no necesita PC.
-- Tienda tras cada captura: Poción 40 ₽ (+40 PS), Superpoción 90 ₽ (+100 PS), Caramelo Raro 100 ₽. Curación solo fuera de combate, sin revivir. Un Caramelo evoluciona una etapa sin requisito de nivel y sin curar. Entrenamiento 80 ₽: +5 a una estadística, dos compras totales por Pokémon, conservadas al evolucionar. Valores provisionales.
-- Movimiento directo por casillas azules y básico al pulsar un rival al alcance. Menú flotante derecho visible en turnos aliados; Habilidades/A o 1/2/3 para los movimientos.
-- Rectificar/R solo devuelve el último movimiento antes de actuar o terminar; atacar primero también lo bloquea. Nunca devuelve PS, PT, estados, ataques ni RNG.
-- Orientar y terminar/F elige la dirección final. Previsión al señalar; confirmar solo ataques con riesgo aliado. Flechas/Enter para casillas, Escape/clic derecho para cancelar, F8 para cargar y F1 para opciones, ayuda, créditos y ajustes.
-- Laboratorio táctico conserva el ensayo anterior 3v3/8×8, composiciones y guardado propio. Se accede desde la cabecera o el menú.
+- Oak entrega un inicial de nivel5, dos pociones y120 ₽. PS/bajas persisten; estados/PT y etapas de atributos se restablecen por combate. Si no quedan vivos termina la campaña.
+- Tras victoria, cada superviviente gana EXP y puede subir/aprender sin recuperar PS. Captura local ya sorteada y guardada, luego tienda. Brock da medalla/dinero/captura del Bosque Verde. Se admiten duplicados provisionalmente.
+- Cuatro movimientos preparados **más** el básico fijo: cinco acciones. El básico no tiene tipo, STAB ni resistencias/inmunidades de tipo; 25potencia, alcance1, 0PT y consume la acción. Defensa, precisión y estados siguen aplicándose.
+- Preparar movimientos aprendidos es gratis fuera de combate; desmarca uno para dejar hueco si tienes cuatro. Las dos orientaciones de rol se combinan, sin bonificaciones ocultas. Evolucionar conserva los movimientos aprendidos y actuales.
+- Caramelo Raro100 ₽: evoluciona una etapa solo al alcanzar el nivel mínimo; no da niveles ni cura. Se ha retirado el entrenamiento de estadísticas por dinero en edición2. Poción40 ₽/+40PS y Superpoción90 ₽/+100PS siguen fuera de combate y sin revivir.
+- Clic en casilla azul mueve; clic en rival al alcance usa el básico. Habilidades/A abre el menú; teclas1–5 eligen acciones. Rectificar/R devuelve solo el movimiento antes de actuar o terminar; nunca ataques, PS/PT, estados ni RNG. Orientar y terminar/F elige dirección final.
+- Previsión al señalar muestra daño, precisión, STAB y multiplicador de tipos. Fallo e inmunidad muestran imagen, rótulo y sonido propios. Ajustes de sonido/animación en F1; efectos sin desplazamiento con movimiento reducido.
+- Flechas/Enter para casillas, Escape/clic derecho para cancelar, F8 para cargar y F1 para opciones/ayuda/créditos. Laboratorio anterior accesible desde cabecera/menú, con reglas y guardado propios.
 
-La campaña se guarda tras cada orden en `%APPDATA%/PokemonTacticsLab/kanto-save.json`. Nuevo inicio conserva copia del archivo anterior. Carga por reconstrucción, checksum, escritura temporal/copia y detección de otra instancia; los archivos inválidos se preservan. Si falla escribir se avisa y se continúa solo en memoria. Contrato de campaña `kanto`, versión 1; laboratorio `laboratory-save.json`, esquema 1/contrato 0.13.0 conservado. No se leen partidas web.
+Guardado después de cada orden en `%APPDATA%/PokemonTacticsLab/kanto-save.json`, esquema kanto/edición2 para nuevas partidas. Reconstrucción de diario, checksum, copia/escritura temporal y detección de otra instancia. Archivos inválidos se preservan; un error de escritura avisa y permite seguir en memoria. Edición1 se reconstruye con el motor anterior. El laboratorio mantiene laboratory-save.json/esquema1/contrato0.13.0; no se leen guardados web.
 
-## Alcance de esta muestra
+## Alcance y valores provisionales
 
-Cuatro encuentros y mapas de prueba 12×10 en vista cenital. No incluye aún isometría, alturas, cámara de mapas grandes, PC, equipables en campaña, EXP/niveles, MT, Liga ni legendarios. La entrega del paquete/Pokédex se resume en texto; no hay mundo de exploración libre, combate inicial del rival, Ruta 22 opcional ni entrenadores secundarios. Evoluciones y mejoras mínimas sirven para probar el ciclo; no representan todos los requisitos de la campaña futura.
+Cuatro mapas cenitales12×10 y catálogo de26 especies/diez líneas, con51 adaptaciones de movimientos reales. Los Pokémon capturables siguen siendo los de las tablas locales de Rojo, no todo el catálogo. Aprendizaje, PT, alcance y algunos efectos están adaptados: no es una réplica completa del cartucho. Pikachu20 y Graveler36 son umbrales provisionales para evolucionar con Caramelo en lugar de piedra/intercambio.
 
-Balance provisional: nueve simulaciones, tres por inicial; completaron Brock 1/3 con Bulbasaur, 0/3 con Charmander y 3/3 con Squirtle bajo la política automática usada. No son tasas humanas. Para recorrer todo el tramo con una configuración comprobada: Squirtle y semilla `kanto-14`.
+Bases reales, IV15/EV0/naturaleza neutra y PS×4 tácticos. EXP220/350/500/650 por encuentro, coste siguiente nivel40+10L, cap100. El equilibrio no está cerrado: la política automática probada completa con Squirtle/semilla kanto-14 y pierde antes con los otros iniciales. No son tasas humanas.
+
+Sin isometría, alturas/cámara de mapas grandes, PC, equipables/MT de campaña, pasivas, críticos, clima ni todos los estados. Se mantienen los límites narrativos del14: textos de viaje y paquete/Pokédex resumidos, sin exploración libre, rival inicial, Ruta22 opcional o entrenadores secundarios. Liga/legendarios pertenecen a entregas posteriores.
 
 ## Desarrollo y comprobación
 
-Godot 4.7.2 estándar, importar project.godot y F5. Recursos incluidos, sin plugins nuevos. Exportar requiere las plantillas oficiales 4.7.2. Desde la raíz, Node 24 y npm ci:
+Godot4.7.2 estándar, importar project.godot y F5. Plantillas oficiales4.7.2 para exportar; sin plugins nuevos. Desde la raíz, Node24/npm ci:
 
 ```powershell
 $env:GODOT_BIN='C:\ruta\Godot_v4.7.2-stable_win64_console.exe'
 npm run godot:verify
 npm run godot:prepare
-npm run godot:test
-npm run godot:test:campaign
+npm run godot:test:progression
 npm run godot:test:campaign:edges
+npm run godot:test
 npm run godot:qa
 npm run godot:qa:campaign
 npm run godot:export
@@ -40,8 +43,8 @@ npm run godot:qa:export
 npm run godot:qa:campaign:export
 ```
 
-El motor portable del entorno está en ../../work/godot-4.7.2; GODOT_BIN admite otra instalación. El binario exportado se prueba sin consultar el editor. Resultados temporales en ../../work/qa-sprint-14; distribución en ../releases/pokemon-tactics-0.14.0/windows respecto a la raíz del repositorio. No subir motores, cachés ni paquetes a Git.
+Resultados temporales ../../work/qa-sprint-14-progression; paquete ../releases/pokemon-tactics-0.14.1/windows respecto a la raíz. Las pruebas del .exe no consultan el editor. QA usa archivos aislados, controles y eventos de viewport; no sustituye partidas humanas. Motor/plantillas/cachés/ZIP fuera de Git.
 
-`godot:import` regenera las referencias de laboratorio desde la web: no ejecutarlo para ocultar discrepancias. `python tools/godot/import-kanto.py` importa solo esta ampliación; requiere Pillow instalado y acceso de red en desarrollo o caché local. En este entorno Pillow ya está en ../../work/balance-python, seleccionable mediante PYTHONPATH; no se ha instalado una dependencia nueva. Commits fijados, fuentes y hashes en los manifiestos. La reproducción de futuras reglas de campaña exige conservar esta edición o migrarla expresamente.
+Importadores explícitos: import-progression.py (Python/Pillow ya disponibles mediante PYTHONPATH=../../work/balance-python) e import-feedback.mjs (jsfxr local). Referencias/hashes en progression-provenance y feedback-provenance. No ejecutar godot:import para ocultar discrepancias: regenera referencias del laboratorio desde la web, que deben conservarse.
 
-[Informe del sprint 14](../docs/SPRINT_14.md) · [Diseño del HUD](DESIGN.md) · [Créditos](CREDITS.md) · [Base Godot](../docs/SPRINT_13.md)
+[Reglas, roles y propuestas](../docs/DESIGN_LEVELS_ROLES.md) · [Informe y evidencia](../docs/SPRINT_14_PROGRESSION.md) · [Créditos](CREDITS.md)

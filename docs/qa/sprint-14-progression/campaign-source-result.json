@@ -1,0 +1,41 @@
+{
+  "assertions": 1568,
+  "completed": [
+    {
+      "cleared": 1,
+      "phase": "defeat",
+      "starter": 1,
+      "transactions": 74
+    },
+    {
+      "cleared": 3,
+      "phase": "defeat",
+      "starter": 4,
+      "transactions": 233
+    },
+    {
+      "cleared": 4,
+      "phase": "complete",
+      "starter": 7,
+      "transactions": 218
+    }
+  ],
+  "failures": [],
+  "playerOrders": 244,
+  "screenshots": [
+    "01-oak.png",
+    "02-journey.png",
+    "03-battle.png",
+    "04-miss.png",
+    "04-capture.png",
+    "05-shop.png",
+    "05-shop-small.png",
+    "03-five-actions.png",
+    "03-five-small.png",
+    "06-result.png",
+    "07-1024x720.png",
+    "07-1440x1000.png",
+    "08-immune.png",
+    "09-legacy.png"
+  ]
+}

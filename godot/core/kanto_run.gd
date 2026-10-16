@@ -39,6 +39,7 @@ func transact(input: Dictionary, command: Dictionary) -> Dictionary:
 	if command.get("at",-1) != input.revision: return fail("Esa opción pertenece a una pantalla anterior.")
 	var run: Dictionary = input.duplicate(true)
 	var kind: String = command.get("kind","")
+	var presentation: Dictionary = {}
 	match kind:
 		"enter":
 			if run.phase != "map" or run.party.filter(func(m): return m.hp > 0).size() not in range(1,7): return fail("No puedes entrar en ese encuentro.")
@@ -61,6 +62,7 @@ func transact(input: Dictionary, command: Dictionary) -> Dictionary:
 			else: return fail("Orden táctica desconocida.")
 			var result: Dictionary = engine.apply_command(run.battle,command.order)
 			if not result.ok: return result
+			presentation = {"hits":result.get("hits",[])}
 			run.battle = result.state
 			run.battleCommands.append(command.order.duplicate(true))
 			if run.battle.outcome != "playing":
@@ -119,7 +121,7 @@ func transact(input: Dictionary, command: Dictionary) -> Dictionary:
 		_:
 			return fail("Orden de campaña desconocida.")
 	run.revision += 1
-	return {"ok":true,"state":run}
+	return {"ok":true,"state":run,"presentation":presentation}
 
 static func fail(reason: String) -> Dictionary:
 	return {"ok":false,"reason":reason}
