@@ -1,6 +1,6 @@
 # Laboratorio nativo — sprint 13
 
-- Godot 4.7.2 estándar, GDScript y Windows x86_64. Abrir project.godot; el ejecutable exportado no requiere editor, Node ni servidor. Versión nativa 0.13.0, web 0.12.0 conservada.
+- Godot 4.7.2 estándar, GDScript y Windows x86_64. Abrir project.godot; el ejecutable exportado no requiere editor, Node ni servidor. Versión nativa 0.13.1 (HUD directo), web 0.12.0 conservada.
 - Alcance actual: dos composiciones 3v3 de las seis especies originales, tablero 8×8, reglas actuales de nivel uno/edición 14 y ensayo clásico. Sin campaña, inicial de Oak, gacha, tienda, PC, evolución, jefes ni mapas grandes todavía. PRODUCT.md y PLAN_SPRINTS.md conservan esos requisitos para siguientes entregas.
 - Dominio POO: LabPokemon comparte creación/perfiles; acciones polimórficas Damage/Drain/Status/Guard. Tipos y evolución como datos, nunca clases de tipo o etapa. Estado solo JSON; sin instancias, nodos o referencias de escena en guardados.
 - LabBattle es la autoridad de jugador, IA y previsión. No consumir RNG al inspeccionar, dibujar, sonar o cancelar. Mantener PRNG uint32, redondeo, desempates A*/heap y orden de golpes iguales a las referencias web; licencias de EasyStar/heap incluidas.
@@ -8,3 +8,6 @@
 - Recursos generados explícitamente con npm run godot:import; solo fuentes locales. No editar JSON/fixtures ni hojas originales para ocultar una discrepancia. provenance.json registra fuente/destino; victory.wav nativo añade relleno RIFF sin cambiar PCM. No modificar el WAV web.
 - Comandos en package.json: godot:verify, godot:prepare, godot:test, godot:qa, godot:export, godot:qa:export. GODOT_BIN selecciona ejecutable estándar de desarrollo; binario/plantillas se mantienen fuera de Git. La prueba del exportado no necesita GODOT_BIN.
 - No añadir GUT/MCP/dependencias sin necesidad demostrada. Comprobar motor real, reglas, guardado, interfaz renderizada y binario final; los controles automatizados no equivalen a pruebas humanas. Paquetes fuera del repositorio en ../releases; conservar licencias y hashes.
+
+- Ajuste de interfaz autorizado el 16 de octubre: órdenes directas sobre tablero, previsión al señalar, básico elegido, flechas inferiores terminan orientando con un clic. Solo confirmar ataques con riesgo para aliados. Equipo/registro y opciones en Menú/F1; no cubrir casillas. Informe en docs/SPRINT_13_UI.md.
+- La versión de aplicación 0.13.1 conserva el contrato de guardado/reglas 0.13.0; no invalidar diarios por un cambio visual. No modificar core/, datos o fuentes web para esta revisión.

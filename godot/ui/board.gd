@@ -1,6 +1,8 @@
 extends Control
 
 signal tile_selected(point: Dictionary)
+signal tile_hovered(point: Dictionary)
+signal cancelled
 const Rules = preload("res://core/battle.gd")
 const Movement = preload("res://core/movement.gd")
 var state: Dictionary = {}
@@ -9,6 +11,9 @@ var textures: Dictionary = {}
 var available: Dictionary = {}
 var route: Array = []
 var affected: Array = []
+var attackable: Dictionary = {}
+var forecast_hits: Array = []
+var facing_preview = -1
 var cursor = Vector2i(1, 6)
 var reduced_motion = false
 var elapsed = 0.0
@@ -18,7 +23,7 @@ func _ready():
 	custom_minimum_size = Vector2(360, 360)
 	focus_mode = Control.FOCUS_ALL
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	tooltip_text = "Flechas y Enter para seleccionar una casilla. Escape cancela la previsión."
+	mouse_exited.connect(func(): tile_hovered.emit({}))
 
 func setup(records: Array):
 	for record in records:
@@ -42,15 +47,21 @@ func _process(delta):
 		queue_redraw()
 
 func _gui_input(event):
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+		cancelled.emit()
+		accept_event()
+		return
 	if event is InputEventMouseMotion or event is InputEventMouseButton:
 		var local = (event.position - board_origin()) / cell_size()
 		var point = Vector2i(floori(local.x), floori(local.y))
 		if point.x >= 0 and point.x < 8 and point.y >= 0 and point.y < 8:
 			cursor = point
+			if event is InputEventMouseMotion: tile_hovered.emit({"x": point.x, "y": point.y})
 			if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 				grab_focus()
 				tile_selected.emit({"x": point.x, "y": point.y})
 				accept_event()
+		elif event is InputEventMouseMotion: tile_hovered.emit({})
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.keycode:
 			KEY_LEFT: cursor.x = maxi(0, cursor.x - 1)
@@ -59,6 +70,7 @@ func _gui_input(event):
 			KEY_DOWN: cursor.y = mini(7, cursor.y + 1)
 			KEY_ENTER, KEY_KP_ENTER: tile_selected.emit({"x": cursor.x, "y": cursor.y})
 			_: return
+		if event.keycode not in [KEY_ENTER, KEY_KP_ENTER]: tile_hovered.emit({"x": cursor.x, "y": cursor.y})
 		accept_event()
 		queue_redraw()
 
@@ -93,6 +105,7 @@ func _draw():
 					draw_line(p, p + Vector2(cell - 20, 0), Color(0.8, 0.92, 0.95, 0.2), 2)
 			var key = "%d,%d" % [x, y]
 			if available.has(key): draw_rect(rect.grow(-2), Color(0.25, 0.68, 0.86, 0.25))
+			if attackable.has(key): draw_rect(rect.grow(-5), Color("e5a182"), false, 2)
 			if affected.any(func(point): return point.x == x and point.y == y): draw_rect(rect.grow(-2), Color(1, 0.58, 0.2, 0.4))
 	for field in state.fields:
 		var c = center(field)
@@ -123,12 +136,20 @@ func _draw():
 		var hp_rect = Rect2(c + Vector2(-cell * 0.3, cell * 0.34), Vector2(cell * 0.6, 5))
 		draw_rect(hp_rect, Color("22372b"))
 		draw_rect(Rect2(hp_rect.position, Vector2(hp_rect.size.x * unit.hp / unit.maxHp, 5)), color)
+		for hit in forecast_hits:
+			if hit.targetId != unit.id or hit.damage <= 0: continue
+			var remaining = maxi(0, int(unit.hp - hit.damage))
+			draw_rect(Rect2(hp_rect.position + Vector2(hp_rect.size.x * remaining / unit.maxHp, 0), Vector2(hp_rect.size.x * (unit.hp - remaining) / unit.maxHp, 5)), Color("f0b66a"))
+			draw_string(font, c + Vector2(-cell * 0.3, cell * 0.65), "−%d · %d%%" % [hit.damage, hit.accuracy], HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color("fff0ca"))
 		var facing_vector = Vector2(Rules.VECTORS[int(unit.facing)])
 		var arrow = c + facing_vector * cell * 0.37
 		draw_line(arrow - facing_vector * 5, arrow + facing_vector * 2, Color("f8edce"), 2)
 		if active:
 			var top = c - Vector2(0, cell * 0.44)
 			draw_colored_polygon(PackedVector2Array([top + Vector2(-5, -5), top + Vector2(5, -5), top + Vector2(0, 2)]), Color("f3d286"))
+			if facing_preview >= 0:
+				var vector = Vector2(Rules.VECTORS[facing_preview])
+				draw_line(c, c + vector * cell * 0.65, Color("f3d286"), 4)
 		if unit.status != null: draw_circle(c + Vector2(cell * 0.28, -cell * 0.25), 4, Color("e9c2f1"))
 	var cursor_rect = Rect2(origin + Vector2(cursor) * cell + Vector2(2, 2), Vector2.ONE * (cell - 4))
 	draw_rect(cursor_rect, Color("f3d286"), false, 2)

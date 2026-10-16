@@ -359,3 +359,7 @@ Antes de empezar cada bloque, cerrar únicamente las decisiones que lo afectan: 
 El informe de balance de la web se conserva como evidencia previa. Sus cifras no representan el nuevo recorrido ni autorizan rebajar daño, cambiar kits o alterar precios durante esta entrega. Tras portar las reglas y añadir la campaña, repetir pruebas con semillas comparables y partidas humanas.
 
 Entrega documental anterior: inputs registrados en PRODUCT.md, este plan, README.md y AGENTS.md, sin iniciar el port. Entrega actual 13: laboratorio Godot independiente y herramientas de comprobación/exportación. No se ha implementado la campaña larga ni aplicado propuestas de balance.
+
+## Revisión del HUD nativo — 16 de octubre de 2026
+
+Solicitud adicional del usuario: integrar la interfaz en el juego y reducir clics. Entrega 0.13.1 en codex/sprint-13-ui: tablero con órdenes directas, previsión al pasar el cursor y franja inferior compacta; orientación con un clic y confirmación solo por riesgo aliado. No inicia el sprint 14 ni cambia balance, datos, reglas o guardados. [Informe y comprobaciones](SPRINT_13_UI.md).

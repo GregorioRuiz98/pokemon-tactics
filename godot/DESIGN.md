@@ -1,9 +1,11 @@
-# Laboratorio táctico — sprint 13
+# Laboratorio táctico — interfaz directa 0.13.1
 
-Fans de Pokémon y RPG tácticos; ensayo manual 3v3 que comprueba el port antes de Kanto. Acción principal: elegir movimiento/casilla, revisar previsión y confirmar. La orientación final forma parte de las órdenes. Nueva partida y opciones quedan fuera del tablero.
+Fans de Pokémon y RPG tácticos; ensayo manual 3v3 antes de Kanto. La acción principal ocurre sobre el tablero: pasar el cursor para prever y hacer clic para ejecutar. Un básico ya está elegido; las habilidades requieren elegirla y señalar objetivo, salvo las propias que usan una pulsación.
 
-Conservar la identidad del prototipo: verde oscuro, suelo apagado, texto marfil, selección ámbar y Pixelify Sans; sprites direccionales Mystery Dungeon originales. Cola encima del mapa, equipo a la izquierda, objetivo/previsión a la derecha y órdenes debajo. Ningún panel cubre casillas. No presentar este laboratorio como la campaña larga ni incluir una selección de inicial ficticia.
+Conservar verde oscuro, texto marfil, selección ámbar, Pixelify Sans y sprites direccionales originales. Cola compacta sobre el mapa; retrato/PS/PT, habilidades, orientación y previsión en una única franja inferior. Equipo y registro extensos, ajustes, nuevo ensayo, ayuda y créditos en Menú/F1. Ningún control cubre las casillas. Los PS y la pérdida prevista también se dibujan sobre cada unidad afectada.
 
-Controles Godot nativos con foco; tablero por ratón y flechas/Enter, Escape para cancelar, atajos M/1/2/3/F/F8. Mostrar coste, precisión, eficacia, recuperación y aviso de fuego aliado antes de confirmar. Pausar IA al abrir diálogos; animación y sonido no afectan al RNG. Permitir desactivar ambos. Rutas se confirman; en esta entrega el cambio de casilla es inmediato y los sprites tienen animación Idle. Animación Walk y cámara para mapas mayores quedan para el acabado posterior.
+Casillas azules para movimiento, marco coral para objetivos legales, área ámbar y trayectoria al señalar. Elegir orientación inferior termina con un clic; F activa selección cardinal en el tablero. Tras mover y actuar se ofrece esa selección automáticamente. Se puede terminar antes de gastar ambas órdenes. Una selección pendiente con riesgo para aliados bloquea otras órdenes hasta confirmar/cancelar; el aviso aparece al principio de la previsión.
 
-Comprobar 1024×720, 1280×900 y 1440×1000; vistas de nuevo ensayo, movimiento, ataque, orientación y resultado. Carga fallida conserva el archivo; error de escritura permite seguir en memoria y lo indica. El guardado nativo usa un diario independiente y nunca lee ni sobrescribe localStorage.
+Teclado con foco visible, flechas/Enter, M/1/2/3/F/F8 y clic derecho/Escape. Controles de al menos 44 unidades lógicas de alto; fuente y ventana conservan el escalado del proyecto. Menús/diálogos pausan la IA y bloquean órdenes. Sonido, animación y previsión no alteran el RNG. No presentar el laboratorio como campaña completa.
+
+Comprobar ventanas 1024×720, 1280×900 y 1440×1000; nuevo ensayo, trayectoria, ataque, peligro aliado, orientación, resultado, menú y créditos. Persistir antes de presentar. Conservar contrato nativo y reglas; Walk y cámara para mapas mayores siguen pendientes.

@@ -15,7 +15,7 @@ var state: Dictionary = {}
 var history: Array = []
 var mode = "current"
 var pending: Dictionary = {}
-var selecting = "inspect"
+var selecting = "auto"
 var selected_action = "basic"
 var target_id = -1
 var ai_clock = 0.0
@@ -30,10 +30,12 @@ var action_buttons: Dictionary = {}
 var direction_buttons: Dictionary = {}
 var board
 var timeline: HBoxContainer
-var roster: VBoxContainer
+var menu: MenuButton
+var details_dialog: AcceptDialog
+var details_text: Label
+var actor_portrait: TextureRect
 var actor_info: Label
 var target_info: Label
-var journal: Label
 var heading: Label
 var hint: Label
 var saved: Label
@@ -99,7 +101,7 @@ func _label(text: String, font_size: int = 18, color: Color = CREAM) -> Label:
 func _button(text: String, callback: Callable, minimum: float = 0) -> Button:
 	var button = Button.new()
 	button.text = text
-	button.custom_minimum_size.x = minimum
+	button.custom_minimum_size = Vector2(minimum, 44)
 	button.pressed.connect(callback)
 	return button
 
@@ -121,126 +123,119 @@ func _clear(container: Node):
 func _build_interface():
 	var margin = MarginContainer.new()
 	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	for edge in ["left", "right", "top", "bottom"]: margin.add_theme_constant_override("margin_" + edge, 18)
+	for edge in ["left", "right", "top", "bottom"]: margin.add_theme_constant_override("margin_" + edge, 12)
 	add_child(margin)
 	var main = VBoxContainer.new()
-	main.add_theme_constant_override("separation", 10)
+	main.add_theme_constant_override("separation", 8)
 	margin.add_child(main)
 	var header = HBoxContainer.new()
 	main.add_child(header)
-	var brand = _label("POKÉMON  /  TACTICS", 28, GOLD)
-	brand.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	header.add_child(brand)
-	header.add_child(_label("LABORATORIO 13", 16, MUTED))
-	buttons["new"] = _button("Nuevo ensayo", func(): new_dialog.popup_centered())
-	header.add_child(buttons.new)
-	buttons["load"] = _button("Continuar · F8", _load_game)
-	header.add_child(buttons.load)
-	buttons["help"] = _button("?", func(): help_dialog.popup_centered(Vector2i(630, 450)))
-	header.add_child(buttons.help)
-	var subheader = HBoxContainer.new()
-	main.add_child(subheader)
-	heading = _label("Ensayo 3 contra 3 · preparación", 18)
+	header.add_child(_label("POKÉMON / TACTICS", 22, GOLD))
+	heading = _label("Laboratorio táctico", 17, MUTED)
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	subheader.add_child(heading)
-	saved = _label("Guardado local", 15, MUTED)
-	subheader.add_child(saved)
+	heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	header.add_child(heading)
+	saved = _label("Guardado local", 14, MUTED)
+	header.add_child(saved)
+	menu = MenuButton.new()
+	menu.text = "Menú · F1"
+	menu.custom_minimum_size = Vector2(110, 44)
+	header.add_child(menu)
+	var popup = menu.get_popup()
+	for entry in [["Nuevo ensayo", 0], ["Continuar · F8", 1], ["Cómo jugar", 2], ["Equipo y registro", 3]]:
+		popup.add_item(entry[0], entry[1])
+	popup.add_separator()
+	popup.add_check_item("Sonido", 4)
+	popup.set_item_checked(popup.get_item_index(4), true)
+	popup.add_check_item("Animación", 5)
+	popup.set_item_checked(popup.get_item_index(5), true)
+	popup.add_item("Créditos", 6)
+	popup.id_pressed.connect(_menu_selected)
 	timeline = HBoxContainer.new()
-	timeline.add_theme_constant_override("separation", 8)
+	timeline.alignment = BoxContainer.ALIGNMENT_CENTER
+	timeline.add_theme_constant_override("separation", 12)
 	main.add_child(timeline)
-	var middle = HBoxContainer.new()
-	middle.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	middle.add_theme_constant_override("separation", 12)
-	main.add_child(middle)
-	var left = _panel()
-	left.custom_minimum_size.x = 200
-	middle.add_child(left)
-	var left_content = VBoxContainer.new()
-	left_content.add_theme_constant_override("separation", 12)
-	left.add_child(left_content)
-	left_content.add_child(_label("TU EQUIPO", 18, GOLD))
-	roster = VBoxContainer.new()
-	roster.add_theme_constant_override("separation", 10)
-	left_content.add_child(roster)
-	var spacer = Control.new()
-	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	left_content.add_child(spacer)
-	var legend = _label("SUELO · coste 1\nMALEZA · coste 2*\nAGUA · acuáticos/voladores\nROCA · bloquea el paso\n\n* Planta y voladores: 1", 15, MUTED)
-	left_content.add_child(legend)
 	board = Board.new()
 	board.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	board.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	board.setup(rules.data.species)
 	board.tile_selected.connect(_select_tile)
-	middle.add_child(board)
-	var right = _panel()
-	right.custom_minimum_size.x = 224
-	middle.add_child(right)
-	var right_content = VBoxContainer.new()
-	right_content.add_theme_constant_override("separation", 10)
-	right.add_child(right_content)
-	right_content.add_child(_label("LECTURA TÁCTICA", 18, GOLD))
-	var target_scroll = ScrollContainer.new()
-	target_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	target_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	target_scroll.custom_minimum_size.y = 110
-	target_scroll.focus_mode = Control.FOCUS_ALL
-	right_content.add_child(target_scroll)
-	target_info = _label("Selecciona una casilla\npara inspeccionar.", 17)
-	target_info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	target_info.custom_minimum_size.x = 190
-	target_info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	target_scroll.add_child(target_info)
-	right_content.add_child(_label("ÚLTIMOS TURNOS", 15, MUTED))
-	journal = _label("", 15, MUTED)
-	journal.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	journal.custom_minimum_size = Vector2(190, 105)
-	right_content.add_child(journal)
-	var orders = _panel()
-	main.add_child(orders)
-	var order_content = VBoxContainer.new()
-	order_content.add_theme_constant_override("separation", 8)
-	orders.add_child(order_content)
-	actor_info = _label("Elige un ensayo para comenzar.", 20, GOLD)
-	order_content.add_child(actor_info)
-	var row = HBoxContainer.new()
-	order_content.add_child(row)
-	buttons["move"] = _button("Mover · M", _select_movement, 110)
-	row.add_child(buttons.move)
+	board.tile_hovered.connect(_hover_tile)
+	board.cancelled.connect(_cancel)
+	main.add_child(board)
+	var dock = _panel()
+	main.add_child(dock)
+	var content = HBoxContainer.new()
+	content.add_theme_constant_override("separation", 16)
+	dock.add_child(content)
+	var actor_column = VBoxContainer.new()
+	actor_column.custom_minimum_size.x = 170
+	content.add_child(actor_column)
+	actor_portrait = TextureRect.new()
+	actor_portrait.custom_minimum_size = Vector2(48, 48)
+	actor_portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	actor_portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	actor_portrait.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	actor_column.add_child(actor_portrait)
+	actor_info = _label("Elige un ensayo.", 18, GOLD)
+	actor_column.add_child(actor_info)
+	var orders = VBoxContainer.new()
+	orders.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	orders.add_theme_constant_override("separation", 8)
+	content.add_child(orders)
 	actions = HBoxContainer.new()
-	actions.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	row.add_child(actions)
-	buttons["finish"] = _button("Orientar / terminar · F", _select_finish, 185)
-	row.add_child(buttons.finish)
-	var last = HBoxContainer.new()
-	order_content.add_child(last)
-	hint = _label("Control manual contra IA · seis especies · recursos locales", 16, MUTED)
+	orders.add_child(actions)
+	hint = _label("Clic en el tablero para mover o atacar.", 16, MUTED)
 	hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	hint.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	hint.custom_minimum_size.y = 38
-	last.add_child(hint)
+	hint.custom_minimum_size.y = 40
+	orders.add_child(hint)
+	var last = HBoxContainer.new()
+	orders.add_child(last)
+	buttons["finish"] = _button("Orientar · F", _select_finish)
+	last.add_child(buttons.finish)
 	directions = HBoxContainer.new()
 	last.add_child(directions)
 	for facing in Rules.FACINGS:
-		var names = {4: "↑ N", 2: "→ E", 0: "↓ S", 6: "← O"}
-		var button = _button(names[facing], _set_facing.bind(facing))
+		var names = {4: "↑", 2: "→", 0: "↓", 6: "←"}
+		var full_names = {4: "norte", 2: "este", 0: "sur", 6: "oeste"}
+		var button = _button(names[facing], _set_facing.bind(facing), 44)
+		button.tooltip_text = "Terminar el turno mirando al " + full_names[facing]
+		button.mouse_entered.connect(_preview_facing.bind(facing))
+		button.mouse_exited.connect(func(): board.facing_preview = -1)
 		directions.add_child(button)
 		direction_buttons[facing] = button
-	buttons["cancel"] = _button("Cancelar · Esc", _cancel)
-	buttons["confirm"] = _button("Confirmar", _confirm, 110)
+	buttons["cancel"] = _button("Volver · Esc", _cancel)
+	buttons["confirm"] = _button("Sí, atacar", _confirm)
 	last.add_child(buttons.cancel)
 	last.add_child(buttons.confirm)
-	var footer = HBoxContainer.new()
-	main.add_child(footer)
-	var caption = _label("Ensayo de combate · la campaña de Kanto llegará en las siguientes entregas", 14, MUTED)
-	caption.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	caption.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	footer.add_child(caption)
-	buttons["sound"] = _button("Sonido: sí", _toggle_sound)
-	buttons["motion"] = _button("Animación: sí", _toggle_motion)
-	footer.add_child(buttons.sound)
-	footer.add_child(buttons.motion)
-	footer.add_child(_button("Créditos", func(): credits_dialog.popup_centered(Vector2i(720, 550))))
+	var target_scroll = ScrollContainer.new()
+	target_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	target_scroll.custom_minimum_size = Vector2(260, 170)
+	target_scroll.size_flags_horizontal = Control.SIZE_SHRINK_END
+	target_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	target_scroll.focus_mode = Control.FOCUS_ALL
+	content.add_child(target_scroll)
+	target_info = _label("Pasa el cursor por una unidad\npara ver la previsión.\n\nAzul: puedes moverte.\nMarco coral: puedes atacar.", 17)
+	target_info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	target_info.custom_minimum_size.x = 240
+	target_info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	target_scroll.add_child(target_info)
+
+func _menu_selected(identity: int):
+	match identity:
+		0: new_dialog.popup_centered()
+		1: _load_game()
+		2: help_dialog.popup_centered(Vector2i(630, 450))
+		3:
+			if not state.is_empty():
+				var lines: Array[String] = []
+				for unit in state.units:
+					if unit.team == "ally": lines.append("%s · %d / %d PS · %d PT" % [unit.name, unit.hp, unit.maxHp, unit.tp])
+				details_text.text = "\n".join(lines) + "\n\nÚLTIMOS TURNOS\n" + "\n".join(state.log.slice(maxi(0, state.log.size() - 12)))
+			details_dialog.popup_centered(Vector2i(660, 500))
+		4: _toggle_sound()
+		5: _toggle_motion()
+		6: credits_dialog.popup_centered(Vector2i(720, 550))
 
 func _build_dialogs():
 	new_dialog = ConfirmationDialog.new()
@@ -273,7 +268,7 @@ func _build_dialogs():
 	add_child(new_dialog)
 	help_dialog = AcceptDialog.new()
 	help_dialog.title = "Cómo jugar"
-	help_dialog.dialog_text = "Cada Pokémon dispone de un desplazamiento y una acción,\nen cualquier orden. Después elige su orientación y termina.\n\nM: mover. 1/2/3: movimientos. F: orientar y terminar.\nFlechas y Enter: seleccionar una casilla. Escape: cancelar.\nConfirma siempre la previsión antes de ejecutar una orden.\nF8: continuar desde el guardado local.\n\nPuedes atravesar aliados, pero la casilla final debe estar libre.\nLos ataques de área también alcanzan a aliados.\nFrente, flancos y espalda modifican la precisión.\n\nLa partida se guarda tras cada orden aceptada.\nEste laboratorio tiene un guardado propio: no modifica la web."
+	help_dialog.dialog_text = "Cada Pokémon dispone de un desplazamiento y una acción,\nen cualquier orden. Las casillas azules están al alcance.\n\nPasa el cursor para prever, haz clic para mover o atacar.\nEl básico está elegido al comenzar cada orden.\n1/2/3: elegir habilidad; M: volver al movimiento directo.\nLas habilidades sobre sí mismo se ejecutan al pulsarlas.\nSolo se pide confirmación si puedes dañar o alterar a un aliado.\n\nLas flechas de la franja inferior terminan el turno mirando\nen esa dirección. F permite elegirla haciendo clic en el tablero.\nFlechas y Enter: recorrer / seleccionar casilla.\nClic derecho o Escape: cancelar selección; F8: continuar.\n\nAliados atravesables; destinos ocupados inválidos.\nFrente, flancos y espalda modifican la precisión.\nGuardado tras cada orden; independiente de la versión web."
 	add_child(help_dialog)
 	credits_dialog = AcceptDialog.new()
 	credits_dialog.title = "Créditos y recursos"
@@ -288,6 +283,19 @@ func _build_dialogs():
 	for license in Engine.get_license_info(): credits.text += "\n\n" + license + "\n" + Engine.get_license_info()[license]
 	scroll.add_child(credits)
 	add_child(credits_dialog)
+	details_dialog = AcceptDialog.new()
+	details_dialog.title = "Equipo y registro"
+	var details_scroll = ScrollContainer.new()
+	details_scroll.custom_minimum_size = Vector2(620, 400)
+	details_dialog.add_child(details_scroll)
+	details_text = _label("", 18)
+	details_text.custom_minimum_size.x = 590
+	details_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	details_scroll.add_child(details_text)
+	add_child(details_dialog)
+
+func _modal_open() -> bool:
+	return new_dialog.visible or help_dialog.visible or credits_dialog.visible or details_dialog.visible or menu.get_popup().visible
 
 func _start_from_dialog():
 	var preserved = store.preserve_before_new()
@@ -300,7 +308,8 @@ func _start_from_dialog():
 	history = []
 	ai_clock = 0
 	pending = {}
-	selecting = "inspect"
+	selecting = "auto"
+	selected_action = "basic"
 	target_id = -1
 	_save()
 	_refresh()
@@ -320,14 +329,15 @@ func _load_game():
 	history = result.commands
 	mode = result.mode
 	pending = {}
-	selecting = "inspect"
+	selecting = "auto"
+	selected_action = "basic"
 	target_id = -1
 	ai_clock = 0
 	save_warning = ""
 	_refresh()
 
 func _process(delta):
-	if qa_running or state.is_empty() or state.outcome != "playing" or new_dialog.visible or help_dialog.visible or credits_dialog.visible: return
+	if qa_running or state.is_empty() or state.outcome != "playing" or _modal_open(): return
 	var actor = Rules.active(state)
 	if actor.team == "enemy":
 		ai_clock += delta
@@ -340,152 +350,208 @@ func _player_turn() -> bool:
 
 func _refresh():
 	_clear(timeline)
-	_clear(roster)
 	_clear(actions)
 	action_buttons.clear()
 	board.state = state
 	board.available = {}
+	board.attackable = {}
 	board.route = []
 	board.affected = []
+	board.forecast_hits = []
+	board.facing_preview = -1
 	board.reduced_motion = reduced_motion
-	buttons.load.disabled = not FileAccess.file_exists(store.file_path)
-	saved.text = "Guardado automático local" if save_warning.is_empty() else "Guardado pendiente"
+	menu.get_popup().set_item_disabled(menu.get_popup().get_item_index(1), not FileAccess.file_exists(store.file_path))
+	saved.text = "Guardado local" if save_warning.is_empty() else "¡Sin guardar!"
+	saved.tooltip_text = save_warning
 	saved.add_theme_color_override("font_color", MUTED if save_warning.is_empty() else GOLD)
-	buttons.cancel.visible = not pending.is_empty()
+	buttons.cancel.visible = not pending.is_empty() or selecting in ["attack", "finish"]
 	buttons.confirm.visible = not pending.is_empty()
-	directions.visible = selecting == "finish"
-	buttons.move.disabled = not _player_turn() or state.get("moved", false)
+	buttons.finish.visible = pending.is_empty()
+	directions.visible = pending.is_empty()
+	for button in direction_buttons.values(): button.disabled = not _player_turn()
 	buttons.finish.disabled = not _player_turn()
 	if state.is_empty():
-		hint.text = save_warning if not save_warning.is_empty() else "Pulsa «Nuevo ensayo» para comenzar."
+		hint.text = save_warning if not save_warning.is_empty() else "Menú → Nuevo ensayo para comenzar."
 		return
 	for identity in state.queue:
 		var unit = Rules.unit_by_id(state, int(identity))
-		var panel = _panel()
-		panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var row = HBoxContainer.new()
-		panel.add_child(row)
+		row.add_theme_constant_override("separation", 4)
 		var image = TextureRect.new()
 		image.texture = portraits[int(unit.speciesId)]
-		image.custom_minimum_size = Vector2(26, 26)
+		image.custom_minimum_size = Vector2(32, 32)
 		image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		row.add_child(image)
-		var label = _label(unit.name, 15, GOLD if identity == state.queue[0] else (CREAM if unit.team == "ally" else Color("e5a182")))
-		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		row.add_child(label)
-		timeline.add_child(panel)
-	for unit in state.units:
-		if unit.team != "ally": continue
-		var label = _label("%s\n%d / %d PS  ·  %d PT%s" % [unit.name, unit.hp, unit.maxHp, unit.tp, "\nFuera de combate" if unit.hp == 0 else ("\n" + _status_name(unit.status.kind) if unit.status != null else "")], 17, MUTED if unit.hp == 0 else CREAM)
-		roster.add_child(label)
-	journal.text = "\n".join(state.log.slice(maxi(0, state.log.size() - 3)))
-	heading.text = "Ronda %d  ·  %s  ·  semilla %s" % [state.round, "Reglas actuales" if mode == "current" else "Ensayo clásico", state.seed]
-	if target_id >= 0:
-		var selected = Rules.unit_by_id(state, target_id)
-		if not selected.is_empty(): target_info.text = "%s\n%s\n%d / %d PS\n%d PT · velocidad %d\n%s" % [selected.name, _type_names(selected.types), selected.hp, selected.maxHp, selected.tp, selected.speed, _status_name(selected.status.kind) if selected.status != null else ("Fuera de combate" if selected.hp == 0 else "Sin estado")]
-	else: target_info.text = "Selecciona una casilla\npara inspeccionar."
+		row.add_child(_label(("▶ " if identity == state.queue[0] else "") + unit.name, 16, GOLD if identity == state.queue[0] else (CREAM if unit.team == "ally" else Color("e5a182"))))
+		timeline.add_child(row)
+	heading.text = "Ronda %d · %s" % [state.round, "Reglas actuales" if mode == "current" else "Ensayo clásico"]
+	heading.tooltip_text = "Semilla: " + state.seed
 	if state.outcome != "playing":
-		actor_info.text = "VICTORIA · zona despejada" if state.outcome == "victory" else "DERROTA · el equipo ha caído"
-		hint.text = "El resultado está guardado. Puedes comenzar otro ensayo con una composición diferente."
-		if not save_warning.is_empty(): hint.text = save_warning
+		actor_info.text = "VICTORIA\nZona despejada" if state.outcome == "victory" else "DERROTA\nEquipo caído"
+		hint.text = save_warning if not save_warning.is_empty() else "Resultado guardado. Menú → Nuevo ensayo para repetir."
+		target_info.text = "\n".join(state.log.slice(maxi(0, state.log.size() - 3)))
 		board.queue_redraw()
 		return
 	var actor = Rules.active(state)
-	actor_info.text = "%s  ·  %d / %d PS  ·  %d / %d PT  ·  movimiento %d%s" % [actor.name, actor.hp, actor.maxHp, actor.tp, actor.maxTp, actor.remaining, "  /  TURNO ENEMIGO" if actor.team == "enemy" else ""]
+	actor_portrait.texture = portraits[int(actor.speciesId)]
+	actor_info.text = "%s%s\n%d / %d PS\n%d / %d PT\n%s · %s" % [actor.name, " · IA" if actor.team == "enemy" else "", actor.hp, actor.maxHp, actor.tp, actor.maxTp, "Mov. usado" if state.moved else "Mov. %d" % actor.remaining, "Acc. usada" if state.acted else "Acc. lista"]
 	for index in rules.profile(actor).actions_for(actor).size():
-		var action = rules.profile(actor).actions_for(actor)[index]
-		var definition = action.definition
-		var button = _button("%d · %s\n%d PT · alcance %d" % [index + 1, definition.name, definition.cost, definition.range], _select_action.bind(definition.id))
+		var definition = rules.profile(actor).actions_for(actor)[index].definition
+		var button = _button("%d · %s\n%d PT · %d cas." % [index + 1, definition.name, definition.cost, definition.range], _select_action.bind(definition.id))
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		button.disabled = not _player_turn() or state.acted or actor.tp < definition.cost
+		button.disabled = not _player_turn() or state.acted or actor.tp < definition.cost or not pending.is_empty()
+		button.toggle_mode = true
+		button.button_pressed = definition.id == selected_action and selecting != "finish" and not state.acted
 		button.tooltip_text = definition.description
+		button.mouse_entered.connect(_preview_self.bind(definition.id))
 		actions.add_child(button)
 		action_buttons[definition.id] = button
-	if selecting == "move":
-		var routes = Movement.routes(state.board, Rules.living(state), actor)
-		for identity in routes:
-			if routes[identity].cost > 0 and routes[identity].cost <= actor.remaining: board.available[identity] = routes[identity]
-	if not pending.is_empty():
-		if pending.kind == "move": board.route = Movement.routes(state.board, Rules.living(state), actor)[Movement.key(pending.destination)].path
-		elif pending.kind == "attack": board.affected = rules.attack_plan(state, pending.target, {}, pending.actionId).tiles
-	hint.text = save_warning if not save_warning.is_empty() else ("El rival está decidiendo su turno…" if actor.team == "enemy" else "Mueve o elige un movimiento. Después orienta al Pokémon y termina su turno.")
+	if _player_turn():
+		if not state.moved and selecting == "auto":
+			var routes = Movement.routes(state.board, Rules.living(state), actor)
+			for identity in routes:
+				if routes[identity].cost > 0 and routes[identity].cost <= actor.remaining: board.available[identity] = routes[identity]
+		if not state.acted and selecting != "finish":
+			for unit in Rules.living(state):
+				if rules.attack_plan(state, int(unit.id), {}, selected_action).ok: board.attackable[Movement.key(unit)] = true
+	target_info.text = "Pasa el cursor por una unidad\npara ver la previsión.\n\nAzul: puedes moverte.\nMarco coral: puedes atacar."
+	hint.text = _default_hint()
 	board.queue_redraw()
 
+func _default_hint() -> String:
+	if not save_warning.is_empty(): return save_warning
+	if not _player_turn(): return "Turno rival…"
+	if selecting == "finish": return "Elige hacia dónde mirar: clic en el tablero o una flecha inferior."
+	if selecting == "attack": return "Habilidad elegida. Clic en un objetivo; Esc vuelve al básico."
+	if state.acted and state.moved: return "Turno listo. Elige una flecha inferior para terminar."
+	return "Pasa el cursor para prever. Clic: mover o atacar. Flecha inferior: terminar."
+
 func _select_movement():
-	if not _player_turn() or state.moved: return
-	selecting = "move"
-	pending = {}
-	_refresh()
-	hint.text = "Selecciona una casilla azul dentro del presupuesto de movimiento."
-	board.grab_focus()
+	if not _player_turn() or _modal_open(): return
+	_cancel()
 
 func _select_action(identity: String):
-	if not _player_turn() or state.acted: return
+	if not _player_turn() or _modal_open() or state.acted or not pending.is_empty(): return
+	var action = rules.profile(Rules.active(state)).action(Rules.active(state), identity)
+	if action == null or Rules.active(state).tp < action.definition.cost: return
 	selected_action = identity
-	selecting = "attack"
-	pending = {}
+	selecting = "auto" if identity == "basic" else "attack"
 	_refresh()
-	hint.text = "Selecciona un objetivo para prever «%s»." % rules.profile(Rules.active(state)).action(Rules.active(state), identity).definition.name
 	board.grab_focus()
-	if rules.profile(Rules.active(state)).action(Rules.active(state), identity).definition.target == "self": _select_tile(Rules.active(state))
+	if action.definition.target == "self": _select_tile(Rules.active(state))
 
-func _select_tile(point: Dictionary):
-	if state.is_empty(): return
-	var unit = {}
-	for candidate in Rules.living(state):
-		if Movement.same(candidate, point): unit = candidate
+func _unit_at(point: Dictionary) -> Dictionary:
+	for unit in Rules.living(state):
+		if Movement.same(unit, point): return unit
+	return {}
+
+func _friendly_risk(plan: Dictionary) -> bool:
+	return plan.hits.any(func(hit): return Rules.unit_by_id(state, int(hit.targetId)).team == "ally" and (hit.damage > 0 or hit.status != null))
+
+func _show_plan(unit: Dictionary, plan: Dictionary):
+	target_info.text = "%s · %d / %d PS\n%s" % [unit.name, unit.hp, unit.maxHp, _type_names(unit.types)]
+	if unit.status != null: target_info.text += " · " + _status_name(unit.status.kind)
+	if not plan.ok:
+		target_info.text += "\n\n" + plan.reason
+		return
+	if _friendly_risk(plan): target_info.text = "¡PELIGRO: alcanza a aliados!\n" + target_info.text
+	target_info.text += "\n\n%s · %d PT\n%d PS · %d %% · ×%s" % [plan.name, plan.cost, plan.damage, plan.accuracy, str(plan.multiplier)]
+	if plan.side != null: target_info.text += " · " + {"front": "frente", "flank": "flanco", "rear": "espalda"}[plan.side]
+	if plan.heal: target_info.text += "\nRecupera %d PS" % plan.heal
+	if plan.guard: target_info.text += "\nProtege hasta su próximo turno."
+	if plan.status != null: target_info.text += "\n%s: %d %% · %d turnos" % [_status_name(plan.status.kind), plan.status.chance, plan.status.duration]
+	if plan.push != null: target_info.text += "\nEmpuja a " + Rules.coordinate(plan.push)
+	elif plan.pushReason != null: target_info.text += "\n" + plan.pushReason
+	for hit in plan.hits:
+		if hit.targetId != unit.id: target_info.text += "\n%s: %d PS · %d %%" % [Rules.unit_by_id(state, int(hit.targetId)).name, hit.damage, hit.accuracy]
+	if not plan.embers.is_empty(): target_info.text += "\nDeja ascuas en el área."
+	board.affected = plan.tiles
+	board.forecast_hits = plan.hits
+
+func _hover_tile(point: Dictionary):
+	if state.is_empty() or _modal_open() or not pending.is_empty(): return
+	board.route = []
+	board.affected = []
+	board.forecast_hits = []
+	board.facing_preview = -1
+	hint.text = _default_hint()
+	if point.is_empty(): return
+	var unit = _unit_at(point)
+	if _player_turn() and selecting == "finish":
+		if not Movement.same(Rules.active(state), point): board.facing_preview = Movement.facing_from(Rules.active(state), point)
+		return
 	if not unit.is_empty():
 		target_id = int(unit.id)
-		target_info.text = "%s\n%s\n%d / %d PS\n%d PT · velocidad %d\n%s" % [unit.name, _type_names(unit.types), unit.hp, unit.maxHp, unit.tp, unit.speed, _status_name(unit.status.kind) if unit.status != null else "Sin estado"]
+		if _player_turn() and not state.acted:
+			_show_plan(unit, rules.attack_plan(state, int(unit.id), {}, selected_action))
+		else:
+			target_info.text = "%s · %d / %d PS\n%s\n%d PT · velocidad %d\n%s" % [unit.name, unit.hp, unit.maxHp, _type_names(unit.types), unit.tp, unit.speed, _status_name(unit.status.kind) if unit.status != null else "Sin estado"]
+	elif board.available.has(Movement.key(point)):
+		var route = board.available[Movement.key(point)]
+		board.route = route.path
+		target_info.text = "%s · coste %d\nClic para desplazarte.\n\nPuedes atravesar aliados;\nel destino debe estar libre." % [Rules.coordinate(point), route.cost]
+	else:
+		var terrain = int(state.board[int(point.y)][int(point.x)])
+		target_info.text = "%s · %s\n%s" % [Rules.coordinate(point), {0: "Suelo", 1: "Maleza", 2: "Roca", 3: "Agua"}[terrain], "Fuera del alcance de movimiento." if _player_turn() else "Inspección del terreno."]
+
+func _preview_self(identity: String):
+	if not _player_turn() or _modal_open() or not pending.is_empty() or state.acted: return
+	var actor = Rules.active(state)
+	var definition = rules.profile(actor).action(actor, identity).definition
+	if definition.target == "self": _show_plan(actor, rules.attack_plan(state, int(actor.id), {}, identity))
+
+func _select_tile(point: Dictionary):
+	if state.is_empty() or _modal_open() or not pending.is_empty(): return
+	_hover_tile(point)
 	if not _player_turn(): return
-	if selecting == "move":
-		var result = rules.move(state, {"x": point.x, "y": point.y})
-		if not result.ok:
-			hint.text = result.reason
-			return
-		pending = {"kind": "move", "destination": {"x": point.x, "y": point.y}}
-		_refresh()
-		hint.text = "Mover a %s · coste %d. Confirma para desplazarte." % [Rules.coordinate(point), result.route.cost]
-	elif selecting == "attack" and not unit.is_empty():
+	var actor = Rules.active(state)
+	if selecting == "finish":
+		if not Movement.same(actor, point): _set_facing(Movement.facing_from(actor, point))
+		return
+	var unit = _unit_at(point)
+	if not unit.is_empty():
+		if state.acted: return
 		var plan = rules.attack_plan(state, int(unit.id), {}, selected_action)
 		if not plan.ok:
 			hint.text = plan.reason
 			return
-		pending = {"kind": "attack", "target": unit.id, "actionId": selected_action}
-		_refresh()
-		var friendly = plan.hits.any(func(hit): return Rules.unit_by_id(state, int(hit.targetId)).team == "ally" and (hit.damage > 0 or hit.status != null))
-		target_info.text += "\n\n%s\n%d PS · %d %%\nEficacia ×%s%s%s" % [plan.name, plan.damage, plan.accuracy, str(plan.multiplier), "\nRecupera %d PS" % plan.heal if plan.heal else "", "\n¡También afecta a aliados!" if friendly else ""]
-		if plan.side != null: target_info.text += "\n" + {"front": "Frente", "flank": "Flanco", "rear": "Espalda"}[plan.side]
-		if plan.guard: target_info.text += "\nProtege hasta su próximo turno."
-		if plan.status != null: target_info.text += "\n%s: %d %% · %d turnos" % [_status_name(plan.status.kind), plan.status.chance, plan.status.duration]
-		if plan.push != null: target_info.text += "\nEmpuja a " + Rules.coordinate(plan.push)
-		elif plan.pushReason != null: target_info.text += "\n" + plan.pushReason
-		for hit in plan.hits:
-			if hit.targetId != unit.id: target_info.text += "\n%s: %d PS · %d %%" % [Rules.unit_by_id(state, int(hit.targetId)).name, hit.damage, hit.accuracy]
-		hint.text = "%s · %d PT. Revisa la previsión y confirma." % [plan.name, plan.cost]
-	_play("select")
+		var command = {"kind": "attack", "target": unit.id, "actionId": selected_action}
+		if _friendly_risk(plan):
+			pending = command
+			_refresh()
+			_show_plan(unit, plan)
+			hint.text = "También alcanza a aliados. Confirma el ataque o pulsa Esc."
+			buttons.confirm.grab_focus()
+		else: _commit(command)
+	elif selecting == "auto" and not state.moved:
+		var result = rules.move(state, {"x": point.x, "y": point.y})
+		if result.ok: _commit({"kind": "move", "destination": {"x": point.x, "y": point.y}})
+		else: hint.text = result.reason
 
 func _select_finish():
-	if not _player_turn(): return
+	if not _player_turn() or _modal_open() or not pending.is_empty(): return
 	selecting = "finish"
-	_set_facing(int(Rules.active(state).facing))
+	_refresh()
+	board.grab_focus()
+
+func _preview_facing(facing: int):
+	if _player_turn() and pending.is_empty(): board.facing_preview = facing
 
 func _set_facing(facing: int):
-	if not _player_turn(): return
-	pending = {"kind": "finish", "facing": facing}
-	_refresh()
-	var names = {4: "norte", 2: "este", 0: "sur", 6: "oeste"}
-	hint.text = "Terminar mirando al %s. Confirma o cancela." % names[facing]
+	if not _player_turn() or _modal_open() or not pending.is_empty(): return
+	_commit({"kind": "finish", "facing": facing})
 
 func _cancel():
+	if _modal_open(): return
 	pending = {}
-	selecting = "inspect"
+	selecting = "auto"
+	selected_action = "basic"
 	_refresh()
 	board.grab_focus()
 
 func _confirm():
-	if pending.is_empty() or not _player_turn(): return
+	if pending.is_empty() or not _player_turn() or _modal_open(): return
 	_commit(pending.duplicate(true))
 
 func _commit(command: Dictionary):
@@ -496,9 +562,11 @@ func _commit(command: Dictionary):
 	state = result.state
 	history.append(command.duplicate(true))
 	pending = {}
-	selecting = "inspect"
+	selected_action = "basic"
+	selecting = "finish" if _player_turn() and state.moved and state.acted else "auto"
 	_save() # Persist accepted orders before presentation or sound.
 	_refresh()
+	board.grab_focus()
 	_play("victory" if state.outcome == "victory" else ("hit" if command.kind == "attack" else "select"))
 
 func _play(name: String):
@@ -508,13 +576,13 @@ func _play(name: String):
 
 func _toggle_sound():
 	muted = not muted
-	buttons.sound.text = "Sonido: no" if muted else "Sonido: sí"
+	menu.get_popup().set_item_checked(menu.get_popup().get_item_index(4), not muted)
 	if muted: sound.stop()
 
 func _toggle_motion():
 	reduced_motion = not reduced_motion
 	board.reduced_motion = reduced_motion
-	buttons.motion.text = "Animación: no" if reduced_motion else "Animación: sí"
+	menu.get_popup().set_item_checked(menu.get_popup().get_item_index(5), not reduced_motion)
 
 func _status_name(kind: String) -> String:
 	return {"burn": "Quemadura", "poison": "Veneno", "paralysis": "Parálisis"}.get(kind, kind)
@@ -524,13 +592,13 @@ func _type_names(types: Array) -> String:
 
 func _unhandled_key_input(event):
 	if not event is InputEventKey or not event.pressed or event.echo: return
-	if new_dialog.visible or help_dialog.visible or credits_dialog.visible: return
+	if _modal_open(): return
 	match event.keycode:
 		KEY_ESCAPE: _cancel()
 		KEY_M: _select_movement()
 		KEY_F: _select_finish()
 		KEY_F8: _load_game()
-		KEY_F1: help_dialog.popup_centered(Vector2i(630, 450))
+		KEY_F1: menu.show_popup()
 		KEY_1, KEY_2, KEY_3:
 			if not _player_turn(): return
 			var index = event.keycode - KEY_1

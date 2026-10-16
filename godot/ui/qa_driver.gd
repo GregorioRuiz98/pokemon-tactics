@@ -1,16 +1,31 @@
 extends RefCounted
 
-# In-process UI regression driver, invoked only by --qa-dir. Uses the same
-# controls and confirmation signals as the player; never patches battle state.
+# Native controls and board-local input events; no battle state patching.
 const Rules = preload("res://core/battle.gd")
 const Store = preload("res://core/save_store.gd")
 var failures: Array[String] = []
 var assertions = 0
 var captures: Array[String] = []
+var clicks = 0
+var legacy_clicks = 0
+var risk_checked = false
+var risk_setup: Dictionary = {}
 
 func check(value: bool, message: String):
 	assertions += 1
 	if not value: failures.append(message)
+
+func hover(app, point: Dictionary):
+	var event = InputEventMouseMotion.new()
+	event.position = app.board.center(point)
+	app.board._gui_input(event)
+
+func click(app, point: Dictionary, button: int = MOUSE_BUTTON_LEFT):
+	var event = InputEventMouseButton.new()
+	event.position = app.board.center(point)
+	event.pressed = true
+	event.button_index = button
+	app.board._gui_input(event)
 
 func capture(app, directory: String, name: String):
 	await app.get_tree().process_frame
@@ -18,8 +33,7 @@ func capture(app, directory: String, name: String):
 	var image = app.get_viewport().get_texture().get_image()
 	check(not image.is_empty(), "Rendered viewport: " + name)
 	if not image.is_empty():
-		var result = image.save_png(directory.path_join(name + ".png"))
-		check(result == OK, "Screenshot written: " + name)
+		check(image.save_png(directory.path_join(name + ".png")) == OK, "Screenshot written: " + name)
 		captures.append(name + ".png")
 
 func run(app, directory: String):
@@ -35,10 +49,9 @@ func run(app, directory: String):
 			app.mode_input.select(0 if mode == "current" else 1)
 			app.composition_input.select(0 if composition == "starters" else 1)
 			app.variance_input.select(0)
-			app.new_dialog.confirmed.emit()
 			app.new_dialog.hide()
-			check(app.state.outcome == "playing", "New battle starts")
-			check(app.save_warning.is_empty(), "Initial state saved")
+			app.new_dialog.confirmed.emit()
+			check(app.state.outcome == "playing" and app.save_warning.is_empty(), "New battle saved")
 			for step in 240:
 				if app.state.outcome != "playing": break
 				var command = app.rules.choose_command(app.state)
@@ -47,71 +60,101 @@ func run(app, directory: String):
 				if Rules.active(app.state).team == "enemy":
 					app._commit(command)
 				else:
+					await _check_risk(app, directory)
 					player_orders += 1
+					legacy_clicks += 3
 					if command.kind == "move":
-						app.buttons.move.pressed.emit()
-						check(app.board.available.values().all(func(route): return route.cost > 0 and route.cost <= Rules.active(app.state).remaining), "Highlighted movement stays inside budget")
-						app.board.tile_selected.emit(command.destination)
+						check(app.board.available.values().all(func(route): return route.cost > 0 and route.cost <= Rules.active(app.state).remaining), "Reachable tiles inside budget")
+						hover(app, command.destination)
+						check(not app.board.route.is_empty(), "Hover previews path without move mode")
+						check(Store.equivalent(app.state, before), "Hover leaves state and RNG untouched")
+						if not captured.has("move"):
+							await capture(app, directory, "02-hover-move")
+							captured.move = true
+						click(app, command.destination)
+						clicks += 1
 					elif command.kind == "attack":
-						app.action_buttons[command.get("actionId", "basic")].pressed.emit()
-						app.board.tile_selected.emit(Rules.unit_by_id(app.state, int(command.target)))
-					else:
-						app.buttons.finish.pressed.emit()
-						app.direction_buttons[int(command.facing)].pressed.emit()
-					check(Store.equivalent(app.pending, command), "GUI selects expected command")
-					check(Store.equivalent(app.state, before), "Preview leaves state and RNG untouched")
-					if not captured.has(command.kind):
-						await capture(app, directory, "02-preview-" + command.kind)
-						if command.kind == "attack":
-							DisplayServer.window_set_size(Vector2i(1024, 720))
-							await app.get_tree().process_frame
-							await app.get_tree().process_frame
-							await capture(app, directory, "02-preview-attack-small")
-							_bounds(app, app, app.get_global_rect().grow(2))
-							DisplayServer.window_set_size(Vector2i(1280, 900))
-							await app.get_tree().process_frame
-							await app.get_tree().process_frame
-						captured[command.kind] = true
-						var pending = app.pending.duplicate(true)
-						app.buttons.cancel.pressed.emit()
-						check(app.pending.is_empty(), "Cancellation clears preview")
-						check(Store.equivalent(app.state, before), "Cancellation consumes no resources")
-						# Re-select through the same controls after cancelling.
-						if command.kind == "move":
-							app.buttons.move.pressed.emit()
-							app.board.tile_selected.emit(command.destination)
-						elif command.kind == "attack":
-							app.action_buttons[command.actionId].pressed.emit()
-							app.board.tile_selected.emit(Rules.unit_by_id(app.state, int(command.target)))
+						var definition = app.rules.profile(Rules.active(app.state)).action(Rules.active(app.state), command.actionId).definition
+						if definition.target != "self":
+							if command.actionId != "basic":
+								app.action_buttons[command.actionId].pressed.emit()
+								clicks += 1
+							var target = Rules.unit_by_id(app.state, int(command.target))
+							hover(app, target)
+							check(not app.board.forecast_hits.is_empty(), "Hover previews attack on board")
+							check(Store.equivalent(app.state, before), "Attack forecast consumes no RNG")
+							if not captured.has("attack"):
+								await capture(app, directory, "02-hover-attack")
+								DisplayServer.window_set_size(Vector2i(1024, 720))
+								await app.get_tree().process_frame
+								await app.get_tree().process_frame
+								await capture(app, directory, "02-hover-attack-small")
+								_bounds(app, app, app.get_global_rect().grow(2))
+								DisplayServer.window_set_size(Vector2i(1280, 900))
+								await app.get_tree().process_frame
+								await app.get_tree().process_frame
+								captured.attack = true
+							click(app, target)
 						else:
+							legacy_clicks -= 1 # Old self-target selection already opened its preview.
+							app.action_buttons[command.actionId].pressed.emit()
+						clicks += 1
+						if not app.pending.is_empty():
+							check(Store.equivalent(app.state, before), "Friendly fire awaits confirmation")
+							app.buttons.confirm.pressed.emit()
+							clicks += 1
+					else:
+						if int(command.facing) == int(Rules.active(app.state).facing): legacy_clicks -= 1 # Old dialog defaulted to this facing.
+						if not captured.has("finish"):
 							app.buttons.finish.pressed.emit()
-							app.direction_buttons[int(command.facing)].pressed.emit()
-						check(Store.equivalent(app.pending, pending), "Preview re-selected")
-					app.buttons.confirm.pressed.emit()
-				check(Store.equivalent(app.state, expected.state), "GUI commits the shared rule result")
+							hover(app, {"x": 0, "y": 0})
+							check(Store.equivalent(app.state, before), "Facing preview consumes no RNG")
+							await capture(app, directory, "02-orientation")
+							click(app, {"x": 0, "y": 0}, MOUSE_BUTTON_RIGHT)
+							check(Store.equivalent(app.state, before) and app.selecting == "auto", "Right click cancels facing choice")
+							captured.finish = true
+						app.direction_buttons[int(command.facing)].pressed.emit()
+						clicks += 1
+					check(app.pending.is_empty(), "Direct order clears pending state")
+				check(Store.equivalent(app.state, expected.state), "GUI commits exact shared rule result")
 				check(app.save_warning.is_empty(), "Accepted command saved before presentation")
 				if step == 10:
 					var saved = app.state.duplicate(true)
-					app.buttons.load.pressed.emit()
-					check(Store.equivalent(app.state, saved), "Continue restores exact state")
-					if not app.save_warning.is_empty():
-						var envelope = JSON.parse_string(FileAccess.get_file_as_string(app.store.file_path))
-						var payload = JSON.parse_string(envelope.payload)
-						var replay = app.rules.create(payload.seed, payload.variance, payload.composition, payload.mode)
-						for entry in payload.commands: replay = app.rules.apply_command(replay, entry).state
-						print("Save diagnostic: " + _difference(replay, payload.state, "state"))
-					check(app.save_warning.is_empty(), "Continue validates native journal (%s/%s): %s" % [mode, composition, app.save_warning])
+					app._menu_selected(1)
+					check(Store.equivalent(app.state, saved) and app.save_warning.is_empty(), "Menu Continue restores exact state")
 				await app.get_tree().process_frame
-			check(app.state.outcome != "playing", "UI campaign ends within command budget")
+			check(app.state.outcome != "playing", "Battle ends within budget")
 			completions.append({"mode": mode, "composition": composition, "outcome": app.state.outcome, "round": app.state.round, "commands": app.history.size()})
 	await capture(app, directory, "03-result")
+	check(risk_checked, "Friendly-fire confirmation exercised with reachable state")
+	check(clicks < legacy_clicks, "Direct interaction reduces input count")
+	# Rebuild the reachable risk position using its legal command journal, then
+	# exercise acceptance separately so the four reference games stay comparable.
+	if not risk_setup.is_empty():
+		app.mode_input.select(0 if risk_setup.mode == "current" else 1)
+		app.composition_input.select(0 if risk_setup.composition == "starters" else 1)
+		app.new_dialog.confirmed.emit()
+		for order in risk_setup.commands: app._commit(order)
+		var before_risk = app.state.duplicate(true)
+		var risk_result = app.rules.apply_command(app.state, risk_setup.order)
+		app.action_buttons[risk_setup.order.actionId].pressed.emit()
+		click(app, Rules.unit_by_id(app.state, int(risk_setup.order.target)))
+		app.buttons.confirm.pressed.emit()
+		check(Store.equivalent(app.state, risk_result.state), "Confirmed friendly fire executes shared result")
+		check(app.history.size() == risk_setup.commands.size() + 1 and not Store.equivalent(app.state, before_risk), "Confirmation records exactly one order")
+		app._menu_selected(1)
+		check(Store.equivalent(app.state, risk_result.state) and app.save_warning.is_empty(), "Confirmed friendly fire reloads exactly")
 	var unchanged = app.state.duplicate(true)
-	app.buttons.sound.pressed.emit()
-	app.buttons.motion.pressed.emit()
-	check(Store.equivalent(app.state, unchanged), "Audio/motion settings do not change RNG")
+	app._menu_selected(4)
+	app._menu_selected(5)
+	check(Store.equivalent(app.state, unchanged), "Audio/motion settings leave RNG untouched")
+	app._menu_selected(3)
+	check(app.details_dialog.visible and not app.details_text.text.is_empty(), "Team and journal accessible in menu")
+	app.details_dialog.hide()
+	app.mode_input.select(1)
+	app.composition_input.select(1)
 	app.new_dialog.confirmed.emit()
 	var pointer_before = app.state.duplicate(true)
-	# A genuine keyboard event reaches the focused board/Control input path.
 	var event = InputEventKey.new()
 	event.keycode = KEY_RIGHT
 	event.pressed = true
@@ -119,53 +162,89 @@ func run(app, directory: String):
 	var old_cursor = app.board.cursor
 	Input.parse_input_event(event)
 	await app.get_tree().process_frame
-	check(app.board.cursor.x == mini(7, old_cursor.x + 1), "Keyboard navigates board")
-	check(Store.equivalent(app.state, pointer_before), "Keyboard inspection does not consume RNG")
-	DisplayServer.window_set_size(Vector2i(1024, 720))
+	check(app.board.cursor.x == mini(7, old_cursor.x + 1), "Real keyboard input navigates board")
+	check(Store.equivalent(app.state, pointer_before), "Keyboard hover preserves RNG")
+	event.keycode = KEY_F1
+	Input.parse_input_event(event)
+	await app.get_tree().process_frame
+	check(app.menu.get_popup().visible, "F1 opens native game menu")
+	app.menu.get_popup().hide()
+	app.help_dialog.popup_centered()
+	var history_before = app.history.size()
+	app._select_tile({"x": 1, "y": 5})
+	app._set_facing(0)
+	check(app.history.size() == history_before, "Modal blocks board orders")
+	app.help_dialog.hide()
+	# A genuine viewport mouse event exercises Godot's hit testing at native size.
+	DisplayServer.window_set_size(Vector2i(1280, 900))
 	await app.get_tree().process_frame
 	await app.get_tree().process_frame
-	await capture(app, directory, "04-1024x720")
-	_bounds(app, app, app.get_global_rect().grow(2))
-	DisplayServer.window_set_size(Vector2i(1440, 1000))
+	var route = app.board.available.values()[0]
+	var destination = route.path[-1]
+	var move_result = app.rules.apply_command(app.state, {"kind": "move", "destination": destination})
+	var mouse = InputEventMouseButton.new()
+	mouse.button_index = MOUSE_BUTTON_LEFT
+	mouse.pressed = true
+	mouse.position = app.board.global_position + app.board.center(destination)
+	Input.parse_input_event(mouse)
 	await app.get_tree().process_frame
-	await app.get_tree().process_frame
-	await capture(app, directory, "05-1440x1000")
-	_bounds(app, app, app.get_global_rect().grow(2))
+	check(Store.equivalent(app.state, move_result.state), "Real viewport mouse click moves directly")
+	mouse.pressed = false
+	Input.parse_input_event(mouse)
+	var face_result = app.rules.apply_command(app.state, {"kind": "finish", "facing": 4})
+	app.buttons.finish.pressed.emit()
+	var actor = Rules.active(app.state)
+	click(app, {"x": actor.x, "y": actor.y - 1})
+	check(Store.equivalent(app.state, face_result.state), "Facing chosen on board ends turn directly")
+	for dimensions in [Vector2i(1024, 720), Vector2i(1440, 1000)]:
+		DisplayServer.window_set_size(dimensions)
+		await app.get_tree().process_frame
+		await app.get_tree().process_frame
+		await capture(app, directory, "04-%dx%d" % [dimensions.x, dimensions.y])
+		_bounds(app, app, app.get_global_rect().grow(2))
 	app.credits_dialog.popup_centered(Vector2i(720, 550))
-	check(app.credits_dialog.visible, "Credits dialog opens")
-	await capture(app, directory, "06-credits")
+	await capture(app, directory, "05-credits")
 	app.credits_dialog.hide()
 	var native_path = "user://qa-isolated-%d.json" % Time.get_ticks_usec()
 	var native_store = Store.new(native_path)
 	var native_saved = native_store.save(app.state, app.history, app.mode)
 	check(native_saved.ok, "Default user directory accepts native saves")
 	if native_saved.ok:
-		var native_loaded = native_store.load_game(app.rules)
-		check(native_loaded.ok and Store.equivalent(native_loaded.get("state", {}), app.state), "Default user directory resumes exact state")
-		check(DirAccess.remove_absolute(ProjectSettings.globalize_path(native_path)) == OK, "Isolated native user test cleaned up")
-	var output = {"engine": Engine.get_version_info().string, "assertions": assertions, "playerOrders": player_orders, "completed": completions, "screenshots": captures, "failures": failures}
+		var loaded = native_store.load_game(app.rules)
+		check(loaded.ok and Store.equivalent(loaded.get("state", {}), app.state), "Native save resumes exact state")
+		check(DirAccess.remove_absolute(ProjectSettings.globalize_path(native_path)) == OK, "Isolated user test cleaned up")
+	var output = {"engine": Engine.get_version_info().string, "assertions": assertions, "playerOrders": player_orders, "clicks": clicks, "previousFlowClicks": legacy_clicks, "friendlyFireChecked": risk_checked, "completed": completions, "screenshots": captures, "failures": failures}
 	var file = FileAccess.open(directory.path_join("ui-result.json"), FileAccess.WRITE)
 	file.store_string(JSON.stringify(output, "  "))
 	file.close()
 	print(JSON.stringify(output))
 	app.get_tree().quit(0 if failures.is_empty() else 1)
 
+func _check_risk(app, directory: String):
+	if risk_checked or app.state.acted: return
+	for action in app.rules.profile(Rules.active(app.state)).actions_for(Rules.active(app.state)):
+		for unit in Rules.living(app.state):
+			var plan = app.rules.attack_plan(app.state, int(unit.id), {}, action.definition.id)
+			if not plan.ok or not app._friendly_risk(plan): continue
+			var before = app.state.duplicate(true)
+			risk_setup = {"mode": app.mode, "composition": app.state.composition, "commands": app.history.duplicate(true), "order": {"kind": "attack", "actionId": action.definition.id, "target": unit.id}}
+			app.action_buttons[action.definition.id].pressed.emit()
+			click(app, unit)
+			check(not app.pending.is_empty() and app.buttons.confirm.visible, "Risk exposes explicit confirmation")
+			check(Store.equivalent(app.state, before), "Risk selection does not execute attack")
+			click(app, {"x": 0, "y": 0})
+			app.direction_buttons[0].pressed.emit()
+			check(Store.equivalent(app.state, before), "Pending attack cannot be replaced by another order")
+			await capture(app, directory, "02-friendly-fire")
+			_bounds(app, app, app.get_global_rect().grow(2))
+			click(app, unit, MOUSE_BUTTON_RIGHT)
+			check(app.pending.is_empty() and Store.equivalent(app.state, before), "Right click cancels risk without resources")
+			risk_checked = true
+			return
+
 func _bounds(node: Node, app, viewport: Rect2):
 	if node is Window: return
 	if node is Control and node.is_visible_in_tree() and node.get_window() == app.get_window():
 		check(viewport.encloses(node.get_global_rect()), "Control fits window: " + str(node.get_path()))
-	if node is ScrollContainer: return # Intentional clipped content can extend beyond its viewport.
+	if node is ScrollContainer: return
 	for child in node.get_children(): _bounds(child, app, viewport)
-
-func _difference(a, b, context: String) -> String:
-	if Store.equivalent(a, b): return ""
-	if a is Dictionary and b is Dictionary:
-		for field in a:
-			if not b.has(field): return context + ".missing." + str(field)
-			var result = _difference(a[field], b[field], context + "." + str(field))
-			if not result.is_empty(): return result
-	if a is Array and b is Array and a.size() == b.size():
-		for index in a.size():
-			var result = _difference(a[index], b[index], context + "[%d]" % index)
-			if not result.is_empty(): return result
-	return context + ": " + JSON.stringify(a, "", true, true) + " vs " + JSON.stringify(b, "", true, true)

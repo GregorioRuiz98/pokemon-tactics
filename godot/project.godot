@@ -3,7 +3,7 @@ config_version=5
 
 [application]
 config/name="Pokémon Tactics — Laboratorio"
-config/version="0.13.0"
+config/version="0.13.1"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="PokemonTacticsLab"
 run/main_scene="res://scenes/laboratory.tscn"

@@ -1,12 +1,12 @@
 # Pokémon Tactics
 
-Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: laboratorio táctico Windows 0.13.0 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
+Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: laboratorio táctico Windows 0.13.1 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
 
-**Base nativa disponible:** ensayo manual 3v3, seis especies, dos composiciones, tipos/acciones/terreno, IA, orientación y guardado independiente en Godot 4.7.2. El ejecutable funciona offline, sin editor ni Node. [Cómo jugar/abrir Godot](godot/README.md) · [Informe del sprint 13](docs/SPRINT_13.md).
+**Base nativa disponible:** ensayo manual 3v3, seis especies, dos composiciones, tipos/acciones/terreno, IA, orientación y guardado independiente en Godot 4.7.2. El ejecutable funciona offline, sin editor ni Node. [Cómo jugar/abrir Godot](godot/README.md) · [Base Godot](docs/SPRINT_13.md) · [Interfaz directa](docs/SPRINT_13_UI.md).
 
 La campaña larga de Rojo, un inicial de Oak, mapas amplios, capturas, tienda/entrenamiento y Liga antes del postgame legendario siguen pendientes. [Requisitos y propuestas](PRODUCT.md#campaña-de-kanto--requisitos-confirmados) · [Sprints siguientes](docs/PLAN_SPRINTS.md#11-siguiente-etapa-kanto-y-ejecutable). La entrega 13 no cambia las reglas de la web.
 
-![Previsión de ataque en el laboratorio nativo](docs/qa/sprint-13/native-attack.png)
+![HUD directo y previsión en el laboratorio nativo](docs/qa/sprint-13-ui/native-attack.png)
 
 ## Campaña web 0.12.0
 

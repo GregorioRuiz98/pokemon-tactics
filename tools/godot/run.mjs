@@ -7,8 +7,8 @@ import { gunzipSync } from 'node:zlib';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const project = resolve(root, 'godot');
-const work = resolve(root, '../../work/qa-sprint-13');
-const output = resolve(root, '../releases/pokemon-tactics-0.13.0/windows');
+const work = resolve(root, '../../work/qa-sprint-13-ui');
+const output = resolve(root, '../releases/pokemon-tactics-0.13.1/windows');
 const operation = process.argv[2] ?? 'test';
 const binary = process.env.GODOT_BIN ?? resolve(root, '../../work/godot-4.7.2/Godot_v4.7.2-stable_win64_console.exe');
 mkdirSync(work, { recursive: true });
@@ -26,7 +26,7 @@ function run(executable, args, label, cwd = root) {
 }
 function verifyUi(directory) {
   const report = JSON.parse(readFileSync(resolve(directory, 'ui-result.json'), 'utf8'));
-  if (report.failures.length || report.completed.length !== 4 || !report.playerOrders) throw new Error('Native UI regression failed.');
+  if (report.failures.length || report.completed.length !== 4 || !report.playerOrders || !report.friendlyFireChecked || report.clicks >= report.previousFlowClicks) throw new Error('Native UI regression failed.');
   for (const file of report.screenshots) if (!existsSync(resolve(directory, file))) throw new Error('Missing screenshot: ' + file);
   console.log(`UI verified: ${report.assertions} assertions, ${report.playerOrders} player orders, four completed battles.`);
 }
@@ -72,7 +72,7 @@ if (operation === 'test') {
   run(binary, ['--headless', ...common, '--export-release', 'Windows Desktop', resolve(output, 'PokemonTactics.exe')], 'export-windows');
   cpSync(resolve(project, 'licenses'), resolve(output, 'licenses'), { recursive: true });
   cpSync(resolve(project, 'CREDITS.md'), resolve(output, 'CREDITS.md'));
-  writeFileSync(resolve(output, 'LEEME.txt'), 'Pokémon Tactics 0.13.0 — laboratorio táctico offline\n\nAbre PokemonTactics.exe. No necesitas Godot, Node ni un servidor.\nEsta entrega contiene un ensayo 3v3; la campaña de Kanto aún no está implementada.\n\nM: mover; 1/2/3: movimientos; F: orientar y terminar; flechas/Enter: casillas; Esc: cancelar; F8: continuar.\nGuardado local: %APPDATA%/PokemonTacticsLab/laboratory-save.json\nCréditos y licencias acompañan al ejecutable.\n', 'utf8');
+  writeFileSync(resolve(output, 'LEEME.txt'), 'Pokémon Tactics 0.13.1 — laboratorio táctico offline\n\nAbre PokemonTactics.exe. No necesitas Godot, Node ni un servidor.\nEsta entrega contiene un ensayo 3v3; la campaña de Kanto aún no está implementada.\n\nPasa el cursor para prever. Clic en casilla azul: mover; clic en enemigo: básico.\n1/2/3: habilidades; flechas inferiores: terminar orientado; F: orientar desde tablero.\nFlechas/Enter: casillas; clic derecho/Esc: cancelar selección; F8: continuar; F1: menú.\nSolo se confirma un ataque con riesgo para aliados.\nGuardado local: %APPDATA%/PokemonTacticsLab/laboratory-save.json\nCréditos y licencias acompañan al ejecutable.\n', 'utf8');
   const digest = createHash('sha256').update(readFileSync(resolve(output, 'PokemonTactics.exe'))).digest('hex');
   writeFileSync(resolve(output, 'SHA256SUMS.txt'), `${digest}  PokemonTactics.exe\n`);
   console.log(`Windows executable: ${resolve(output, 'PokemonTactics.exe')}\nSHA256: ${digest}`);
