@@ -1,0 +1,56 @@
+{
+  "assertions": 2314,
+  "completed": [
+    {
+      "cleared": 4,
+      "phase": "complete",
+      "starter": 1,
+      "transactions": 281
+    },
+    {
+      "cleared": 4,
+      "phase": "complete",
+      "starter": 4,
+      "transactions": 309
+    },
+    {
+      "cleared": 0,
+      "phase": "defeat",
+      "starter": 7,
+      "transactions": 22
+    }
+  ],
+  "failures": [],
+  "playerOrders": 296,
+  "screenshots": [
+    "01-oak.png",
+    "02-journey.png",
+    "03-battle.png",
+    "04-capture.png",
+    "05-shop.png",
+    "05-shop-small.png",
+    "16-level-hp.png",
+    "03-five-actions.png",
+    "03-five-small.png",
+    "12-automatic-evolution.png",
+    "17-gym-level-cap.png",
+    "10-three-offers.png",
+    "10-equipped.png",
+    "10-shop-small.png",
+    "04-miss.png",
+    "18-revive-before.png",
+    "19-revive-after.png",
+    "06-result.png",
+    "07-1024x720.png",
+    "07-1440x1000.png",
+    "08-immune.png",
+    "11-life-orb.png",
+    "13-indicators.png",
+    "13-indicators-small.png",
+    "14-critical-preview.png",
+    "14-critical-hit.png",
+    "14-original-accuracy-miss.png",
+    "15-approach-small.png",
+    "09-legacy.png"
+  ]
+}

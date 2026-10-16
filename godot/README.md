@@ -1,19 +1,20 @@
-# Pokémon Tactics — Kanto Windows 0.14.7
+# Pokémon Tactics — Kanto Windows 0.14.8
 
-Muestra de Paleta hasta Brock con elección de inicial, cuatro encuentros, captura local, tienda y bajas definitivas. Esta revisión limita el crecimiento al nivel del Pokémon insignia del próximo gimnasio. Mantiene encuentros y repertorios de Let’s Go combinados.
+Muestra de Paleta hasta Brock con elección de inicial, cuatro encuentros, captura local, tienda y debilitados recuperables con Revivir. Esta revisión añade Revivir por150 ₽ y50% de PS máximos, solo en la tienda. Mantiene el límite por gimnasio. Mantiene encuentros y repertorios de Let’s Go combinados.
 
 ## Jugar
 
-Abrir PokemonTactics.exe desde la distribución. Funciona offline sin editor, Node ni servidor. Incluye LEEME, créditos/licencias y SHA256SUMS. Elige **Nueva campaña** para usar las reglas nuevas; los guardados0.14.0–0.14.6 continúan como Clásica con su versión original, conservando sus reglas y batalla. Al empezar otra se guarda copia de la anterior.
+Abrir PokemonTactics.exe desde la distribución. Funciona offline sin editor, Node ni servidor. Incluye LEEME, créditos/licencias y SHA256SUMS. Elige **Nueva campaña** para usar las reglas nuevas; los guardados0.14.0–0.14.7 continúan como Clásica con su versión original, conservando sus reglas y batalla. Al empezar otra se guarda copia de la anterior.
 
 - Oak entrega un inicial de nivel5, dos pociones y120 ₽. PS/bajas persisten; estados/PT y etapas de atributos se restablecen por combate. Si no quedan vivos termina la campaña.
-- Tras victoria, cada superviviente gana EXP y puede subir/aprender. Cada subida recupera tantos PS como aumenten sus PS máximos, incluida la evolución automática. Un Pokémon a 20/30 pasa a 23/33; las bajas no reviven. Captura local ya sorteada y guardada, luego tienda. Brock da medalla, dinero y su Onix de nivel14, como insignia de mayor nivel. Se admiten duplicados provisionalmente.
+- Tras victoria, cada superviviente gana EXP y puede subir/aprender. Cada subida recupera tantos PS como aumenten sus PS máximos, incluida la evolución automática. Un Pokémon a 20/30 pasa a 23/33; los debilitados no reviven por subir de nivel. Captura local ya sorteada y guardada, luego tienda. Brock da medalla, dinero y su Onix de nivel14, como insignia de mayor nivel. Se admiten duplicados provisionalmente.
 - Cuatro movimientos preparados **más** el básico fijo: cinco acciones. El básico no tiene tipo, STAB ni resistencias/inmunidades de tipo; 25potencia, alcance1, 0PT y consume la acción. Defensa, precisión y estados siguen aplicándose.
 - Preparar movimientos aprendidos es gratis fuera de combate; desmarca uno para dejar hueco si tienes cuatro. Las dos orientaciones de rol se combinan, sin bonificaciones ocultas. Evolucionar conserva los movimientos aprendidos y actuales.
 - Caramelo Raro25 ₽: sube exactamente un nivel. Comprar en la tienda y usar con el miembro seleccionado. Conserva EXP parcial y recupera el aumento de PS máximos; no revive. Tope actual14, por el Onix de Brock. Al llegar no acumulas EXP y el Caramelo se bloquea sin consumirse. La evolución ocurre automáticamente al alcanzar su nivel, mediante EXP o Caramelo, sin coste adicional ni botón Evolucionar. Poción40 ₽/+40PS y Superpoción90 ₽/+100PS siguen fuera de combate y sin revivir.
-- Tienda: tres ofertas únicas, una copia por casilla. Renovar las tres cuesta25,50,75… ₽; se reinicia en cada tienda. Cargar no cambia ofertas ni coste. Pociones y Caramelos siguen siempre disponibles aparte.
+- Tienda: tres ofertas únicas, una copia por casilla. Renovar las tres cuesta25,50,75… ₽; se reinicia en cada tienda. Cargar no cambia ofertas ni coste. Pociones, Caramelos y Revivir siguen siempre disponibles aparte.
+- Revivir150 ₽: compra una unidad, selecciona un debilitado y úsala para recuperar el50% de sus PS máximos (redondeo hacia abajo, mínimo1). Conserva nivel/EXP/movimientos. El equipable devuelto al caer permanece en la bolsa; no se duplica ni equipa solo. Se puede curar después con pociones. Si cae todo el equipo termina la campaña, aunque quede Revivir.
 - MT80 ₽ de un uso: comprar, seleccionar miembro y Aprender. Se indica compatibilidad; si ya tiene cuatro movimientos, el nuevo queda en la biblioteca. Siete MT de Let’s Go: Demolición, Escaldar, Megaagotar, Protección, Rayo, Avalancha y Cola Férrea. Numeración/compatibilidad exclusivamente LGPE.
-- Un equipable por Pokémon: Vidaesfera100, Restos100, Chaleco Asalto90 o Botas Gruesas60 ₽. Cambiar/quitar devuelve el anterior a la bolsa; las bajas lo devuelven al cerrar el combate. Vidaesfera aumenta daño ×1,3 y pierde10% PS máximos por acción que cause daño; puede provocar baja definitiva. La previsión muestra el retroceso.
+- Un equipable por Pokémon: Vidaesfera100, Restos100, Chaleco Asalto90 o Botas Gruesas60 ₽. Cambiar/quitar devuelve el anterior a la bolsa; las bajas lo devuelven al cerrar el combate. Vidaesfera aumenta daño ×1,3 y pierde10% PS máximos por acción que cause daño; puede debilitar al portador. La previsión muestra el retroceso.
 - Aprendizaje por nivel de Let’s Go, sin los movimientos de los iniciales especiales ni las excepciones anteriores. Pikachu aprende Doble Patada al9; Cola Férrea por MT19. Butterfree aprende Tornado/Confusión y Beedrill Doble Ataque/Picotazo; Megaagotar/Demolición por MT compatible.
 - Charmander aprende Ascuas al13, sin Garra Metal temprana; tiene Demolición garantizada en la primera oferta de la tienda de Ruta1. Cobertura disponible no equivale a balance resuelto; conservarlo vivo sigue siendo importante.
 - Clic en casilla azul mueve; clic en rival al alcance usa el básico. Habilidades/A abre el menú; teclas1–5 eligen acciones. Rectificar/R devuelve solo el movimiento antes de actuar o terminar; nunca ataques, PS/PT, estados ni RNG. Orientar y terminar/F elige dirección final.
@@ -41,6 +42,7 @@ npm run godot:prepare
 npm run godot:test:tactics
 npm run godot:test:level-hp
 npm run godot:test:gym-caps
+npm run godot:test:revive
 npm run godot:test:tactics:journey
 npm run godot:test:letsgo
 npm run godot:test:letsgo:journey
@@ -56,7 +58,7 @@ npm run godot:qa:export
 npm run godot:qa:campaign:export
 ```
 
-Resultados temporales ../../work/qa-sprint-14-gym-caps; paquete ../releases/pokemon-tactics-0.14.7/windows respecto a la raíz. Las pruebas del .exe no consultan el editor. QA usa archivos aislados, controles y eventos de viewport; no sustituye partidas humanas. Motor/plantillas/cachés/ZIP fuera de Git.
+Resultados temporales ../../work/qa-sprint-14-revive; paquete ../releases/pokemon-tactics-0.14.8/windows respecto a la raíz. Las pruebas del .exe no consultan el editor. QA usa archivos aislados, controles y eventos de viewport; no sustituye partidas humanas. Motor/plantillas/cachés/ZIP fuera de Git.
 
 Importadores explícitos: import-progression.py (Python/Pillow ya disponibles mediante PYTHONPATH=../../work/balance-python) e import-feedback.mjs (jsfxr local). import-shop.py añade datos/compatibilidad de MT reutilizando PokéAPI y los recursos existentes. Referencias/hashes en progression-provenance, feedback-provenance y shop-provenance. No ejecutar godot:import para ocultar discrepancias: regenera referencias del laboratorio desde la web, que deben conservarse.
 
@@ -77,3 +79,5 @@ Parálisis solo reduce movimiento a la mitad, sin alterar iniciativa ni perder a
 [PS al subir de nivel: reglas y comprobaciones0.14.6](../docs/SPRINT_14_LEVEL_HP.md). Esa regla de PS continúa en edición8; los archivos anteriores conservan sus reglas originales. Una evolución por piedra sin subir de nivel sigue conservando los PS actuales.
 
 [Límites por gimnasio0.14.7](../docs/SPRINT_14_GYM_CAPS.md): Nueva campaña usa edición8. Tope del siguiente líder pendiente, calculado desde el insignia de mayor nivel. Actualmente solo Brock,14; al terminar la muestra se conserva14. No se implementan los gimnasios siguientes en esta revisión.
+
+[Revivir0.14.8](../docs/SPRINT_14_REVIVE.md): Nueva campaña usa edición9. Los archivos anteriores conservan sus reglas; la copia al reiniciar se mantiene.

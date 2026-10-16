@@ -200,6 +200,25 @@ func run(app: Control, directory: String) -> void:
 				previous.pressed.emit()
 				check(Store.equivalent(app.run,before),"Stale capture button cannot duplicate reward")
 			elif phase == "shop":
+				if app.run.get("edition",1)>=9 and not captured.has("revive"):
+					var fallen: Array = app.run.party.filter(func(member):return member.hp==0)
+					if not fallen.is_empty():
+						app._select_member(int(fallen[0].id))
+						var money: int = app.run.money
+						button(app,"buy_revive")
+						check(app.run.money==money-150 and app.run.bag.revive==1,"Real UI buys one Revivir for 150")
+						var before: Dictionary = app.campaign.target(app.run,int(fallen[0].id)).duplicate(true)
+						var expected: Dictionary = before.duplicate(true)
+						expected.hp = int(floor(app.campaign.progression.stats(int(before.speciesId),int(before.level)).maxHp/2.0))
+						await capture(app,directory,"18-revive-before")
+						button(app,"revive")
+						check(Store.equivalent(app.campaign.target(app.run,int(before.id)),expected) and app.run.bag.revive==0,"Actual revive button restores only half HP and preserves the member")
+						check(app.travel_buttons.revive.disabled,"A living member cannot receive another Revivir")
+						await capture(app,directory,"19-revive-after")
+						var recovered: Dictionary = app.run.duplicate(true)
+						app._load_game()
+						check(app.save_warning.is_empty() and Store.equivalent(recovered,app.run),"Revive purchase/use survives exact journal replay")
+						captured.revive = true
 				if starter==4 and app.run.stage==0:
 					check(app.run.stock.size()==3 and app.run.stock[0].item=="tm-brick-break","Charmander's first shop offers Demolición")
 					button(app,"stock_0")
@@ -263,6 +282,7 @@ func run(app: Control, directory: String) -> void:
 	if app.run.get("edition",1)<6: check(captured.has("miss"),"Natural attack failure displayed with dedicated image/audio")
 	check(captured.has("five"),"Five action menu exercised")
 	check(captured.has("loadout"),"Real UI swaps a learned move without exceeding four slots")
+	if app.run.get("edition",1)>=9: check(captured.has("revive"),"Real route KO and revival exercised through the shop UI")
 	if app.run.get("edition",1)<5: check(captured.has("growth"),"Real UI reaches bug evolution with learned coverage before Brock")
 	await _immune_preview(app,directory)
 	await _orb_preview(app,directory)

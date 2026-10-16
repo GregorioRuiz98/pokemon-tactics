@@ -191,3 +191,7 @@ El usuario pide sumar a los PS actuales el aumento de PS máximos de cada subida
 ### Límite de nivel por gimnasio — 16 de octubre, 0.14.7
 
 El usuario pide que ningún miembro supere al insignia del siguiente gimnasio. Edición8 aplica el cap a EXP y Caramelos, calculado desde el líder pendiente: Brock/Onix14 en la muestra. Al llegar se descarta la EXP sobrante y no se acumula; Caramelo bloqueado sin gasto. Vencer al líder desbloquea el próximo cap si existe, también para su recompensa de EXP; al terminar la muestra se conserva14. No se implementa más historia. PS por subida se mantienen; guardados anteriores conservan edición. Ver docs/SPRINT_14_GYM_CAPS.md.
+
+### Revivir en tienda — 16 de octubre, 0.14.8
+
+El usuario pide comprar Revivir y recuperar solo media vida. Edición9 fija150 ₽ (una recompensa de victoria actual); compra/uso en tienda, un consumible por debilitado recuperado con50% de PS máximos. Conserva progreso y no duplica equipable devuelto al caer. Sustituye las bajas individuales definitivas en campañas nuevas; todo el equipo KO sigue terminando la campaña. Pociones posteriores y límites por gimnasio conservados. Guardados anteriores mantienen edición. Ver docs/SPRINT_14_REVIVE.md.

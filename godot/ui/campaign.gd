@@ -1,7 +1,7 @@
 extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
-const Advanced = preload("res://core/gym_run.gd")
+const Advanced = preload("res://core/revive_run.gd")
 const CampaignStore = preload("res://core/kanto_store.gd")
 var campaign: RefCounted = Advanced.new()
 var last_presentation: Dictionary = {}
@@ -102,7 +102,7 @@ func _load_game() -> void:
 	run = result.state
 	transactions = result.commands
 	save_warning = ""
-	message = "Campaña recuperada." if run.get("edition",1) == 8 else "Partida clásica %s: conserva sus reglas. Nueva campaña para límites de nivel por gimnasio." % _classic_version()
+	message = "Campaña recuperada." if run.get("edition",1) == 9 else "Partida clásica %s: conserva sus reglas. Nueva campaña para usar Revivir en la tienda." % _classic_version()
 	pending = {}
 	selecting = "auto"
 	action_page = false
@@ -125,6 +125,7 @@ func _event(command: Dictionary) -> void:
 	selected_action = "basic"
 	action_page = false
 	message = ""
+	if command.kind=="revive": message = "Pokémon recuperado con el 50 % de sus PS máximos."
 	state = run.battle
 	history = run.battleCommands
 	selecting = "finish" if _player_turn() and state.moved and state.acted else "auto"
@@ -191,8 +192,8 @@ func _render_travel() -> void:
 	header.add_child(_button("Laboratorio",func(): _menu_selected(7)))
 	header.add_child(_button("Ayuda",func(): help_dialog.popup_centered(Vector2i(630,450))))
 	var classic: String = ""
-	if not run.is_empty() and run.get("edition",1)<8: classic = "Clásica %s: Nueva campaña para límites de nivel por gimnasio." % _classic_version()
-	var status: Label = _label(save_warning if not save_warning.is_empty() else (message if not message.is_empty() else (classic if not classic.is_empty() else "Guardado automático local · bajas definitivas")),17,MUTED)
+	if not run.is_empty() and run.get("edition",1)<9: classic = "Clásica %s: Nueva campaña para usar Revivir en la tienda." % _classic_version()
+	var status: Label = _label(save_warning if not save_warning.is_empty() else (message if not message.is_empty() else (classic if not classic.is_empty() else ("Guardado automático local · Revivir disponible en tienda" if run.get("edition",1)>=9 else "Guardado automático local · bajas definitivas"))),17,MUTED)
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	travel_content.add_child(status)
 	if not run.is_empty() and run.get("edition",1)>=8:
@@ -281,18 +282,20 @@ func _render_travel() -> void:
 				text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos: %d\nNivel mínimo + Caramelo para evolucionar; no cura.\nCompra MT/equipo y úsalo con un miembro a la derecha." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
 				if run.get("edition",1)>=4: text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos: %d\nCaramelo: +1 nivel. Evolución automática al alcanzar el nivel.\nCompra y usa objetos con un miembro a la derecha." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
 				if run.get("edition",1)>=7: text.text += "\nAl subir de nivel recuperas tantos PS como aumenten tus PS máximos."
+				if run.get("edition",1)>=9: text.text += "\nRevivir: %d en bolsa · 150 ₽ · recupera al debilitado con el 50 %% de sus PS." % run.bag.revive
 				_render_stock(narrative)
 			var consumables: Dictionary = campaign.consumables if run.get("edition",1)>=4 else Campaign.ITEMS
 			for item: String in consumables:
 				var button: Button = _travel_button("buy_"+item,"Comprar %s · %d ₽" % [consumables[item].name,consumables[item].price],narrative,{"kind":"buy","item":item})
 				button.disabled = run.money < consumables[item].price
+				if item=="revive": button.tooltip_text = "Recupera a un Pokémon debilitado con el 50 % de sus PS máximos. Solo en la tienda; consume una unidad de la bolsa."
 			if run.get("edition",1)>=5:
 				var stone: Button = _travel_button("buy_leaf-stone","Comprar Piedra Hoja · 80 ₽",narrative,{"kind":"buy-stone"})
 				stone.disabled = run.money<80
 				stone.tooltip_text = "Evoluciona Gloom y Weepinbell. No cura ni sube niveles."
 			_travel_button("continue","Seguir viaje" if run.stage < 3 else "Cerrar el tramo",narrative,{"kind":"continue"})
 		"complete": text.text = "Has vencido a Geodude y Onix. Conservas tu equipo, dinero, objetos y bajas.\n\nLa muestra termina en Brock. Las siguientes rutas, Liga y legendarios pertenecen a otros sprints."
-		"defeat": text.text = "Las bajas son definitivas. Esta campaña ha terminado y queda guardada para consultar el equipo.\n\nPuedes comenzar de nuevo con otro inicial o semilla."
+		"defeat": text.text = ("Todo el equipo se ha debilitado. La campaña ha terminado; Revivir solo se puede usar en la tienda, si llegas con algún compañero en pie." if run.get("edition",1)>=9 else "Las bajas son definitivas. Esta campaña ha terminado y queda guardada para consultar el equipo.") + "\n\nPuedes comenzar de nuevo con otro inicial o semilla."
 	if run.get("edition",1) >= 2 and run.phase in ["capture","shop"]:
 		var summary: Label = _label(_progress_summary(),17,GOLD)
 		summary.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -314,7 +317,7 @@ func _render_travel() -> void:
 	team.add_child(grid)
 	for member: Dictionary in run.party:
 		var unit: Dictionary = rules.member_unit(member)
-		var button: Button = _button("%s\n%d / %d PS%s" % [unit.name + (" · Nv. %d" % member.level if member.has("level") else ""),unit.hp,unit.maxHp," · BAJA" if unit.hp == 0 else ""],_select_member.bind(int(member.id)),205)
+		var button: Button = _button("%s\n%d / %d PS%s" % [unit.name + (" · Nv. %d" % member.level if member.has("level") else ""),unit.hp,unit.maxHp,("\nDEBILITADO" if run.get("edition",1)>=9 else " · BAJA") if unit.hp == 0 else ""],_select_member.bind(int(member.id)),205)
 		button.toggle_mode = true
 		button.button_pressed = member.id == selected_member
 		grid.add_child(button)
@@ -331,6 +334,10 @@ func _render_travel() -> void:
 	if run.get("edition",1) >= 2 and run.phase != "shop":
 		_render_moves(team,selected)
 	if run.phase == "shop":
+		if run.get("edition",1)>=9:
+			var revive: Button = _travel_button("revive","Usar Revivir · 50 %% PS · bolsa: %d" % run.bag.revive,team,{"kind":"revive","member":selected_member})
+			revive.disabled = selected.hp!=0 or run.bag.revive<=0
+			revive.tooltip_text = "Solo debilitados: vuelve con %d / %d PS. Conserva nivel, EXP y movimientos; el equipable recuperado permanece en la bolsa." % [maxi(1,int(floor(unit.maxHp/2.0))),unit.maxHp]
 		for item: String in ["potion","super-potion"]:
 			var button: Button = _travel_button("heal_"+item,"Usar %s · +%d PS" % [Campaign.ITEMS[item].name,Campaign.ITEMS[item].heal],team,{"kind":"heal","item":item,"member":selected_member})
 			button.disabled = selected.hp <= 0 or selected.hp >= unit.maxHp or run.bag[item] <= 0
@@ -438,11 +445,11 @@ func _toggle_move(enabled: bool, member_id: int, identity: String, revision: int
 
 func _default_hint() -> String:
 	var classic: String = ""
-	if not run.is_empty() and run.get("edition",1)<8: classic = "Clásica %s: menú → Nueva campaña para límites de nivel por gimnasio.\n" % _classic_version()
+	if not run.is_empty() and run.get("edition",1)<9: classic = "Clásica %s: menú → Nueva campaña para usar Revivir en la tienda.\n" % _classic_version()
 	return classic + super._default_hint()
 
 func _classic_version() -> String:
-	return {1:"0.14",2:"0.14.1",3:"0.14.2",4:"0.14.3",5:"0.14.4",6:"0.14.5",7:"0.14.6"}.get(int(run.get("edition",1)),"0.14")
+	return {1:"0.14",2:"0.14.1",3:"0.14.2",4:"0.14.3",5:"0.14.4",6:"0.14.5",7:"0.14.6",8:"0.14.7"}.get(int(run.get("edition",1)),"0.14")
 
 func _render_stock(parent: VBoxContainer) -> void:
 	parent.add_child(_label("OFERTAS · MT Y EQUIPO",21,GOLD))

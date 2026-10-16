@@ -418,3 +418,7 @@ Ajuste puntual del14: edición7 suma a los PS actuales el aumento de PS máximos
 ## Revisión0.14.7 — límite por gimnasio
 
 Edición8 limita EXP y Caramelos al nivel del insignia del próximo líder pendiente: Brock/Onix14. No acumular EXP al tope ni gastar Caramelo bloqueado; PS por subida conservados. Al vencer, cap del siguiente gimnasio cuando exista; muestra sigue acabando en Brock con14. Reglas/guardados1–7 conservados. [Informe y comprobaciones](SPRINT_14_GYM_CAPS.md). No inicia15 ni publica.
+
+## Revisión0.14.8 — Revivir en tienda
+
+Edición9 añade Revivir150 ₽ fuera de combate, recuperando un debilitado con50% de PS máximos, sin cambiar progreso ni duplicar equipable. Todo el equipo KO sigue siendo derrota. Topes por gimnasio/PS por nivel y partidas1–8 conservados. [Informe y comprobaciones](SPRINT_14_REVIVE.md). No inicia15 ni publica.

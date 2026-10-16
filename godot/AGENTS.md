@@ -63,3 +63,8 @@
 
 - gym_study/run heredan7; edición8. Cap calculado con ace del primer líder no presente en cleared, límite global100 como techo técnico. Brock/Onix14 es el único gimnasio implementado; al finalizar se conserva14. EXP aceptada limitada al coste restante, sobrante descartado; al llegar, EXP0. Caramelo al cap rechazado sin tocar bolsa/revisión/RNG; UI bloqueada y etiqueta del líder/insignia.
 - Al vencer un líder, su EXP usa el siguiente cap si existe. Crecimiento de PS, evolución/aprendizaje y equipo se conservan; captura no excede el cap. Catálogo y módulos1–7 congelados, KantoStore1–8. godot:test:gym-caps, test:level-hp/test:tactics y QA campaña fuente/ejecutable. Ver docs/SPRINT_14_GYM_CAPS.md; paquete0.14.7 fuera de Git. No iniciar15 ni publicar.
+
+## Revisión vigente — 0.14.8
+
+- revive_run extiende gym_run sin modificar su estudio/motor. Edición9 añade bag.revive0 y consumible fijo150 ₽. Comprar/usar solo en shop; revive únicamente HP0 a floor(maxHp/2), mínimo1, con estadísticas de progresión. Revision/objetivo/cantidad/fondos validados; sin RNG. No cambia nivel, EXP, repertorio, ID ni equipable; el que se devolvió al caer sigue en bolsa.
+- Todo el equipo KO mantiene derrota definitiva y no permite Revivir. UI compra aparte de las tres ofertas, muestra bolsa, botón en miembro debilitado, mensaje de50% y texto sin permanencia para bajas individuales. Pociones posteriores permitidas. KantoStore1–9, módulos/datos1–8 congelados. godot:test:revive, regresión8 y QA de compra/uso/replay en fuente/ejecutable. Ver docs/SPRINT_14_REVIVE.md. Paquete0.14.8 fuera de Git; no iniciar15 ni publicar.
