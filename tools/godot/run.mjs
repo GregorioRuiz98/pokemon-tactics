@@ -7,8 +7,8 @@ import { gunzipSync } from 'node:zlib';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const project = resolve(root, 'godot');
-const work = resolve(root, '../../work/qa-sprint-14-tactics');
-const output = resolve(root, '../releases/pokemon-tactics-0.14.5/windows');
+const work = resolve(root, '../../work/qa-sprint-14-level-hp');
+const output = resolve(root, '../releases/pokemon-tactics-0.14.6/windows');
 const operation = process.argv[2] ?? 'test';
 const binary = process.env.GODOT_BIN ?? resolve(root, '../../work/godot-4.7.2/Godot_v4.7.2-stable_win64_console.exe');
 mkdirSync(work, { recursive: true });
@@ -74,7 +74,10 @@ if (!['qa-export','qa-campaign-export'].includes(operation)) {
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if (operation === 'test-tactics-journey') {
+if (operation === 'test-level-hp') {
+  verify();
+  run(binary,['--headless',...common,'--script','res://tests/level_hp.gd','--','--save-dir='+work],'level-hp-core');
+} else if (operation === 'test-tactics-journey') {
   verify();
   run(binary,['--headless',...common,'--script','res://tests/tactics_journey.gd','--','--save-dir='+work],'tactics-journeys');
 } else if (operation === 'test-tactics') {
@@ -124,7 +127,7 @@ if (operation === 'test-tactics-journey') {
   run(binary, ['--headless', ...common, '--export-release', 'Windows Desktop', resolve(output, 'PokemonTactics.exe')], 'export-windows');
   cpSync(resolve(project, 'licenses'), resolve(output, 'licenses'), { recursive: true });
   cpSync(resolve(project, 'CREDITS.md'), resolve(output, 'CREDITS.md'));
-  writeFileSync(resolve(output, 'LEEME.txt'), 'Pokémon Tactics 0.14.5 — Paleta hasta Brock · offline\n\nAbre PokemonTactics.exe. No necesitas Godot, Node ni un servidor.\nElige un inicial de Oak y recorre Ruta 1, Ruta 2, Bosque Verde y Brock.\nEXP por victoria, niveles y estadísticas. Cuatro movimientos preparados + básico neutro.\nCaramelo Raro: 25 ₽ por +1 nivel. Evolución automática al alcanzar su nivel.\nOrientación: frente, mitad baja del daño; costado, mitad alta; espalda, máximo y +1 crítico.\nPrecisión propia del movimiento, sin penalización por orientación.\nEstados y etapas de atributos: tres activaciones; parálisis reduce solo el movimiento.\nMejoras: 2–4 PT. Cuchillada/Hipercolmillo: crítico garantizado por 3 PT.\nAtaque Rápido/Acua Jet: acercamiento; Golpe Cabeza/Portazo: empuje.\nEncuentros y repertorios de Let’s Go combinados. Sin movimientos exclusivos de los iniciales especiales.\nTipografía legible; estados y modificadores sobre las unidades y en las fichas.\nGloom/Weepinbell evolucionan con Piedra Hoja (80 ₽); Pikachu20/Golem36 siguen adaptados.\nBrock entrega Onix. Tres ofertas MT/equipables por tienda; renovar cuesta 25, 50, 75… ₽.\nUn equipable por Pokémon; MT de un uso, con compatibilidad indicada.\nNueva campaña para estas reglas; archivos anteriores conservan su edición.\nEl resto de Kanto aún no está implementado. Laboratorio anterior accesible desde el menú.\n\nPasa el cursor para prever. Clic en casilla azul: mover; clic en enemigo: básico.\n1/2/3/4/5: movimientos; A: menú de habilidades; R: rectificar solo movimiento, antes de actuar; F: orientar desde tablero.\nFlechas/Enter: casillas; clic derecho/Esc: cancelar selección; F8: continuar; F1: menú.\nEl menú de órdenes aparece a la derecha en turnos aliados. Solo se confirma un ataque con riesgo para aliados.\nCampaña: %APPDATA%/PokemonTacticsLab/kanto-save.json.\nLaboratorio independiente: laboratory-save.json\nCréditos y licencias acompañan al ejecutable.\n', 'utf8');
+  writeFileSync(resolve(output, 'LEEME.txt'), 'Pokémon Tactics 0.14.6 — Paleta hasta Brock · offline\n\nAbre PokemonTactics.exe. No necesitas Godot, Node ni un servidor.\nElige un inicial de Oak y recorre Ruta 1, Ruta 2, Bosque Verde y Brock.\nEXP por victoria, niveles y estadísticas. Cuatro movimientos preparados + básico neutro.\nCaramelo Raro: 25 ₽ por +1 nivel. Evolución automática al alcanzar su nivel.\nSubir de nivel recupera el aumento de PS máximos, incluida la evolución automática; no revive bajas.\nOrientación: frente, mitad baja del daño; costado, mitad alta; espalda, máximo y +1 crítico.\nPrecisión propia del movimiento, sin penalización por orientación.\nEstados y etapas de atributos: tres activaciones; parálisis reduce solo el movimiento.\nMejoras: 2–4 PT. Cuchillada/Hipercolmillo: crítico garantizado por 3 PT.\nAtaque Rápido/Acua Jet: acercamiento; Golpe Cabeza/Portazo: empuje.\nEncuentros y repertorios de Let’s Go combinados. Sin movimientos exclusivos de los iniciales especiales.\nTipografía legible; estados y modificadores sobre las unidades y en las fichas.\nGloom/Weepinbell evolucionan con Piedra Hoja (80 ₽); Pikachu20/Golem36 siguen adaptados.\nBrock entrega Onix. Tres ofertas MT/equipables por tienda; renovar cuesta 25, 50, 75… ₽.\nUn equipable por Pokémon; MT de un uso, con compatibilidad indicada.\nNueva campaña para estas reglas; archivos anteriores conservan su edición.\nEl resto de Kanto aún no está implementado. Laboratorio anterior accesible desde el menú.\n\nPasa el cursor para prever. Clic en casilla azul: mover; clic en enemigo: básico.\n1/2/3/4/5: movimientos; A: menú de habilidades; R: rectificar solo movimiento, antes de actuar; F: orientar desde tablero.\nFlechas/Enter: casillas; clic derecho/Esc: cancelar selección; F8: continuar; F1: menú.\nEl menú de órdenes aparece a la derecha en turnos aliados. Solo se confirma un ataque con riesgo para aliados.\nCampaña: %APPDATA%/PokemonTacticsLab/kanto-save.json.\nLaboratorio independiente: laboratory-save.json\nCréditos y licencias acompañan al ejecutable.\n', 'utf8');
   const digest = createHash('sha256').update(readFileSync(resolve(output, 'PokemonTactics.exe'))).digest('hex');
   writeFileSync(resolve(output, 'SHA256SUMS.txt'), `${digest}  PokemonTactics.exe\n`);
   console.log(`Windows executable: ${resolve(output, 'PokemonTactics.exe')}\nSHA256: ${digest}`);

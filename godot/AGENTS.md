@@ -53,3 +53,8 @@
 - Usuario confirma estados y atributos3 activaciones del afectado (actual incluida al autoaplicar); temporizador por atributo, caduca a base, no refrescar al cap, Niebla Clara limpia temporizadores. Parálisis solo movimiento/2, mínimo1; new_round propio mantiene velocidad/iniciativa. Mejoras+1=2PT,+2=3PT,dos atributos+1=3PT,tres=4PT; no balance global.
 - Acercamientos gastan movimiento restante/acción, respetan terreno, aliados atravesables/enemigos bloquean, destino libre, pagan también al fallar y bloquean Rectificar. Golpe Cabeza/Portazo empujan1; obstáculos sin daño de choque ni salida del mapa. IA valora flanqueo legal y coste/duración de apoyos con previsión pura; no lee resultados aleatorios.
 - Marcadores añaden etapas firmadas y duraciones; crítico usa recibo real, drenaje usa daño tirado. Pruebas godot:test:tactics y test:tactics:journey, regresión5/4/3/2/clásica/laboratorio, QA de campaña fuente/ejecutable y guardados aislados. Ver docs/SPRINT_14_TACTICS.md. Ejecutable0.14.5 offline, sin activos/plugins/dependencias nuevos. No iniciar15 ni publicar.
+
+## Revisión vigente — 0.14.6
+
+- Edición7 en vitality_study/run: PS actuales += aumento positivo de PS máximos al subir por EXP o Caramelo, incluida evolución automática. Conserva déficit de PS, EXP parcial, equipable y repertorio; no cura sin subida ni revive bajas. Piedra sola sigue sin curar. Estudio compartido por campaña/motor/perfiles; sin cambios a fórmulas tácticas.
+- KantoStore selecciona1–7 sin convertir guardados. UI usa7 para nuevas campañas, recibo +N PS y texto de tienda actualizado. godot:test:level-hp comprueba crecimiento, transacciones y compatibilidad; QA campaña fuente/ejecutable. Paquete0.14.6 fuera de Git. Ver docs/SPRINT_14_LEVEL_HP.md. No iniciar15 ni publicar.

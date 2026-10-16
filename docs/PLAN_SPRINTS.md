@@ -410,3 +410,7 @@ No inicia15 ni completa Kanto. Restan mapas/cámara/isometría/alturas, PC, pasi
 Precisión sin penalización direccional; frente usa mitad baja del daño, costado alta, espalda máximo y+1 crítico. Críticos, acercamientos y empujes mediante movimientos del catálogo LGPE. Usuario confirma atributos/estados3 activaciones; parálisis afecta solo movimiento, mejoras más caras y marcadores+1/+2. Edición6 conserva1–5 y laboratorio. [Reglas, prototipos y comprobaciones](SPRINT_14_TACTICS.md).
 
 Amplía mecánicas del14, sin iniciar15 ni modificar el balance general por otro motivo. Siguen pendientes escala/cámara/isometría/alturas, PC, resto de Kanto y balance humano de los nuevos prototipos. Publicación pendiente por decisión del usuario.
+
+## Revisión0.14.6 — PS al subir de nivel
+
+Ajuste puntual del14: edición7 suma a los PS actuales el aumento de PS máximos por EXP o Caramelo, incluida la evolución automática. No revive bajas. Tienda/recibo muestran la regla. Reglas y guardados1–6 conservados; no inicia15. [Comprobaciones y entrega](SPRINT_14_LEVEL_HP.md).

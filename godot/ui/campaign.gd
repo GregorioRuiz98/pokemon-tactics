@@ -1,7 +1,7 @@
 extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
-const Advanced = preload("res://core/tactics_run.gd")
+const Advanced = preload("res://core/vitality_run.gd")
 const CampaignStore = preload("res://core/kanto_store.gd")
 var campaign: RefCounted = Advanced.new()
 var last_presentation: Dictionary = {}
@@ -102,7 +102,7 @@ func _load_game() -> void:
 	run = result.state
 	transactions = result.commands
 	save_warning = ""
-	message = "Campaña recuperada." if run.get("edition",1) == 6 else "Partida clásica %s: conserva sus reglas. Nueva campaña para daño direccional y críticos." % _classic_version()
+	message = "Campaña recuperada." if run.get("edition",1) == 7 else "Partida clásica %s: conserva sus reglas. Nueva campaña para recuperar el aumento de PS al subir de nivel." % _classic_version()
 	pending = {}
 	selecting = "auto"
 	action_page = false
@@ -191,7 +191,7 @@ func _render_travel() -> void:
 	header.add_child(_button("Laboratorio",func(): _menu_selected(7)))
 	header.add_child(_button("Ayuda",func(): help_dialog.popup_centered(Vector2i(630,450))))
 	var classic: String = ""
-	if not run.is_empty() and run.get("edition",1)<6: classic = "Clásica %s: Nueva campaña para daño direccional y críticos." % _classic_version()
+	if not run.is_empty() and run.get("edition",1)<7: classic = "Clásica %s: Nueva campaña para recuperar el aumento de PS al subir de nivel." % _classic_version()
 	var status: Label = _label(save_warning if not save_warning.is_empty() else (message if not message.is_empty() else (classic if not classic.is_empty() else "Guardado automático local · bajas definitivas")),17,MUTED)
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	travel_content.add_child(status)
@@ -274,6 +274,7 @@ func _render_travel() -> void:
 			if run.get("edition",1) >= 3:
 				text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos: %d\nNivel mínimo + Caramelo para evolucionar; no cura.\nCompra MT/equipo y úsalo con un miembro a la derecha." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
 				if run.get("edition",1)>=4: text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos: %d\nCaramelo: +1 nivel. Evolución automática al alcanzar el nivel.\nCompra y usa objetos con un miembro a la derecha." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
+				if run.get("edition",1)>=7: text.text += "\nAl subir de nivel recuperas tantos PS como aumenten tus PS máximos."
 				_render_stock(narrative)
 			var consumables: Dictionary = campaign.consumables if run.get("edition",1)>=4 else Campaign.ITEMS
 			for item: String in consumables:
@@ -331,6 +332,7 @@ func _render_travel() -> void:
 			var candy: Button = _travel_button("level-up","Usar Caramelo Raro · +1 nivel",team,{"kind":"level-up","member":selected_member})
 			candy.disabled = selected.hp<=0 or selected.level>=campaign.progression.data.levelCap or run.bag["rare-candy"]<=0
 			candy.tooltip_text = "Conserva EXP parcial y PS actuales. La evolución ocurre automáticamente al alcanzar su nivel."
+			if run.get("edition",1)>=7: candy.tooltip_text = "Conserva EXP parcial. Recupera el aumento de PS máximos, incluida la evolución automática al subir de nivel."
 			var automatic: Dictionary = campaign.progression.evolution(selected)
 			var evolution_label: Label = _label("Evolución automática: %s · Nv. %d" % [rules.profiles[int(automatic.speciesId)].data.name,automatic.level] if not automatic.is_empty() else "Sin otra evolución de Kanto",17,MUTED)
 			evolution_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -374,6 +376,7 @@ func _progress_summary() -> String:
 	for entry: Dictionary in run.get("lastProgress",[]):
 		var text: String = "%s: +%d EXP" % [entry.name,entry.xp]
 		if entry.level > entry.before: text += " · Nv. %d → %d" % [entry.before,entry.level]
+		if entry.get("hpGain",0)>0: text += " · +%d PS" % entry.hpGain
 		for evolution: Dictionary in entry.get("evolutions",[]): text += " · %s → %s" % [rules.profiles[int(evolution.from)].data.name,rules.profiles[int(evolution.to)].data.name]
 		if not entry.learned.is_empty(): text += " · aprende " + ", ".join(entry.learned.map(func(id):return campaign.progression.data.moves[id].name))
 		lines.append(text)
@@ -421,11 +424,11 @@ func _toggle_move(enabled: bool, member_id: int, identity: String, revision: int
 
 func _default_hint() -> String:
 	var classic: String = ""
-	if not run.is_empty() and run.get("edition",1)<6: classic = "Clásica %s: menú → Nueva campaña para daño direccional y críticos.\n" % _classic_version()
+	if not run.is_empty() and run.get("edition",1)<7: classic = "Clásica %s: menú → Nueva campaña para recuperar el aumento de PS al subir de nivel.\n" % _classic_version()
 	return classic + super._default_hint()
 
 func _classic_version() -> String:
-	return {1:"0.14",2:"0.14.1",3:"0.14.2",4:"0.14.3",5:"0.14.4"}.get(int(run.get("edition",1)),"0.14")
+	return {1:"0.14",2:"0.14.1",3:"0.14.2",4:"0.14.3",5:"0.14.4",6:"0.14.5"}.get(int(run.get("edition",1)),"0.14")
 
 func _render_stock(parent: VBoxContainer) -> void:
 	parent.add_child(_label("OFERTAS · MT Y EQUIPO",21,GOLD))

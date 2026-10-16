@@ -183,3 +183,7 @@ Atkinson Hyperlegible, indicadores compartidos,32 especies/104 movimientos y sie
 El usuario pide retirar penalizaciones de precisión por lado y dividir el rango de daño: frente mitad inferior, costado superior, espalda máximo y+1 etapa de crítico. Quiere identidad móvil con críticos garantizados y movimientos de acercamiento/empuje. Parálisis reduce solo movimiento; estados no permanentes. Confirma también tres activaciones para subidas/bajadas de atributos, mostrando etapas numéricas y mayor coste a mejoras.
 
 Edición6: críticos×1,5, prototipos descritos por movimiento, atributos/estados3 activaciones del afectado, apoyos2–4PT, marcadores firmados. No se cambian base/EXP/economía/encuentros. Nuevas partidas; ediciones anteriores conservadas. Ver docs/SPRINT_14_TACTICS.md. No inicia15 ni autoriza publicar.
+
+### PS al subir de nivel — 16 de octubre, 0.14.6
+
+El usuario pide sumar a los PS actuales el aumento de PS máximos de cada subida. Edición7 aplica la diferencia por EXP y Caramelo, incluida la evolución al subir, conservando los PS que faltaban. Ejemplo:20/30 pasa a23/33. No revive bajas ni cura por EXP sin subir o por piedra sola. Archivos anteriores conservan su edición. Ver docs/SPRINT_14_LEVEL_HP.md.

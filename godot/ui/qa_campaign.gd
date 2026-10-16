@@ -57,9 +57,12 @@ func shop(app: Control) -> void:
 					var hp: int = current.hp
 					var xp: int = current.xp
 					var level: int = current.level
+					var maximum: int = app.campaign.progression.stats(int(current.speciesId),level).maxHp
 					button(app,"level-up")
 					current = app.campaign.target(app.run,int(entry.id))
-					check(current.level==level+1 and current.hp==hp and current.xp==xp,"UI candy grants one level without healing or discarding partial EXP")
+					var gain: int = maxi(0,int(app.campaign.progression.stats(int(current.speciesId),int(current.level)).maxHp)-maximum) if app.run.get("edition",1)>=7 else 0
+					check(current.level==level+1 and current.hp==hp+gain and current.xp==xp,"UI candy applies the edition's HP growth and preserves partial EXP")
+					if gain>0: check(("+%d PS" % gain) in app._progress_summary(),"Growth summary displays the actual recovered HP")
 				if int(current.speciesId) in [12,15]:
 					var coverage: String = "mega-drain" if current.speciesId==12 else "brick-break"
 					if app.run.get("edition",1)<5: check(coverage in current.knownMoves,"Evolution coverage is learned through real candy UI")
@@ -182,6 +185,9 @@ func run(app: Control, directory: String) -> void:
 						captured.miss = true
 			elif phase == "capture":
 				var reward: Dictionary = app.run.reward.duplicate(true)
+				if app.run.get("edition",1)>=7:
+					for receipt: Dictionary in app.run.lastProgress:
+						if receipt.get("hpGain",0)>0: check(("+%d PS" % receipt.hpGain) in app._progress_summary(),"Victory summary includes recovered growth HP")
 				app._load_game()
 				check(app.save_warning.is_empty(),"Continue validates campaign journal")
 				check(Store.equivalent(app.run.reward,reward),"Pending capture survives Continue")
@@ -215,6 +221,21 @@ func run(app: Control, directory: String) -> void:
 					await app.get_tree().process_frame
 					await app.get_tree().process_frame
 					captured.shop = true
+				if app.run.get("edition",1)>=7 and not captured.has("level_hp"):
+					app._select_member(1)
+					if app.run.bag["rare-candy"]==0: button(app,"buy_rare-candy")
+					var member_before: Dictionary = app.campaign.target(app.run,1).duplicate(true)
+					var max_before: int = app.campaign.progression.stats(int(member_before.speciesId),int(member_before.level)).maxHp
+					button(app,"level-up")
+					var member_after: Dictionary = app.campaign.target(app.run,1)
+					var gain: int = app.campaign.progression.stats(int(member_after.speciesId),int(member_after.level)).maxHp-max_before
+					check(member_after.level==member_before.level+1 and member_after.hp==member_before.hp+gain,"Actual candy button restores exactly the gained max HP")
+					check(("+%d PS" % gain) in app._progress_summary(),"Actual candy receipt shows the HP gain")
+					await capture(app,directory,"16-level-hp")
+					var saved: Dictionary = app.run.duplicate(true)
+					app._load_game()
+					check(app.save_warning.is_empty() and Store.equivalent(saved,app.run),"Candy HP recovery survives journal replay")
+					captured.level_hp = true
 				shop(app)
 				if captured.has("growth") and not captured.has("growth_image"):
 					for member: Dictionary in app.run.party:
