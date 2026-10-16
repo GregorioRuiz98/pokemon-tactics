@@ -4,6 +4,7 @@ const Rules = preload("res://core/battle.gd")
 const Movement = preload("res://core/movement.gd")
 const Store = preload("res://core/save_store.gd")
 const Board = preload("res://ui/board.gd")
+const Revision = preload("res://core/movement_revision.gd")
 const Qa = preload("res://ui/qa_driver.gd")
 const CREAM = Color("eee8ce")
 const MUTED = Color("b4c3ac")
@@ -27,6 +28,14 @@ var save_warning = ""
 var portraits: Dictionary = {}
 var buttons: Dictionary = {}
 var action_buttons: Dictionary = {}
+var action_page: bool = false
+var command_panel: PanelContainer
+var main_commands: VBoxContainer
+var command_heading: Label
+var target_panel: PanelContainer
+var target_portrait: TextureRect
+var actor_hp: ProgressBar
+var faces: Dictionary = {}
 var direction_buttons: Dictionary = {}
 var board
 var timeline: HBoxContainer
@@ -39,7 +48,7 @@ var target_info: Label
 var heading: Label
 var hint: Label
 var saved: Label
-var actions: HBoxContainer
+var actions: VBoxContainer
 var directions: HBoxContainer
 var new_dialog: ConfirmationDialog
 var help_dialog: AcceptDialog
@@ -57,6 +66,8 @@ func _ready():
 	if qa_running: DirAccess.make_dir_recursive_absolute(qa_dir)
 	store = Store.new(qa_dir.path_join("ui-save.json") if qa_running else "user://laboratory-save.json")
 	for record in rules.data.species: portraits[int(record.id)] = load("res://assets/pokemon/%d/thumbnail.png" % record.id)
+	var face_manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/portraits.json"))
+	for record: Dictionary in face_manifest.records: faces[int(record.id)] = load("res://" + record.files[0].target)
 	_make_theme()
 	_build_interface()
 	_build_dialogs()
@@ -77,11 +88,11 @@ func _make_theme():
 	theme.default_font_size = 18
 	theme.set_color("font_color", "Label", CREAM)
 	theme.set_color("font_color", "Button", CREAM)
-	theme.set_color("font_disabled_color", "Button", Color("718273"))
+	theme.set_color("font_disabled_color", "Button", Color("94a8ad"))
 	for type in ["Button", "OptionButton"]:
 		for entry in ["normal", "hover", "pressed", "disabled", "focus"]:
 			var style = StyleBoxFlat.new()
-			style.bg_color = Color("273d30") if entry == "normal" else (Color("344b37") if entry == "hover" else Color("17291e"))
+			style.bg_color = Color("164957") if entry == "normal" else (Color("216576") if entry == "hover" else Color("102e3a"))
 			style.border_color = GOLD if entry in ["focus", "pressed"] else Color("54634b")
 			style.set_border_width_all(2 if entry == "focus" else 1)
 			style.set_corner_radius_all(3)
@@ -108,8 +119,10 @@ func _button(text: String, callback: Callable, minimum: float = 0) -> Button:
 func _panel() -> PanelContainer:
 	var panel = PanelContainer.new()
 	var style = StyleBoxFlat.new()
-	style.bg_color = Color("17291f")
-	style.border_color = Color("455541")
+	style.bg_color = Color("153d50")
+	style.shadow_color = Color(0, 0, 0, 0.3)
+	style.shadow_size = 5
+	style.border_color = Color("70a6aa")
 	style.set_border_width_all(1)
 	style.set_content_margin_all(14)
 	panel.add_theme_stylebox_override("panel", style)
@@ -120,16 +133,31 @@ func _clear(container: Node):
 		container.remove_child(child)
 		child.queue_free()
 
-func _build_interface():
-	var margin = MarginContainer.new()
-	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	for edge in ["left", "right", "top", "bottom"]: margin.add_theme_constant_override("margin_" + edge, 12)
-	add_child(margin)
-	var main = VBoxContainer.new()
-	main.add_theme_constant_override("separation", 8)
-	margin.add_child(main)
-	var header = HBoxContainer.new()
-	main.add_child(header)
+func _build_interface() -> void:
+	# Overlay layout adapted from the Godot skill HUD template; the laboratory
+	# already owns state/signals, so it needs no extra manager or autoload.
+	board = Board.new()
+	board.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	board.setup(rules.data.species)
+	board.tile_selected.connect(_select_tile)
+	board.tile_hovered.connect(_hover_tile)
+	board.cancelled.connect(_cancel)
+	add_child(board)
+	var overlay: Control = Control.new()
+	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(overlay)
+	var top: MarginContainer = MarginContainer.new()
+	top.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+	top.offset_left = 18
+	top.offset_top = 12
+	top.offset_right = -18
+	overlay.add_child(top)
+	var upper: VBoxContainer = VBoxContainer.new()
+	upper.add_theme_constant_override("separation", 12)
+	top.add_child(upper)
+	var header: HBoxContainer = HBoxContainer.new()
+	upper.add_child(header)
 	header.add_child(_label("POKÉMON / TACTICS", 22, GOLD))
 	heading = _label("Laboratorio táctico", 17, MUTED)
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -141,8 +169,8 @@ func _build_interface():
 	menu.text = "Menú · F1"
 	menu.custom_minimum_size = Vector2(110, 44)
 	header.add_child(menu)
-	var popup = menu.get_popup()
-	for entry in [["Nuevo ensayo", 0], ["Continuar · F8", 1], ["Cómo jugar", 2], ["Equipo y registro", 3]]:
+	var popup: PopupMenu = menu.get_popup()
+	for entry: Array in [["Nuevo ensayo", 0], ["Continuar · F8", 1], ["Cómo jugar", 2], ["Equipo y registro", 3]]:
 		popup.add_item(entry[0], entry[1])
 	popup.add_separator()
 	popup.add_check_item("Sonido", 4)
@@ -154,72 +182,130 @@ func _build_interface():
 	timeline = HBoxContainer.new()
 	timeline.alignment = BoxContainer.ALIGNMENT_CENTER
 	timeline.add_theme_constant_override("separation", 12)
-	main.add_child(timeline)
-	board = Board.new()
-	board.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	board.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	board.setup(rules.data.species)
-	board.tile_selected.connect(_select_tile)
-	board.tile_hovered.connect(_hover_tile)
-	board.cancelled.connect(_cancel)
-	main.add_child(board)
-	var dock = _panel()
-	main.add_child(dock)
-	var content = HBoxContainer.new()
-	content.add_theme_constant_override("separation", 16)
-	dock.add_child(content)
-	var actor_column = VBoxContainer.new()
-	actor_column.custom_minimum_size.x = 170
-	content.add_child(actor_column)
-	actor_portrait = TextureRect.new()
-	actor_portrait.custom_minimum_size = Vector2(48, 48)
-	actor_portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	actor_portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	actor_portrait.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-	actor_column.add_child(actor_portrait)
-	actor_info = _label("Elige un ensayo.", 18, GOLD)
-	actor_column.add_child(actor_info)
-	var orders = VBoxContainer.new()
-	orders.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	orders.add_theme_constant_override("separation", 8)
-	content.add_child(orders)
-	actions = HBoxContainer.new()
-	orders.add_child(actions)
-	hint = _label("Clic en el tablero para mover o atacar.", 16, MUTED)
-	hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	hint.custom_minimum_size.y = 40
-	orders.add_child(hint)
-	var last = HBoxContainer.new()
-	orders.add_child(last)
-	buttons["finish"] = _button("Orientar · F", _select_finish)
-	last.add_child(buttons.finish)
+	upper.add_child(timeline)
+	command_panel = _panel()
+	_pin(command_panel, overlay, Control.PRESET_CENTER_RIGHT, Vector2(266, 300))
+	var command_content: VBoxContainer = VBoxContainer.new()
+	command_content.add_theme_constant_override("separation", 8)
+	command_panel.add_child(command_content)
+	command_heading = _label("ÓRDENES", 24, Color("85dfdd"))
+	command_content.add_child(command_heading)
+	main_commands = VBoxContainer.new()
+	main_commands.add_theme_constant_override("separation", 8)
+	command_content.add_child(main_commands)
+	buttons["actions"] = _button("Habilidades · A", _open_actions)
+	buttons["undo"] = _button("Rectificar movimiento · R", _rectify_movement)
+	buttons.undo.add_theme_font_size_override("font_size", 16)
+	buttons["finish"] = _button("Orientar y terminar · F", _select_finish)
+	for button: Button in [buttons.actions, buttons.undo, buttons.finish]: main_commands.add_child(button)
+	actions = VBoxContainer.new()
+	actions.add_theme_constant_override("separation", 6)
+	command_content.add_child(actions)
 	directions = HBoxContainer.new()
-	last.add_child(directions)
-	for facing in Rules.FACINGS:
-		var names = {4: "↑", 2: "→", 0: "↓", 6: "←"}
-		var full_names = {4: "norte", 2: "este", 0: "sur", 6: "oeste"}
-		var button = _button(names[facing], _set_facing.bind(facing), 44)
+	command_content.add_child(directions)
+	for facing: int in Rules.FACINGS:
+		var names: Dictionary = {4: "↑", 2: "→", 0: "↓", 6: "←"}
+		var full_names: Dictionary = {4: "norte", 2: "este", 0: "sur", 6: "oeste"}
+		var button: Button = _button(names[facing], _set_facing.bind(facing), 44)
 		button.tooltip_text = "Terminar el turno mirando al " + full_names[facing]
 		button.mouse_entered.connect(_preview_facing.bind(facing))
 		button.mouse_exited.connect(func(): board.facing_preview = -1)
 		directions.add_child(button)
 		direction_buttons[facing] = button
-	buttons["cancel"] = _button("Volver · Esc", _cancel)
 	buttons["confirm"] = _button("Sí, atacar", _confirm)
-	last.add_child(buttons.cancel)
-	last.add_child(buttons.confirm)
-	var target_scroll = ScrollContainer.new()
+	buttons["cancel"] = _button("Volver · Esc", _cancel)
+	command_content.add_child(buttons.confirm)
+	command_content.add_child(buttons.cancel)
+	var actor_panel: PanelContainer = _panel()
+	_pin(actor_panel, overlay, Control.PRESET_BOTTOM_LEFT, Vector2(360, 162))
+	var actor_row: HBoxContainer = HBoxContainer.new()
+	actor_row.add_theme_constant_override("separation", 16)
+	actor_panel.add_child(actor_row)
+	actor_portrait = _portrait(Vector2(104, 104))
+	actor_row.add_child(actor_portrait)
+	var vitals: VBoxContainer = VBoxContainer.new()
+	vitals.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	actor_row.add_child(vitals)
+	actor_info = _label("Elige un ensayo.", 18, GOLD)
+	vitals.add_child(actor_info)
+	actor_hp = ProgressBar.new()
+	actor_hp.show_percentage = false
+	actor_hp.custom_minimum_size.y = 10
+	var hp_fill: StyleBoxFlat = StyleBoxFlat.new()
+	hp_fill.bg_color = Color("77ca9c")
+	var hp_background: StyleBoxFlat = StyleBoxFlat.new()
+	hp_background.bg_color = Color("0c2834")
+	actor_hp.add_theme_stylebox_override("fill", hp_fill)
+	actor_hp.add_theme_stylebox_override("background", hp_background)
+	vitals.add_child(actor_hp)
+	var message: PanelContainer = _panel()
+	_pin(message, overlay, Control.PRESET_CENTER_BOTTOM, Vector2(390, 112))
+	hint = _label("Clic en una casilla para moverte.", 16, CREAM)
+	hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	message.add_child(hint)
+	target_panel = _panel()
+	_pin(target_panel, overlay, Control.PRESET_BOTTOM_RIGHT, Vector2(390, 236))
+	var target_row: HBoxContainer = HBoxContainer.new()
+	target_row.add_theme_constant_override("separation", 10)
+	target_panel.add_child(target_row)
+	target_portrait = _portrait(Vector2(80, 80))
+	target_portrait.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	target_row.add_child(target_portrait)
+	var target_scroll: ScrollContainer = ScrollContainer.new()
 	target_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	target_scroll.custom_minimum_size = Vector2(260, 170)
-	target_scroll.size_flags_horizontal = Control.SIZE_SHRINK_END
+	target_scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	target_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	target_scroll.custom_minimum_size.y = 198
 	target_scroll.focus_mode = Control.FOCUS_ALL
-	content.add_child(target_scroll)
-	target_info = _label("Pasa el cursor por una unidad\npara ver la previsión.\n\nAzul: puedes moverte.\nMarco coral: puedes atacar.", 17)
+	target_row.add_child(target_scroll)
+	target_info = _label("", 17)
 	target_info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	target_info.custom_minimum_size.x = 240
+	target_info.custom_minimum_size.x = 250
 	target_info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	target_scroll.add_child(target_info)
+
+func _portrait(dimensions: Vector2) -> TextureRect:
+	var image: TextureRect = TextureRect.new()
+	image.custom_minimum_size = dimensions
+	image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	image.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	return image
+
+func _pin(control: Control, parent: Control, preset: int, dimensions: Vector2) -> void:
+	parent.add_child(control)
+	control.set_anchors_and_offsets_preset(preset)
+	control.grow_horizontal = Control.GROW_DIRECTION_BEGIN if preset in [Control.PRESET_CENTER_RIGHT, Control.PRESET_BOTTOM_RIGHT] else Control.GROW_DIRECTION_BOTH
+	control.grow_vertical = Control.GROW_DIRECTION_BEGIN if preset != Control.PRESET_CENTER_RIGHT else Control.GROW_DIRECTION_BOTH
+	control.offset_left = -dimensions.x - 18 if preset in [Control.PRESET_CENTER_RIGHT, Control.PRESET_BOTTOM_RIGHT] else (18 if preset == Control.PRESET_BOTTOM_LEFT else -dimensions.x / 2)
+	control.offset_right = -18 if preset in [Control.PRESET_CENTER_RIGHT, Control.PRESET_BOTTOM_RIGHT] else (18 + dimensions.x if preset == Control.PRESET_BOTTOM_LEFT else dimensions.x / 2)
+	control.offset_top = -dimensions.y / 2 if preset == Control.PRESET_CENTER_RIGHT else -dimensions.y - 18
+	control.offset_bottom = dimensions.y / 2 if preset == Control.PRESET_CENTER_RIGHT else -18
+
+func _open_actions() -> void:
+	if not _player_turn() or _modal_open() or state.acted or not pending.is_empty(): return
+	action_page = true
+	selecting = "auto"
+	_refresh()
+
+func _can_rectify() -> bool:
+	return pending.is_empty() and Revision.available(state, history)
+
+func _rectify_movement() -> void:
+	if _modal_open() or not _can_rectify(): return
+	var result: Dictionary = Revision.rectify(state, history, mode, rules)
+	if not result.ok:
+		hint.text = result.reason
+		return
+	state = result.state
+	history = result.commands
+	pending = {}
+	selecting = "auto"
+	action_page = false
+	selected_action = "basic"
+	_save()
+	_refresh()
+	board.grab_focus()
 
 func _menu_selected(identity: int):
 	match identity:
@@ -268,7 +354,7 @@ func _build_dialogs():
 	add_child(new_dialog)
 	help_dialog = AcceptDialog.new()
 	help_dialog.title = "Cómo jugar"
-	help_dialog.dialog_text = "Cada Pokémon dispone de un desplazamiento y una acción,\nen cualquier orden. Las casillas azules están al alcance.\n\nPasa el cursor para prever, haz clic para mover o atacar.\nEl básico está elegido al comenzar cada orden.\n1/2/3: elegir habilidad; M: volver al movimiento directo.\nLas habilidades sobre sí mismo se ejecutan al pulsarlas.\nSolo se pide confirmación si puedes dañar o alterar a un aliado.\n\nLas flechas de la franja inferior terminan el turno mirando\nen esa dirección. F permite elegirla haciendo clic en el tablero.\nFlechas y Enter: recorrer / seleccionar casilla.\nClic derecho o Escape: cancelar selección; F8: continuar.\n\nAliados atravesables; destinos ocupados inválidos.\nFrente, flancos y espalda modifican la precisión.\nGuardado tras cada orden; independiente de la versión web."
+	help_dialog.dialog_text = "Un desplazamiento y una acción, en cualquier orden.\nEl menú de órdenes aparece a la derecha en turnos aliados.\n\nClic en casilla azul: mover. Clic en rival: ataque básico.\nHabilidades / A abre los movimientos; 1/2/3 son atajos directos.\nLas habilidades propias se ejecutan al pulsarlas.\nSolo se confirma si puedes dañar o alterar a un aliado.\n\nRectificar movimiento / R devuelve a la casilla anterior,\ncon su orientación y presupuesto. No funciona si ya has\natacado, usado otra acción o terminado el turno.\nNo recupera PS, PT, ataques, estados ni tiradas.\n\nOrientar y terminar / F permite elegir una dirección.\nFlechas y Enter: recorrer / seleccionar casilla.\nClic derecho o Escape: cancelar selección; F8: continuar.\nAliados atravesables; destinos ocupados inválidos.\nGuardado tras cada orden; independiente de la versión web."
 	add_child(help_dialog)
 	credits_dialog = AcceptDialog.new()
 	credits_dialog.title = "Créditos y recursos"
@@ -309,6 +395,7 @@ func _start_from_dialog():
 	ai_clock = 0
 	pending = {}
 	selecting = "auto"
+	action_page = false
 	selected_action = "basic"
 	target_id = -1
 	_save()
@@ -330,6 +417,7 @@ func _load_game():
 	mode = result.mode
 	pending = {}
 	selecting = "auto"
+	action_page = false
 	selected_action = "basic"
 	target_id = -1
 	ai_clock = 0
@@ -364,10 +452,21 @@ func _refresh():
 	saved.text = "Guardado local" if save_warning.is_empty() else "¡Sin guardar!"
 	saved.tooltip_text = save_warning
 	saved.add_theme_color_override("font_color", MUTED if save_warning.is_empty() else GOLD)
-	buttons.cancel.visible = not pending.is_empty() or selecting in ["attack", "finish"]
+	command_panel.visible = _player_turn()
+	var menu_height: float = 330 if action_page else (170 if selecting in ["attack", "finish"] or not pending.is_empty() else 240)
+	command_panel.offset_top = -menu_height / 2
+	command_panel.offset_bottom = menu_height / 2
+	main_commands.visible = pending.is_empty() and selecting == "auto" and not action_page
+	actions.visible = action_page and pending.is_empty()
+	command_heading.text = "HABILIDADES" if action_page else ("ORIENTACIÓN" if selecting == "finish" else ("CONFIRMAR" if not pending.is_empty() else ("OBJETIVO" if selecting == "attack" else "ÓRDENES")))
+	target_panel.visible = false
+	buttons.actions.disabled = not _player_turn() or state.get("acted", false)
+	buttons.undo.disabled = not _can_rectify()
+	buttons.undo.tooltip_text = "Vuelve a la casilla anterior. Solo antes de actuar." if not buttons.undo.disabled else "Solo disponible después de moverte y antes de actuar."
+	buttons.cancel.visible = action_page or not pending.is_empty() or selecting in ["attack", "finish"]
 	buttons.confirm.visible = not pending.is_empty()
 	buttons.finish.visible = pending.is_empty()
-	directions.visible = pending.is_empty()
+	directions.visible = selecting == "finish" and pending.is_empty()
 	for button in direction_buttons.values(): button.disabled = not _player_turn()
 	buttons.finish.disabled = not _player_turn()
 	if state.is_empty():
@@ -394,7 +493,9 @@ func _refresh():
 		board.queue_redraw()
 		return
 	var actor = Rules.active(state)
-	actor_portrait.texture = portraits[int(actor.speciesId)]
+	actor_portrait.texture = faces[int(actor.speciesId)]
+	actor_hp.max_value = actor.maxHp
+	actor_hp.value = actor.hp
 	actor_info.text = "%s%s\n%d / %d PS\n%d / %d PT\n%s · %s" % [actor.name, " · IA" if actor.team == "enemy" else "", actor.hp, actor.maxHp, actor.tp, actor.maxTp, "Mov. usado" if state.moved else "Mov. %d" % actor.remaining, "Acc. usada" if state.acted else "Acc. lista"]
 	for index in rules.profile(actor).actions_for(actor).size():
 		var definition = rules.profile(actor).actions_for(actor)[index].definition
@@ -422,10 +523,10 @@ func _refresh():
 func _default_hint() -> String:
 	if not save_warning.is_empty(): return save_warning
 	if not _player_turn(): return "Turno rival…"
-	if selecting == "finish": return "Elige hacia dónde mirar: clic en el tablero o una flecha inferior."
-	if selecting == "attack": return "Habilidad elegida. Clic en un objetivo; Esc vuelve al básico."
-	if state.acted and state.moved: return "Turno listo. Elige una flecha inferior para terminar."
-	return "Pasa el cursor para prever. Clic: mover o atacar. Flecha inferior: terminar."
+	if selecting == "finish": return "Elige hacia dónde mirar: clic en el tablero o una flecha del menú."
+	if selecting == "attack": return "%s: elige objetivo. Esc vuelve al básico." % rules.profile(Rules.active(state)).action(Rules.active(state), selected_action).definition.name
+	if state.acted and state.moved: return "Turno listo. Elige una dirección para terminar."
+	return "Clic en casilla: mover. Clic en rival: básico. Habilidades y fin de turno en el menú."
 
 func _select_movement():
 	if not _player_turn() or _modal_open(): return
@@ -435,6 +536,7 @@ func _select_action(identity: String):
 	if not _player_turn() or _modal_open() or state.acted or not pending.is_empty(): return
 	var action = rules.profile(Rules.active(state)).action(Rules.active(state), identity)
 	if action == null or Rules.active(state).tp < action.definition.cost: return
+	action_page = false
 	selected_action = identity
 	selecting = "auto" if identity == "basic" else "attack"
 	_refresh()
@@ -450,6 +552,8 @@ func _friendly_risk(plan: Dictionary) -> bool:
 	return plan.hits.any(func(hit): return Rules.unit_by_id(state, int(hit.targetId)).team == "ally" and (hit.damage > 0 or hit.status != null))
 
 func _show_plan(unit: Dictionary, plan: Dictionary):
+	target_panel.visible = true
+	target_portrait.texture = faces[int(unit.speciesId)]
 	target_info.text = "%s · %d / %d PS\n%s" % [unit.name, unit.hp, unit.maxHp, _type_names(unit.types)]
 	if unit.status != null: target_info.text += " · " + _status_name(unit.status.kind)
 	if not plan.ok:
@@ -483,17 +587,21 @@ func _hover_tile(point: Dictionary):
 		return
 	if not unit.is_empty():
 		target_id = int(unit.id)
+		target_panel.visible = true
+		target_portrait.texture = faces[int(unit.speciesId)]
 		if _player_turn() and not state.acted:
 			_show_plan(unit, rules.attack_plan(state, int(unit.id), {}, selected_action))
 		else:
 			target_info.text = "%s · %d / %d PS\n%s\n%d PT · velocidad %d\n%s" % [unit.name, unit.hp, unit.maxHp, _type_names(unit.types), unit.tp, unit.speed, _status_name(unit.status.kind) if unit.status != null else "Sin estado"]
 	elif board.available.has(Movement.key(point)):
+		target_panel.visible = false
 		var route = board.available[Movement.key(point)]
 		board.route = route.path
-		target_info.text = "%s · coste %d\nClic para desplazarte.\n\nPuedes atravesar aliados;\nel destino debe estar libre." % [Rules.coordinate(point), route.cost]
+		hint.text = "%s · coste %d. Clic para desplazarte. Puedes atravesar aliados." % [Rules.coordinate(point), route.cost]
 	else:
+		target_panel.visible = false
 		var terrain = int(state.board[int(point.y)][int(point.x)])
-		target_info.text = "%s · %s\n%s" % [Rules.coordinate(point), {0: "Suelo", 1: "Maleza", 2: "Roca", 3: "Agua"}[terrain], "Fuera del alcance de movimiento." if _player_turn() else "Inspección del terreno."]
+		hint.text = "%s · %s\n%s" % [Rules.coordinate(point), {0: "Suelo", 1: "Maleza", 2: "Roca", 3: "Agua"}[terrain], "Fuera del alcance de movimiento." if _player_turn() else "Inspección del terreno."]
 
 func _preview_self(identity: String):
 	if not _player_turn() or _modal_open() or not pending.is_empty() or state.acted: return
@@ -532,6 +640,7 @@ func _select_tile(point: Dictionary):
 func _select_finish():
 	if not _player_turn() or _modal_open() or not pending.is_empty(): return
 	selecting = "finish"
+	action_page = false
 	_refresh()
 	board.grab_focus()
 
@@ -546,6 +655,7 @@ func _cancel():
 	if _modal_open(): return
 	pending = {}
 	selecting = "auto"
+	action_page = false
 	selected_action = "basic"
 	_refresh()
 	board.grab_focus()
@@ -562,6 +672,7 @@ func _commit(command: Dictionary):
 	state = result.state
 	history.append(command.duplicate(true))
 	pending = {}
+	action_page = false
 	selected_action = "basic"
 	selecting = "finish" if _player_turn() and state.moved and state.acted else "auto"
 	_save() # Persist accepted orders before presentation or sound.
@@ -596,6 +707,8 @@ func _unhandled_key_input(event):
 	match event.keycode:
 		KEY_ESCAPE: _cancel()
 		KEY_M: _select_movement()
+		KEY_A: _open_actions()
+		KEY_R: _rectify_movement()
 		KEY_F: _select_finish()
 		KEY_F8: _load_game()
 		KEY_F1: menu.show_popup()

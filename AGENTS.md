@@ -2,7 +2,7 @@
 
 - Responder en español. Leer docs/PLAN_SPRINTS.md y el último informe antes de continuar.
 - Nueva dirección del 15 de octubre en PRODUCT.md: campaña larga de Rojo original, un inicial de Oak, mapas grandes, captura local tras combate y tienda con evolución/entrenamiento; Liga y rival antes de los desafíos legendarios. Objetivo futuro: ejecutable Windows offline. Diferenciar requisitos confirmados de propuestas pendientes.
-- El usuario indicó «pues empieza» el 15 de octubre: **autoriza el sprint 13 de base Godot**, no ejecutar automáticamente toda la campaña 14–22. Laboratorio nativo 0.13.1 en godot/, Godot 4.7.2 estándar y plantillas Windows oficiales verificadas; sin complementos nuevos. Consultar godot/AGENTS.md y docs/SPRINT_13.md antes de continuar.
+- El usuario indicó «pues empieza» el 15 de octubre: **autoriza el sprint 13 de base Godot**, no ejecutar automáticamente toda la campaña 14–22. Laboratorio nativo 0.13.2 en godot/, Godot 4.7.2 estándar y plantillas Windows oficiales verificadas; sin complementos nuevos. Consultar godot/AGENTS.md y docs/SPRINT_13.md antes de continuar.
 - Encargo del 15 de octubre: completar todos los sprints pendientes con entregas separadas. No delegación automática. El usuario ha decidido **preparar versión y publicar después**; no desplegar, cambiar visibilidad ni comprar dominio.
 - Versión 0.12.0, rama codex/sprint-12. Sprints 0–10D y 11 completos técnicamente; 12 preparado para publicar. Pruebas humanas y despliegue público pendientes por decisión del usuario. Guía en docs/DEPLOY.md; paquetes en outputs/releases fuera del repositorio.
 - Las reglas siguientes describen la versión web 0.12.0; no sustituyen el objetivo futuro de PRODUCT.md. El sprint 13 conserva src/, public/, parámetros y guardados web; package.json añade scripts Godot, manteniendo la versión web. El informe de balance está en docs/reports/balance-2026-10-15/INFORME.md; sus propuestas no se aplican automáticamente.
@@ -27,3 +27,6 @@
 - Usar GIT_CONFIG_GLOBAL=NUL y GIT_CONFIG_NOSYSTEM=1 por el entorno local. Preferir credential.helper=manager por comando. Nunca imprimir ni persistir tokens.
 
 - Revisión de interfaz nativa del 16 de octubre, 0.13.1: HUD inferior compacto y órdenes directas; confirmación solo por riesgo a aliados. Ver docs/SPRINT_13_UI.md. La web y el contrato de guardado/reglas nativo 0.13.0 siguen conservados.
+
+
+- Revisión 0.13.2 confirmada por el usuario: menú flotante a la derecha al empezar turnos aliados; movimiento directo sin botón Mover; retratos de diálogo PMD de CHUNSOFT. Rectificar solo el movimiento mientras no se haya realizado ninguna acción ni terminado el turno; atacar antes de moverse también lo bloquea. No deshacer ataques, recursos o RNG. Isometría y alturas quedan para otro sprint. Ver docs/SPRINT_13_CONTEXT_MENU.md; sustituye la composición inferior de 0.13.1.

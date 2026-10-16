@@ -1,0 +1,103 @@
+{
+  "repository": "https://github.com/PMDCollab/SpriteCollab",
+  "commit": "6ad5f1c6229af6b055de2c64442e5e508664290c",
+  "license": "licenses/SpriteCollab-CC-BY-NC-4.0.md",
+  "records": [
+    {
+      "id": 1,
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0001/Normal.png",
+          "target": "assets/portraits/1/Normal.png",
+          "sha256": "65fa5e2a0e655aff61e6b1bac0b4d8aab3d72496a7f0609761e3e9977ab8fa96"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0001/credits.txt",
+          "target": "assets/portraits/1/credits.txt",
+          "sha256": "1035f39e8857b4c64dcaaf79b7cb7ae40a2886e7c8be076201fd12b99fecf467",
+          "credits": "2020-10-07 17:58:43.324438\tCHUNSOFT\tCUR\tUnspecified\tAngry,Crying,Determined,Dizzy,Happy,Inspired,Joyous,Normal,Pain,Sad,Shouting,Sigh,Stunned,Surprised,Teary-Eyed,Worried\n2022-02-03 17:34:25.591964\tCHUNSOFT\tCUR\tUnspecified\tAngry,Crying,Determined,Dizzy,Happy,Inspired,Joyous,Normal,Pain,Sad,Shouting,Sigh,Special1,Stunned,Surprised,Teary-Eyed,Worried\n"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0004/Normal.png",
+          "target": "assets/portraits/4/Normal.png",
+          "sha256": "19ece460b8336a72fba5c8615ee1746bb70aa357fd3d9dd5500cbb54cf7109f5"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0004/credits.txt",
+          "target": "assets/portraits/4/credits.txt",
+          "sha256": "48e7f167869a64f68429b1808b791469b78d65f15d9dadd0055cd1460da119fa",
+          "credits": "2020-10-07 17:58:43.338402\tCHUNSOFT\tCUR\tUnspecified\tAngry,Crying,Determined,Dizzy,Happy,Inspired,Joyous,Normal,Pain,Sad,Shouting,Sigh,Stunned,Surprised,Teary-Eyed,Worried\n2021-08-12 01:50:44.092609\t<@!237286997645983744>\tOLD\tPMDCollab_1\tAngry,Crying,Determined,Dizzy,Happy,Inspired,Joyous,Normal,Pain,Sad,Shouting,Sigh,Special0,Special1,Stunned,Surprised,Teary-Eyed,Worried\n2022-02-03 17:33:26.842985\tCHUNSOFT\tCUR\tUnspecified\tSpecial2,Special3\n2025-03-29 06:00:59.179867\t<@!544245909639397378>\tCUR\tCC_BY-NC_4\tSpecial1,Special0\n"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0007/Normal.png",
+          "target": "assets/portraits/7/Normal.png",
+          "sha256": "3d3f7f82309d1e422b4eedf689979584d70144921fa712daa06727e70731212c"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0007/credits.txt",
+          "target": "assets/portraits/7/credits.txt",
+          "sha256": "390d9783020faddb0df2144a3e1b74975783567840618afb18d926dbd63401c5",
+          "credits": "2020-10-07 17:58:43.350368\tCHUNSOFT\tCUR\tUnspecified\tAngry,Crying,Determined,Dizzy,Happy,Inspired,Joyous,Normal,Pain,Sad,Shouting,Sigh,Stunned,Surprised,Teary-Eyed,Worried\n2022-02-03 17:34:37.398739\tCHUNSOFT\tCUR\tUnspecified\tAngry,Crying,Determined,Dizzy,Happy,Inspired,Joyous,Normal,Pain,Sad,Shouting,Sigh,Special1,Stunned,Surprised,Teary-Eyed,Worried\n"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0025/Normal.png",
+          "target": "assets/portraits/25/Normal.png",
+          "sha256": "d8b4b0ca1243cc868cf628a4b3bda9f57b99d05dbf5be372c17c1f3a5c255eba"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0025/credits.txt",
+          "target": "assets/portraits/25/credits.txt",
+          "sha256": "6056e9ac9ad5e502421b9bb78afa1d6f8517affb15f090c2ecb6984ab2392601",
+          "credits": "2020-10-07 17:58:43.417190\tCHUNSOFT\tCUR\tUnspecified\tAngry,Crying,Determined,Dizzy,Happy,Inspired,Joyous,Normal,Pain,Sad,Shouting,Sigh,Stunned,Surprised,Teary-Eyed,Worried\n2022-02-03 17:34:26.112052\tCHUNSOFT\tCUR\tUnspecified\tAngry,Crying,Determined,Dizzy,Happy,Inspired,Joyous,Normal,Pain,Sad,Shouting,Sigh,Special1,Special2,Stunned,Surprised,Teary-Eyed,Worried\n"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0012/Normal.png",
+          "target": "assets/portraits/12/Normal.png",
+          "sha256": "ef86a8ae098fb1c51b11950567e5add10d6db919e87c9f795f5b52495dc3c4af"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0012/credits.txt",
+          "target": "assets/portraits/12/credits.txt",
+          "sha256": "55d04adce76934a94beace8003f686b6976fe898810982d776706183d19d2bce",
+          "credits": "2020-10-07 17:58:43.368320\tCHUNSOFT\tCUR\tUnspecified\tNormal\n2021-03-05 05:11:45.864314\t<@!356635814668664832>\tCUR\tPMDCollab_1\tAngry,Crying,Determined,Dizzy,Happy,Inspired,Joyous,Normal,Pain,Sad,Shouting,Sigh,Stunned,Surprised,Teary-Eyed,Worried\n"
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0074/Normal.png",
+          "target": "assets/portraits/74/Normal.png",
+          "sha256": "d9de4a1396e6ae5cd7fe2eee936c2a2ee618b1e38eafd29339f287ed04238a8f"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0074/credits.txt",
+          "target": "assets/portraits/74/credits.txt",
+          "sha256": "3b3acf6192e7075d58c34b882767122257f6ba62e0c24110491b7cc981612470",
+          "credits": "2020-10-07 17:58:43.549835\tCHUNSOFT\tCUR\tUnspecified\tNormal\n2026-05-09 23:04:54.211570\t<@!1377429093997477928>\tCUR\tCC_BY-NC_4\tHappy,Inspired,Pain\n"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "version": "0.13.2",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "executableSha256": "731588d0a07b073c21f5f15f2550ff1c562afe6965967189925ed31d728e6462",
+  "zipSha256": "97dfd8a3fa07f07fedbf56dcbdcfca033f136309852ccc47e33f1e7dc6768961",
+  "zipBytes": 39417770,
+  "zipExecutableVerified": true,
+  "files": [
+    "windows/CREDITS.md",
+    "windows/LEEME.txt",
+    "windows/PokemonTactics.exe",
+    "windows/SHA256SUMS.txt",
+    "windows/licenses/EasyStar-MIT.txt",
+    "windows/licenses/heap-PSF.md",
+    "windows/licenses/jsfxr-UNLICENSE.txt",
+    "windows/licenses/PixelifySans-OFL.txt",
+    "windows/licenses/PokeAPI-BSD-3-Clause.txt",
+    "windows/licenses/SpriteCollab-CC-BY-NC-4.0.md",
+    "windows/licenses/web-CREDITS.md"
+  ]
+}

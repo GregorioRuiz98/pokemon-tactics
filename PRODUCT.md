@@ -126,3 +126,10 @@ Antes de aceptar cada entrega: comprobar que las capturas pertenecen a su tabla 
 5. Formato y compatibilidad de guardados; localización de Godot, plantillas y distribución del ejecutable cuando se autorice el port. Un único archivo `.exe` o `.exe` acompañado de recursos es una decisión de empaquetado, no un requisito ya confirmado.
 
 Estado del traspaso: base técnica del sprint 13 entregada tras autorización expresa; decisiones de producto pendientes para la campaña. La futura primera muestra abarcará Paleta hasta Brock, sprint 14 propuesto. La secuencia y criterios de cierre están en [PLAN_SPRINTS.md](docs/PLAN_SPRINTS.md#11-siguiente-etapa-kanto-y-ejecutable).
+
+
+### Interfaz confirmada — 16 de octubre de 2026
+
+Menú de órdenes vertical a la derecha dentro de la escena, visible automáticamente al empezar el turno aliado. Movimiento directo por casillas, sin botón Mover. Añadir Rectificar movimiento, disponible solo antes de cualquier acción o fin de turno; atacar primero y moverse después también lo bloquea. Nunca deshacer ataques, PS/PT, estados o RNG.
+
+Retratos de diálogo de Pokémon Mundo Misterioso, referencia Exploradores del Cielo: activo abajo a la izquierda y objetivo/previsión abajo a la derecha. Mantener básico directo y habilidades en submenú como elección de implementación mientras se valida la composición. El usuario prefiere isometría y alturas, pero ha elegido resolver primero la interfaz y tratarlas en otro sprint.

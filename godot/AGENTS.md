@@ -1,6 +1,6 @@
 # Laboratorio nativo — sprint 13
 
-- Godot 4.7.2 estándar, GDScript y Windows x86_64. Abrir project.godot; el ejecutable exportado no requiere editor, Node ni servidor. Versión nativa 0.13.1 (HUD directo), web 0.12.0 conservada.
+- Godot 4.7.2 estándar, GDScript y Windows x86_64. Abrir project.godot; el ejecutable exportado no requiere editor, Node ni servidor. Versión nativa 0.13.2 (menú flotante), web 0.12.0 conservada.
 - Alcance actual: dos composiciones 3v3 de las seis especies originales, tablero 8×8, reglas actuales de nivel uno/edición 14 y ensayo clásico. Sin campaña, inicial de Oak, gacha, tienda, PC, evolución, jefes ni mapas grandes todavía. PRODUCT.md y PLAN_SPRINTS.md conservan esos requisitos para siguientes entregas.
 - Dominio POO: LabPokemon comparte creación/perfiles; acciones polimórficas Damage/Drain/Status/Guard. Tipos y evolución como datos, nunca clases de tipo o etapa. Estado solo JSON; sin instancias, nodos o referencias de escena en guardados.
 - LabBattle es la autoridad de jugador, IA y previsión. No consumir RNG al inspeccionar, dibujar, sonar o cancelar. Mantener PRNG uint32, redondeo, desempates A*/heap y orden de golpes iguales a las referencias web; licencias de EasyStar/heap incluidas.
@@ -11,3 +11,8 @@
 
 - Ajuste de interfaz autorizado el 16 de octubre: órdenes directas sobre tablero, previsión al señalar, básico elegido, flechas inferiores terminan orientando con un clic. Solo confirmar ataques con riesgo para aliados. Equipo/registro y opciones en Menú/F1; no cubrir casillas. Informe en docs/SPRINT_13_UI.md.
 - La versión de aplicación 0.13.1 conserva el contrato de guardado/reglas 0.13.0; no invalidar diarios por un cambio visual. No modificar core/, datos o fuentes web para esta revisión.
+
+
+- 0.13.2 sustituye el HUD inferior por menú vertical derecho y fichas de retrato en esquinas; vista cenital conservada. Habilidades/A, Rectificar/R y Orientar/F; casillas directas sin Mover. Órdenes ocultas en turnos enemigos.
+- Rectificar usa core/movement_revision.gd, separado de las reglas: replay hasta antes de la última orden move, solo con turno aliado, moved y sin acted. Validar estado exacto y diferencias limitadas a posición/orientación/presupuesto/moved/log; truncar una orden y guardar. Ningún ataque ni RNG se revierte. La autorización de esta revisión permite ese módulo adicional; battle.gd y save_store.gd siguen intactos.
+- Retratos originales Normal y créditos en assets/portraits, manifiesto data/portraits.json. Importación explícita npm run godot:import:portraits desde el commit ya fijado; verificador revisa hashes, sin descargas al jugar. Isometría y alturas aplazadas por decisión del usuario.

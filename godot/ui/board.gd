@@ -30,11 +30,15 @@ func setup(records: Array):
 		catalog[int(record.id)] = record
 		textures[int(record.id)] = load("res://" + record.animations.Idle.path)
 
+func play_area() -> Rect2:
+	# Space inside the game scene reserved for the floating HUD.
+	return Rect2(Vector2(24, 124), size - Vector2(332, 378))
+
 func cell_size() -> float:
-	return floorf(minf((size.x - 34) / 8, (size.y - 34) / 8))
+	return floorf(minf(play_area().size.x, play_area().size.y) / 8)
 
 func board_origin() -> Vector2:
-	return (size - Vector2.ONE * cell_size() * 8) / 2
+	return play_area().position + (play_area().size - Vector2.ONE * cell_size() * 8) / 2
 
 func center(point: Dictionary) -> Vector2:
 	return board_origin() + Vector2(point.x + 0.5, point.y + 0.5) * cell_size()
@@ -76,6 +80,7 @@ func _gui_input(event):
 
 func _draw():
 	if state.is_empty(): return
+	draw_rect(Rect2(Vector2.ZERO, size), Color("233c31"))
 	var cell = cell_size()
 	var origin = board_origin()
 	var font = get_theme_default_font()

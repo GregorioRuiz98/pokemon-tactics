@@ -363,3 +363,10 @@ Entrega documental anterior: inputs registrados en PRODUCT.md, este plan, README
 ## Revisión del HUD nativo — 16 de octubre de 2026
 
 Solicitud adicional del usuario: integrar la interfaz en el juego y reducir clics. Entrega 0.13.1 en codex/sprint-13-ui: tablero con órdenes directas, previsión al pasar el cursor y franja inferior compacta; orientación con un clic y confirmación solo por riesgo aliado. No inicia el sprint 14 ni cambia balance, datos, reglas o guardados. [Informe y comprobaciones](SPRINT_13_UI.md).
+
+
+## Menú dentro de la escena — 0.13.2
+
+16 de octubre: el usuario concreta su referencia. Menú vertical flotante a la derecha en turnos aliados, movimiento directo sin botón, rectificación exclusiva del movimiento antes de actuar y retratos PMD en esquinas. La acción realizada antes del movimiento también impide rectificar. Implementación y prueba en [SPRINT_13_CONTEXT_MENU.md](SPRINT_13_CONTEXT_MENU.md).
+
+Isometría y alturas se posponen expresamente a otro sprint. Añadir su evaluación al bloque de escala/mapas (15), antes de ampliar escenarios definitivos; no forman parte de 0.13.2. La campaña 14 sigue pendiente. No hay cambio de balance ni de contratos de guardado.

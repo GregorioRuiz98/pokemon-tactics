@@ -6,10 +6,10 @@ const Store = preload("res://core/save_store.gd")
 var failures: Array[String] = []
 var assertions = 0
 var captures: Array[String] = []
-var clicks = 0
-var legacy_clicks = 0
 var risk_checked = false
 var risk_setup: Dictionary = {}
+var undo_checks: int = 0
+var blocked_undo_checks: int = 0
 
 func check(value: bool, message: String):
 	assertions += 1
@@ -26,6 +26,12 @@ func click(app, point: Dictionary, button: int = MOUSE_BUTTON_LEFT):
 	event.pressed = true
 	event.button_index = button
 	app.board._gui_input(event)
+
+func choose_action(app: Control, identity: String) -> void:
+	app.buttons.actions.pressed.emit()
+	check(app.actions.is_visible_in_tree(), "Ability submenu opens inside scene")
+	check(app.action_buttons[identity].is_visible_in_tree(), "Ability is reachable through visible menu")
+	app.action_buttons[identity].pressed.emit()
 
 func capture(app, directory: String, name: String):
 	await app.get_tree().process_frame
@@ -62,7 +68,6 @@ func run(app, directory: String):
 				else:
 					await _check_risk(app, directory)
 					player_orders += 1
-					legacy_clicks += 3
 					if command.kind == "move":
 						check(app.board.available.values().all(func(route): return route.cost > 0 and route.cost <= Rules.active(app.state).remaining), "Reachable tiles inside budget")
 						hover(app, command.destination)
@@ -72,13 +77,17 @@ func run(app, directory: String):
 							await capture(app, directory, "02-hover-move")
 							captured.move = true
 						click(app, command.destination)
-						clicks += 1
 					elif command.kind == "attack":
 						var definition = app.rules.profile(Rules.active(app.state)).action(Rules.active(app.state), command.actionId).definition
 						if definition.target != "self":
 							if command.actionId != "basic":
-								app.action_buttons[command.actionId].pressed.emit()
-								clicks += 1
+								if not captured.has("skills"):
+									app.buttons.actions.pressed.emit()
+									await capture(app, directory, "02-skills")
+									_bounds(app, app, app.get_global_rect().grow(2))
+									app._cancel()
+									captured.skills = true
+								choose_action(app, command.actionId)
 							var target = Rules.unit_by_id(app.state, int(command.target))
 							hover(app, target)
 							check(not app.board.forecast_hits.is_empty(), "Hover previews attack on board")
@@ -96,25 +105,42 @@ func run(app, directory: String):
 								captured.attack = true
 							click(app, target)
 						else:
-							legacy_clicks -= 1 # Old self-target selection already opened its preview.
-							app.action_buttons[command.actionId].pressed.emit()
-						clicks += 1
+							choose_action(app, command.actionId)
 						if not app.pending.is_empty():
 							check(Store.equivalent(app.state, before), "Friendly fire awaits confirmation")
 							app.buttons.confirm.pressed.emit()
-							clicks += 1
 					else:
-						if int(command.facing) == int(Rules.active(app.state).facing): legacy_clicks -= 1 # Old dialog defaulted to this facing.
 						if not captured.has("finish"):
-							app.buttons.finish.pressed.emit()
+							if app.selecting != "finish": app.buttons.finish.pressed.emit()
 							hover(app, {"x": 0, "y": 0})
 							check(Store.equivalent(app.state, before), "Facing preview consumes no RNG")
 							await capture(app, directory, "02-orientation")
 							click(app, {"x": 0, "y": 0}, MOUSE_BUTTON_RIGHT)
 							check(Store.equivalent(app.state, before) and app.selecting == "auto", "Right click cancels facing choice")
 							captured.finish = true
+						if app.selecting != "finish": app.buttons.finish.pressed.emit()
+						check(app.directions.is_visible_in_tree(), "Facing controls are visible")
 						app.direction_buttons[int(command.facing)].pressed.emit()
-						clicks += 1
+					if command.kind == "move" and not before.acted:
+						check(app._can_rectify() and not app.buttons.undo.disabled, "Only unused action permits movement revision")
+						if undo_checks == 0: await capture(app, directory, "02-can-rectify")
+						app._menu_selected(1)
+						check(app._can_rectify(), "Continue reconstructs movement revision eligibility")
+						app.buttons.undo.pressed.emit()
+						check(Store.equivalent(app.state, before), "Revision restores only the last movement state, with exact RNG/resources")
+						check(app.save_warning.is_empty(), "Movement revision saved")
+						app._menu_selected(1)
+						check(Store.equivalent(app.state, before) and not app._can_rectify(), "Revised journal reloads and cannot undo further")
+						if undo_checks == 0:
+							await capture(app, directory, "02-rectified")
+						undo_checks += 1
+						click(app, command.destination)
+					else:
+						var locked = app.state.duplicate(true)
+						app._rectify_movement()
+						check(Store.equivalent(app.state, locked), "Attack/finish cannot be rewound")
+						blocked_undo_checks += 1
+					check(app.command_panel.visible == app._player_turn(), "Command menu follows allied activation")
 					check(app.pending.is_empty(), "Direct order clears pending state")
 				check(Store.equivalent(app.state, expected.state), "GUI commits exact shared rule result")
 				check(app.save_warning.is_empty(), "Accepted command saved before presentation")
@@ -126,8 +152,8 @@ func run(app, directory: String):
 			check(app.state.outcome != "playing", "Battle ends within budget")
 			completions.append({"mode": mode, "composition": composition, "outcome": app.state.outcome, "round": app.state.round, "commands": app.history.size()})
 	await capture(app, directory, "03-result")
+	check(undo_checks > 0 and blocked_undo_checks > 0, "Movement-only undo covers allowed and locked cases")
 	check(risk_checked, "Friendly-fire confirmation exercised with reachable state")
-	check(clicks < legacy_clicks, "Direct interaction reduces input count")
 	# Rebuild the reachable risk position using its legal command journal, then
 	# exercise acceptance separately so the four reference games stay comparable.
 	if not risk_setup.is_empty():
@@ -137,7 +163,7 @@ func run(app, directory: String):
 		for order in risk_setup.commands: app._commit(order)
 		var before_risk = app.state.duplicate(true)
 		var risk_result = app.rules.apply_command(app.state, risk_setup.order)
-		app.action_buttons[risk_setup.order.actionId].pressed.emit()
+		choose_action(app, risk_setup.order.actionId)
 		click(app, Rules.unit_by_id(app.state, int(risk_setup.order.target)))
 		app.buttons.confirm.pressed.emit()
 		check(Store.equivalent(app.state, risk_result.state), "Confirmed friendly fire executes shared result")
@@ -213,7 +239,7 @@ func run(app, directory: String):
 		var loaded = native_store.load_game(app.rules)
 		check(loaded.ok and Store.equivalent(loaded.get("state", {}), app.state), "Native save resumes exact state")
 		check(DirAccess.remove_absolute(ProjectSettings.globalize_path(native_path)) == OK, "Isolated user test cleaned up")
-	var output = {"engine": Engine.get_version_info().string, "assertions": assertions, "playerOrders": player_orders, "clicks": clicks, "previousFlowClicks": legacy_clicks, "friendlyFireChecked": risk_checked, "completed": completions, "screenshots": captures, "failures": failures}
+	var output = {"engine": Engine.get_version_info().string, "assertions": assertions, "playerOrders": player_orders, "friendlyFireChecked": risk_checked, "movementRevisions": undo_checks, "lockedRevisionChecks": blocked_undo_checks, "completed": completions, "screenshots": captures, "failures": failures}
 	var file = FileAccess.open(directory.path_join("ui-result.json"), FileAccess.WRITE)
 	file.store_string(JSON.stringify(output, "  "))
 	file.close()
@@ -228,7 +254,7 @@ func _check_risk(app, directory: String):
 			if not plan.ok or not app._friendly_risk(plan): continue
 			var before = app.state.duplicate(true)
 			risk_setup = {"mode": app.mode, "composition": app.state.composition, "commands": app.history.duplicate(true), "order": {"kind": "attack", "actionId": action.definition.id, "target": unit.id}}
-			app.action_buttons[action.definition.id].pressed.emit()
+			choose_action(app, action.definition.id)
 			click(app, unit)
 			check(not app.pending.is_empty() and app.buttons.confirm.visible, "Risk exposes explicit confirmation")
 			check(Store.equivalent(app.state, before), "Risk selection does not execute attack")
@@ -243,6 +269,10 @@ func _check_risk(app, directory: String):
 			return
 
 func _bounds(node: Node, app, viewport: Rect2):
+	if node == app:
+		var map_rect: Rect2 = Rect2(app.board.global_position + app.board.board_origin(), Vector2.ONE * app.board.cell_size() * 8)
+		for panel: Control in [app.command_panel, app.actor_info.get_parent().get_parent().get_parent(), app.target_panel, app.hint.get_parent()]:
+			if panel.is_visible_in_tree(): check(not map_rect.intersects(panel.get_global_rect()), "Floating HUD leaves playable cells uncovered")
 	if node is Window: return
 	if node is Control and node.is_visible_in_tree() and node.get_window() == app.get_window():
 		check(viewport.encloses(node.get_global_rect()), "Control fits window: " + str(node.get_path()))
