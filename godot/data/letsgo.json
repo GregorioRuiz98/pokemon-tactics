@@ -1,0 +1,7768 @@
+{
+  "version": 5,
+  "species": [
+    {
+      "id": 1,
+      "name": "Bulbasaur",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 45,
+        "attack": 49,
+        "defense": 49,
+        "special-attack": 65,
+        "special-defense": 65,
+        "speed": 45
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 40,
+          "columns": 3,
+          "rows": 8,
+          "frames": 3,
+          "durations": [
+            40,
+            6,
+            6
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/pokemon/1/Idle.png"
+        },
+        "Walk": {
+          "width": 40,
+          "height": 40,
+          "columns": 6,
+          "rows": 8,
+          "frames": 6,
+          "durations": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "anchorX": 19.5,
+          "anchorY": 23.5,
+          "path": "assets/pokemon/1/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/1",
+        "https://pokeapi.co/api/v2/pokemon-species/1"
+      ],
+      "role": "Desgaste y recuperación",
+      "movement": 4,
+      "actions": {
+        "current": [],
+        "classic": []
+      },
+      "face": "assets/portraits/1/Normal.png"
+    },
+    {
+      "id": 2,
+      "name": "Ivysaur",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 62,
+        "defense": 63,
+        "special-attack": 80,
+        "special-defense": 80,
+        "speed": 60
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            40,
+            12,
+            12,
+            12
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/2/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/2/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/2",
+        "https://pokeapi.co/api/v2/pokemon-species/2"
+      ],
+      "face": "assets/kanto/2/Normal.png",
+      "movement": 4,
+      "role": "Desgaste y recuperación",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 3,
+      "name": "Venusaur",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 82,
+        "defense": 83,
+        "special-attack": 100,
+        "special-defense": 100,
+        "speed": 80
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            30,
+            16,
+            12,
+            16
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/3/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/3/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/3",
+        "https://pokeapi.co/api/v2/pokemon-species/3"
+      ],
+      "face": "assets/kanto/3/Normal.png",
+      "movement": 4,
+      "role": "Desgaste y recuperación",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 4,
+      "name": "Charmander",
+      "types": [
+        "fire"
+      ],
+      "baseStats": {
+        "hp": 39,
+        "attack": 52,
+        "defense": 43,
+        "special-attack": 60,
+        "special-defense": 50,
+        "speed": 65
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            12,
+            8,
+            8,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/pokemon/4/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            6,
+            8,
+            6,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/pokemon/4/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/4",
+        "https://pokeapi.co/api/v2/pokemon-species/4"
+      ],
+      "role": "Ofensiva especial y quemadura",
+      "movement": 4,
+      "actions": {
+        "current": [],
+        "classic": []
+      },
+      "face": "assets/portraits/4/Normal.png"
+    },
+    {
+      "id": 5,
+      "name": "Charmeleon",
+      "types": [
+        "fire"
+      ],
+      "baseStats": {
+        "hp": 58,
+        "attack": 64,
+        "defense": 58,
+        "special-attack": 80,
+        "special-defense": 65,
+        "speed": 80
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 56,
+          "columns": 6,
+          "rows": 8,
+          "frames": 6,
+          "durations": [
+            40,
+            2,
+            3,
+            3,
+            3,
+            2
+          ],
+          "anchorX": 15.5,
+          "anchorY": 31.5,
+          "path": "assets/kanto/5/Idle.png"
+        },
+        "Walk": {
+          "width": 24,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "anchorX": 11.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/5/Walk.png"
+        }
+      },
+      "authors": [
+        "<@!199989579682414592>",
+        "CHUNSOFT",
+        "Grimlin",
+        "bwappi"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/5",
+        "https://pokeapi.co/api/v2/pokemon-species/5"
+      ],
+      "face": "assets/kanto/5/Normal.png",
+      "movement": 4,
+      "role": "Ofensiva especial y quemadura",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 6,
+      "name": "Charizard",
+      "types": [
+        "fire",
+        "flying"
+      ],
+      "baseStats": {
+        "hp": 78,
+        "attack": 84,
+        "defense": 78,
+        "special-attack": 109,
+        "special-defense": 85,
+        "speed": 100
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 40,
+          "height": 48,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            15,
+            15,
+            15,
+            15
+          ],
+          "anchorX": 19.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/6/Idle.png"
+        },
+        "Walk": {
+          "width": 40,
+          "height": 48,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "anchorX": 19.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/6/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT",
+        "Emboarger"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/6",
+        "https://pokeapi.co/api/v2/pokemon-species/6"
+      ],
+      "face": "assets/kanto/6/Normal.png",
+      "movement": 4,
+      "role": "Ofensiva especial y quemadura",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 7,
+      "name": "Squirtle",
+      "types": [
+        "water"
+      ],
+      "baseStats": {
+        "hp": 44,
+        "attack": 48,
+        "defense": 65,
+        "special-attack": 50,
+        "special-defense": 64,
+        "speed": 43
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 32,
+          "columns": 8,
+          "rows": 8,
+          "frames": 8,
+          "durations": [
+            30,
+            2,
+            2,
+            4,
+            4,
+            4,
+            2,
+            2
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/pokemon/7/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            12,
+            8,
+            12,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/pokemon/7/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/7",
+        "https://pokeapi.co/api/v2/pokemon-species/7"
+      ],
+      "role": "Defensa y cobertura",
+      "movement": 4,
+      "actions": {
+        "current": [],
+        "classic": []
+      },
+      "face": "assets/portraits/7/Normal.png"
+    },
+    {
+      "id": 8,
+      "name": "Wartortle",
+      "types": [
+        "water"
+      ],
+      "baseStats": {
+        "hp": 59,
+        "attack": 63,
+        "defense": 80,
+        "special-attack": 65,
+        "special-defense": 80,
+        "speed": 58
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 24,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            40,
+            2,
+            2,
+            2
+          ],
+          "anchorX": 11.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/8/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/8/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/8",
+        "https://pokeapi.co/api/v2/pokemon-species/8"
+      ],
+      "face": "assets/kanto/8/Normal.png",
+      "movement": 4,
+      "role": "Defensa y cobertura",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 9,
+      "name": "Blastoise",
+      "types": [
+        "water"
+      ],
+      "baseStats": {
+        "hp": 79,
+        "attack": 83,
+        "defense": 100,
+        "special-attack": 85,
+        "special-defense": 105,
+        "speed": 78
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 40,
+          "height": 40,
+          "columns": 8,
+          "rows": 8,
+          "frames": 8,
+          "durations": [
+            32,
+            12,
+            4,
+            4,
+            4,
+            4,
+            4,
+            8
+          ],
+          "anchorX": 19.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/9/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            14,
+            8,
+            14
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/9/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/9",
+        "https://pokeapi.co/api/v2/pokemon-species/9"
+      ],
+      "face": "assets/kanto/9/Normal.png",
+      "movement": 4,
+      "role": "Defensa y cobertura",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 10,
+      "name": "Caterpie",
+      "types": [
+        "bug"
+      ],
+      "baseStats": {
+        "hp": 45,
+        "attack": 30,
+        "defense": 35,
+        "special-attack": 20,
+        "special-defense": 20,
+        "speed": 45
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 32,
+          "columns": 10,
+          "rows": 8,
+          "frames": 10,
+          "durations": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            4,
+            10,
+            4
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/10/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 32,
+          "columns": 3,
+          "rows": 8,
+          "frames": 3,
+          "durations": [
+            10,
+            10,
+            10
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/10/Walk.png"
+        }
+      },
+      "face": "assets/kanto/10/Normal.png",
+      "movement": 4,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 11,
+      "name": "Metapod",
+      "types": [
+        "bug"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 20,
+        "defense": 55,
+        "special-attack": 25,
+        "special-defense": 25,
+        "speed": 30
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            10,
+            14,
+            10,
+            14
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/11/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 48,
+          "columns": 10,
+          "rows": 8,
+          "frames": 10,
+          "durations": [
+            4,
+            2,
+            2,
+            2,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "anchorX": 15.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/11/Walk.png"
+        }
+      },
+      "face": "assets/kanto/11/Normal.png",
+      "movement": 3,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 12,
+      "name": "Butterfree",
+      "types": [
+        "bug",
+        "flying"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 45,
+        "defense": 50,
+        "special-attack": 90,
+        "special-defense": 80,
+        "speed": 70
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 56,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 31.5,
+          "path": "assets/pokemon/12/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 56,
+          "columns": 12,
+          "rows": 8,
+          "frames": 12,
+          "durations": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 31.5,
+          "path": "assets/pokemon/12/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/12",
+        "https://pokeapi.co/api/v2/pokemon-species/12"
+      ],
+      "role": "Control y cobertura de tipos",
+      "movement": 4,
+      "actions": {
+        "current": [],
+        "classic": []
+      },
+      "face": "assets/portraits/12/Normal.png"
+    },
+    {
+      "id": 13,
+      "name": "Weedle",
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 40,
+        "attack": 35,
+        "defense": 30,
+        "special-attack": 20,
+        "special-defense": 20,
+        "speed": 50
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            40,
+            8,
+            8,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/13/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 40,
+          "columns": 3,
+          "rows": 8,
+          "frames": 3,
+          "durations": [
+            8,
+            10,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/13/Walk.png"
+        }
+      },
+      "face": "assets/kanto/13/Normal.png",
+      "movement": 4,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 14,
+      "name": "Kakuna",
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 45,
+        "attack": 25,
+        "defense": 50,
+        "special-attack": 25,
+        "special-defense": 25,
+        "speed": 35
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 24,
+          "height": 40,
+          "columns": 6,
+          "rows": 8,
+          "frames": 6,
+          "durations": [
+            40,
+            1,
+            1,
+            4,
+            1,
+            1
+          ],
+          "anchorX": 11.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/14/Idle.png"
+        },
+        "Walk": {
+          "width": 24,
+          "height": 40,
+          "columns": 5,
+          "rows": 8,
+          "frames": 5,
+          "durations": [
+            8,
+            4,
+            4,
+            4,
+            10
+          ],
+          "anchorX": 11.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/14/Walk.png"
+        }
+      },
+      "face": "assets/kanto/14/Normal.png",
+      "movement": 3,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 15,
+      "name": "Beedrill",
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 90,
+        "defense": 40,
+        "special-attack": 45,
+        "special-defense": 80,
+        "speed": 75
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 48,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "anchorX": 15.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/15/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 48,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "anchorX": 15.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/15/Walk.png"
+        }
+      },
+      "face": "assets/kanto/15/Normal.png",
+      "movement": 4,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 16,
+      "name": "Pidgey",
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "baseStats": {
+        "hp": 40,
+        "attack": 45,
+        "defense": 40,
+        "special-attack": 35,
+        "special-defense": 35,
+        "speed": 56
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 24,
+          "height": 40,
+          "columns": 5,
+          "rows": 8,
+          "frames": 5,
+          "durations": [
+            30,
+            4,
+            4,
+            4,
+            4
+          ],
+          "anchorX": 11.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/16/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 32,
+          "columns": 5,
+          "rows": 8,
+          "frames": 5,
+          "durations": [
+            6,
+            4,
+            4,
+            4,
+            4
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/16/Walk.png"
+        }
+      },
+      "face": "assets/kanto/16/Normal.png",
+      "movement": 4,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 17,
+      "name": "Pidgeotto",
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "baseStats": {
+        "hp": 63,
+        "attack": 60,
+        "defense": 55,
+        "special-attack": 50,
+        "special-defense": 50,
+        "speed": 71
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 48,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            40,
+            2,
+            4,
+            2
+          ],
+          "anchorX": 15.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/17/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            6,
+            10,
+            6,
+            10
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/17/Walk.png"
+        }
+      },
+      "face": "assets/kanto/17/Normal.png",
+      "movement": 4,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 18,
+      "name": "Pidgeot",
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "baseStats": {
+        "hp": 83,
+        "attack": 80,
+        "defense": 75,
+        "special-attack": 70,
+        "special-defense": 70,
+        "speed": 101
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 48,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            40,
+            2,
+            4,
+            2
+          ],
+          "anchorX": 15.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/18/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/18/Walk.png"
+        }
+      },
+      "face": "assets/kanto/18/Normal.png",
+      "movement": 4,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 19,
+      "name": "Rattata",
+      "types": [
+        "normal"
+      ],
+      "baseStats": {
+        "hp": 30,
+        "attack": 56,
+        "defense": 35,
+        "special-attack": 25,
+        "special-defense": 35,
+        "speed": 72
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 32,
+          "columns": 8,
+          "rows": 8,
+          "frames": 8,
+          "durations": [
+            40,
+            2,
+            2,
+            2,
+            4,
+            2,
+            2,
+            2
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/kanto/19/Idle.png"
+        },
+        "Walk": {
+          "width": 48,
+          "height": 40,
+          "columns": 7,
+          "rows": 8,
+          "frames": 7,
+          "durations": [
+            6,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "anchorX": 23.5,
+          "anchorY": 23.5,
+          "path": "assets/kanto/19/Walk.png"
+        }
+      },
+      "face": "assets/kanto/19/Normal.png",
+      "movement": 4,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 20,
+      "name": "Raticate",
+      "types": [
+        "normal"
+      ],
+      "baseStats": {
+        "hp": 55,
+        "attack": 81,
+        "defense": 60,
+        "special-attack": 50,
+        "special-defense": 70,
+        "speed": 97
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 48,
+          "columns": 6,
+          "rows": 8,
+          "frames": 6,
+          "durations": [
+            30,
+            6,
+            3,
+            4,
+            3,
+            6
+          ],
+          "anchorX": 15.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/20/Idle.png"
+        },
+        "Walk": {
+          "width": 40,
+          "height": 48,
+          "columns": 6,
+          "rows": 8,
+          "frames": 6,
+          "durations": [
+            4,
+            6,
+            4,
+            4,
+            4,
+            4
+          ],
+          "anchorX": 19.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/20/Walk.png"
+        }
+      },
+      "face": "assets/kanto/20/Normal.png",
+      "movement": 4,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 25,
+      "name": "Pikachu",
+      "types": [
+        "electric"
+      ],
+      "baseStats": {
+        "hp": 35,
+        "attack": 55,
+        "defense": 40,
+        "special-attack": 50,
+        "special-defense": 50,
+        "speed": 90
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 40,
+          "height": 56,
+          "columns": 6,
+          "rows": 8,
+          "frames": 6,
+          "durations": [
+            40,
+            2,
+            3,
+            3,
+            3,
+            2
+          ],
+          "anchorX": 19.5,
+          "anchorY": 31.5,
+          "path": "assets/pokemon/25/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/pokemon/25/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/25",
+        "https://pokeapi.co/api/v2/pokemon-species/25"
+      ],
+      "role": "Movilidad y parálisis",
+      "movement": 5,
+      "actions": {
+        "current": [],
+        "classic": []
+      },
+      "face": "assets/portraits/25/Normal.png"
+    },
+    {
+      "id": 26,
+      "name": "Raichu",
+      "types": [
+        "electric"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 90,
+        "defense": 55,
+        "special-attack": 90,
+        "special-defense": 80,
+        "speed": 110
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 40,
+          "height": 56,
+          "columns": 6,
+          "rows": 8,
+          "frames": 6,
+          "durations": [
+            40,
+            2,
+            4,
+            4,
+            4,
+            2
+          ],
+          "anchorX": 19.5,
+          "anchorY": 31.5,
+          "path": "assets/kanto/26/Idle.png"
+        },
+        "Walk": {
+          "width": 40,
+          "height": 48,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "anchorX": 19.5,
+          "anchorY": 27.5,
+          "path": "assets/kanto/26/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT",
+        "Grimlin",
+        "Top_Kec"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/26",
+        "https://pokeapi.co/api/v2/pokemon-species/26"
+      ],
+      "face": "assets/kanto/26/Normal.png",
+      "movement": 5,
+      "role": "Movilidad y parálisis",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 43,
+      "name": "Oddish",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 45,
+        "attack": 50,
+        "defense": 55,
+        "special-attack": 75,
+        "special-defense": 65,
+        "speed": 30
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 24,
+          "height": 40,
+          "columns": 5,
+          "rows": 8,
+          "frames": 5,
+          "durations": [
+            30,
+            4,
+            4,
+            4,
+            4
+          ],
+          "anchorX": 11.5,
+          "anchorY": 23.5,
+          "path": "assets/letsgo/43/Idle.png"
+        },
+        "Walk": {
+          "width": 24,
+          "height": 40,
+          "columns": 8,
+          "rows": 8,
+          "frames": 8,
+          "durations": [
+            8,
+            4,
+            8,
+            6,
+            8,
+            4,
+            8,
+            6
+          ],
+          "anchorX": 11.5,
+          "anchorY": 23.5,
+          "path": "assets/letsgo/43/Walk.png"
+        }
+      },
+      "face": "assets/letsgo/43/Normal.png",
+      "movement": 4,
+      "role": "Control y drenaje",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 44,
+      "name": "Gloom",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 65,
+        "defense": 70,
+        "special-attack": 85,
+        "special-defense": 75,
+        "speed": 40
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 32,
+          "columns": 5,
+          "rows": 8,
+          "frames": 5,
+          "durations": [
+            30,
+            8,
+            8,
+            8,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/letsgo/44/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            6,
+            8,
+            6,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/letsgo/44/Walk.png"
+        }
+      },
+      "face": "assets/letsgo/44/Normal.png",
+      "movement": 4,
+      "role": "Control y drenaje",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 45,
+      "name": "Vileplume",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 80,
+        "defense": 85,
+        "special-attack": 110,
+        "special-defense": 90,
+        "speed": 50
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 40,
+          "columns": 12,
+          "rows": 8,
+          "frames": 12,
+          "durations": [
+            30,
+            3,
+            3,
+            8,
+            3,
+            3,
+            30,
+            3,
+            3,
+            8,
+            3,
+            3
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/letsgo/45/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/letsgo/45/Walk.png"
+        }
+      },
+      "face": "assets/letsgo/45/Normal.png",
+      "movement": 4,
+      "role": "Control y drenaje",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 69,
+      "name": "Bellsprout",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 75,
+        "defense": 35,
+        "special-attack": 70,
+        "special-defense": 30,
+        "speed": 40
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 24,
+          "height": 32,
+          "columns": 2,
+          "rows": 8,
+          "frames": 2,
+          "durations": [
+            20,
+            22
+          ],
+          "anchorX": 11.5,
+          "anchorY": 19.5,
+          "path": "assets/letsgo/69/Idle.png"
+        },
+        "Walk": {
+          "width": 24,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "anchorX": 11.5,
+          "anchorY": 19.5,
+          "path": "assets/letsgo/69/Walk.png"
+        }
+      },
+      "face": "assets/letsgo/69/Normal.png",
+      "movement": 4,
+      "role": "Control y drenaje",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 70,
+      "name": "Weepinbell",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 90,
+        "defense": 50,
+        "special-attack": 85,
+        "special-defense": 45,
+        "speed": 55
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            16,
+            8,
+            16,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/letsgo/70/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/letsgo/70/Walk.png"
+        }
+      },
+      "face": "assets/letsgo/70/Normal.png",
+      "movement": 4,
+      "role": "Control y drenaje",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 71,
+      "name": "Victreebel",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 105,
+        "defense": 65,
+        "special-attack": 100,
+        "special-defense": 70,
+        "speed": 70
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 56,
+          "columns": 9,
+          "rows": 8,
+          "frames": 9,
+          "durations": [
+            35,
+            3,
+            3,
+            5,
+            5,
+            5,
+            3,
+            3,
+            3
+          ],
+          "anchorX": 15.5,
+          "anchorY": 31.5,
+          "path": "assets/letsgo/71/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 56,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            6,
+            8,
+            6,
+            8
+          ],
+          "anchorX": 15.5,
+          "anchorY": 31.5,
+          "path": "assets/letsgo/71/Walk.png"
+        }
+      },
+      "face": "assets/letsgo/71/Normal.png",
+      "movement": 4,
+      "role": "Control y drenaje",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 74,
+      "name": "Geodude",
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "baseStats": {
+        "hp": 40,
+        "attack": 80,
+        "defense": 100,
+        "special-attack": 30,
+        "special-defense": 30,
+        "speed": 20
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 24,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "anchorX": 15.5,
+          "anchorY": 15.5,
+          "path": "assets/pokemon/74/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 32,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "anchorX": 15.5,
+          "anchorY": 19.5,
+          "path": "assets/pokemon/74/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/74",
+        "https://pokeapi.co/api/v2/pokemon-species/74"
+      ],
+      "role": "Resistencia y ataque físico",
+      "movement": 3,
+      "actions": {
+        "current": [],
+        "classic": []
+      },
+      "face": "assets/portraits/74/Normal.png"
+    },
+    {
+      "id": 75,
+      "name": "Graveler",
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "baseStats": {
+        "hp": 55,
+        "attack": 95,
+        "defense": 115,
+        "special-attack": 45,
+        "special-defense": 45,
+        "speed": 35
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 40,
+          "height": 48,
+          "columns": 14,
+          "rows": 8,
+          "frames": 14,
+          "durations": [
+            60,
+            10,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            10
+          ],
+          "anchorX": 19.5,
+          "anchorY": 27.5,
+          "path": "assets/progression/pokemon/75/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 48,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            6,
+            10,
+            6,
+            10
+          ],
+          "anchorX": 15.5,
+          "anchorY": 27.5,
+          "path": "assets/progression/pokemon/75/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT",
+        "Emmuffin"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/75",
+        "https://pokeapi.co/api/v2/pokemon-species/75"
+      ],
+      "face": "assets/progression/pokemon/75/Normal.png",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 76,
+      "name": "Golem",
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 120,
+        "defense": 130,
+        "special-attack": 55,
+        "special-defense": 65,
+        "speed": 45
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 32,
+          "height": 40,
+          "columns": 2,
+          "rows": 8,
+          "frames": 2,
+          "durations": [
+            30,
+            25
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/progression/pokemon/76/Idle.png"
+        },
+        "Walk": {
+          "width": 32,
+          "height": 40,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "anchorX": 15.5,
+          "anchorY": 23.5,
+          "path": "assets/progression/pokemon/76/Walk.png"
+        }
+      },
+      "authors": [
+        "CHUNSOFT",
+        "Emmuffin"
+      ],
+      "sources": [
+        "https://pokeapi.co/api/v2/pokemon/76",
+        "https://pokeapi.co/api/v2/pokemon-species/76"
+      ],
+      "face": "assets/progression/pokemon/76/Normal.png",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    },
+    {
+      "id": 95,
+      "name": "Onix",
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "baseStats": {
+        "hp": 35,
+        "attack": 45,
+        "defense": 160,
+        "special-attack": 30,
+        "special-defense": 45,
+        "speed": 70
+      },
+      "legendary": false,
+      "mythical": false,
+      "animations": {
+        "Idle": {
+          "width": 96,
+          "height": 104,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "anchorX": 47.5,
+          "anchorY": 55.5,
+          "path": "assets/kanto/95/Idle.png"
+        },
+        "Walk": {
+          "width": 88,
+          "height": 112,
+          "columns": 4,
+          "rows": 8,
+          "frames": 4,
+          "durations": [
+            10,
+            14,
+            10,
+            14
+          ],
+          "anchorX": 43.5,
+          "anchorY": 59.5,
+          "path": "assets/kanto/95/Walk.png"
+        }
+      },
+      "face": "assets/kanto/95/Normal.png",
+      "movement": 3,
+      "role": "Perfil de ruta de Kanto",
+      "actions": {
+        "current": [],
+        "classic": []
+      }
+    }
+  ],
+  "slots": [
+    {
+      "id": "Route1",
+      "url": "https://raw.githubusercontent.com/pret/pokered/af519899719f0754965776faac0e836a3b906e6d/data/wild/maps/Route1.asm",
+      "sha256": "51e6ce11b3541e837344829733708a8c27f1857953d10a19b4f56b0079115a92",
+      "slots": [
+        {
+          "level": 3,
+          "speciesId": 16
+        },
+        {
+          "level": 3,
+          "speciesId": 19
+        },
+        {
+          "level": 3,
+          "speciesId": 19
+        },
+        {
+          "level": 2,
+          "speciesId": 19
+        },
+        {
+          "level": 2,
+          "speciesId": 16
+        },
+        {
+          "level": 3,
+          "speciesId": 16
+        },
+        {
+          "level": 3,
+          "speciesId": 16
+        },
+        {
+          "level": 4,
+          "speciesId": 19
+        },
+        {
+          "level": 4,
+          "speciesId": 16
+        },
+        {
+          "level": 5,
+          "speciesId": 16
+        }
+      ]
+    },
+    {
+      "id": "Route2",
+      "url": "https://raw.githubusercontent.com/pret/pokered/af519899719f0754965776faac0e836a3b906e6d/data/wild/maps/Route2.asm",
+      "sha256": "9c3409e9b9e78c7eddb6af4a4168de49e59e84a046f5b8f1efee7f01dc82190f",
+      "slots": [
+        {
+          "level": 3,
+          "speciesId": 19
+        },
+        {
+          "level": 3,
+          "speciesId": 16
+        },
+        {
+          "level": 4,
+          "speciesId": 16
+        },
+        {
+          "level": 4,
+          "speciesId": 19
+        },
+        {
+          "level": 5,
+          "speciesId": 16
+        },
+        {
+          "level": 3,
+          "speciesId": 13
+        },
+        {
+          "level": 2,
+          "speciesId": 19
+        },
+        {
+          "level": 5,
+          "speciesId": 19
+        },
+        {
+          "level": 4,
+          "speciesId": 13
+        },
+        {
+          "level": 5,
+          "speciesId": 13
+        }
+      ]
+    },
+    {
+      "id": "ViridianForest",
+      "url": "https://raw.githubusercontent.com/pret/pokered/af519899719f0754965776faac0e836a3b906e6d/data/wild/maps/ViridianForest.asm",
+      "sha256": "c4b6ddaad14dd8bd29923408c38e8a32385e9a047f62ea8ba79967447d20efa8",
+      "slots": [
+        {
+          "level": 4,
+          "speciesId": 13
+        },
+        {
+          "level": 5,
+          "speciesId": 14
+        },
+        {
+          "level": 3,
+          "speciesId": 13
+        },
+        {
+          "level": 5,
+          "speciesId": 13
+        },
+        {
+          "level": 4,
+          "speciesId": 14
+        },
+        {
+          "level": 6,
+          "speciesId": 14
+        },
+        {
+          "level": 4,
+          "speciesId": 11
+        },
+        {
+          "level": 3,
+          "speciesId": 10
+        },
+        {
+          "level": 3,
+          "speciesId": 25
+        },
+        {
+          "level": 5,
+          "speciesId": 25
+        }
+      ]
+    }
+  ],
+  "slotWeights": [
+    51,
+    51,
+    39,
+    25,
+    25,
+    25,
+    13,
+    13,
+    11,
+    3
+  ],
+  "pokeredCommit": "af519899719f0754965776faac0e836a3b906e6d",
+  "families": [
+    {
+      "id": "bulbasaur",
+      "members": [
+        1,
+        2,
+        3
+      ],
+      "roles": [
+        "Drenador",
+        "Controlador"
+      ],
+      "learnset": [
+        {
+          "id": "growl",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            1
+          ]
+        },
+        {
+          "id": "tackle",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            1
+          ]
+        },
+        {
+          "id": "vine-whip",
+          "level": 5,
+          "role": 0,
+          "forms": [
+            1
+          ]
+        },
+        {
+          "id": "leech-seed",
+          "level": 9,
+          "role": 1,
+          "forms": [
+            1
+          ]
+        },
+        {
+          "id": "poison-powder",
+          "level": 14,
+          "role": 1,
+          "forms": [
+            1
+          ]
+        },
+        {
+          "id": "sleep-powder",
+          "level": 14,
+          "role": 1,
+          "forms": [
+            1
+          ]
+        },
+        {
+          "id": "take-down",
+          "level": 18,
+          "role": 0,
+          "forms": [
+            1
+          ]
+        },
+        {
+          "id": "razor-leaf",
+          "level": 23,
+          "role": 0,
+          "forms": [
+            1
+          ]
+        },
+        {
+          "id": "growth",
+          "level": 27,
+          "role": 1,
+          "forms": [
+            1
+          ]
+        },
+        {
+          "id": "double-edge",
+          "level": 32,
+          "role": 0,
+          "forms": [
+            1
+          ]
+        },
+        {
+          "id": "growl",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            2
+          ]
+        },
+        {
+          "id": "leech-seed",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            2
+          ]
+        },
+        {
+          "id": "tackle",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            2
+          ]
+        },
+        {
+          "id": "vine-whip",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            2
+          ]
+        },
+        {
+          "id": "poison-powder",
+          "level": 14,
+          "role": 1,
+          "forms": [
+            2
+          ]
+        },
+        {
+          "id": "sleep-powder",
+          "level": 14,
+          "role": 1,
+          "forms": [
+            2
+          ]
+        },
+        {
+          "id": "take-down",
+          "level": 22,
+          "role": 0,
+          "forms": [
+            2
+          ]
+        },
+        {
+          "id": "razor-leaf",
+          "level": 31,
+          "role": 0,
+          "forms": [
+            2
+          ]
+        },
+        {
+          "id": "growth",
+          "level": 39,
+          "role": 1,
+          "forms": [
+            2
+          ]
+        },
+        {
+          "id": "double-edge",
+          "level": 48,
+          "role": 0,
+          "forms": [
+            2
+          ]
+        },
+        {
+          "id": "solar-beam",
+          "level": 56,
+          "role": 0,
+          "forms": [
+            2
+          ]
+        },
+        {
+          "id": "petal-dance",
+          "level": 0,
+          "role": 0,
+          "forms": [
+            3
+          ]
+        },
+        {
+          "id": "amnesia",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            3
+          ]
+        },
+        {
+          "id": "growl",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            3
+          ]
+        },
+        {
+          "id": "leech-seed",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            3
+          ]
+        },
+        {
+          "id": "power-whip",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            3
+          ]
+        },
+        {
+          "id": "tackle",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            3
+          ]
+        },
+        {
+          "id": "vine-whip",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            3
+          ]
+        },
+        {
+          "id": "poison-powder",
+          "level": 14,
+          "role": 1,
+          "forms": [
+            3
+          ]
+        },
+        {
+          "id": "sleep-powder",
+          "level": 14,
+          "role": 1,
+          "forms": [
+            3
+          ]
+        },
+        {
+          "id": "take-down",
+          "level": 22,
+          "role": 0,
+          "forms": [
+            3
+          ]
+        },
+        {
+          "id": "razor-leaf",
+          "level": 31,
+          "role": 0,
+          "forms": [
+            3
+          ]
+        },
+        {
+          "id": "growth",
+          "level": 44,
+          "role": 1,
+          "forms": [
+            3
+          ]
+        },
+        {
+          "id": "double-edge",
+          "level": 58,
+          "role": 0,
+          "forms": [
+            3
+          ]
+        },
+        {
+          "id": "solar-beam",
+          "level": 71,
+          "role": 0,
+          "forms": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charmander",
+      "members": [
+        4,
+        5,
+        6
+      ],
+      "roles": [
+        "Artillero",
+        "Escaramuzador"
+      ],
+      "learnset": [
+        {
+          "id": "scratch",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            4
+          ]
+        },
+        {
+          "id": "growl",
+          "level": 4,
+          "role": 1,
+          "forms": [
+            4
+          ]
+        },
+        {
+          "id": "smokescreen",
+          "level": 9,
+          "role": 1,
+          "forms": [
+            4
+          ]
+        },
+        {
+          "id": "ember",
+          "level": 13,
+          "role": 1,
+          "forms": [
+            4
+          ]
+        },
+        {
+          "id": "fury-swipes",
+          "level": 18,
+          "role": 0,
+          "forms": [
+            4
+          ]
+        },
+        {
+          "id": "dragon-rage",
+          "level": 22,
+          "role": 0,
+          "forms": [
+            4
+          ]
+        },
+        {
+          "id": "fire-spin",
+          "level": 27,
+          "role": 0,
+          "forms": [
+            4
+          ]
+        },
+        {
+          "id": "slash",
+          "level": 31,
+          "role": 0,
+          "forms": [
+            4
+          ]
+        },
+        {
+          "id": "flamethrower",
+          "level": 36,
+          "role": 1,
+          "forms": [
+            4
+          ]
+        },
+        {
+          "id": "ember",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            5
+          ]
+        },
+        {
+          "id": "growl",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            5
+          ]
+        },
+        {
+          "id": "scratch",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            5
+          ]
+        },
+        {
+          "id": "smokescreen",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            5
+          ]
+        },
+        {
+          "id": "fury-swipes",
+          "level": 20,
+          "role": 0,
+          "forms": [
+            5
+          ]
+        },
+        {
+          "id": "dragon-rage",
+          "level": 26,
+          "role": 0,
+          "forms": [
+            5
+          ]
+        },
+        {
+          "id": "fire-spin",
+          "level": 33,
+          "role": 0,
+          "forms": [
+            5
+          ]
+        },
+        {
+          "id": "slash",
+          "level": 39,
+          "role": 0,
+          "forms": [
+            5
+          ]
+        },
+        {
+          "id": "flamethrower",
+          "level": 46,
+          "role": 1,
+          "forms": [
+            5
+          ]
+        },
+        {
+          "id": "wing-attack",
+          "level": 0,
+          "role": 0,
+          "forms": [
+            6
+          ]
+        },
+        {
+          "id": "counter",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            6
+          ]
+        },
+        {
+          "id": "crunch",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            6
+          ]
+        },
+        {
+          "id": "ember",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            6
+          ]
+        },
+        {
+          "id": "growl",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            6
+          ]
+        },
+        {
+          "id": "heat-wave",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            6
+          ]
+        },
+        {
+          "id": "scratch",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            6
+          ]
+        },
+        {
+          "id": "smokescreen",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            6
+          ]
+        },
+        {
+          "id": "fury-swipes",
+          "level": 20,
+          "role": 0,
+          "forms": [
+            6
+          ]
+        },
+        {
+          "id": "dragon-rage",
+          "level": 26,
+          "role": 0,
+          "forms": [
+            6
+          ]
+        },
+        {
+          "id": "fire-spin",
+          "level": 33,
+          "role": 0,
+          "forms": [
+            6
+          ]
+        },
+        {
+          "id": "slash",
+          "level": 43,
+          "role": 0,
+          "forms": [
+            6
+          ]
+        },
+        {
+          "id": "flamethrower",
+          "level": 54,
+          "role": 1,
+          "forms": [
+            6
+          ]
+        },
+        {
+          "id": "air-slash",
+          "level": 62,
+          "role": 0,
+          "forms": [
+            6
+          ]
+        },
+        {
+          "id": "flare-blitz",
+          "level": 75,
+          "role": 1,
+          "forms": [
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "squirtle",
+      "members": [
+        7,
+        8,
+        9
+      ],
+      "roles": [
+        "Baluarte",
+        "Tirador"
+      ],
+      "learnset": [
+        {
+          "id": "tackle",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            7
+          ]
+        },
+        {
+          "id": "tail-whip",
+          "level": 5,
+          "role": 1,
+          "forms": [
+            7
+          ]
+        },
+        {
+          "id": "bubble",
+          "level": 9,
+          "role": 0,
+          "forms": [
+            7
+          ]
+        },
+        {
+          "id": "withdraw",
+          "level": 14,
+          "role": 1,
+          "forms": [
+            7
+          ]
+        },
+        {
+          "id": "water-gun",
+          "level": 18,
+          "role": 0,
+          "forms": [
+            7
+          ]
+        },
+        {
+          "id": "bite",
+          "level": 23,
+          "role": 0,
+          "forms": [
+            7
+          ]
+        },
+        {
+          "id": "bubble-beam",
+          "level": 27,
+          "role": 0,
+          "forms": [
+            7
+          ]
+        },
+        {
+          "id": "protect",
+          "level": 32,
+          "role": 1,
+          "forms": [
+            7
+          ]
+        },
+        {
+          "id": "headbutt",
+          "level": 36,
+          "role": 0,
+          "forms": [
+            7
+          ]
+        },
+        {
+          "id": "hydro-pump",
+          "level": 41,
+          "role": 0,
+          "forms": [
+            7
+          ]
+        },
+        {
+          "id": "skull-bash",
+          "level": 45,
+          "role": 0,
+          "forms": [
+            7
+          ]
+        },
+        {
+          "id": "bubble",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            8
+          ]
+        },
+        {
+          "id": "tackle",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            8
+          ]
+        },
+        {
+          "id": "tail-whip",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            8
+          ]
+        },
+        {
+          "id": "withdraw",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            8
+          ]
+        },
+        {
+          "id": "water-gun",
+          "level": 20,
+          "role": 0,
+          "forms": [
+            8
+          ]
+        },
+        {
+          "id": "bite",
+          "level": 27,
+          "role": 0,
+          "forms": [
+            8
+          ]
+        },
+        {
+          "id": "bubble-beam",
+          "level": 33,
+          "role": 0,
+          "forms": [
+            8
+          ]
+        },
+        {
+          "id": "protect",
+          "level": 40,
+          "role": 1,
+          "forms": [
+            8
+          ]
+        },
+        {
+          "id": "headbutt",
+          "level": 46,
+          "role": 0,
+          "forms": [
+            8
+          ]
+        },
+        {
+          "id": "hydro-pump",
+          "level": 53,
+          "role": 0,
+          "forms": [
+            8
+          ]
+        },
+        {
+          "id": "skull-bash",
+          "level": 59,
+          "role": 0,
+          "forms": [
+            8
+          ]
+        },
+        {
+          "id": "aqua-jet",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            9
+          ]
+        },
+        {
+          "id": "bubble",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            9
+          ]
+        },
+        {
+          "id": "fake-out",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            9
+          ]
+        },
+        {
+          "id": "flash-cannon",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            9
+          ]
+        },
+        {
+          "id": "tackle",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            9
+          ]
+        },
+        {
+          "id": "tail-whip",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            9
+          ]
+        },
+        {
+          "id": "withdraw",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            9
+          ]
+        },
+        {
+          "id": "water-gun",
+          "level": 20,
+          "role": 0,
+          "forms": [
+            9
+          ]
+        },
+        {
+          "id": "bite",
+          "level": 27,
+          "role": 0,
+          "forms": [
+            9
+          ]
+        },
+        {
+          "id": "bubble-beam",
+          "level": 33,
+          "role": 0,
+          "forms": [
+            9
+          ]
+        },
+        {
+          "id": "protect",
+          "level": 44,
+          "role": 1,
+          "forms": [
+            9
+          ]
+        },
+        {
+          "id": "headbutt",
+          "level": 54,
+          "role": 0,
+          "forms": [
+            9
+          ]
+        },
+        {
+          "id": "hydro-pump",
+          "level": 65,
+          "role": 0,
+          "forms": [
+            9
+          ]
+        },
+        {
+          "id": "skull-bash",
+          "level": 75,
+          "role": 0,
+          "forms": [
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "caterpie",
+      "members": [
+        10,
+        11,
+        12
+      ],
+      "roles": [
+        "Controlador",
+        "Artillero"
+      ],
+      "learnset": [
+        {
+          "id": "string-shot",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            10
+          ]
+        },
+        {
+          "id": "tackle",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            10
+          ]
+        },
+        {
+          "id": "harden",
+          "level": 0,
+          "role": 1,
+          "forms": [
+            11
+          ]
+        },
+        {
+          "id": "gust",
+          "level": 0,
+          "role": 0,
+          "forms": [
+            12
+          ]
+        },
+        {
+          "id": "confusion",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            12
+          ]
+        },
+        {
+          "id": "poison-powder",
+          "level": 13,
+          "role": 1,
+          "forms": [
+            12
+          ]
+        },
+        {
+          "id": "sleep-powder",
+          "level": 13,
+          "role": 1,
+          "forms": [
+            12
+          ]
+        },
+        {
+          "id": "stun-spore",
+          "level": 13,
+          "role": 1,
+          "forms": [
+            12
+          ]
+        },
+        {
+          "id": "psybeam",
+          "level": 16,
+          "role": 1,
+          "forms": [
+            12
+          ]
+        },
+        {
+          "id": "supersonic",
+          "level": 19,
+          "role": 1,
+          "forms": [
+            12
+          ]
+        },
+        {
+          "id": "quiver-dance",
+          "level": 22,
+          "role": 1,
+          "forms": [
+            12
+          ]
+        },
+        {
+          "id": "whirlwind",
+          "level": 25,
+          "role": 1,
+          "forms": [
+            12
+          ]
+        },
+        {
+          "id": "air-slash",
+          "level": 28,
+          "role": 0,
+          "forms": [
+            12
+          ]
+        },
+        {
+          "id": "bug-buzz",
+          "level": 31,
+          "role": 0,
+          "forms": [
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weedle",
+      "members": [
+        13,
+        14,
+        15
+      ],
+      "roles": [
+        "Asaltante",
+        "Hostigador"
+      ],
+      "learnset": [
+        {
+          "id": "poison-sting",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            13
+          ]
+        },
+        {
+          "id": "string-shot",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            13
+          ]
+        },
+        {
+          "id": "harden",
+          "level": 0,
+          "role": 1,
+          "forms": [
+            14
+          ]
+        },
+        {
+          "id": "twineedle",
+          "level": 0,
+          "role": 1,
+          "forms": [
+            15
+          ]
+        },
+        {
+          "id": "peck",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            15
+          ]
+        },
+        {
+          "id": "rage",
+          "level": 13,
+          "role": 1,
+          "forms": [
+            15
+          ]
+        },
+        {
+          "id": "fury-attack",
+          "level": 16,
+          "role": 0,
+          "forms": [
+            15
+          ]
+        },
+        {
+          "id": "focus-energy",
+          "level": 19,
+          "role": 1,
+          "forms": [
+            15
+          ]
+        },
+        {
+          "id": "poison-jab",
+          "level": 22,
+          "role": 1,
+          "forms": [
+            15
+          ]
+        },
+        {
+          "id": "agility",
+          "level": 25,
+          "role": 1,
+          "forms": [
+            15
+          ]
+        },
+        {
+          "id": "pin-missile",
+          "level": 28,
+          "role": 0,
+          "forms": [
+            15
+          ]
+        },
+        {
+          "id": "outrage",
+          "level": 31,
+          "role": 0,
+          "forms": [
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pidgey",
+      "members": [
+        16,
+        17,
+        18
+      ],
+      "roles": [
+        "Escaramuzador",
+        "Apoyo"
+      ],
+      "learnset": [
+        {
+          "id": "tackle",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            16
+          ]
+        },
+        {
+          "id": "sand-attack",
+          "level": 3,
+          "role": 1,
+          "forms": [
+            16
+          ]
+        },
+        {
+          "id": "gust",
+          "level": 5,
+          "role": 0,
+          "forms": [
+            16
+          ]
+        },
+        {
+          "id": "mirror-move",
+          "level": 9,
+          "role": 1,
+          "forms": [
+            16
+          ]
+        },
+        {
+          "id": "quick-attack",
+          "level": 11,
+          "role": 0,
+          "forms": [
+            16
+          ]
+        },
+        {
+          "id": "wing-attack",
+          "level": 15,
+          "role": 0,
+          "forms": [
+            16
+          ]
+        },
+        {
+          "id": "roost",
+          "level": 17,
+          "role": 1,
+          "forms": [
+            16
+          ]
+        },
+        {
+          "id": "whirlwind",
+          "level": 21,
+          "role": 1,
+          "forms": [
+            16
+          ]
+        },
+        {
+          "id": "agility",
+          "level": 23,
+          "role": 1,
+          "forms": [
+            16
+          ]
+        },
+        {
+          "id": "air-slash",
+          "level": 27,
+          "role": 0,
+          "forms": [
+            16
+          ]
+        },
+        {
+          "id": "razor-wind",
+          "level": 29,
+          "role": 0,
+          "forms": [
+            16
+          ]
+        },
+        {
+          "id": "gust",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            17
+          ]
+        },
+        {
+          "id": "quick-attack",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            17
+          ]
+        },
+        {
+          "id": "sand-attack",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            17
+          ]
+        },
+        {
+          "id": "tackle",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            17
+          ]
+        },
+        {
+          "id": "mirror-move",
+          "level": 11,
+          "role": 1,
+          "forms": [
+            17
+          ]
+        },
+        {
+          "id": "wing-attack",
+          "level": 15,
+          "role": 0,
+          "forms": [
+            17
+          ]
+        },
+        {
+          "id": "roost",
+          "level": 17,
+          "role": 1,
+          "forms": [
+            17
+          ]
+        },
+        {
+          "id": "whirlwind",
+          "level": 25,
+          "role": 1,
+          "forms": [
+            17
+          ]
+        },
+        {
+          "id": "agility",
+          "level": 31,
+          "role": 1,
+          "forms": [
+            17
+          ]
+        },
+        {
+          "id": "air-slash",
+          "level": 39,
+          "role": 0,
+          "forms": [
+            17
+          ]
+        },
+        {
+          "id": "razor-wind",
+          "level": 45,
+          "role": 0,
+          "forms": [
+            17
+          ]
+        },
+        {
+          "id": "gust",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            18
+          ]
+        },
+        {
+          "id": "heat-wave",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            18
+          ]
+        },
+        {
+          "id": "quick-attack",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            18
+          ]
+        },
+        {
+          "id": "sand-attack",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            18
+          ]
+        },
+        {
+          "id": "sky-attack",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            18
+          ]
+        },
+        {
+          "id": "tackle",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            18
+          ]
+        },
+        {
+          "id": "mirror-move",
+          "level": 11,
+          "role": 1,
+          "forms": [
+            18
+          ]
+        },
+        {
+          "id": "wing-attack",
+          "level": 15,
+          "role": 0,
+          "forms": [
+            18
+          ]
+        },
+        {
+          "id": "roost",
+          "level": 17,
+          "role": 1,
+          "forms": [
+            18
+          ]
+        },
+        {
+          "id": "whirlwind",
+          "level": 25,
+          "role": 1,
+          "forms": [
+            18
+          ]
+        },
+        {
+          "id": "agility",
+          "level": 31,
+          "role": 1,
+          "forms": [
+            18
+          ]
+        },
+        {
+          "id": "air-slash",
+          "level": 43,
+          "role": 0,
+          "forms": [
+            18
+          ]
+        },
+        {
+          "id": "razor-wind",
+          "level": 53,
+          "role": 0,
+          "forms": [
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rattata",
+      "members": [
+        19,
+        20
+      ],
+      "roles": [
+        "Duelista",
+        "Debilitador"
+      ],
+      "learnset": [
+        {
+          "id": "tackle",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            19
+          ]
+        },
+        {
+          "id": "tail-whip",
+          "level": 3,
+          "role": 1,
+          "forms": [
+            19
+          ]
+        },
+        {
+          "id": "quick-attack",
+          "level": 6,
+          "role": 0,
+          "forms": [
+            19
+          ]
+        },
+        {
+          "id": "focus-energy",
+          "level": 9,
+          "role": 1,
+          "forms": [
+            19
+          ]
+        },
+        {
+          "id": "bite",
+          "level": 12,
+          "role": 0,
+          "forms": [
+            19
+          ]
+        },
+        {
+          "id": "super-fang",
+          "level": 15,
+          "role": 0,
+          "forms": [
+            19
+          ]
+        },
+        {
+          "id": "crunch",
+          "level": 18,
+          "role": 0,
+          "forms": [
+            19
+          ]
+        },
+        {
+          "id": "hyper-fang",
+          "level": 21,
+          "role": 0,
+          "forms": [
+            19
+          ]
+        },
+        {
+          "id": "sucker-punch",
+          "level": 24,
+          "role": 0,
+          "forms": [
+            19
+          ]
+        },
+        {
+          "id": "double-edge",
+          "level": 27,
+          "role": 0,
+          "forms": [
+            19
+          ]
+        },
+        {
+          "id": "counter",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            20
+          ]
+        },
+        {
+          "id": "focus-energy",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            20
+          ]
+        },
+        {
+          "id": "fury-swipes",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            20
+          ]
+        },
+        {
+          "id": "quick-attack",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            20
+          ]
+        },
+        {
+          "id": "swords-dance",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            20
+          ]
+        },
+        {
+          "id": "tackle",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            20
+          ]
+        },
+        {
+          "id": "tail-whip",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            20
+          ]
+        },
+        {
+          "id": "bite",
+          "level": 12,
+          "role": 0,
+          "forms": [
+            20
+          ]
+        },
+        {
+          "id": "super-fang",
+          "level": 15,
+          "role": 0,
+          "forms": [
+            20
+          ]
+        },
+        {
+          "id": "crunch",
+          "level": 18,
+          "role": 0,
+          "forms": [
+            20
+          ]
+        },
+        {
+          "id": "hyper-fang",
+          "level": 26,
+          "role": 0,
+          "forms": [
+            20
+          ]
+        },
+        {
+          "id": "sucker-punch",
+          "level": 34,
+          "role": 0,
+          "forms": [
+            20
+          ]
+        },
+        {
+          "id": "double-edge",
+          "level": 42,
+          "role": 0,
+          "forms": [
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pikachu",
+      "members": [
+        25,
+        26
+      ],
+      "roles": [
+        "Artillero",
+        "Paralizador"
+      ],
+      "learnset": [
+        {
+          "id": "growl",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            25
+          ]
+        },
+        {
+          "id": "thunder-shock",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            25
+          ]
+        },
+        {
+          "id": "tail-whip",
+          "level": 3,
+          "role": 1,
+          "forms": [
+            25
+          ]
+        },
+        {
+          "id": "quick-attack",
+          "level": 6,
+          "role": 0,
+          "forms": [
+            25
+          ]
+        },
+        {
+          "id": "double-kick",
+          "level": 9,
+          "role": 0,
+          "forms": [
+            25
+          ]
+        },
+        {
+          "id": "double-team",
+          "level": 12,
+          "role": 1,
+          "forms": [
+            25
+          ]
+        },
+        {
+          "id": "thunder-wave",
+          "level": 15,
+          "role": 1,
+          "forms": [
+            25
+          ]
+        },
+        {
+          "id": "light-screen",
+          "level": 18,
+          "role": 1,
+          "forms": [
+            25
+          ]
+        },
+        {
+          "id": "thunderbolt",
+          "level": 21,
+          "role": 1,
+          "forms": [
+            25
+          ]
+        },
+        {
+          "id": "slam",
+          "level": 24,
+          "role": 0,
+          "forms": [
+            25
+          ]
+        },
+        {
+          "id": "agility",
+          "level": 27,
+          "role": 1,
+          "forms": [
+            25
+          ]
+        },
+        {
+          "id": "thunder",
+          "level": 30,
+          "role": 1,
+          "forms": [
+            25
+          ]
+        },
+        {
+          "id": "thunder-punch",
+          "level": 0,
+          "role": 1,
+          "forms": [
+            26
+          ]
+        },
+        {
+          "id": "encore",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            26
+          ]
+        },
+        {
+          "id": "fake-out",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            26
+          ]
+        },
+        {
+          "id": "growl",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            26
+          ]
+        },
+        {
+          "id": "quick-attack",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            26
+          ]
+        },
+        {
+          "id": "tail-whip",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            26
+          ]
+        },
+        {
+          "id": "thunder-shock",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geodude",
+      "members": [
+        74,
+        75,
+        76
+      ],
+      "roles": [
+        "Baluarte",
+        "Rompelineas"
+      ],
+      "learnset": [
+        {
+          "id": "defense-curl",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            74
+          ]
+        },
+        {
+          "id": "tackle",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            74
+          ]
+        },
+        {
+          "id": "sand-attack",
+          "level": 3,
+          "role": 1,
+          "forms": [
+            74
+          ]
+        },
+        {
+          "id": "bide",
+          "level": 6,
+          "role": 1,
+          "forms": [
+            74
+          ]
+        },
+        {
+          "id": "rock-throw",
+          "level": 9,
+          "role": 0,
+          "forms": [
+            74
+          ]
+        },
+        {
+          "id": "stealth-rock",
+          "level": 12,
+          "role": 1,
+          "forms": [
+            74
+          ]
+        },
+        {
+          "id": "take-down",
+          "level": 15,
+          "role": 0,
+          "forms": [
+            74
+          ]
+        },
+        {
+          "id": "self-destruct",
+          "level": 19,
+          "role": 0,
+          "forms": [
+            74
+          ]
+        },
+        {
+          "id": "rock-slide",
+          "level": 23,
+          "role": 0,
+          "forms": [
+            74
+          ]
+        },
+        {
+          "id": "earthquake",
+          "level": 27,
+          "role": 0,
+          "forms": [
+            74
+          ]
+        },
+        {
+          "id": "double-edge",
+          "level": 31,
+          "role": 0,
+          "forms": [
+            74
+          ]
+        },
+        {
+          "id": "explosion",
+          "level": 35,
+          "role": 0,
+          "forms": [
+            74
+          ]
+        },
+        {
+          "id": "bide",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            75
+          ]
+        },
+        {
+          "id": "defense-curl",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            75
+          ]
+        },
+        {
+          "id": "sand-attack",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            75
+          ]
+        },
+        {
+          "id": "tackle",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            75
+          ]
+        },
+        {
+          "id": "rock-throw",
+          "level": 9,
+          "role": 0,
+          "forms": [
+            75
+          ]
+        },
+        {
+          "id": "stealth-rock",
+          "level": 12,
+          "role": 1,
+          "forms": [
+            75
+          ]
+        },
+        {
+          "id": "take-down",
+          "level": 15,
+          "role": 0,
+          "forms": [
+            75
+          ]
+        },
+        {
+          "id": "self-destruct",
+          "level": 19,
+          "role": 0,
+          "forms": [
+            75
+          ]
+        },
+        {
+          "id": "rock-slide",
+          "level": 23,
+          "role": 0,
+          "forms": [
+            75
+          ]
+        },
+        {
+          "id": "earthquake",
+          "level": 31,
+          "role": 0,
+          "forms": [
+            75
+          ]
+        },
+        {
+          "id": "double-edge",
+          "level": 39,
+          "role": 0,
+          "forms": [
+            75
+          ]
+        },
+        {
+          "id": "explosion",
+          "level": 47,
+          "role": 0,
+          "forms": [
+            75
+          ]
+        },
+        {
+          "id": "bide",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            76
+          ]
+        },
+        {
+          "id": "defense-curl",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            76
+          ]
+        },
+        {
+          "id": "mega-punch",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            76
+          ]
+        },
+        {
+          "id": "sand-attack",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            76
+          ]
+        },
+        {
+          "id": "tackle",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            76
+          ]
+        },
+        {
+          "id": "rock-throw",
+          "level": 9,
+          "role": 0,
+          "forms": [
+            76
+          ]
+        },
+        {
+          "id": "stealth-rock",
+          "level": 12,
+          "role": 1,
+          "forms": [
+            76
+          ]
+        },
+        {
+          "id": "take-down",
+          "level": 15,
+          "role": 0,
+          "forms": [
+            76
+          ]
+        },
+        {
+          "id": "self-destruct",
+          "level": 19,
+          "role": 0,
+          "forms": [
+            76
+          ]
+        },
+        {
+          "id": "rock-slide",
+          "level": 23,
+          "role": 0,
+          "forms": [
+            76
+          ]
+        },
+        {
+          "id": "earthquake",
+          "level": 31,
+          "role": 0,
+          "forms": [
+            76
+          ]
+        },
+        {
+          "id": "double-edge",
+          "level": 39,
+          "role": 0,
+          "forms": [
+            76
+          ]
+        },
+        {
+          "id": "explosion",
+          "level": 47,
+          "role": 0,
+          "forms": [
+            76
+          ]
+        }
+      ]
+    },
+    {
+      "id": "onix",
+      "members": [
+        95
+      ],
+      "roles": [
+        "Muro",
+        "Controlador"
+      ],
+      "learnset": [
+        {
+          "id": "bind",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "harden",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "rock-throw",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "tackle",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "stealth-rock",
+          "level": 5,
+          "role": 1,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "rage",
+          "level": 10,
+          "role": 1,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "screech",
+          "level": 15,
+          "role": 1,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "dig",
+          "level": 20,
+          "role": 0,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "slam",
+          "level": 25,
+          "role": 0,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "rock-slide",
+          "level": 30,
+          "role": 0,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "earthquake",
+          "level": 35,
+          "role": 0,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "iron-tail",
+          "level": 40,
+          "role": 0,
+          "forms": [
+            95
+          ]
+        },
+        {
+          "id": "double-edge",
+          "level": 45,
+          "role": 0,
+          "forms": [
+            95
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oddish",
+      "members": [
+        43,
+        44,
+        45
+      ],
+      "roles": [
+        "Drenador",
+        "Controlador"
+      ],
+      "learnset": [
+        {
+          "id": "absorb",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            43
+          ]
+        },
+        {
+          "id": "growth",
+          "level": 4,
+          "role": 1,
+          "forms": [
+            43
+          ]
+        },
+        {
+          "id": "acid",
+          "level": 8,
+          "role": 0,
+          "forms": [
+            43
+          ]
+        },
+        {
+          "id": "poison-powder",
+          "level": 12,
+          "role": 1,
+          "forms": [
+            43
+          ]
+        },
+        {
+          "id": "stun-spore",
+          "level": 13,
+          "role": 1,
+          "forms": [
+            43
+          ]
+        },
+        {
+          "id": "sleep-powder",
+          "level": 14,
+          "role": 1,
+          "forms": [
+            43
+          ]
+        },
+        {
+          "id": "razor-leaf",
+          "level": 18,
+          "role": 0,
+          "forms": [
+            43
+          ]
+        },
+        {
+          "id": "mega-drain",
+          "level": 22,
+          "role": 0,
+          "forms": [
+            43
+          ]
+        },
+        {
+          "id": "toxic",
+          "level": 26,
+          "role": 1,
+          "forms": [
+            43
+          ]
+        },
+        {
+          "id": "moonblast",
+          "level": 30,
+          "role": 0,
+          "forms": [
+            43
+          ]
+        },
+        {
+          "id": "absorb",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            44
+          ]
+        },
+        {
+          "id": "acid",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            44
+          ]
+        },
+        {
+          "id": "growth",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            44
+          ]
+        },
+        {
+          "id": "poison-powder",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            44
+          ]
+        },
+        {
+          "id": "stun-spore",
+          "level": 13,
+          "role": 1,
+          "forms": [
+            44
+          ]
+        },
+        {
+          "id": "sleep-powder",
+          "level": 14,
+          "role": 1,
+          "forms": [
+            44
+          ]
+        },
+        {
+          "id": "razor-leaf",
+          "level": 18,
+          "role": 0,
+          "forms": [
+            44
+          ]
+        },
+        {
+          "id": "mega-drain",
+          "level": 27,
+          "role": 0,
+          "forms": [
+            44
+          ]
+        },
+        {
+          "id": "toxic",
+          "level": 36,
+          "role": 1,
+          "forms": [
+            44
+          ]
+        },
+        {
+          "id": "moonblast",
+          "level": 45,
+          "role": 0,
+          "forms": [
+            44
+          ]
+        },
+        {
+          "id": "absorb",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            45
+          ]
+        },
+        {
+          "id": "acid",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            45
+          ]
+        },
+        {
+          "id": "growth",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            45
+          ]
+        },
+        {
+          "id": "poison-powder",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            45
+          ]
+        },
+        {
+          "id": "solar-beam",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            45
+          ]
+        },
+        {
+          "id": "petal-dance",
+          "level": 54,
+          "role": 0,
+          "forms": [
+            45
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bellsprout",
+      "members": [
+        69,
+        70,
+        71
+      ],
+      "roles": [
+        "Hostigador",
+        "Controlador"
+      ],
+      "learnset": [
+        {
+          "id": "vine-whip",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            69
+          ]
+        },
+        {
+          "id": "growth",
+          "level": 4,
+          "role": 1,
+          "forms": [
+            69
+          ]
+        },
+        {
+          "id": "wrap",
+          "level": 8,
+          "role": 0,
+          "forms": [
+            69
+          ]
+        },
+        {
+          "id": "acid",
+          "level": 12,
+          "role": 0,
+          "forms": [
+            69
+          ]
+        },
+        {
+          "id": "sleep-powder",
+          "level": 16,
+          "role": 1,
+          "forms": [
+            69
+          ]
+        },
+        {
+          "id": "poison-powder",
+          "level": 17,
+          "role": 1,
+          "forms": [
+            69
+          ]
+        },
+        {
+          "id": "stun-spore",
+          "level": 18,
+          "role": 1,
+          "forms": [
+            69
+          ]
+        },
+        {
+          "id": "razor-leaf",
+          "level": 22,
+          "role": 0,
+          "forms": [
+            69
+          ]
+        },
+        {
+          "id": "poison-jab",
+          "level": 26,
+          "role": 1,
+          "forms": [
+            69
+          ]
+        },
+        {
+          "id": "slam",
+          "level": 30,
+          "role": 0,
+          "forms": [
+            69
+          ]
+        },
+        {
+          "id": "acid",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            70
+          ]
+        },
+        {
+          "id": "growth",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            70
+          ]
+        },
+        {
+          "id": "vine-whip",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            70
+          ]
+        },
+        {
+          "id": "wrap",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            70
+          ]
+        },
+        {
+          "id": "sleep-powder",
+          "level": 16,
+          "role": 1,
+          "forms": [
+            70
+          ]
+        },
+        {
+          "id": "poison-powder",
+          "level": 17,
+          "role": 1,
+          "forms": [
+            70
+          ]
+        },
+        {
+          "id": "stun-spore",
+          "level": 18,
+          "role": 1,
+          "forms": [
+            70
+          ]
+        },
+        {
+          "id": "razor-leaf",
+          "level": 27,
+          "role": 0,
+          "forms": [
+            70
+          ]
+        },
+        {
+          "id": "poison-jab",
+          "level": 36,
+          "role": 1,
+          "forms": [
+            70
+          ]
+        },
+        {
+          "id": "slam",
+          "level": 45,
+          "role": 0,
+          "forms": [
+            70
+          ]
+        },
+        {
+          "id": "acid",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            71
+          ]
+        },
+        {
+          "id": "clear-smog",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            71
+          ]
+        },
+        {
+          "id": "growth",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            71
+          ]
+        },
+        {
+          "id": "leech-life",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            71
+          ]
+        },
+        {
+          "id": "power-whip",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            71
+          ]
+        },
+        {
+          "id": "sucker-punch",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            71
+          ]
+        },
+        {
+          "id": "swords-dance",
+          "level": 1,
+          "role": 1,
+          "forms": [
+            71
+          ]
+        },
+        {
+          "id": "vine-whip",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            71
+          ]
+        },
+        {
+          "id": "wrap",
+          "level": 1,
+          "role": 0,
+          "forms": [
+            71
+          ]
+        }
+      ]
+    }
+  ],
+  "moves": {
+    "absorb": {
+      "id": "absorb",
+      "name": "Absorber",
+      "type": "grass",
+      "power": 20,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 3,
+      "kind": "drain",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Absorber · PT y alcance tácticos. "
+    },
+    "acid": {
+      "id": "acid",
+      "name": "Ácido",
+      "type": "poison",
+      "power": 40,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "specialDefense",
+          "stages": -1
+        }
+      ],
+      "changesSelf": false,
+      "changeChance": 10,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Ácido · PT y alcance tácticos. Etapas: specialDefense -1. Límite táctico -2/+2; dura el combate."
+    },
+    "agility": {
+      "id": "agility",
+      "name": "Agilidad",
+      "type": "psychic",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "speed",
+          "stages": 2
+        }
+      ],
+      "changesSelf": true,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Agilidad · PT y alcance tácticos. Etapas: speed +2. Límite táctico -2/+2; dura el combate."
+    },
+    "air-slash": {
+      "id": "air-slash",
+      "name": "Tajo Aéreo",
+      "type": "flying",
+      "power": 75,
+      "category": "special",
+      "accuracy": 95,
+      "cost": 2,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Tajo Aéreo · PT y alcance tácticos. El retroceso de turno no se aplica en esta cola fija."
+    },
+    "amnesia": {
+      "id": "amnesia",
+      "name": "Amnesia",
+      "type": "psychic",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "specialDefense",
+          "stages": 2
+        }
+      ],
+      "changesSelf": true,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Amnesia · PT y alcance tácticos. Etapas: specialDefense +2. Límite táctico -2/+2; dura el combate."
+    },
+    "aqua-jet": {
+      "id": "aqua-jet",
+      "name": "Acua Jet",
+      "type": "water",
+      "power": 40,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Acua Jet · PT y alcance tácticos. No altera la cola fija ni hace retroceder; golpe inmediato."
+    },
+    "bide": {
+      "id": "bide",
+      "name": "Venganza",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "defense",
+          "stages": 1
+        }
+      ],
+      "changesSelf": true,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Venganza · PT y alcance tácticos. Aguante táctico: +1 Defensa; no almacena daño. Etapas: defense +1. Límite táctico -2/+2; dura el combate."
+    },
+    "bind": {
+      "id": "bind",
+      "name": "Atadura",
+      "type": "normal",
+      "power": 15,
+      "category": "physical",
+      "accuracy": 85,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Atadura · PT y alcance tácticos. Golpe único; sin inmovilización ni daño de atrapamiento."
+    },
+    "bite": {
+      "id": "bite",
+      "name": "Mordisco",
+      "type": "dark",
+      "power": 60,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Mordisco · PT y alcance tácticos. El retroceso de turno no se aplica en esta cola fija."
+    },
+    "brick-break": {
+      "id": "brick-break",
+      "name": "Demolición",
+      "type": "fighting",
+      "power": 75,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Demolición · PT y alcance tácticos. "
+    },
+    "bubble": {
+      "id": "bubble",
+      "name": "Burbuja",
+      "type": "water",
+      "power": 40,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "speed",
+          "stages": -1
+        }
+      ],
+      "changesSelf": false,
+      "changeChance": 10,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Burbuja · PT y alcance tácticos. Etapas: speed -1. Límite táctico -2/+2; dura el combate."
+    },
+    "bubble-beam": {
+      "id": "bubble-beam",
+      "name": "Rayo Burbuja",
+      "type": "water",
+      "power": 65,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "speed",
+          "stages": -1
+        }
+      ],
+      "changesSelf": false,
+      "changeChance": 10,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Rayo Burbuja · PT y alcance tácticos. Etapas: speed -1. Límite táctico -2/+2; dura el combate."
+    },
+    "bug-buzz": {
+      "id": "bug-buzz",
+      "name": "Zumbido",
+      "type": "bug",
+      "power": 90,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 3,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "specialDefense",
+          "stages": -1
+        }
+      ],
+      "changesSelf": false,
+      "changeChance": 10,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Zumbido · PT y alcance tácticos. Etapas: specialDefense -1. Límite táctico -2/+2; dura el combate."
+    },
+    "clear-smog": {
+      "id": "clear-smog",
+      "name": "Niebla Clara",
+      "type": "poison",
+      "power": 50,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": true,
+      "fixedMode": "",
+      "description": "Niebla Clara · PT y alcance tácticos. Si acierta, elimina todas las etapas de atributos del objetivo."
+    },
+    "confusion": {
+      "id": "confusion",
+      "name": "Confusión",
+      "type": "psychic",
+      "power": 50,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "confusion",
+        "chance": 10,
+        "duration": 3
+      },
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Confusión · PT y alcance tácticos. Confuso: -25 puntos de precisión durante tres activaciones; sin autolesión."
+    },
+    "counter": {
+      "id": "counter",
+      "name": "Contraataque",
+      "type": "fighting",
+      "power": 0,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "counter",
+      "description": "Contraataque · PT y alcance tácticos. Devuelve el doble del último daño recibido desde su anterior acción; sin daño previo no puede usarse."
+    },
+    "crunch": {
+      "id": "crunch",
+      "name": "Triturar",
+      "type": "dark",
+      "power": 80,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "defense",
+          "stages": -1
+        }
+      ],
+      "changesSelf": false,
+      "changeChance": 20,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Triturar · PT y alcance tácticos. Etapas: defense -1. Límite táctico -2/+2; dura el combate."
+    },
+    "defense-curl": {
+      "id": "defense-curl",
+      "name": "Rizo Defensa",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "defense",
+          "stages": 1
+        }
+      ],
+      "changesSelf": true,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Rizo Defensa · PT y alcance tácticos. Etapas: defense +1. Límite táctico -2/+2; dura el combate."
+    },
+    "dig": {
+      "id": "dig",
+      "name": "Excavar",
+      "type": "ground",
+      "power": 80,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Excavar · PT y alcance tácticos. "
+    },
+    "double-edge": {
+      "id": "double-edge",
+      "name": "Doble Filo",
+      "type": "normal",
+      "power": 120,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 4,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 33,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Doble Filo · PT y alcance tácticos. "
+    },
+    "double-kick": {
+      "id": "double-kick",
+      "name": "Doble Patada",
+      "type": "fighting",
+      "power": 60,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Doble Patada · PT y alcance tácticos. Dos impactos agregados en una tirada."
+    },
+    "double-team": {
+      "id": "double-team",
+      "name": "Doble Equipo",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "evasion",
+          "stages": 1
+        }
+      ],
+      "changesSelf": true,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Doble Equipo · PT y alcance tácticos. Etapas: evasion +1. Límite táctico -2/+2; dura el combate."
+    },
+    "dragon-rage": {
+      "id": "dragon-rage",
+      "name": "Furia Dragón",
+      "type": "dragon",
+      "power": 0,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "dragon-rage",
+      "description": "Furia Dragón · PT y alcance tácticos. Daño fijo: 40 PS."
+    },
+    "earthquake": {
+      "id": "earthquake",
+      "name": "Terremoto",
+      "type": "ground",
+      "power": 100,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 3,
+      "range": 2,
+      "kind": "area-damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Terremoto · PT y alcance tácticos. "
+    },
+    "ember": {
+      "id": "ember",
+      "name": "Ascuas",
+      "type": "fire",
+      "power": 40,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "burn",
+        "chance": 10,
+        "duration": 3
+      },
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Ascuas · PT y alcance tácticos. "
+    },
+    "encore": {
+      "id": "encore",
+      "name": "Otra Vez",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 2,
+      "kind": "stages",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "specialAttack",
+          "stages": -1
+        }
+      ],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Otra Vez · PT y alcance tácticos. Presión táctica: -1 Ataque especial; no obliga a repetir. Etapas: specialAttack -1. Límite táctico -2/+2; dura el combate."
+    },
+    "explosion": {
+      "id": "explosion",
+      "name": "Explosión",
+      "type": "normal",
+      "power": 250,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 4,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": true,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Explosión · PT y alcance tácticos. El usuario cae tras resolver el ataque, incluso si falla."
+    },
+    "fake-out": {
+      "id": "fake-out",
+      "name": "Sorpresa",
+      "type": "normal",
+      "power": 40,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Sorpresa · PT y alcance tácticos. No altera la cola fija ni hace retroceder; golpe inmediato. El retroceso de turno no se aplica en esta cola fija."
+    },
+    "fire-spin": {
+      "id": "fire-spin",
+      "name": "Giro Fuego",
+      "type": "fire",
+      "power": 35,
+      "category": "special",
+      "accuracy": 85,
+      "cost": 1,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Giro Fuego · PT y alcance tácticos. Golpe único; sin inmovilización ni daño de atrapamiento."
+    },
+    "flamethrower": {
+      "id": "flamethrower",
+      "name": "Lanzallamas",
+      "type": "fire",
+      "power": 90,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 3,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "burn",
+        "chance": 10,
+        "duration": 3
+      },
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Lanzallamas · PT y alcance tácticos. "
+    },
+    "flare-blitz": {
+      "id": "flare-blitz",
+      "name": "Envite Ígneo",
+      "type": "fire",
+      "power": 120,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 4,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "burn",
+        "chance": 10,
+        "duration": 3
+      },
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 33,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Envite Ígneo · PT y alcance tácticos. "
+    },
+    "flash-cannon": {
+      "id": "flash-cannon",
+      "name": "Cañón Resplandor",
+      "type": "steel",
+      "power": 80,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "specialDefense",
+          "stages": -1
+        }
+      ],
+      "changesSelf": false,
+      "changeChance": 10,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Cañón Resplandor · PT y alcance tácticos. Etapas: specialDefense -1. Límite táctico -2/+2; dura el combate."
+    },
+    "focus-energy": {
+      "id": "focus-energy",
+      "name": "Foco Energía",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "accuracy",
+          "stages": 1
+        }
+      ],
+      "changesSelf": true,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Foco Energía · PT y alcance tácticos. Concentración: +1 Precisión; no hay críticos. Etapas: accuracy +1. Límite táctico -2/+2; dura el combate."
+    },
+    "fury-attack": {
+      "id": "fury-attack",
+      "name": "Ataque Furia",
+      "type": "normal",
+      "power": 30,
+      "category": "physical",
+      "accuracy": 85,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Ataque Furia · PT y alcance tácticos. Dos impactos agregados en una tirada."
+    },
+    "fury-swipes": {
+      "id": "fury-swipes",
+      "name": "Golpes Furia",
+      "type": "normal",
+      "power": 36,
+      "category": "physical",
+      "accuracy": 80,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Golpes Furia · PT y alcance tácticos. Dos impactos agregados en una tirada."
+    },
+    "growl": {
+      "id": "growl",
+      "name": "Gruñido",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 2,
+      "kind": "stages",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "attack",
+          "stages": -1
+        }
+      ],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Gruñido · PT y alcance tácticos. Etapas: attack -1. Límite táctico -2/+2; dura el combate."
+    },
+    "growth": {
+      "id": "growth",
+      "name": "Desarrollo",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "attack",
+          "stages": 1
+        },
+        {
+          "stat": "specialAttack",
+          "stages": 1
+        }
+      ],
+      "changesSelf": true,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Desarrollo · PT y alcance tácticos. Etapas: attack +1, specialAttack +1. Límite táctico -2/+2; dura el combate."
+    },
+    "gust": {
+      "id": "gust",
+      "name": "Tornado",
+      "type": "flying",
+      "power": 40,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Tornado · PT y alcance tácticos. "
+    },
+    "harden": {
+      "id": "harden",
+      "name": "Fortaleza",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "defense",
+          "stages": 1
+        }
+      ],
+      "changesSelf": true,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Fortaleza · PT y alcance tácticos. Etapas: defense +1. Límite táctico -2/+2; dura el combate."
+    },
+    "headbutt": {
+      "id": "headbutt",
+      "name": "Golpe Cabeza",
+      "type": "normal",
+      "power": 70,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Golpe Cabeza · PT y alcance tácticos. El retroceso de turno no se aplica en esta cola fija."
+    },
+    "heat-wave": {
+      "id": "heat-wave",
+      "name": "Onda Ígnea",
+      "type": "fire",
+      "power": 95,
+      "category": "special",
+      "accuracy": 90,
+      "cost": 3,
+      "range": 2,
+      "kind": "area-damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "burn",
+        "chance": 10,
+        "duration": 3
+      },
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Onda Ígnea · PT y alcance tácticos. "
+    },
+    "hydro-pump": {
+      "id": "hydro-pump",
+      "name": "Hidrobomba",
+      "type": "water",
+      "power": 110,
+      "category": "special",
+      "accuracy": 80,
+      "cost": 3,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Hidrobomba · PT y alcance tácticos. "
+    },
+    "hyper-fang": {
+      "id": "hyper-fang",
+      "name": "Hipercolmillo",
+      "type": "normal",
+      "power": 80,
+      "category": "physical",
+      "accuracy": 90,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Hipercolmillo · PT y alcance tácticos. El retroceso de turno no se aplica en esta cola fija."
+    },
+    "iron-tail": {
+      "id": "iron-tail",
+      "name": "Cola Férrea",
+      "type": "steel",
+      "power": 100,
+      "category": "physical",
+      "accuracy": 75,
+      "cost": 3,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "defense",
+          "stages": -1
+        }
+      ],
+      "changesSelf": false,
+      "changeChance": 30,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Cola Férrea · PT y alcance tácticos. Etapas: defense -1. Límite táctico -2/+2; dura el combate."
+    },
+    "leech-life": {
+      "id": "leech-life",
+      "name": "Chupavidas",
+      "type": "bug",
+      "power": 80,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 1,
+      "kind": "drain",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Chupavidas · PT y alcance tácticos. "
+    },
+    "leech-seed": {
+      "id": "leech-seed",
+      "name": "Drenadoras",
+      "type": "grass",
+      "power": 0,
+      "category": "status",
+      "accuracy": 90,
+      "cost": 1,
+      "range": 2,
+      "kind": "status",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Drenadoras · PT y alcance tácticos. Drenadoras: pierde 1/8 de PS durante tres activaciones; el usuario recupera ese daño si sigue vivo. Inmune Planta.",
+      "effect": {
+        "kind": "seed",
+        "chance": 100,
+        "duration": 3
+      },
+      "powder": false
+    },
+    "light-screen": {
+      "id": "light-screen",
+      "name": "Pantalla de Luz",
+      "type": "psychic",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "specialDefense",
+          "stages": 2
+        }
+      ],
+      "changesSelf": true,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Pantalla de Luz · PT y alcance tácticos. Pantalla táctica: +2 Defensa especial individual. Etapas: specialDefense +2. Límite táctico -2/+2; dura el combate."
+    },
+    "mega-drain": {
+      "id": "mega-drain",
+      "name": "Megaagotar",
+      "type": "grass",
+      "power": 40,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 3,
+      "kind": "drain",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Megaagotar · PT y alcance tácticos. "
+    },
+    "mega-punch": {
+      "id": "mega-punch",
+      "name": "Megapuño",
+      "type": "normal",
+      "power": 80,
+      "category": "physical",
+      "accuracy": 85,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Megapuño · PT y alcance tácticos. "
+    },
+    "mirror-move": {
+      "id": "mirror-move",
+      "name": "Espejo",
+      "type": "flying",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "evasion",
+          "stages": 1
+        }
+      ],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Espejo · PT y alcance tácticos. Imitación táctica: +1 Evasión; no copia movimientos. Etapas: evasion +1. Límite táctico -2/+2; dura el combate."
+    },
+    "moonblast": {
+      "id": "moonblast",
+      "name": "Fuerza Lunar",
+      "type": "fairy",
+      "power": 95,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 3,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "specialAttack",
+          "stages": -1
+        }
+      ],
+      "changesSelf": false,
+      "changeChance": 30,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Fuerza Lunar · PT y alcance tácticos. Etapas: specialAttack -1. Límite táctico -2/+2; dura el combate."
+    },
+    "outrage": {
+      "id": "outrage",
+      "name": "Enfado",
+      "type": "dragon",
+      "power": 120,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 4,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Enfado · PT y alcance tácticos. Ataque de una acción; sin repetición forzosa ni confusión posterior."
+    },
+    "peck": {
+      "id": "peck",
+      "name": "Picotazo",
+      "type": "flying",
+      "power": 35,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Picotazo · PT y alcance tácticos. "
+    },
+    "petal-dance": {
+      "id": "petal-dance",
+      "name": "Danza Pétalo",
+      "type": "grass",
+      "power": 120,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 4,
+      "range": 2,
+      "kind": "area-damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Danza Pétalo · PT y alcance tácticos. Ataque de una acción; sin repetición forzosa ni confusión posterior."
+    },
+    "pin-missile": {
+      "id": "pin-missile",
+      "name": "Pin Misil",
+      "type": "bug",
+      "power": 50,
+      "category": "physical",
+      "accuracy": 95,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Pin Misil · PT y alcance tácticos. Dos impactos agregados en una tirada."
+    },
+    "poison-jab": {
+      "id": "poison-jab",
+      "name": "Puya Nociva",
+      "type": "poison",
+      "power": 80,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "poison",
+        "chance": 30,
+        "duration": 3
+      },
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Puya Nociva · PT y alcance tácticos. "
+    },
+    "poison-powder": {
+      "id": "poison-powder",
+      "name": "Polvo Veneno",
+      "type": "poison",
+      "power": 0,
+      "category": "status",
+      "accuracy": 75,
+      "cost": 2,
+      "range": 2,
+      "kind": "status",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Polvo Veneno · PT y alcance tácticos. ",
+      "effect": {
+        "kind": "poison",
+        "chance": 100,
+        "duration": 3
+      },
+      "powder": true
+    },
+    "poison-sting": {
+      "id": "poison-sting",
+      "name": "Picotazo Veneno",
+      "type": "poison",
+      "power": 15,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "poison",
+        "chance": 30,
+        "duration": 3
+      },
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Picotazo Veneno · PT y alcance tácticos. "
+    },
+    "power-whip": {
+      "id": "power-whip",
+      "name": "Latigazo",
+      "type": "grass",
+      "power": 120,
+      "category": "physical",
+      "accuracy": 85,
+      "cost": 4,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Latigazo · PT y alcance tácticos. "
+    },
+    "protect": {
+      "id": "protect",
+      "name": "Protección",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 0,
+      "kind": "guard",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": true,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Protección · PT y alcance tácticos. "
+    },
+    "psybeam": {
+      "id": "psybeam",
+      "name": "Psicorrayo",
+      "type": "psychic",
+      "power": 65,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "confusion",
+        "chance": 10,
+        "duration": 3
+      },
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Psicorrayo · PT y alcance tácticos. Confuso: -25 puntos de precisión durante tres activaciones; sin autolesión."
+    },
+    "quick-attack": {
+      "id": "quick-attack",
+      "name": "Ataque Rápido",
+      "type": "normal",
+      "power": 40,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Ataque Rápido · PT y alcance tácticos. No altera la cola fija ni hace retroceder; golpe inmediato."
+    },
+    "quiver-dance": {
+      "id": "quiver-dance",
+      "name": "Danza Aleteo",
+      "type": "bug",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "specialAttack",
+          "stages": 1
+        },
+        {
+          "stat": "specialDefense",
+          "stages": 1
+        },
+        {
+          "stat": "speed",
+          "stages": 1
+        }
+      ],
+      "changesSelf": true,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Danza Aleteo · PT y alcance tácticos. Etapas: specialAttack +1, specialDefense +1, speed +1. Límite táctico -2/+2; dura el combate."
+    },
+    "rage": {
+      "id": "rage",
+      "name": "Furia",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "attack",
+          "stages": 1
+        }
+      ],
+      "changesSelf": true,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Furia · PT y alcance tácticos. Furia táctica: +1 Ataque; consume la acción. Etapas: attack +1. Límite táctico -2/+2; dura el combate."
+    },
+    "razor-leaf": {
+      "id": "razor-leaf",
+      "name": "Hoja Afilada",
+      "type": "grass",
+      "power": 55,
+      "category": "physical",
+      "accuracy": 95,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Hoja Afilada · PT y alcance tácticos. Sin bonificación de crítico en esta muestra."
+    },
+    "razor-wind": {
+      "id": "razor-wind",
+      "name": "Viento Cortante",
+      "type": "normal",
+      "power": 80,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 4,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Viento Cortante · PT y alcance tácticos. La carga se adapta a 4 PT; no requiere un turno de espera. Sin bonificación de crítico en esta muestra."
+    },
+    "rock-slide": {
+      "id": "rock-slide",
+      "name": "Avalancha",
+      "type": "rock",
+      "power": 75,
+      "category": "physical",
+      "accuracy": 90,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Avalancha · PT y alcance tácticos. El retroceso de turno no se aplica en esta cola fija."
+    },
+    "rock-throw": {
+      "id": "rock-throw",
+      "name": "Lanzarrocas",
+      "type": "rock",
+      "power": 50,
+      "category": "physical",
+      "accuracy": 90,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Lanzarrocas · PT y alcance tácticos. "
+    },
+    "roost": {
+      "id": "roost",
+      "name": "Respiro",
+      "type": "flying",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 0,
+      "kind": "heal",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": true,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Respiro · PT y alcance tácticos. "
+    },
+    "sand-attack": {
+      "id": "sand-attack",
+      "name": "Ataque Arena",
+      "type": "ground",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 2,
+      "kind": "stages",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "accuracy",
+          "stages": -1
+        }
+      ],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Ataque Arena · PT y alcance tácticos. Etapas: accuracy -1. Límite táctico -2/+2; dura el combate."
+    },
+    "scald": {
+      "id": "scald",
+      "name": "Escaldar",
+      "type": "water",
+      "power": 80,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "burn",
+        "chance": 30,
+        "duration": 3
+      },
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Escaldar · PT y alcance tácticos. "
+    },
+    "scratch": {
+      "id": "scratch",
+      "name": "Arañazo",
+      "type": "normal",
+      "power": 40,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Arañazo · PT y alcance tácticos. "
+    },
+    "screech": {
+      "id": "screech",
+      "name": "Chirrido",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 85,
+      "cost": 1,
+      "range": 2,
+      "kind": "stages",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "defense",
+          "stages": -2
+        }
+      ],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Chirrido · PT y alcance tácticos. Etapas: defense -2. Límite táctico -2/+2; dura el combate."
+    },
+    "self-destruct": {
+      "id": "self-destruct",
+      "name": "Autodestrucción",
+      "type": "normal",
+      "power": 200,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 4,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": true,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Autodestrucción · PT y alcance tácticos. El usuario cae tras resolver el ataque, incluso si falla."
+    },
+    "skull-bash": {
+      "id": "skull-bash",
+      "name": "Cabezazo",
+      "type": "normal",
+      "power": 130,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 4,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Cabezazo · PT y alcance tácticos. La carga se adapta a 4 PT; no requiere un turno de espera."
+    },
+    "sky-attack": {
+      "id": "sky-attack",
+      "name": "Ataque Aéreo",
+      "type": "flying",
+      "power": 140,
+      "category": "physical",
+      "accuracy": 90,
+      "cost": 4,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Ataque Aéreo · PT y alcance tácticos. La carga se adapta a 4 PT; no requiere un turno de espera. El retroceso de turno no se aplica en esta cola fija. Sin bonificación de crítico en esta muestra."
+    },
+    "slam": {
+      "id": "slam",
+      "name": "Atizar",
+      "type": "normal",
+      "power": 80,
+      "category": "physical",
+      "accuracy": 75,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Atizar · PT y alcance tácticos. "
+    },
+    "slash": {
+      "id": "slash",
+      "name": "Cuchillada",
+      "type": "normal",
+      "power": 70,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Cuchillada · PT y alcance tácticos. Sin bonificación de crítico en esta muestra."
+    },
+    "sleep-powder": {
+      "id": "sleep-powder",
+      "name": "Somnífero",
+      "type": "grass",
+      "power": 0,
+      "category": "status",
+      "accuracy": 75,
+      "cost": 2,
+      "range": 2,
+      "kind": "status",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Somnífero · PT y alcance tácticos. Dormido: puede desplazarse, pero no atacar durante tres activaciones.",
+      "effect": {
+        "kind": "sleep",
+        "chance": 100,
+        "duration": 3
+      },
+      "powder": true
+    },
+    "smokescreen": {
+      "id": "smokescreen",
+      "name": "Pantalla de Humo",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 2,
+      "kind": "stages",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "accuracy",
+          "stages": -1
+        }
+      ],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Pantalla de Humo · PT y alcance tácticos. Etapas: accuracy -1. Límite táctico -2/+2; dura el combate."
+    },
+    "solar-beam": {
+      "id": "solar-beam",
+      "name": "Rayo Solar",
+      "type": "grass",
+      "power": 120,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 4,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Rayo Solar · PT y alcance tácticos. La carga se adapta a 4 PT; no requiere un turno de espera."
+    },
+    "stealth-rock": {
+      "id": "stealth-rock",
+      "name": "Trampa Rocas",
+      "type": "rock",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 2,
+      "kind": "stages",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "speed",
+          "stages": -1
+        }
+      ],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Trampa Rocas · PT y alcance tácticos. Obstáculo táctico: -1 Velocidad; no coloca trampas de entrada. Etapas: speed -1. Límite táctico -2/+2; dura el combate."
+    },
+    "string-shot": {
+      "id": "string-shot",
+      "name": "Disparo Demora",
+      "type": "bug",
+      "power": 0,
+      "category": "status",
+      "accuracy": 95,
+      "cost": 1,
+      "range": 2,
+      "kind": "stages",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "speed",
+          "stages": -2
+        }
+      ],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Disparo Demora · PT y alcance tácticos. Etapas: speed -2. Límite táctico -2/+2; dura el combate."
+    },
+    "stun-spore": {
+      "id": "stun-spore",
+      "name": "Paralizador",
+      "type": "grass",
+      "power": 0,
+      "category": "status",
+      "accuracy": 75,
+      "cost": 2,
+      "range": 2,
+      "kind": "status",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Paralizador · PT y alcance tácticos. ",
+      "effect": {
+        "kind": "paralysis",
+        "chance": 100,
+        "duration": 3
+      },
+      "powder": true
+    },
+    "sucker-punch": {
+      "id": "sucker-punch",
+      "name": "Golpe Bajo",
+      "type": "dark",
+      "power": 70,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Golpe Bajo · PT y alcance tácticos. No altera la cola fija ni hace retroceder; golpe inmediato."
+    },
+    "super-fang": {
+      "id": "super-fang",
+      "name": "Superdiente",
+      "type": "normal",
+      "power": 0,
+      "category": "physical",
+      "accuracy": 90,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "super-fang",
+      "description": "Superdiente · PT y alcance tácticos. Resta la mitad de los PS actuales del objetivo."
+    },
+    "supersonic": {
+      "id": "supersonic",
+      "name": "Supersónico",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 55,
+      "cost": 2,
+      "range": 2,
+      "kind": "status",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Supersónico · PT y alcance tácticos. Confuso: -25 puntos de precisión durante tres activaciones; sin autolesión.",
+      "effect": {
+        "kind": "confusion",
+        "chance": 100,
+        "duration": 3
+      },
+      "powder": false
+    },
+    "swords-dance": {
+      "id": "swords-dance",
+      "name": "Danza Espada",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "attack",
+          "stages": 2
+        }
+      ],
+      "changesSelf": true,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Danza Espada · PT y alcance tácticos. Etapas: attack +2. Límite táctico -2/+2; dura el combate."
+    },
+    "tackle": {
+      "id": "tackle",
+      "name": "Placaje",
+      "type": "normal",
+      "power": 40,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Placaje · PT y alcance tácticos. "
+    },
+    "tail-whip": {
+      "id": "tail-whip",
+      "name": "Agitacola",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 2,
+      "kind": "stages",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "defense",
+          "stages": -1
+        }
+      ],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Agitacola · PT y alcance tácticos. Etapas: defense -1. Límite táctico -2/+2; dura el combate."
+    },
+    "take-down": {
+      "id": "take-down",
+      "name": "Derribo",
+      "type": "normal",
+      "power": 90,
+      "category": "physical",
+      "accuracy": 85,
+      "cost": 3,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 25,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Derribo · PT y alcance tácticos. "
+    },
+    "thunder": {
+      "id": "thunder",
+      "name": "Trueno",
+      "type": "electric",
+      "power": 110,
+      "category": "special",
+      "accuracy": 70,
+      "cost": 3,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "paralysis",
+        "chance": 30,
+        "duration": 3
+      },
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Trueno · PT y alcance tácticos. "
+    },
+    "thunder-punch": {
+      "id": "thunder-punch",
+      "name": "Puño Trueno",
+      "type": "electric",
+      "power": 75,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "paralysis",
+        "chance": 10,
+        "duration": 3
+      },
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Puño Trueno · PT y alcance tácticos. "
+    },
+    "thunder-shock": {
+      "id": "thunder-shock",
+      "name": "Impactrueno",
+      "type": "electric",
+      "power": 40,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "paralysis",
+        "chance": 10,
+        "duration": 3
+      },
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Impactrueno · PT y alcance tácticos. "
+    },
+    "thunder-wave": {
+      "id": "thunder-wave",
+      "name": "Onda Trueno",
+      "type": "electric",
+      "power": 0,
+      "category": "status",
+      "accuracy": 90,
+      "cost": 2,
+      "range": 2,
+      "kind": "status",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Onda Trueno · PT y alcance tácticos. ",
+      "effect": {
+        "kind": "paralysis",
+        "chance": 100,
+        "duration": 3
+      },
+      "powder": false
+    },
+    "thunderbolt": {
+      "id": "thunderbolt",
+      "name": "Rayo",
+      "type": "electric",
+      "power": 90,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 3,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "paralysis",
+        "chance": 10,
+        "duration": 3
+      },
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Rayo · PT y alcance tácticos. "
+    },
+    "toxic": {
+      "id": "toxic",
+      "name": "Tóxico",
+      "type": "poison",
+      "power": 0,
+      "category": "status",
+      "accuracy": 90,
+      "cost": 2,
+      "range": 2,
+      "kind": "status",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Tóxico · PT y alcance tácticos. Veneno táctico fijo: 1/8 de PS máximos por activación; no escala.",
+      "effect": {
+        "kind": "poison",
+        "chance": 100,
+        "duration": 3
+      },
+      "powder": false
+    },
+    "twineedle": {
+      "id": "twineedle",
+      "name": "Doble Ataque",
+      "type": "bug",
+      "power": 50,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": {
+        "kind": "poison",
+        "chance": 20,
+        "duration": 3
+      },
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Doble Ataque · PT y alcance tácticos. Dos impactos agregados en una tirada."
+    },
+    "vine-whip": {
+      "id": "vine-whip",
+      "name": "Látigo Cepa",
+      "type": "grass",
+      "power": 45,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Látigo Cepa · PT y alcance tácticos. "
+    },
+    "water-gun": {
+      "id": "water-gun",
+      "name": "Pistola Agua",
+      "type": "water",
+      "power": 40,
+      "category": "special",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 3,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Pistola Agua · PT y alcance tácticos. "
+    },
+    "whirlwind": {
+      "id": "whirlwind",
+      "name": "Remolino",
+      "type": "normal",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 2,
+      "kind": "push",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Remolino · PT y alcance tácticos. Empuja una casilla sin causar daño; no expulsa de la batalla."
+    },
+    "wing-attack": {
+      "id": "wing-attack",
+      "name": "Ataque Ala",
+      "type": "flying",
+      "power": 60,
+      "category": "physical",
+      "accuracy": 100,
+      "cost": 2,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Ataque Ala · PT y alcance tácticos. "
+    },
+    "withdraw": {
+      "id": "withdraw",
+      "name": "Refugio",
+      "type": "water",
+      "power": 0,
+      "category": "status",
+      "accuracy": 100,
+      "cost": 1,
+      "range": 0,
+      "kind": "stages",
+      "target": "self",
+      "secondary": null,
+      "embers": false,
+      "changes": [
+        {
+          "stat": "defense",
+          "stages": 1
+        }
+      ],
+      "changesSelf": true,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Refugio · PT y alcance tácticos. Etapas: defense +1. Límite táctico -2/+2; dura el combate."
+    },
+    "wrap": {
+      "id": "wrap",
+      "name": "Constricción",
+      "type": "normal",
+      "power": 15,
+      "category": "physical",
+      "accuracy": 90,
+      "cost": 1,
+      "range": 1,
+      "kind": "damage",
+      "target": "enemy",
+      "secondary": null,
+      "embers": false,
+      "changes": [],
+      "changesSelf": false,
+      "changeChance": 100,
+      "recoil": 0,
+      "selfKO": false,
+      "clearStages": false,
+      "fixedMode": "",
+      "description": "Constricción · PT y alcance tácticos. Golpe único; sin inmovilización ni daño de atrapamiento."
+    }
+  },
+  "levelCap": 100,
+  "xpRewards": [
+    220,
+    350,
+    500,
+    650
+  ],
+  "enemyLevels": [
+    [
+      4
+    ],
+    [
+      6,
+      5
+    ],
+    [
+      8,
+      8,
+      7
+    ],
+    [
+      12,
+      14
+    ]
+  ],
+  "evolutions": {
+    "1": [
+      2,
+      16
+    ],
+    "2": [
+      3,
+      32
+    ],
+    "4": [
+      5,
+      16
+    ],
+    "5": [
+      6,
+      36
+    ],
+    "7": [
+      8,
+      16
+    ],
+    "8": [
+      9,
+      36
+    ],
+    "10": [
+      11,
+      7
+    ],
+    "11": [
+      12,
+      10
+    ],
+    "13": [
+      14,
+      7
+    ],
+    "14": [
+      15,
+      10
+    ],
+    "16": [
+      17,
+      18
+    ],
+    "17": [
+      18,
+      36
+    ],
+    "19": [
+      20,
+      20
+    ],
+    "25": [
+      26,
+      20
+    ],
+    "74": [
+      75,
+      25
+    ],
+    "75": [
+      76,
+      36
+    ],
+    "43": [
+      44,
+      21
+    ],
+    "69": [
+      70,
+      21
+    ]
+  },
+  "excludedPartnerMoves": [
+    "pika-papow",
+    "veevee-volley",
+    "zippy-zap",
+    "splishy-splash",
+    "floaty-fall",
+    "bouncy-bubble",
+    "buzzy-buzz",
+    "sizzly-slide",
+    "glitzy-glow",
+    "baddy-bad",
+    "sappy-seed",
+    "freezy-frost",
+    "sparkly-swirl"
+  ],
+  "stoneEvolutions": {
+    "44": [
+      45,
+      "leaf-stone"
+    ],
+    "70": [
+      71,
+      "leaf-stone"
+    ]
+  },
+  "encounters": {
+    "Route1": [
+      {
+        "speciesId": 16,
+        "minLevel": 3,
+        "maxLevel": 4,
+        "versions": [
+          31,
+          32
+        ],
+        "special": false
+      },
+      {
+        "speciesId": 19,
+        "minLevel": 3,
+        "maxLevel": 4,
+        "versions": [
+          31,
+          32
+        ],
+        "special": false
+      },
+      {
+        "speciesId": 43,
+        "minLevel": 3,
+        "maxLevel": 4,
+        "versions": [
+          31
+        ],
+        "special": false
+      },
+      {
+        "speciesId": 69,
+        "minLevel": 3,
+        "maxLevel": 4,
+        "versions": [
+          32
+        ],
+        "special": false
+      }
+    ],
+    "Route2": [
+      {
+        "speciesId": 10,
+        "minLevel": 3,
+        "maxLevel": 4,
+        "versions": [
+          31,
+          32
+        ],
+        "special": false
+      },
+      {
+        "speciesId": 13,
+        "minLevel": 3,
+        "maxLevel": 4,
+        "versions": [
+          31,
+          32
+        ],
+        "special": false
+      },
+      {
+        "speciesId": 16,
+        "minLevel": 3,
+        "maxLevel": 4,
+        "versions": [
+          31,
+          32
+        ],
+        "special": false
+      },
+      {
+        "speciesId": 19,
+        "minLevel": 3,
+        "maxLevel": 4,
+        "versions": [
+          31,
+          32
+        ],
+        "special": false
+      },
+      {
+        "speciesId": 43,
+        "minLevel": 3,
+        "maxLevel": 4,
+        "versions": [
+          31
+        ],
+        "special": false
+      },
+      {
+        "speciesId": 69,
+        "minLevel": 3,
+        "maxLevel": 4,
+        "versions": [
+          32
+        ],
+        "special": false
+      }
+    ],
+    "ViridianForest": [
+      {
+        "speciesId": 1,
+        "minLevel": 3,
+        "maxLevel": 6,
+        "versions": [
+          31,
+          32
+        ],
+        "special": true
+      },
+      {
+        "speciesId": 10,
+        "minLevel": 3,
+        "maxLevel": 6,
+        "versions": [
+          31,
+          32
+        ],
+        "special": false
+      },
+      {
+        "speciesId": 11,
+        "minLevel": 3,
+        "maxLevel": 6,
+        "versions": [
+          31,
+          32
+        ],
+        "special": false
+      },
+      {
+        "speciesId": 12,
+        "minLevel": 3,
+        "maxLevel": 6,
+        "versions": [
+          31
+        ],
+        "special": false
+      },
+      {
+        "speciesId": 13,
+        "minLevel": 3,
+        "maxLevel": 6,
+        "versions": [
+          31,
+          32
+        ],
+        "special": false
+      },
+      {
+        "speciesId": 14,
+        "minLevel": 3,
+        "maxLevel": 6,
+        "versions": [
+          31,
+          32
+        ],
+        "special": false
+      },
+      {
+        "speciesId": 15,
+        "minLevel": 3,
+        "maxLevel": 6,
+        "versions": [
+          32
+        ],
+        "special": false
+      },
+      {
+        "speciesId": 16,
+        "minLevel": 3,
+        "maxLevel": 6,
+        "versions": [
+          31,
+          32
+        ],
+        "special": false
+      },
+      {
+        "speciesId": 25,
+        "minLevel": 3,
+        "maxLevel": 6,
+        "versions": [
+          31,
+          32
+        ],
+        "special": false
+      },
+      {
+        "speciesId": 43,
+        "minLevel": 3,
+        "maxLevel": 6,
+        "versions": [
+          31
+        ],
+        "special": false
+      },
+      {
+        "speciesId": 69,
+        "minLevel": 3,
+        "maxLevel": 6,
+        "versions": [
+          32
+        ],
+        "special": false
+      }
+    ]
+  },
+  "encounterNote": "Unión de ambas ediciones. Especies y niveles LGPE terrestres; probabilidades tácticas: normales equiprobables, Bulbasaur especial 1%. Sin combos, señuelos ni apariciones aéreas posjuego."
+}

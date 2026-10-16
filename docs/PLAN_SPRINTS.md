@@ -398,3 +398,9 @@ El15 sigue pendiente: escala/cámara, evaluación de isometría/alturas. Quedan 
 Petición del16 de octubre: Caramelo25 ₽ por un nivel, evolución automática en sus umbrales con EXP o Caramelo; Beedrill/Demolición, Butterfree/Megaagotar al10 y Pikachu/Cola Férrea al7. El usuario confirma las adaptaciones Pikachu20/Graveler36. Edición4 conserva reglas1/2/3 y laboratorio. [Informe y comprobaciones](SPRINT_14_GROWTH.md).
 
 Amplía progresión mínima de16; no completa PC ni mapas/cámara/isometría de15, contenido de Kanto o balance. Publicación sigue pendiente por decisión del usuario.
+
+## Revisión0.14.4 — legibilidad, indicadores y Let’s Go
+
+Petición del16 de octubre: Atkinson Hyperlegible, indicadores de estados/etapas sobre unidades y en ambas fichas, encuentros y movimientos de Let’s Go. El usuario combina las dos ediciones y retira las excepciones anteriores.32 especies/12 líneas/104 movimientos, siete MT compatibles, Piedra Hoja para nuevas líneas; pesos de aparición y efectos tácticos explícitamente adaptados. Edición5 preserva1–4 y laboratorio. [Informe y comprobaciones](SPRINT_14_LETSGO.md).
+
+No inicia15 ni completa Kanto. Restan mapas/cámara/isometría/alturas, PC, pasivas, historia/Liga/legendarios y balance humano. La nueva pool y aprendizaje requieren revisar el arranque, especialmente Squirtle. Preparación local; publicación pendiente.

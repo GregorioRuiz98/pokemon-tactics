@@ -1,0 +1,1091 @@
+{
+  "spriteCommit": "6ad5f1c6229af6b055de2c64442e5e508664290c",
+  "pokeapiCommit": "81d20919845b6a445969b9265aab5cec6b04cece",
+  "fontsCommit": "66928797f271fed5ee428544e7229685e2d90127",
+  "authors": {
+    "43": [
+      "CHUNSOFT",
+      "Felis-Licht",
+      "ShyStarryRain"
+    ],
+    "44": [
+      "CHUNSOFT",
+      "chikorene"
+    ],
+    "45": [
+      "CHUNSOFT"
+    ],
+    "69": [
+      "<@!436940337865293834>",
+      "CHUNSOFT",
+      "baronessfaron"
+    ],
+    "70": [
+      "CHUNSOFT",
+      "G〜"
+    ],
+    "71": [
+      "CHUNSOFT"
+    ]
+  },
+  "files": [
+    {
+      "target": "assets/letsgo/43/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0043/AnimData.xml",
+      "sha256": "5dc2143cfa1be77b4e673cf26dd8297176706a780643e1aad1206511aa0e6b1c",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/43/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0043/credits.txt",
+      "sha256": "6a71d6853de76532d2f34ff5274492d723b5c6b10908de3ebd974f4c4dd0e778",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/43/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0043/Idle-Anim.png",
+      "sha256": "397c9fa07408241d9f1f8712cf4ed49a0d32bdc9d5f90b00b8eb3e12d1fc8de2",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/43/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0043/Idle-Anim.png",
+      "sha256": "f3b33cacd0a2a091eccb25ddf42263c6e7beae726e86ed35903f4f5bf9be257f",
+      "modification": "First down-facing frame cropped; no recoloring"
+    },
+    {
+      "target": "assets/letsgo/43/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0043/Walk-Anim.png",
+      "sha256": "9d8b24b29c664e9053c98f7712a94d0113e41342e742fab74de482c5304414fb",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/43/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0043/Normal.png",
+      "sha256": "3ef0142b454020481f3ee30961dff59a7c93d41198db26d77fd7831e4a1e3669",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/43/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0043/credits.txt",
+      "sha256": "421dbbf49f86596b506990560fdc558f69a5e3981c01eae546a17de95ede697c",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/44/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0044/AnimData.xml",
+      "sha256": "28c04e49ccc13db2f9249ca9f5064efdcfbd40a2849e7014d1e40883fe038a81",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/44/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0044/credits.txt",
+      "sha256": "bc32553aa544bb7776034d89e784c3c663fa4933599042032102cbb1a252ae72",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/44/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0044/Idle-Anim.png",
+      "sha256": "de83cf338ae5ef152a46eaec6505e8ff54b149230f9ac22eb875314f7adedfdd",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/44/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0044/Idle-Anim.png",
+      "sha256": "db1289f738455c0ee86bb9546d5ac6355db6061215462e46e95fdfdaebb51106",
+      "modification": "First down-facing frame cropped; no recoloring"
+    },
+    {
+      "target": "assets/letsgo/44/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0044/Walk-Anim.png",
+      "sha256": "127c937837a92d22b9ba31bdc7ea5478626c9b678c8c5e4fd6c2631307c07700",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/44/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0044/Normal.png",
+      "sha256": "3d73de0b4b00da9f7cd41856977ab6cec25d18c4a565ec2234f2cfa8b6924e41",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/44/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0044/credits.txt",
+      "sha256": "9e28d6b34fcccbd36ed0045be3808058426d87d56fa80ba1e2415f089a38c9c7",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/45/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0045/AnimData.xml",
+      "sha256": "823c51e1669e66db77c55a22d21f65f36a413f29ee4b46106df20b70a6a8e92f",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/45/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0045/credits.txt",
+      "sha256": "90a02e745847e5be1796b11a95e56a938de5d7212ffabb47d02c9c69aa7a9539",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/45/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0045/Idle-Anim.png",
+      "sha256": "4c7ab47238f80736b9318fbf8a1227acdf3f5fbf00772676c2e4039d44ef2ef2",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/45/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0045/Idle-Anim.png",
+      "sha256": "68c1bb7046a0948ff8ca2b8649c2f66b4489984e8a37b5b9da5e08876121daff",
+      "modification": "First down-facing frame cropped; no recoloring"
+    },
+    {
+      "target": "assets/letsgo/45/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0045/Walk-Anim.png",
+      "sha256": "259f42559a1592fbdf43e0c6da1730ed972aaecb0b5411024a2b7644db581e1e",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/45/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0045/Normal.png",
+      "sha256": "62d6195bbc92b0944896b0e270fe6fc842f9841ac113caffb2c94d2d6883b362",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/45/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0045/credits.txt",
+      "sha256": "0d45101e716478405021c8fd89d2eebbf28ec05292d192da680c8251df722a82",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/69/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0069/AnimData.xml",
+      "sha256": "46b2949173a08220b297edc097216e5305eec39b53958f3718f752019ef567c7",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/69/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0069/credits.txt",
+      "sha256": "42b8c134f4f2d0881356999a3b9a423107d9872f89f832a7305c51f3ca5dd846",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/69/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0069/Idle-Anim.png",
+      "sha256": "6cf172c29c31bbf8df296e61a855c36d543fdda9d7cb28e32e572852ed830172",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/69/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0069/Idle-Anim.png",
+      "sha256": "50b4aa6625794064cfc9d478240a0abf71d96741d3cc15ddce249b7b333a0b35",
+      "modification": "First down-facing frame cropped; no recoloring"
+    },
+    {
+      "target": "assets/letsgo/69/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0069/Walk-Anim.png",
+      "sha256": "fb97696bc3e3614d83f651723cdc8525d155a39f10b33f4de52aaa9cc5f93e93",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/69/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0069/Normal.png",
+      "sha256": "eea916baa38109b1a0fadf4d11191a49448c72a9e04f6f122e5aadedea7cb349",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/69/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0069/credits.txt",
+      "sha256": "7fc05e58da3a7de8f188f2e9bfafe28607b7a86d0f90d6795592dc3202b66957",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/70/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0070/AnimData.xml",
+      "sha256": "ccb3028928e33f3798405f1790ffccafe7d25f69809f6b15a7064638e7c75a96",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/70/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0070/credits.txt",
+      "sha256": "2c46d945eb7799658dae93f1a7967539f38dba8d0837a93a3734ac7676156e28",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/70/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0070/Idle-Anim.png",
+      "sha256": "e87f03d13f633d026a97e606c1db2d4eb6e490d96f9faccbb93bd2ef363be4c5",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/70/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0070/Idle-Anim.png",
+      "sha256": "04c0d4c0b5113ad00c190fcbac7e4e304542463c7d2553eee60b50f67e228963",
+      "modification": "First down-facing frame cropped; no recoloring"
+    },
+    {
+      "target": "assets/letsgo/70/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0070/Walk-Anim.png",
+      "sha256": "5ffeaf5af6a0e4180d52c82f2c005f67e85bb0c4b0df82f295b402c8a0c5f6b1",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/70/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0070/Normal.png",
+      "sha256": "ce472486bfcbdc19b8414fca12a0e6409dabbc5a4fabccdac8536d3267c0d0fb",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/70/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0070/credits.txt",
+      "sha256": "5ed82dfac9f5b2ccac4a27f356aad6f5df67496cb4af7e02823b4929d884208a",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/71/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0071/AnimData.xml",
+      "sha256": "bf7ae787812d390042adf47f4210ce273716b66e942d4abc24529c292f1d8516",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/71/credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0071/credits.txt",
+      "sha256": "a76fa5254ae54763e7901124d1da2f8f383962d3533cde445d0efde1f2c9c404",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/71/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0071/Idle-Anim.png",
+      "sha256": "7d25cccf2b28753ec97dc7e93f3cefc58e732b9460118ddb37cb9d203d1aa94c",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/71/thumbnail.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0071/Idle-Anim.png",
+      "sha256": "cb8c782542f6b2f8f73f4b5e2e2137e8936b4cb670323683fd41e079c4b31d80",
+      "modification": "First down-facing frame cropped; no recoloring"
+    },
+    {
+      "target": "assets/letsgo/71/Walk.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0071/Walk-Anim.png",
+      "sha256": "dfe143633931a28f6fcb22b2857875e40968ba068b3949fdfdc4bbb1f1a4de64",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/71/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0071/Normal.png",
+      "sha256": "65633999fcd16c417cf13b0ffb0aeb9bc971e78ef70ea550348cc24c30dbe08c",
+      "modification": "None"
+    },
+    {
+      "target": "assets/letsgo/71/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0071/credits.txt",
+      "sha256": "6bac7fc1a37971077c5f8c6ef0e92eb6adb158c4b447b052a7fc9f93242636c7",
+      "modification": "None"
+    },
+    {
+      "target": "assets/fonts/AtkinsonHyperlegible-Regular.ttf",
+      "source": "https://raw.githubusercontent.com/google/fonts/66928797f271fed5ee428544e7229685e2d90127/ofl/atkinsonhyperlegible/AtkinsonHyperlegible-Regular.ttf",
+      "sha256": "7fb917c89019896d0b52ee84b7cbb3304c18cb90b19a62f5e32712bd23e97669",
+      "modification": "None"
+    },
+    {
+      "target": "licenses/Atkinson-Hyperlegible-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/66928797f271fed5ee428544e7229685e2d90127/ofl/atkinsonhyperlegible/OFL.txt",
+      "sha256": "f32d22b3908fcad2c86a74000614ec22e6a7f66ea7e867e616026a27aebdc143",
+      "modification": "None"
+    },
+    {
+      "target": "data/letsgo.json",
+      "source": "LGPE data and explicit tactical adaptations; see letsgo-provenance.json",
+      "sha256": "069e73508254bde353fac7c6095586423c3c5037893a504a32d3e6b4f262cbfd",
+      "modification": "None"
+    },
+    {
+      "target": "data/letsgo-shop.json",
+      "source": "LGPE data and explicit tactical adaptations; see letsgo-provenance.json",
+      "sha256": "0d3f55e886e40f7c39e383d786ce1542b4384fb11705ac37ef434e5a912a15c2",
+      "modification": "None"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://pokeapi.co/api/v2/move/absorb",
+      "sha256": "c77aeffb4645e8dd52f976e50e87a5afb1a49eaa5c230e3b9b62bd3c57e14c0f"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/acid",
+      "sha256": "16228e9dca3e2163a608b60b6c1b31d41d1e50ff9f79e1ab7d96d1260fe007ff"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/agility",
+      "sha256": "5892e2ab3c33aa57449fa0eefb5624f29694cf46673c2458417abc3a6b8ae008"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/air-slash",
+      "sha256": "35ab09f46b5ec9858f4e2603a2a6eb7c03faf8dc907d2a8087bde235d3562173"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/amnesia",
+      "sha256": "776ef3ed46e622ad03d094bd8a29fae39381ade58d8ddd3b295f8d3988029277"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/aqua-jet",
+      "sha256": "e32879a897fdfde81a09135aac100c8c62e9b450b7b91ddfc2c18b4fed863867"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/bide",
+      "sha256": "25901a58e2fdc6401d1989b77d6a311b77bc8cfd375796a9927b71516d072ea8"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/bind",
+      "sha256": "d107e1fa64de080f63f0ce93649c0d598f477167229cb27454f3cc0c638f0638"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/bite",
+      "sha256": "d7d73dc6ac7b5fb3855e93cec924cabeaa478b2bd2b73587cb379f6e9bdf6ec0"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/brick-break",
+      "sha256": "687a3ae9ddb1a9726f1d1f71b79bcae261f5bad5ae4e26e911ed63a1642ecb2f"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/bubble",
+      "sha256": "5a1b4e03e3be2c63096f0388f3eb1cd364d4f90a0c7c9f6c777c17369a6b924b"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/bubble-beam",
+      "sha256": "adf846f4f4c52dc676b6f7e1df38921877f9a956efc689d6a6832264656fc034"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/bug-buzz",
+      "sha256": "267009f8aa7b2603bc3554d03aa15c3631c0f044bab27da8b5e5c7b73c98cced"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/clear-smog",
+      "sha256": "82ab2f693de4204a9bcc1a82a8d388ca3e6674a5d0246c9d4a91e3532478f840"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/confusion",
+      "sha256": "63305f2a8a78909a155b98b951ee3c5a524714cd2571a7df467e96529b26efb2"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/counter",
+      "sha256": "99f9cbcf349e25a7d0284e266142d8489615db3cd861439642bf6e355ecc3e7c"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/crunch",
+      "sha256": "5d200264560cd46ed8b93abddb8c52bf22c8e522cf8952958f72eb22b05194ad"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/defense-curl",
+      "sha256": "a1d203f4fb8eab485ba0ee7ef25808d18c60d8bbfd4c431c0dbc35cfb4c68cd9"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/dig",
+      "sha256": "d5366ab945c3f74901bccd47e345ce28b1ac785182a3cbbd7c653cbcff6bd019"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/double-edge",
+      "sha256": "905f66da2599756aba13584504f9cf5c3db3e8128d521d48eb1bb136467c57a0"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/double-kick",
+      "sha256": "dab0361938f80802b0f51939ffdef6e19bc8d906a830225b0e90885d43b492b5"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/double-team",
+      "sha256": "5b27c3ee16f7ede335f4b4d54e1566fad8a8bf66555129e87b18cff9dfbed7db"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/dragon-rage",
+      "sha256": "667e0120103e0a4f00aec5aa8ab634ffffbd0e647f319fd30b73058ba62bc0e4"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/earthquake",
+      "sha256": "50bf4486496f6723d5b199c20f2ee2a3d1b9c9de0c4b5d2a17d005af2b7879e0"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/ember",
+      "sha256": "6f4e0733d5ca5b35634a198e6f4d602da37d03066caa758f55ce6dc9956160a4"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/encore",
+      "sha256": "e140d6bbe7982fd7592df6c9d0dfc278d6543b6277b8ac3530b0d050decaf2ac"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/explosion",
+      "sha256": "a9189dcbd43d6dd0780d2ad3aa9ca3d3c92bbc591ef43128ec5a3b44aff6f86e"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/fake-out",
+      "sha256": "675ad3699ee2e53fb06fd4ef606d26c8e3c1243b28cef0764a83c525f4efd8a0"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/fire-spin",
+      "sha256": "dc446afe41551888dead711998dd243d309eb8709607077041d18d47a0c13f84"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/flamethrower",
+      "sha256": "31e81bd835108a45a70b4ae5ce088f1299fd82217fc0d83499fb3b8ceaaa50eb"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/flare-blitz",
+      "sha256": "abaa6b242e5ad08387a768910b4594fe033605ed88bfab314ecf05124c6d1ba2"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/flash-cannon",
+      "sha256": "a2072c7230f9a8b2785415e341e5b06879cb382c44e3bc3d7878e6471429d058"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/focus-energy",
+      "sha256": "9dfbfd90970bdc0e4fc96f58be9bf9af9caca4623d89a32871dc18c4cb6ef809"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/fury-attack",
+      "sha256": "6fa9ba02eb533df088d39cd8660c2d41c639ba9bbaf1f382cf9dfca6ba55ab73"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/fury-swipes",
+      "sha256": "d8ee54bd301ce763cb4349a0235baf90d0145b937a24ad3ee1de55294769791e"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/growl",
+      "sha256": "5001a2b9c84aa8b84b151dd3f0a54fa2c35c904768a5b41454b85f09e4d66f60"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/growth",
+      "sha256": "e13985c447c716604a6c6dd57dbebfec3bb3fe9def17a4d4c1eb68343a0ca21d"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/gust",
+      "sha256": "0718ef2050c2ea48245ae430d6ea1061d4c9a300d967610a999ba04d756a7621"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/harden",
+      "sha256": "fc24b28f7f5626fd6bebb71243d512d82c0192d4c8eac8359562c5acae010e98"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/headbutt",
+      "sha256": "a16ee553ea23922f61dbb098ef750bdf83fc6b76d29117d2240960e1f1a4a051"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/heat-wave",
+      "sha256": "70400a5c282f6c4b652ea8949680facfa6a99cda47aa134651f760cddeead24a"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/hydro-pump",
+      "sha256": "71c25b10bb994110e41db3c1481349f2b64a4010ae9a93ff3fb3f77e7d0a88a7"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/hyper-fang",
+      "sha256": "8ee2cc27655a15932348719cddca2eb40f972ef977c7c078062b75d11a6d7623"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/iron-tail",
+      "sha256": "a4b3fd2a0053dd0de9634a3d3a0dc534fc3dad0ffec9cf09c3b49e102239fe14"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/leech-life",
+      "sha256": "0153d8d4c2a4ec4f9b63a0147b83ea23c16985d91b97a8e0d47199f3dfd2dec6"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/leech-seed",
+      "sha256": "ba718423a5e2a6c4ea5e255f413c9cc1beab289b4255717e4982416a79015dcd"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/light-screen",
+      "sha256": "9e8dd64668510a98e8a920c8788b827e7940793ca8c4cb34055a6d327e7c0374"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/mega-drain",
+      "sha256": "c7a88644491421b879e43b96cd917551f3f20eea6c72200e764c5109c7098a8d"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/mega-punch",
+      "sha256": "91353cd1af852ee126e4eca7c8810e1f08f3424ef118a0dab2f503bcff725822"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/mirror-move",
+      "sha256": "f6406547904405a836d22dd3e840026cd78731e94883e61740eec010b7ec1a12"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/moonblast",
+      "sha256": "d8b4493cfdbd0f93b67e5166be80d066a1bb82a531bd8443d7205740695104e5"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/outrage",
+      "sha256": "d78bea404440fb0b50829ed2618ee527d48f6659a04078af3b1ec86b763048c1"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/peck",
+      "sha256": "575fa8de5566ce37ff499bbff4accef81b76ac94151a33c9ffcbe70220ef0fde"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/petal-dance",
+      "sha256": "a3bbc21b21157b2ca10b177051c8f86b9c25a4ec778bc63db8ddb4ea2e78743b"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/pin-missile",
+      "sha256": "c10c292c3a16f3ce54a00846cbdbcc9e10c59282f9a65382fadd8a604c3f6192"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/poison-jab",
+      "sha256": "76965d5baa19de267a6fa9c60627fe2b1cfc54e6d5395412dd88325df8c9f0d3"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/poison-powder",
+      "sha256": "9a8bde108c3dc5644bb7642758ebce5fc2113d95d4d091f4b116bfef734b757c"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/poison-sting",
+      "sha256": "2d207c73ead9ad4f44a6ec15a6906234fb3a599028c79d18f81116de229e91d6"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/power-whip",
+      "sha256": "db9adaec7d5b3c54ae7544782f44a040748d7dd293c9d6733213eee21393c1f2"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/protect",
+      "sha256": "01b049e2f0030c47cc7f15ae6542e33d8915f389e93689dc0feb602fcb185aa3"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/psybeam",
+      "sha256": "3869a8afdc3e9fa5cb48b40c69b43df02120ff14af13f29e56ab7ccf8ab83f7d"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/quick-attack",
+      "sha256": "08e1eaa2915032bc52b1fdc656c509a6148ef35a38f1fbe0c517be14862536d7"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/quiver-dance",
+      "sha256": "450223f20141bc5636fe27ecd7b0bd91d021eff09b28a0d656654f681cdb9766"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/rage",
+      "sha256": "a86211a56ef68a9aae6393f1f7f89d16ad01966ce9f8d4759dc9455d188700e7"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/razor-leaf",
+      "sha256": "5d8c981d97aa36733ee82e94bcdc3edd96635e0aba0547a4f92fc4cc345987c1"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/razor-wind",
+      "sha256": "1450df19df7d41e9d17d147e558861e2774cdc3304ca662d32b1a702fbd74666"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/rock-slide",
+      "sha256": "a1e098b9d4d05f871f6da1164779c2326f8f4a85f807e943c4813be7bf177c60"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/rock-throw",
+      "sha256": "9ad1cc3a9e05bb647369402a974341c490bd8288f102fc162ec8ededcae95850"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/roost",
+      "sha256": "67ef4cc01c51d87d890fd46f5507b37c175fa52262f4f01f6e315454e6f5a9ba"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/sand-attack",
+      "sha256": "52943f0e6e835a4de5701418d201a8e4dc43010b2e16b7409cfb001373fbf207"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/scald",
+      "sha256": "ec9de7d0b7bd845f2dadacd8397a258a98a40832d65536d43d44624d60094949"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/scratch",
+      "sha256": "7371293a613212ea30bbb7daf8de4ffaf7c3fd0f5d22d60b5bff706d4fb3c53b"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/screech",
+      "sha256": "5f8664f739dc045665ab9a439951e10686e767b48f653390fb3675f30ad75f6f"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/self-destruct",
+      "sha256": "e6add37361d1c8dff243e5679e64c0b854aeefb77e4272ba15721602d9ef52a8"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/skull-bash",
+      "sha256": "ac3e38d19e322958d323a6c52ce778e06dd1100a76f1f8dd3df95bd0d23c2844"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/sky-attack",
+      "sha256": "bd42b5680eef9732442ab0a32276ff017ed55121959b21d0d563c7372f2244ab"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/slam",
+      "sha256": "61f3220c1544ba735a031be905c10f2915038f209562728e3691c2efbde0f733"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/slash",
+      "sha256": "6a89d084d41ad927864375f3e1446d48b6a3d64093f227642c19bb14deeff299"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/sleep-powder",
+      "sha256": "ae8672b1db250522e7506574ec108be0f63227a32e8e874575da48ba1e8be1bb"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/smokescreen",
+      "sha256": "378192eb350e1120612687851e7f5b0c29d2beb661f2f44afdf995ed590a89bb"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/solar-beam",
+      "sha256": "67022d713ada6ff8b8ccc1c8f8f61783d95a750fb72b539186e0cce3f1e04022"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/stealth-rock",
+      "sha256": "ae427d47e48586f96b8090e4694ff73e63516f6b9c1bae47eda7fc27aefde48d"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/string-shot",
+      "sha256": "af598fee38cc35435156ab53db4f75a493e63bc2e8e6a0a4a842d79dea42e8c4"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/stun-spore",
+      "sha256": "a49cc3eb7b9cebd4cb77b17e69c8fe61d9c760a1cc9da0a1aa01240e63f51144"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/sucker-punch",
+      "sha256": "31d97d837b5f5ad7e678096bce8354f5406a59dc7aaf111ba413008f500253c2"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/super-fang",
+      "sha256": "777507a77c3a5606fdc7507ffe7787bcfc17f309a1170a6504e6c10366c5f8e9"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/supersonic",
+      "sha256": "e6c0225e95d59d61bc52589c4655f53433b38f95b140ed1033c98abd14e26261"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/swords-dance",
+      "sha256": "bd7e0ba4fa2a64861d72db3b937510bf69ffad5e9724660ef16762501c4cb16f"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/tackle",
+      "sha256": "e8af2fa50f91af7eece8cf6e7e19e93b8036e6b8a30f3a9bce41bb9dd526b123"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/tail-whip",
+      "sha256": "2e84534f89e28280393b4c71baef5d3e23ef413f38dfdd340afb394c958afc00"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/take-down",
+      "sha256": "dfb8fa09054af9f7d7867868d852ae3f43afb0d2077dd36f91d79129ec9e7b37"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/thunder",
+      "sha256": "fe03b13c7e3ffb2b8e1be69b50e8e21433b97163e6354609bbaed79f48547801"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/thunder-punch",
+      "sha256": "4c740df9a58250ca4affdee21596c791831fd25a05d2311815894d1fe4eb32e8"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/thunder-shock",
+      "sha256": "3d550e8e28a90fed5f4e4f81dc566eba1a4e86af6b982c69d39ae175fdcc24e4"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/thunder-wave",
+      "sha256": "3970b549c3385395d707688310726d24cc3b62047401d5b3391c8edeb17e4bb5"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/thunderbolt",
+      "sha256": "53622ac5bfa8c588777061abecf54f12db6e3c0274857e4c806f450ff14c372d"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/toxic",
+      "sha256": "35341e56662bd554db0a5a383a4794110e2446ee51c96cd6e65b73283d4bbec8"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/twineedle",
+      "sha256": "caaf06e93923fa66c17a29707b1783f4a8ac66b9d61f274c485e50dde73916e7"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/vine-whip",
+      "sha256": "1938f3bf7214c29bd8a50e8e7e6da84d0aadf0425fe756e582a939efc7d80604"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/water-gun",
+      "sha256": "5b73fddd63a577c330b449867246a8a04e7ca5ed059cfd2e6e4b8fd92f17b3c7"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/whirlwind",
+      "sha256": "e50f23319c3627a6c12c2fe5a08d787910e802eb9cad8ff64accfd36089fc292"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/wing-attack",
+      "sha256": "7870b075d543779ded5a37da7ef4677a331c6671a86345388e5363b357482bcf"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/withdraw",
+      "sha256": "e2adcb5bfd3dde3e1248e0d05b0dd8ec4194443e6db8d79747d289e1979b0283"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/wrap",
+      "sha256": "6447ba0bfb09ce7f9f81148b7be7220050e12a65b0a23fc1e637979bbbcc1352"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon-species/43",
+      "sha256": "b4cb176b6a1e582778321f2a1f1d2972a02a8c7eb87c920304e2da36d4cfd65b"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon-species/44",
+      "sha256": "c12d89f85a6203a212eb5a2b20e94d2e5acf333d2f0dc768c4bcc3ed07576320"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon-species/45",
+      "sha256": "548b491e37e50733d3b3f49e0bb1d515534ac6de5a1aa84953c5882ed3ee1ee6"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon-species/69",
+      "sha256": "bfc5414ae5ad5e0c6ec60e8783cfecb21e091e099a1d0124ef97764f621108be"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon-species/70",
+      "sha256": "b0c5a9ac3ca2e29a45c38e12b8ca596f37f7033168e124ab71ed2a1291812327"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon-species/71",
+      "sha256": "a5f62b581117a7f176b552faee974e6fe7a577886954fe9840f917d10a392c00"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/1",
+      "sha256": "365bbd36d6570728dc41c94809fc69f0fc79e33f032feef7c178dc6ae20da905"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/10",
+      "sha256": "e39d8ccf9e371654f2b120fd19425749f3877239285e3eaf06e0d259e40afab2"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/11",
+      "sha256": "014ba3a882e9b00d434ef6fae000375faa6152bb9898fd4cb40cb1003022379c"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/12",
+      "sha256": "3dd77a800131927bf695032c6573002619b63b6724d1819b8426ee64ad99d581"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/13",
+      "sha256": "678312eea8430435cc45ac09939b01298956f43123eac9838136a1138f1894c7"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/14",
+      "sha256": "aa3cb40e9c2c2594f9ed857ed9931e41bcb036e51c2fcc96108c3a984429fa03"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/15",
+      "sha256": "7c64441b7c88ba7b53f37fc5b21ece45bd055b3491d62014db4a325b2a8d18e9"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/16",
+      "sha256": "f58f19272fafdae2d7ced77e80835ecd778bd8d2bb48e22f7d049efeb8311032"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/17",
+      "sha256": "5425b84f445bb0a37441c9f30cb375e6a32471c184414fa32bf2d8f5d2f28b5a"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/18",
+      "sha256": "f61e7bc7c4cad68f446a046db774ada0f9bf37418f955697ef357ace7443f18f"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/19",
+      "sha256": "786c766559f105583e66f6f60b174701e3bc63f8c311f11b8c6ebce80e77c331"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/2",
+      "sha256": "cf6e5be37044783741dc216672218222d3ffc19f6cb5096a1ccd3b4a14d6a070"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/20",
+      "sha256": "37a28cd66db602f858d9708929c2aa81c628211c275b673fbd07c660b31b838d"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/25",
+      "sha256": "b964b99e20ec163d9f6a865de060992a637c01eb46500e7bf74bbff37886a0db"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/26",
+      "sha256": "2ed08182487f97e1ad0f404e9167f18b77ea4cef4463734bda4c9fb0d046a65f"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/3",
+      "sha256": "668c8d0394c8c6ba088e0ef6dbe0e1d565250d083e809ff8fda573d5329506d4"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/4",
+      "sha256": "7ad4a4fe18e8aee377bdc1b017dd53c2a94eb5dec1f8fbe4bd88361babd7f9b3"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/43",
+      "sha256": "8dcb760b8405e3ed0628a4763be122d0f45c369a8062befceb090707da6f7be8"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/44",
+      "sha256": "158f6e755c52d8fe0369aeebbc25fd5b918f32f9325e32b25c82c3259bcbc53b"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/45",
+      "sha256": "7ef8c91e39a144a7e0260f8829b07ab34153bd86ee1a64aecff1e0e68c429b50"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/5",
+      "sha256": "78237c3348513c0e67d496252238186f3a3d2d42803ef4cc2910491dd1734574"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/6",
+      "sha256": "2d638ac4be71a9da3d1e2236088b787a762d4628ed3dd0980e21b276743a3ee4"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/69",
+      "sha256": "d14ad8eeecac69cf3c652ab4ed6e8aecbaf2aee479b20d4d061241d418f9367b"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/7",
+      "sha256": "4599ef2969f961323ecf84e33a85750079f761f7e2cfb62e1232607716f978c2"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/70",
+      "sha256": "13ebcb9d6c0022ee75ff72a0ca1af5a9152085d8ccbbc012d71d7d3aeb0a6640"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/71",
+      "sha256": "0994d83147464b76fd472a1b2c880f72660f2e8bb3edb4ee3af8dc51758d7c45"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/74",
+      "sha256": "8f5444c4ce93701ed737f5ba7511468cedc6a48e4e4781060fceb03fc56b2933"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/75",
+      "sha256": "b3e5b6195c05c5ac2a234a7bdc60af671e0aa6894f631cda87d38f88a29ee3a0"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/76",
+      "sha256": "4bc4579fff41f1ebd0242927f68eed0d5e922af9c79f6112be0d0e876748ac77"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/8",
+      "sha256": "4055b0a689afe3324258b36981d06b32408afedc65e7d65a0e15f22952a63c9a"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/9",
+      "sha256": "62e56befcd52c7f90ff5107b2494c073847b4594f573b94c83c2df0971486028"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/95",
+      "sha256": "7a419a324a31e3bcad081fddadaa7e8ab9c1fb7f88b06824318acafedcf66c2a"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/credit_names.txt",
+      "sha256": "44c8c3d44716d87811767408b41c10851ec089ec9650d3ff62bd75a1157591f9"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0043/Normal.png",
+      "sha256": "3ef0142b454020481f3ee30961dff59a7c93d41198db26d77fd7831e4a1e3669"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0043/credits.txt",
+      "sha256": "421dbbf49f86596b506990560fdc558f69a5e3981c01eae546a17de95ede697c"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0044/Normal.png",
+      "sha256": "3d73de0b4b00da9f7cd41856977ab6cec25d18c4a565ec2234f2cfa8b6924e41"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0044/credits.txt",
+      "sha256": "9e28d6b34fcccbd36ed0045be3808058426d87d56fa80ba1e2415f089a38c9c7"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0045/Normal.png",
+      "sha256": "62d6195bbc92b0944896b0e270fe6fc842f9841ac113caffb2c94d2d6883b362"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0045/credits.txt",
+      "sha256": "0d45101e716478405021c8fd89d2eebbf28ec05292d192da680c8251df722a82"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0069/Normal.png",
+      "sha256": "eea916baa38109b1a0fadf4d11191a49448c72a9e04f6f122e5aadedea7cb349"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0069/credits.txt",
+      "sha256": "7fc05e58da3a7de8f188f2e9bfafe28607b7a86d0f90d6795592dc3202b66957"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0070/Normal.png",
+      "sha256": "ce472486bfcbdc19b8414fca12a0e6409dabbc5a4fabccdac8536d3267c0d0fb"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0070/credits.txt",
+      "sha256": "5ed82dfac9f5b2ccac4a27f356aad6f5df67496cb4af7e02823b4929d884208a"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0071/Normal.png",
+      "sha256": "65633999fcd16c417cf13b0ffb0aeb9bc971e78ef70ea550348cc24c30dbe08c"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0071/credits.txt",
+      "sha256": "6bac7fc1a37971077c5f8c6ef0e92eb6adb158c4b447b052a7fc9f93242636c7"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0043/AnimData.xml",
+      "sha256": "5dc2143cfa1be77b4e673cf26dd8297176706a780643e1aad1206511aa0e6b1c"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0043/Idle-Anim.png",
+      "sha256": "397c9fa07408241d9f1f8712cf4ed49a0d32bdc9d5f90b00b8eb3e12d1fc8de2"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0043/Idle-Shadow.png",
+      "sha256": "b07bb48ae056f1c6f015c4c0d182cf7325ae0db88a15ab3bcf089e86e0dee1de"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0043/Walk-Anim.png",
+      "sha256": "9d8b24b29c664e9053c98f7712a94d0113e41342e742fab74de482c5304414fb"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0043/Walk-Shadow.png",
+      "sha256": "e07f274100f92c94a33e4d1d11c81af02b0273cd5c3a2d472b2f60fcc203ed96"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0043/credits.txt",
+      "sha256": "6a71d6853de76532d2f34ff5274492d723b5c6b10908de3ebd974f4c4dd0e778"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0044/AnimData.xml",
+      "sha256": "28c04e49ccc13db2f9249ca9f5064efdcfbd40a2849e7014d1e40883fe038a81"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0044/Idle-Anim.png",
+      "sha256": "de83cf338ae5ef152a46eaec6505e8ff54b149230f9ac22eb875314f7adedfdd"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0044/Idle-Shadow.png",
+      "sha256": "78b51fc98fbc05747f4b1ee11f38a67a8475819fe5b5e2cd56804c62bc19cae5"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0044/Walk-Anim.png",
+      "sha256": "127c937837a92d22b9ba31bdc7ea5478626c9b678c8c5e4fd6c2631307c07700"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0044/Walk-Shadow.png",
+      "sha256": "986ed7e027135db592e146107bff26dac9ab00e787f7e4002bcca92696fc54b3"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0044/credits.txt",
+      "sha256": "bc32553aa544bb7776034d89e784c3c663fa4933599042032102cbb1a252ae72"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0045/AnimData.xml",
+      "sha256": "823c51e1669e66db77c55a22d21f65f36a413f29ee4b46106df20b70a6a8e92f"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0045/Idle-Anim.png",
+      "sha256": "4c7ab47238f80736b9318fbf8a1227acdf3f5fbf00772676c2e4039d44ef2ef2"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0045/Idle-Shadow.png",
+      "sha256": "1761a2d95973902f503550e3a332d223d43bfe2729e11811927a634321dc2c3a"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0045/Walk-Anim.png",
+      "sha256": "259f42559a1592fbdf43e0c6da1730ed972aaecb0b5411024a2b7644db581e1e"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0045/Walk-Shadow.png",
+      "sha256": "986ed7e027135db592e146107bff26dac9ab00e787f7e4002bcca92696fc54b3"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0045/credits.txt",
+      "sha256": "90a02e745847e5be1796b11a95e56a938de5d7212ffabb47d02c9c69aa7a9539"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0069/AnimData.xml",
+      "sha256": "46b2949173a08220b297edc097216e5305eec39b53958f3718f752019ef567c7"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0069/Idle-Anim.png",
+      "sha256": "6cf172c29c31bbf8df296e61a855c36d543fdda9d7cb28e32e572852ed830172"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0069/Idle-Shadow.png",
+      "sha256": "011747c99b3240c8032a6db3df2589fdcf15055e0aa918e6212d9f83c1d79934"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0069/Walk-Anim.png",
+      "sha256": "fb97696bc3e3614d83f651723cdc8525d155a39f10b33f4de52aaa9cc5f93e93"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0069/Walk-Shadow.png",
+      "sha256": "c0ba6d2d4ef8e26824dace9aca22a63c8cc4bd423ffa67d6755e5ad2ec6423d8"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0069/credits.txt",
+      "sha256": "42b8c134f4f2d0881356999a3b9a423107d9872f89f832a7305c51f3ca5dd846"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0070/AnimData.xml",
+      "sha256": "ccb3028928e33f3798405f1790ffccafe7d25f69809f6b15a7064638e7c75a96"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0070/Idle-Anim.png",
+      "sha256": "e87f03d13f633d026a97e606c1db2d4eb6e490d96f9faccbb93bd2ef363be4c5"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0070/Idle-Shadow.png",
+      "sha256": "986ed7e027135db592e146107bff26dac9ab00e787f7e4002bcca92696fc54b3"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0070/Walk-Anim.png",
+      "sha256": "5ffeaf5af6a0e4180d52c82f2c005f67e85bb0c4b0df82f295b402c8a0c5f6b1"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0070/Walk-Shadow.png",
+      "sha256": "986ed7e027135db592e146107bff26dac9ab00e787f7e4002bcca92696fc54b3"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0070/credits.txt",
+      "sha256": "2c46d945eb7799658dae93f1a7967539f38dba8d0837a93a3734ac7676156e28"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0071/AnimData.xml",
+      "sha256": "bf7ae787812d390042adf47f4210ce273716b66e942d4abc24529c292f1d8516"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0071/Idle-Anim.png",
+      "sha256": "7d25cccf2b28753ec97dc7e93f3cefc58e732b9460118ddb37cb9d203d1aa94c"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0071/Idle-Shadow.png",
+      "sha256": "ecb0676fbc0616bb026ff6d4d9daeef4cba631ceb9525f935b72045ffbe1dfa9"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0071/Walk-Anim.png",
+      "sha256": "dfe143633931a28f6fcb22b2857875e40968ba068b3949fdfdc4bbb1f1a4de64"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0071/Walk-Shadow.png",
+      "sha256": "bd4852e1670f77c84a8844685deb14474c14b06cb6ce41a55d0fe0014e2d4774"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0071/credits.txt",
+      "sha256": "a76fa5254ae54763e7901124d1da2f8f383962d3533cde445d0efde1f2c9c404"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/encounters.csv",
+      "sha256": "93ba8853ac871719d230a6406c91f8418754fdc773f2f4b9f476007f743b4955"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/machines.csv",
+      "sha256": "f9df7faaf0a60896fa344abd2b639f83f79c2a24e1fd4bb3560ca7da76e9a6ad"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/66928797f271fed5ee428544e7229685e2d90127/ofl/atkinsonhyperlegible/AtkinsonHyperlegible-Regular.ttf",
+      "sha256": "7fb917c89019896d0b52ee84b7cbb3304c18cb90b19a62f5e32712bd23e97669"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/66928797f271fed5ee428544e7229685e2d90127/ofl/atkinsonhyperlegible/OFL.txt",
+      "sha256": "f32d22b3908fcad2c86a74000614ec22e6a7f66ea7e867e616026a27aebdc143"
+    }
+  ]
+}

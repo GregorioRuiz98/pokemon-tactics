@@ -4,6 +4,7 @@ const Rules = preload("res://core/battle.gd")
 const Movement = preload("res://core/movement.gd")
 const Store = preload("res://core/save_store.gd")
 const Board = preload("res://ui/board.gd")
+const Indicators = preload("res://ui/unit_indicators.gd")
 const Revision = preload("res://core/movement_revision.gd")
 const Qa = preload("res://ui/qa_driver.gd")
 const CREAM = Color("eee8ce")
@@ -46,6 +47,8 @@ var details_text: Label
 var actor_portrait: TextureRect
 var actor_info: Label
 var target_info: Label
+var actor_indicators: Control
+var target_indicators: Control
 var heading: Label
 var hint: Label
 var saved: Label
@@ -95,7 +98,7 @@ func _boot():
 
 func _make_theme():
 	theme = Theme.new()
-	theme.default_font = load("res://assets/fonts/PixelifySans.ttf")
+	theme.default_font = load("res://assets/fonts/AtkinsonHyperlegible-Regular.ttf")
 	theme.default_font_size = 18
 	theme.set_color("font_color", "Label", CREAM)
 	theme.set_color("font_color", "Button", CREAM)
@@ -231,9 +234,11 @@ func _build_interface() -> void:
 	command_content.add_child(buttons.cancel)
 	var actor_panel: PanelContainer = _panel()
 	_pin(actor_panel, overlay, Control.PRESET_BOTTOM_LEFT, Vector2(360, 162))
+	var actor_details: VBoxContainer = VBoxContainer.new()
+	actor_panel.add_child(actor_details)
 	var actor_row: HBoxContainer = HBoxContainer.new()
 	actor_row.add_theme_constant_override("separation", 16)
-	actor_panel.add_child(actor_row)
+	actor_details.add_child(actor_row)
 	actor_portrait = _portrait(Vector2(104, 104))
 	actor_row.add_child(actor_portrait)
 	var vitals: VBoxContainer = VBoxContainer.new()
@@ -241,6 +246,8 @@ func _build_interface() -> void:
 	actor_row.add_child(vitals)
 	actor_info = _label("Elige un ensayo.", 18, GOLD)
 	vitals.add_child(actor_info)
+	actor_indicators = Indicators.new()
+	actor_details.add_child(actor_indicators)
 	actor_hp = ProgressBar.new()
 	actor_hp.show_percentage = false
 	actor_hp.custom_minimum_size.y = 10
@@ -275,7 +282,12 @@ func _build_interface() -> void:
 	target_info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	target_info.custom_minimum_size.x = 250
 	target_info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	target_scroll.add_child(target_info)
+	var target_details: VBoxContainer = VBoxContainer.new()
+	target_details.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	target_scroll.add_child(target_details)
+	target_indicators = Indicators.new()
+	target_details.add_child(target_indicators)
+	target_details.add_child(target_info)
 
 func _portrait(dimensions: Vector2) -> TextureRect:
 	var image: TextureRect = TextureRect.new()
@@ -477,6 +489,8 @@ func _refresh():
 	actions.visible = action_page and pending.is_empty()
 	command_heading.text = "HABILIDADES" if action_page else ("ORIENTACIÓN" if selecting == "finish" else ("CONFIRMAR" if not pending.is_empty() else ("OBJETIVO" if selecting == "attack" else "ÓRDENES")))
 	target_panel.visible = false
+	actor_indicators.show_unit({})
+	target_indicators.show_unit({})
 	buttons.actions.disabled = not _player_turn() or state.get("acted", false)
 	buttons.undo.disabled = not _can_rectify()
 	buttons.undo.tooltip_text = "Vuelve a la casilla anterior. Solo antes de actuar." if not buttons.undo.disabled else "Solo disponible después de moverte y antes de actuar."
@@ -510,6 +524,7 @@ func _refresh():
 		board.queue_redraw()
 		return
 	var actor = Rules.active(state)
+	actor_indicators.show_unit(actor)
 	actor_portrait.texture = faces[int(actor.speciesId)]
 	actor_hp.max_value = actor.maxHp
 	actor_hp.value = actor.hp
@@ -569,6 +584,7 @@ func _friendly_risk(plan: Dictionary) -> bool:
 	return plan.hits.any(func(hit): return Rules.unit_by_id(state, int(hit.targetId)).team == "ally" and (hit.damage > 0 or hit.status != null))
 
 func _show_plan(unit: Dictionary, plan: Dictionary):
+	target_indicators.show_unit(unit)
 	target_panel.visible = true
 	target_portrait.texture = faces[int(unit.speciesId)]
 	target_info.text = "%s · %d / %d PS\n%s" % [unit.name + (" · Nv. %d" % unit.level if unit.has("level") else ""), unit.hp, unit.maxHp, _type_names(unit.types)]
@@ -582,7 +598,10 @@ func _show_plan(unit: Dictionary, plan: Dictionary):
 	if plan.get("statChange") != null: target_info.text += "\n%s: %s%d etapas" % [{"attack":"Ataque","defense":"Defensa","speed":"Velocidad"}.get(plan.statChange.stat,plan.statChange.stat),"+" if plan.statChange.stages > 0 else "",plan.statChange.stages]
 	if plan.side != null: target_info.text += " · " + {"front": "frente", "flank": "flanco", "rear": "espalda"}[plan.side]
 	if plan.heal: target_info.text += "\nRecupera %d PS" % plan.heal
-	if plan.get("recoil",0)>0: target_info.text += "\nVidaesfera: −%d PS propios si causa daño" % plan.recoil
+	if plan.get("recoil",0)>0: target_info.text += "\nCoste propio previsto: −%d PS" % plan.recoil
+	for change: Dictionary in plan.get("changes",[]): target_info.text += "\n%s: %s%d etapas%s" % [Indicators.STATS[change.stat][1],"+" if change.stages>0 else "",change.stages," propias" if plan.get("changesSelf",false) else ""]
+	if plan.has("volatile"): target_info.text += "\n%s: %d %% · %d turnos" % [_status_name(plan.volatile.kind),plan.volatile.chance,plan.volatile.duration]
+	if plan.get("clearStages",false): target_info.text += "\nElimina las etapas de atributos del objetivo."
 	if plan.guard: target_info.text += "\nProtege hasta su próximo turno."
 	if plan.status != null: target_info.text += "\n%s: %d %% · %d turnos" % [_status_name(plan.status.kind), plan.status.chance, plan.status.duration]
 	if plan.push != null: target_info.text += "\nEmpuja a " + Rules.coordinate(plan.push)
@@ -612,6 +631,7 @@ func _hover_tile(point: Dictionary):
 		if _player_turn() and not state.acted:
 			_show_plan(unit, rules.attack_plan(state, int(unit.id), {}, selected_action))
 		else:
+			target_indicators.show_unit(unit)
 			target_info.text = "%s · %d / %d PS\n%s\n%d PT · velocidad %d\n%s" % [unit.name, unit.hp, unit.maxHp, _type_names(unit.types), unit.tp, unit.speed, _status_name(unit.status.kind) if unit.status != null else "Sin estado"]
 	elif board.available.has(Movement.key(point)):
 		target_panel.visible = false
@@ -720,7 +740,7 @@ func _toggle_motion():
 	menu.get_popup().set_item_checked(menu.get_popup().get_item_index(5), not reduced_motion)
 
 func _status_name(kind: String) -> String:
-	return {"burn": "Quemadura", "poison": "Veneno", "paralysis": "Parálisis"}.get(kind, kind)
+	return {"burn":"Quemadura","poison":"Veneno","paralysis":"Parálisis","sleep":"Sueño","freeze":"Congelación","confusion":"Confusión","seed":"Drenadoras"}.get(kind,kind)
 
 func _type_names(types: Array) -> String:
 	return " / ".join(types.map(func(type): return TYPE_NAMES.get(type, type)))

@@ -1,0 +1,170 @@
+[
+  {
+    "cleared": 2,
+    "commands": 210,
+    "phase": "defeat",
+    "seed": "kanto-14",
+    "starter": 1
+  },
+  {
+    "cleared": 2,
+    "commands": 222,
+    "phase": "defeat",
+    "seed": "lgpe-1",
+    "starter": 1
+  },
+  {
+    "cleared": 2,
+    "commands": 177,
+    "phase": "defeat",
+    "seed": "lgpe-2",
+    "starter": 1
+  },
+  {
+    "cleared": 2,
+    "commands": 149,
+    "phase": "defeat",
+    "seed": "lgpe-3",
+    "starter": 1
+  },
+  {
+    "cleared": 0,
+    "commands": 40,
+    "phase": "defeat",
+    "seed": "lgpe-4",
+    "starter": 1
+  },
+  {
+    "cleared": 1,
+    "commands": 100,
+    "phase": "defeat",
+    "seed": "lgpe-5",
+    "starter": 1
+  },
+  {
+    "cleared": 2,
+    "commands": 243,
+    "phase": "defeat",
+    "seed": "lgpe-6",
+    "starter": 1
+  },
+  {
+    "cleared": 2,
+    "commands": 242,
+    "phase": "defeat",
+    "seed": "lgpe-7",
+    "starter": 1
+  },
+  {
+    "cleared": 2,
+    "commands": 177,
+    "phase": "defeat",
+    "seed": "lgpe-8",
+    "starter": 1
+  },
+  {
+    "cleared": 4,
+    "commands": 283,
+    "phase": "complete",
+    "seed": "lgpe-9",
+    "starter": 1
+  },
+  {
+    "cleared": 2,
+    "commands": 192,
+    "phase": "defeat",
+    "seed": "kanto-14",
+    "starter": 4
+  },
+  {
+    "cleared": 4,
+    "commands": 304,
+    "phase": "complete",
+    "seed": "lgpe-1",
+    "starter": 4
+  },
+  {
+    "cleared": 0,
+    "commands": 22,
+    "phase": "defeat",
+    "seed": "kanto-14",
+    "starter": 7
+  },
+  {
+    "cleared": 0,
+    "commands": 18,
+    "phase": "defeat",
+    "seed": "lgpe-1",
+    "starter": 7
+  },
+  {
+    "cleared": 0,
+    "commands": 34,
+    "phase": "defeat",
+    "seed": "lgpe-2",
+    "starter": 7
+  },
+  {
+    "cleared": 0,
+    "commands": 13,
+    "phase": "defeat",
+    "seed": "lgpe-3",
+    "starter": 7
+  },
+  {
+    "cleared": 0,
+    "commands": 40,
+    "phase": "defeat",
+    "seed": "lgpe-4",
+    "starter": 7
+  },
+  {
+    "cleared": 0,
+    "commands": 26,
+    "phase": "defeat",
+    "seed": "lgpe-5",
+    "starter": 7
+  },
+  {
+    "cleared": 0,
+    "commands": 22,
+    "phase": "defeat",
+    "seed": "lgpe-6",
+    "starter": 7
+  },
+  {
+    "cleared": 0,
+    "commands": 34,
+    "phase": "defeat",
+    "seed": "lgpe-7",
+    "starter": 7
+  },
+  {
+    "cleared": 0,
+    "commands": 26,
+    "phase": "defeat",
+    "seed": "lgpe-8",
+    "starter": 7
+  },
+  {
+    "cleared": 0,
+    "commands": 28,
+    "phase": "defeat",
+    "seed": "lgpe-9",
+    "starter": 7
+  },
+  {
+    "cleared": 1,
+    "commands": 108,
+    "phase": "defeat",
+    "seed": "lgpe-10",
+    "starter": 7
+  },
+  {
+    "cleared": 0,
+    "commands": 22,
+    "phase": "defeat",
+    "seed": "lgpe-11",
+    "starter": 7
+  }
+]

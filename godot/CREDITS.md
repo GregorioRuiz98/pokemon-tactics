@@ -75,3 +75,21 @@ shop.json añade Demolición y compatibilidad de seis MT por entradas de aprendi
 ## Crecimiento — 0.14.3
 
 No se importan activos ni datos externos nuevos. growth.json y growth.gd son configuración/lógica de este proyecto: Caramelo25, evolución automática, Pikachu Cola Férrea7 y aprendizajes de Beedrill/Butterfree. Se reutilizan los52 movimientos y26 especies con su procedencia ya registrada, los retratos/sprites y el jingle de nivel existentes. Pikachu20/Graveler36 son adaptaciones expresamente confirmadas; los aprendizajes nuevos no se presentan como una copia del cartucho.
+
+
+## Legibilidad y Let’s Go — 0.14.4
+
+Atkinson Hyperlegible Regular, Braille Institute of America, SIL Open Font License1.1. Archivo original sin modificar del repositorio google/fonts, commit66928797f271fed5ee428544e7229685e2d90127; licencia completa en licenses/Atkinson-Hyperlegible-OFL.txt. Fuente/hash en letsgo-provenance.json. Pixelify se conserva con sus créditos para procedencia anterior.
+
+Seis especies adicionales con Idle/Walk y retrato Normal de SpriteCollab, commit6ad5f1c6229af6b055de2c64442e5e508664290c. Hojas/retratos originales intactos; miniaturas recortadas declaradas. Créditos completos sin modificar junto a cada recurso en assets/letsgo/ID. Autores de sprites/retratos combinados:
+
+| Especie | Autores registrados |
+| --- | --- |
+|43|CHUNSOFT, Felis-Licht, ShyStarryRain|
+|44|CHUNSOFT, chikorene|
+|45|CHUNSOFT|
+|69|<@!436940337865293834>, CHUNSOFT, baronessfaron|
+|70|CHUNSOFT, G〜|
+|71|CHUNSOFT|
+
+Aprendizajes/compatibilidad por grupo Let’s Go en PokéAPI y encuentros/máquinas del CSV fijado81d20919845b6a445969b9265aab5cec6b04cece. Nombres, tipos, potencia y categorías factuales; alcance/PT/efectos tácticos y pesos de aparición propios explicados en docs/SPRINT_14_LETSGO.md. letsgo-provenance.json registra46 archivos derivados/originales con hashes y respuestas de origen. Importador explícito import-letsgo.py, sin consultas al jugar. Indicadores vectoriales dibujados por este proyecto; no se importan packs adicionales ni se alteran sonidos existentes.

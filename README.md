@@ -1,10 +1,10 @@
 # Pokémon Tactics
 
-Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: muestra de Kanto Windows 0.14.3 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
+Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: muestra de Kanto Windows 0.14.4 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
 
-**Muestra nativa disponible:** elige un inicial de Oak y juega Ruta 1 → Ruta 2 → Bosque Verde → Brock, con capturas locales, EXP/niveles, cuatro movimientos más básico neutro, evolución automática y Caramelos de +1 nivel por25 ₽, tres ofertas de MT/equipables con rerolls crecientes y guardado persistente. Brock concede su Onix. El ejecutable funciona offline, sin editor ni Node. Conserva el laboratorio anterior. [Cómo jugar/abrir Godot](godot/README.md) · [Niveles y evolución automática](docs/SPRINT_14_GROWTH.md).
+**Muestra nativa disponible:** elige un inicial de Oak y juega Ruta 1 → Ruta 2 → Bosque Verde → Brock, con capturas locales, EXP/niveles, cuatro movimientos más básico neutro, evolución automática y Caramelos de +1 nivel por25 ₽, tres ofertas de MT/equipables con rerolls crecientes y guardado persistente. Brock concede su Onix. El ejecutable funciona offline, sin editor ni Node. Conserva el laboratorio anterior. [Cómo jugar/abrir Godot](godot/README.md) · [Let’s Go, indicadores y comprobaciones](docs/SPRINT_14_LETSGO.md).
 
-Mapas de prueba 12×10 y 26 especies, diez líneas con dos orientaciones de rol. Fallo e inmunidad tienen señales distintas. [Reglas y propuestas tácticas](docs/DESIGN_LEVELS_ROLES.md). Balance provisional; la campaña larga, isometría/alturas, mapas amplios, PC y Liga/postgame se desarrollarán por etapas. [Requisitos](PRODUCT.md#campaña-de-kanto--requisitos-confirmados) · [Sprints siguientes](docs/PLAN_SPRINTS.md#11-siguiente-etapa-kanto-y-ejecutable). La versión web mantiene sus reglas y guardados.
+Mapas de prueba 12×10 y 32 especies, doce líneas con dos orientaciones de rol. Fallo e inmunidad tienen señales distintas. [Reglas y propuestas tácticas](docs/DESIGN_LEVELS_ROLES.md). Balance provisional; la campaña larga, isometría/alturas, mapas amplios, PC y Liga/postgame se desarrollarán por etapas. [Requisitos](PRODUCT.md#campaña-de-kanto--requisitos-confirmados) · [Sprints siguientes](docs/PLAN_SPRINTS.md#11-siguiente-etapa-kanto-y-ejecutable). La versión web mantiene sus reglas y guardados.
 
 ![Elección de inicial en Oak](docs/qa/sprint-14-progression/native-oak.png)
 

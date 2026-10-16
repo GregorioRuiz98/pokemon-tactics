@@ -169,3 +169,10 @@ Guardado conserva oferta, compras, coste y PRNG de tienda separado del de captur
 El usuario sustituye expresamente el Caramelo que evoluciona por Caramelo que compra un nivel más barato. La evolución ocurre al alcanzar el umbral, por EXP o Caramelo, sin consumir otro objeto. Confirma mantener por ahora Pikachu20 y Graveler36 como umbrales adaptados. Pide Demolición al evolucionar a Beedrill, Megaagotar al evolucionar a Butterfree y Cola Férrea temprana para Pikachu.
 
 Edición4: Caramelo25 ₽ por +1 nivel, uso en tienda, conservando EXP parcial y PS. Tope100, sin revivir. Umbrales normales de las líneas existentes; insectos7/10 y primeros iniciales16. Movimientos de evolución al10, Pikachu al7 como decisión provisional. Hasta4 preparados+básico; si no hay hueco se aprende en biblioteca sin sustituir otros. Se retiran botón/orden de evolución manual para nuevas partidas. Nueva campaña para reglas4;1/2/3 conservadas con copia. Tienda/MT/equipables y premio Onix sin otros cambios. Balance humano pendiente, sin iniciar15.
+
+
+### Legibilidad y catálogo Let’s Go — 16 de octubre, 0.14.4
+
+El usuario pide una letra con cifras legibles e iconos de estados/subidas/bajadas sobre las unidades y en sus fichas. Confirma combinar las especies de ambas ediciones de Let’s Go Pikachu/Eevee y usar primero sus aprendizajes, retirando los ajustes personalizados de Demolición/Megaagotar al evolucionar los insectos y Cola Férrea7. Excluir movimientos exclusivos de los iniciales especiales. Edición5 aplica estas tablas a las zonas implementadas; no significa campaña completa.
+
+Atkinson Hyperlegible, indicadores compartidos,32 especies/104 movimientos y siete MT LGPE. Se mantienen PT/alcance y traducciones tácticas explícitas, equipables y Caramelo25/+1 nivel. Oddish/Bellsprout21, Piedra Hoja para etapas finales; umbrales adaptados Pikachu20/Golem36 confirmados conservados. Probabilidades propias provisionales porque los datos de encuentros no incluyen porcentajes LGPE. Balance posterior, sin iniciar15. Ver docs/SPRINT_14_LETSGO.md.

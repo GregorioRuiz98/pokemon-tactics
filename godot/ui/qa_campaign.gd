@@ -24,7 +24,7 @@ func button(app: Control, key: String) -> void:
 	check(not app.travel_buttons[key].disabled,"Enabled travel control " + key)
 	app.travel_buttons[key].pressed.emit()
 
-func shop(app: Control) -> void:
+func heal(app: Control) -> void:
 	for entry: Dictionary in app.run.party:
 		if entry.hp <= 0: continue
 		app._select_member(int(entry.id))
@@ -34,6 +34,9 @@ func shop(app: Control) -> void:
 			if app.run.bag.potion == 0: break
 			button(app,"heal_potion")
 			member = app.campaign.target(app.run,int(entry.id))
+
+func shop(app: Control) -> void:
+	if app.run.get("edition",1)<5: heal(app)
 	if app.run.get("edition",1) >= 2:
 		for entry: Dictionary in app.run.party:
 			if entry.hp <= 0: continue
@@ -59,7 +62,8 @@ func shop(app: Control) -> void:
 					check(current.level==level+1 and current.hp==hp and current.xp==xp,"UI candy grants one level without healing or discarding partial EXP")
 				if int(current.speciesId) in [12,15]:
 					var coverage: String = "mega-drain" if current.speciesId==12 else "brick-break"
-					check(coverage in current.knownMoves,"Evolution coverage is learned through real candy UI")
+					if app.run.get("edition",1)<5: check(coverage in current.knownMoves,"Evolution coverage is learned through real candy UI")
+					else: check(not coverage in current.knownMoves,"LGPE evolution does not grant former custom coverage")
 					captured.growth = true
 			elif not requirement.is_empty() and entry.level >= requirement.level:
 				if app.run.bag["rare-candy"] == 0 and app.run.money >= 100: button(app,"buy_rare-candy")
@@ -78,7 +82,11 @@ func shop(app: Control) -> void:
 				check(not app.travel_buttons["move_"+extra].disabled,"Removing one unlocks a free slot")
 				app.travel_buttons["move_"+extra].toggled.emit(true)
 				check(app.campaign.target(app.run,int(entry.id)).moves.size()==4 and app.run.money==money,"Four freely mixed moves cost no money")
+				if app.run.get("edition",1)>=5:
+					app.travel_buttons["move_"+extra].toggled.emit(false)
+					app.travel_buttons["move_"+old].toggled.emit(true)
 				captured.loadout = true
+		if app.run.get("edition",1)>=5: heal(app)
 		app._select_member(1)
 		return
 	app._select_member(1)
@@ -101,7 +109,7 @@ func run(app: Control, directory: String) -> void:
 	var completed: Array = []
 	for starter: int in [1,4,7]:
 		app._show_oak()
-		app.journey_seed.text = "kanto-14"
+		app.journey_seed.text = "lgpe-9" if starter==1 else "kanto-14"
 		button(app,"starter"+str(starter))
 		check(app.run.party.size() == 1 and app.run.party[0].speciesId == starter,"Single chosen Oak starter")
 		for step: int in 1000:
@@ -192,7 +200,9 @@ func run(app: Control, directory: String) -> void:
 					check(app.travel_buttons.stock_0.disabled,"Purchased offer visibly sold out")
 					button(app,"use_tm-brick-break")
 					check("brick-break" in app.run.party[0].knownMoves and app.run.bag["tm-brick-break"]==0,"UI teaches and consumes compatible MT")
-				if starter==7 and app.run.stage==3: await _shop_controls(app,directory)
+				if app.run.stage==3 and not captured.has("shop_controls"):
+					await _shop_controls(app,directory)
+					captured.shop_controls = true
 				if not captured.has("shop"):
 					app.message = ""
 					app._refresh()
@@ -232,9 +242,10 @@ func run(app: Control, directory: String) -> void:
 	check(captured.has("miss"),"Natural attack failure displayed with dedicated image/audio")
 	check(captured.has("five"),"Five action menu exercised")
 	check(captured.has("loadout"),"Real UI swaps a learned move without exceeding four slots")
-	check(captured.has("growth"),"Real UI reaches bug evolution with learned coverage before Brock")
+	if app.run.get("edition",1)<5: check(captured.has("growth"),"Real UI reaches bug evolution with learned coverage before Brock")
 	await _immune_preview(app,directory)
 	await _orb_preview(app,directory)
+	if app.run.get("edition",1)>=5: await _indicator_preview(app,directory)
 	await _legacy_preview(app,directory)
 	var output: Dictionary = {"assertions":assertions,"completed":completed,"playerOrders":player_orders,"screenshots":captures,"failures":failures}
 	var file: FileAccess = FileAccess.open(directory.path_join("campaign-ui-result.json"),FileAccess.WRITE)
@@ -281,7 +292,8 @@ func _immune_preview(app: Control, directory: String) -> void:
 func _shop_controls(app: Control, directory: String) -> void:
 	check(app.run.party[-1].speciesId==95 and app.run.party[-1].level==14,"Brock recruited Onix at ace level through real UI journey")
 	app.message = ""
-	app._select_member(1)
+	var selected: int = app.run.party.filter(func(m):return m.hp>0)[0].id
+	app._select_member(selected)
 	await capture(app,directory,"10-three-offers")
 	var old: Dictionary = app.run.duplicate(true)
 	app._refresh()
@@ -300,12 +312,12 @@ func _shop_controls(app: Control, directory: String) -> void:
 		if item.kind=="held" and app.run.money>=item.price:
 			button(app,"stock_"+str(i))
 			button(app,"use_"+identity)
-			check(app.run.party[0].heldItem==identity and app.run.bag[identity]==0,"UI equips one held item from bag")
+			check(app.campaign.target(app.run,selected).heldItem==identity and app.run.bag[identity]==0,"UI equips one held item from bag")
 			button(app,"unequip")
-			check(app.run.party[0].heldItem==null and app.run.bag[identity]==1,"UI returns unequipped item to bag")
+			check(app.campaign.target(app.run,selected).heldItem==null and app.run.bag[identity]==1,"UI returns unequipped item to bag")
 			button(app,"use_"+identity)
 			break
-	check(app.run.party[0].get("heldItem")!=null,"Held item UI exercised with real purchases")
+	check(app.campaign.target(app.run,selected).get("heldItem")!=null,"Held item UI exercised with real purchases")
 	await capture(app,directory,"10-equipped")
 	DisplayServer.window_set_size(Vector2i(1024,720))
 	await app.get_tree().process_frame
@@ -334,12 +346,55 @@ func _orb_preview(app: Control, directory: String) -> void:
 	app.run.battle = result.state
 	app._refresh()
 	app._show_plan(result.state.units[1],plan)
-	check("Vidaesfera" in app.target_info.text,"Prevision explicitly shows Life Orb's own HP cost")
+	check("Coste propio previsto" in app.target_info.text,"Prevision explicitly shows own HP cost")
 	app.combat_feedback.present(fixture,plan,result.hits)
 	check("recoil" in app.combat_feedback.last_kinds,"Real recoil receipt has visual feedback")
 	await capture(app,directory,"11-life-orb")
 	app.run = original
 	app.combat_feedback.clear()
+	app._refresh()
+
+func _indicator_preview(app: Control, directory: String) -> void:
+	var original: Dictionary = app.run
+	var fixture: Dictionary = app.rules.encounter(app.campaign.create("indicators-ui",4),app.campaign.locations[0])
+	var actor: Dictionary = fixture.units[0]
+	var target: Dictionary = fixture.units[1]
+	actor.maxHp = 1230
+	actor.hp = 1023
+	actor.status = {"kind":"burn","remaining":2}
+	for change: Dictionary in [{"stat":"attack","stages":1},{"stat":"defense","stages":-1},{"stat":"specialAttack","stages":1},{"stat":"specialDefense","stages":-2},{"stat":"speed","stages":2},{"stat":"accuracy","stages":1},{"stat":"evasion","stages":-1}]: app.rules._change(actor,change)
+	target.status = {"kind":"poison","remaining":3}
+	app.rules._change(target,{"stat":"defense","stages":-2})
+	app.rules._change(target,{"stat":"speed","stages":1})
+	fixture.queue = [1,10000]
+	var before: Dictionary = fixture.duplicate(true)
+	app.run = original.duplicate(true)
+	app.run.phase = "battle"
+	app.run.stage = 0
+	app.run.battle = fixture
+	app._refresh()
+	app._hover_tile(target)
+	check(app.actor_indicators.items.size()==8 and app.target_indicators.items.size()==3,"Both information cards show all actual conditions and signed stat changes")
+	check(app.theme.default_font.resource_path.ends_with("AtkinsonHyperlegible-Regular.ttf"),"Readable numeric font active")
+	check("1023 / 1230" in app.actor_info.text,"Four-digit HP remains visible")
+	await capture(app,directory,"13-indicators")
+	DisplayServer.window_set_size(Vector2i(1024,720))
+	await app.get_tree().process_frame
+	await app.get_tree().process_frame
+	app._hover_tile(target)
+	await capture(app,directory,"13-indicators-small")
+	check(Store.equivalent(fixture,before),"Drawing/hovering badges and resizing consumes no RNG or tactical state")
+	actor.status = null
+	actor.stages.clear()
+	target.status = null
+	target.stages.clear()
+	app._refresh()
+	app._hover_tile(target)
+	check(app.actor_indicators.items.is_empty() and app.target_indicators.items.is_empty(),"Expired/reset modifiers remove stale card icons")
+	DisplayServer.window_set_size(Vector2i(1280,900))
+	await app.get_tree().process_frame
+	await app.get_tree().process_frame
+	app.run = original
 	app._refresh()
 
 func _legacy_preview(app: Control, directory: String) -> void:

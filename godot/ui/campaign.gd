@@ -1,7 +1,7 @@
 extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
-const Advanced = preload("res://core/growth_run.gd")
+const Advanced = preload("res://core/letsgo_run.gd")
 const CampaignStore = preload("res://core/kanto_store.gd")
 var campaign: RefCounted = Advanced.new()
 var last_presentation: Dictionary = {}
@@ -102,7 +102,7 @@ func _load_game() -> void:
 	run = result.state
 	transactions = result.commands
 	save_warning = ""
-	message = "Campaña recuperada." if run.get("edition",1) == 4 else "Partida clásica %s: conserva sus reglas. Nueva campaña para probar Caramelos y evolución automática." % _classic_version()
+	message = "Campaña recuperada." if run.get("edition",1) == 5 else "Partida clásica %s: conserva sus reglas. Nueva campaña para las tablas de Let’s Go." % _classic_version()
 	pending = {}
 	selecting = "auto"
 	action_page = false
@@ -191,7 +191,7 @@ func _render_travel() -> void:
 	header.add_child(_button("Laboratorio",func(): _menu_selected(7)))
 	header.add_child(_button("Ayuda",func(): help_dialog.popup_centered(Vector2i(630,450))))
 	var classic: String = ""
-	if not run.is_empty() and run.get("edition",1)<4: classic = "Clásica %s: Nueva campaña para Caramelos y evolución automática." % _classic_version()
+	if not run.is_empty() and run.get("edition",1)<5: classic = "Clásica %s: Nueva campaña para encuentros y aprendizaje de Let’s Go." % _classic_version()
 	var status: Label = _label(save_warning if not save_warning.is_empty() else (message if not message.is_empty() else (classic if not classic.is_empty() else "Guardado automático local · bajas definitivas")),17,MUTED)
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	travel_content.add_child(status)
@@ -279,6 +279,10 @@ func _render_travel() -> void:
 			for item: String in consumables:
 				var button: Button = _travel_button("buy_"+item,"Comprar %s · %d ₽" % [consumables[item].name,consumables[item].price],narrative,{"kind":"buy","item":item})
 				button.disabled = run.money < consumables[item].price
+			if run.get("edition",1)>=5:
+				var stone: Button = _travel_button("buy_leaf-stone","Comprar Piedra Hoja · 80 ₽",narrative,{"kind":"buy-stone"})
+				stone.disabled = run.money<80
+				stone.tooltip_text = "Evoluciona Gloom y Weepinbell. No cura ni sube niveles."
 			_travel_button("continue","Seguir viaje" if run.stage < 3 else "Cerrar el tramo",narrative,{"kind":"continue"})
 		"complete": text.text = "Has vencido a Geodude y Onix. Conservas tu equipo, dinero, objetos y bajas.\n\nLa muestra termina en Brock. Las siguientes rutas, Liga y legendarios pertenecen a otros sprints."
 		"defeat": text.text = "Las bajas son definitivas. Esta campaña ha terminado y queda guardada para consultar el equipo.\n\nPuedes comenzar de nuevo con otro inicial o semilla."
@@ -331,6 +335,10 @@ func _render_travel() -> void:
 			var evolution_label: Label = _label("Evolución automática: %s · Nv. %d" % [rules.profiles[int(automatic.speciesId)].data.name,automatic.level] if not automatic.is_empty() else "Sin otra evolución de Kanto",17,MUTED)
 			evolution_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			team.add_child(evolution_label)
+			if run.get("edition",1)>=5 and campaign.progression.data.stoneEvolutions.has(str(int(selected.speciesId))):
+				evolution_label.text = "Evolución con Piedra Hoja · bolsa: %d" % run.bag["leaf-stone"]
+				var stone: Button = _travel_button("stone","Usar Piedra Hoja",team,{"kind":"stone","member":selected_member})
+				stone.disabled = selected.hp<=0 or run.bag["leaf-stone"]<=0
 			_render_moves(team,selected)
 			return
 		var evolve: Button = _travel_button("evolve","Evolucionar · 1 Caramelo Raro",team,{"kind":"evolve","member":selected_member})
@@ -397,6 +405,7 @@ func _render_moves(parent: VBoxContainer, member: Dictionary) -> void:
 		travel_buttons["move_"+identity] = button
 	var pending_moves: Array = []
 	for entry: Dictionary in study.families[int(member.speciesId)].learnset:
+		if run.get("edition",1)>=5 and (entry.level<=member.level or not entry.forms.any(func(id):return int(id)==int(member.speciesId))): continue
 		if entry.id not in member.knownMoves:
 			pending_moves.append("%s · Nv. %d%s" % [study.data.moves[entry.id].name,entry.level," · tras evolucionar" if not entry.forms.any(func(id):return int(id)==int(member.speciesId)) else ""])
 	var pending_label: Label = _label("Próximos: " + "; ".join(pending_moves.slice(0,3)),16,MUTED)
@@ -412,11 +421,11 @@ func _toggle_move(enabled: bool, member_id: int, identity: String, revision: int
 
 func _default_hint() -> String:
 	var classic: String = ""
-	if not run.is_empty() and run.get("edition",1)<4: classic = "Clásica %s: menú → Nueva campaña para evolución automática.\n" % _classic_version()
+	if not run.is_empty() and run.get("edition",1)<5: classic = "Clásica %s: menú → Nueva campaña para Let’s Go.\n" % _classic_version()
 	return classic + super._default_hint()
 
 func _classic_version() -> String:
-	return {1:"0.14",2:"0.14.1",3:"0.14.2"}.get(int(run.get("edition",1)),"0.14")
+	return {1:"0.14",2:"0.14.1",3:"0.14.2",4:"0.14.3"}.get(int(run.get("edition",1)),"0.14")
 
 func _render_stock(parent: VBoxContainer) -> void:
 	parent.add_child(_label("OFERTAS · MT Y EQUIPO",21,GOLD))

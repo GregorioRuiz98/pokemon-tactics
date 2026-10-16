@@ -1,5 +1,7 @@
 extends Control
 
+const Indicators = preload("res://ui/unit_indicators.gd")
+
 signal tile_selected(point: Dictionary)
 signal tile_hovered(point: Dictionary)
 signal cancelled
@@ -158,7 +160,16 @@ func _draw():
 			if facing_preview >= 0:
 				var vector = Vector2(Rules.VECTORS[facing_preview])
 				draw_line(c, c + vector * cell * 0.65, Color("f3d286"), 4)
-		if unit.status != null: draw_circle(c + Vector2(cell * 0.28, -cell * 0.25), 4, Color("e9c2f1"))
+	# Indicators are drawn after every sprite, so tall neighbours cannot cover them.
+	for unit: Dictionary in state.units:
+		if unit.hp<=0: continue
+		var badges: Array = Indicators.entries(unit)
+		var columns: int = mini(2,badges.size())
+		if columns==0: continue
+		var rows: int = int(ceil(badges.size()/float(columns)))
+		var start: Vector2 = center(unit)+Vector2(-columns*18,maxf(-cell*0.52-rows*15,origin.y+2-center(unit).y))
+		for i: int in badges.size():
+			Indicators.draw_badge(self,Rect2(start+Vector2((i%columns)*36,(i/columns)*15),Vector2(34,14)),badges[i],font,10,true)
 	var cursor_rect = Rect2(origin + Vector2(cursor) * cell + Vector2(2, 2), Vector2.ONE * (cell - 4))
 	draw_rect(cursor_rect, Color("f3d286"), false, 2)
 	for index in dimensions().x:
