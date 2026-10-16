@@ -1,7 +1,7 @@
 extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
-const Advanced = preload("res://core/vitality_run.gd")
+const Advanced = preload("res://core/gym_run.gd")
 const CampaignStore = preload("res://core/kanto_store.gd")
 var campaign: RefCounted = Advanced.new()
 var last_presentation: Dictionary = {}
@@ -102,7 +102,7 @@ func _load_game() -> void:
 	run = result.state
 	transactions = result.commands
 	save_warning = ""
-	message = "Campaña recuperada." if run.get("edition",1) == 7 else "Partida clásica %s: conserva sus reglas. Nueva campaña para recuperar el aumento de PS al subir de nivel." % _classic_version()
+	message = "Campaña recuperada." if run.get("edition",1) == 8 else "Partida clásica %s: conserva sus reglas. Nueva campaña para límites de nivel por gimnasio." % _classic_version()
 	pending = {}
 	selecting = "auto"
 	action_page = false
@@ -191,10 +191,16 @@ func _render_travel() -> void:
 	header.add_child(_button("Laboratorio",func(): _menu_selected(7)))
 	header.add_child(_button("Ayuda",func(): help_dialog.popup_centered(Vector2i(630,450))))
 	var classic: String = ""
-	if not run.is_empty() and run.get("edition",1)<7: classic = "Clásica %s: Nueva campaña para recuperar el aumento de PS al subir de nivel." % _classic_version()
+	if not run.is_empty() and run.get("edition",1)<8: classic = "Clásica %s: Nueva campaña para límites de nivel por gimnasio." % _classic_version()
 	var status: Label = _label(save_warning if not save_warning.is_empty() else (message if not message.is_empty() else (classic if not classic.is_empty() else "Guardado automático local · bajas definitivas")),17,MUTED)
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	travel_content.add_child(status)
+	if not run.is_empty() and run.get("edition",1)>=8:
+		var limit: Dictionary = campaign.gym_limit(run)
+		var limit_label: Label = _label("Límite Nv. %d · %s (%s). Al alcanzar el límite no se acumula EXP." % [limit.level,limit.leader,rules.profiles[int(limit.speciesId)].data.name],17,GOLD)
+		limit_label.name = "GymLevelCap"
+		limit_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		travel_content.add_child(limit_label)
 	if run.is_empty():
 		travel_content.add_child(_label("Pueblo Paleta · Laboratorio de Oak",30,GOLD))
 		travel_content.add_child(_label("Elige un inicial de nivel 5. Gana EXP, aprende y combina cuatro movimientos\nmás el básico neutro. Oak te entrega dos pociones y 120 ₽.",20))
@@ -333,6 +339,10 @@ func _render_travel() -> void:
 			candy.disabled = selected.hp<=0 or selected.level>=campaign.progression.data.levelCap or run.bag["rare-candy"]<=0
 			candy.tooltip_text = "Conserva EXP parcial y PS actuales. La evolución ocurre automáticamente al alcanzar su nivel."
 			if run.get("edition",1)>=7: candy.tooltip_text = "Conserva EXP parcial. Recupera el aumento de PS máximos, incluida la evolución automática al subir de nivel."
+			if run.get("edition",1)>=8:
+				var cap: int = campaign.level_cap(run)
+				candy.disabled = candy.disabled or selected.level>=cap
+				candy.tooltip_text += " Límite actual: nivel %d. No se puede usar al alcanzarlo; la EXP parcial se descarta al llegar al límite." % cap
 			var automatic: Dictionary = campaign.progression.evolution(selected)
 			var evolution_label: Label = _label("Evolución automática: %s · Nv. %d" % [rules.profiles[int(automatic.speciesId)].data.name,automatic.level] if not automatic.is_empty() else "Sin otra evolución de Kanto",17,MUTED)
 			evolution_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -377,6 +387,7 @@ func _progress_summary() -> String:
 		var text: String = "%s: +%d EXP" % [entry.name,entry.xp]
 		if entry.level > entry.before: text += " · Nv. %d → %d" % [entry.before,entry.level]
 		if entry.get("hpGain",0)>0: text += " · +%d PS" % entry.hpGain
+		if entry.get("xpDiscarded",0)>0: text += " · %d EXP no acumulada (límite)" % entry.xpDiscarded
 		for evolution: Dictionary in entry.get("evolutions",[]): text += " · %s → %s" % [rules.profiles[int(evolution.from)].data.name,rules.profiles[int(evolution.to)].data.name]
 		if not entry.learned.is_empty(): text += " · aprende " + ", ".join(entry.learned.map(func(id):return campaign.progression.data.moves[id].name))
 		lines.append(text)
@@ -384,7 +395,10 @@ func _progress_summary() -> String:
 
 func _render_moves(parent: VBoxContainer, member: Dictionary) -> void:
 	var study: RefCounted = campaign.progression
-	parent.add_child(_label("Nv. %d · EXP %d / %d" % [member.level,member.xp,study.next_xp(member.level)],20,GOLD))
+	var at_cap: bool = run.get("edition",1)>=8 and member.level>=campaign.level_cap(run)
+	var experience: Label = _label("Nv. %d · Límite alcanzado · EXP detenida" % member.level if at_cap else "Nv. %d · EXP %d / %d" % [member.level,member.xp,study.next_xp(member.level)],20,GOLD)
+	experience.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	parent.add_child(experience)
 	var bar: ProgressBar = ProgressBar.new()
 	bar.max_value = study.next_xp(member.level)
 	bar.value = member.xp
@@ -424,11 +438,11 @@ func _toggle_move(enabled: bool, member_id: int, identity: String, revision: int
 
 func _default_hint() -> String:
 	var classic: String = ""
-	if not run.is_empty() and run.get("edition",1)<7: classic = "Clásica %s: menú → Nueva campaña para recuperar el aumento de PS al subir de nivel.\n" % _classic_version()
+	if not run.is_empty() and run.get("edition",1)<8: classic = "Clásica %s: menú → Nueva campaña para límites de nivel por gimnasio.\n" % _classic_version()
 	return classic + super._default_hint()
 
 func _classic_version() -> String:
-	return {1:"0.14",2:"0.14.1",3:"0.14.2",4:"0.14.3",5:"0.14.4",6:"0.14.5"}.get(int(run.get("edition",1)),"0.14")
+	return {1:"0.14",2:"0.14.1",3:"0.14.2",4:"0.14.3",5:"0.14.4",6:"0.14.5",7:"0.14.6"}.get(int(run.get("edition",1)),"0.14")
 
 func _render_stock(parent: VBoxContainer) -> void:
 	parent.add_child(_label("OFERTAS · MT Y EQUIPO",21,GOLD))

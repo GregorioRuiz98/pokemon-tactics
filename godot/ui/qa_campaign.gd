@@ -313,6 +313,18 @@ func _immune_preview(app: Control, directory: String) -> void:
 
 func _shop_controls(app: Control, directory: String) -> void:
 	check(app.run.party[-1].speciesId==95 and app.run.party[-1].level==14,"Brock recruited Onix at ace level through real UI journey")
+	if app.run.get("edition",1)>=8:
+		app._select_member(int(app.run.party[-1].id))
+		if app.run.bag["rare-candy"]==0: button(app,"buy_rare-candy")
+		var limit_label: Label = app.find_child("GymLevelCap",true,false)
+		check(limit_label!=null and "14" in limit_label.text and "Onix" in limit_label.text,"UI explains the cap and its gym ace")
+		check(app.run.bag["rare-candy"]>0 and app.travel_buttons["level-up"].disabled,"Candy stays disabled at cap even when the bag contains candy")
+		var capped: Dictionary = app.run.duplicate(true)
+		app.travel_buttons["level-up"].pressed.emit()
+		check(Store.equivalent(capped,app.run),"A disabled or stale candy callback cannot consume resources or exceed the cap")
+		await capture(app,directory,"17-gym-level-cap")
+		app._load_game()
+		check(app.save_warning.is_empty() and Store.equivalent(capped,app.run),"Cap, level, EXP and candy survive exact journal replay")
 	app.message = ""
 	var selected: int = app.run.party.filter(func(m):return m.hp>0)[0].id
 	app._select_member(selected)

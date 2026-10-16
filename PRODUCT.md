@@ -187,3 +187,7 @@ Edición6: críticos×1,5, prototipos descritos por movimiento, atributos/estado
 ### PS al subir de nivel — 16 de octubre, 0.14.6
 
 El usuario pide sumar a los PS actuales el aumento de PS máximos de cada subida. Edición7 aplica la diferencia por EXP y Caramelo, incluida la evolución al subir, conservando los PS que faltaban. Ejemplo:20/30 pasa a23/33. No revive bajas ni cura por EXP sin subir o por piedra sola. Archivos anteriores conservan su edición. Ver docs/SPRINT_14_LEVEL_HP.md.
+
+### Límite de nivel por gimnasio — 16 de octubre, 0.14.7
+
+El usuario pide que ningún miembro supere al insignia del siguiente gimnasio. Edición8 aplica el cap a EXP y Caramelos, calculado desde el líder pendiente: Brock/Onix14 en la muestra. Al llegar se descarta la EXP sobrante y no se acumula; Caramelo bloqueado sin gasto. Vencer al líder desbloquea el próximo cap si existe, también para su recompensa de EXP; al terminar la muestra se conserva14. No se implementa más historia. PS por subida se mantienen; guardados anteriores conservan edición. Ver docs/SPRINT_14_GYM_CAPS.md.

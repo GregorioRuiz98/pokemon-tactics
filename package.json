@@ -41,6 +41,7 @@
     "godot:test:growth": "node tools/godot/run.mjs test-growth",
     "godot:test:letsgo": "node tools/godot/run.mjs test-letsgo",
     "godot:test:letsgo:journey": "node tools/godot/run.mjs test-letsgo-journey",
+    "godot:test:gym-caps": "node tools/godot/run.mjs test-gym-caps",
     "godot:test:level-hp": "node tools/godot/run.mjs test-level-hp",
     "godot:test:tactics": "node tools/godot/run.mjs test-tactics",
     "godot:test:tactics:journey": "node tools/godot/run.mjs test-tactics-journey"

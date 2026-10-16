@@ -414,3 +414,7 @@ Amplía mecánicas del14, sin iniciar15 ni modificar el balance general por otro
 ## Revisión0.14.6 — PS al subir de nivel
 
 Ajuste puntual del14: edición7 suma a los PS actuales el aumento de PS máximos por EXP o Caramelo, incluida la evolución automática. No revive bajas. Tienda/recibo muestran la regla. Reglas y guardados1–6 conservados; no inicia15. [Comprobaciones y entrega](SPRINT_14_LEVEL_HP.md).
+
+## Revisión0.14.7 — límite por gimnasio
+
+Edición8 limita EXP y Caramelos al nivel del insignia del próximo líder pendiente: Brock/Onix14. No acumular EXP al tope ni gastar Caramelo bloqueado; PS por subida conservados. Al vencer, cap del siguiente gimnasio cuando exista; muestra sigue acabando en Brock con14. Reglas/guardados1–7 conservados. [Informe y comprobaciones](SPRINT_14_GYM_CAPS.md). No inicia15 ni publica.

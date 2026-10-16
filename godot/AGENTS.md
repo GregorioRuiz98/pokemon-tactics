@@ -58,3 +58,8 @@
 
 - Edición7 en vitality_study/run: PS actuales += aumento positivo de PS máximos al subir por EXP o Caramelo, incluida evolución automática. Conserva déficit de PS, EXP parcial, equipable y repertorio; no cura sin subida ni revive bajas. Piedra sola sigue sin curar. Estudio compartido por campaña/motor/perfiles; sin cambios a fórmulas tácticas.
 - KantoStore selecciona1–7 sin convertir guardados. UI usa7 para nuevas campañas, recibo +N PS y texto de tienda actualizado. godot:test:level-hp comprueba crecimiento, transacciones y compatibilidad; QA campaña fuente/ejecutable. Paquete0.14.6 fuera de Git. Ver docs/SPRINT_14_LEVEL_HP.md. No iniciar15 ni publicar.
+
+## Revisión vigente — 0.14.7
+
+- gym_study/run heredan7; edición8. Cap calculado con ace del primer líder no presente en cleared, límite global100 como techo técnico. Brock/Onix14 es el único gimnasio implementado; al finalizar se conserva14. EXP aceptada limitada al coste restante, sobrante descartado; al llegar, EXP0. Caramelo al cap rechazado sin tocar bolsa/revisión/RNG; UI bloqueada y etiqueta del líder/insignia.
+- Al vencer un líder, su EXP usa el siguiente cap si existe. Crecimiento de PS, evolución/aprendizaje y equipo se conservan; captura no excede el cap. Catálogo y módulos1–7 congelados, KantoStore1–8. godot:test:gym-caps, test:level-hp/test:tactics y QA campaña fuente/ejecutable. Ver docs/SPRINT_14_GYM_CAPS.md; paquete0.14.7 fuera de Git. No iniciar15 ni publicar.
