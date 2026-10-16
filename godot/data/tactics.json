@@ -1,0 +1,13 @@
+{
+  "edition": 6,
+  "duration": 3,
+  "minimumRoll": 85,
+  "criticalMultiplier": 1.5,
+  "criticalChances": [0.041666666666666664, 0.125, 0.5, 1.0],
+  "highCritical": ["razor-leaf", "razor-wind", "sky-attack", "slash"],
+  "alwaysCritical": ["slash", "hyper-fang"],
+  "approach": {"quick-attack": 2, "aqua-jet": 2, "sucker-punch": 2, "wing-attack": 1},
+  "push": {"headbutt": 1, "slam": 1, "whirlwind": 1},
+  "neverMiss": ["clear-smog", "stealth-rock", "whirlwind"],
+  "moveCosts": {"slash": 3, "hyper-fang": 3, "quick-attack": 2, "aqua-jet": 2, "sucker-punch": 3, "wing-attack": 2}
+}

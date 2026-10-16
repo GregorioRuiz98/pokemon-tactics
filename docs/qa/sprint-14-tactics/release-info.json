@@ -1,0 +1,9 @@
+{
+  "version": "0.14.5",
+  "exeSha256": "5adedd13e02dbdc57c8ef19b548a3382f236bd6cdbde9ed065038af66f825130",
+  "exeBytes": 110532360,
+  "zipSha256": "43129fe55b99aca18c4989cb2edcf66ee4767fc090ab28102318c5c33f137fa4",
+  "zipBytes": 38781034,
+  "embeddedExeVerified": true,
+  "offlineQAWithoutEditor": true
+}

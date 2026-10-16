@@ -404,3 +404,9 @@ Amplía progresión mínima de16; no completa PC ni mapas/cámara/isometría de1
 Petición del16 de octubre: Atkinson Hyperlegible, indicadores de estados/etapas sobre unidades y en ambas fichas, encuentros y movimientos de Let’s Go. El usuario combina las dos ediciones y retira las excepciones anteriores.32 especies/12 líneas/104 movimientos, siete MT compatibles, Piedra Hoja para nuevas líneas; pesos de aparición y efectos tácticos explícitamente adaptados. Edición5 preserva1–4 y laboratorio. [Informe y comprobaciones](SPRINT_14_LETSGO.md).
 
 No inicia15 ni completa Kanto. Restan mapas/cámara/isometría/alturas, PC, pasivas, historia/Liga/legendarios y balance humano. La nueva pool y aprendizaje requieren revisar el arranque, especialmente Squirtle. Preparación local; publicación pendiente.
+
+## Revisión0.14.5 — orientación y estados temporales
+
+Precisión sin penalización direccional; frente usa mitad baja del daño, costado alta, espalda máximo y+1 crítico. Críticos, acercamientos y empujes mediante movimientos del catálogo LGPE. Usuario confirma atributos/estados3 activaciones; parálisis afecta solo movimiento, mejoras más caras y marcadores+1/+2. Edición6 conserva1–5 y laboratorio. [Reglas, prototipos y comprobaciones](SPRINT_14_TACTICS.md).
+
+Amplía mecánicas del14, sin iniciar15 ni modificar el balance general por otro motivo. Siguen pendientes escala/cámara/isometría/alturas, PC, resto de Kanto y balance humano de los nuevos prototipos. Publicación pendiente por decisión del usuario.

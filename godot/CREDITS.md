@@ -93,3 +93,8 @@ Seis especies adicionales con Idle/Walk y retrato Normal de SpriteCollab, commit
 |71|CHUNSOFT|
 
 Aprendizajes/compatibilidad por grupo Let’s Go en PokéAPI y encuentros/máquinas del CSV fijado81d20919845b6a445969b9265aab5cec6b04cece. Nombres, tipos, potencia y categorías factuales; alcance/PT/efectos tácticos y pesos de aparición propios explicados en docs/SPRINT_14_LETSGO.md. letsgo-provenance.json registra46 archivos derivados/originales con hashes y respuestas de origen. Importador explícito import-letsgo.py, sin consultas al jugar. Indicadores vectoriales dibujados por este proyecto; no se importan packs adicionales ni se alteran sonidos existentes.
+
+
+## Reglas tácticas — 0.14.5
+
+Sin nuevos activos externos. Se reutilizan tipografía, sprites/retratos, sonidos y datos LGPE ya atribuidos. Tablas factuales de probabilidad/daño crítico moderno contrastadas en https://github.com/smogon/pokemon-showdown/blob/master/sim/battle-actions.ts; no se incorpora código de ese proyecto. Reglas de orientación, temporalidad, costes y prototipos de movilidad son implementación de este proyecto en tactics_*.gd/data/tactics.json.

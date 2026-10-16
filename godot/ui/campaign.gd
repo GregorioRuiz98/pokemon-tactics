@@ -1,7 +1,7 @@
 extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
-const Advanced = preload("res://core/letsgo_run.gd")
+const Advanced = preload("res://core/tactics_run.gd")
 const CampaignStore = preload("res://core/kanto_store.gd")
 var campaign: RefCounted = Advanced.new()
 var last_presentation: Dictionary = {}
@@ -102,7 +102,7 @@ func _load_game() -> void:
 	run = result.state
 	transactions = result.commands
 	save_warning = ""
-	message = "Campaña recuperada." if run.get("edition",1) == 5 else "Partida clásica %s: conserva sus reglas. Nueva campaña para las tablas de Let’s Go." % _classic_version()
+	message = "Campaña recuperada." if run.get("edition",1) == 6 else "Partida clásica %s: conserva sus reglas. Nueva campaña para daño direccional y críticos." % _classic_version()
 	pending = {}
 	selecting = "auto"
 	action_page = false
@@ -191,7 +191,7 @@ func _render_travel() -> void:
 	header.add_child(_button("Laboratorio",func(): _menu_selected(7)))
 	header.add_child(_button("Ayuda",func(): help_dialog.popup_centered(Vector2i(630,450))))
 	var classic: String = ""
-	if not run.is_empty() and run.get("edition",1)<5: classic = "Clásica %s: Nueva campaña para encuentros y aprendizaje de Let’s Go." % _classic_version()
+	if not run.is_empty() and run.get("edition",1)<6: classic = "Clásica %s: Nueva campaña para daño direccional y críticos." % _classic_version()
 	var status: Label = _label(save_warning if not save_warning.is_empty() else (message if not message.is_empty() else (classic if not classic.is_empty() else "Guardado automático local · bajas definitivas")),17,MUTED)
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	travel_content.add_child(status)
@@ -421,11 +421,11 @@ func _toggle_move(enabled: bool, member_id: int, identity: String, revision: int
 
 func _default_hint() -> String:
 	var classic: String = ""
-	if not run.is_empty() and run.get("edition",1)<5: classic = "Clásica %s: menú → Nueva campaña para Let’s Go.\n" % _classic_version()
+	if not run.is_empty() and run.get("edition",1)<6: classic = "Clásica %s: menú → Nueva campaña para daño direccional y críticos.\n" % _classic_version()
 	return classic + super._default_hint()
 
 func _classic_version() -> String:
-	return {1:"0.14",2:"0.14.1",3:"0.14.2",4:"0.14.3"}.get(int(run.get("edition",1)),"0.14")
+	return {1:"0.14",2:"0.14.1",3:"0.14.2",4:"0.14.3",5:"0.14.4"}.get(int(run.get("edition",1)),"0.14")
 
 func _render_stock(parent: VBoxContainer) -> void:
 	parent.add_child(_label("OFERTAS · MT Y EQUIPO",21,GOLD))

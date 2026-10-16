@@ -149,8 +149,14 @@ func _draw():
 		for hit in forecast_hits:
 			if hit.targetId != unit.id or hit.damage <= 0: continue
 			var remaining = maxi(0, int(unit.hp - hit.damage))
+			if hit.has("damageMin"):
+				remaining = maxi(0,int(unit.hp-hit.damageMin))
+				var possible: int = mini(unit.hp,maxi(hit.damageMax,hit.criticalMax if hit.criticalChance>0 else 0))
+				draw_rect(Rect2(hp_rect.position+Vector2(hp_rect.size.x*(unit.hp-possible)/unit.maxHp,0),Vector2(hp_rect.size.x*(possible-hit.damageMin)/unit.maxHp,5)),Color(0.94,0.71,0.42,0.4))
 			draw_rect(Rect2(hp_rect.position + Vector2(hp_rect.size.x * remaining / unit.maxHp, 0), Vector2(hp_rect.size.x * (unit.hp - remaining) / unit.maxHp, 5)), Color("f0b66a"))
-			draw_string(font, c + Vector2(-cell * 0.3, cell * 0.65), "−%d · %d%%" % [hit.damage, hit.accuracy], HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color("fff0ca"))
+			var prediction: String = "%d–%d" % [hit.damageMin,hit.damageMax] if hit.has("damageMin") else "−%d · %d%%" % [hit.damage,hit.accuracy]
+			if hit.has("damageMin") and hit.damageMin==hit.damageMax: prediction = str(hit.damageMin)
+			draw_string(font, c + Vector2(-cell * 0.3, cell * 0.65), prediction, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color("fff0ca"))
 		var facing_vector = Vector2(Rules.VECTORS[int(unit.facing)])
 		var arrow = c + facing_vector * cell * 0.37
 		draw_line(arrow - facing_vector * 5, arrow + facing_vector * 2, Color("f8edce"), 2)

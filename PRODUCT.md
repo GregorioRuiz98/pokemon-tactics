@@ -176,3 +176,10 @@ Edición4: Caramelo25 ₽ por +1 nivel, uso en tienda, conservando EXP parcial y
 El usuario pide una letra con cifras legibles e iconos de estados/subidas/bajadas sobre las unidades y en sus fichas. Confirma combinar las especies de ambas ediciones de Let’s Go Pikachu/Eevee y usar primero sus aprendizajes, retirando los ajustes personalizados de Demolición/Megaagotar al evolucionar los insectos y Cola Férrea7. Excluir movimientos exclusivos de los iniciales especiales. Edición5 aplica estas tablas a las zonas implementadas; no significa campaña completa.
 
 Atkinson Hyperlegible, indicadores compartidos,32 especies/104 movimientos y siete MT LGPE. Se mantienen PT/alcance y traducciones tácticas explícitas, equipables y Caramelo25/+1 nivel. Oddish/Bellsprout21, Piedra Hoja para etapas finales; umbrales adaptados Pikachu20/Golem36 confirmados conservados. Probabilidades propias provisionales porque los datos de encuentros no incluyen porcentajes LGPE. Balance posterior, sin iniciar15. Ver docs/SPRINT_14_LETSGO.md.
+
+
+### Orientación, críticos y duración — 16 de octubre, 0.14.5
+
+El usuario pide retirar penalizaciones de precisión por lado y dividir el rango de daño: frente mitad inferior, costado superior, espalda máximo y+1 etapa de crítico. Quiere identidad móvil con críticos garantizados y movimientos de acercamiento/empuje. Parálisis reduce solo movimiento; estados no permanentes. Confirma también tres activaciones para subidas/bajadas de atributos, mostrando etapas numéricas y mayor coste a mejoras.
+
+Edición6: críticos×1,5, prototipos descritos por movimiento, atributos/estados3 activaciones del afectado, apoyos2–4PT, marcadores firmados. No se cambian base/EXP/economía/encuentros. Nuevas partidas; ediciones anteriores conservadas. Ver docs/SPRINT_14_TACTICS.md. No inicia15 ni autoriza publicar.

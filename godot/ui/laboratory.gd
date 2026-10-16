@@ -593,7 +593,14 @@ func _show_plan(unit: Dictionary, plan: Dictionary):
 		target_info.text += "\n\n" + plan.reason
 		return
 	if _friendly_risk(plan): target_info.text = "¡PELIGRO: alcanza a aliados!\n" + target_info.text
-	target_info.text += "\n\n%s · %d PT\n%d PS · %d %% · ×%s" % [plan.name, plan.cost, plan.damage, plan.accuracy, str(plan.multiplier)]
+	if plan.has("damageMin"):
+		var span: String = str(plan.damageMin) if plan.damageMin==plan.damageMax else "%d–%d" % [plan.damageMin,plan.damageMax]
+		target_info.text += "\n\n%s · %d PT\n%s PS · %d %% de precisión" % [plan.name,plan.cost,span,plan.accuracy]
+		if plan.criticalChance>0:
+			target_info.text += "\nCrítico garantizado ×1,5" if plan.criticalChance==1 else "\nCrítico: %.2f %% · %d–%d PS" % [plan.criticalChance*100,plan.criticalMin,plan.criticalMax]
+		if not plan.get("approach",{}).is_empty(): target_info.text += "\nSe acerca a %s · %d mov." % [Rules.coordinate(plan.approach.destination),plan.approach.cost]
+		if plan.get("focus",false): target_info.text += "\nCrítico +2 etapas · 3 activaciones"
+	else: target_info.text += "\n\n%s · %d PT\n%d PS · %d %% · ×%s" % [plan.name, plan.cost, plan.damage, plan.accuracy, str(plan.multiplier)]
 	if plan.category != "status": target_info.text += "\nSTAB ×%s · tipos ×%s" % [str(plan.stab),str(plan.multiplier)]
 	if plan.get("statChange") != null: target_info.text += "\n%s: %s%d etapas" % [{"attack":"Ataque","defense":"Defensa","speed":"Velocidad"}.get(plan.statChange.stat,plan.statChange.stat),"+" if plan.statChange.stages > 0 else "",plan.statChange.stages]
 	if plan.side != null: target_info.text += " · " + {"front": "frente", "flank": "flanco", "rear": "espalda"}[plan.side]
@@ -611,6 +618,7 @@ func _show_plan(unit: Dictionary, plan: Dictionary):
 	if not plan.embers.is_empty(): target_info.text += "\nDeja ascuas en el área."
 	board.affected = plan.tiles
 	board.forecast_hits = plan.hits
+	if not plan.get("approach",{}).is_empty(): board.route = plan.approach.path
 
 func _hover_tile(point: Dictionary):
 	if state.is_empty() or _modal_open() or not pending.is_empty(): return

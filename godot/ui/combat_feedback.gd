@@ -46,11 +46,15 @@ func present(before: Dictionary, plan: Dictionary, receipts: Array) -> void:
 			text = "INMUNE"
 			color = Color("dfb8ef")
 			immunities += 1
-		elif forecast.get("heal",0) > 0:
-			text = "+%d PS" % forecast.heal
+		elif receipt.get("heal",forecast.get("heal",0)) > 0:
+			text = "+%d PS" % receipt.get("heal",forecast.heal)
 			color = Color("a4e9b3")
 		elif forecast.get("guard",false): text = "PROTEGIDO"
 		elif receipt.damage == 0: text = "ATRIBUTO" if forecast.has("statChange") or not forecast.get("changes",[]).is_empty() else "ESTADO"
+		if receipt.get("critical",false):
+			kind = "critical"
+			text = "CRÍTICO −%d" % receipt.damage
+			color = Color("ffd26d")
 		marks.append({"point":{"x":unit.x,"y":unit.y},"kind":kind,"text":text,"color":color})
 		last_kinds.append(kind)
 	last_sound = "miss" if misses == receipts.size() and misses > 0 else ("immune" if immunities == receipts.size() and immunities > 0 else "hit")

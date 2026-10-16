@@ -40,7 +40,9 @@
     "godot:test:shop": "node tools/godot/run.mjs test-shop",
     "godot:test:growth": "node tools/godot/run.mjs test-growth",
     "godot:test:letsgo": "node tools/godot/run.mjs test-letsgo",
-    "godot:test:letsgo:journey": "node tools/godot/run.mjs test-letsgo-journey"
+    "godot:test:letsgo:journey": "node tools/godot/run.mjs test-letsgo-journey",
+    "godot:test:tactics": "node tools/godot/run.mjs test-tactics",
+    "godot:test:tactics:journey": "node tools/godot/run.mjs test-tactics-journey"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

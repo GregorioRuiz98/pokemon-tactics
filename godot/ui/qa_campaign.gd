@@ -109,7 +109,7 @@ func run(app: Control, directory: String) -> void:
 	var completed: Array = []
 	for starter: int in [1,4,7]:
 		app._show_oak()
-		app.journey_seed.text = "lgpe-9" if starter==1 else "kanto-14"
+		app.journey_seed.text = "tactics-1" if starter==1 else ("tactics-4" if starter==4 else "kanto-14")
 		button(app,"starter"+str(starter))
 		check(app.run.party.size() == 1 and app.run.party[0].speciesId == starter,"Single chosen Oak starter")
 		for step: int in 1000:
@@ -239,13 +239,14 @@ func run(app: Control, directory: String) -> void:
 		await app.get_tree().process_frame
 		await capture(app,directory,"07-%dx%d" % [dimensions.x,dimensions.y])
 		_bounds(app,app,app.get_global_rect().grow(2))
-	check(captured.has("miss"),"Natural attack failure displayed with dedicated image/audio")
+	if app.run.get("edition",1)<6: check(captured.has("miss"),"Natural attack failure displayed with dedicated image/audio")
 	check(captured.has("five"),"Five action menu exercised")
 	check(captured.has("loadout"),"Real UI swaps a learned move without exceeding four slots")
 	if app.run.get("edition",1)<5: check(captured.has("growth"),"Real UI reaches bug evolution with learned coverage before Brock")
 	await _immune_preview(app,directory)
 	await _orb_preview(app,directory)
 	if app.run.get("edition",1)>=5: await _indicator_preview(app,directory)
+	if app.run.get("edition",1)>=6: await _tactics_preview(app,directory)
 	await _legacy_preview(app,directory)
 	var output: Dictionary = {"assertions":assertions,"completed":completed,"playerOrders":player_orders,"screenshots":captures,"failures":failures}
 	var file: FileAccess = FileAccess.open(directory.path_join("campaign-ui-result.json"),FileAccess.WRITE)
@@ -391,6 +392,88 @@ func _indicator_preview(app: Control, directory: String) -> void:
 	app._refresh()
 	app._hover_tile(target)
 	check(app.actor_indicators.items.is_empty() and app.target_indicators.items.is_empty(),"Expired/reset modifiers remove stale card icons")
+	DisplayServer.window_set_size(Vector2i(1280,900))
+	await app.get_tree().process_frame
+	await app.get_tree().process_frame
+	app.run = original
+	app._refresh()
+
+func _tactics_preview(app: Control, directory: String) -> void:
+	var original: Dictionary = app.run
+	var fixture: Dictionary = app.rules.encounter(app.campaign.create("tactics-ui",4),app.campaign.locations[0])
+	for row: Array in fixture.board:
+		for i: int in row.size(): row[i] = 0
+	var member: Dictionary = app.campaign.progression.create_member(1,19,"QA",25)
+	member.moves = ["quick-attack","hyper-fang","focus-energy","tail-whip"]
+	var actor: Dictionary = app.rules.member_unit(member,{"x":3,"y":6})
+	actor.tp = 5
+	var target: Dictionary = app.rules.member_unit(app.campaign.progression.create_member(10000,25,"QA",25),{"x":4,"y":6})
+	target.team = "enemy"
+	target.facing = 2
+	fixture.units = [actor,target]
+	fixture.queue = [1,10000]
+	var focused: Dictionary = app.rules.attack(fixture,1,"focus-energy")
+	check(focused.ok and focused.state.units[0].volatile.has("focus"),"Focus Energy applies actual temporary critical boost")
+	var ended: Dictionary = app.rules.finish(focused.state,2)
+	var ready: Dictionary = app.rules.finish(ended.state,6)
+	fixture = ready.state
+	for i: int in 2:
+		if app.rules.active(fixture).get("id")==1: break
+		fixture = app.rules.finish(fixture,6).state
+	for seed_number: int in range(1,30):
+		fixture.rng = seed_number
+		var probe: Dictionary = app.rules.attack(fixture,10000,"hyper-fang")
+		if probe.ok and probe.hit: break
+	var before: Dictionary = fixture.duplicate(true)
+	var plan: Dictionary = app.rules.attack_plan(fixture,10000,{},"hyper-fang")
+	app.run = original.duplicate(true)
+	app.run.phase = "battle"
+	app.run.stage = 0
+	app.run.battle = fixture
+	app._refresh()
+	app._show_plan(fixture.units[1],plan)
+	check(plan.ok and plan.criticalChance==1 and "garantizado" in app.target_info.text and "PS" in app.target_info.text,"Card explains critical guarantee and real damage range")
+	check(app.actor_indicators.items.any(func(item):return item.key=="focus"),"Temporary critical stage shown in actor card")
+	await capture(app,directory,"14-critical-preview")
+	check(Store.equivalent(fixture,before),"Critical preview consumes no RNG")
+	var result: Dictionary = app.rules.attack(fixture,10000,"hyper-fang")
+	check(result.ok and result.hit and result.hits[0].critical,"Previewed guaranteed critical resolves through shared engine")
+	app.run.battle = result.state
+	app._refresh()
+	app.combat_feedback.present(fixture,plan,result.hits)
+	check("critical" in app.combat_feedback.last_kinds,"Actual critical receipt displays dedicated label")
+	await capture(app,directory,"14-critical-hit")
+	app.combat_feedback.clear()
+	var missed: Dictionary = {}
+	for seed_number: int in range(1,40):
+		fixture.rng = seed_number
+		missed = app.rules.attack(fixture,10000,"hyper-fang")
+		if missed.ok and not missed.hit: break
+	check(missed.ok and not missed.hit,"A guaranteed-critical move still misses according to its original 90 accuracy")
+	app.run.battle = missed.state
+	app._refresh()
+	app.combat_feedback.present(fixture,plan,missed.hits)
+	app._play(app.combat_feedback.last_sound)
+	check("miss" in app.combat_feedback.last_kinds and app.last_sound_requested=="miss","Original accuracy miss retains its dedicated image and sound")
+	await capture(app,directory,"14-original-accuracy-miss")
+	app.combat_feedback.clear()
+	fixture = before.duplicate(true)
+	fixture.units[1].x = 6
+	fixture.units[1].facing = 2
+	plan = app.rules.attack_plan(fixture,10000,{},"quick-attack")
+	app.run.battle = fixture
+	app._refresh()
+	app._show_plan(fixture.units[1],plan)
+	check(plan.ok and not plan.approach.is_empty() and not app.board.route.is_empty() and "Se acerca" in app.target_info.text,"Gap closer previews landing and route inside the board")
+	DisplayServer.window_set_size(Vector2i(1024,720))
+	await app.get_tree().process_frame
+	await app.get_tree().process_frame
+	await capture(app,directory,"15-approach-small")
+	result = app.rules.attack(fixture,10000,"quick-attack")
+	check(result.ok and result.state.units[0].x==5 and result.state.acted,"Approach lands on the advertised square")
+	app.run.battle = result.state
+	app._refresh()
+	check(app.buttons.undo.disabled,"Undo movement is disabled after a gap-closing attack")
 	DisplayServer.window_set_size(Vector2i(1280,900))
 	await app.get_tree().process_frame
 	await app.get_tree().process_frame

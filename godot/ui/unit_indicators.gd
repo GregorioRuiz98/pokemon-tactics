@@ -1,7 +1,7 @@
 extends Control
 
 const STATS = {"attack":["ATQ","Ataque"],"defense":["DEF","Defensa"],"specialAttack":["AE","Ataque especial"],"specialDefense":["DE","Defensa especial"],"speed":["VEL","Velocidad"],"accuracy":["PRE","Precisión"],"evasion":["EVA","Evasión"]}
-const CONDITIONS = {"poison":["ENV","Envenenado"],"burn":["QUE","Quemado"],"paralysis":["PAR","Paralizado"],"sleep":["DOR","Dormido"],"freeze":["CON","Congelado"],"confusion":["CFU","Confuso"],"seed":["DRE","Drenadoras"]}
+const CONDITIONS = {"poison":["ENV","Envenenado"],"burn":["QUE","Quemado"],"paralysis":["PAR","Paralizado"],"sleep":["DOR","Dormido"],"freeze":["CON","Congelado"],"confusion":["CFU","Confuso"],"seed":["DRE","Drenadoras"],"focus":["CRT","Foco Energía: +2 etapas de crítico"]}
 var items: Array = []
 
 static func entries(unit: Dictionary) -> Array:
@@ -10,10 +10,12 @@ static func entries(unit: Dictionary) -> Array:
 	var conditions: Dictionary = unit.get("volatile",{}).duplicate(true)
 	if unit.get("status")!=null: conditions[unit.status.kind] = unit.status
 	for key: String in CONDITIONS:
-		if conditions.has(key): result.append({"key":key,"text":CONDITIONS[key][0],"stage":0,"hint":"%s · %d activaciones restantes" % [CONDITIONS[key][1],conditions[key].remaining]})
+		if conditions.has(key): result.append({"key":key,"text":CONDITIONS[key][0],"stage":0,"remaining":int(conditions[key].remaining),"hint":"%s · %d activaciones restantes" % [CONDITIONS[key][1],conditions[key].remaining]})
 	for key: String in STATS:
 		var stage: int = unit.get("stages",{}).get(key,0)
-		if stage!=0: result.append({"key":key,"text":STATS[key][0],"stage":stage,"hint":"%s: %s%d etapas" % [STATS[key][1],"+" if stage>0 else "",stage]})
+		if stage!=0:
+			var remaining: int = unit.get("stageTurns",{}).get(key,0)
+			result.append({"key":key,"text":STATS[key][0],"stage":stage,"hint":"%s: %s%d etapas%s" % [STATS[key][1],"+" if stage>0 else "",stage," · %d activaciones" % remaining if remaining>0 else ""]})
 	return result
 
 func _ready() -> void:
@@ -61,5 +63,8 @@ static func draw_badge(canvas: CanvasItem, rect: Rect2, entry: Dictionary, font:
 				canvas.draw_arc(icon,4,0,TAU,12,tint,1.5)
 				canvas.draw_circle(icon,1,tint)
 	var label: String = entry.text
-	if not compact and entry.stage!=0: label += "%s%d" % ["+" if entry.stage>0 else "",entry.stage]
+	if compact: label = {"ATQ":"A","DEF":"D","VEL":"V","PRE":"P","EVA":"E"}.get(label,label)
+	if entry.stage!=0: label += "%s%d" % ["+" if entry.stage>0 else "",entry.stage]
+	elif not compact and entry.get("remaining",0)>0: label += " %d" % entry.remaining
+	if entry.key=="focus": label = "C+2" if compact else "CRT+2"
 	canvas.draw_string(font,rect.position+Vector2(12,rect.size.y-5 if not compact else rect.size.y-3),label,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,Color("f1f3dc"))

@@ -1,0 +1,139 @@
+{
+  "checks": 3734,
+  "failures": [],
+  "runs": [
+    {
+      "cleared": 1,
+      "commands": 86,
+      "phase": "defeat",
+      "seed": "lgpe-9",
+      "starter": 1
+    },
+    {
+      "cleared": 2,
+      "commands": 154,
+      "phase": "defeat",
+      "seed": "lgpe-1",
+      "starter": 1
+    },
+    {
+      "cleared": 2,
+      "commands": 191,
+      "phase": "defeat",
+      "seed": "kanto-14",
+      "starter": 1
+    },
+    {
+      "cleared": 4,
+      "commands": 284,
+      "phase": "complete",
+      "seed": "tactics-1",
+      "starter": 1
+    },
+    {
+      "cleared": 0,
+      "commands": 30,
+      "phase": "defeat",
+      "seed": "lgpe-9",
+      "starter": 4
+    },
+    {
+      "cleared": 0,
+      "commands": 34,
+      "phase": "defeat",
+      "seed": "lgpe-1",
+      "starter": 4
+    },
+    {
+      "cleared": 2,
+      "commands": 195,
+      "phase": "defeat",
+      "seed": "kanto-14",
+      "starter": 4
+    },
+    {
+      "cleared": 2,
+      "commands": 205,
+      "phase": "defeat",
+      "seed": "tactics-1",
+      "starter": 4
+    },
+    {
+      "cleared": 2,
+      "commands": 221,
+      "phase": "defeat",
+      "seed": "tactics-2",
+      "starter": 4
+    },
+    {
+      "cleared": 0,
+      "commands": 30,
+      "phase": "defeat",
+      "seed": "tactics-3",
+      "starter": 4
+    },
+    {
+      "cleared": 4,
+      "commands": 307,
+      "phase": "complete",
+      "seed": "tactics-4",
+      "starter": 4
+    },
+    {
+      "cleared": 0,
+      "commands": 32,
+      "phase": "defeat",
+      "seed": "lgpe-9",
+      "starter": 7
+    },
+    {
+      "cleared": 0,
+      "commands": 14,
+      "phase": "defeat",
+      "seed": "lgpe-1",
+      "starter": 7
+    },
+    {
+      "cleared": 0,
+      "commands": 22,
+      "phase": "defeat",
+      "seed": "kanto-14",
+      "starter": 7
+    },
+    {
+      "cleared": 0,
+      "commands": 14,
+      "phase": "defeat",
+      "seed": "tactics-1",
+      "starter": 7
+    },
+    {
+      "cleared": 0,
+      "commands": 22,
+      "phase": "defeat",
+      "seed": "tactics-2",
+      "starter": 7
+    },
+    {
+      "cleared": 0,
+      "commands": 31,
+      "phase": "defeat",
+      "seed": "tactics-3",
+      "starter": 7
+    },
+    {
+      "cleared": 0,
+      "commands": 14,
+      "phase": "defeat",
+      "seed": "tactics-4",
+      "starter": 7
+    },
+    {
+      "cleared": 0,
+      "commands": 31,
+      "phase": "defeat",
+      "seed": "tactics-5",
+      "starter": 7
+    }
+  ]
+}
