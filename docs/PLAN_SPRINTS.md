@@ -384,3 +384,10 @@ Guardado propio kanto/1 y laboratorio conservado. Tableros 12×10; mapas grandes
 Encargo posterior del usuario: crecimiento por nivel, dos roles de movimientos por línea, dinero para caramelos/otros aspectos y señales visuales/sonoras de fallo. Confirma cuatro movimientos + básico neutro y Caramelo sujeto a nivel. Entrega en codex/sprint-14-progression, con edición2 y continuación clásica1 sin conversión de batallas. [Reglas y propuestas](DESIGN_LEVELS_ROLES.md) · [Comprobaciones](SPRINT_14_PROGRESSION.md).
 
 Adelanta sistemas mínimos de 16; 15 sigue pendiente. No equivale a completar PC, MT, equipables, pasivas, mapas amplios, alturas/isometría ni toda Kanto. Los roles se combinan libremente, no son profesiones bloqueadas. Las recomendaciones nuevas están separadas de las reglas aplicadas.
+
+
+## Revisión0.14.2 — tienda y Pokémon insignia
+
+Petición del16 de octubre completada como ampliación del14, adelantando MT/equipables mínimos de16. Brock entrega Onix14 en vez de captura del bosque; tres ofertas distintas con compras individuales y rerolls25,50,75… ₽ por visita. Seis MT, cuatro equipables y cobertura accesible para Charmander. Edición3 conserva1/2 y laboratorio. [Informe y límites](SPRINT_14_SHOP.md).
+
+El15 sigue pendiente: escala/cámara, evaluación de isometría/alturas. Quedan PC y equipo completo, más especies/contenido de Kanto, pasivas, Liga/legendarios y balance con pruebas humanas. La tienda nueva no equivale a completar16 ni arreglar todo el balance. No publicar hasta indicación del usuario.

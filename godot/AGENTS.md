@@ -21,3 +21,11 @@
 - core/kanto_run.gd solo añade recibos de presentación al retorno; no al estado persistido. combat_feedback.gd dibuja recibos reales: FALLO/INMUNE/daño/curación/atributos; ningún RNG ni estado táctico en presentación. Sonido correcto aunque falle un ataque, ajustes y movimiento reducido conservados.
 - Datos nuevos progression.json (26 especies,10 familias,51 movimientos) y dos manifiestos extra; importadores explícitos import-progression.py e import-feedback.mjs. Fuentes/commits y bytes originales conservados. Ningún servicio nuevo.
 - Comprobar godot:test:progression, casos límite clásicos, paridad, QA de campaña/laboratorio en fuente y ejecutable. QA de inmunidad usa fixture aislada sin guardarla; compatibilidad UI usa otro archivo. Paquetes0.14.1 fuera de Git. Isometría/escala, PC, equipables/MT y pasivas pendientes.
+
+
+## Revisión vigente — 0.14.2
+
+- Nuevas partidas edición3 mediante shop_run.gd/shop_battle.gd, heredando reglas2 congeladas. Guardados1/2 se reconstruyen y continúan sin conversión; usar Nueva campaña, que preserva copia.
+- Brock concede Onix14 por ser el enemigo no legendario/mítico de mayor nivel. Rutas conservan tablas. Tres ofertas con una copia por casilla, seis MT compatibles y cuatro equipables. Primer stock de Charmander garantiza MT Demolición80. Garra Metal ya se aprendía al9. Precios de renovación25,50,75… ₽ y reset por tienda, provisionales.
+- stock/rerolls/shopRandom separados del PRNG de rutas, persistidos y reconstruidos por diario. Comprar/equipar/aprender solo fuera de combate. Una MT por uso, máximo4 preparados+básico. Sustituir/quitar devuelve equipado; bajas lo devuelven al terminar combate. Vidaesfera afecta básico/tipados, nunca fallo/inmunidad/apoyo; retroceso una vez por acción, incluso área. Resolver KO propio/cola y derrota simultánea.
+- shop.json/shop-provenance con datos PokéAPI e importador explícito, sin activos visuales ni dependencias nuevas. Pruebas godot:test:shop, regresión2/clásica/laboratorio y QA de fuente/ejecutable. Informe docs/SPRINT_14_SHOP.md. No ampliar mapas ni dar balance por resuelto.

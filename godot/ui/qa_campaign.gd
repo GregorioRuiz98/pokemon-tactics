@@ -34,7 +34,7 @@ func shop(app: Control) -> void:
 			if app.run.bag.potion == 0: break
 			button(app,"heal_potion")
 			member = app.campaign.target(app.run,int(entry.id))
-	if app.run.get("edition",1) == 2:
+	if app.run.get("edition",1) >= 2:
 		for entry: Dictionary in app.run.party:
 			if entry.hp <= 0: continue
 			app._select_member(int(entry.id))
@@ -164,6 +164,13 @@ func run(app: Control, directory: String) -> void:
 				previous.pressed.emit()
 				check(Store.equivalent(app.run,before),"Stale capture button cannot duplicate reward")
 			elif phase == "shop":
+				if starter==4 and app.run.stage==0:
+					check(app.run.stock.size()==3 and app.run.stock[0].item=="tm-brick-break","Charmander's first shop offers Demolición")
+					button(app,"stock_0")
+					check(app.travel_buttons.stock_0.disabled,"Purchased offer visibly sold out")
+					button(app,"use_tm-brick-break")
+					check("brick-break" in app.run.party[0].knownMoves and app.run.bag["tm-brick-break"]==0,"UI teaches and consumes compatible MT")
+				if starter==7 and app.run.stage==3: await _shop_controls(app,directory)
 				if not captured.has("shop"):
 					app.message = ""
 					app._refresh()
@@ -197,6 +204,7 @@ func run(app: Control, directory: String) -> void:
 	check(captured.has("five"),"Five action menu exercised")
 	check(captured.has("loadout"),"Real UI swaps a learned move without exceeding four slots")
 	await _immune_preview(app,directory)
+	await _orb_preview(app,directory)
 	await _legacy_preview(app,directory)
 	var output: Dictionary = {"assertions":assertions,"completed":completed,"playerOrders":player_orders,"screenshots":captures,"failures":failures}
 	var file: FileAccess = FileAccess.open(directory.path_join("campaign-ui-result.json"),FileAccess.WRITE)
@@ -230,11 +238,76 @@ func _immune_preview(app: Control, directory: String) -> void:
 	app.run.stage = 0
 	app.run.battle = fixture
 	app._refresh()
+
 	app.combat_feedback.present(fixture,plan,result.hits)
 	app._play(app.combat_feedback.last_sound)
 	check(app.last_sound_requested=="immune" and "immune" in app.combat_feedback.last_kinds,"Immunity has a dedicated signal")
 	check(fixture.rng==before_rng,"Showing feedback does not consume combat RNG")
 	await capture(app,directory,"08-immune")
+	app.run = original
+	app.combat_feedback.clear()
+	app._refresh()
+
+func _shop_controls(app: Control, directory: String) -> void:
+	check(app.run.party[-1].speciesId==95 and app.run.party[-1].level==14,"Brock recruited Onix at ace level through real UI journey")
+	app.message = ""
+	app._select_member(1)
+	await capture(app,directory,"10-three-offers")
+	var old: Dictionary = app.run.duplicate(true)
+	app._refresh()
+	check(Store.equivalent(old,app.run),"Inspecting and refreshing shop consumes no RNG")
+	for cost: int in [25,50]:
+		var money: int = app.run.money
+		check(app.campaign.reroll_price(app.run)==cost,"Reroll button has escalating cost")
+		button(app,"reroll")
+		check(app.run.money==money-cost,"Reroll charges exactly displayed cost")
+	var offered: Dictionary = app.run.duplicate(true)
+	app._load_game()
+	check(app.save_warning.is_empty() and Store.equivalent(offered,app.run),"Continue preserves three offers, RNG and increasing reroll price")
+	for i: int in app.run.stock.size():
+		var identity: String = app.run.stock[i].item
+		var item: Dictionary = app.campaign.shop_data.items[identity]
+		if item.kind=="held" and app.run.money>=item.price:
+			button(app,"stock_"+str(i))
+			button(app,"use_"+identity)
+			check(app.run.party[0].heldItem==identity and app.run.bag[identity]==0,"UI equips one held item from bag")
+			button(app,"unequip")
+			check(app.run.party[0].heldItem==null and app.run.bag[identity]==1,"UI returns unequipped item to bag")
+			button(app,"use_"+identity)
+			break
+	check(app.run.party[0].get("heldItem")!=null,"Held item UI exercised with real purchases")
+	await capture(app,directory,"10-equipped")
+	DisplayServer.window_set_size(Vector2i(1024,720))
+	await app.get_tree().process_frame
+	await app.get_tree().process_frame
+	await capture(app,directory,"10-shop-small")
+	DisplayServer.window_set_size(Vector2i(1280,900))
+	await app.get_tree().process_frame
+	await app.get_tree().process_frame
+
+func _orb_preview(app: Control, directory: String) -> void:
+	var original: Dictionary = app.run
+	var member: Dictionary = app.campaign.progression.create_member(1,4,"QA",13)
+	member.heldItem = "life-orb"
+	var fixture: Dictionary = app.rules.encounter(app.campaign.create("orb-ui",4),app.campaign.locations[0])
+	fixture.units[0] = app.rules.member_unit(member,{"x":2,"y":7})
+	fixture.units[1].x = 3
+	fixture.units[1].y = 7
+	fixture.units[1].facing = 2
+	fixture.queue = [1,10000]
+	var plan: Dictionary = app.rules.attack_plan(fixture,10000,{},"ember")
+	var result: Dictionary = app.rules.attack(fixture,10000,"ember")
+	check(result.ok and plan.recoil>0,"Life Orb UI fixture has real damaging resolution")
+	app.run = original.duplicate(true)
+	app.run.phase = "battle"
+	app.run.stage = 0
+	app.run.battle = result.state
+	app._refresh()
+	app._show_plan(result.state.units[1],plan)
+	check("Vidaesfera" in app.target_info.text,"Prevision explicitly shows Life Orb's own HP cost")
+	app.combat_feedback.present(fixture,plan,result.hits)
+	check("recoil" in app.combat_feedback.last_kinds,"Real recoil receipt has visual feedback")
+	await capture(app,directory,"11-life-orb")
 	app.run = original
 	app.combat_feedback.clear()
 	app._refresh()

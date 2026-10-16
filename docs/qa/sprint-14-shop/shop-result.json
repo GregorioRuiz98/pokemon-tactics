@@ -1,0 +1,129 @@
+{
+  "checks": 1118,
+  "failures": [],
+  "probe": {
+    "brickBreak": 39,
+    "charmanderLevel": 13,
+    "ember": 11,
+    "metalClaw": 26,
+    "onixHp": 140,
+    "onixLevel": 14
+  },
+  "runs": [
+    {
+      "cleared": 1,
+      "lastLog": [
+        "Pidgey usa Tornado (1 PT).",
+        "Pidgey: 20 PS",
+        "Pidgey termina su activación.",
+        "Pidgey usa Tornado (1 PT).",
+        "Pidgey: 19 PS",
+        "Pidgey termina su activación.",
+        "Ronda 9: nueva cola de iniciativa.",
+        "Pidgey usa Tornado (1 PT).",
+        "Pidgey: 14 PS, fuera de combate",
+        "Derrota: el equipo ha caído."
+      ],
+      "party": [
+        {
+          "hp": 0,
+          "level": 7,
+          "speciesId": 1
+        },
+        {
+          "hp": 0,
+          "level": 4,
+          "speciesId": 16
+        }
+      ],
+      "phase": "defeat",
+      "starter": 1,
+      "transactions": 72
+    },
+    {
+      "cleared": 3,
+      "lastLog": [
+        "Onix usa Tumba Rocas (2 PT).",
+        "Rattata: el ataque falla (80 %).",
+        "Onix termina su activación.",
+        "Rattata usa Agitacola (1 PT).",
+        "Onix: el ataque falla (85 %).",
+        "Rattata termina su activación.",
+        "Geodude se mueve a G4 (1 puntos).",
+        "Geodude usa Lanzarrocas (1 PT).",
+        "Rattata: 23 PS, fuera de combate",
+        "Derrota: el equipo ha caído."
+      ],
+      "party": [
+        {
+          "hp": 0,
+          "level": 10,
+          "speciesId": 4
+        },
+        {
+          "hp": 0,
+          "level": 11,
+          "speciesId": 16
+        },
+        {
+          "hp": 0,
+          "level": 7,
+          "speciesId": 19
+        },
+        {
+          "hp": 0,
+          "level": 3,
+          "speciesId": 13
+        }
+      ],
+      "phase": "defeat",
+      "starter": 4,
+      "transactions": 231
+    },
+    {
+      "cleared": 4,
+      "lastLog": [
+        "Weedle usa Disparo Demora (1 PT).",
+        "Geodude: el ataque falla (90 %).",
+        "Weedle termina su activación.",
+        "Geodude usa Tumba Rocas (2 PT).",
+        "Weedle: el ataque falla (80 %).",
+        "Geodude termina su activación.",
+        "Ronda 5: nueva cola de iniciativa.",
+        "Squirtle usa Pistola Agua (1 PT).",
+        "Geodude: 6 PS, fuera de combate",
+        "Victoria: zona despejada."
+      ],
+      "party": [
+        {
+          "hp": 168,
+          "level": 16,
+          "speciesId": 7
+        },
+        {
+          "hp": 0,
+          "level": 7,
+          "speciesId": 16
+        },
+        {
+          "hp": 0,
+          "level": 2,
+          "speciesId": 19
+        },
+        {
+          "hp": 100,
+          "level": 9,
+          "speciesId": 13
+        },
+        {
+          "hp": 140,
+          "level": 14,
+          "speciesId": 95
+        }
+      ],
+      "phase": "complete",
+      "starter": 7,
+      "transactions": 212
+    }
+  ]
+}

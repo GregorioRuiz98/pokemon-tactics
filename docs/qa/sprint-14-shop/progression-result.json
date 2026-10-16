@@ -1,0 +1,85 @@
+{
+  "checks": 1165,
+  "failures": [],
+  "runs": [
+    {
+      "cleared": 1,
+      "orders": 72,
+      "party": [
+        {
+          "hp": 0,
+          "level": 7,
+          "speciesId": 1
+        },
+        {
+          "hp": 0,
+          "level": 4,
+          "speciesId": 16
+        }
+      ],
+      "phase": "defeat",
+      "starter": 1
+    },
+    {
+      "cleared": 3,
+      "orders": 233,
+      "party": [
+        {
+          "hp": 0,
+          "level": 10,
+          "speciesId": 4
+        },
+        {
+          "hp": 0,
+          "level": 11,
+          "speciesId": 16
+        },
+        {
+          "hp": 0,
+          "level": 7,
+          "speciesId": 19
+        },
+        {
+          "hp": 0,
+          "level": 3,
+          "speciesId": 13
+        }
+      ],
+      "phase": "defeat",
+      "starter": 4
+    },
+    {
+      "cleared": 4,
+      "orders": 216,
+      "party": [
+        {
+          "hp": 168,
+          "level": 16,
+          "speciesId": 8
+        },
+        {
+          "hp": 0,
+          "level": 7,
+          "speciesId": 16
+        },
+        {
+          "hp": 0,
+          "level": 2,
+          "speciesId": 19
+        },
+        {
+          "hp": 100,
+          "level": 9,
+          "speciesId": 14
+        },
+        {
+          "hp": 60,
+          "level": 3,
+          "speciesId": 13
+        }
+      ],
+      "phase": "complete",
+      "starter": 7
+    }
+  ]
+}

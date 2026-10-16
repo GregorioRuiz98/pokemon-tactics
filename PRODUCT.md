@@ -153,3 +153,12 @@ El usuario sustituye el entrenamiento por dinero por niveles que aumentan estad�
 Edición2 implementada en 0.14.1: inicial5, EXP por victoria a cada superviviente, curvas deterministas sin curación, aprendizaje/biblioteca y preparación gratuita, diez líneas y 26 especies con 51 adaptaciones tácticas. Pikachu20 y Graveler36 son umbrales provisionales de métodos antes por piedra/intercambio. Lectura de STAB en previsión, fallos/inmunidades con imágenes y audio diferentes. Datos exactos, roles, límites y propuestas propias en docs/DESIGN_LEVELS_ROLES.md.
 
 Las propuestas de amenazas por casilla, habilidades pasivas, apoyos por flanqueo, MT, alturas e interacciones elementales quedan como futuras entregas. Se adelanta parte de 16, sin iniciar mapas/isometría de 15, extender Kanto ni publicar. Guardados1 siguen sus reglas y los nuevos usan2; se conserva copia al reiniciar para probar la progresión nueva.
+
+
+### Revisión de tienda y gimnasio — 16 de octubre, 0.14.2
+
+El usuario sustituye expresamente el premio salvaje del gimnasio por su Pokémon insignia: el de mayor nivel, Onix14 en Brock; mantiene medalla/dinero. Las rutas conservan sus capturas locales. Nunca se reclutan legendarios/míticos. Añade tres ofertas MT/equipables y renovaciones pagadas de coste creciente.
+
+Edición3: tres ofertas distintas con una copia, al menos una MT útil y un equipable mientras haya MT por aprender; restantes aleatorios. Renovación25×(n+1) ₽ por visita; reponer las tres puede volver a ofrecer objetos anteriores. Primer stock de Charmander incluye Demolición80 antes de Brock. Garra Metal ya se aprende al9. Seis MT y cuatro equipables; un uso por MT y un equipable por miembro. Compatibilidad por máquina verificada en PokéAPI, unión de versiones. Pociones/Caramelos permanecen aparte. Precios provisionales; no se cambian estadísticas ni fórmulas base de daño.
+
+Guardado conserva oferta, compras, coste y PRNG de tienda separado del de capturas. Equipables retornan a bolsa al sustituir/quitar o al cerrar combate con bajas. Vidaesfera ×1,3 con retroceso10% de PS máximos una vez por acción dañina, incluido básico neutro; no por fallo/inmunidad/apoyo. Puede causar baja. Ediciones1/2 siguen sus motores; Nueva campaña para estas reglas con copia del archivo anterior. Isometría y ampliación de Kanto continúan pendientes.

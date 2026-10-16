@@ -1,8 +1,8 @@
 # Pokémon Tactics
 
-Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: muestra de Kanto Windows 0.14.1 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
+Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: muestra de Kanto Windows 0.14.2 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
 
-**Muestra nativa disponible:** elige un inicial de Oak y juega Ruta 1 → Ruta 2 → Bosque Verde → Brock, con capturas locales, EXP/niveles, cuatro movimientos más básico neutro, evolución con nivel/Caramelo y guardado persistente. El ejecutable funciona offline, sin editor ni Node. Conserva el laboratorio anterior. [Cómo jugar/abrir Godot](godot/README.md) · [Revisión de progresión y comprobaciones](docs/SPRINT_14_PROGRESSION.md).
+**Muestra nativa disponible:** elige un inicial de Oak y juega Ruta 1 → Ruta 2 → Bosque Verde → Brock, con capturas locales, EXP/niveles, cuatro movimientos más básico neutro, evolución con nivel/Caramelo, tres ofertas de MT/equipables con rerolls crecientes y guardado persistente. Brock concede su Onix. El ejecutable funciona offline, sin editor ni Node. Conserva el laboratorio anterior. [Cómo jugar/abrir Godot](godot/README.md) · [Tienda y recompensa de Brock](docs/SPRINT_14_SHOP.md).
 
 Mapas de prueba 12×10 y 26 especies, diez líneas con dos orientaciones de rol. Fallo e inmunidad tienen señales distintas. [Reglas y propuestas tácticas](docs/DESIGN_LEVELS_ROLES.md). Balance provisional; la campaña larga, isometría/alturas, mapas amplios, PC y Liga/postgame se desarrollarán por etapas. [Requisitos](PRODUCT.md#campaña-de-kanto--requisitos-confirmados) · [Sprints siguientes](docs/PLAN_SPRINTS.md#11-siguiente-etapa-kanto-y-ejecutable). La versión web mantiene sus reglas y guardados.
 

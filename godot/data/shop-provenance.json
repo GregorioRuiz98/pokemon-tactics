@@ -1,0 +1,122 @@
+{
+  "sources": [
+    {
+      "url": "https://pokeapi.co/api/v2/move/brick-break",
+      "sha256": "687a3ae9ddb1a9726f1d1f71b79bcae261f5bad5ae4e26e911ed63a1642ecb2f"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/1",
+      "sha256": "365bbd36d6570728dc41c94809fc69f0fc79e33f032feef7c178dc6ae20da905"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/2",
+      "sha256": "cf6e5be37044783741dc216672218222d3ffc19f6cb5096a1ccd3b4a14d6a070"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/3",
+      "sha256": "668c8d0394c8c6ba088e0ef6dbe0e1d565250d083e809ff8fda573d5329506d4"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/4",
+      "sha256": "7ad4a4fe18e8aee377bdc1b017dd53c2a94eb5dec1f8fbe4bd88361babd7f9b3"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/5",
+      "sha256": "78237c3348513c0e67d496252238186f3a3d2d42803ef4cc2910491dd1734574"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/6",
+      "sha256": "2d638ac4be71a9da3d1e2236088b787a762d4628ed3dd0980e21b276743a3ee4"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/7",
+      "sha256": "4599ef2969f961323ecf84e33a85750079f761f7e2cfb62e1232607716f978c2"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/8",
+      "sha256": "4055b0a689afe3324258b36981d06b32408afedc65e7d65a0e15f22952a63c9a"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/9",
+      "sha256": "62e56befcd52c7f90ff5107b2494c073847b4594f573b94c83c2df0971486028"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/10",
+      "sha256": "e39d8ccf9e371654f2b120fd19425749f3877239285e3eaf06e0d259e40afab2"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/11",
+      "sha256": "014ba3a882e9b00d434ef6fae000375faa6152bb9898fd4cb40cb1003022379c"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/12",
+      "sha256": "3dd77a800131927bf695032c6573002619b63b6724d1819b8426ee64ad99d581"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/13",
+      "sha256": "678312eea8430435cc45ac09939b01298956f43123eac9838136a1138f1894c7"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/14",
+      "sha256": "aa3cb40e9c2c2594f9ed857ed9931e41bcb036e51c2fcc96108c3a984429fa03"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/15",
+      "sha256": "7c64441b7c88ba7b53f37fc5b21ece45bd055b3491d62014db4a325b2a8d18e9"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/16",
+      "sha256": "f58f19272fafdae2d7ced77e80835ecd778bd8d2bb48e22f7d049efeb8311032"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/17",
+      "sha256": "5425b84f445bb0a37441c9f30cb375e6a32471c184414fa32bf2d8f5d2f28b5a"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/18",
+      "sha256": "f61e7bc7c4cad68f446a046db774ada0f9bf37418f955697ef357ace7443f18f"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/19",
+      "sha256": "786c766559f105583e66f6f60b174701e3bc63f8c311f11b8c6ebce80e77c331"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/20",
+      "sha256": "37a28cd66db602f858d9708929c2aa81c628211c275b673fbd07c660b31b838d"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/25",
+      "sha256": "b964b99e20ec163d9f6a865de060992a637c01eb46500e7bf74bbff37886a0db"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/26",
+      "sha256": "2ed08182487f97e1ad0f404e9167f18b77ea4cef4463734bda4c9fb0d046a65f"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/74",
+      "sha256": "8f5444c4ce93701ed737f5ba7511468cedc6a48e4e4781060fceb03fc56b2933"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/95",
+      "sha256": "7a419a324a31e3bcad081fddadaa7e8ab9c1fb7f88b06824318acafedcf66c2a"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/75",
+      "sha256": "b3e5b6195c05c5ac2a234a7bdc60af671e0aa6894f631cda87d38f88a29ee3a0"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/76",
+      "sha256": "4bc4579fff41f1ebd0242927f68eed0d5e922af9c79f6112be0d0e876748ac77"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/item/life-orb",
+      "sha256": "b2899452beaec47d282aa4adc0cb5834a2043f22b52eeaebce904a536df7146c"
+    }
+  ],
+  "files": [
+    {
+      "target": "data/shop.json",
+      "sha256": "cbab7d51b1d6706cb0e0dbb5cad66a9d464507b19eb79a32cc2723e97e7747f1"
+    }
+  ]
+}

@@ -7,8 +7,8 @@ import { gunzipSync } from 'node:zlib';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const project = resolve(root, 'godot');
-const work = resolve(root, '../../work/qa-sprint-14-progression');
-const output = resolve(root, '../releases/pokemon-tactics-0.14.1/windows');
+const work = resolve(root, '../../work/qa-sprint-14-shop');
+const output = resolve(root, '../releases/pokemon-tactics-0.14.2/windows');
 const operation = process.argv[2] ?? 'test';
 const binary = process.env.GODOT_BIN ?? resolve(root, '../../work/godot-4.7.2/Godot_v4.7.2-stable_win64_console.exe');
 mkdirSync(work, { recursive: true });
@@ -59,7 +59,7 @@ function verify() {
   const kanto = JSON.parse(readFileSync(resolve(project, 'data/kanto-provenance.json'),'utf8'));
   for (const entry of kanto.files) if (createHash('sha256').update(readFileSync(resolve(project,entry.target))).digest('hex') !== entry.sha256) throw new Error('Kanto hash mismatch: '+entry.target);
   console.log('Verified '+kanto.files.length+' Kanto source/asset files.');
-  for (const name of ['progression-provenance','feedback-provenance']) {
+  for (const name of ['progression-provenance','feedback-provenance','shop-provenance']) {
     const extra=JSON.parse(readFileSync(resolve(project,'data/'+name+'.json'),'utf8'));
     for (const entry of extra.files) if(createHash('sha256').update(readFileSync(resolve(project,entry.target))).digest('hex') !== entry.sha256) throw new Error('Progression resource hash mismatch: '+entry.target);
     console.log('Verified '+extra.files.length+' files in '+name+'.');
@@ -74,7 +74,10 @@ if (!['qa-export','qa-campaign-export'].includes(operation)) {
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if (operation === 'test-progression') {
+if (operation === 'test-shop') {
+  verify();
+  run(binary,['--headless',...common,'--script','res://tests/shop.gd','--','--save-dir='+work],'shop-core');
+} else if (operation === 'test-progression') {
   verify();
   run(binary,['--headless',...common,'--script','res://tests/progression.gd','--','--save-dir='+work],'progression-core');
 } else if (operation === 'test-campaign-edges') {
@@ -106,7 +109,7 @@ if (operation === 'test-progression') {
   run(binary, ['--headless', ...common, '--export-release', 'Windows Desktop', resolve(output, 'PokemonTactics.exe')], 'export-windows');
   cpSync(resolve(project, 'licenses'), resolve(output, 'licenses'), { recursive: true });
   cpSync(resolve(project, 'CREDITS.md'), resolve(output, 'CREDITS.md'));
-  writeFileSync(resolve(output, 'LEEME.txt'), 'Pokémon Tactics 0.14.1 — Paleta hasta Brock · offline\n\nAbre PokemonTactics.exe. No necesitas Godot, Node ni un servidor.\nElige un inicial de Oak y recorre Ruta 1, Ruta 2, Bosque Verde y Brock.\nEXP por victoria, niveles y estadísticas. Cuatro movimientos preparados + básico neutro.\nEvolución: nivel requerido + un Caramelo Raro. Preparar movimientos es gratis.\nEl resto de Kanto aún no está implementado. Laboratorio anterior accesible desde el menú.\n\nPasa el cursor para prever. Clic en casilla azul: mover; clic en enemigo: básico.\n1/2/3/4/5: movimientos; A: menú de habilidades; R: rectificar solo movimiento, antes de actuar; F: orientar desde tablero.\nFlechas/Enter: casillas; clic derecho/Esc: cancelar selección; F8: continuar; F1: menú.\nEl menú de órdenes aparece a la derecha en turnos aliados. Solo se confirma un ataque con riesgo para aliados.\nCampaña: %APPDATA%/PokemonTacticsLab/kanto-save.json.\nLaboratorio independiente: laboratory-save.json\nCréditos y licencias acompañan al ejecutable.\n', 'utf8');
+  writeFileSync(resolve(output, 'LEEME.txt'), 'Pokémon Tactics 0.14.2 — Paleta hasta Brock · offline\n\nAbre PokemonTactics.exe. No necesitas Godot, Node ni un servidor.\nElige un inicial de Oak y recorre Ruta 1, Ruta 2, Bosque Verde y Brock.\nEXP por victoria, niveles y estadísticas. Cuatro movimientos preparados + básico neutro.\nEvolución: nivel requerido + un Caramelo Raro. Preparar movimientos es gratis.\nBrock entrega Onix. Tres ofertas MT/equipables por tienda; renovar cuesta 25, 50, 75… ₽.\nUn equipable por Pokémon; MT de un uso, con compatibilidad indicada.\nNueva campaña para estas reglas; archivos anteriores conservan su edición.\nEl resto de Kanto aún no está implementado. Laboratorio anterior accesible desde el menú.\n\nPasa el cursor para prever. Clic en casilla azul: mover; clic en enemigo: básico.\n1/2/3/4/5: movimientos; A: menú de habilidades; R: rectificar solo movimiento, antes de actuar; F: orientar desde tablero.\nFlechas/Enter: casillas; clic derecho/Esc: cancelar selección; F8: continuar; F1: menú.\nEl menú de órdenes aparece a la derecha en turnos aliados. Solo se confirma un ataque con riesgo para aliados.\nCampaña: %APPDATA%/PokemonTacticsLab/kanto-save.json.\nLaboratorio independiente: laboratory-save.json\nCréditos y licencias acompañan al ejecutable.\n', 'utf8');
   const digest = createHash('sha256').update(readFileSync(resolve(output, 'PokemonTactics.exe'))).digest('hex');
   writeFileSync(resolve(output, 'SHA256SUMS.txt'), `${digest}  PokemonTactics.exe\n`);
   console.log(`Windows executable: ${resolve(output, 'PokemonTactics.exe')}\nSHA256: ${digest}`);

@@ -3,7 +3,7 @@
   "version": "0.12.0",
   "private": true,
   "type": "module",
-  "description": "Roguelike táctico Pokémon con experiencia y evoluciones",
+  "description": "Roguelike tÃ¡ctico PokÃ©mon con experiencia y evoluciones",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
@@ -36,7 +36,8 @@
     "godot:qa": "node tools/godot/run.mjs qa",
     "godot:export": "node tools/godot/run.mjs export",
     "godot:qa:export": "node tools/godot/run.mjs qa-export",
-    "godot:test:progression": "node tools/godot/run.mjs test-progression"
+    "godot:test:progression": "node tools/godot/run.mjs test-progression",
+    "godot:test:shop": "node tools/godot/run.mjs test-shop"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

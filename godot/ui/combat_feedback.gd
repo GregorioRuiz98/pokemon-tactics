@@ -32,7 +32,11 @@ func present(before: Dictionary, plan: Dictionary, receipts: Array) -> void:
 		var forecast: Dictionary = {}
 		for entry: Dictionary in plan.get("hits",[]):
 			if entry.targetId == receipt.targetId: forecast = entry
-		if not receipt.hit:
+		if receipt.get("recoil",false):
+			kind = "recoil"
+			text = "ORBE −%d PS" % receipt.damage
+			color = Color("dfb8ef")
+		elif not receipt.hit:
 			kind = "miss"
 			text = "FALLO"
 			color = Color("a4e7f3")
@@ -64,6 +68,7 @@ func _draw() -> void:
 	for mark: Dictionary in marks:
 		var point: Vector2 = board.center(mark.point)
 		point.y -= board.cell_size()*0.55 + (0 if board.reduced_motion else age*16)
+		if mark.kind == "recoil": point.y -= 30
 		var alpha: float = 1 if board.reduced_motion else minf(1,(0.95-age)*3)
 		var color: Color = mark.color
 		color.a = alpha

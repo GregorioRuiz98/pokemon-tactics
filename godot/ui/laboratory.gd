@@ -582,6 +582,7 @@ func _show_plan(unit: Dictionary, plan: Dictionary):
 	if plan.get("statChange") != null: target_info.text += "\n%s: %s%d etapas" % [{"attack":"Ataque","defense":"Defensa","speed":"Velocidad"}.get(plan.statChange.stat,plan.statChange.stat),"+" if plan.statChange.stages > 0 else "",plan.statChange.stages]
 	if plan.side != null: target_info.text += " · " + {"front": "frente", "flank": "flanco", "rear": "espalda"}[plan.side]
 	if plan.heal: target_info.text += "\nRecupera %d PS" % plan.heal
+	if plan.get("recoil",0)>0: target_info.text += "\nVidaesfera: −%d PS propios si causa daño" % plan.recoil
 	if plan.guard: target_info.text += "\nProtege hasta su próximo turno."
 	if plan.status != null: target_info.text += "\n%s: %d %% · %d turnos" % [_status_name(plan.status.kind), plan.status.chance, plan.status.duration]
 	if plan.push != null: target_info.text += "\nEmpuja a " + Rules.coordinate(plan.push)
