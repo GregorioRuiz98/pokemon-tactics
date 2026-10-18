@@ -1,10 +1,10 @@
-# Pokémon Tactics — Kanto Windows 0.15.0
+# Pokémon Tactics — Kanto Windows 0.15.1
 
-Muestra de Paleta hasta Brock con elección de inicial, cuatro encuentros, captura local, tienda y debilitados recuperables con Revivir. Esta revisión añade mapas isométricos 16×16/24×24, alturas, cámara/zoom y un vigía en el bosque. Conserva naturalezas y habilidades normales. Mantiene Revivir150 ₽/50% de PS y el límite por gimnasio. Mantiene encuentros y repertorios de Let’s Go combinados.
+Muestra de Paleta hasta Brock con elección de inicial, cuatro encuentros, captura local, tienda y debilitados recuperables con Revivir. Esta revisión mejora la lectura de los mapas isométricos: cámara estable, bases claras, sprites apoyados en sus casillas y guías opcionales. Conserva mapas16/24, alturas y vigía. Conserva naturalezas y habilidades normales. Mantiene Revivir150 ₽/50% de PS y el límite por gimnasio. Mantiene encuentros y repertorios de Let’s Go combinados.
 
 ## Jugar
 
-Abrir PokemonTactics.exe desde la distribución. Funciona offline sin editor, Node ni servidor. Incluye LEEME, créditos/licencias y SHA256SUMS. Elige **Nueva campaña** para usar las reglas nuevas; los guardados0.14.0–0.14.9 continúan como Clásica con su versión original, conservando sus reglas y batalla. Al empezar otra se guarda copia de la anterior.
+Abrir PokemonTactics.exe desde la distribución. Funciona offline sin editor, Node ni servidor. Incluye LEEME, créditos/licencias y SHA256SUMS. Las partidas0.15.0 continúan directamente con la vista revisada. Elige **Nueva campaña** para mapas y alturas si vienes de0.14; los guardados0.14.0–0.14.9 continúan como Clásica con su versión original, conservando sus reglas y batalla. Al empezar otra se guarda copia de la anterior.
 
 - Oak entrega un inicial de nivel5, dos pociones y120 ₽. PS/bajas persisten; estados/PT y etapas de atributos se restablecen por combate. Si no quedan vivos termina la campaña.
 - Tras victoria, cada superviviente gana EXP y puede subir/aprender. Cada subida recupera tantos PS como aumenten sus PS máximos, incluida la evolución automática. Un Pokémon a 20/30 pasa a 23/33; los debilitados no reviven por subir de nivel. Captura local ya sorteada y guardada, luego tienda. Brock da medalla, dinero y su Onix de nivel14, como insignia de mayor nivel. Se admiten duplicados provisionalmente.
@@ -33,7 +33,7 @@ Pendientes PC, clima, habilidades ocultas y ampliación de estados. Clorofila/Fu
 
 ## Cámara y alturas
 
-Elige 16×16 (inicial) o 24×24 antes del primer combate. Rueda/+/-: zoom; botón central: arrastrar; botones de cámara disponibles dentro de la escena. C/Inicio o Unidad centran al activo, Mapa encuadra todo. El minimapa muestra aliados, enemigos y vigías.
+Elige 16×16 (inicial) o 24×24 antes del primer combate. Rueda/+/-: zoom; botón central: arrastrar; botones de cámara disponibles dentro de la escena. C/Inicio o Unidad centran al activo; Combate encuadra a los dos equipos; Mapa muestra todo. La cámara respeta el encuadre manual y no salta entre unidades que ya estén visibles. G refuerza la cuadrícula y H etiqueta plataformas elevadas. El minimapa tiene la orientación del tablero y muestra la zona visible.
 
 Subir un nivel cuesta +1 de movimiento; saltos de más de uno bloquean el paso terrestre. Voladores ignoran alturas. Alcance y visión tienen en cuenta el desnivel, sin subir daño/precisión. Empujes y acercamientos respetan las mismas restricciones. Rectificar sigue afectando solo al movimiento antes de actuar. El vigía del bosque se incorpora en la siguiente ronda al acercarte/dañarlo, y como máximo al comenzar la tercera.
 

@@ -1,4 +1,4 @@
-# Pokémon Tactics — Kanto y laboratorio nativo 0.15.0
+# Pokémon Tactics — Kanto y laboratorio nativo 0.15.1
 
 Proyecto de fans para portfolio, sin afiliación ni aprobación oficial. Pokémon y sus personajes pertenecen a sus respectivos titulares.
 

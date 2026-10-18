@@ -204,3 +204,8 @@ El usuario aprueba añadir ahora naturalezas/mentas y habilidades normales/cáps
 ### Escala, isometría y alturas — sprint 15, 0.15.0
 
 El usuario encarga el sprint 15. Edición11 añade la comparación16×16/24×24 (elección antes del primer combate), proyección isométrica, cámara/zoom/minimapa y desniveles0–2. Movimiento terrestre con salto máximo1 y coste+1 al subir; voladores ignoran desnivel. Altura afecta alcance/visión y empujes/acercamientos, sin bonos de daño/precisión. El último enemigo del bosque es vigía, con activación por proximidad/daño y ronda3 como límite; se incorpora al construir la siguiente cola. Eliminar enemigos sigue siendo el objetivo. Se conservan capturas, recursos y progresión; no se amplía Kanto. Arte provisional y comparación humana pendientes; tamaños y reglas son de ensayo, no un balance definitivo. Ver docs/SPRINT_15.md.
+
+
+### Revisión de legibilidad — 0.15.1
+
+El usuario describe la vista como rara/confusa y solicita mejorarla. Presentación revisada: proyección80×48, cámara estable y encuadre de combate, superficies coherentes, bases por equipo/activo, apoyo de sprites y clic sobre sus píxeles visibles, minimapa isométrico y guías G/H. Se mantienen edición11, reglas, mapas y guardados; no requiere Nueva campaña desde0.15.0. Ver docs/SPRINT_15_VIEW.md.

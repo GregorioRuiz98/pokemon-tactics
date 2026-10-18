@@ -31,6 +31,10 @@ func run(app: Control, directory: String) -> void:
 		app.travel_buttons.enter.pressed.emit()
 		check(app.state.board.size()==width and app.board.isometric(),"Real encounter uses selected isometric map")
 		var before: Dictionary = app.run.duplicate(true)
+		await capture(app,directory,"combat-%d" % width)
+		for unit: Dictionary in app.state.units:
+			check(app.board.play_area().grow(-20).has_point(app.board.center(unit)),"Default combat framing includes all units")
+			check_sprite(app,unit)
 		app.board.fit_map()
 		await capture(app,directory,"map-%d" % width)
 		var wheel: InputEventMouseButton = InputEventMouseButton.new()
@@ -43,6 +47,14 @@ func run(app: Control, directory: String) -> void:
 		app.camera_bar.get_child(1).pressed.emit()
 		app.camera_bar.get_child(4).pressed.emit()
 		app.camera_bar.get_child(2).pressed.emit()
+		check(not app.board.manual_camera,"Combat framing restores edge-only automatic tracking")
+		app.camera_bar.get_child(5).pressed.emit()
+		check(app.board.strong_grid,"Grid guide can be enabled")
+		app.camera_bar.get_child(5).pressed.emit()
+		app.camera_bar.get_child(6).pressed.emit()
+		check(app.board.show_heights,"Height guide can be enabled")
+		await capture(app,directory,"height-guide-%d" % width)
+		app.camera_bar.get_child(6).pressed.emit()
 		check(Store.equivalent(app.run,before),"Camera buttons and wheel preserve journal and RNG")
 		var rectified: bool = false
 		for i: int in 1000:
@@ -57,7 +69,6 @@ func run(app: Control, directory: String) -> void:
 			if app.run.phase=="map":
 				app.travel_buttons.enter.pressed.emit()
 				check(app.combat_feedback.marks.is_empty(),"Old encounter feedback cleared on entry")
-				app.board.focus_active()
 				await capture(app,directory,"natural-%d-%d" % [width,app.run.stage])
 				continue
 			var command: Dictionary = app.rules.choose_command(app.state)
@@ -115,7 +126,22 @@ func run(app: Control, directory: String) -> void:
 		check(app.board.play_area().size.x>0 and app.board.play_area().size.y>0,"Positive tactical viewport")
 		check(app.camera_bar.get_global_rect().end.x<app.size.x,"Camera controls fit window")
 		check(app.command_panel.get_global_rect().position.x>=app.board.play_area().end.x,"HUD does not cover selectable tiles")
+		app.board.frame_combat()
+		await capture(app,directory,"combat-viewport-%d" % dimensions.x)
 	var report: Dictionary = {"assertions":assertions,"failures":failures,"completed":completed,"screenshots":screenshots,"layoutFixtures":true}
 	FileAccess.open(directory.path_join("scale-ui-result.json"),FileAccess.WRITE).store_string(JSON.stringify(report,"  "))
 	print(JSON.stringify(report))
 	app.get_tree().quit(0 if failures.is_empty() else 1)
+
+func check_sprite(app: Control, unit: Dictionary) -> void:
+	var visual: Dictionary = app.board.sprite_visual(unit)
+	check(absf(visual.used.end.y-app.board.center(unit).y)<app.board.cell_size()*0.12,"Sprite feet stay on the occupied square")
+	var pixels: Image = app.board.sprite_images[int(unit.speciesId)]
+	var frame: Rect2i = Rect2i(visual.source)
+	for y: int in frame.size.y:
+		for x: int in frame.size.x:
+			if pixels.get_pixel(frame.position.x+x,frame.position.y+y).a<=0.5: continue
+			var point: Vector2 = visual.rect.position+Vector2(x+0.5,y+0.5)*visual.factor
+			check(app.board.pick(point)=={"x":unit.x,"y":unit.y},"Clicking the visible sprite selects its own square")
+			return
+	check(false,"Sprite contains visible pixels")

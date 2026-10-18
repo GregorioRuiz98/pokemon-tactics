@@ -29,8 +29,12 @@ func _ready() -> void:
 	camera_bar.position = Vector2(24,106)
 	camera_bar.add_theme_constant_override("separation",6)
 	battle_overlay.add_child(camera_bar)
-	for entry: Array in [["−",func():board.change_zoom(1/1.12)],["+",func():board.change_zoom(1.12)],["Unidad · C",func():board.focus_active()],["Mapa",func():board.fit_map()],["←",func():board.pan(Vector2(90,0))],["→",func():board.pan(Vector2(-90,0))],["↑",func():board.pan(Vector2(0,70))],["↓",func():board.pan(Vector2(0,-70))]]:
-		camera_bar.add_child(_button(entry[0],entry[1],40))
+	for entry: Array in [["−",func():board.change_zoom(1/1.12)],["+",func():board.change_zoom(1.12)],["Combate",func():board.frame_combat()],["Unidad · C",func():board.focus_active()],["Mapa",func():board.fit_map()],["Cuadrícula · G",func():board.strong_grid = not board.strong_grid; board.queue_redraw()],["Alturas · H",func():board.show_heights = not board.show_heights; board.queue_redraw()]]:
+		camera_bar.add_child(_button(entry[0],_camera_order.bind(entry[1]),40))
+
+func _camera_order(callback: Callable) -> void:
+	callback.call()
+	board.grab_focus()
 
 func _make_board() -> Control:
 	return IsometricBoard.new()

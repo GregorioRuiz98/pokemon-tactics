@@ -81,3 +81,10 @@
 - scale_run/battle/maps y terrain_movement, edición11. Mapas16/24 con despliegue comparable; Dijkstra único por unidad. Alturas, visión, acercamientos y empujes comparten reglas con IA/previsión. new_round excluye vigía y lo activa como máximo en3; nunca intercala turno. No aumentar daño/precisión por altura ni añadir rescate/salida sin decisión.
 - isometric_board extiende board; fábrica/consulta de rutas en UI mantiene laboratorio y clásicos cenitales. Cámara no consume órdenes/RNG. Rectificar conserva solo movimiento. Fuentes/sprites existentes sin cambios.
 - QA nueva godot:test:scale/qa:scale/qa:scale:export. QA campaña anterior se fija explícitamente en10 al elegir inicial bajo --campaign-qa-dir, aislada de QA11. Todas las pruebas con guardados fuera de user real. Mantener versiones1–10, nuevo replay11; no regenerar fixtures. Informe docs/SPRINT_15.md. Arte/ritmo humanos pendientes; no iniciar16 ni publicar.
+
+
+## Vista0.15.1
+
+- Misma edición11, sin migrar ni exigir campaña nueva. isometric_board cachea bounds alfa por frame/especie para apoyar y seleccionar el sprite; conservar PNG/metadatos originales. Coordenadas lógicas intactas. Bases y marcadores son presentación.
+- track_turn encuadra al iniciar y solo corrige margen con seguimiento automático; pan/zoom/Mapa son manuales hasta Unidad/Combate. Guías G/H no modifican estado. Camera_order devuelve foco al tablero.
+- QA escala distingue encuadre de combate y vista general, prueba clic en sprite y pies/guías. Pruebas de motor/replay conservan resultados0.15.0. Informe docs/SPRINT_15_VIEW.md; no iniciar16.

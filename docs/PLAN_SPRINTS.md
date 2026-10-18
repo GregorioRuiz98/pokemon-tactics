@@ -431,3 +431,8 @@ Bloque14.9A/B solicitado y reunido en edición10:25 naturalezas,21 mentas100 ₽
 ## Sprint15 — escala e isometría, 0.15.0
 
 Edición11: mapas16×16 o24×24 seleccionables antes del primer combate, cámara/zoom/minimapa, alturas0–2 y movimiento/alcance/visión compartidos con IA. Vigía visible en bosque con activación a próxima cola y límite ronda3. Se mantienen cuatro encuentros y objetivo eliminar. Dos tamaños con despliegue comparable, sin obligar a caminar más. Reglas1–10 y laboratorio conservados; nueva campaña para11. [Entrega, métricas y comprobaciones](SPRINT_15.md). Arte de terreno provisional; ritmo/diversión/tamaño final esperan prueba del creador. El siguiente bloque es16, no iniciado.
+
+
+## Revisión de vista del15 — 0.15.1
+
+El usuario considera rara/confusa la primera presentación. Se revisan proyección, cámara estable/encuadre de combate, alturas, bases de unidades, sprites/hit-test, minimapa y guías opcionales. Misma edición11, mapas/reglas/guardados conservados; partidas0.15.0 continúan directamente. [Informe y capturas](SPRINT_15_VIEW.md). No inicia16 ni resuelve el arte final o balance.

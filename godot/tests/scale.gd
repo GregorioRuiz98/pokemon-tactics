@@ -127,6 +127,21 @@ func run_tests() -> void:
 			for unit: Dictionary in encounter.units:
 				check(view.pick(view.center(unit))=={"x":unit.x,"y":unit.y},"Isometric top-face picking: "+location.id)
 			var snapshot: Dictionary = encounter.duplicate(true)
+			view.track_turn()
+			var framed: Vector2 = view.anchor
+			view.track_turn()
+			check(view.anchor==framed,"Camera stays still on refresh")
+			view.state = encounter.duplicate(true)
+			var visible_unit: Dictionary = encounter.units.filter(func(unit):return unit.id!=encounter.queue[0])[0]
+			view.state.queue = [visible_unit.id]
+			view.track_turn()
+			check(view.anchor==framed,"Changing to an already visible unit does not recenter the camera")
+			view.state = encounter
+			view.manual_camera = true
+			view.anchor = Vector2(30,40)
+			view.tracked = -1
+			view.track_turn()
+			check(view.anchor==Vector2(30,40),"Manual framing is not reset at a turn change")
 			view.change_zoom(1.3)
 			view.pan(Vector2(80,-30))
 			view.focus_active()
