@@ -150,7 +150,7 @@ func _clear(container: Node):
 func _build_interface() -> void:
 	# Overlay layout adapted from the Godot skill HUD template; the laboratory
 	# already owns state/signals, so it needs no extra manager or autoload.
-	board = Board.new()
+	board = _make_board()
 	board.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	board.setup(rules.data.species)
 	board.tile_selected.connect(_select_tile)
@@ -288,6 +288,12 @@ func _build_interface() -> void:
 	target_indicators = Indicators.new()
 	target_details.add_child(target_indicators)
 	target_details.add_child(target_info)
+
+func _make_board() -> Control:
+	return Board.new()
+
+func _movement_routes(actor: Dictionary) -> Dictionary:
+	return Movement.routes(state.board,Rules.living(state),actor)
 
 func _portrait(dimensions: Vector2) -> TextureRect:
 	var image: TextureRect = TextureRect.new()
@@ -543,7 +549,7 @@ func _refresh():
 		action_buttons[definition.id] = button
 	if _player_turn():
 		if not state.moved and selecting == "auto":
-			var routes = Movement.routes(state.board, Rules.living(state), actor)
+			var routes = _movement_routes(actor)
 			for identity in routes:
 				if routes[identity].cost > 0 and routes[identity].cost <= actor.remaining: board.available[identity] = routes[identity]
 		if not state.acted and selecting != "finish":

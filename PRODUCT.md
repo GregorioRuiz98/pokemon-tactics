@@ -199,3 +199,8 @@ El usuario pide comprar Revivir y recuperar solo media vida. Edición9 fija150 �
 ### Naturalezas, habilidades y objetos — 16 de octubre, 0.14.9
 
 El usuario aprueba añadir ahora naturalezas/mentas y habilidades normales/cápsulas antes del15, con dependencias de clima/huida y ocultas para después. Edición10:25 naturalezas,21 efectos de menta100 ₽, cápsula150 ₽ entre slots normales,13 habilidades funcionales de las15 normales de las32 especies actuales. Clorofila/Fuga muestran explícitamente su dependencia no disponible. Naturaleza original y slot conservados al evolucionar; menta modifica solo atributos efectivos. IV15/EV0 y movimientos/encuentros LGPE conservados. Topes, PS y Revivir siguen vigentes. No completa Kanto ni inicia mapas/isometría15. Ver docs/SPRINT_14_TRAITS.md.
+
+
+### Escala, isometría y alturas — sprint 15, 0.15.0
+
+El usuario encarga el sprint 15. Edición11 añade la comparación16×16/24×24 (elección antes del primer combate), proyección isométrica, cámara/zoom/minimapa y desniveles0–2. Movimiento terrestre con salto máximo1 y coste+1 al subir; voladores ignoran desnivel. Altura afecta alcance/visión y empujes/acercamientos, sin bonos de daño/precisión. El último enemigo del bosque es vigía, con activación por proximidad/daño y ronda3 como límite; se incorpora al construir la siguiente cola. Eliminar enemigos sigue siendo el objetivo. Se conservan capturas, recursos y progresión; no se amplía Kanto. Arte provisional y comparación humana pendientes; tamaños y reglas son de ensayo, no un balance definitivo. Ver docs/SPRINT_15.md.

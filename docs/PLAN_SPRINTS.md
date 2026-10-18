@@ -306,7 +306,7 @@ Entrega 12: completada técnicamente, versión 0.12.0, rama codex/sprint-12. 93 
 
 Plantilla de cierre: objetivo entregado; archivos o módulos modificados; recursos reutilizados y procedencia; comprobaciones ejecutadas y resultados; prueba manual disponible; feedback; pendientes; actualización de valores provisionales.
 
-Sprints 13 y 14 cerrados técnicamente. La muestra Paleta–Brock espera pruebas del creador; siguiente bloque propuesto: 15, escala, cámara e isometría/alturas.
+Sprints 13–15 entregados técnicamente. La muestra Paleta–Brock y la comparación de escala esperan valoración del creador; siguiente bloque: 16, equipo/progresión y PC si se aprueba.
 
 ## 9. Historial de entregas
 
@@ -343,7 +343,7 @@ Cambios de objetivo confirmados: campaña larga con guardado y bajas definitivas
 | --- | --- | --- | --- |
 | 13 — Base técnica y paridad | Godot/plantillas verificados, laboratorio 3v3 con recursos existentes, POO, guardado y exportación Windows; contraste con el motor web | 16 combates/506 órdenes y 25 escenarios coinciden; cuatro batallas por controles en fuente y ejecutable; guardados web intactos | Completado 0.13.0; [informe](SPRINT_13.md) |
 | 14 — Paleta hasta Brock | Inicial de Oak, Ruta 1, Ruta 2, Bosque Verde y Brock; captura, tienda, evolución/entrenamiento mínimos | Ciclo completo con guardado y premios únicos; ver informe | Completado 0.14.0; pruebas humanas/balance pendientes; [informe](SPRINT_14.md) |
-| 15 — Escala y ritmo táctico | Evaluar isometría/alturas y comparar mapas amplios, cámara, grupos enemigos y objetivos puntuales propuestos | Tiempo de desplazamiento y espera evaluados jugando; reglas compartidas con IA, sin ciclos defensivos; tamaños no fijados por intuición | Pendiente |
+| 15 — Escala y ritmo táctico | Evaluar isometría/alturas y comparar mapas amplios, cámara, grupos enemigos y objetivos puntuales propuestos | Comparación16/24 y reglas compartidas probadas; contraste jugando pendiente del creador | Entrega técnica0.15.0; isometría/alturas/cámara/vigía, métricas y QA. [Informe](SPRINT_15.md); valoración humana pendiente |
 | 16 — Equipo y progresión | Ampliar capturas, reserva si se aprueba, movimientos/MT y evolución acordada | Comprobar máximo desplegado, bajas, intercambio, límites y guardado | Parcial adelantado en0.14.1–0.14.9: niveles, roles, movimientos/MT, equipables, naturalezas y habilidades; PC/reserva y ampliación pendientes |
 | 17 — Celeste y Carmín | Monte Moon, rutas del tramo, Bill, Misty, S. S. Anne, Lt. Surge y rival | Encuentros y premios trazables a Rojo; tramo completo desde una partida continuada | Pendiente |
 | 18 — Lavanda, Azulona y Team Rocket | Túnel Roca, conexiones, Erika, guarida y Torre Pokémon; hitos y desvíos según grafo acordado | Hitos habilitan sus destinos sin saltos accidentales; gacha local separado del equipo de entrenadores | Pendiente |
@@ -426,3 +426,8 @@ Edición9 añade Revivir150 ₽ fuera de combate, recuperando un debilitado con5
 ## Revisión0.14.9 — naturalezas y habilidades antes del15
 
 Bloque14.9A/B solicitado y reunido en edición10:25 naturalezas,21 mentas100 ₽ con vista previa,13 pasivas activas y Cápsula Habilidad150 ₽ entre opciones normales. Clorofila/Fuga esperan clima/huida; ocultas/Parche quedan para ampliación posterior. IV15/EV0 y la muestra hasta Brock conservados; rasgos persistentes, topes y Revivir vigentes. [Informe y comprobaciones](SPRINT_14_TRAITS.md). El siguiente bloque sigue siendo15, mapas/cámara/evaluación de isometría y alturas; no se inicia automáticamente.
+
+
+## Sprint15 — escala e isometría, 0.15.0
+
+Edición11: mapas16×16 o24×24 seleccionables antes del primer combate, cámara/zoom/minimapa, alturas0–2 y movimiento/alcance/visión compartidos con IA. Vigía visible en bosque con activación a próxima cola y límite ronda3. Se mantienen cuatro encuentros y objetivo eliminar. Dos tamaños con despliegue comparable, sin obligar a caminar más. Reglas1–10 y laboratorio conservados; nueva campaña para11. [Entrega, métricas y comprobaciones](SPRINT_15.md). Arte de terreno provisional; ritmo/diversión/tamaño final esperan prueba del creador. El siguiente bloque es16, no iniciado.

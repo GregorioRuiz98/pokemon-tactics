@@ -1,0 +1,39 @@
+{
+  "assertions": 955,
+  "completed": [
+    {
+      "cleared": 4,
+      "phase": "complete",
+      "size": 16,
+      "transactions": 256
+    },
+    {
+      "cleared": 4,
+      "phase": "complete",
+      "size": 24,
+      "transactions": 257
+    }
+  ],
+  "failures": [],
+  "layoutFixtures": true,
+  "screenshots": [
+    "map-16.png",
+    "attack-preview.png",
+    "natural-16-1.png",
+    "natural-16-2.png",
+    "natural-16-3.png",
+    "map-24.png",
+    "natural-24-1.png",
+    "natural-24-2.png",
+    "natural-24-3.png",
+    "layout-16-1.png",
+    "layout-16-2.png",
+    "layout-16-3.png",
+    "layout-24-1.png",
+    "layout-24-2.png",
+    "layout-24-3.png",
+    "viewport-1024.png",
+    "viewport-1440.png",
+    "viewport-1280.png"
+  ]
+}

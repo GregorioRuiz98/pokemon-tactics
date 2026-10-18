@@ -1,0 +1,92 @@
+{
+  "checks": 1689,
+  "encounterFixtures": [
+    {
+      "biome": "route-1",
+      "emptyActivations": 1,
+      "orders": 15,
+      "outcome": "victory",
+      "rounds": 2,
+      "size": 16
+    },
+    {
+      "biome": "route-2",
+      "emptyActivations": 1,
+      "orders": 50,
+      "outcome": "victory",
+      "rounds": 5,
+      "size": 16
+    },
+    {
+      "biome": "forest",
+      "emptyActivations": 2,
+      "orders": 87,
+      "outcome": "victory",
+      "rounds": 10,
+      "size": 16
+    },
+    {
+      "biome": "brock",
+      "emptyActivations": 2,
+      "orders": 26,
+      "outcome": "victory",
+      "rounds": 3,
+      "size": 16
+    },
+    {
+      "biome": "route-1",
+      "emptyActivations": 1,
+      "orders": 15,
+      "outcome": "victory",
+      "rounds": 2,
+      "size": 24
+    },
+    {
+      "biome": "route-2",
+      "emptyActivations": 1,
+      "orders": 50,
+      "outcome": "victory",
+      "rounds": 5,
+      "size": 24
+    },
+    {
+      "biome": "forest",
+      "emptyActivations": 2,
+      "orders": 87,
+      "outcome": "victory",
+      "rounds": 10,
+      "size": 24
+    },
+    {
+      "biome": "brock",
+      "emptyActivations": 2,
+      "orders": 26,
+      "outcome": "victory",
+      "rounds": 3,
+      "size": 24
+    }
+  ],
+  "failures": [],
+  "trials": [
+    {
+      "attacks": 102,
+      "cleared": 4,
+      "emptyActivations": 4,
+      "firstContactRound": 1,
+      "moves": 22,
+      "orders": 226,
+      "phase": "complete",
+      "size": 16
+    },
+    {
+      "attacks": 102,
+      "cleared": 4,
+      "emptyActivations": 4,
+      "firstContactRound": 1,
+      "moves": 22,
+      "orders": 226,
+      "phase": "complete",
+      "size": 24
+    }
+  ]
+}

@@ -1,7 +1,8 @@
 extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
-const Advanced = preload("res://core/traits_run.gd")
+const Advanced = preload("res://core/scale_run.gd")
+const IsometricBoard = preload("res://ui/isometric_board.gd")
 const CampaignStore = preload("res://core/kanto_store.gd")
 var campaign: RefCounted = Advanced.new()
 var last_presentation: Dictionary = {}
@@ -17,11 +18,25 @@ var training_choice: OptionButton
 var campaign_confirm: ConfirmationDialog
 var message: String = ""
 var campaign_qa_dir: String = ""
+var scale_qa_dir: String = ""
+var camera_bar: HBoxContainer
 
 func _ready() -> void:
 	rules = campaign.engine
 	for record: Dictionary in rules.data.species: faces[int(record.id)] = load("res://" + record.face)
 	super._ready()
+	camera_bar = HBoxContainer.new()
+	camera_bar.position = Vector2(24,106)
+	camera_bar.add_theme_constant_override("separation",6)
+	battle_overlay.add_child(camera_bar)
+	for entry: Array in [["−",func():board.change_zoom(1/1.12)],["+",func():board.change_zoom(1.12)],["Unidad · C",func():board.focus_active()],["Mapa",func():board.fit_map()],["←",func():board.pan(Vector2(90,0))],["→",func():board.pan(Vector2(-90,0))],["↑",func():board.pan(Vector2(0,70))],["↓",func():board.pan(Vector2(0,-70))]]:
+		camera_bar.add_child(_button(entry[0],entry[1],40))
+
+func _make_board() -> Control:
+	return IsometricBoard.new()
+
+func _movement_routes(actor: Dictionary) -> Dictionary:
+	return rules.movement_routes(state,actor,actor.remaining) if state.get("combatEdition",0)>=11 else super._movement_routes(actor)
 
 func _boot() -> void:
 	if not qa_dir.is_empty():
@@ -29,9 +44,11 @@ func _boot() -> void:
 		return
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--campaign-qa-dir="): campaign_qa_dir = argument.trim_prefix("--campaign-qa-dir=")
-	qa_running = not campaign_qa_dir.is_empty()
-	if qa_running: DirAccess.make_dir_recursive_absolute(campaign_qa_dir)
-	store = CampaignStore.new(campaign_qa_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
+		if argument.begins_with("--scale-qa-dir="): scale_qa_dir = argument.trim_prefix("--scale-qa-dir=")
+	var test_dir: String = scale_qa_dir if not scale_qa_dir.is_empty() else campaign_qa_dir
+	qa_running = not test_dir.is_empty()
+	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
+	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
 	menu.get_popup().set_item_text(menu.get_popup().get_item_index(0),"Nueva campaña")
 	menu.get_popup().set_item_text(menu.get_popup().get_item_index(7),"Laboratorio táctico")
 	travel_root = MarginContainer.new()
@@ -46,7 +63,8 @@ func _boot() -> void:
 	campaign_confirm.dialog_text = "Podrás elegir otro inicial. La campaña anterior se conservará\ncomo copia al comenzar la nueva."
 	campaign_confirm.confirmed.connect(_show_oak)
 	add_child(campaign_confirm)
-	if qa_running: call_deferred("_run_campaign_qa")
+	if not scale_qa_dir.is_empty(): call_deferred("_run_scale_qa")
+	elif qa_running: call_deferred("_run_campaign_qa")
 	elif FileAccess.file_exists(store.file_path): _load_game()
 	else: _show_oak()
 
@@ -63,7 +81,7 @@ func _choose_starter(identity: int) -> void:
 		message = preserved.reason
 		_refresh()
 		return
-	campaign = Advanced.new()
+	campaign = Advanced.new() if campaign_qa_dir.is_empty() else load("res://core/traits_run.gd").new()
 	rules = campaign.engine
 	board.setup(rules.data.species)
 	run = campaign.create(journey_seed.text,identity)
@@ -103,7 +121,7 @@ func _load_game() -> void:
 	run = result.state
 	transactions = result.commands
 	save_warning = ""
-	message = "Campaña recuperada." if run.get("edition",1) == 10 else "Partida clásica %s: conserva sus reglas. Nueva campaña para naturalezas y habilidades." % _classic_version()
+	message = "Campaña recuperada." if run.get("edition",1) == 11 else "Partida clásica %s: conserva sus reglas. Nueva campaña para mapas isométricos y alturas." % _classic_version()
 	pending = {}
 	selecting = "auto"
 	action_page = false
@@ -119,6 +137,7 @@ func _event(command: Dictionary) -> void:
 		if _player_turn(): hint.text = message
 		else: _refresh()
 		return
+	if command.kind=="enter": combat_feedback.clear()
 	last_presentation = result.get("presentation",{})
 	run = result.state
 	transactions.append(command.duplicate(true))
@@ -156,6 +175,7 @@ func _refresh() -> void:
 	if travel_root == null:
 		super._refresh()
 		return
+	if camera_bar!=null: camera_bar.visible = not run.is_empty() and run.phase=="battle" and run.get("edition",1)>=11
 	var fighting: bool = not run.is_empty() and run.phase == "battle"
 	board.visible = fighting
 	battle_overlay.visible = fighting
@@ -173,7 +193,21 @@ func _refresh() -> void:
 			actor_info.text = "Nv. %d · " % active.level + actor_info.text
 			actor_info.tooltip_text = campaign.progression.roles(active)
 			if active.has("abilityDescription"): actor_info.tooltip_text += "\n"+active.natureText+"\n"+active.abilityDescription
+		if run.get("edition",1)>=11:
+			board.track_turn()
+			actor_info.tooltip_text += "\nAltura %d · subir cuesta +1; salto terrestre máximo 1." % rules.Terrain.height_at(state,active)
+			for direction: int in direction_buttons: direction_buttons[direction].text = {4:"↗",2:"↘",0:"↙",6:"↖"}[direction]
+		else:
+			for direction: int in direction_buttons: direction_buttons[direction].text = {4:"↑",2:"→",0:"↓",6:"←"}[direction]
 	else: _render_travel()
+
+func _show_plan(unit: Dictionary, plan: Dictionary) -> void:
+	super._show_plan(unit,plan)
+	if plan.ok and plan.has("heightDifference"): target_info.text += "\nDesnivel del objetivo: %+d · sin bonificación de daño." % plan.heightDifference
+
+func _hover_tile(point: Dictionary) -> void:
+	super._hover_tile(point)
+	if not point.is_empty() and state.get("combatEdition",0)>=11 and not _modal_open(): hint.text += "\nAltura %d · rueda: zoom · botón central: cámara." % rules.Terrain.height_at(state,point)
 
 func _travel_button(key: String, text: String, parent: Node, command: Dictionary) -> Button:
 	command.at = run.revision
@@ -197,7 +231,7 @@ func _render_travel() -> void:
 	header.add_child(_button("Laboratorio",func(): _menu_selected(7)))
 	header.add_child(_button("Ayuda",func(): help_dialog.popup_centered(Vector2i(630,450))))
 	var classic: String = ""
-	if not run.is_empty() and run.get("edition",1)<10: classic = "Clásica %s: Nueva campaña para naturalezas y habilidades." % _classic_version()
+	if not run.is_empty() and run.get("edition",1)<11: classic = "Clásica %s: Nueva campaña para mapas isométricos y alturas." % _classic_version()
 	var status: Label = _label(save_warning if not save_warning.is_empty() else (message if not message.is_empty() else (classic if not classic.is_empty() else ("Guardado automático local · Revivir disponible en tienda" if run.get("edition",1)>=9 else "Guardado automático local · bajas definitivas"))),17,MUTED)
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	travel_content.add_child(status)
@@ -238,6 +272,14 @@ func _render_travel() -> void:
 			travel_buttons["starter" + str(id)] = button
 		return
 	var progress: HBoxContainer = HBoxContainer.new()
+	if run.get("edition",1)>=11 and run.phase=="map" and run.cleared.is_empty():
+		travel_content.add_child(_label("Ensayo de escala · %d×%d · vista isométrica y alturas" % [run.mapSize,run.mapSize],20,GOLD))
+		var sizes: HBoxContainer = HBoxContainer.new()
+		travel_content.add_child(sizes)
+		for width: int in [16,24]:
+			var pick: Button = _travel_button("size_"+str(width),"%d×%d%s" % [width,width," · recomendado" if width==16 else " · comparación"],sizes,{"kind":"map-size","size":width})
+			pick.disabled = run.mapSize==width
+		travel_content.add_child(_label("Subir: +1 movimiento por nivel; salto terrestre máximo 1. Voladores ignoran desniveles.\nAltura limita alcance y línea de visión; no aumenta el daño. Eliminar rivales sigue siendo el objetivo.",16,MUTED))
 	travel_content.add_child(progress)
 	for index: int in campaign.locations.size():
 		var label: Label = _label(("✓ " if index < run.stage else ("▶ " if index == run.stage else "· ")) + ["Ruta 1","Ruta 2","Bosque Verde","Brock"][index],20,GOLD if index == run.stage else MUTED)
@@ -500,11 +542,15 @@ func _toggle_move(enabled: bool, member_id: int, identity: String, revision: int
 
 func _default_hint() -> String:
 	var classic: String = ""
-	if not run.is_empty() and run.get("edition",1)<10: classic = "Clásica %s: menú → Nueva campaña para naturalezas y habilidades.\n" % _classic_version()
+	if not run.is_empty() and run.get("edition",1)<11: classic = "Clásica %s: menú → Nueva campaña para mapas isométricos y alturas.\n" % _classic_version()
 	return classic + super._default_hint()
 
 func _classic_version() -> String:
-	return {1:"0.14",2:"0.14.1",3:"0.14.2",4:"0.14.3",5:"0.14.4",6:"0.14.5",7:"0.14.6",8:"0.14.7",9:"0.14.8"}.get(int(run.get("edition",1)),"0.14")
+	return {1:"0.14",2:"0.14.1",3:"0.14.2",4:"0.14.3",5:"0.14.4",6:"0.14.5",7:"0.14.6",8:"0.14.7",9:"0.14.8",10:"0.14.9"}.get(int(run.get("edition",1)),"0.14")
+
+func _run_scale_qa() -> void:
+	await get_tree().process_frame
+	await load("res://ui/qa_scale.gd").new().run(self,scale_qa_dir)
 
 func _render_stock(parent: VBoxContainer) -> void:
 	parent.add_child(_label("OFERTAS · MT Y EQUIPO",21,GOLD))

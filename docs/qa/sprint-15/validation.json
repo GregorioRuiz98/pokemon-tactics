@@ -1,0 +1,42 @@
+{
+  "counts": {
+    "total": 65,
+    "errors": 0,
+    "parse_errors": 0,
+    "warnings": 65,
+    "info": 0
+  },
+  "static": {
+    "checked": 68,
+    "config_hint_count": 0,
+    "config_warning_count": 0,
+    "config_warnings": [],
+    "config_warnings_enabled": true,
+    "counts": {
+      "extensions": 0,
+      "plugins": 0,
+      "resources": 0,
+      "scenes": 2,
+      "scripts": 66,
+      "shaders": 0
+    },
+    "failed": [],
+    "failed_count": 0,
+    "instantiate": true,
+    "ok": 68,
+    "physics_layers": {
+      "2d": {
+        "layers": []
+      },
+      "3d": {
+        "layers": []
+      },
+      "finding_count": 0,
+      "findings": [],
+      "truncated": false
+    },
+    "project_path": "res://",
+    "scenes_instantiated": 2
+  },
+  "newFilesDiagnostics": []
+}
