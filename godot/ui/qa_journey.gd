@@ -54,6 +54,9 @@ func run(app: Control, directory: String) -> void:
 		var matching: bool = Store.equivalent(app.run,expected.state)
 		check(matching,"UI matches authoritative journey result: "+str(command))
 		if not matching: break
+		if command.kind=="enter" and app.campaign.locations[int(app.run.stage)].get("kind","")=="story":
+			check(app.run.phase=="shop" and "surf" in app.run.flags,"Safari narrative enters shop without fake combat")
+			await capture(app,directory,"safari")
 		if command.kind=="enter" and app.run.phase=="battle":
 			var identity: String = app.campaign.locations[int(app.run.stage)].id
 			encountered.append(identity)

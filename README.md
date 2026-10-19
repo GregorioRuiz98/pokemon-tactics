@@ -1,12 +1,12 @@
 # Pokémon Tactics
 
-Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: muestra de Kanto Windows 0.18.0 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
+Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: muestra de Kanto Windows 0.19.0 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
 
-**Kanto nativo:** Paleta → Brock → Monte Moon → Celeste/Misty/Bill → Carmín/S. S. Anne/Surge, → Lavanda/Azulona/Erika/Rocket, con28 encuentros y desvíos.151 especies disponibles en catálogo, repertorios/MT de Let’s Go combinados, captura local, niveles/evolución, objetos, naturalezas/habilidades y PC. Ejecutable Windows offline, sin editor ni servidor. Campaña larga en desarrollo por entregas; no confundir catálogo con especies accesibles en este primer tramo.
+**Kanto nativo:** Paleta a Ciudad Verde:48 lugares, ocho gimnasios, Silph, Safari y rutas terrestres/marítimas. Captura local, niveles/evolución, movimientos/MT LGPE combinados, naturalezas/habilidades y PC. Ejecutable Windows offline, sin editor ni servidor. Catálogo151; no todas las especies se obtienen en cada recorrido.
 
-Las campañas0.16/0.17 pueden continuar con **Continuar aventura · ampliar Kanto**, con copia y diario conservados. Las anteriores siguen sus reglas. [Sprint18 e información de pruebas](docs/SPRINT_18.md) · [Cómo jugar](godot/README.md) · [Plan](docs/PLAN_SPRINTS.md).
+Las campañas0.16/0.17 pueden continuar con **Continuar aventura · ampliar Kanto**, con copia y diario conservados. Las anteriores siguen sus reglas. [Sprint19 e información de pruebas](docs/SPRINT_19.md) · [Cómo jugar](godot/README.md) · [Plan](docs/PLAN_SPRINTS.md).
 
-![Azulona](docs/qa/sprint-18/erika.png)
+![Ciudad Verde: ocho medallas](docs/qa/sprint-19/giovanni-gym.png)
 
 ## Campaña web 0.12.0
 

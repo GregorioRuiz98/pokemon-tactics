@@ -95,6 +95,8 @@ func transact(input: Dictionary, command: Dictionary) -> Dictionary:
 		for location: Dictionary in locations:
 			if location.id in run.cleared: _grant(run,location)
 		_fill_bag(run)
+		# Completed older chapters need a preparation stop before stronger encounters.
+		if chapter>=19 and run.phase=="complete": run.phase = "shop"
 		if run.phase=="complete":
 			var choices: Array = available(run).filter(func(n):return not n.get("optional",false))
 			if not choices.is_empty(): run.stage = locations.find(choices[0]); run.phase = "map"
@@ -130,6 +132,7 @@ func transact(input: Dictionary, command: Dictionary) -> Dictionary:
 			_grant(run,location)
 			run.phase = "shop"
 			run.lastProgress = []
+			run.rerolls = 0
 			roll_stock(run,true)
 			run.revision += 1
 			return {"ok":true,"state":run}

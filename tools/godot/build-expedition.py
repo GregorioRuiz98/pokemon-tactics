@@ -53,6 +53,25 @@ add('tower-rival','Torre Pokémon · rival','lavender-reached','pokemon-tower','
 add('pokemon-tower','Torre Pokémon · el espíritu de Marowak','tower-rival silph-scope','pokemon-tower','ghost',chapter=18,count=5,grants=['marowak-rest'],story='El Scope identifica los espíritus. En este encuentro de la torre, la historia de Marowak se resume al vencer a los habitantes del tablero; no se concede una captura legendaria ni un segundo premio al revisitar.')
 add('fuji-rescue','Torre Pokémon · rescate de Fuji','pokemon-tower','pokemon-tower','ghost',chapter=18,team=[dict(speciesId=41,level=25),dict(speciesId=42,level=25),dict(speciesId=109,level=26),dict(speciesId=96,level=26)],grants=['poke-flute'],story='Expulsas al último grupo Rocket y rescatas al Sr. Fuji. Te entrega la Poké Flauta, que permitirá abrir los caminos hacia Fucsia. Composición táctica de dos grupos Rocket de la torre; recompensa salvaje local.')
 
+# Both roads to Fuchsia remain available; they are alternatives, not mandatory detours.
+add('route-12','Ruta 12 · el puente de Snorlax','poke-flute','kanto-route-12','water',chapter=19,optional=True,story='La Poké Flauta despeja el puente. El combate usa habitantes de la ruta; Snorlax no se añade como captura garantizada.')
+for number in [13,14,15]: add(f'route-{number}',f'Ruta {number} · camino de Fucsia',f'route-{number-1}',f'kanto-route-{number}',chapter=19,optional=True,count=5)
+add('route-16','Ruta 16 · carril bici','poke-flute bike','kanto-route-16',chapter=19,optional=True)
+for number in [17,18]: add(f'route-{number}',f'Ruta {number} · carril bici',f'route-{number-1}',f'kanto-route-{number}',chapter=19,optional=True,count=5)
+add('safari','Fucsia · visita a Safari','poke-flute','kanto-route-15','grass',chapter=19,kind='story',requiresAny=['route-15','route-18'],grants=['surf','strength'],story='Recuperas los dientes del guarda y llegas a la casa secreta: consigues Fuerza y Surf. Visita narrativa sin combate, captura ni curación. Let’s Go no tiene tabla Safari; no se inventa una para este evento.')
+add('koga','Ciudad Fucsia · Koga','safari','kanto-route-15','ghost',chapter=19,leader=True,team=team('Koga'),medal='Medalla Alma',grants=['badge-soul'],story='Koga defiende su gimnasio de veneno. Su Weezing43 es la recompensa insignia; Surf ya permite explorar el mar, sin ocupar movimientos.')
+add('silph-rival','Silph S. A. · rival','fresh-water poke-flute','kanto-route-7','rocket',chapter=19,rivalTeams=rivals('Rival2',6),story='El Agua Fresca abre Azafrán. Te infiltras en Silph y tu rival te reta de nuevo. Captura de Ruta 7, acceso de la ciudad; no hay tabla salvaje en el edificio.')
+add('silph-giovanni','Silph S. A. · Giovanni','silph-rival','kanto-route-7','rocket',chapter=19,team=team('Giovanni',1),grants=['silph-liberated'],story='Derrotas a Giovanni y liberas Silph. Se resume la tarjeta y los teletransportadores. La captura usa la zona de acceso Ruta 7.')
+add('sabrina','Ciudad Azafrán · Sabrina','silph-liberated','kanto-route-7','psychic',chapter=19,leader=True,team=team('Sabrina'),medal='Medalla Pantano',grants=['badge-marsh'])
+add('route-19','Ruta 19 · salida al mar','badge-soul surf','kanto-sea-route-19','water',chapter=19,optional=True,count=5)
+add('route-20','Ruta 20 · travesía a Islas Espuma','route-19','kanto-sea-route-20','water',chapter=19,optional=True,count=5)
+add('seafoam','Islas Espuma · paso a Canela','route-20 strength','seafoam-islands','ice',chapter=19,optional=True,count=5,story='Surf y Fuerza permiten atravesar las islas. Articuno se reserva para el desafío legendario; las capturas son salvajes no legendarios de Let’s Go.')
+add('route-21','Ruta 21 · desde Paleta','badge-soul surf','kanto-sea-route-21','water',chapter=19,optional=True,count=5)
+add('pokemon-mansion','Mansión Pokémon · llave secreta','sabrina','pokemon-mansion','fire',chapter=19,requiresAny=['seafoam','route-21'],count=5,grants=['secret-key'],story='Llegas a Canela por mar y exploras la mansión. Sus diarios evocan la investigación de Mew; encuentras la llave del gimnasio. No hay captura legendaria.')
+add('blaine','Isla Canela · Blaine','secret-key','pokemon-mansion','fire',chapter=19,leader=True,team=team('Blaine'),medal='Medalla Volcán',grants=['badge-volcano'])
+add('giovanni-gym','Ciudad Verde · Giovanni','badge-rock badge-cascade badge-thunder badge-rainbow badge-soul badge-marsh badge-volcano','kanto-route-22','ground',chapter=19,leader=True,team=team('Giovanni',2),medal='Medalla Tierra',grants=['badge-earth'],story='Con siete medallas regresas a Ciudad Verde. Giovanni revela su identidad como líder; Rhydon50 es su insignia. La Medalla Tierra abre la Liga.')
+add('power-plant','Central de Energía · desvío','route-10 surf','kanto-power-plant','rocket',chapter=19,optional=True,count=5,story='Exploras las instalaciones junto a Ruta 10. Zapdos se reserva para el desafío legendario; aquí combates y capturas habitantes no legendarios.')
+
 def build(chapter):
     result=[]
     for source in nodes:

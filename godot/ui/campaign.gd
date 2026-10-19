@@ -3,7 +3,7 @@ extends "res://ui/laboratory.gd"
 const Campaign = preload("res://core/kanto_run.gd")
 const Advanced = preload("res://core/roster_run.gd")
 const Journey = preload("res://core/journey_run.gd")
-const CURRENT_CHAPTER: int = 18
+const CURRENT_CHAPTER: int = 19
 const RosterPanel = preload("res://ui/roster_panel.gd")
 const IsometricBoard = preload("res://ui/isometric_board.gd")
 const CampaignStore = preload("res://core/journey_store.gd")
@@ -404,7 +404,7 @@ func _render_travel() -> void:
 	match run.phase:
 		"map":
 			_travel_button("enter",("Visitar " if location.get("kind","")=="story" else "Entrar en ") + location.name,narrative,{"kind":"enter"})
-			text.text += "\n\nUn combate por ubicación. Al ganar: captura local, tienda y siguiente tramo. Los PS no se restauran entre encuentros."
+			text.text += "\n\nVisita narrativa: abre caminos y tienda, sin captura ni curación." if location.get("kind","")=="story" else "\n\nUn combate por ubicación. Al ganar: captura local, tienda y siguiente tramo. Los PS no se restauran entre encuentros."
 		"capture":
 			var image: TextureRect = _portrait(Vector2(160,160))
 			image.texture = faces[int(run.reward.speciesId)]

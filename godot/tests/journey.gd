@@ -51,6 +51,24 @@ func run_tests() -> void:
 		check(game.transact(fixture,{"kind":"enter","at":fixture.revision}).ok,"Scope enables tower encounter")
 		fixture.cleared.append("pokemon-tower")
 		check(not game.transact(fixture,{"kind":"enter","at":fixture.revision}).ok,"Cleared encounter cannot be farmed")
+	if chapter_number()>=19:
+		fixture = fresh.duplicate(true)
+		fixture.flags = ["poke-flute","bike"]
+		check(game.available(fixture).any(func(n):return n.id=="route-12") and game.available(fixture).any(func(n):return n.id=="route-16"),"Two roads to Fuchsia available")
+		fixture.stage = game.locations.find(game.locations.filter(func(n):return n.id=="safari")[0])
+		check(not game.transact(fixture,{"kind":"enter","at":0}).ok,"Safari requires reaching Fuchsia")
+		for road: String in ["route-15","route-18"]:
+			fixture.cleared = [road]
+			fixture.party[0].hp = 1
+			fixture.rerolls = 5
+			var visit: Dictionary = game.transact(fixture,{"kind":"enter","at":0})
+			check(visit.ok and visit.state.phase=="shop" and "surf" in visit.state.flags and "strength" in visit.state.flags,"Either road enables Safari and MO")
+			check(visit.ok and visit.state.party[0].hp==1 and visit.state.rerolls==0 and visit.state.nextId==fixture.nextId,"Safari resets shop, without healing or capture")
+		fixture.cleared = []
+		fixture.stage = game.locations.find(game.locations.filter(func(n):return n.id=="giovanni-gym")[0])
+		check(not game.transact(fixture,{"kind":"enter","at":0}).ok,"Giovanni requires seven badges")
+		fixture.flags.append_array(["badge-rock","badge-cascade","badge-thunder","badge-rainbow","badge-soul","badge-marsh","badge-volcano"])
+		check(game.transact(fixture,{"kind":"enter","at":0}).ok,"Seven badges enable Giovanni")
 	var report: Dictionary = journey(game,fresh,[])
 	if chapter_number()==17:
 		var legacy_game: RefCounted = Legacy.new()
@@ -127,6 +145,9 @@ func journey(game: RefCounted, start: Dictionary, journal: Array) -> Dictionary:
 	check(state.phase in ["complete","ending"],"Natural journey completes instead of defeat/stall")
 	if chapter_number()>=18 and state.phase in ["complete","ending"]:
 		for flag: String in ["ss-ticket","cut","silph-scope","marowak-rest","poke-flute","fresh-water"]: check(flag in state.flags,"Story milestone persisted "+flag)
+	if chapter_number()>=19 and state.phase in ["complete","ending"]:
+		for flag: String in ["surf","strength","silph-liberated","secret-key","badge-earth"]: check(flag in state.flags,"Southern milestone persisted "+flag)
+		check(state.medals.size()==8,"Eight distinct gym medals")
 	var store: RefCounted = Store.new(output_dir().path_join("journey-full.json"))
 	check(store.save(state,journal,"journey").ok,"Save full journey")
 	var restored: Dictionary = store.load_campaign(game)

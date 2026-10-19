@@ -1,12 +1,12 @@
-# Pokémon Tactics — Kanto Windows0.18.0
+# Pokémon Tactics — Kanto Windows0.19.0
 
-Campaña offline de Paleta a Lavanda/Azulona:28 encuentros, cuatro gimnasios, Bill, rival, S. S. Anne, Scope Silph, Fuji y Poké Flauta. Sin exploración libre ni puzzles completos: los hitos se resumen entre tableros. El resto de Kanto sigue en las entregas19–22.
+Paleta a Ciudad Verde:48 lugares, ocho gimnasios, Silph, Safari y rutas terrestres/marítimas. Los acontecimientos y puzzles se resumen entre tableros; sin exploración libre. Ver informe para límites de la entrega.
 
 ## Jugar y continuar
 
 Abre PokemonTactics.exe; no necesitas editor, Node, cuenta ni servidor. Elige inicial de Oak en una campaña nueva. Si vienes de0.16/0.17, carga tu partida y pulsa **Continuar aventura · ampliar Kanto** desde mapa/tienda/final. Conserva equipo, PS, movimientos, rasgos, bolsa, dinero, diario y una copia previa. Un combate pendiente conserva sus reglas hasta finalizar. Ediciones anteriores siguen siendo legibles y no se convierten automáticamente.
 
-Guardado local: `%APPDATA%/PokemonTacticsLab/kanto-save.json`. Cada orden aceptada se guarda antes de presentarse. Diario con checksum, copia y detección de otra instancia. Esquema kanto-journey, edición14 y transición explícita entre motores; hasta50000 órdenes. No borres un guardado para actualizar. Laboratorio y versión web conservan archivos y reglas independientes.
+Guardado local: `%APPDATA%/PokemonTacticsLab/kanto-save.json`. Cada orden aceptada se guarda antes de presentarse. Diario con checksum, copia y detección de otra instancia. Esquema kanto-journey, edición15 y transición explícita entre motores; hasta50000 órdenes. No borres un guardado para actualizar. Laboratorio y versión web conservan archivos y reglas independientes.
 
 ## Reglas
 
@@ -31,4 +31,4 @@ Isometría16/24, alturas0–2, subida+1 y salto terrestre1; voladores ignoran de
 
 Godot4.7.2 estándar. Recursos existentes, sin plugins nuevos. Importadores explícitos import-expedition.py y build-expedition.py; no regenerar manifiestos congelados para ocultar discrepancias. Pillow existente se localiza con PYTHONPATH=../../work/balance-python solo al importar. Los builds/juego no lo necesitan.
 
-Scripts de la raíz: godot:verify, godot:prepare, godot:test:expedition, godot:test:journey, godot:test:abilities, godot:qa:journey, godot:export y godot:qa:journey:export. QA usa archivos aislados, controles/eventos de tablero y comparación con el dominio; no sustituye valoración humana de diversión/balance. Evidencia en docs/SPRINT_18.md. Paquetes fuera de Git en outputs/releases/pokemon-tactics-0.18.0. Publicación pública aplazada.
+Scripts de la raíz: godot:verify, godot:prepare, godot:test:expedition, godot:test:journey, godot:test:abilities, godot:qa:journey, godot:export y godot:qa:journey:export. QA usa archivos aislados, controles/eventos de tablero y comparación con el dominio; no sustituye valoración humana de diversión/balance. Evidencia en docs/SPRINT_19.md. Paquetes fuera de Git en outputs/releases/pokemon-tactics-0.19.0. Publicación pública aplazada.
