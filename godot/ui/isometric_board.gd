@@ -226,6 +226,7 @@ func _tile_color(point: Dictionary) -> Color:
 	var h: int = Terrain.height_at(state,point)
 	var color: Color = Color("769264")
 	if BIOME_COLORS.has(state.biome): color = Color(BIOME_COLORS[state.biome])
+	if state.biome=="legends-birds": color = [Color("a6c8c8"),Color("b2ab7f"),Color("ae8067")][clampi(int(float(point.x)*3/state.board.size()),0,2)]
 	if state.biome=="brock": color = Color("afa78c")
 	elif state.biome=="forest": color = Color("628355")
 	if tile==1: color = Color("507345")

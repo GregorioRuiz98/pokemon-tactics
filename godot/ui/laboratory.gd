@@ -539,8 +539,10 @@ func _refresh():
 	for index in rules.profile(actor).actions_for(actor).size():
 		var definition = rules.profile(actor).actions_for(actor)[index].definition
 		var button = _button("%d · %s\n%d PT · %d cas." % [index + 1, definition.name, definition.cost, definition.range], _select_action.bind(definition.id))
+		if actor.get("recoveryPP",{}).has(definition.id): button.text += " · %d/5 usos" % actor.recoveryPP[definition.id]
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.disabled = not _player_turn() or state.acted or actor.tp < definition.cost or not pending.is_empty()
+		if actor.get("recoveryPP",{}).has(definition.id): button.disabled = button.disabled or actor.recoveryPP[definition.id]<=0
 		button.toggle_mode = true
 		button.button_pressed = definition.id == selected_action and selecting != "finish" and not state.acted
 		button.tooltip_text = definition.description

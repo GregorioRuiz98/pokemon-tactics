@@ -20,6 +20,9 @@ func capture(app: Control, directory: String, name: String) -> void:
 	screenshots.append(name+".png")
 
 func run(app: Control, directory: String) -> void:
+	var final_path: String = "birds"
+	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--journey-final="): final_path = argument.trim_prefix("--journey-final=")
 	if app.CURRENT_CHAPTER==20:
 		var current: String = directory.get_base_dir().path_join("journey-fresh-before-league.json")
 		check(DirAccess.copy_absolute(current,app.store.file_path)==OK,"Copy natural current-edition League checkpoint")
@@ -37,7 +40,7 @@ func run(app: Control, directory: String) -> void:
 	check(app.run.edition==app.CURRENT_CHAPTER-4,"Current journey edition selected")
 	var encountered: Array = []
 	for index: int in 16000:
-		var command: Dictionary = policy.choose(app.campaign,app.run)
+		var command: Dictionary = policy.choose(app.campaign,app.run,final_path)
 		if command.is_empty(): break
 		var expected: Dictionary = app.campaign.transact(app.run,command)
 		check(expected.ok,"Accepted real UI order "+str(command.kind)+" "+str(expected.get("reason","")))
@@ -46,6 +49,13 @@ func run(app: Control, directory: String) -> void:
 			var tactical: Dictionary = command.order
 			if tactical.kind=="move": app.board.focus_point(tactical.destination); driver.click(app,tactical.destination)
 			elif tactical.kind=="attack":
+				var actor: Dictionary = app.rules.active(app.state)
+				if actor.get("recoveryPP",{}).has(tactical.actionId) and "recovery-menu.png" not in screenshots:
+					app.buttons.actions.pressed.emit()
+					check(app.action_buttons[tactical.actionId].text.contains("%d/5" % actor.recoveryPP[tactical.actionId]),"Recovery uses visible in integrated action menu")
+					await capture(app,directory,"recovery-menu")
+					app.action_page = false
+					app._refresh()
 				driver.choose_action(app,tactical.actionId)
 				var target: Dictionary = app.rules.unit_by_id(app.state,int(tactical.target))
 				app.board.focus_point(target)
@@ -89,7 +99,7 @@ func run(app: Control, directory: String) -> void:
 	app._load_game()
 	check(Store.equivalent(app.run,snapshot),"Full journey reloads exactly")
 	await capture(app,directory,"journey-result")
-	var report: Dictionary = {"assertions":assertions,"failures":failures,"chapter":app.CURRENT_CHAPTER,"origin":"natural-current-before-league" if app.CURRENT_CHAPTER==20 else ("continued-previous" if app.CURRENT_CHAPTER==21 else "fresh"),"phase":app.run.phase,"cleared":app.run.cleared,"medals":app.run.medals,"transactions":app.transactions.size(),"encountered":encountered,"screenshots":screenshots}
+	var report: Dictionary = {"assertions":assertions,"failures":failures,"chapter":app.CURRENT_CHAPTER,"origin":"natural-current-before-league" if app.CURRENT_CHAPTER==20 else ("continued-previous" if app.CURRENT_CHAPTER==21 else "fresh"),"phase":app.run.phase,"finalPath":app.run.get("finalPath",""),"cleared":app.run.cleared,"medals":app.run.medals,"transactions":app.transactions.size(),"encountered":encountered,"screenshots":screenshots}
 	FileAccess.open(directory.path_join("journey-ui-result.json"),FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
 	print(JSON.stringify(report))
 	app.get_tree().quit(0 if failures.is_empty() else 1)

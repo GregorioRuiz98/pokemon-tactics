@@ -100,3 +100,5 @@
 - Sprint19 cerrado0.19.0/edición15: Fucsia, Azafrán y sur de Kanto; snapshot19, transición y diario preservados. Recorrido11613 y UI fuente/.exe12544 sin fallos. Ver docs/SPRINT_19.md. Continuar hasta22 autorizado; sin despliegue público.
 
 - Sprint20 cerrado0.20.0/edición16: Liga y rival; snapshot20, transición y diario preservados. Recorrido12273 y UI fuente/.exe4009 sin fallos. Ver docs/SPRINT_20.md. Continuar hasta22 autorizado; sin despliegue público.
+
+- Sprint21 cerrado0.21.0/edición17: Finales legendarios; snapshot21, transición y diario preservados. Recorrido10729 y UI fuente/.exe895 sin fallos. Ver docs/SPRINT_21.md. Continuar hasta22 autorizado; sin despliegue público.

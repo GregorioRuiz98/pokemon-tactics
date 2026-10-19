@@ -60,7 +60,10 @@
     "godot:test:abilities": "node tools/godot/run.mjs test-expedition-abilities",
     "godot:qa:journey": "node tools/godot/run.mjs qa-journey",
     "godot:qa:journey:export": "node tools/godot/run.mjs qa-journey-export",
-    "godot:package": "python tools/godot/package-native.py"
+    "godot:package": "python tools/godot/package-native.py",
+    "godot:test:finale": "node tools/godot/run.mjs test-finale",
+    "godot:qa:journey:psychic": "node tools/godot/run.mjs qa-journey-psychic",
+    "godot:qa:journey:psychic:export": "node tools/godot/run.mjs qa-journey-psychic-export"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

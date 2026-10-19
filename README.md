@@ -1,12 +1,12 @@
 # Pokémon Tactics
 
-Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: muestra de Kanto Windows 0.20.0 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
+Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: muestra de Kanto Windows 0.21.0 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
 
-**Kanto nativo:** Paleta a la Liga:56 lugares, ocho medallas, Alto Mando y rival campeón. Captura local, niveles/evolución, movimientos/MT LGPE combinados, naturalezas/habilidades y PC. Ejecutable Windows offline, sin editor ni servidor. Catálogo151; no todas las especies se obtienen en cada recorrido.
+**Kanto nativo:** Campaña Kanto completa hasta la Liga y dos desafíos legendarios alternativos. Captura local, niveles/evolución, movimientos/MT LGPE combinados, naturalezas/habilidades y PC. Ejecutable Windows offline, sin editor ni servidor. Catálogo151; no todas las especies se obtienen en cada recorrido.
 
-Las campañas0.16/0.17 pueden continuar con **Continuar aventura · ampliar Kanto**, con copia y diario conservados. Las anteriores siguen sus reglas. [Sprint20 e información de pruebas](docs/SPRINT_20.md) · [Cómo jugar](godot/README.md) · [Plan](docs/PLAN_SPRINTS.md).
+Las campañas0.16/0.17 pueden continuar con **Continuar aventura · ampliar Kanto**, con copia y diario conservados. Las anteriores siguen sus reglas. [Sprint21 e información de pruebas](docs/SPRINT_21.md) · [Cómo jugar](godot/README.md) · [Plan](docs/PLAN_SPRINTS.md).
 
-![Liga y rival completados](docs/qa/sprint-20/champion.png)
+![Guardianes de Kanto](docs/qa/sprint-21/legendary-birds.png)
 
 ## Campaña web 0.12.0
 

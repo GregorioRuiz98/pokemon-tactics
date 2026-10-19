@@ -7,7 +7,7 @@ var evolution_items: Dictionary = {"leaf-stone":"Piedra Hoja","fire-stone":"Pied
 func _init(chapter_number: int = 17) -> void:
 	super()
 	chapter = chapter_number
-	engine = ExpandedBattle.new()
+	engine = load("res://core/finale_battle.gd").new() if chapter>=21 else ExpandedBattle.new()
 	progression = engine.progression
 	var route_path: String = "res://data/journey-%d.json" % mini(chapter,21)
 	locations = JSON.parse_string(FileAccess.get_file_as_string(route_path))
@@ -119,6 +119,7 @@ func transact(input: Dictionary, command: Dictionary) -> Dictionary:
 		if choices.is_empty() and locations.any(func(n):return not n.get("optional",false) and not n.get("finale",false) and n.id not in run.cleared):
 			var connected: Array = possible.filter(func(n):return locations[int(run.stage)].id in n.requires)
 			choices = connected if not connected.is_empty() else possible
+		if chapter>=21 and locations[int(run.stage)].get("finale",false): choices = possible.filter(func(n):return n.id==locations[int(run.stage)].id)
 		run.phase = "complete" if choices.is_empty() else "map"
 		if not choices.is_empty(): run.stage = locations.find(choices[0])
 		run.revision += 1
@@ -143,7 +144,9 @@ func transact(input: Dictionary, command: Dictionary) -> Dictionary:
 		var choices: Array = available(run).filter(func(n):return n.get("path","")==run.finalPath)
 		if choices.is_empty(): return fail("Ese desafío todavía no está disponible.")
 		run.stage = locations.find(choices[0])
-		run.phase = "map"
+		run.phase = "shop"
+		run.rerolls = 0
+		roll_stock(run,true)
 		run.revision += 1
 		return {"ok":true,"state":run}
 	if kind=="buy" and command.get("item") in ["hyper-potion","max-potion"]+evolution_items.keys():

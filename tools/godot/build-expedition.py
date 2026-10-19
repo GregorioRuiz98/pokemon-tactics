@@ -80,6 +80,9 @@ for identity,label,party,requires,biome in [('lorelei','Lorelei','Lorelei','leag
     add(identity,'Alto Mando · '+label,requires,'kanto-victory-road-1',biome,chapter=20,team=team(party),story='Combate del Alto Mando con su equipo de Rojo. Después hay captura de la zona de acceso Calle Victoria y tienda. No se restauran PS gratuitamente, y una derrota termina la campaña.')
 add('champion','Liga Pokémon · rival campeón','lance','kanto-victory-road-1','dragon',chapter=20,rivalTeams=rivals('Rival3',0),grants=['champion'],story='Tu rival ya es campeón. Vence a su equipo de seis para entrar en el Hall de la Fama. Después de la captura de Calle Victoria y la tienda se cierra la historia principal; los legendarios esperan al siguiente desafío.')
 
+add('legendary-birds','Santuario de los tres cielos','champion','kanto-victory-road-1','legends-birds',chapter=21,optional=True,finale=True,path='birds',team=[dict(speciesId=i,level=70) for i in [144,145,146]],story='Tras la Liga eliges un santuario donde convergen hielo, tormenta y fuego. Articuno, Zapdos y Moltres combaten juntos. Desafío táctico alternativo original: los tres no se reúnen así en Rojo. No hay captura legendaria.')
+add('legendary-origin','Cueva Celeste · el origen','champion','cerulean-cave','legends-psychic',chapter=21,optional=True,finale=True,path='psychic',team=[dict(speciesId=i,level=75) for i in [151,150]],story='La aventura culmina en una cueva de agua y cristales. Mew y Mewtwo combaten juntos en este final alternativo, inspirado en los diarios de la Mansión. Mew no era un encuentro normal de Rojo. No hay captura legendaria.')
+
 def build(chapter):
     result=[]
     for source in nodes:

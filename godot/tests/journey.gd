@@ -129,20 +129,22 @@ func run_tests() -> void:
 				check(upgraded.ok and Store.equivalent(upgraded.state.party,previous.state.party) and upgraded.state.money==previous.state.money,"Next chapter preserves owned team/HP/money")
 				if upgraded.ok:
 					previous.commands.append(upgrade)
+					var before_final: Array = previous.commands.duplicate(true)
 					report.adoptedJourney = journey(game,upgraded.state,previous.commands,false)
+					if chapter_number()==21: report.psychicJourney = journey(game,upgraded.state,before_final,true,"psychic")
 	var combined: Dictionary = {"chapter":chapter_number(),"checks":checks,"failures":failures,"journey":report}
 	FileAccess.open(output_dir().path_join("journey-core-result.json"),FileAccess.WRITE).store_string(JSON.stringify(combined,"\t"))
 	print(JSON.stringify(combined))
 	quit(0 if failures.is_empty() else 1)
 
-func journey(game: RefCounted, start: Dictionary, journal: Array, require_victory: bool = true) -> Dictionary:
+func journey(game: RefCounted, start: Dictionary, journal: Array, require_victory: bool = true, final_path: String = "birds") -> Dictionary:
 	var state: Dictionary = start
 	var encounters: Array = []
 	for index: int in 20000:
 		if chapter_number()==20 and start.startEdition==16 and state.phase=="map" and game.locations[int(state.stage)].id=="league-rival":
 			var checkpoint: RefCounted = Store.new(output_dir().path_join("journey-fresh-before-league.json"))
 			check(checkpoint.save(state,journal,"journey").ok,"Natural current-edition League checkpoint for UI")
-		var order: Dictionary = policy.choose(game,state)
+		var order: Dictionary = policy.choose(game,state,final_path)
 		if order.is_empty(): break
 		var result: Dictionary = game.transact(state,order)
 		check(result.ok,"Journey order "+str(order.kind)+" "+str(result.get("reason","")))

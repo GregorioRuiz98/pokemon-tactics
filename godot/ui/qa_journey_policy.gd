@@ -76,6 +76,7 @@ func shop(game: RefCounted, state: Dictionary) -> Dictionary:
 		var prepared: Array = moves(game,member)
 		if prepared!=member.moves: return {"kind":"loadout","member":member.id,"moves":prepared}
 	var destinations: Array = game.available(state).filter(func(n):return not n.get("optional",false))
+	if destinations.is_empty() and state.get("finalPath","")!="": destinations = game.available(state).filter(func(n):return n.get("path","")==state.finalPath)
 	var goal: int = 5
 	if not destinations.is_empty():
 		var next: Dictionary = destinations[0]
