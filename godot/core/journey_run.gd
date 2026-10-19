@@ -84,7 +84,7 @@ func transact(input: Dictionary, command: Dictionary) -> Dictionary:
 	var kind: Variant = command.get("kind")
 	if kind=="upgrade":
 		if command.get("edition")!=chapter-4: return fail("La transición no corresponde a esta versión instalada.")
-		if input.get("edition",1)<12 or input.get("edition",1)>=chapter-4 or input.phase not in ["map","shop","complete"]: return fail("Continúa la expansión desde el mapa, tienda o final del tramo; conserva las reglas de un combate en curso.")
+		if input.get("edition",1)<12 or input.get("edition",1)>=chapter-4 or input.phase not in (["map","shop","complete","ending"] if chapter>=22 else ["map","shop","complete"]): return fail("Continúa la expansión desde el mapa, tienda o final del tramo; conserva las reglas de un combate en curso.")
 		var run: Dictionary = input.duplicate(true)
 		run.startEdition = run.get("startEdition",run.edition)
 		run.edition = chapter-4

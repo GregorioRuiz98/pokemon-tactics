@@ -12,9 +12,9 @@ func load_campaign(rules: RefCounted) -> Dictionary:
 	if file==null or file.get_length()>16*1024*1024: return {"ok":false,"reason":"No se puede leer la campaña o supera16 MB. Se conserva el archivo."}
 	var text: String = file.get_as_text()
 	file.close()
-	var envelope: Variant = JSON.parse_string(text)
+	var envelope: Variant = _decode_json(text)
 	if not envelope is Dictionary or not envelope.get("payload") is String or not envelope.get("checksum") is String or envelope.payload.sha256_text()!=envelope.checksum: return {"ok":false,"reason":"Campaña incompleta o alterada. Se conserva el archivo."}
-	var payload: Variant = JSON.parse_string(envelope.payload)
+	var payload: Variant = _decode_json(envelope.payload)
 	if not payload is Dictionary: return {"ok":false,"reason":"Contenido no válido. Se conserva el archivo."}
 	if payload.get("schema")!="kanto-journey": return super.load_campaign(rules)
 	if not _integer(payload.get("version"),13,18) or not _integer(payload.get("startEdition"),12,int(payload.version)) or not payload.get("seed") is String or payload.seed.length()>64 or not _integer(payload.get("starter"),1,7) or int(payload.starter) not in [1,4,7] or not payload.get("commands") is Array or payload.commands.size()>50000 or not payload.get("state") is Dictionary: return {"ok":false,"reason":"Formato de campaña incompatible. Se conserva el archivo."}
@@ -37,7 +37,13 @@ func load_campaign(rules: RefCounted) -> Dictionary:
 func _integer(value: Variant, minimum: int, maximum: int) -> bool:
 	return (value is int or value is float) and value==int(value) and value>=minimum and value<=maximum
 
+func _decode_json(text: String) -> Variant:
+	var parser: JSON = JSON.new()
+	return parser.data if parser.parse(text)==OK else null
+
 func _available_edition(edition: int) -> bool:
+	var installed: int = int(str(ProjectSettings.get_setting("application/config/version")).split(".")[1])-4
+	if edition>installed or edition<12: return false
 	if edition==12: return true
 	var snapshot: String = "res://data/journey-%d.json" % mini(edition+4,21)
 	return FileAccess.file_exists(snapshot)
@@ -52,6 +58,7 @@ func save(state: Dictionary, commands: Array, mode: String) -> Dictionary:
 	# Hash exact persisted bytes; never hash a re-encoded floating point snapshot.
 	var text = JSON.stringify(payload, "", true, true)
 	var envelope = JSON.stringify({"checksum": text.sha256_text(), "payload": text})
+	if envelope.to_utf8_buffer().size()>16*1024*1024: return {"ok":false,"reason":"La campaña supera16 MB. Se conserva el guardado anterior; puedes seguir en memoria."}
 	var directory = ProjectSettings.globalize_path(file_path).get_base_dir()
 	var ancestor = directory
 	while not ancestor.is_empty():

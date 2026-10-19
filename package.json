@@ -63,7 +63,9 @@
     "godot:package": "python tools/godot/package-native.py",
     "godot:test:finale": "node tools/godot/run.mjs test-finale",
     "godot:qa:journey:psychic": "node tools/godot/run.mjs qa-journey-psychic",
-    "godot:qa:journey:psychic:export": "node tools/godot/run.mjs qa-journey-psychic-export"
+    "godot:qa:journey:psychic:export": "node tools/godot/run.mjs qa-journey-psychic-export",
+    "godot:test:release": "node tools/godot/run.mjs test-release",
+    "godot:simulate:balance": "node tools/godot/run.mjs simulate-balance"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

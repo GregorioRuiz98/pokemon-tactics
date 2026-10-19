@@ -3,7 +3,7 @@ extends "res://ui/laboratory.gd"
 const Campaign = preload("res://core/kanto_run.gd")
 const Advanced = preload("res://core/roster_run.gd")
 const Journey = preload("res://core/journey_run.gd")
-const CURRENT_CHAPTER: int = 21
+const CURRENT_CHAPTER: int = 22
 const RosterPanel = preload("res://ui/roster_panel.gd")
 const IsometricBoard = preload("res://ui/isometric_board.gd")
 const CampaignStore = preload("res://core/journey_store.gd")
@@ -231,7 +231,7 @@ func _upgrade_campaign() -> void:
 	run = result.state
 	transactions.append(command)
 	_prepare_campaign_assets()
-	message = "Aventura ampliada. Equipo, objetos, PS y diario conservados; copia de la partida anterior guardada."
+	message = "Versión actualizada. Final, equipo y diario conservados; copia anterior guardada." if run.phase=="ending" else "Aventura ampliada. Equipo, objetos, PS y diario conservados; copia de la partida anterior guardada."
 	_save()
 	_refresh()
 
@@ -315,8 +315,8 @@ func _render_travel() -> void:
 	var status: Label = _label(save_warning if not save_warning.is_empty() else (message if not message.is_empty() else (classic if not classic.is_empty() else ("Guardado automático local · Revivir disponible en tienda" if run.get("edition",1)>=9 else "Guardado automático local · bajas definitivas"))),17,MUTED)
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	travel_content.add_child(status)
-	if run.get("edition",1)>=12 and run.get("edition",1)<CURRENT_CHAPTER-4 and run.get("phase","") in ["map","shop","complete"]:
-		var upgrade: Button = _button("Continuar aventura · ampliar Kanto",_upgrade_campaign)
+	if run.get("edition",1)>=12 and run.get("edition",1)<CURRENT_CHAPTER-4 and run.get("phase","") in ["map","shop","complete","ending"]:
+		var upgrade: Button = _button("Actualizar versión · conservar final" if run.phase=="ending" else "Continuar aventura · ampliar Kanto",_upgrade_campaign)
 		upgrade.tooltip_text = "Conserva equipo, PS, objetos y diario. Guarda una copia antes de adoptar la expansión; no transforma un combate en curso."
 		travel_content.add_child(upgrade)
 		travel_buttons.upgrade = upgrade

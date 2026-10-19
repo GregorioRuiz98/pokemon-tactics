@@ -23,7 +23,25 @@ func run(app: Control, directory: String) -> void:
 	var final_path: String = "birds"
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--journey-final="): final_path = argument.trim_prefix("--journey-final=")
-	if app.CURRENT_CHAPTER==20:
+	var origin: String = "fresh"
+	if app.CURRENT_CHAPTER>=22:
+		if final_path=="birds":
+			var delivered: String = directory.get_base_dir().get_base_dir().path_join("qa-sprint-21/journey-full.json")
+			check(DirAccess.copy_absolute(delivered,app.store.file_path)==OK,"Copy delivered completed ending")
+			app._load_game()
+			var previous: Dictionary = app.run.duplicate(true)
+			check(app.travel_buttons.has("upgrade"),"Finished campaign offers safe update")
+			app.travel_buttons.upgrade.pressed.emit()
+			check(app.run.phase=="ending" and app.run.finalPath==previous.finalPath and Store.equivalent(app.run.party,previous.party),"Update preserves completed ending and team")
+			await capture(app,directory,"updated-ending")
+		var checkpoint: String = directory.get_base_dir().get_base_dir().path_join("qa-sprint-20/journey-source/campaign-save.json")
+		origin = "continued-delivered-champion16"
+		var large: String = directory.get_base_dir().path_join("balance-champion-24.json")
+		if final_path=="psychic" and FileAccess.file_exists(large): checkpoint = large; origin = "natural-current-champion24"
+		check(DirAccess.copy_absolute(checkpoint,app.store.file_path)==OK,"Copy natural champion checkpoint")
+		app._load_game()
+		if app.run.edition<app.CURRENT_CHAPTER-4: app.travel_buttons.upgrade.pressed.emit()
+	elif app.CURRENT_CHAPTER==20:
 		var current: String = directory.get_base_dir().path_join("journey-fresh-before-league.json")
 		check(DirAccess.copy_absolute(current,app.store.file_path)==OK,"Copy natural current-edition League checkpoint")
 		app._load_game()
@@ -99,7 +117,7 @@ func run(app: Control, directory: String) -> void:
 	app._load_game()
 	check(Store.equivalent(app.run,snapshot),"Full journey reloads exactly")
 	await capture(app,directory,"journey-result")
-	var report: Dictionary = {"assertions":assertions,"failures":failures,"chapter":app.CURRENT_CHAPTER,"origin":"natural-current-before-league" if app.CURRENT_CHAPTER==20 else ("continued-previous" if app.CURRENT_CHAPTER==21 else "fresh"),"phase":app.run.phase,"finalPath":app.run.get("finalPath",""),"cleared":app.run.cleared,"medals":app.run.medals,"transactions":app.transactions.size(),"encountered":encountered,"screenshots":screenshots}
+	var report: Dictionary = {"assertions":assertions,"failures":failures,"chapter":app.CURRENT_CHAPTER,"origin":origin if app.CURRENT_CHAPTER>=22 else ("natural-current-before-league" if app.CURRENT_CHAPTER==20 else ("continued-previous" if app.CURRENT_CHAPTER==21 else "fresh")),"mapSize":app.run.mapSize,"phase":app.run.phase,"finalPath":app.run.get("finalPath",""),"cleared":app.run.cleared,"medals":app.run.medals,"transactions":app.transactions.size(),"encountered":encountered,"screenshots":screenshots}
 	FileAccess.open(directory.path_join("journey-ui-result.json"),FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
 	print(JSON.stringify(report))
 	app.get_tree().quit(0 if failures.is_empty() else 1)

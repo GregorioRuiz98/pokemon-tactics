@@ -1,12 +1,12 @@
-# Pokémon Tactics — Kanto Windows0.21.0
+# Pokémon Tactics — Kanto Windows0.22.0
 
 Campaña Kanto completa hasta la Liga y dos desafíos legendarios alternativos. Los acontecimientos y puzzles se resumen entre tableros; sin exploración libre. Ver informe para límites de la entrega.
 
 ## Jugar y continuar
 
-Abre PokemonTactics.exe; no necesitas editor, Node, cuenta ni servidor. Elige inicial de Oak en una campaña nueva. Si vienes de0.16/0.17, carga tu partida y pulsa **Continuar aventura · ampliar Kanto** desde mapa/tienda/final. Conserva equipo, PS, movimientos, rasgos, bolsa, dinero, diario y una copia previa. Un combate pendiente conserva sus reglas hasta finalizar. Ediciones anteriores siguen siendo legibles y no se convierten automáticamente.
+Abre PokemonTactics.exe; no necesitas editor, Node, cuenta ni servidor. Elige inicial de Oak en una campaña nueva. Si vienes de0.16/0.17, carga tu partida y pulsa **Continuar aventura · ampliar Kanto** desde mapa/tienda/final. Si ya terminaste un final legendario, **Actualizar versión · conservar final** mantiene ese desenlace. Conserva equipo, PS, movimientos, rasgos, bolsa, dinero, diario y una copia previa. Un combate pendiente conserva sus reglas hasta finalizar. Ediciones anteriores siguen siendo legibles y no se convierten automáticamente.
 
-Guardado local: `%APPDATA%/PokemonTacticsLab/kanto-save.json`. Cada orden aceptada se guarda antes de presentarse. Diario con checksum, copia y detección de otra instancia. Esquema kanto-journey, edición17 y transición explícita entre motores; hasta50000 órdenes. No borres un guardado para actualizar. Laboratorio y versión web conservan archivos y reglas independientes.
+Guardado local: `%APPDATA%/PokemonTacticsLab/kanto-save.json`. Cada orden aceptada se guarda antes de presentarse. Diario con checksum, copia y detección de otra instancia. Esquema kanto-journey, edición18 y transición explícita entre motores; hasta50000 órdenes/16 MB. No borres un guardado para actualizar. Laboratorio y versión web conservan archivos y reglas independientes.
 
 ## Reglas
 
@@ -21,6 +21,8 @@ Guardado local: `%APPDATA%/PokemonTacticsLab/kanto-save.json`. Cada orden acepta
 
 Catálogo151,79 familias y211 movimientos, con repertorios/compatibilidad de Let’s Go Pikachu/Eevee combinados. No se ofrecen formas regionales ni movimientos exclusivos de iniciales especiales. Tipos/estadísticas modernas y equipos de entrenadores de Rojo. Alcance, PT y varios efectos complejos son adaptaciones descritas en ficha.49 de78 habilidades normales producen efectos; las restantes se identifican como pendientes o sin condiciones aplicables (clima, huida, género u otras interacciones ausentes). No se presenta como réplica exacta de un cartucho.
 
+Respiro, Recuperación, Amortiguador y Descanso tienen cinco usos por combate, además de sus PT. Los usos se muestran en el menú y no se restablecen cada ronda. Los finales excluyentes nunca conceden legendarios.
+
 ## Controles
 
 Clic en casilla azul: movimiento directo; clic en rival: básico. Habilidades en menú dentro del tablero. R rectifica exclusivamente movimiento antes de actuar; F orienta y termina. Flechas/Enter y Escape disponibles. Rueda/+/- zoom, botón central cámara, C unidad, Combate/Mapa encuadre, G/H guías. Las casillas vacías alcanzables siguen seleccionables aunque un sprite grande las tape parcialmente.
@@ -31,4 +33,6 @@ Isometría16/24, alturas0–2, subida+1 y salto terrestre1; voladores ignoran de
 
 Godot4.7.2 estándar. Recursos existentes, sin plugins nuevos. Importadores explícitos import-expedition.py y build-expedition.py; no regenerar manifiestos congelados para ocultar discrepancias. Pillow existente se localiza con PYTHONPATH=../../work/balance-python solo al importar. Los builds/juego no lo necesitan.
 
-Scripts de la raíz: godot:verify, godot:prepare, godot:test:expedition, godot:test:journey, godot:test:abilities, godot:qa:journey, godot:export y godot:qa:journey:export. QA usa archivos aislados, controles/eventos de tablero y comparación con el dominio; no sustituye valoración humana de diversión/balance. Evidencia en docs/SPRINT_21.md. Paquetes fuera de Git en outputs/releases/pokemon-tactics-0.21.0. Publicación pública aplazada.
+Scripts de la raíz: godot:verify, godot:prepare, godot:test:expedition, godot:test:journey, godot:test:abilities, godot:qa:journey, godot:export y godot:qa:journey:export. QA usa archivos aislados, controles/eventos de tablero y comparación con el dominio; no sustituye valoración humana de diversión/balance. Evidencia en docs/SPRINT_22.md. Paquetes fuera de Git en outputs/releases/pokemon-tactics-0.22.0. Publicación pública aplazada.
+
+Prueba manual: [guía Windows](../docs/PLAYTEST_WINDOWS.md). Balance y propuestas: [informe de29 simulaciones](../docs/reports/balance-native-0.22/INFORME.md). No se cambian parámetros para favorecer los ensayos.

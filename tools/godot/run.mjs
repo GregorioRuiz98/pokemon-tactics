@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { existsSync, readFileSync, mkdirSync, writeFileSync, cpSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, mkdirSync, writeFileSync, cpSync, readdirSync, renameSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
@@ -17,7 +17,7 @@ mkdirSync(work, { recursive: true });
 function run(executable, args, label, cwd = root) {
   const logIndex = args.indexOf('--log-file');
   if (logIndex >= 0) writeFileSync(args[logIndex + 1], '');
-  const result = spawnSync(executable, args, { cwd, encoding: 'utf8', windowsHide: true, timeout: label.startsWith('journey-ui-') || label==='test-journey' ? 900_000 : 300_000, maxBuffer: 12 * 1024 * 1024 });
+  const result = spawnSync(executable, args, { cwd, encoding: 'utf8', windowsHide: true, timeout: label==='simulate-balance' ? 1_800_000 : label.startsWith('journey-ui-') || label==='test-journey' ? 900_000 : 300_000, maxBuffer: 12 * 1024 * 1024 });
   const log = (result.stdout ?? '') + (result.stderr ?? '') + (logIndex >= 0 && existsSync(args[logIndex + 1]) ? '\n' + readFileSync(args[logIndex + 1], 'utf8') : '');
   writeFileSync(resolve(work, `${label}.log`), log);
   const clean = log.replace(/\x1b\[[0-9;]*m/g, '');
@@ -76,7 +76,18 @@ if (!['qa-export','qa-campaign-export','qa-scale-export','qa-roster-export','qa-
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if (operation === 'test-journey' || operation === 'test-expedition-abilities' || operation === 'test-finale') {
+if (operation === 'test-release' || operation === 'simulate-balance') {
+  verify();
+  if (operation === 'simulate-balance') {
+    const previous = readdirSync(work).filter(name => name === 'balance-native.json' || name === 'balance-champion-24.json' || /^balance-[147]-(16|24)-(birds|psychic)\.json$/.test(name));
+    if (previous.length) {
+      const archive = resolve(work, `balance-history-${Date.now()}`);
+      mkdirSync(archive);
+      for (const name of previous) renameSync(resolve(work, name), resolve(archive, name));
+    }
+  }
+  run(binary,['--headless',...common,'--script',operation==='test-release'?'res://tests/release_checks.gd':'res://tests/balance_native.gd','--','--save-dir='+work],operation);
+} else if (operation === 'test-journey' || operation === 'test-expedition-abilities' || operation === 'test-finale') {
   verify();
   run(binary,['--headless',...common,'--script',operation==='test-journey'?'res://tests/journey.gd':(operation==='test-finale'?'res://tests/finale_rules.gd':'res://tests/expedition_abilities.gd'),'--','--save-dir='+work,'--chapter='+ (process.env.KANTO_CHAPTER ?? String(chapter))],operation);
 } else if (operation === 'test-expedition') {
@@ -178,6 +189,13 @@ if (operation === 'test-journey' || operation === 'test-expedition-abilities' ||
   run(binary, ['--headless', ...common, '--export-release', 'Windows Desktop', resolve(output, 'PokemonTactics.exe')], 'export-windows');
   cpSync(resolve(project, 'licenses'), resolve(output, 'licenses'), { recursive: true });
   cpSync(resolve(project, 'CREDITS.md'), resolve(output, 'CREDITS.md'));
+  if (chapter >= 22) {
+    cpSync(resolve(root, 'docs/PLAYTEST_WINDOWS.md'), resolve(output, 'GUIA_DE_PRUEBA.md'));
+    const report = readFileSync(resolve(root, 'docs/reports/balance-native-0.22/INFORME.md'), 'utf8')
+      .replace('(results.json)', '(BALANCE_RESULTADOS.json)').replace('(../../PLAYTEST_WINDOWS.md)', '(GUIA_DE_PRUEBA.md)');
+    writeFileSync(resolve(output, 'INFORME_BALANCE.md'), report);
+    cpSync(resolve(root, 'docs/reports/balance-native-0.22/results.json'), resolve(output, 'BALANCE_RESULTADOS.json'));
+  }
   const route = JSON.parse(readFileSync(resolve(project,`data/journey-${Math.min(chapter,21)}.json`),'utf8'));
   const end = route.filter(n=>!n.optional && !n.finale).at(-1).name;
   writeFileSync(resolve(output, 'LEEME.txt'), `Pokémon Tactics ${nativeVersion} — Kanto offline
@@ -193,6 +211,8 @@ Sin curación gratuita; usa objetos fuera de combate. Revivir150 ₽ devuelve50%
 Mapas16/24 con alturas. Clic en azul: mover; clic en rival: básico. Habilidades integradas; R rectifica solo movimiento antes de actuar. F orienta y termina. Flechas/Enter y Escape disponibles.
 Rueda/+/-: zoom; botón central: cámara; C unidad; Combate/Mapa encuadran. G/H cuadrícula/alturas.
 Datos/repertorios LGPE combinados, sin movimientos de los iniciales especiales; historia/equipos de entrenadores de Rojo. PT/alcances y efectos complejos son adaptaciones visibles en ficha. Habilidades pendientes están etiquetadas; sin clima ni huida.
+Dos finales excluyentes tras la Liga: tres aves juntas o Mew/Mewtwo. Legendarios nunca reclutables. Recuperación, Respiro, Amortiguador y Descanso tienen cinco usos por combate además de PT. Actualizar una campaña ya terminada conserva su final.
+Consulta GUIA_DE_PRUEBA.md e INFORME_BALANCE.md para controles, sesiones propuestas y límites de las simulaciones.49/78 habilidades normales activas;29 pendientes y terreno provisional. Dificultad y diversión requieren pruebas humanas.
 No hay conexión de red, cuentas ni servicios al jugar. Créditos/licencias acompañan la entrega. Publicación pública aplazada.
 `, 'utf8');
   const digest = createHash('sha256').update(readFileSync(resolve(output, 'PokemonTactics.exe'))).digest('hex');

@@ -1,0 +1,20 @@
+{
+  "version": "0.22.0",
+  "campaignEdition": 18,
+  "combatEdition": 17,
+  "exe": {
+    "path": "C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\outputs\\releases\\pokemon-tactics-0.22.0\\windows\\PokemonTactics.exe",
+    "bytes": 113577664,
+    "sha256": "747fb439031b12e66c58986bc82b2ab599bb7f7ca7560bfcc8dc18047b793d83"
+  },
+  "zip": {
+    "path": "C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\outputs\\releases\\pokemon-tactics-0.22.0\\pokemon-tactics-0.22.0-windows.zip",
+    "bytes": 39950281,
+    "sha256": "f16da38ce17e447680fa9f4259aa1ae1850b767a4cd8dd3b70ff7c7663e8c4a6"
+  },
+  "uiSourceAndReleaseEqual": true,
+  "releaseAssertions": 898,
+  "publicDeployment": false,
+  "bothEndingsVerified": true,
+  "psychicAssertions": 510
+}

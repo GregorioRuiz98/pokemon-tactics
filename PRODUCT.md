@@ -231,3 +231,5 @@ Las reservas permiten consultar/configurar movimientos, MT y equipables; consumi
 - Sprint20 cerrado0.20.0/edición16: Liga y rival; snapshot20, transición y diario preservados. Recorrido12273 y UI fuente/.exe4009 sin fallos. Ver docs/SPRINT_20.md. Continuar hasta22 autorizado; sin despliegue público.
 
 - Sprint21 cerrado0.21.0/edición17: Finales legendarios; snapshot21, transición y diario preservados. Recorrido10729 y UI fuente/.exe895 sin fallos. Ver docs/SPRINT_21.md. Continuar hasta22 autorizado; sin despliegue público.
+
+- Sprint 22: entrega técnica 0.22.0/edición 18, combate 17/snapshot 21 conservados. Actualización de finales, guardado 16 MB/futuras ediciones y paleta 24 comprobados. 29 simulaciones sin errores, derrotas incluidas; sin rebalanceo general. Fuente/.exe 898 aves 16 y 510 origen 24 iguales; paquete offline y guía. Pruebas humanas/publicación pendientes;49/78 habilidades activas, terreno provisional. Encargo 17–22 entregado técnicamente; ver docs/SPRINT_22.md. No iniciar nuevos cambios de balance ni publicar por haber documentado propuestas.

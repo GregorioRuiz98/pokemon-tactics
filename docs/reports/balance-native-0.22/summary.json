@@ -1,0 +1,33 @@
+{
+  "runs": 29,
+  "failures": [],
+  "opening": [
+    {
+      "starter": 1,
+      "runs": 8,
+      "wonBrock": 4,
+      "lostBeforeBrock": 3,
+      "lostBrock": 1
+    },
+    {
+      "starter": 4,
+      "runs": 8,
+      "wonBrock": 0,
+      "lostBeforeBrock": 7,
+      "lostBrock": 1
+    },
+    {
+      "starter": 7,
+      "runs": 8,
+      "wonBrock": 0,
+      "lostBeforeBrock": 8,
+      "lostBrock": 0
+    }
+  ],
+  "extendedRuns": 5,
+  "fights": 165,
+  "medianRounds": 7,
+  "maximumRounds": 26,
+  "allyBasicFraction": 0.13630229419703105,
+  "offensiveMissFraction": 0.012922932330827067
+}
