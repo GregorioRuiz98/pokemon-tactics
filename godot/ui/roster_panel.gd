@@ -30,10 +30,32 @@ func render(app: Control, parent: VBoxContainer) -> void:
 	for index: int in range(app.roster_offset*PAGE_SIZE,mini(collection.size(),(app.roster_offset+1)*PAGE_SIZE)):
 		var member_data: Dictionary = collection[index]
 		var unit: Dictionary = app.rules.member_unit(member_data)
-		var button: Button = app._button("%s · Nv. %d\n%d / %d PS%s" % [unit.name,member_data.level,unit.hp,unit.maxHp," · DEBILITADO" if unit.hp==0 else ""],app._select_member.bind(int(member_data.id)),205)
+		var vitals: String = "%d / %d PS" % [unit.hp,unit.maxHp] if unit.hp>0 else "Debilitado"
+		var button: Button = app._button("%s · Nv. %d\n%s" % [unit.name,member_data.level,vitals],app._select_member.bind(int(member_data.id)),205)
+		button.icon = app.faces[int(member_data.speciesId)]
+		button.expand_icon = true
+		button.add_theme_constant_override("icon_max_width",32)
+		button.add_theme_font_size_override("font_size",16)
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		button.tooltip_text = app._type_names(unit.types)+" · "+member_data.origin
 		button.toggle_mode = true
 		button.button_pressed = member_data.id==app.selected_member
-		grid.add_child(button)
+		var cell: VBoxContainer = VBoxContainer.new()
+		cell.add_theme_constant_override("separation",3)
+		grid.add_child(cell)
+		cell.add_child(button)
+		var hp: ProgressBar = ProgressBar.new()
+		hp.max_value = unit.maxHp
+		hp.value = unit.hp
+		hp.show_percentage = false
+		hp.custom_minimum_size.y = 5
+		var fill: StyleBoxFlat = StyleBoxFlat.new()
+		fill.bg_color = Color("71c5a1") if unit.hp>unit.maxHp/2.0 else (Color("e9c76d") if unit.hp>unit.maxHp/4.0 else Color("ee997e"))
+		hp.add_theme_stylebox_override("fill",fill)
+		var background: StyleBoxFlat = StyleBoxFlat.new()
+		background.bg_color = Color("0b222b")
+		hp.add_theme_stylebox_override("background",background)
+		cell.add_child(hp)
 		app.travel_buttons["member_"+str(int(member_data.id))] = button
 	if pages>1:
 		var navigation: HBoxContainer = HBoxContainer.new()

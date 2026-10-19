@@ -1,0 +1,16 @@
+{
+  "journey-source": {
+    "stateEqualTo0220": true,
+    "edition": 18,
+    "combatEdition": 17,
+    "revision": 8924,
+    "canonicalStateSha256": "3ba16f8415a8233153b5aad6a44d7b9549893bf0b7a0d5072747e5a3c0ba4043"
+  },
+  "journey-psychic-source": {
+    "stateEqualTo0220": true,
+    "edition": 18,
+    "combatEdition": 17,
+    "revision": 7396,
+    "canonicalStateSha256": "2e3b00567e494afb416369f11caeea3fb3b36c8b772eb058b1e57764f5f59f9b"
+  }
+}

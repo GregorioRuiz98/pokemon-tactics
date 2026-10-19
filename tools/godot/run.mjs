@@ -9,7 +9,8 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const project = resolve(root, 'godot');
 const nativeVersion = readFileSync(resolve(project, 'project.godot'),'utf8').match(/config\/version="([^"]+)"/)[1];
 const chapter = Number(nativeVersion.split('.')[1]);
-const work = resolve(root, `../../work/qa-sprint-${chapter}`);
+const qaLabel = nativeVersion === '0.22.1' ? '22-ui' : String(chapter);
+const work = resolve(root, `../../work/qa-sprint-${qaLabel}`);
 const output = resolve(root, `../releases/pokemon-tactics-${nativeVersion}/windows`);
 const operation = process.argv[2] ?? 'test';
 const binary = process.env.GODOT_BIN ?? resolve(root, '../../work/godot-4.7.2/Godot_v4.7.2-stable_win64_console.exe');
@@ -70,7 +71,7 @@ function verify() {
   console.log(`Verified ${manifest.files.length} assets and ${manifest.ruleSources.length} reference source hashes; ${fixtures.games.length} complete battles.`);
 }
 if (operation === 'verify') { verify(); process.exit(0); }
-if (!['qa-export','qa-campaign-export','qa-scale-export','qa-roster-export','qa-journey-export','qa-journey-psychic-export'].includes(operation)) {
+if (!['qa-export','qa-campaign-export','qa-scale-export','qa-roster-export','qa-journey-export','qa-journey-psychic-export','qa-interface-export'].includes(operation)) {
   if (!existsSync(binary)) throw new Error('Godot not found. Set GODOT_BIN to the standard Godot 4.7.2 executable.');
   const version = spawnSync(binary, ['--version'], { encoding: 'utf8', windowsHide: true });
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
@@ -90,14 +91,23 @@ if (operation === 'test-release' || operation === 'simulate-balance') {
 } else if (operation === 'test-journey' || operation === 'test-expedition-abilities' || operation === 'test-finale') {
   verify();
   run(binary,['--headless',...common,'--script',operation==='test-journey'?'res://tests/journey.gd':(operation==='test-finale'?'res://tests/finale_rules.gd':'res://tests/expedition_abilities.gd'),'--','--save-dir='+work,'--chapter='+ (process.env.KANTO_CHAPTER ?? String(chapter))],operation);
+} else if (operation === 'qa-interface' || operation === 'qa-interface-export') {
+  const exported = operation.endsWith('export');
+  if (!exported) verify();
+  const directory = resolve(work, exported ? 'interface-release' : 'interface-source');
+  const args = [...(exported ? [] : common),'--position','-10000,-10000','--audio-driver','Dummy','--','--interface-qa-dir='+directory];
+  run(exported ? resolve(output,'PokemonTactics.exe') : binary,args,'interface-ui-'+(exported?'release':'source'),exported ? output : root);
+  const report = JSON.parse(readFileSync(resolve(directory,'interface-ui-result.json'),'utf8'));
+  if (report.failures.length || !report.battlePaused || !report.savePreserved) throw new Error('Interface regression failed.');
 } else if (operation === 'test-expedition') {
   verify();
   run(binary,['--headless',...common,'--script','res://tests/expedition.gd','--','--save-dir='+work,'--chapter='+ (process.env.KANTO_CHAPTER ?? String(chapter))],'expedition-core');
-} else if (['qa-journey','qa-journey-export','qa-journey-psychic','qa-journey-psychic-export'].includes(operation)) {
+} else if (['qa-journey','qa-journey-export','qa-journey-psychic','qa-journey-psychic-export','qa-interface-export'].includes(operation)) {
   const exported = operation.endsWith('export');
   const psychic = operation.includes('psychic');
   if (!exported) verify();
   const directory = resolve(work,(psychic ? 'journey-psychic-' : 'journey-')+(exported ? 'release' : 'source'));
+  if (psychic && qaLabel==='22-ui') cpSync(resolve(root,'../../work/qa-sprint-22/balance-champion-24.json'),resolve(work,'balance-champion-24.json'));
   const args = [...(exported ? [] : common),'--position','-10000,-10000','--audio-driver','Dummy','--','--journey-qa-dir='+directory,...(psychic ? ['--journey-final=psychic'] : [])];
   run(exported ? resolve(output,'PokemonTactics.exe') : binary,args,'journey-ui-'+(psychic?'psychic-':'')+(exported?'release':'source'),exported ? output : root);
   const report = JSON.parse(readFileSync(resolve(directory,'journey-ui-result.json'),'utf8'));

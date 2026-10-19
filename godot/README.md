@@ -1,4 +1,4 @@
-# Pokémon Tactics — Kanto Windows0.22.0
+# Pokémon Tactics — Kanto Windows0.22.1
 
 Campaña Kanto completa hasta la Liga y dos desafíos legendarios alternativos. Los acontecimientos y puzzles se resumen entre tableros; sin exploración libre. Ver informe para límites de la entrega.
 
@@ -33,6 +33,8 @@ Isometría16/24, alturas0–2, subida+1 y salto terrestre1; voladores ignoran de
 
 Godot4.7.2 estándar. Recursos existentes, sin plugins nuevos. Importadores explícitos import-expedition.py y build-expedition.py; no regenerar manifiestos congelados para ocultar discrepancias. Pillow existente se localiza con PYTHONPATH=../../work/balance-python solo al importar. Los builds/juego no lo necesitan.
 
-Scripts de la raíz: godot:verify, godot:prepare, godot:test:expedition, godot:test:journey, godot:test:abilities, godot:qa:journey, godot:export y godot:qa:journey:export. QA usa archivos aislados, controles/eventos de tablero y comparación con el dominio; no sustituye valoración humana de diversión/balance. Evidencia en docs/SPRINT_22.md. Paquetes fuera de Git en outputs/releases/pokemon-tactics-0.22.0. Publicación pública aplazada.
+Scripts de la raíz: godot:verify, godot:prepare, godot:test:expedition, godot:test:journey, godot:test:abilities, godot:qa:journey, godot:export y godot:qa:journey:export. QA usa archivos aislados, controles/eventos de tablero y comparación con el dominio; no sustituye valoración humana de diversión/balance. Evidencia en docs/SPRINT_22.md. Paquetes fuera de Git en outputs/releases/pokemon-tactics-0.22.1. Publicación pública aplazada.
 
 Prueba manual: [guía Windows](../docs/PLAYTEST_WINDOWS.md). Balance y propuestas: [informe de29 simulaciones](../docs/reports/balance-native-0.22/INFORME.md). No se cambian parámetros para favorecer los ensayos.
+
+Inicio, tienda por categorías y fichas revisadas en0.22.1: [informe y comprobaciones](../docs/SPRINT_22_UI.md).

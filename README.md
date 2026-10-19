@@ -1,14 +1,14 @@
 # Pokémon Tactics
 
-Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: campaña de Kanto Windows 0.22.0 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
+Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: campaña de Kanto Windows 0.22.1 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
 
 **Kanto nativo:** campaña hasta la Liga y dos finales legendarios alternativos. Capturas locales, niveles/evolución, movimientos/MT LGPE combinados, naturalezas/habilidades y PC. Ejecutable Windows offline. 151 especies; 49/78 habilidades normales activas. Arte provisional, pruebas humanas y publicación pendientes.
 
-[Guía para jugar en Windows](docs/PLAYTEST_WINDOWS.md) · [Balance: 29 simulaciones y límites](docs/reports/balance-native-0.22/INFORME.md)
+[Nueva interfaz e inicio](docs/SPRINT_22_UI.md) · [Guía para jugar en Windows](docs/PLAYTEST_WINDOWS.md) · [Balance: 29 simulaciones y límites](docs/reports/balance-native-0.22/INFORME.md)
 
 Las campañas 0.16–0.21 pueden continuar con **Continuar aventura · ampliar Kanto**, con copia y diario conservados. Las anteriores siguen sus reglas. [Sprint 22 e información de pruebas](docs/SPRINT_22.md) · [Cómo jugar](godot/README.md) · [Plan](docs/PLAN_SPRINTS.md).
 
-![Final psíquico en 24×24](docs/qa/sprint-22/legendary-origin.png)
+![Pantalla de inicio](docs/qa/sprint-22-ui/title-1280.png)
 
 ## Campaña web 0.12.0
 

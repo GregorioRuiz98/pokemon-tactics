@@ -29,6 +29,50 @@ var roster_offset: int = 0
 var roster_swap: int = 1
 var roster_panel: RefCounted = RosterPanel.new()
 var camera_bar: HBoxContainer
+var title_screen: Control
+var title_visible: bool = false
+var title_loading: bool = false
+var oak_return: Dictionary = {}
+var interface_qa_dir: String = ""
+var shop_tab: String = "supplies"
+var shop_sections: Dictionary = {}
+var options_dialog: AcceptDialog
+var options_buttons: Dictionary = {}
+var new_seed: String = "kanto-14"
+
+func _make_theme() -> void:
+	super._make_theme()
+	for control_type: String in ["Button","OptionButton","MenuButton"]:
+		for entry: String in ["normal","hover","pressed","disabled","focus"]:
+			var style: StyleBoxFlat = StyleBoxFlat.new()
+			style.bg_color = Color("1a3d47") if entry=="normal" else (Color("28525c") if entry=="hover" else (Color("2a4c56") if entry=="pressed" else Color("142e37")))
+			if entry=="focus": style.draw_center = false
+			style.border_color = GOLD if entry in ["focus","pressed"] else Color("49646a")
+			style.set_border_width_all(2 if entry=="focus" else 1)
+			style.set_corner_radius_all(5)
+			style.set_content_margin_all(10)
+			theme.set_stylebox(entry,control_type,style)
+			theme.set_color("font_pressed_color",control_type,GOLD)
+			theme.set_color("font_hover_pressed_color",control_type,GOLD)
+			theme.set_color("font_focus_color",control_type,CREAM)
+	theme.set_stylebox("panel","PopupMenu",_surface())
+	theme.set_stylebox("panel","AcceptDialog",_surface())
+
+func _surface() -> StyleBoxFlat:
+	var style: StyleBoxFlat = StyleBoxFlat.new()
+	style.bg_color = Color("122f39")
+	style.border_color = Color("52717a")
+	style.set_border_width_all(1)
+	style.set_corner_radius_all(6)
+	style.set_content_margin_all(14)
+	style.shadow_color = Color(0.01,0.05,0.07,0.3)
+	style.shadow_size = 6
+	return style
+
+func _panel() -> PanelContainer:
+	var panel: PanelContainer = PanelContainer.new()
+	panel.add_theme_stylebox_override("panel",_surface())
+	return panel
 
 func _ready() -> void:
 	rules = campaign.engine
@@ -39,7 +83,10 @@ func _ready() -> void:
 	camera_bar.add_theme_constant_override("separation",6)
 	battle_overlay.add_child(camera_bar)
 	for entry: Array in [["−",func():board.change_zoom(1/1.12)],["+",func():board.change_zoom(1.12)],["Combate",func():board.frame_combat()],["Unidad · C",func():board.focus_active()],["Mapa",func():board.fit_map()],["Cuadrícula · G",func():board.strong_grid = not board.strong_grid; board.queue_redraw()],["Alturas · H",func():board.show_heights = not board.show_heights; board.queue_redraw()]]:
-		camera_bar.add_child(_button(entry[0],_camera_order.bind(entry[1]),40))
+		var camera_button: Button = _button(entry[0],_camera_order.bind(entry[1]),40)
+		camera_button.add_theme_font_size_override("font_size",16)
+		camera_bar.add_child(camera_button)
+	resized.connect(_refresh)
 
 func _camera_order(callback: Callable) -> void:
 	callback.call()
@@ -60,14 +107,18 @@ func _boot() -> void:
 		if argument.begins_with("--scale-qa-dir="): scale_qa_dir = argument.trim_prefix("--scale-qa-dir=")
 		if argument.begins_with("--roster-qa-dir="): roster_qa_dir = argument.trim_prefix("--roster-qa-dir=")
 		if argument.begins_with("--journey-qa-dir="): journey_qa_dir = argument.trim_prefix("--journey-qa-dir=")
+		if argument.begins_with("--interface-qa-dir="): interface_qa_dir = argument.trim_prefix("--interface-qa-dir=")
 	var test_dir: String = scale_qa_dir if not scale_qa_dir.is_empty() else campaign_qa_dir
 	if not roster_qa_dir.is_empty(): test_dir = roster_qa_dir
 	if not journey_qa_dir.is_empty(): test_dir = journey_qa_dir
+	if not interface_qa_dir.is_empty(): test_dir = interface_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
 	menu.get_popup().set_item_text(menu.get_popup().get_item_index(0),"Nueva campaña")
 	menu.get_popup().set_item_text(menu.get_popup().get_item_index(7),"Laboratorio táctico")
+	menu.get_popup().add_separator()
+	menu.get_popup().add_item("Pantalla de inicio",8)
 	travel_root = MarginContainer.new()
 	travel_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for edge: String in ["left","right","top","bottom"]: travel_root.add_theme_constant_override("margin_" + edge,24)
@@ -80,14 +131,84 @@ func _boot() -> void:
 	campaign_confirm.dialog_text = "Podrás elegir otro inicial. La campaña anterior se conservará\ncomo copia al comenzar la nueva."
 	campaign_confirm.confirmed.connect(_show_oak)
 	add_child(campaign_confirm)
-	if not journey_qa_dir.is_empty(): call_deferred("_run_journey_qa")
+	title_screen = load("res://ui/title_screen.gd").new()
+	add_child(title_screen)
+	title_screen.setup(self)
+	title_screen.hide()
+	if not interface_qa_dir.is_empty(): _open_title(); call_deferred("_run_interface_qa")
+	elif not journey_qa_dir.is_empty(): call_deferred("_run_journey_qa")
 	elif not roster_qa_dir.is_empty(): call_deferred("_run_roster_qa")
 	elif not scale_qa_dir.is_empty(): call_deferred("_run_scale_qa")
 	elif qa_running: call_deferred("_run_campaign_qa")
-	elif FileAccess.file_exists(store.file_path): _load_game()
+	else: _open_title()
+
+func _open_title() -> void:
+	if not oak_return.is_empty():
+		run = oak_return.run
+		campaign = oak_return.campaign
+		rules = campaign.engine
+		transactions = oak_return.transactions
+		state = run.battle
+		oak_return = {}
+	combat_feedback.clear()
+	ai_clock = 0
+	title_visible = true
+	_refresh()
+
+func _resume_title() -> void:
+	if run.is_empty():
+		title_loading = true
+		title_screen.refresh()
+		title_screen.controls["continue"].text = "Cargando aventura…"
+		title_screen.controls["continue"].disabled = true
+		await get_tree().process_frame
+		await RenderingServer.frame_post_draw
+		_load_game()
+	else:
+		title_visible = false
+		_refresh()
+		if run.phase=="battle": board.grab_focus()
+
+func _new_from_title() -> void:
+	if not run.is_empty() or FileAccess.file_exists(store.file_path): campaign_confirm.popup_centered()
 	else: _show_oak()
 
+func _title_options() -> void:
+	if options_dialog==null:
+		options_dialog = AcceptDialog.new()
+		options_dialog.title = "Opciones"
+		add_child(options_dialog)
+		var content: VBoxContainer = VBoxContainer.new()
+		content.custom_minimum_size.x = 320
+		content.add_theme_constant_override("separation",16)
+		options_dialog.add_child(content)
+		for entry: Array in [["Sonidos",func(): _toggle_sound()],["Animaciones",func(): _toggle_motion()]]:
+			var option: CheckButton = CheckButton.new()
+			option.text = entry[0]
+			option.button_pressed = not muted if entry[0]=="Sonidos" else not reduced_motion
+			option.toggled.connect(func(_value: bool): entry[1].call())
+			content.add_child(option)
+			options_buttons[entry[0]] = option
+		content.add_child(_label("Los controles y el guardado son locales.",16,MUTED))
+	options_buttons["Sonidos"].set_pressed_no_signal(not muted)
+	options_buttons["Animaciones"].set_pressed_no_signal(not reduced_motion)
+	options_dialog.popup_centered()
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		if title_visible:
+			if event.keycode==KEY_ESCAPE and not run.is_empty() and not help_dialog.visible and not credits_dialog.visible and not campaign_confirm.visible and (options_dialog==null or not options_dialog.visible): _resume_title(); get_viewport().set_input_as_handled()
+			return
+		if run.is_empty() and event.keycode==KEY_ESCAPE: _open_title(); get_viewport().set_input_as_handled(); return
+	super._unhandled_key_input(event)
+
+func _run_interface_qa() -> void:
+	await get_tree().process_frame
+	await load("res://ui/qa_interface.gd").new().run(self,interface_qa_dir)
+
 func _show_oak() -> void:
+	if not run.is_empty(): oak_return = {"run":run,"campaign":campaign,"transactions":transactions}
+	title_visible = false
 	combat_feedback.clear()
 	run = {}
 	state = {}
@@ -105,6 +226,7 @@ func _choose_starter(identity: int) -> void:
 	if campaign_qa_dir.is_empty() and scale_qa_dir.is_empty() and roster_qa_dir.is_empty(): campaign = Journey.new(CURRENT_CHAPTER)
 	rules = campaign.engine
 	run = campaign.create(journey_seed.text,identity)
+	oak_return = {}
 	_prepare_campaign_assets()
 	transactions = []
 	selected_member = 1
@@ -119,10 +241,11 @@ func _menu_selected(identity: int) -> void:
 	match identity:
 		0: campaign_confirm.popup_centered()
 		7: get_tree().change_scene_to_file("res://scenes/laboratory.tscn")
+		8: _open_title()
 		_: super._menu_selected(identity)
 
 func _modal_open() -> bool:
-	return super._modal_open() or (campaign_confirm != null and campaign_confirm.visible)
+	return title_visible or super._modal_open() or (campaign_confirm != null and campaign_confirm.visible) or (options_dialog!=null and options_dialog.visible)
 
 func _player_turn() -> bool:
 	return not run.is_empty() and run.phase == "battle" and super._player_turn()
@@ -134,11 +257,14 @@ func _save() -> void:
 
 func _load_game() -> void:
 	var result: Dictionary = store.load_campaign(campaign)
+	title_loading = false
 	if not result.ok:
 		save_warning = result.reason
 		_refresh()
 		return
 	campaign = result.rules
+	title_visible = false
+	oak_return = {}
 	rules = campaign.engine
 	combat_feedback.clear()
 	run = result.state
@@ -251,6 +377,14 @@ func _rectify_movement() -> void:
 	_event({"kind":"rectify","at":run.revision})
 
 func _refresh() -> void:
+	if title_screen!=null:
+		title_screen.visible = title_visible
+		if title_visible:
+			board.hide()
+			battle_overlay.hide()
+			travel_root.hide()
+			title_screen.refresh()
+			return
 	if travel_root == null:
 		super._refresh()
 		if timeline.get_parent() is ScrollContainer: timeline.get_parent().scroll_horizontal = 0
@@ -279,7 +413,30 @@ func _refresh() -> void:
 			for direction: int in direction_buttons: direction_buttons[direction].text = {4:"↗",2:"↘",0:"↙",6:"↖"}[direction]
 		else:
 			for direction: int in direction_buttons: direction_buttons[direction].text = {4:"↑",2:"→",0:"↓",6:"←"}[direction]
+		_layout_battle_hud()
+		var fraction: float = float(active.hp)/maxi(1,int(active.maxHp))
+		actor_hp.get_theme_stylebox("fill").bg_color = Color("71c5a1") if fraction>0.5 else (Color("e9c76d") if fraction>0.25 else Color("ee997e"))
+		for action_button: Button in action_buttons.values(): action_button.add_theme_font_size_override("font_size",16)
 	else: _render_travel()
+
+func _layout_battle_hud() -> void:
+	var narrow: bool = size.x<1150
+	var actor_width: float = 300 if narrow else 360
+	var target_width: float = 330 if narrow else 390
+	var actor_panel: Control = actor_portrait.get_parent().get_parent().get_parent()
+	actor_panel.offset_right = 18+actor_width
+	actor_portrait.custom_minimum_size = Vector2(72,72) if narrow else Vector2(104,104)
+	actor_info.add_theme_font_size_override("font_size",16 if narrow else 18)
+	target_panel.offset_left = -18-target_width
+	target_portrait.custom_minimum_size = Vector2(56,56) if narrow else Vector2(80,80)
+	target_info.custom_minimum_size.x = 200 if narrow else 250
+	target_info.add_theme_font_size_override("font_size",15 if narrow else 17)
+	var middle_left: float = 30+actor_width
+	var middle_right: float = size.x-30-target_width
+	var middle: float = (middle_left+middle_right)/2
+	var width: float = minf(390,middle_right-middle_left)
+	hint.get_parent().offset_left = middle-size.x/2-width/2
+	hint.get_parent().offset_right = middle-size.x/2+width/2
 
 func _show_plan(unit: Dictionary, plan: Dictionary) -> void:
 	super._show_plan(unit,plan)
@@ -297,18 +454,18 @@ func _travel_button(key: String, text: String, parent: Node, command: Dictionary
 	return button
 
 func _render_travel() -> void:
+	if is_instance_valid(journey_seed): new_seed = journey_seed.text
 	_clear(travel_content)
 	travel_buttons.clear()
 	var header: HBoxContainer = HBoxContainer.new()
 	travel_content.add_child(header)
-	var title: Label = _label("KANTO / TU AVENTURA" if run.get("edition",1)>=13 else "KANTO / DE PALETA A BROCK",28,GOLD)
+	var title: Label = _label("ELIGE A TU COMPAÑERO" if run.is_empty() else "KANTO / TU AVENTURA",24,GOLD)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(title)
-	var resume: Button = _button("Continuar · F8",_load_game)
-	resume.disabled = not FileAccess.file_exists(store.file_path)
-	header.add_child(resume)
-	header.add_child(_button("Nueva campaña",func(): campaign_confirm.popup_centered()))
-	header.add_child(_button("Laboratorio",func(): _menu_selected(7)))
+	if not run.is_empty(): header.add_child(_label("%d ₽" % run.money,22,GOLD))
+	var home: Button = _button("Inicio",_open_title)
+	header.add_child(home)
+	travel_buttons.home = home
 	header.add_child(_button("Ayuda",func(): help_dialog.popup_centered(Vector2i(630,450))))
 	var classic: String = ""
 	if not run.is_empty() and run.get("edition",1)<12: classic = "Clásica %s: conserva sus reglas. Nueva campaña para usar el PC." % _classic_version()
@@ -330,7 +487,7 @@ func _render_travel() -> void:
 		travel_content.add_child(_label("Pueblo Paleta · Laboratorio de Oak",30,GOLD))
 		travel_content.add_child(_label("Elige un inicial de nivel 5. Gana EXP, aprende y combina cuatro movimientos\nmás el básico neutro. Oak te entrega dos pociones y 120 ₽.",20))
 		journey_seed = LineEdit.new()
-		journey_seed.text = "kanto-14"
+		journey_seed.text = new_seed
 		journey_seed.max_length = 64
 		journey_seed.placeholder_text = "Semilla de la campaña"
 		travel_content.add_child(journey_seed)
@@ -380,13 +537,19 @@ func _render_travel() -> void:
 	var left: PanelContainer = _panel()
 	left.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	body.add_child(left)
+	var left_column: VBoxContainer = VBoxContainer.new()
+	left_column.add_theme_constant_override("separation",12)
+	left.add_child(left_column)
 	var story_scroll: ScrollContainer = ScrollContainer.new()
 	story_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	left.add_child(story_scroll)
+	story_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	left_column.add_child(story_scroll)
 	var narrative: VBoxContainer = VBoxContainer.new()
 	narrative.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	narrative.add_theme_constant_override("separation",18)
 	story_scroll.add_child(narrative)
+	var footer: VBoxContainer = VBoxContainer.new()
+	left_column.add_child(footer)
 	var location: Dictionary = campaign.locations[mini(int(run.stage),campaign.locations.size()-1)]
 	var heading_text: String = location.name
 	if run.phase == "capture": heading_text = "¡Un nuevo compañero!"
@@ -422,18 +585,32 @@ func _render_travel() -> void:
 				if run.get("edition",1)>=4: text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos: %d\nCaramelo: +1 nivel. Evolución automática al alcanzar el nivel.\nCompra y usa objetos con un miembro a la derecha." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
 				if run.get("edition",1)>=7: text.text += "\nAl subir de nivel recuperas tantos PS como aumenten tus PS máximos."
 				if run.get("edition",1)>=9: text.text += "\nRevivir: %d en bolsa · 150 ₽ · recupera al debilitado con el 50 %% de sus PS." % run.bag.revive
-				_render_stock(narrative)
+				shop_sections = _shop_panels(narrative)
+				_render_stock(shop_sections.gear)
 			var consumables: Dictionary = campaign.consumables if run.get("edition",1)>=4 else Campaign.ITEMS
+			var shop_parent: Node = shop_sections.get("supplies",narrative) if run.get("edition",1)>=3 else narrative
+			if run.get("edition",1)>=12:
+				text.text = "Prepara al equipo antes de seguir. Compra aquí y usa los objetos desde la ficha del Pokémon."
+				var stock_grid: GridContainer = GridContainer.new()
+				stock_grid.columns = 2
+				stock_grid.add_theme_constant_override("h_separation",8)
+				stock_grid.add_theme_constant_override("v_separation",8)
+				shop_parent.add_child(stock_grid)
+				shop_parent = stock_grid
 			for item: String in consumables:
-				var button: Button = _travel_button("buy_"+item,"Comprar %s · %d ₽" % [consumables[item].name,consumables[item].price],narrative,{"kind":"buy","item":item})
+				var destination: Node = shop_sections.traits if item=="ability-capsule" and run.get("edition",1)>=12 else shop_parent
+				var label: String = "%s\n%d ₽ · bolsa %d" % [consumables[item].name,consumables[item].price,run.bag.get(item,0)] if run.get("edition",1)>=12 else "Comprar %s · %d ₽" % [consumables[item].name,consumables[item].price]
+				var button: Button = _travel_button("buy_"+item,label,destination,{"kind":"buy","item":item})
+				button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				if run.get("edition",1)>=12: button.add_theme_font_size_override("font_size",16)
 				button.disabled = run.money < consumables[item].price
 				if item=="revive": button.tooltip_text = "Recupera a un Pokémon debilitado con el 50 % de sus PS máximos. Solo en la tienda; consume una unidad de la bolsa."
-			if run.get("edition",1)>=10: _render_mint_shop(narrative)
+			if run.get("edition",1)>=10: _render_mint_shop(shop_sections.get("traits",narrative))
 			if run.get("edition",1)>=5 and run.get("edition",1)<13:
 				var stone: Button = _travel_button("buy_leaf-stone","Comprar Piedra Hoja · 80 ₽",narrative,{"kind":"buy-stone"})
 				stone.disabled = run.money<80
 				stone.tooltip_text = "Evoluciona Gloom y Weepinbell. No cura ni sube niveles."
-			_travel_button("continue","Seguir viaje" if run.get("edition",1)>=13 or run.stage < 3 else "Cerrar el tramo",narrative,{"kind":"continue"})
+			_travel_button("continue","Seguir viaje" if run.get("edition",1)>=13 or run.stage < 3 else "Cerrar el tramo",footer,{"kind":"continue"})
 		"complete": text.text = "Has vencido a Geodude y Onix. Conservas tu equipo, dinero, objetos y bajas.\n\nLa muestra termina en Brock. Las siguientes rutas, Liga y legendarios pertenecen a otros sprints."
 		"defeat": text.text = ("Todo el equipo se ha debilitado. La campaña ha terminado; Revivir solo se puede usar en la tienda, si llegas con algún compañero en pie." if run.get("edition",1)>=9 else "Las bajas son definitivas. Esta campaña ha terminado y queda guardada para consultar el equipo.") + "\n\nPuedes comenzar de nuevo con otro inicial o semilla."
 	if run.get("edition",1)>=12:
@@ -477,25 +654,44 @@ func _render_travel() -> void:
 	var selected: Dictionary = campaign.target(run,selected_member)
 	if selected.is_empty(): return
 	var unit: Dictionary = rules.member_unit(selected)
-	var image: TextureRect = _portrait(Vector2(96,96))
+	var profile_row: HBoxContainer = HBoxContainer.new()
+	profile_row.add_theme_constant_override("separation",12)
+	team.add_child(profile_row)
+	var image: TextureRect = _portrait(Vector2(64,64))
 	image.texture = faces[int(selected.speciesId)]
-	team.add_child(image)
+	profile_row.add_child(image)
 	var info: Label = _label("%s · %s\nOrigen: %s\nAtaque %d / %d · Defensa %d / %d · Velocidad %d" % [unit.name,_type_names(unit.types),selected.origin,unit.attack,unit.specialAttack,unit.defense,unit.specialDefense,unit.speed],17)
 	info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	team.add_child(info)
-	if run.get("edition",1)>=10: _render_traits(team,selected)
-	if run.get("edition",1) >= 3: _render_inventory(team,selected)
+	info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	profile_row.add_child(info)
+	var modern_shop: bool = run.get("edition",1)>=12 and run.phase=="shop"
+	if run.get("edition",1)>=10 and not modern_shop: _render_traits(team,selected)
+	if run.get("edition",1)>=3 and not modern_shop: _render_inventory(team,selected)
 	if run.get("edition",1) >= 2 and run.phase != "shop":
 		_render_moves(team,selected)
 	if run.phase == "shop":
+		var use_parent: Node = team
+		if modern_shop:
+			team.add_child(_label("USAR CON %s" % unit.name.to_upper(),17,GOLD))
+			var use_grid: GridContainer = GridContainer.new()
+			use_grid.columns = 2
+			use_grid.add_theme_constant_override("h_separation",8)
+			use_grid.add_theme_constant_override("v_separation",8)
+			team.add_child(use_grid)
+			use_parent = use_grid
 		if run.get("edition",1)>=9:
-			var revive: Button = _travel_button("revive","Usar Revivir · 50 %% PS · bolsa: %d" % run.bag.revive,team,{"kind":"revive","member":selected_member})
+			var revive_text: String = "Revivir · 50 %% PS\n%d en bolsa" % run.bag.revive if modern_shop else "Usar Revivir · 50 %% PS · bolsa: %d" % run.bag.revive
+			var revive: Button = _travel_button("revive",revive_text,use_parent,{"kind":"revive","member":selected_member})
+			if modern_shop: revive.add_theme_font_size_override("font_size",16); revive.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			revive.disabled = selected.hp!=0 or run.bag.revive<=0
 			revive.tooltip_text = "Solo debilitados: vuelve con %d / %d PS. Conserva nivel, EXP y movimientos; el equipable recuperado permanece en la bolsa." % [maxi(1,int(floor(unit.maxHp/2.0))),unit.maxHp]
 		for item: String in (["potion","super-potion","hyper-potion","max-potion"] if run.get("edition",1)>=13 else ["potion","super-potion"]):
 			var record: Dictionary = campaign.consumables[item] if run.get("edition",1)>=13 else Campaign.ITEMS[item]
 			var heal_text: String = "Usar %s · +%d PS" % [record.name,record.heal] if item!="max-potion" else "Usar Poción Máxima · todos los PS"
-			var button: Button = _travel_button("heal_"+item,heal_text,team,{"kind":"heal","item":item,"member":selected_member})
+			if modern_shop: heal_text = "%s\n%d en bolsa" % [record.name,run.bag[item]]
+			var button: Button = _travel_button("heal_"+item,heal_text,use_parent,{"kind":"heal","item":item,"member":selected_member})
+			button.tooltip_text = "Recupera %d PS, hasta el máximo. Solo fuera de combate." % record.heal if item!="max-potion" else "Recupera todos los PS actuales; no revive."
+			if modern_shop: button.add_theme_font_size_override("font_size",16); button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			button.disabled = selected.hp <= 0 or selected.hp >= unit.maxHp or run.bag[item] <= 0
 		if run.get("edition",1)>=4:
 			var candy: Button = _travel_button("level-up","Usar Caramelo Raro · +1 nivel",team,{"kind":"level-up","member":selected_member})
@@ -515,6 +711,7 @@ func _render_travel() -> void:
 				evolution_label.text = "Evolución con Piedra Hoja · bolsa: %d" % run.bag["leaf-stone"]
 				var stone: Button = _travel_button("stone","Usar Piedra Hoja",team,{"kind":"stone","member":selected_member})
 				stone.disabled = selected.hp<=0 or run.bag["leaf-stone"]<=0
+			if modern_shop: _render_traits(team,selected); _render_inventory(team,selected)
 			_render_moves(team,selected)
 			return
 		var evolve: Button = _travel_button("evolve","Evolucionar · 1 Caramelo Raro",team,{"kind":"evolve","member":selected_member})
@@ -538,6 +735,32 @@ func _render_travel() -> void:
 func _select_member(identity: int) -> void:
 	selected_member = identity
 	_refresh()
+
+func _shop_panels(parent: VBoxContainer) -> Dictionary:
+	if run.get("edition",1)<12: return {"supplies":parent,"gear":parent,"traits":parent}
+	var tabs: HBoxContainer = HBoxContainer.new()
+	tabs.add_theme_constant_override("separation",8)
+	parent.add_child(tabs)
+	var result: Dictionary = {}
+	for entry: Array in [["supplies","Objetos"],["gear","MT y equipo"],["traits","Rasgos"]]:
+		var button: Button = _button(entry[1],_shop_page.bind(entry[0]))
+		button.toggle_mode = true
+		button.button_pressed = shop_tab==entry[0]
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		button.add_theme_font_size_override("font_size",16)
+		tabs.add_child(button)
+		travel_buttons["shop_"+entry[0]] = button
+		var section: VBoxContainer = VBoxContainer.new()
+		section.add_theme_constant_override("separation",10)
+		section.visible = shop_tab==entry[0]
+		parent.add_child(section)
+		result[entry[0]] = section
+	return result
+
+func _shop_page(tab: String) -> void:
+	shop_tab = tab
+	_refresh()
+	travel_buttons["shop_"+tab].grab_focus.call_deferred()
 
 func _roster_page(tab: String, page: int) -> void:
 	roster_tab = tab
