@@ -1,0 +1,12 @@
+{
+	"checks": 418,
+	"failures": [],
+	"journey": {
+		"cleared": 4,
+		"pcUsed": true,
+		"phase": "complete",
+		"transactions": 258
+	},
+	"largePcFixture": 100,
+	"overflowFixture": true
+}

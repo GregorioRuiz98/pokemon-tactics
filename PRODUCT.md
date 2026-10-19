@@ -209,3 +209,12 @@ El usuario encarga el sprint 15. Edición11 añade la comparación16×16/24×24 
 ### Revisión de legibilidad — 0.15.1
 
 El usuario describe la vista como rara/confusa y solicita mejorarla. Presentación revisada: proyección80×48, cámara estable y encuadre de combate, superficies coherentes, bases por equipo/activo, apoyo de sprites y clic sobre sus píxeles visibles, minimapa isométrico y guías G/H. Se mantienen edición11, reglas, mapas y guardados; no requiere Nueva campaña desde0.15.0. Ver docs/SPRINT_15_VIEW.md.
+
+
+### Sprint 16 — equipo y PC confirmado, 19 de octubre de 2026
+
+El usuario aprueba seis plazas de equipo y reserva sin límite, con capturas sobrantes enviadas al PC automáticamente. Guardar, retirar e intercambiar es gratuito fuera del combate, sin curación automática. **Perder el combate termina la campaña aunque queden reservas vivas.** P09 queda concretada con estas decisiones; sustituyen sus alternativas pendientes.
+
+Edición12 / nativa0.16.0: las seis plazas incluyen debilitados. PC disponible en mapa, tienda y resumen final; bloqueado durante combate, captura pendiente y derrota. Siempre queda al menos un miembro en pie en el equipo. Un intercambio directo conserva la plaza; cada Pokémon conserva ID, origen, PS, nivel/EXP, movimientos, rasgos y equipable. Se puede retirar un debilitado, pero no cuenta como superviviente. El PC no cura, revive ni concede EXP de victoria; solo los desplegados participan. Cambiar equipable o una baja tras combate sigue devolviéndolo a la bolsa con las reglas anteriores.
+
+Las reservas permiten consultar/configurar movimientos, MT y equipables; consumibles, mentas, cápsulas y piedras siguen requiriendo tienda, respetando existencias y límite de nivel. Las ofertas de MT consideran también reservas. No se añade una cláusula de duplicados ni liberación de Pokémon. Ediciones1–11 conservan su diario y motor; nueva campaña con copia para12, sin migración automática. No se amplían zonas, especies, tablas ni economía en16. La muestra sigue siendo Paleta–Brock y alcanza cinco miembros naturalmente; las pruebas de equipo lleno usan escenarios controlados. Las siguientes rutas pertenecen a17.

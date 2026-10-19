@@ -51,7 +51,10 @@
     "godot:test:gym-caps": "node tools/godot/run.mjs test-gym-caps",
     "godot:test:level-hp": "node tools/godot/run.mjs test-level-hp",
     "godot:test:tactics": "node tools/godot/run.mjs test-tactics",
-    "godot:test:tactics:journey": "node tools/godot/run.mjs test-tactics-journey"
+    "godot:test:tactics:journey": "node tools/godot/run.mjs test-tactics-journey",
+    "godot:test:roster": "node tools/godot/run.mjs test-roster",
+    "godot:qa:roster": "node tools/godot/run.mjs qa-roster",
+    "godot:qa:roster:export": "node tools/godot/run.mjs qa-roster-export"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

@@ -1,12 +1,12 @@
-# Pokémon Tactics — Kanto Windows 0.15.1
+# Pokémon Tactics — Kanto Windows 0.16.0
 
-Muestra de Paleta hasta Brock con elección de inicial, cuatro encuentros, captura local, tienda y debilitados recuperables con Revivir. Esta revisión mejora la lectura de los mapas isométricos: cámara estable, bases claras, sprites apoyados en sus casillas y guías opcionales. Conserva mapas16/24, alturas y vigía. Conserva naturalezas y habilidades normales. Mantiene Revivir150 ₽/50% de PS y el límite por gimnasio. Mantiene encuentros y repertorios de Let’s Go combinados.
+Muestra de Paleta hasta Brock con elección de inicial, cuatro encuentros, captura local, tienda y debilitados recuperables con Revivir. Esta entrega añade un PC con reservas, seis plazas de equipo e intercambios gratuitos fuera del combate, sin curar. Mantiene la vista revisada, mapas16/24 y todas las reglas de combate/progresión anteriores. [Informe del sprint 16](../docs/SPRINT_16.md).
 
 ## Jugar
 
-Abrir PokemonTactics.exe desde la distribución. Funciona offline sin editor, Node ni servidor. Incluye LEEME, créditos/licencias y SHA256SUMS. Las partidas0.15.0 continúan directamente con la vista revisada. Elige **Nueva campaña** para mapas y alturas si vienes de0.14; los guardados0.14.0–0.14.9 continúan como Clásica con su versión original, conservando sus reglas y batalla. Al empezar otra se guarda copia de la anterior.
+Abrir PokemonTactics.exe desde la distribución. Funciona offline sin editor, Node ni servidor. Incluye LEEME, créditos/licencias y SHA256SUMS. Elige **Nueva campaña** para usar el PC. Los guardados0.14–0.15 continúan con su versión original, conservando equipo, reglas y batalla; no se migran automáticamente. Al empezar otra campaña se guarda copia de la anterior.
 
-- Oak entrega un inicial de nivel5, dos pociones y120 ₽. PS/bajas persisten; estados/PT y etapas de atributos se restablecen por combate. Si no quedan vivos termina la campaña.
+- Oak entrega un inicial de nivel5, dos pociones y120 ₽. PS/bajas persisten; estados/PT y etapas de atributos se restablecen por combate. Perder el combate termina la campaña, aunque haya reservas vivas.
 - Tras victoria, cada superviviente gana EXP y puede subir/aprender. Cada subida recupera tantos PS como aumenten sus PS máximos, incluida la evolución automática. Un Pokémon a 20/30 pasa a 23/33; los debilitados no reviven por subir de nivel. Captura local ya sorteada y guardada, luego tienda. Brock da medalla, dinero y su Onix de nivel14, como insignia de mayor nivel. Se admiten duplicados provisionalmente.
 - Cuatro movimientos preparados **más** el básico fijo: cinco acciones. El básico no tiene tipo, STAB ni resistencias/inmunidades de tipo; 25potencia, alcance1, 0PT y consume la acción. Defensa, precisión y estados siguen aplicándose.
 - Preparar movimientos aprendidos es gratis fuera de combate; desmarca uno para dejar hueco si tienes cuatro. Las dos orientaciones de rol se combinan, sin bonificaciones ocultas. Evolucionar conserva los movimientos aprendidos y actuales.
@@ -21,7 +21,7 @@ Abrir PokemonTactics.exe desde la distribución. Funciona offline sin editor, No
 - Previsión al señalar muestra daño, precisión, STAB y multiplicador de tipos. Fallo e inmunidad muestran imagen, rótulo y sonido propios. Ajustes de sonido/animación en F1; efectos sin desplazamiento con movimiento reducido.
 - Flechas/Enter para casillas, Escape/clic derecho para cancelar, F8 para cargar y F1 para opciones/ayuda/créditos. Laboratorio anterior accesible desde cabecera/menú, con reglas y guardado propios.
 
-Guardado después de cada orden en `%APPDATA%/PokemonTacticsLab/kanto-save.json`, esquema kanto/edición11 para nuevas partidas. Reconstrucción de diario, checksum, copia/escritura temporal y detección de otra instancia. Archivos inválidos se preservan; un error de escritura avisa y permite seguir en memoria. Ediciones1–10 se reconstruyen con sus motores originales. El laboratorio mantiene laboratory-save.json/esquema1/contrato0.13.0; no se leen guardados web.
+Guardado después de cada orden en `%APPDATA%/PokemonTacticsLab/kanto-save.json`, esquema kanto/edición12 para nuevas partidas. Reconstrucción de diario, checksum, copia/escritura temporal y detección de otra instancia. Archivos inválidos se preservan; un error de escritura avisa y permite seguir en memoria. Ediciones1–11 se reconstruyen con sus motores originales. El laboratorio mantiene laboratory-save.json/esquema1/contrato0.13.0; no se leen guardados web.
 
 ## Alcance y valores provisionales
 
@@ -37,6 +37,12 @@ Elige 16×16 (inicial) o 24×24 antes del primer combate. Rueda/+/-: zoom; botó
 
 Subir un nivel cuesta +1 de movimiento; saltos de más de uno bloquean el paso terrestre. Voladores ignoran alturas. Alcance y visión tienen en cuenta el desnivel, sin subir daño/precisión. Empujes y acercamientos respetan las mismas restricciones. Rectificar sigue afectando solo al movimiento antes de actuar. El vigía del bosque se incorpora en la siguiente ronda al acercarte/dañarlo, y como máximo al comenzar la tercera.
 
+## Equipo y PC
+
+Equipo admite seis miembros, incluidos debilitados. Las capturas sobrantes van al PC automáticamente. Las pestañas Equipo/PC permiten consultar, guardar, retirar si hay hueco e intercambiar directamente por una plaza elegida. La reserva tiene páginas de seis y no impone límite de miembros. Los cambios son gratuitos y no curan ni reviven; conserva el equipable de cada Pokémon. Siempre debe quedar un miembro del equipo en pie.
+
+PC disponible en mapa, tienda y resumen final; bloqueado durante combate, captura pendiente y derrota. Los Pokémon en reserva no se despliegan ni reciben EXP de victoria. Se pueden preparar movimientos, aplicar MT/equipables y usar los consumibles en los mismos lugares que con el equipo. No se añaden nuevas rutas, especies ni precios. La muestra sigue terminando en Brock.
+
 ## Desarrollo y comprobación
 
 Godot4.7.2 estándar, importar project.godot y F5. Plantillas oficiales4.7.2 para exportar; sin plugins nuevos. Desde la raíz, Node24/npm ci:
@@ -45,6 +51,8 @@ Godot4.7.2 estándar, importar project.godot y F5. Plantillas oficiales4.7.2 par
 $env:GODOT_BIN='C:\ruta\Godot_v4.7.2-stable_win64_console.exe'
 npm run godot:verify
 npm run godot:prepare
+npm run godot:test:roster
+npm run godot:qa:roster
 npm run godot:test:scale
 npm run godot:qa:scale
 npm run godot:test:tactics
@@ -64,11 +72,12 @@ npm run godot:test
 npm run godot:qa
 npm run godot:qa:campaign
 npm run godot:export
+npm run godot:qa:roster:export
 npm run godot:qa:export
 npm run godot:qa:campaign:export
 ```
 
-Resultados temporales ../../work/qa-sprint-14-traits; paquete ../releases/pokemon-tactics-0.14.9/windows respecto a la raíz. Las pruebas del .exe no consultan el editor. QA usa archivos aislados, controles y eventos de viewport; no sustituye partidas humanas. Motor/plantillas/cachés/ZIP fuera de Git.
+Resultados temporales ../../work/qa-sprint-16; paquete ../releases/pokemon-tactics-0.16.0/windows respecto a la raíz. Las pruebas del .exe no consultan el editor. QA usa archivos aislados, controles y eventos de viewport; no sustituye partidas humanas. Motor/plantillas/cachés/ZIP fuera de Git.
 
 Importadores explícitos: import-progression.py (Python/Pillow ya disponibles mediante PYTHONPATH=../../work/balance-python) e import-feedback.mjs (jsfxr local). import-shop.py añade datos/compatibilidad de MT reutilizando PokéAPI y los recursos existentes. Referencias/hashes en progression-provenance, feedback-provenance y shop-provenance. No ejecutar godot:import para ocultar discrepancias: regenera referencias del laboratorio desde la web, que deben conservarse.
 
