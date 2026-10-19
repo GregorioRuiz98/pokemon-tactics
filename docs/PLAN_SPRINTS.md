@@ -345,7 +345,7 @@ Cambios de objetivo confirmados: campaña larga con guardado y bajas definitivas
 | 14 — Paleta hasta Brock | Inicial de Oak, Ruta 1, Ruta 2, Bosque Verde y Brock; captura, tienda, evolución/entrenamiento mínimos | Ciclo completo con guardado y premios únicos; ver informe | Completado 0.14.0; pruebas humanas/balance pendientes; [informe](SPRINT_14.md) |
 | 15 — Escala y ritmo táctico | Evaluar isometría/alturas y comparar mapas amplios, cámara, grupos enemigos y objetivos puntuales propuestos | Comparación16/24 y reglas compartidas probadas; contraste jugando pendiente del creador | Entrega técnica0.15.0; isometría/alturas/cámara/vigía, métricas y QA. [Informe](SPRINT_15.md); valoración humana pendiente |
 | 16 — Equipo y progresión | Gestionar capturas, PC/reserva aprobada, movimientos/MT y evolución acordada | Comprobar máximo desplegado, bajas, intercambio, límites y guardado | Completado0.16.0: seis plazas y PC sin límite, envío automático, cambios sin curación, derrota pese a reservas y diario12; progresión adelantada0.14.1–0.14.9. Nuevas zonas/tablas en17. [Informe](SPRINT_16.md) |
-| 17 — Celeste y Carmín | Monte Moon, rutas del tramo, Bill, Misty, S. S. Anne, Lt. Surge y rival | Encuentros y premios trazables a Rojo; tramo completo desde una partida continuada | Pendiente |
+| 17 — Celeste y Carmín | Monte Moon, rutas del tramo, Bill, Misty, S. S. Anne, Lt. Surge y rival | Encuentros y premios trazables a Rojo; tramo completo desde una partida continuada | Completado0.17.0;18 encuentros hastaSurge, continuación desde12 y recursos Kanto. [Informe](SPRINT_17.md) |
 | 18 — Lavanda, Azulona y Team Rocket | Túnel Roca, conexiones, Erika, guarida y Torre Pokémon; hitos y desvíos según grafo acordado | Hitos habilitan sus destinos sin saltos accidentales; gacha local separado del equipo de entrenadores | Pendiente |
 | 19 — Fucsia, Azafrán y sur de Kanto | Ramas hacia Fucsia, Safari/Silph, Koga/Sabrina, mar, Canela/Blaine y regreso a Giovanni; dividir por tramo si excede una entrega revisable | Cada tramo con prueba de continuidad, equipos temáticos y guardado; no prometer un orden único donde hay alternativas | Pendiente |
 | 20 — Liga y rival | Acceso por rutas 22–23/Calle Victoria, Alto Mando, rival y cierre principal | Campaña completa desde el inicio; reglas de curación y continuidad entre miembros de la Liga explícitas | Pendiente |
@@ -436,3 +436,6 @@ Edición11: mapas16×16 o24×24 seleccionables antes del primer combate, cámara
 ## Revisión de vista del15 — 0.15.1
 
 El usuario considera rara/confusa la primera presentación. Se revisan proyección, cámara estable/encuadre de combate, alturas, bases de unidades, sprites/hit-test, minimapa y guías opcionales. Misma edición11, mapas/reglas/guardados conservados; partidas0.15.0 continúan directamente. [Informe y capturas](SPRINT_15_VIEW.md). No inicia16 ni resuelve el arte final o balance.
+
+
+Encargo19 de octubre: «continua con todo» autoriza cerrar17–22 en secuencia, con entregas/push separados y sin publicación pública.

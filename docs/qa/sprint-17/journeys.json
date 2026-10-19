@@ -1,0 +1,179 @@
+{
+	"chapter": 17,
+	"checks": 3547,
+	"failures": [],
+	"journey": {
+		"adoptedJourney": {
+			"cleared": [
+				"route-1",
+				"route-2",
+				"forest",
+				"brock",
+				"route-3",
+				"mt-moon",
+				"route-4",
+				"cerulean-rival",
+				"route-24",
+				"route-25",
+				"misty",
+				"route-5",
+				"route-6",
+				"ss-anne",
+				"surge",
+				"route-11",
+				"diglett-cave",
+				"route-22"
+			],
+			"encountered": [
+				"route-3",
+				"mt-moon",
+				"route-4",
+				"cerulean-rival",
+				"route-24",
+				"route-25",
+				"misty",
+				"route-5",
+				"route-6",
+				"ss-anne",
+				"surge",
+				"route-11",
+				"diglett-cave",
+				"route-22"
+			],
+			"medals": [
+				"Medalla Roca",
+				"Medalla Cascada",
+				"Medalla Trueno"
+			],
+			"money": 2416,
+			"party": [
+				{
+					"hp": 264,
+					"id": 16,
+					"level": 24,
+					"species": 26
+				},
+				{
+					"hp": 272,
+					"id": 2,
+					"level": 24,
+					"species": 70
+				},
+				{
+					"hp": 260,
+					"id": 3,
+					"level": 24,
+					"species": 17
+				},
+				{
+					"hp": 256,
+					"id": 14,
+					"level": 24,
+					"species": 20
+				},
+				{
+					"hp": 254,
+					"id": 12,
+					"level": 24,
+					"species": 121
+				},
+				{
+					"hp": 224,
+					"id": 6,
+					"level": 24,
+					"species": 56
+				}
+			],
+			"phase": "complete",
+			"reserves": 13,
+			"transactions": 1572
+		},
+		"cleared": [
+			"route-1",
+			"route-2",
+			"forest",
+			"brock",
+			"route-3",
+			"mt-moon",
+			"route-4",
+			"cerulean-rival",
+			"route-24",
+			"route-25",
+			"misty",
+			"route-5",
+			"route-6",
+			"ss-anne",
+			"surge",
+			"route-11",
+			"diglett-cave",
+			"route-22"
+		],
+		"encountered": [
+			"route-1",
+			"route-2",
+			"forest",
+			"brock",
+			"route-3",
+			"mt-moon",
+			"route-4",
+			"cerulean-rival",
+			"route-24",
+			"route-25",
+			"misty",
+			"route-5",
+			"route-6",
+			"ss-anne",
+			"surge",
+			"route-11",
+			"diglett-cave",
+			"route-22"
+		],
+		"medals": [
+			"Medalla Roca",
+			"Medalla Cascada",
+			"Medalla Trueno"
+		],
+		"money": 2406,
+		"party": [
+			{
+				"hp": 264,
+				"id": 16,
+				"level": 24,
+				"species": 26
+			},
+			{
+				"hp": 272,
+				"id": 2,
+				"level": 24,
+				"species": 70
+			},
+			{
+				"hp": 260,
+				"id": 3,
+				"level": 24,
+				"species": 17
+			},
+			{
+				"hp": 256,
+				"id": 14,
+				"level": 24,
+				"species": 20
+			},
+			{
+				"hp": 254,
+				"id": 12,
+				"level": 24,
+				"species": 121
+			},
+			{
+				"hp": 224,
+				"id": 6,
+				"level": 24,
+				"species": 56
+			}
+		],
+		"phase": "complete",
+		"reserves": 13,
+		"transactions": 1563
+	}
+}

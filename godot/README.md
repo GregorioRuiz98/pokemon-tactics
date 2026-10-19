@@ -1,110 +1,34 @@
-# Pokémon Tactics — Kanto Windows 0.16.0
+# Pokémon Tactics — Kanto Windows0.17.0
 
-Muestra de Paleta hasta Brock con elección de inicial, cuatro encuentros, captura local, tienda y debilitados recuperables con Revivir. Esta entrega añade un PC con reservas, seis plazas de equipo e intercambios gratuitos fuera del combate, sin curar. Mantiene la vista revisada, mapas16/24 y todas las reglas de combate/progresión anteriores. [Informe del sprint 16](../docs/SPRINT_16.md).
+Campaña offline de Paleta a Carmín:18 encuentros, tres gimnasios, Bill, rival, S. S. Anne y desvíos de Ruta11/Cueva Diglett/Ruta22. Sin exploración libre ni puzzles completos: los hitos se resumen entre tableros. El resto de Kanto sigue en las entregas18–22.
 
-## Jugar
+## Jugar y continuar
 
-Abrir PokemonTactics.exe desde la distribución. Funciona offline sin editor, Node ni servidor. Incluye LEEME, créditos/licencias y SHA256SUMS. Elige **Nueva campaña** para usar el PC. Los guardados0.14–0.15 continúan con su versión original, conservando equipo, reglas y batalla; no se migran automáticamente. Al empezar otra campaña se guarda copia de la anterior.
+Abre PokemonTactics.exe; no necesitas editor, Node, cuenta ni servidor. Elige inicial de Oak en una campaña nueva. Si vienes de0.16, carga tu partida y pulsa **Continuar aventura · ampliar Kanto** desde mapa/tienda/final. Conserva equipo, PS, movimientos, rasgos, bolsa, dinero, diario y una copia previa. Un combate pendiente conserva sus reglas hasta finalizar. Ediciones anteriores siguen siendo legibles y no se convierten automáticamente.
 
-- Oak entrega un inicial de nivel5, dos pociones y120 ₽. PS/bajas persisten; estados/PT y etapas de atributos se restablecen por combate. Perder el combate termina la campaña, aunque haya reservas vivas.
-- Tras victoria, cada superviviente gana EXP y puede subir/aprender. Cada subida recupera tantos PS como aumenten sus PS máximos, incluida la evolución automática. Un Pokémon a 20/30 pasa a 23/33; los debilitados no reviven por subir de nivel. Captura local ya sorteada y guardada, luego tienda. Brock da medalla, dinero y su Onix de nivel14, como insignia de mayor nivel. Se admiten duplicados provisionalmente.
-- Cuatro movimientos preparados **más** el básico fijo: cinco acciones. El básico no tiene tipo, STAB ni resistencias/inmunidades de tipo; 25potencia, alcance1, 0PT y consume la acción. Defensa, precisión y estados siguen aplicándose.
-- Preparar movimientos aprendidos es gratis fuera de combate; desmarca uno para dejar hueco si tienes cuatro. Las dos orientaciones de rol se combinan, sin bonificaciones ocultas. Evolucionar conserva los movimientos aprendidos y actuales.
-- Caramelo Raro25 ₽: sube exactamente un nivel. Comprar en la tienda y usar con el miembro seleccionado. Conserva EXP parcial y recupera el aumento de PS máximos; no revive. Tope actual14, por el Onix de Brock. Al llegar no acumulas EXP y el Caramelo se bloquea sin consumirse. La evolución ocurre automáticamente al alcanzar su nivel, mediante EXP o Caramelo, sin coste adicional ni botón Evolucionar. Poción40 ₽/+40PS y Superpoción90 ₽/+100PS siguen fuera de combate y sin revivir.
-- Tienda: tres ofertas únicas, una copia por casilla. Renovar las tres cuesta25,50,75… ₽; se reinicia en cada tienda. Cargar no cambia ofertas ni coste. Pociones, Caramelos y Revivir siguen siempre disponibles aparte.
-- Revivir150 ₽: compra una unidad, selecciona un debilitado y úsala para recuperar el50% de sus PS máximos (redondeo hacia abajo, mínimo1). Conserva nivel/EXP/movimientos. El equipable devuelto al caer permanece en la bolsa; no se duplica ni equipa solo. Se puede curar después con pociones. Si cae todo el equipo termina la campaña, aunque quede Revivir.
-- MT80 ₽ de un uso: comprar, seleccionar miembro y Aprender. Se indica compatibilidad; si ya tiene cuatro movimientos, el nuevo queda en la biblioteca. Siete MT de Let’s Go: Demolición, Escaldar, Megaagotar, Protección, Rayo, Avalancha y Cola Férrea. Numeración/compatibilidad exclusivamente LGPE.
-- Un equipable por Pokémon: Vidaesfera100, Restos100, Chaleco Asalto90 o Botas Gruesas60 ₽. Cambiar/quitar devuelve el anterior a la bolsa; las bajas lo devuelven al cerrar el combate. Vidaesfera aumenta daño ×1,3 y pierde10% PS máximos por acción que cause daño; puede debilitar al portador. La previsión muestra el retroceso.
-- Aprendizaje por nivel de Let’s Go, sin los movimientos de los iniciales especiales ni las excepciones anteriores. Pikachu aprende Doble Patada al9; Cola Férrea por MT19. Butterfree aprende Tornado/Confusión y Beedrill Doble Ataque/Picotazo; Megaagotar/Demolición por MT compatible.
-- Charmander aprende Ascuas al13, sin Garra Metal temprana; tiene Demolición garantizada en la primera oferta de la tienda de Ruta1. Cobertura disponible no equivale a balance resuelto; conservarlo vivo sigue siendo importante.
-- Clic en casilla azul mueve; clic en rival al alcance usa el básico. Habilidades/A abre el menú; teclas1–5 eligen acciones. Rectificar/R devuelve solo el movimiento antes de actuar o terminar; nunca ataques, PS/PT, estados ni RNG. Orientar y terminar/F elige dirección final.
-- Previsión al señalar muestra daño, precisión, STAB y multiplicador de tipos. Fallo e inmunidad muestran imagen, rótulo y sonido propios. Ajustes de sonido/animación en F1; efectos sin desplazamiento con movimiento reducido.
-- Flechas/Enter para casillas, Escape/clic derecho para cancelar, F8 para cargar y F1 para opciones/ayuda/créditos. Laboratorio anterior accesible desde cabecera/menú, con reglas y guardado propios.
+Guardado local: `%APPDATA%/PokemonTacticsLab/kanto-save.json`. Cada orden aceptada se guarda antes de presentarse. Diario con checksum, copia y detección de otra instancia. Esquema kanto-journey, edición13 y transición explícita entre motores; hasta50000 órdenes. No borres un guardado para actualizar. Laboratorio y versión web conservan archivos y reglas independientes.
 
-Guardado después de cada orden en `%APPDATA%/PokemonTacticsLab/kanto-save.json`, esquema kanto/edición12 para nuevas partidas. Reconstrucción de diario, checksum, copia/escritura temporal y detección de otra instancia. Archivos inválidos se preservan; un error de escritura avisa y permite seguir en memoria. Ediciones1–11 se reconstruyen con sus motores originales. El laboratorio mantiene laboratory-save.json/esquema1/contrato0.13.0; no se leen guardados web.
+## Reglas
 
-## Alcance y valores provisionales
+- Hasta seis plazas de equipo, incluidos debilitados. Capturas sobrantes al PC sin límite. Cambios gratuitos fuera del combate, sin curar; cada Pokémon conserva su equipable. Perder un combate termina la campaña aunque haya reservas vivas.
+- Cuatro movimientos preparados más básico neutro sin tipo ni STAB. Preparación gratis, aprendizaje por nivel y MT consumibles. Cola por velocidad en rondas; movimiento y acción en ambos órdenes, orientación final y aliados atravesables.
+- Tipos modernos, STAB, precisión propia del movimiento, daño por banda según frente/costado/espalda y crítico adicional por espalda. Estados y etapas temporales de tres activaciones. Parálisis reduce el movimiento; no la iniciativa ni la acción.
+- Niveles y EXP; Caramelo25 ₽/+1 nivel. Evolución por nivel; piedras/Cable Vínculo80 ₽ según especie. Pikachu20 y Graveler36 siguen adaptados. Subir cura el aumento de PS máximos; piedras no curan ni reviven. Cap del insignia pendiente:14/21/24 en este tramo.
+- Curativos solo fuera del combate, en tienda. Revivir150 ₽/50% PS; Hiperpoción120 ₽/+200 PS; Poción Máxima200 ₽/todos los PS. Sin curación gratuita entre encuentros. Precios de prueba.
+- Tres ofertas MT/equipables y rerolls25/50/75… por visita. Un equipable por miembro. Las ofertas consideran también las reservas.
+- Gimnasios: medalla, dinero y captura del insignia de mayor nivel. Otras recompensas usan la zona salvaje indicada. Un premio por encuentro, sin repetir zonas para farmear.
+- Grafo de destinos con requisitos: Bill/billete, rival del barco/Corte y medallas. Puedes elegir desvíos cuando están disponibles. Las MO no ocupan movimientos tácticos.
 
-Cuatro mapas isométricos16×16 o24×24 y catálogo de32 especies/doce líneas, con104 adaptaciones de movimientos reales. Los Pokémon capturables siguen siendo los de las tablas terrestres de Let’s Go combinadas, no todo el catálogo. Aprendizaje, PT, alcance y algunos efectos están adaptados: no es una réplica completa del cartucho. Pikachu20 y Graveler36 siguen como umbrales adaptados de evolución automática, confirmados por el usuario en lugar de piedra/intercambio. Los aprendizajes proceden de Let’s Go; los efectos que se traducen al sistema táctico se explican en cada habilidad. Oddish/Bellsprout evolucionan al21; Gloom/Weepinbell con Piedra Hoja80 ₽, sin curar.
+Catálogo151,79 familias y211 movimientos, con repertorios/compatibilidad de Let’s Go Pikachu/Eevee combinados. No se ofrecen formas regionales ni movimientos exclusivos de iniciales especiales. Tipos/estadísticas modernas y equipos de entrenadores de Rojo. Alcance, PT y varios efectos complejos son adaptaciones descritas en ficha.49 de78 habilidades normales producen efectos; las restantes se identifican como pendientes o sin condiciones aplicables (clima, huida, género u otras interacciones ausentes). No se presenta como réplica exacta de un cartucho.
 
-Bases reales, IV15/EV0 y modificadores de naturaleza y PS×4 tácticos. EXP220/350/500/650 por encuentro, coste siguiente nivel40+10L, techo técnico100 y límite activo14 por Brock. El equilibrio no está cerrado. En 0.15.0 se completan recorridos automáticos con Bulbasaur/tactics-1 en ambos tamaños; son comprobaciones de mecánicas, no tasas humanas ni prueba de balance entre iniciales. Ver docs/SPRINT_15.md.
+## Controles
 
-Pendientes PC, clima, habilidades ocultas y ampliación de estados. Clorofila/Fuga esperan clima/huida. El terreno y los tamaños son de prueba; no es el arte final de Kanto. Se mantienen los límites narrativos del14: textos de viaje y paquete/Pokédex resumidos, sin exploración libre, rival inicial, Ruta22 opcional o entrenadores secundarios. Liga/legendarios pertenecen a entregas posteriores.
+Clic en casilla azul: movimiento directo; clic en rival: básico. Habilidades en menú dentro del tablero. R rectifica exclusivamente movimiento antes de actuar; F orienta y termina. Flechas/Enter y Escape disponibles. Rueda/+/- zoom, botón central cámara, C unidad, Combate/Mapa encuadre, G/H guías. Las casillas vacías alcanzables siguen seleccionables aunque un sprite grande las tape parcialmente.
 
-## Cámara y alturas
+Isometría16/24, alturas0–2, subida+1 y salto terrestre1; voladores ignoran desnivel. Altura limita alcance/visión, sin bono de daño. Grupos tardíos se incorporan por proximidad/daño o ronda3. Arte de terreno provisional; retratos/sprites originales locales. Ninguna descarga al jugar.
 
-Elige 16×16 (inicial) o 24×24 antes del primer combate. Rueda/+/-: zoom; botón central: arrastrar; botones de cámara disponibles dentro de la escena. C/Inicio o Unidad centran al activo; Combate encuadra a los dos equipos; Mapa muestra todo. La cámara respeta el encuadre manual y no salta entre unidades que ya estén visibles. G refuerza la cuadrícula y H etiqueta plataformas elevadas. El minimapa tiene la orientación del tablero y muestra la zona visible.
+## Desarrollo
 
-Subir un nivel cuesta +1 de movimiento; saltos de más de uno bloquean el paso terrestre. Voladores ignoran alturas. Alcance y visión tienen en cuenta el desnivel, sin subir daño/precisión. Empujes y acercamientos respetan las mismas restricciones. Rectificar sigue afectando solo al movimiento antes de actuar. El vigía del bosque se incorpora en la siguiente ronda al acercarte/dañarlo, y como máximo al comenzar la tercera.
+Godot4.7.2 estándar. Recursos existentes, sin plugins nuevos. Importadores explícitos import-expedition.py y build-expedition.py; no regenerar manifiestos congelados para ocultar discrepancias. Pillow existente se localiza con PYTHONPATH=../../work/balance-python solo al importar. Los builds/juego no lo necesitan.
 
-## Equipo y PC
-
-Equipo admite seis miembros, incluidos debilitados. Las capturas sobrantes van al PC automáticamente. Las pestañas Equipo/PC permiten consultar, guardar, retirar si hay hueco e intercambiar directamente por una plaza elegida. La reserva tiene páginas de seis y no impone límite de miembros. Los cambios son gratuitos y no curan ni reviven; conserva el equipable de cada Pokémon. Siempre debe quedar un miembro del equipo en pie.
-
-PC disponible en mapa, tienda y resumen final; bloqueado durante combate, captura pendiente y derrota. Los Pokémon en reserva no se despliegan ni reciben EXP de victoria. Se pueden preparar movimientos, aplicar MT/equipables y usar los consumibles en los mismos lugares que con el equipo. No se añaden nuevas rutas, especies ni precios. La muestra sigue terminando en Brock.
-
-## Desarrollo y comprobación
-
-Godot4.7.2 estándar, importar project.godot y F5. Plantillas oficiales4.7.2 para exportar; sin plugins nuevos. Desde la raíz, Node24/npm ci:
-
-```powershell
-$env:GODOT_BIN='C:\ruta\Godot_v4.7.2-stable_win64_console.exe'
-npm run godot:verify
-npm run godot:prepare
-npm run godot:test:roster
-npm run godot:qa:roster
-npm run godot:test:scale
-npm run godot:qa:scale
-npm run godot:test:tactics
-npm run godot:test:level-hp
-npm run godot:test:gym-caps
-npm run godot:test:revive
-npm run godot:test:traits
-npm run godot:test:traits:journey
-npm run godot:test:tactics:journey
-npm run godot:test:letsgo
-npm run godot:test:letsgo:journey
-npm run godot:test:growth
-npm run godot:test:shop
-npm run godot:test:progression
-npm run godot:test:campaign:edges
-npm run godot:test
-npm run godot:qa
-npm run godot:qa:campaign
-npm run godot:export
-npm run godot:qa:roster:export
-npm run godot:qa:export
-npm run godot:qa:campaign:export
-```
-
-Resultados temporales ../../work/qa-sprint-16; paquete ../releases/pokemon-tactics-0.16.0/windows respecto a la raíz. Las pruebas del .exe no consultan el editor. QA usa archivos aislados, controles y eventos de viewport; no sustituye partidas humanas. Motor/plantillas/cachés/ZIP fuera de Git.
-
-Importadores explícitos: import-progression.py (Python/Pillow ya disponibles mediante PYTHONPATH=../../work/balance-python) e import-feedback.mjs (jsfxr local). import-shop.py añade datos/compatibilidad de MT reutilizando PokéAPI y los recursos existentes. Referencias/hashes en progression-provenance, feedback-provenance y shop-provenance. No ejecutar godot:import para ocultar discrepancias: regenera referencias del laboratorio desde la web, que deben conservarse.
-
-[Niveles y evolución automática](../docs/SPRINT_14_GROWTH.md) · [Tienda, premio y comprobaciones](../docs/SPRINT_14_SHOP.md) · [Reglas, roles y propuestas](../docs/DESIGN_LEVELS_ROLES.md) · [Informe y evidencia](../docs/SPRINT_14_PROGRESSION.md) · [Créditos](CREDITS.md)
-
-
-Nueva fuente Atkinson Hyperlegible OFL. Iconos sobre sprites y en ambas fichas: condiciones y atributos ATQ/DEF/AE/DE/VEL/PRE/EVA con flechas, etapas y tooltip; no consumen RNG. Probabilidades LGPE provisionales: normales equiprobables y Bulbasaur especial1%, porque PokéAPI no incluye porcentajes por especie de esas ediciones. Sin spawns aéreos posjuego. [Informe, fuentes y adaptaciones0.14.4](../docs/SPRINT_14_LETSGO.md). Importador explícito tools/godot/import-letsgo.py;46 archivos nuevos con hashes/créditos en letsgo-provenance.json.
-
-
-## Reglas tácticas0.14.5
-
-Nueva campaña: precisión propia del movimiento/etapas sin penalización por orientación. Daño85–100% dividido por frente (mitad baja), costado (mitad alta), espalda (máximo y+1 etapa de crítico). Crítico×1,5; la previsión muestra rangos/probabilidad, no resultados futuros. Daño fijo sin variación ni críticos. Cuchillada/Hipercolmillo son críticos garantizados por3PT; conservan su precisión.
-
-Ataque Rápido/Acua Jet/Golpe Bajo/Ataque Ala se acercan descontando movimiento restante y consumiendo desplazamiento; no atraviesan enemigos ni ocupan casillas con unidades. Golpe Cabeza/Portazo empujan una casilla libre, sin daño de choque. Rectificar nunca después de actuar, incluso al fallar un acercamiento.
-
-Parálisis solo reduce movimiento a la mitad, sin alterar iniciativa ni perder acción. Estados y subidas/bajadas de atributos duran3 activaciones del afectado, incluida la actual si se aplica a sí mismo. Etapas con+1/+2/−1/−2 sobre sprites y en fichas; duración en tooltip. Fortaleza2PT, Agilidad3, Desarrollo3, Danza Aleteo4; Foco Energía3 aumenta crítico+2. La revisión0.14.6 añade recuperación del aumento de PS máximos al subir de nivel por EXP o Caramelo; conserva EXP, precios y bases. [Detalles, límites y comprobaciones](../docs/SPRINT_14_TACTICS.md).
-
-[PS al subir de nivel: reglas y comprobaciones0.14.6](../docs/SPRINT_14_LEVEL_HP.md). Esa regla de PS continúa en edición8; los archivos anteriores conservan sus reglas originales. Una evolución por piedra sin subir de nivel sigue conservando los PS actuales.
-
-[Límites por gimnasio0.14.7](../docs/SPRINT_14_GYM_CAPS.md): Nueva campaña usa edición8. Tope del siguiente líder pendiente, calculado desde el insignia de mayor nivel. Actualmente solo Brock,14; al terminar la muestra se conserva14. No se implementan los gimnasios siguientes en esta revisión.
-
-[Revivir0.14.8](../docs/SPRINT_14_REVIVE.md): Esa regla de Revivir continúa en edición10. Los archivos anteriores conservan sus reglas; la copia al reiniciar se mantiene.
-
-## Naturalezas y habilidades0.14.9
-
-Nueva campaña usa edición10. Un Pokémon recibe naturaleza y habilidad normal al obtenerlo, con sorteo separado y persistido; inspeccionar/cargar/evolucionar no lo vuelve a sortear. Las25 naturalezas aplican+10%/−10% a los atributos correspondientes (cinco son neutras), sin modificar PS.
-
-Mentas100 ₽: el selector de tienda permite elegir uno de21 efectos y la ficha muestra los valores antes/después. Se conserva el nombre de la naturaleza original. Cápsula Habilidad150 ₽: alterna dos habilidades normales cuando la especie dispone de ambas; vista previa y sin ocupar el equipable. Solo en tienda y en miembros vivos; no consumir si no puede cambiar nada. No hay habilidades ocultas ni Parche Habilidad en esta entrega.
-
-Trece pasivas activas: Espesura, Mar Llamas, Torrente, Enjambre, Polvo Escudo, Mudar, Ojo Compuesto, Vista Lince, Tumbos, Agallas, Elec. Estática, Cabeza Roca y Robustez. Clorofila y Fuga conservan su descripción pero esperan clima/huida: no tienen efecto en los escenarios actuales. Robustez respeta el golpe agregado de los multiimpactos del prototipo; no se implementan impactos individuales aquí. [Reglas, adaptaciones y evidencia](../docs/SPRINT_14_TRAITS.md).
+Scripts de la raíz: godot:verify, godot:prepare, godot:test:expedition, godot:test:journey, godot:test:abilities, godot:qa:journey, godot:export y godot:qa:journey:export. QA usa archivos aislados, controles/eventos de tablero y comparación con el dominio; no sustituye valoración humana de diversión/balance. Evidencia en docs/SPRINT_17.md. Paquetes fuera de Git en outputs/releases/pokemon-tactics-0.17.0. Publicación pública aplazada.

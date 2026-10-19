@@ -2,9 +2,11 @@ extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
 const Advanced = preload("res://core/roster_run.gd")
+const Journey = preload("res://core/journey_run.gd")
+const CURRENT_CHAPTER: int = 17
 const RosterPanel = preload("res://ui/roster_panel.gd")
 const IsometricBoard = preload("res://ui/isometric_board.gd")
-const CampaignStore = preload("res://core/kanto_store.gd")
+const CampaignStore = preload("res://core/journey_store.gd")
 var campaign: RefCounted = Advanced.new()
 var last_presentation: Dictionary = {}
 var run: Dictionary = {}
@@ -21,6 +23,7 @@ var message: String = ""
 var campaign_qa_dir: String = ""
 var scale_qa_dir: String = ""
 var roster_qa_dir: String = ""
+var journey_qa_dir: String = ""
 var roster_tab: String = "team"
 var roster_offset: int = 0
 var roster_swap: int = 1
@@ -56,8 +59,10 @@ func _boot() -> void:
 		if argument.begins_with("--campaign-qa-dir="): campaign_qa_dir = argument.trim_prefix("--campaign-qa-dir=")
 		if argument.begins_with("--scale-qa-dir="): scale_qa_dir = argument.trim_prefix("--scale-qa-dir=")
 		if argument.begins_with("--roster-qa-dir="): roster_qa_dir = argument.trim_prefix("--roster-qa-dir=")
+		if argument.begins_with("--journey-qa-dir="): journey_qa_dir = argument.trim_prefix("--journey-qa-dir=")
 	var test_dir: String = scale_qa_dir if not scale_qa_dir.is_empty() else campaign_qa_dir
 	if not roster_qa_dir.is_empty(): test_dir = roster_qa_dir
+	if not journey_qa_dir.is_empty(): test_dir = journey_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -75,7 +80,8 @@ func _boot() -> void:
 	campaign_confirm.dialog_text = "Podrás elegir otro inicial. La campaña anterior se conservará\ncomo copia al comenzar la nueva."
 	campaign_confirm.confirmed.connect(_show_oak)
 	add_child(campaign_confirm)
-	if not roster_qa_dir.is_empty(): call_deferred("_run_roster_qa")
+	if not journey_qa_dir.is_empty(): call_deferred("_run_journey_qa")
+	elif not roster_qa_dir.is_empty(): call_deferred("_run_roster_qa")
 	elif not scale_qa_dir.is_empty(): call_deferred("_run_scale_qa")
 	elif qa_running: call_deferred("_run_campaign_qa")
 	elif FileAccess.file_exists(store.file_path): _load_game()
@@ -96,9 +102,10 @@ func _choose_starter(identity: int) -> void:
 		return
 	campaign = Advanced.new() if campaign_qa_dir.is_empty() else load("res://core/traits_run.gd").new()
 	if not scale_qa_dir.is_empty(): campaign = load("res://core/scale_run.gd").new()
+	if campaign_qa_dir.is_empty() and scale_qa_dir.is_empty() and roster_qa_dir.is_empty(): campaign = Journey.new(CURRENT_CHAPTER)
 	rules = campaign.engine
-	board.setup(rules.data.species)
 	run = campaign.create(journey_seed.text,identity)
+	_prepare_campaign_assets()
 	transactions = []
 	selected_member = 1
 	roster_tab = "team"
@@ -133,9 +140,9 @@ func _load_game() -> void:
 		return
 	campaign = result.rules
 	rules = campaign.engine
-	board.setup(rules.data.species)
 	combat_feedback.clear()
 	run = result.state
+	_prepare_campaign_assets()
 	transactions = result.commands
 	save_warning = ""
 	message = "Campaña recuperada." if run.get("edition",1) >= 12 else "Partida clásica %s: conserva sus reglas. Nueva campaña para usar el PC." % _classic_version()
@@ -175,12 +182,39 @@ func _event(command: Dictionary) -> void:
 		roster_offset = 0
 		message = "Intercambio completado, sin curación ni coste."
 	state = run.battle
+	if command.kind=="enter": _prepare_campaign_assets()
 	history = run.battleCommands
 	selecting = "finish" if _player_turn() and state.moved and state.acted else "auto"
 	_save()
 	_refresh()
 	if command.kind=="level-up": _play("level-up")
 	if run.phase == "battle": board.grab_focus()
+
+func _prepare_campaign_assets() -> void:
+	for record: Dictionary in rules.data.species:
+		if not faces.has(int(record.id)): faces[int(record.id)] = load("res://"+record.face)
+		if run.get("edition",1)>=13: portraits[int(record.id)] = faces[int(record.id)]
+	var records: Array = rules.data.species
+	if run.get("edition",1)>=13:
+		var needed: Array = run.battle.units.map(func(u):return int(u.speciesId)) if not run.battle.is_empty() else run.party.map(func(m):return int(m.speciesId))
+		records = records.filter(func(r):return int(r.id) in needed)
+	board.setup(records)
+
+func _upgrade_campaign() -> void:
+	var replacement: RefCounted = Journey.new(CURRENT_CHAPTER)
+	var command: Dictionary = {"kind":"upgrade","edition":CURRENT_CHAPTER-4,"at":run.revision}
+	var result: Dictionary = replacement.transact(run,command)
+	if not result.ok: message = result.reason; _refresh(); return
+	var backup: Dictionary = store.preserve_before_new()
+	if not backup.ok: message = backup.reason; _refresh(); return
+	campaign = replacement
+	rules = campaign.engine
+	run = result.state
+	transactions.append(command)
+	_prepare_campaign_assets()
+	message = "Aventura ampliada. Equipo, objetos, PS y diario conservados; copia de la partida anterior guardada."
+	_save()
+	_refresh()
 
 func _commit(command: Dictionary) -> void:
 	var before: Dictionary = state
@@ -247,7 +281,7 @@ func _render_travel() -> void:
 	travel_buttons.clear()
 	var header: HBoxContainer = HBoxContainer.new()
 	travel_content.add_child(header)
-	var title: Label = _label("KANTO / DE PALETA A BROCK",28,GOLD)
+	var title: Label = _label("KANTO / TU AVENTURA" if run.get("edition",1)>=13 else "KANTO / DE PALETA A BROCK",28,GOLD)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(title)
 	var resume: Button = _button("Continuar · F8",_load_game)
@@ -261,6 +295,11 @@ func _render_travel() -> void:
 	var status: Label = _label(save_warning if not save_warning.is_empty() else (message if not message.is_empty() else (classic if not classic.is_empty() else ("Guardado automático local · Revivir disponible en tienda" if run.get("edition",1)>=9 else "Guardado automático local · bajas definitivas"))),17,MUTED)
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	travel_content.add_child(status)
+	if run.get("edition",1)>=12 and run.get("edition",1)<CURRENT_CHAPTER-4 and run.get("phase","") in ["map","shop","complete"]:
+		var upgrade: Button = _button("Continuar aventura · ampliar Kanto",_upgrade_campaign)
+		upgrade.tooltip_text = "Conserva equipo, PS, objetos y diario. Guarda una copia antes de adoptar la expansión; no transforma un combate en curso."
+		travel_content.add_child(upgrade)
+		travel_buttons.upgrade = upgrade
 	if not run.is_empty() and run.get("edition",1)>=8:
 		var limit: Dictionary = campaign.gym_limit(run)
 		var limit_label: Label = _label("Límite Nv. %d · %s (%s). Al alcanzar el límite no se acumula EXP." % [limit.level,limit.leader,rules.profiles[int(limit.speciesId)].data.name],17,GOLD)
@@ -307,10 +346,13 @@ func _render_travel() -> void:
 			pick.disabled = run.mapSize==width
 		travel_content.add_child(_label("Subir: +1 movimiento por nivel; salto terrestre máximo 1. Voladores ignoran desniveles.\nAltura limita alcance y línea de visión; no aumenta el daño. Eliminar rivales sigue siendo el objetivo.",16,MUTED))
 	travel_content.add_child(progress)
-	for index: int in campaign.locations.size():
-		var label: Label = _label(("✓ " if index < run.stage else ("▶ " if index == run.stage else "· ")) + ["Ruta 1","Ruta 2","Bosque Verde","Brock"][index],20,GOLD if index == run.stage else MUTED)
-		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		progress.add_child(label)
+	if run.get("edition",1)>=13:
+		progress.add_child(_label("Medallas %d / 8 · Lugares superados %d / %d · Equipo %d / 6 · PC %d" % [run.medals.size(),run.cleared.size(),campaign.locations.size(),run.party.size(),run.reserve.size()],19,GOLD))
+	else:
+		for index: int in campaign.locations.size():
+			var label: Label = _label(("✓ " if index < run.stage else ("▶ " if index == run.stage else "· ")) + ["Ruta 1","Ruta 2","Bosque Verde","Brock"][index],20,GOLD if index == run.stage else MUTED)
+			label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			progress.add_child(label)
 	var body: HBoxContainer = HBoxContainer.new()
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	body.add_theme_constant_override("separation",18)
@@ -331,6 +373,8 @@ func _render_travel() -> void:
 	elif run.phase == "shop": heading_text = "Tienda · prepara tu equipo"
 	elif run.phase == "complete": heading_text = "Medalla Roca conseguida"
 	elif run.phase == "defeat": heading_text = "El equipo ha caído"
+	if run.get("edition",1)>=13 and run.phase=="complete": heading_text = "Liga y rival superados" if run.get("mainComplete",false) else "Tramo completado"
+	if run.phase=="ending": heading_text = "Final · guardianes de Kanto" if run.finalPath=="birds" else "Final · el origen de Mewtwo"
 	var chapter: Label = _label(heading_text,28,GOLD)
 	chapter.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	narrative.add_child(chapter)
@@ -339,7 +383,7 @@ func _render_travel() -> void:
 	narrative.add_child(text)
 	match run.phase:
 		"map":
-			_travel_button("enter","Entrar en " + location.name,narrative,{"kind":"enter"})
+			_travel_button("enter",("Visitar " if location.get("kind","")=="story" else "Entrar en ") + location.name,narrative,{"kind":"enter"})
 			text.text += "\n\nUn combate por ubicación. Al ganar: captura local, tienda y siguiente tramo. Los PS no se restauran entre encuentros."
 		"capture":
 			var image: TextureRect = _portrait(Vector2(160,160))
@@ -365,16 +409,23 @@ func _render_travel() -> void:
 				button.disabled = run.money < consumables[item].price
 				if item=="revive": button.tooltip_text = "Recupera a un Pokémon debilitado con el 50 % de sus PS máximos. Solo en la tienda; consume una unidad de la bolsa."
 			if run.get("edition",1)>=10: _render_mint_shop(narrative)
-			if run.get("edition",1)>=5:
+			if run.get("edition",1)>=5 and run.get("edition",1)<13:
 				var stone: Button = _travel_button("buy_leaf-stone","Comprar Piedra Hoja · 80 ₽",narrative,{"kind":"buy-stone"})
 				stone.disabled = run.money<80
 				stone.tooltip_text = "Evoluciona Gloom y Weepinbell. No cura ni sube niveles."
-			_travel_button("continue","Seguir viaje" if run.stage < 3 else "Cerrar el tramo",narrative,{"kind":"continue"})
+			_travel_button("continue","Seguir viaje" if run.get("edition",1)>=13 or run.stage < 3 else "Cerrar el tramo",narrative,{"kind":"continue"})
 		"complete": text.text = "Has vencido a Geodude y Onix. Conservas tu equipo, dinero, objetos y bajas.\n\nLa muestra termina en Brock. Las siguientes rutas, Liga y legendarios pertenecen a otros sprints."
 		"defeat": text.text = ("Todo el equipo se ha debilitado. La campaña ha terminado; Revivir solo se puede usar en la tienda, si llegas con algún compañero en pie." if run.get("edition",1)>=9 else "Las bajas son definitivas. Esta campaña ha terminado y queda guardada para consultar el equipo.") + "\n\nPuedes comenzar de nuevo con otro inicial o semilla."
 	if run.get("edition",1)>=12:
 		if run.phase in ["map","shop"]: text.text += "\n\nGestiona Equipo y PC a la derecha. Cambiar compañeros es gratis y conserva sus PS; solo los desplegados ganan EXP."
 		elif run.phase=="defeat": text.text += "\nLas reservas del PC tampoco permiten continuar tras perder un combate."
+	if run.get("edition",1)>=13:
+		if run.phase=="complete": text.text = "Conservas equipo, objetos, dinero y progreso. Has completado el contenido principal de este tramo. Puedes recorrer los desvíos pendientes."
+		if run.phase in ["map","complete"]: _render_destinations(narrative)
+		if run.phase=="complete" and run.mainComplete and run.chapter>=21 and run.finalPath=="":
+			text.text = "Has vencido al Alto Mando y al rival. Elige un único desafío final; las dos rutas son excluyentes y no conceden capturas legendarias."
+			for path: String in ["birds","psychic"]: _travel_button("destiny_"+path,"Articuno, Zapdos y Moltres" if path=="birds" else "Mew y Mewtwo",narrative,{"kind":"destiny","path":path})
+		if run.phase=="ending": text.text = "Has completado la Liga, vencido al rival y superado tu desafío legendario. Tu equipo y el diario quedan guardados para consultar esta aventura. Ningún legendario se incorpora al PC."
 	if run.get("edition",1) >= 2 and run.phase in ["capture","shop"]:
 		var summary: Label = _label(_progress_summary(),17,GOLD)
 		summary.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -421,8 +472,10 @@ func _render_travel() -> void:
 			var revive: Button = _travel_button("revive","Usar Revivir · 50 %% PS · bolsa: %d" % run.bag.revive,team,{"kind":"revive","member":selected_member})
 			revive.disabled = selected.hp!=0 or run.bag.revive<=0
 			revive.tooltip_text = "Solo debilitados: vuelve con %d / %d PS. Conserva nivel, EXP y movimientos; el equipable recuperado permanece en la bolsa." % [maxi(1,int(floor(unit.maxHp/2.0))),unit.maxHp]
-		for item: String in ["potion","super-potion"]:
-			var button: Button = _travel_button("heal_"+item,"Usar %s · +%d PS" % [Campaign.ITEMS[item].name,Campaign.ITEMS[item].heal],team,{"kind":"heal","item":item,"member":selected_member})
+		for item: String in (["potion","super-potion","hyper-potion","max-potion"] if run.get("edition",1)>=13 else ["potion","super-potion"]):
+			var record: Dictionary = campaign.consumables[item] if run.get("edition",1)>=13 else Campaign.ITEMS[item]
+			var heal_text: String = "Usar %s · +%d PS" % [record.name,record.heal] if item!="max-potion" else "Usar Poción Máxima · todos los PS"
+			var button: Button = _travel_button("heal_"+item,heal_text,team,{"kind":"heal","item":item,"member":selected_member})
 			button.disabled = selected.hp <= 0 or selected.hp >= unit.maxHp or run.bag[item] <= 0
 		if run.get("edition",1)>=4:
 			var candy: Button = _travel_button("level-up","Usar Caramelo Raro · +1 nivel",team,{"kind":"level-up","member":selected_member})
@@ -437,7 +490,8 @@ func _render_travel() -> void:
 			var evolution_label: Label = _label("Evolución automática: %s · Nv. %d" % [rules.profiles[int(automatic.speciesId)].data.name,automatic.level] if not automatic.is_empty() else "Sin otra evolución de Kanto",17,MUTED)
 			evolution_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			team.add_child(evolution_label)
-			if run.get("edition",1)>=5 and campaign.progression.data.stoneEvolutions.has(str(int(selected.speciesId))):
+			if run.get("edition",1)>=13: _render_evolution_options(team,selected)
+			if run.get("edition",1)>=5 and run.get("edition",1)<13 and campaign.progression.data.stoneEvolutions.has(str(int(selected.speciesId))):
 				evolution_label.text = "Evolución con Piedra Hoja · bolsa: %d" % run.bag["leaf-stone"]
 				var stone: Button = _travel_button("stone","Usar Piedra Hoja",team,{"kind":"stone","member":selected_member})
 				stone.disabled = selected.hp<=0 or run.bag["leaf-stone"]<=0
@@ -474,6 +528,26 @@ func _roster_page(tab: String, page: int) -> void:
 func _run_roster_qa() -> void:
 	await get_tree().process_frame
 	await load("res://ui/qa_roster.gd").new().run(self,roster_qa_dir)
+
+func _run_journey_qa() -> void:
+	await get_tree().process_frame
+	await load("res://ui/qa_journey.gd").new().run(self,journey_qa_dir)
+
+func _render_destinations(parent: VBoxContainer) -> void:
+	var choices: Array = campaign.available(run)
+	if choices.is_empty(): return
+	parent.add_child(_label("DESTINOS DISPONIBLES",20,GOLD))
+	for destination: Dictionary in choices:
+		var button: Button = _travel_button("travel_"+destination.id,("Desvío · " if destination.get("optional",false) else "Historia · ")+destination.name,parent,{"kind":"travel","location":destination.id})
+		button.disabled = run.phase=="map" and destination.id==campaign.locations[int(run.stage)].id
+		button.tooltip_text = destination.story
+
+func _render_evolution_options(parent: VBoxContainer, member: Dictionary) -> void:
+	for option: Array in campaign.progression.stone_options(member):
+		var item: String = option[1]
+		var button: Button = _travel_button("evolution_"+str(int(option[0])),"Evolucionar a %s · %s · bolsa %d" % [rules.profiles[int(option[0])].data.name,campaign.evolution_items[item],run.bag[item]],parent,{"kind":"use-evolution","member":member.id,"item":item,"species":option[0]})
+		button.disabled = member.hp<=0 or run.bag[item]<=0
+		button.tooltip_text = "Consume el objeto, conserva PS actuales y EXP. No cura ni revive; aprende los movimientos de la nueva forma que correspondan a su nivel."
 
 func _render_mint_shop(parent: VBoxContainer) -> void:
 	var study: RefCounted = campaign.progression

@@ -1,0 +1,1624 @@
+{
+  "species": {
+    "1": [
+      {
+        "slot": 1,
+        "id": "overgrow"
+      }
+    ],
+    "2": [
+      {
+        "slot": 1,
+        "id": "overgrow"
+      }
+    ],
+    "3": [
+      {
+        "slot": 1,
+        "id": "overgrow"
+      }
+    ],
+    "4": [
+      {
+        "slot": 1,
+        "id": "blaze"
+      }
+    ],
+    "5": [
+      {
+        "slot": 1,
+        "id": "blaze"
+      }
+    ],
+    "6": [
+      {
+        "slot": 1,
+        "id": "blaze"
+      }
+    ],
+    "7": [
+      {
+        "slot": 1,
+        "id": "torrent"
+      }
+    ],
+    "8": [
+      {
+        "slot": 1,
+        "id": "torrent"
+      }
+    ],
+    "9": [
+      {
+        "slot": 1,
+        "id": "torrent"
+      }
+    ],
+    "10": [
+      {
+        "slot": 1,
+        "id": "shield-dust"
+      }
+    ],
+    "11": [
+      {
+        "slot": 1,
+        "id": "shed-skin"
+      }
+    ],
+    "12": [
+      {
+        "slot": 1,
+        "id": "compound-eyes"
+      }
+    ],
+    "13": [
+      {
+        "slot": 1,
+        "id": "shield-dust"
+      }
+    ],
+    "14": [
+      {
+        "slot": 1,
+        "id": "shed-skin"
+      }
+    ],
+    "15": [
+      {
+        "slot": 1,
+        "id": "swarm"
+      }
+    ],
+    "16": [
+      {
+        "slot": 1,
+        "id": "keen-eye"
+      },
+      {
+        "slot": 2,
+        "id": "tangled-feet"
+      }
+    ],
+    "17": [
+      {
+        "slot": 1,
+        "id": "keen-eye"
+      },
+      {
+        "slot": 2,
+        "id": "tangled-feet"
+      }
+    ],
+    "18": [
+      {
+        "slot": 1,
+        "id": "keen-eye"
+      },
+      {
+        "slot": 2,
+        "id": "tangled-feet"
+      }
+    ],
+    "19": [
+      {
+        "slot": 1,
+        "id": "run-away"
+      },
+      {
+        "slot": 2,
+        "id": "guts"
+      }
+    ],
+    "20": [
+      {
+        "slot": 1,
+        "id": "run-away"
+      },
+      {
+        "slot": 2,
+        "id": "guts"
+      }
+    ],
+    "21": [
+      {
+        "slot": 1,
+        "id": "keen-eye"
+      }
+    ],
+    "22": [
+      {
+        "slot": 1,
+        "id": "keen-eye"
+      }
+    ],
+    "23": [
+      {
+        "slot": 1,
+        "id": "intimidate"
+      },
+      {
+        "slot": 2,
+        "id": "shed-skin"
+      }
+    ],
+    "24": [
+      {
+        "slot": 1,
+        "id": "intimidate"
+      },
+      {
+        "slot": 2,
+        "id": "shed-skin"
+      }
+    ],
+    "25": [
+      {
+        "slot": 1,
+        "id": "static"
+      }
+    ],
+    "26": [
+      {
+        "slot": 1,
+        "id": "static"
+      }
+    ],
+    "27": [
+      {
+        "slot": 1,
+        "id": "sand-veil"
+      }
+    ],
+    "28": [
+      {
+        "slot": 1,
+        "id": "sand-veil"
+      }
+    ],
+    "29": [
+      {
+        "slot": 1,
+        "id": "poison-point"
+      },
+      {
+        "slot": 2,
+        "id": "rivalry"
+      }
+    ],
+    "30": [
+      {
+        "slot": 1,
+        "id": "poison-point"
+      },
+      {
+        "slot": 2,
+        "id": "rivalry"
+      }
+    ],
+    "31": [
+      {
+        "slot": 1,
+        "id": "poison-point"
+      },
+      {
+        "slot": 2,
+        "id": "rivalry"
+      }
+    ],
+    "32": [
+      {
+        "slot": 1,
+        "id": "poison-point"
+      },
+      {
+        "slot": 2,
+        "id": "rivalry"
+      }
+    ],
+    "33": [
+      {
+        "slot": 1,
+        "id": "poison-point"
+      },
+      {
+        "slot": 2,
+        "id": "rivalry"
+      }
+    ],
+    "34": [
+      {
+        "slot": 1,
+        "id": "poison-point"
+      },
+      {
+        "slot": 2,
+        "id": "rivalry"
+      }
+    ],
+    "35": [
+      {
+        "slot": 1,
+        "id": "cute-charm"
+      },
+      {
+        "slot": 2,
+        "id": "magic-guard"
+      }
+    ],
+    "36": [
+      {
+        "slot": 1,
+        "id": "cute-charm"
+      },
+      {
+        "slot": 2,
+        "id": "magic-guard"
+      }
+    ],
+    "37": [
+      {
+        "slot": 1,
+        "id": "flash-fire"
+      }
+    ],
+    "38": [
+      {
+        "slot": 1,
+        "id": "flash-fire"
+      }
+    ],
+    "39": [
+      {
+        "slot": 1,
+        "id": "cute-charm"
+      },
+      {
+        "slot": 2,
+        "id": "competitive"
+      }
+    ],
+    "40": [
+      {
+        "slot": 1,
+        "id": "cute-charm"
+      },
+      {
+        "slot": 2,
+        "id": "competitive"
+      }
+    ],
+    "41": [
+      {
+        "slot": 1,
+        "id": "inner-focus"
+      }
+    ],
+    "42": [
+      {
+        "slot": 1,
+        "id": "inner-focus"
+      }
+    ],
+    "43": [
+      {
+        "slot": 1,
+        "id": "chlorophyll"
+      }
+    ],
+    "44": [
+      {
+        "slot": 1,
+        "id": "chlorophyll"
+      }
+    ],
+    "45": [
+      {
+        "slot": 1,
+        "id": "chlorophyll"
+      }
+    ],
+    "46": [
+      {
+        "slot": 1,
+        "id": "effect-spore"
+      },
+      {
+        "slot": 2,
+        "id": "dry-skin"
+      }
+    ],
+    "47": [
+      {
+        "slot": 1,
+        "id": "effect-spore"
+      },
+      {
+        "slot": 2,
+        "id": "dry-skin"
+      }
+    ],
+    "48": [
+      {
+        "slot": 1,
+        "id": "compound-eyes"
+      },
+      {
+        "slot": 2,
+        "id": "tinted-lens"
+      }
+    ],
+    "49": [
+      {
+        "slot": 1,
+        "id": "shield-dust"
+      },
+      {
+        "slot": 2,
+        "id": "tinted-lens"
+      }
+    ],
+    "50": [
+      {
+        "slot": 1,
+        "id": "sand-veil"
+      },
+      {
+        "slot": 2,
+        "id": "arena-trap"
+      }
+    ],
+    "51": [
+      {
+        "slot": 1,
+        "id": "sand-veil"
+      },
+      {
+        "slot": 2,
+        "id": "arena-trap"
+      }
+    ],
+    "52": [
+      {
+        "slot": 1,
+        "id": "pickup"
+      },
+      {
+        "slot": 2,
+        "id": "technician"
+      }
+    ],
+    "53": [
+      {
+        "slot": 1,
+        "id": "limber"
+      },
+      {
+        "slot": 2,
+        "id": "technician"
+      }
+    ],
+    "54": [
+      {
+        "slot": 1,
+        "id": "damp"
+      },
+      {
+        "slot": 2,
+        "id": "cloud-nine"
+      }
+    ],
+    "55": [
+      {
+        "slot": 1,
+        "id": "damp"
+      },
+      {
+        "slot": 2,
+        "id": "cloud-nine"
+      }
+    ],
+    "56": [
+      {
+        "slot": 1,
+        "id": "vital-spirit"
+      },
+      {
+        "slot": 2,
+        "id": "anger-point"
+      }
+    ],
+    "57": [
+      {
+        "slot": 1,
+        "id": "vital-spirit"
+      },
+      {
+        "slot": 2,
+        "id": "anger-point"
+      }
+    ],
+    "58": [
+      {
+        "slot": 1,
+        "id": "intimidate"
+      },
+      {
+        "slot": 2,
+        "id": "flash-fire"
+      }
+    ],
+    "59": [
+      {
+        "slot": 1,
+        "id": "intimidate"
+      },
+      {
+        "slot": 2,
+        "id": "flash-fire"
+      }
+    ],
+    "60": [
+      {
+        "slot": 1,
+        "id": "water-absorb"
+      },
+      {
+        "slot": 2,
+        "id": "damp"
+      }
+    ],
+    "61": [
+      {
+        "slot": 1,
+        "id": "water-absorb"
+      },
+      {
+        "slot": 2,
+        "id": "damp"
+      }
+    ],
+    "62": [
+      {
+        "slot": 1,
+        "id": "water-absorb"
+      },
+      {
+        "slot": 2,
+        "id": "damp"
+      }
+    ],
+    "63": [
+      {
+        "slot": 1,
+        "id": "synchronize"
+      },
+      {
+        "slot": 2,
+        "id": "inner-focus"
+      }
+    ],
+    "64": [
+      {
+        "slot": 1,
+        "id": "synchronize"
+      },
+      {
+        "slot": 2,
+        "id": "inner-focus"
+      }
+    ],
+    "65": [
+      {
+        "slot": 1,
+        "id": "synchronize"
+      },
+      {
+        "slot": 2,
+        "id": "inner-focus"
+      }
+    ],
+    "66": [
+      {
+        "slot": 1,
+        "id": "guts"
+      },
+      {
+        "slot": 2,
+        "id": "no-guard"
+      }
+    ],
+    "67": [
+      {
+        "slot": 1,
+        "id": "guts"
+      },
+      {
+        "slot": 2,
+        "id": "no-guard"
+      }
+    ],
+    "68": [
+      {
+        "slot": 1,
+        "id": "guts"
+      },
+      {
+        "slot": 2,
+        "id": "no-guard"
+      }
+    ],
+    "69": [
+      {
+        "slot": 1,
+        "id": "chlorophyll"
+      }
+    ],
+    "70": [
+      {
+        "slot": 1,
+        "id": "chlorophyll"
+      }
+    ],
+    "71": [
+      {
+        "slot": 1,
+        "id": "chlorophyll"
+      }
+    ],
+    "72": [
+      {
+        "slot": 1,
+        "id": "clear-body"
+      },
+      {
+        "slot": 2,
+        "id": "liquid-ooze"
+      }
+    ],
+    "73": [
+      {
+        "slot": 1,
+        "id": "clear-body"
+      },
+      {
+        "slot": 2,
+        "id": "liquid-ooze"
+      }
+    ],
+    "74": [
+      {
+        "slot": 1,
+        "id": "rock-head"
+      },
+      {
+        "slot": 2,
+        "id": "sturdy"
+      }
+    ],
+    "75": [
+      {
+        "slot": 1,
+        "id": "rock-head"
+      },
+      {
+        "slot": 2,
+        "id": "sturdy"
+      }
+    ],
+    "76": [
+      {
+        "slot": 1,
+        "id": "rock-head"
+      },
+      {
+        "slot": 2,
+        "id": "sturdy"
+      }
+    ],
+    "77": [
+      {
+        "slot": 1,
+        "id": "run-away"
+      },
+      {
+        "slot": 2,
+        "id": "flash-fire"
+      }
+    ],
+    "78": [
+      {
+        "slot": 1,
+        "id": "run-away"
+      },
+      {
+        "slot": 2,
+        "id": "flash-fire"
+      }
+    ],
+    "79": [
+      {
+        "slot": 1,
+        "id": "oblivious"
+      },
+      {
+        "slot": 2,
+        "id": "own-tempo"
+      }
+    ],
+    "80": [
+      {
+        "slot": 1,
+        "id": "oblivious"
+      },
+      {
+        "slot": 2,
+        "id": "own-tempo"
+      }
+    ],
+    "81": [
+      {
+        "slot": 1,
+        "id": "magnet-pull"
+      },
+      {
+        "slot": 2,
+        "id": "sturdy"
+      }
+    ],
+    "82": [
+      {
+        "slot": 1,
+        "id": "magnet-pull"
+      },
+      {
+        "slot": 2,
+        "id": "sturdy"
+      }
+    ],
+    "83": [
+      {
+        "slot": 1,
+        "id": "keen-eye"
+      },
+      {
+        "slot": 2,
+        "id": "inner-focus"
+      }
+    ],
+    "84": [
+      {
+        "slot": 1,
+        "id": "run-away"
+      },
+      {
+        "slot": 2,
+        "id": "early-bird"
+      }
+    ],
+    "85": [
+      {
+        "slot": 1,
+        "id": "run-away"
+      },
+      {
+        "slot": 2,
+        "id": "early-bird"
+      }
+    ],
+    "86": [
+      {
+        "slot": 1,
+        "id": "thick-fat"
+      },
+      {
+        "slot": 2,
+        "id": "hydration"
+      }
+    ],
+    "87": [
+      {
+        "slot": 1,
+        "id": "thick-fat"
+      },
+      {
+        "slot": 2,
+        "id": "hydration"
+      }
+    ],
+    "88": [
+      {
+        "slot": 1,
+        "id": "stench"
+      },
+      {
+        "slot": 2,
+        "id": "sticky-hold"
+      }
+    ],
+    "89": [
+      {
+        "slot": 1,
+        "id": "stench"
+      },
+      {
+        "slot": 2,
+        "id": "sticky-hold"
+      }
+    ],
+    "90": [
+      {
+        "slot": 1,
+        "id": "shell-armor"
+      },
+      {
+        "slot": 2,
+        "id": "skill-link"
+      }
+    ],
+    "91": [
+      {
+        "slot": 1,
+        "id": "shell-armor"
+      },
+      {
+        "slot": 2,
+        "id": "skill-link"
+      }
+    ],
+    "92": [
+      {
+        "slot": 1,
+        "id": "levitate"
+      }
+    ],
+    "93": [
+      {
+        "slot": 1,
+        "id": "levitate"
+      }
+    ],
+    "94": [
+      {
+        "slot": 1,
+        "id": "cursed-body"
+      }
+    ],
+    "95": [
+      {
+        "slot": 1,
+        "id": "rock-head"
+      },
+      {
+        "slot": 2,
+        "id": "sturdy"
+      }
+    ],
+    "96": [
+      {
+        "slot": 1,
+        "id": "insomnia"
+      },
+      {
+        "slot": 2,
+        "id": "forewarn"
+      }
+    ],
+    "97": [
+      {
+        "slot": 1,
+        "id": "insomnia"
+      },
+      {
+        "slot": 2,
+        "id": "forewarn"
+      }
+    ],
+    "98": [
+      {
+        "slot": 1,
+        "id": "hyper-cutter"
+      },
+      {
+        "slot": 2,
+        "id": "shell-armor"
+      }
+    ],
+    "99": [
+      {
+        "slot": 1,
+        "id": "hyper-cutter"
+      },
+      {
+        "slot": 2,
+        "id": "shell-armor"
+      }
+    ],
+    "100": [
+      {
+        "slot": 1,
+        "id": "soundproof"
+      },
+      {
+        "slot": 2,
+        "id": "static"
+      }
+    ],
+    "101": [
+      {
+        "slot": 1,
+        "id": "soundproof"
+      },
+      {
+        "slot": 2,
+        "id": "static"
+      }
+    ],
+    "102": [
+      {
+        "slot": 1,
+        "id": "chlorophyll"
+      }
+    ],
+    "103": [
+      {
+        "slot": 1,
+        "id": "chlorophyll"
+      }
+    ],
+    "104": [
+      {
+        "slot": 1,
+        "id": "rock-head"
+      },
+      {
+        "slot": 2,
+        "id": "lightning-rod"
+      }
+    ],
+    "105": [
+      {
+        "slot": 1,
+        "id": "rock-head"
+      },
+      {
+        "slot": 2,
+        "id": "lightning-rod"
+      }
+    ],
+    "106": [
+      {
+        "slot": 1,
+        "id": "limber"
+      },
+      {
+        "slot": 2,
+        "id": "reckless"
+      }
+    ],
+    "107": [
+      {
+        "slot": 1,
+        "id": "keen-eye"
+      },
+      {
+        "slot": 2,
+        "id": "iron-fist"
+      }
+    ],
+    "108": [
+      {
+        "slot": 1,
+        "id": "own-tempo"
+      },
+      {
+        "slot": 2,
+        "id": "oblivious"
+      }
+    ],
+    "109": [
+      {
+        "slot": 1,
+        "id": "levitate"
+      },
+      {
+        "slot": 2,
+        "id": "neutralizing-gas"
+      }
+    ],
+    "110": [
+      {
+        "slot": 1,
+        "id": "levitate"
+      },
+      {
+        "slot": 2,
+        "id": "neutralizing-gas"
+      }
+    ],
+    "111": [
+      {
+        "slot": 1,
+        "id": "lightning-rod"
+      },
+      {
+        "slot": 2,
+        "id": "rock-head"
+      }
+    ],
+    "112": [
+      {
+        "slot": 1,
+        "id": "lightning-rod"
+      },
+      {
+        "slot": 2,
+        "id": "rock-head"
+      }
+    ],
+    "113": [
+      {
+        "slot": 1,
+        "id": "natural-cure"
+      },
+      {
+        "slot": 2,
+        "id": "serene-grace"
+      }
+    ],
+    "114": [
+      {
+        "slot": 1,
+        "id": "chlorophyll"
+      },
+      {
+        "slot": 2,
+        "id": "leaf-guard"
+      }
+    ],
+    "115": [
+      {
+        "slot": 1,
+        "id": "early-bird"
+      },
+      {
+        "slot": 2,
+        "id": "scrappy"
+      }
+    ],
+    "116": [
+      {
+        "slot": 1,
+        "id": "swift-swim"
+      },
+      {
+        "slot": 2,
+        "id": "sniper"
+      }
+    ],
+    "117": [
+      {
+        "slot": 1,
+        "id": "poison-point"
+      },
+      {
+        "slot": 2,
+        "id": "sniper"
+      }
+    ],
+    "118": [
+      {
+        "slot": 1,
+        "id": "swift-swim"
+      },
+      {
+        "slot": 2,
+        "id": "water-veil"
+      }
+    ],
+    "119": [
+      {
+        "slot": 1,
+        "id": "swift-swim"
+      },
+      {
+        "slot": 2,
+        "id": "water-veil"
+      }
+    ],
+    "120": [
+      {
+        "slot": 1,
+        "id": "illuminate"
+      },
+      {
+        "slot": 2,
+        "id": "natural-cure"
+      }
+    ],
+    "121": [
+      {
+        "slot": 1,
+        "id": "illuminate"
+      },
+      {
+        "slot": 2,
+        "id": "natural-cure"
+      }
+    ],
+    "122": [
+      {
+        "slot": 1,
+        "id": "soundproof"
+      },
+      {
+        "slot": 2,
+        "id": "filter"
+      }
+    ],
+    "123": [
+      {
+        "slot": 1,
+        "id": "swarm"
+      },
+      {
+        "slot": 2,
+        "id": "technician"
+      }
+    ],
+    "124": [
+      {
+        "slot": 1,
+        "id": "oblivious"
+      },
+      {
+        "slot": 2,
+        "id": "forewarn"
+      }
+    ],
+    "125": [
+      {
+        "slot": 1,
+        "id": "static"
+      }
+    ],
+    "126": [
+      {
+        "slot": 1,
+        "id": "flame-body"
+      }
+    ],
+    "127": [
+      {
+        "slot": 1,
+        "id": "hyper-cutter"
+      },
+      {
+        "slot": 2,
+        "id": "mold-breaker"
+      }
+    ],
+    "128": [
+      {
+        "slot": 1,
+        "id": "intimidate"
+      },
+      {
+        "slot": 2,
+        "id": "anger-point"
+      }
+    ],
+    "129": [
+      {
+        "slot": 1,
+        "id": "swift-swim"
+      }
+    ],
+    "130": [
+      {
+        "slot": 1,
+        "id": "intimidate"
+      }
+    ],
+    "131": [
+      {
+        "slot": 1,
+        "id": "water-absorb"
+      },
+      {
+        "slot": 2,
+        "id": "shell-armor"
+      }
+    ],
+    "132": [
+      {
+        "slot": 1,
+        "id": "limber"
+      }
+    ],
+    "133": [
+      {
+        "slot": 1,
+        "id": "run-away"
+      },
+      {
+        "slot": 2,
+        "id": "adaptability"
+      }
+    ],
+    "134": [
+      {
+        "slot": 1,
+        "id": "water-absorb"
+      }
+    ],
+    "135": [
+      {
+        "slot": 1,
+        "id": "volt-absorb"
+      }
+    ],
+    "136": [
+      {
+        "slot": 1,
+        "id": "flash-fire"
+      }
+    ],
+    "137": [
+      {
+        "slot": 1,
+        "id": "trace"
+      },
+      {
+        "slot": 2,
+        "id": "download"
+      }
+    ],
+    "138": [
+      {
+        "slot": 1,
+        "id": "swift-swim"
+      },
+      {
+        "slot": 2,
+        "id": "shell-armor"
+      }
+    ],
+    "139": [
+      {
+        "slot": 1,
+        "id": "swift-swim"
+      },
+      {
+        "slot": 2,
+        "id": "shell-armor"
+      }
+    ],
+    "140": [
+      {
+        "slot": 1,
+        "id": "swift-swim"
+      },
+      {
+        "slot": 2,
+        "id": "battle-armor"
+      }
+    ],
+    "141": [
+      {
+        "slot": 1,
+        "id": "swift-swim"
+      },
+      {
+        "slot": 2,
+        "id": "battle-armor"
+      }
+    ],
+    "142": [
+      {
+        "slot": 1,
+        "id": "rock-head"
+      },
+      {
+        "slot": 2,
+        "id": "pressure"
+      }
+    ],
+    "143": [
+      {
+        "slot": 1,
+        "id": "immunity"
+      },
+      {
+        "slot": 2,
+        "id": "thick-fat"
+      }
+    ],
+    "144": [
+      {
+        "slot": 1,
+        "id": "pressure"
+      }
+    ],
+    "145": [
+      {
+        "slot": 1,
+        "id": "pressure"
+      }
+    ],
+    "146": [
+      {
+        "slot": 1,
+        "id": "pressure"
+      }
+    ],
+    "147": [
+      {
+        "slot": 1,
+        "id": "shed-skin"
+      }
+    ],
+    "148": [
+      {
+        "slot": 1,
+        "id": "shed-skin"
+      }
+    ],
+    "149": [
+      {
+        "slot": 1,
+        "id": "inner-focus"
+      }
+    ],
+    "150": [
+      {
+        "slot": 1,
+        "id": "pressure"
+      }
+    ],
+    "151": [
+      {
+        "slot": 1,
+        "id": "synchronize"
+      }
+    ]
+  },
+  "abilities": {
+    "intimidate": {
+      "name": "Intimidación",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "sand-veil": {
+      "name": "Velo Arena",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "poison-point": {
+      "name": "Punto Tóxico",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "rivalry": {
+      "name": "Rivalidad",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "cute-charm": {
+      "name": "Gran Encanto",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "magic-guard": {
+      "name": "Muro Mágico",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "flash-fire": {
+      "name": "Absorbe Fuego",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "competitive": {
+      "name": "Tenacidad",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "inner-focus": {
+      "name": "Fuerza Mental",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "effect-spore": {
+      "name": "Efecto Espora",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "dry-skin": {
+      "name": "Piel Seca",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "tinted-lens": {
+      "name": "Cromolente",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "arena-trap": {
+      "name": "Trampa Arena",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "pickup": {
+      "name": "Recogida",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "technician": {
+      "name": "Experto",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "limber": {
+      "name": "Flexibilidad",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "damp": {
+      "name": "Humedad",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "cloud-nine": {
+      "name": "Aclimatación",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "vital-spirit": {
+      "name": "Espíritu Vital",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "anger-point": {
+      "name": "Irascible",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "water-absorb": {
+      "name": "Absorbe Agua",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "synchronize": {
+      "name": "Sincronía",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "no-guard": {
+      "name": "Indefenso",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "clear-body": {
+      "name": "Cuerpo Puro",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "liquid-ooze": {
+      "name": "Lodo Líquido",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "oblivious": {
+      "name": "Despiste",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "own-tempo": {
+      "name": "Ritmo Propio",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "magnet-pull": {
+      "name": "Imán",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "early-bird": {
+      "name": "Madrugar",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "thick-fat": {
+      "name": "Sebo",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "hydration": {
+      "name": "Hidratación",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "stench": {
+      "name": "Hedor",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "sticky-hold": {
+      "name": "Viscosidad",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "shell-armor": {
+      "name": "Caparazón",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "skill-link": {
+      "name": "Encadenado",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "levitate": {
+      "name": "Levitación",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "cursed-body": {
+      "name": "Cuerpo Maldito",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "insomnia": {
+      "name": "Insomnio",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "forewarn": {
+      "name": "Alerta",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "hyper-cutter": {
+      "name": "Corte Fuerte",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "soundproof": {
+      "name": "Insonorizar",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "lightning-rod": {
+      "name": "Pararrayos",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "reckless": {
+      "name": "Audaz",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "iron-fist": {
+      "name": "Puño Férreo",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "neutralizing-gas": {
+      "name": "Gas Reactivo",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "natural-cure": {
+      "name": "Cura Natural",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "serene-grace": {
+      "name": "Dicha",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "leaf-guard": {
+      "name": "Defensa Hoja",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "scrappy": {
+      "name": "Intrépido",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "swift-swim": {
+      "name": "Nado Rápido",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "sniper": {
+      "name": "Francotirador",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "water-veil": {
+      "name": "Velo Agua",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "illuminate": {
+      "name": "Iluminación",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "filter": {
+      "name": "Filtro",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "flame-body": {
+      "name": "Cuerpo Llama",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "mold-breaker": {
+      "name": "Rompemoldes",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "adaptability": {
+      "name": "Adaptable",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "volt-absorb": {
+      "name": "Absorbe Electricidad",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "trace": {
+      "name": "Calco",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "download": {
+      "name": "Descarga",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "battle-armor": {
+      "name": "Armadura Batalla",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "pressure": {
+      "name": "Presión",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    },
+    "immunity": {
+      "name": "Inmunidad",
+      "description": "Habilidad normal. Consulta su adaptación táctica en la ficha.",
+      "implemented": false
+    }
+  },
+  "contact": []
+}

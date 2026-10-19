@@ -3,6 +3,7 @@ extends "res://ui/board.gd"
 const Terrain = preload("res://core/terrain_movement.gd")
 const TILE = Vector2(80,48)
 const LIFT: float = 12
+const BIOME_COLORS = {"cave":"8c8b81","ground":"b29b74","water":"b4ae83","ice":"a6c8c8","ship":"957b5b","rocket":"7f9195","ghost":"85768e","psychic":"a58dba","fire":"9d7562","dragon":"8d9daf","grass":"6c9661","legends-birds":"99a7a0","legends-psychic":"9182a8"}
 var zoom: float = 1.2
 var anchor: Vector2 = Vector2.ZERO
 var dragging: bool = false
@@ -117,6 +118,11 @@ func pick(screen: Vector2) -> Dictionary:
 	# Feet identify the occupied square even when a tall neighbour overlaps it.
 	for unit: Dictionary in state.units:
 		if unit.hp>0 and center(unit).distance_to(screen)<cell_size()*0.13: return {"x":unit.x,"y":unit.y}
+	if state.get("combatEdition",0)>=13:
+		# A tall sprite must not make the centre of a reachable empty tile unclickable.
+		for route_entry: Dictionary in available.values():
+			var point: Dictionary = route_entry.path.back()
+			if center(point).distance_to(screen)<cell_size()*0.1: return {"x":point.x,"y":point.y}
 	var ordered: Array = state.units.duplicate()
 	ordered.sort_custom(func(a,b):return a.x+a.y>b.x+b.y if a.x+a.y!=b.x+b.y else a.id>b.id)
 	for unit: Dictionary in ordered:
@@ -218,6 +224,7 @@ func _tile_color(point: Dictionary) -> Color:
 	var tile: int = int(state.board[int(point.y)][int(point.x)])
 	var h: int = Terrain.height_at(state,point)
 	var color: Color = Color("769264")
+	if BIOME_COLORS.has(state.biome): color = Color(BIOME_COLORS[state.biome])
 	if state.biome=="brock": color = Color("afa78c")
 	elif state.biome=="forest": color = Color("628355")
 	if tile==1: color = Color("507345")

@@ -1,0 +1,59 @@
+{
+	"assertions": 3134,
+	"chapter": 17,
+	"cleared": [
+		"route-1",
+		"route-2",
+		"forest",
+		"brock",
+		"route-3",
+		"mt-moon",
+		"route-4",
+		"cerulean-rival",
+		"route-24",
+		"route-25",
+		"misty",
+		"route-5",
+		"route-6",
+		"ss-anne",
+		"surge",
+		"route-11",
+		"diglett-cave",
+		"route-22"
+	],
+	"encountered": [
+		"route-1",
+		"route-2",
+		"forest",
+		"brock",
+		"route-3",
+		"mt-moon",
+		"route-4",
+		"cerulean-rival",
+		"route-24",
+		"route-25",
+		"misty",
+		"route-5",
+		"route-6",
+		"ss-anne",
+		"surge",
+		"route-11",
+		"diglett-cave",
+		"route-22"
+	],
+	"failures": [],
+	"medals": [
+		"Medalla Roca",
+		"Medalla Cascada",
+		"Medalla Trueno"
+	],
+	"phase": "complete",
+	"screenshots": [
+		"route-1.png",
+		"brock.png",
+		"misty.png",
+		"surge.png",
+		"journey-result.png"
+	],
+	"transactions": 1563
+}

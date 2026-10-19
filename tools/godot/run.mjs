@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { existsSync, readFileSync, mkdirSync, writeFileSync, cpSync } from 'node:fs';
+import { existsSync, readFileSync, mkdirSync, writeFileSync, cpSync, readdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
@@ -7,8 +7,10 @@ import { gunzipSync } from 'node:zlib';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const project = resolve(root, 'godot');
-const work = resolve(root, '../../work/qa-sprint-16');
-const output = resolve(root, '../releases/pokemon-tactics-0.16.0/windows');
+const nativeVersion = readFileSync(resolve(project, 'project.godot'),'utf8').match(/config\/version="([^"]+)"/)[1];
+const chapter = Number(nativeVersion.split('.')[1]);
+const work = resolve(root, `../../work/qa-sprint-${chapter}`);
+const output = resolve(root, `../releases/pokemon-tactics-${nativeVersion}/windows`);
 const operation = process.argv[2] ?? 'test';
 const binary = process.env.GODOT_BIN ?? resolve(root, '../../work/godot-4.7.2/Godot_v4.7.2-stable_win64_console.exe');
 mkdirSync(work, { recursive: true });
@@ -59,7 +61,7 @@ function verify() {
   const kanto = JSON.parse(readFileSync(resolve(project, 'data/kanto-provenance.json'),'utf8'));
   for (const entry of kanto.files) if (createHash('sha256').update(readFileSync(resolve(project,entry.target))).digest('hex') !== entry.sha256) throw new Error('Kanto hash mismatch: '+entry.target);
   console.log('Verified '+kanto.files.length+' Kanto source/asset files.');
-  for (const name of ['progression-provenance','feedback-provenance','shop-provenance','letsgo-provenance','traits-provenance']) {
+  for (const name of ['progression-provenance','feedback-provenance','shop-provenance','letsgo-provenance','traits-provenance','expedition-provenance',...readdirSync(resolve(project,'data')).filter(n => /^journey-\d+-provenance\.json$/.test(n)).map(n=>n.slice(0,-5))]) {
     const extra=JSON.parse(readFileSync(resolve(project,'data/'+name+'.json'),'utf8'));
     for (const entry of extra.files) if(createHash('sha256').update(readFileSync(resolve(project,entry.target))).digest('hex') !== entry.sha256) throw new Error('Progression resource hash mismatch: '+entry.target);
     console.log('Verified '+extra.files.length+' files in '+name+'.');
@@ -68,13 +70,27 @@ function verify() {
   console.log(`Verified ${manifest.files.length} assets and ${manifest.ruleSources.length} reference source hashes; ${fixtures.games.length} complete battles.`);
 }
 if (operation === 'verify') { verify(); process.exit(0); }
-if (!['qa-export','qa-campaign-export','qa-scale-export','qa-roster-export'].includes(operation)) {
+if (!['qa-export','qa-campaign-export','qa-scale-export','qa-roster-export','qa-journey-export'].includes(operation)) {
   if (!existsSync(binary)) throw new Error('Godot not found. Set GODOT_BIN to the standard Godot 4.7.2 executable.');
   const version = spawnSync(binary, ['--version'], { encoding: 'utf8', windowsHide: true });
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if (operation === 'test-roster') {
+if (operation === 'test-journey' || operation === 'test-expedition-abilities') {
+  verify();
+  run(binary,['--headless',...common,'--script',operation==='test-journey'?'res://tests/journey.gd':'res://tests/expedition_abilities.gd','--','--save-dir='+work,'--chapter='+ (process.env.KANTO_CHAPTER ?? String(chapter))],operation);
+} else if (operation === 'test-expedition') {
+  verify();
+  run(binary,['--headless',...common,'--script','res://tests/expedition.gd','--','--save-dir='+work,'--chapter='+ (process.env.KANTO_CHAPTER ?? String(chapter))],'expedition-core');
+} else if (operation === 'qa-journey' || operation === 'qa-journey-export') {
+  const exported = operation === 'qa-journey-export';
+  if (!exported) verify();
+  const directory = resolve(work,exported ? 'journey-release' : 'journey-source');
+  const args = [...(exported ? [] : common),'--position','-10000,-10000','--audio-driver','Dummy','--','--journey-qa-dir='+directory];
+  run(exported ? resolve(output,'PokemonTactics.exe') : binary,args,'journey-ui-'+(exported?'release':'source'),exported ? output : root);
+  const report = JSON.parse(readFileSync(resolve(directory,'journey-ui-result.json'),'utf8'));
+  if(report.failures.length || report.phase==='defeat' || !report.cleared.length) throw new Error('Journey UI failed.');
+} else if (operation === 'test-roster') {
   verify();
   run(binary,['--headless',...common,'--script','res://tests/roster.gd','--','--save-dir='+work],'roster-core');
 } else if (operation === 'qa-roster' || operation === 'qa-roster-export') {
@@ -161,7 +177,23 @@ if (operation === 'test-roster') {
   run(binary, ['--headless', ...common, '--export-release', 'Windows Desktop', resolve(output, 'PokemonTactics.exe')], 'export-windows');
   cpSync(resolve(project, 'licenses'), resolve(output, 'licenses'), { recursive: true });
   cpSync(resolve(project, 'CREDITS.md'), resolve(output, 'CREDITS.md'));
-  writeFileSync(resolve(output, 'LEEME.txt'), 'Pokémon Tactics 0.16.0 — Paleta hasta Brock · offline\n\nAbre PokemonTactics.exe. No necesitas Godot, Node ni un servidor.\nPC: 6 plazas de equipo (incluidos debilitados) y reservas sin límite.\nCapturas sobrantes al PC; cambios gratuitos fuera del combate, sin curación.\nEquipo/PC: retirar con hueco o intercambiar directamente; el equipable sigue con el Pokémon.\nSolo los desplegados ganan EXP. Perder un combate termina la campaña aunque haya reservas vivas.\nMapas isométricos 16×16 o 24×24, alturas, cámara y minimapa.\nRueda/+/-: zoom; botón central: arrastrar; C/Inicio: unidad; Combate: encuadre del encuentro; Mapa: vista completa. G/H: cuadrícula/alturas.\nSubir cuesta +1 movimiento, salto terrestre máximo 1; voladores ignoran desniveles.\nAltura limita alcance/visión, sin daño adicional; vigía del bosque se incorpora al empezar ronda 3 como máximo.\nElige un inicial de Oak y recorre Ruta 1, Ruta 2, Bosque Verde y Brock.\nEXP por victoria, niveles y estadísticas. Cuatro movimientos preparados + básico neutro.\nCaramelo Raro: 25 ₽ por +1 nivel. Evolución automática al alcanzar su nivel.\nSubir de nivel recupera el aumento de PS máximos, incluida la evolución automática; no revive bajas.\nLímite de nivel del siguiente gimnasio: Brock/Onix14. Al tope no acumulas EXP ni puedes usar Caramelos.\nRevivir: 150 ₽ en tienda. Solo debilitados, vuelve con el 50% de PS; no recupera equipable automáticamente.\nSi cae todo el equipo, termina la campaña aunque haya Revivir en la bolsa.\nNaturalezas y habilidades normales por Pokémon, persistidas con la captura y al evolucionar.\nMentas100 ₽: modifican atributos sin cambiar la naturaleza original. Cápsula150 ₽: alterna habilidades normales.\nClorofila y Fuga esperan clima/huida; sin habilidades ocultas o Parche Habilidad todavía.\nOrientación: frente, mitad baja del daño; costado, mitad alta; espalda, máximo y +1 crítico.\nPrecisión propia del movimiento, sin penalización por orientación.\nEstados y etapas de atributos: tres activaciones; parálisis reduce solo el movimiento.\nMejoras: 2–4 PT. Cuchillada/Hipercolmillo: crítico garantizado por 3 PT.\nAtaque Rápido/Acua Jet: acercamiento; Golpe Cabeza/Portazo: empuje.\nEncuentros y repertorios de Let’s Go combinados. Sin movimientos exclusivos de los iniciales especiales.\nTipografía legible; estados y modificadores sobre las unidades y en las fichas.\nGloom/Weepinbell evolucionan con Piedra Hoja (80 ₽); Pikachu20/Golem36 siguen adaptados.\nBrock entrega Onix. Tres ofertas MT/equipables por tienda; renovar cuesta 25, 50, 75… ₽.\nUn equipable por Pokémon; MT de un uso, con compatibilidad indicada.\nNueva campaña para estas reglas; archivos anteriores conservan su edición.\nEl resto de Kanto aún no está implementado. Laboratorio anterior accesible desde el menú.\n\nPasa el cursor para prever. Clic en casilla azul: mover; clic en enemigo: básico.\n1/2/3/4/5: movimientos; A: menú de habilidades; R: rectificar solo movimiento, antes de actuar; F: orientar desde tablero.\nFlechas/Enter: casillas; clic derecho/Esc: cancelar selección; F8: continuar; F1: menú.\nEl menú de órdenes aparece a la derecha en turnos aliados. Solo se confirma un ataque con riesgo para aliados.\nCampaña: %APPDATA%/PokemonTacticsLab/kanto-save.json.\nLaboratorio independiente: laboratory-save.json\nCréditos y licencias acompañan al ejecutable.\n', 'utf8');
+  const route = JSON.parse(readFileSync(resolve(project,`data/journey-${Math.min(chapter,21)}.json`),'utf8'));
+  const end = route.filter(n=>!n.optional && !n.finale).at(-1).name;
+  writeFileSync(resolve(output, 'LEEME.txt'), `Pokémon Tactics ${nativeVersion} — Kanto offline
+
+Abre PokemonTactics.exe. No necesitas editor, Node ni servidor.
+Contenido: ${route.length} lugares; historia hasta ${end}.
+Elige inicial de Oak. Mapa de destinos, capturas locales únicas, tiendas, PC de reserva y seis plazas de equipo.
+Para continuar una campaña0.16 o posterior, carga y pulsa Continuar aventura en el mapa, tienda o final del tramo. Conserva copia y diario. Una batalla pendiente conserva su edición hasta terminar.
+Guardado automático local: %APPDATA%/PokemonTacticsLab/kanto-save.json. No borres ni sustituyas el archivo para actualizar.
+Cuatro movimientos preparados más básico neutro. EXP y Caramelos25 ₽ suben niveles con límite del siguiente gimnasio. PS actuales recuperan el aumento de PS máximos.
+Evolución automática por nivel; piedras/Cable Vínculo80 ₽ cuando corresponda. Pikachu20 y Graveler36 son excepciones adaptadas.
+Sin curación gratuita; usa objetos fuera de combate. Revivir150 ₽ devuelve50% PS. Perder acaba la campaña aunque haya reservas vivas.
+Mapas16/24 con alturas. Clic en azul: mover; clic en rival: básico. Habilidades integradas; R rectifica solo movimiento antes de actuar. F orienta y termina. Flechas/Enter y Escape disponibles.
+Rueda/+/-: zoom; botón central: cámara; C unidad; Combate/Mapa encuadran. G/H cuadrícula/alturas.
+Datos/repertorios LGPE combinados, sin movimientos de los iniciales especiales; historia/equipos de entrenadores de Rojo. PT/alcances y efectos complejos son adaptaciones visibles en ficha. Habilidades pendientes están etiquetadas; sin clima ni huida.
+No hay conexión de red, cuentas ni servicios al jugar. Créditos/licencias acompañan la entrega. Publicación pública aplazada.
+`, 'utf8');
   const digest = createHash('sha256').update(readFileSync(resolve(output, 'PokemonTactics.exe'))).digest('hex');
   writeFileSync(resolve(output, 'SHA256SUMS.txt'), `${digest}  PokemonTactics.exe\n`);
   console.log(`Windows executable: ${resolve(output, 'PokemonTactics.exe')}\nSHA256: ${digest}`);

@@ -54,7 +54,13 @@
     "godot:test:tactics:journey": "node tools/godot/run.mjs test-tactics-journey",
     "godot:test:roster": "node tools/godot/run.mjs test-roster",
     "godot:qa:roster": "node tools/godot/run.mjs qa-roster",
-    "godot:qa:roster:export": "node tools/godot/run.mjs qa-roster-export"
+    "godot:qa:roster:export": "node tools/godot/run.mjs qa-roster-export",
+    "godot:test:expedition": "node tools/godot/run.mjs test-expedition",
+    "godot:test:journey": "node tools/godot/run.mjs test-journey",
+    "godot:test:abilities": "node tools/godot/run.mjs test-expedition-abilities",
+    "godot:qa:journey": "node tools/godot/run.mjs qa-journey",
+    "godot:qa:journey:export": "node tools/godot/run.mjs qa-journey-export",
+    "godot:package": "python tools/godot/package-native.py"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

@@ -1,4 +1,4 @@
-# Pokémon Tactics — Kanto y laboratorio nativo 0.16.0
+# Pokémon Tactics — Kanto y laboratorio nativo 0.17.0
 
 Proyecto de fans para portfolio, sin afiliación ni aprobación oficial. Pokémon y sus personajes pertenecen a sus respectivos titulares.
 
@@ -11,7 +11,7 @@ El laboratorio original reutiliza las seis especies del ensayo: Bulbasaur, Charm
 - La navegación GDScript adapta el orden A* de EasyStar.js 0.4.4 y las operaciones de heap.js 0.2.6 para conservar recorridos equivalentes. EasyStar: Bryce Neal, MIT; heap.js: Xueqiao Xu, licencia PSF y avisos de Python Software Foundation. Textos en licenses/EasyStar-MIT.txt y licenses/heap-PSF.md.
 - Godot 4.7.2 estándar: motor de código abierto, licencia MIT. Su texto de licencia y los avisos de bibliotecas de terceros se muestran desde el menú Créditos mediante los datos incluidos en el propio motor.
 
-El registro completo de las fuentes del proyecto web se conserva, sin modificar, en licenses/web-CREDITS.md; incluye especies y dependencias que no se distribuyen en este laboratorio nativo. No se incorpora música ni un catálogo completo de 151 especies. La ampliación de campaña se detalla a continuación.
+El registro completo de las fuentes del proyecto web se conserva, sin modificar, en licenses/web-CREDITS.md; incluye especies y dependencias que no se distribuyen en este laboratorio nativo. No se incorpora música nueva; el catálogo completo de Kanto se añade en la expansión0.17.0. La ampliación de campaña se detalla a continuación.
 
 
 ## Retratos de diálogo — revisión 0.13.2
@@ -102,3 +102,12 @@ Sin nuevos activos externos. Se reutilizan tipografía, sprites/retratos, sonido
 ## Naturalezas y habilidades0.14.9
 
 Metadatos factuales y nombres españoles de25 naturalezas y15 habilidades normales, slots de32 especies y contacto de39 acciones (incluido básico propio), reutilizados desde7 CSV de PokéAPI, commit81d20919845b6a445969b9265aab5cec6b04cece. URL/SHA256 de fuentes y catálogo derivado en data/traits-provenance.json; importador tools/godot/import-traits.py. Se mantiene el aviso BSD-3-Clause de PokéAPI ya incluido. Descripciones españolas de efectos/adaptaciones, precios, cálculo y representación propios. Clorofila/Fuga no activas hasta añadir clima/huida; multiimpactos conservan agregación táctica. Sin imágenes, sonidos ni fuentes nuevos; ninguna consulta al jugar.
+
+
+## Kanto completo — recursos0.17.0
+
+Se reutilizan los32 registros nativos anteriores y se incorporan119 especies para completar151. Hojas Idle/Walk, AnimData, retratos Normal y créditos son originales de SpriteCollab, commit6ad5f1c6229af6b055de2c64442e5e508664290c. Sin recolorear ni redibujar. Autores individuales completos en data/expedition-provenance.json y credits.txt/portrait-credits.txt de cada carpeta assets/expedition/ID; no se atribuyen al autor de este juego.
+
+Repertorios y compatibilidad de MT de Let’s Go, encuentros combinados, especies, tipos, estadísticas y habilidades normales desde PokéAPI, CSV fijados al commit81d20919845b6a445969b9265aab5cec6b04cece y respuestas API identificadas por URL/SHA256. Se conserva su aviso BSD-3-Clause. Datos compilados nuevos en expedition.json, expedition-shop.json y expedition-traits.json; manifiesto de717 archivos con fuentes/hashes. No se consulta ninguna API al jugar.
+
+Equipos/niveles de entrenadores de Rojo desde los datos factuales de pret/pokered, commitaf519899719f0754965776faac0e836a3b906e6d, data/trainers/parties.asm. No se incorpora código del juego original. Grafo, textos españoles, mapas, reglas de PT/alcance/roles, adaptaciones de efectos complejos y habilidades, economía y guardado son implementación de este proyecto. Cada snapshot journey-N-provenance registra los hashes de su capítulo.
