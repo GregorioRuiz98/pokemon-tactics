@@ -1,12 +1,12 @@
 # Pokémon Tactics
 
-Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: muestra de Kanto Windows 0.19.0 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
+Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: muestra de Kanto Windows 0.20.0 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
 
-**Kanto nativo:** Paleta a Ciudad Verde:48 lugares, ocho gimnasios, Silph, Safari y rutas terrestres/marítimas. Captura local, niveles/evolución, movimientos/MT LGPE combinados, naturalezas/habilidades y PC. Ejecutable Windows offline, sin editor ni servidor. Catálogo151; no todas las especies se obtienen en cada recorrido.
+**Kanto nativo:** Paleta a la Liga:56 lugares, ocho medallas, Alto Mando y rival campeón. Captura local, niveles/evolución, movimientos/MT LGPE combinados, naturalezas/habilidades y PC. Ejecutable Windows offline, sin editor ni servidor. Catálogo151; no todas las especies se obtienen en cada recorrido.
 
-Las campañas0.16/0.17 pueden continuar con **Continuar aventura · ampliar Kanto**, con copia y diario conservados. Las anteriores siguen sus reglas. [Sprint19 e información de pruebas](docs/SPRINT_19.md) · [Cómo jugar](godot/README.md) · [Plan](docs/PLAN_SPRINTS.md).
+Las campañas0.16/0.17 pueden continuar con **Continuar aventura · ampliar Kanto**, con copia y diario conservados. Las anteriores siguen sus reglas. [Sprint20 e información de pruebas](docs/SPRINT_20.md) · [Cómo jugar](godot/README.md) · [Plan](docs/PLAN_SPRINTS.md).
 
-![Ciudad Verde: ocho medallas](docs/qa/sprint-19/giovanni-gym.png)
+![Liga y rival completados](docs/qa/sprint-20/champion.png)
 
 ## Campaña web 0.12.0
 

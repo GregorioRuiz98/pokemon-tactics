@@ -98,3 +98,5 @@
 - Sprint18 cerrado0.18.0/edición14:28 encuentros hastaErika/Fuji, hitos Scope/Flauta/Agua Fresca y cola desplazable. Snapshot18 conserva17; transición13→14 explícita con copia. Fuente/.exe6200 aserciones idénticas y recorrido5140, sin fallos. Ver docs/SPRINT_18.md. Continúan19–22 autorizados; sin despliegue público.
 
 - Sprint19 cerrado0.19.0/edición15: Fucsia, Azafrán y sur de Kanto; snapshot19, transición y diario preservados. Recorrido11613 y UI fuente/.exe12544 sin fallos. Ver docs/SPRINT_19.md. Continuar hasta22 autorizado; sin despliegue público.
+
+- Sprint20 cerrado0.20.0/edición16: Liga y rival; snapshot20, transición y diario preservados. Recorrido12273 y UI fuente/.exe4009 sin fallos. Ver docs/SPRINT_20.md. Continuar hasta22 autorizado; sin despliegue público.

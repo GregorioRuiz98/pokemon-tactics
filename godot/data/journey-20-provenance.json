@@ -1,0 +1,13 @@
+{
+  "pokeredCommit": "af519899719f0754965776faac0e836a3b906e6d",
+  "trainerSource": {
+    "url": "https://raw.githubusercontent.com/pret/pokered/af519899719f0754965776faac0e836a3b906e6d/data/trainers/parties.asm",
+    "sha256": "61eac58fe43a181fcd936d5366457a940cf805ee15c787ff5957e175f83b217d"
+  },
+  "files": [
+    {
+      "target": "data/journey-20.json",
+      "sha256": "ff5c6b301ceb591476fd40be56761618d6a394e696ad88d7c4f9d764b6ce1415"
+    }
+  ]
+}

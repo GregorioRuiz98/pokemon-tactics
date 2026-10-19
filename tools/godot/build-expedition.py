@@ -72,6 +72,14 @@ add('blaine','Isla Canela · Blaine','secret-key','pokemon-mansion','fire',chapt
 add('giovanni-gym','Ciudad Verde · Giovanni','badge-rock badge-cascade badge-thunder badge-rainbow badge-soul badge-marsh badge-volcano','kanto-route-22','ground',chapter=19,leader=True,team=team('Giovanni',2),medal='Medalla Tierra',grants=['badge-earth'],story='Con siete medallas regresas a Ciudad Verde. Giovanni revela su identidad como líder; Rhydon50 es su insignia. La Medalla Tierra abre la Liga.')
 add('power-plant','Central de Energía · desvío','route-10 surf','kanto-power-plant','rocket',chapter=19,optional=True,count=5,story='Exploras las instalaciones junto a Ruta 10. Zapdos se reserva para el desafío legendario; aquí combates y capturas habitantes no legendarios.')
 
+badges='badge-rock badge-cascade badge-thunder badge-rainbow badge-soul badge-marsh badge-volcano badge-earth'
+add('league-rival','Ruta 22 · último reto del rival',badges,'kanto-route-22',chapter=20,rivalTeams=rivals('Rival2',9),story='Con ocho medallas, tu rival mide tus fuerzas antes de la Liga. Es un acontecimiento distinto del encuentro salvaje único de Ruta 22; no reinicia aquella captura.')
+add('route-23','Ruta 23 · controles de medallas','league-rival','kanto-route-23','ground',chapter=20,count=5)
+add('victory-road','Calle Victoria','route-23 strength surf','kanto-victory-road-1','cave',chapter=20,count=6,grants=['league-access'])
+for identity,label,party,requires,biome in [('lorelei','Lorelei','Lorelei','league-access','ice'),('bruno','Bruno','Bruno','lorelei','ground'),('agatha','Agatha','Agatha','bruno','ghost'),('lance','Lance','Lance','agatha','dragon')]:
+    add(identity,'Alto Mando · '+label,requires,'kanto-victory-road-1',biome,chapter=20,team=team(party),story='Combate del Alto Mando con su equipo de Rojo. Después hay captura de la zona de acceso Calle Victoria y tienda. No se restauran PS gratuitamente, y una derrota termina la campaña.')
+add('champion','Liga Pokémon · rival campeón','lance','kanto-victory-road-1','dragon',chapter=20,rivalTeams=rivals('Rival3',0),grants=['champion'],story='Tu rival ya es campeón. Vence a su equipo de seis para entrar en el Hall de la Fama. Después de la captura de Calle Victoria y la tienda se cierra la historia principal; los legendarios esperan al siguiente desafío.')
+
 def build(chapter):
     result=[]
     for source in nodes:

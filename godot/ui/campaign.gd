@@ -3,7 +3,7 @@ extends "res://ui/laboratory.gd"
 const Campaign = preload("res://core/kanto_run.gd")
 const Advanced = preload("res://core/roster_run.gd")
 const Journey = preload("res://core/journey_run.gd")
-const CURRENT_CHAPTER: int = 19
+const CURRENT_CHAPTER: int = 20
 const RosterPanel = preload("res://ui/roster_panel.gd")
 const IsometricBoard = preload("res://ui/isometric_board.gd")
 const CampaignStore = preload("res://core/journey_store.gd")

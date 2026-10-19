@@ -69,6 +69,17 @@ func run_tests() -> void:
 		check(not game.transact(fixture,{"kind":"enter","at":0}).ok,"Giovanni requires seven badges")
 		fixture.flags.append_array(["badge-rock","badge-cascade","badge-thunder","badge-rainbow","badge-soul","badge-marsh","badge-volcano"])
 		check(game.transact(fixture,{"kind":"enter","at":0}).ok,"Seven badges enable Giovanni")
+	if chapter_number()>=20:
+		fixture = fresh.duplicate(true)
+		fixture.stage = game.locations.find(game.locations.filter(func(n):return n.id=="league-rival")[0])
+		fixture.flags = ["badge-rock","badge-cascade","badge-thunder","badge-rainbow","badge-soul","badge-marsh","badge-volcano"]
+		check(not game.transact(fixture,{"kind":"enter","at":0}).ok,"League rejects seven medals")
+		fixture.flags.append("badge-earth")
+		check(game.transact(fixture,{"kind":"enter","at":0}).ok,"Eight medals unlock League rival")
+		fixture.cleared = game.locations.filter(func(n):return n.get("leader",false)).map(func(n):return n.id)
+		check(game.level_cap(fixture)==65,"League cap65 after eight gyms")
+		fixture.mainComplete = true
+		check(game.level_cap(fixture)==75,"Postgame cap75 after champion")
 	var report: Dictionary = journey(game,fresh,[])
 	if chapter_number()==17:
 		var legacy_game: RefCounted = Legacy.new()
@@ -118,16 +129,19 @@ func run_tests() -> void:
 				check(upgraded.ok and Store.equivalent(upgraded.state.party,previous.state.party) and upgraded.state.money==previous.state.money,"Next chapter preserves owned team/HP/money")
 				if upgraded.ok:
 					previous.commands.append(upgrade)
-					report.adoptedJourney = journey(game,upgraded.state,previous.commands)
+					report.adoptedJourney = journey(game,upgraded.state,previous.commands,false)
 	var combined: Dictionary = {"chapter":chapter_number(),"checks":checks,"failures":failures,"journey":report}
 	FileAccess.open(output_dir().path_join("journey-core-result.json"),FileAccess.WRITE).store_string(JSON.stringify(combined,"\t"))
 	print(JSON.stringify(combined))
 	quit(0 if failures.is_empty() else 1)
 
-func journey(game: RefCounted, start: Dictionary, journal: Array) -> Dictionary:
+func journey(game: RefCounted, start: Dictionary, journal: Array, require_victory: bool = true) -> Dictionary:
 	var state: Dictionary = start
 	var encounters: Array = []
 	for index: int in 20000:
+		if chapter_number()==20 and start.startEdition==16 and state.phase=="map" and game.locations[int(state.stage)].id=="league-rival":
+			var checkpoint: RefCounted = Store.new(output_dir().path_join("journey-fresh-before-league.json"))
+			check(checkpoint.save(state,journal,"journey").ok,"Natural current-edition League checkpoint for UI")
 		var order: Dictionary = policy.choose(game,state)
 		if order.is_empty(): break
 		var result: Dictionary = game.transact(state,order)
@@ -142,13 +156,14 @@ func journey(game: RefCounted, start: Dictionary, journal: Array) -> Dictionary:
 				var record: Dictionary = game.progression.species[int(member.speciesId)]
 				check(not record.legendary and not record.mythical,"Legendary never recruited")
 		if state.phase in ["defeat","ending"]: break
-	check(state.phase in ["complete","ending"],"Natural journey completes instead of defeat/stall")
+	check(state.phase in (["complete","ending"] if require_victory else ["complete","ending","defeat"]),"Natural journey reaches a valid terminal outcome")
 	if chapter_number()>=18 and state.phase in ["complete","ending"]:
 		for flag: String in ["ss-ticket","cut","silph-scope","marowak-rest","poke-flute","fresh-water"]: check(flag in state.flags,"Story milestone persisted "+flag)
 	if chapter_number()>=19 and state.phase in ["complete","ending"]:
 		for flag: String in ["surf","strength","silph-liberated","secret-key","badge-earth"]: check(flag in state.flags,"Southern milestone persisted "+flag)
 		check(state.medals.size()==8,"Eight distinct gym medals")
-	var store: RefCounted = Store.new(output_dir().path_join("journey-full.json"))
+	if chapter_number()>=20 and state.phase in ["complete","ending"]: check(state.mainComplete and "champion" in state.flags,"Hall of Fame persists")
+	var store: RefCounted = Store.new(output_dir().path_join("journey-loss.json" if state.phase=="defeat" else "journey-full.json"))
 	check(store.save(state,journal,"journey").ok,"Save full journey")
 	var restored: Dictionary = store.load_campaign(game)
 	check(restored.ok and Store.equivalent(restored.state,state),"Full expanded campaign replays")

@@ -20,9 +20,20 @@ func capture(app: Control, directory: String, name: String) -> void:
 	screenshots.append(name+".png")
 
 func run(app: Control, directory: String) -> void:
-	app._show_oak()
-	app.journey_seed.text = "tactics-1"
-	app.travel_buttons.starter1.pressed.emit()
+	if app.CURRENT_CHAPTER==20:
+		var current: String = directory.get_base_dir().path_join("journey-fresh-before-league.json")
+		check(DirAccess.copy_absolute(current,app.store.file_path)==OK,"Copy natural current-edition League checkpoint")
+		app._load_game()
+	elif app.CURRENT_CHAPTER==21:
+		var previous: String = directory.get_base_dir().get_base_dir().path_join("qa-sprint-%d/journey-source/campaign-save.json" % (app.CURRENT_CHAPTER-1))
+		check(DirAccess.copy_absolute(previous,app.store.file_path)==OK,"Copy previous delivered UI checkpoint")
+		app._load_game()
+		check(app.run.get("edition",0)==app.CURRENT_CHAPTER-5,"Previous campaign opened with frozen rules")
+		app.travel_buttons.upgrade.pressed.emit()
+	else:
+		app._show_oak()
+		app.journey_seed.text = "tactics-1"
+		app.travel_buttons.starter1.pressed.emit()
 	check(app.run.edition==app.CURRENT_CHAPTER-4,"Current journey edition selected")
 	var encountered: Array = []
 	for index: int in 16000:
@@ -47,8 +58,13 @@ func run(app: Control, directory: String) -> void:
 		elif command.kind=="destiny": app.travel_buttons["destiny_"+command.path].pressed.emit()
 		elif command.kind=="buy": app.travel_buttons["buy_"+command.item].pressed.emit()
 		elif command.kind=="level-up" or command.kind=="revive" or command.kind=="heal":
-			app._roster_page("team",0)
-			app._select_member(int(command.member))
+			var reserve_index: int = -1
+			for position: int in app.run.reserve.size():
+				if app.run.reserve[position].id==command.member: reserve_index = position
+			app.travel_buttons["roster_pc" if reserve_index>=0 else "roster_team"].pressed.emit()
+			if reserve_index>=0:
+				for _page: int in int(reserve_index/6.0): app.travel_buttons.pc_next.pressed.emit()
+			app.travel_buttons["member_"+str(int(command.member))].pressed.emit()
 			app.travel_buttons["heal_"+command.item if command.kind=="heal" else command.kind].pressed.emit()
 		else: app._event(command)
 		var matching: bool = Store.equivalent(app.run,expected.state)
@@ -60,7 +76,7 @@ func run(app: Control, directory: String) -> void:
 		if command.kind=="enter" and app.run.phase=="battle":
 			var identity: String = app.campaign.locations[int(app.run.stage)].id
 			encountered.append(identity)
-			if app.campaign.locations[int(app.run.stage)].get("leader",false) or encountered.size()==1: await capture(app,directory,identity)
+			if app.campaign.locations[int(app.run.stage)].get("leader",false) or encountered.size()==1 or identity in ["champion","legendary-birds","legendary-origin"]: await capture(app,directory,identity)
 			if identity=="erika":
 				app.get_window().size = Vector2i(1024,720)
 				await capture(app,directory,"erika-1024")
@@ -73,7 +89,7 @@ func run(app: Control, directory: String) -> void:
 	app._load_game()
 	check(Store.equivalent(app.run,snapshot),"Full journey reloads exactly")
 	await capture(app,directory,"journey-result")
-	var report: Dictionary = {"assertions":assertions,"failures":failures,"chapter":app.CURRENT_CHAPTER,"phase":app.run.phase,"cleared":app.run.cleared,"medals":app.run.medals,"transactions":app.transactions.size(),"encountered":encountered,"screenshots":screenshots}
+	var report: Dictionary = {"assertions":assertions,"failures":failures,"chapter":app.CURRENT_CHAPTER,"origin":"natural-current-before-league" if app.CURRENT_CHAPTER==20 else ("continued-previous" if app.CURRENT_CHAPTER==21 else "fresh"),"phase":app.run.phase,"cleared":app.run.cleared,"medals":app.run.medals,"transactions":app.transactions.size(),"encountered":encountered,"screenshots":screenshots}
 	FileAccess.open(directory.path_join("journey-ui-result.json"),FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
 	print(JSON.stringify(report))
 	app.get_tree().quit(0 if failures.is_empty() else 1)
