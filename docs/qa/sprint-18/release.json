@@ -1,0 +1,18 @@
+{
+  "version": "0.18.0",
+  "campaignEdition": 14,
+  "combatEdition": 13,
+  "exe": {
+    "path": "C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\outputs\\releases\\pokemon-tactics-0.18.0\\windows\\PokemonTactics.exe",
+    "bytes": 113175312,
+    "sha256": "b40b0ec42655937162e8f1f54886ad9e01db8771722b2cab1501878deda4bbb1"
+  },
+  "zip": {
+    "path": "C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\outputs\\releases\\pokemon-tactics-0.18.0\\pokemon-tactics-0.18.0-windows.zip",
+    "bytes": 39908479,
+    "sha256": "f8984faeaa627ba6f5513a3c2c885b6df3336ae18bfad3f50bdb2124ecab81f1"
+  },
+  "uiSourceAndReleaseEqual": true,
+  "releaseAssertions": 6200,
+  "publicDeployment": false
+}

@@ -3,7 +3,7 @@ extends "res://ui/laboratory.gd"
 const Campaign = preload("res://core/kanto_run.gd")
 const Advanced = preload("res://core/roster_run.gd")
 const Journey = preload("res://core/journey_run.gd")
-const CURRENT_CHAPTER: int = 17
+const CURRENT_CHAPTER: int = 18
 const RosterPanel = preload("res://ui/roster_panel.gd")
 const IsometricBoard = preload("res://ui/isometric_board.gd")
 const CampaignStore = preload("res://core/journey_store.gd")
@@ -35,7 +35,7 @@ func _ready() -> void:
 	for record: Dictionary in rules.data.species: faces[int(record.id)] = load("res://" + record.face)
 	super._ready()
 	camera_bar = HBoxContainer.new()
-	camera_bar.position = Vector2(24,106)
+	camera_bar.position = Vector2(24,122 if run.get("edition",1)>=13 else 106)
 	camera_bar.add_theme_constant_override("separation",6)
 	battle_overlay.add_child(camera_bar)
 	for entry: Array in [["−",func():board.change_zoom(1/1.12)],["+",func():board.change_zoom(1.12)],["Combate",func():board.frame_combat()],["Unidad · C",func():board.focus_active()],["Mapa",func():board.fit_map()],["Cuadrícula · G",func():board.strong_grid = not board.strong_grid; board.queue_redraw()],["Alturas · H",func():board.show_heights = not board.show_heights; board.queue_redraw()]]:
@@ -191,6 +191,7 @@ func _event(command: Dictionary) -> void:
 	if run.phase == "battle": board.grab_focus()
 
 func _prepare_campaign_assets() -> void:
+	_queue_scrolling(run.get("edition",1)>=13)
 	for record: Dictionary in rules.data.species:
 		if not faces.has(int(record.id)): faces[int(record.id)] = load("res://"+record.face)
 		if run.get("edition",1)>=13: portraits[int(record.id)] = faces[int(record.id)]
@@ -199,6 +200,24 @@ func _prepare_campaign_assets() -> void:
 		var needed: Array = run.battle.units.map(func(u):return int(u.speciesId)) if not run.battle.is_empty() else run.party.map(func(m):return int(m.speciesId))
 		records = records.filter(func(r):return int(r.id) in needed)
 	board.setup(records)
+
+func _queue_scrolling(expanded: bool) -> void:
+	var wrapper: ScrollContainer
+	if timeline.get_parent() is ScrollContainer:
+		wrapper = timeline.get_parent()
+	elif expanded:
+		var parent: Node = timeline.get_parent()
+		var index: int = timeline.get_index()
+		parent.remove_child(timeline)
+		wrapper = ScrollContainer.new()
+		wrapper.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+		wrapper.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+		wrapper.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		parent.add_child(wrapper)
+		parent.move_child(wrapper,index)
+		wrapper.add_child(timeline)
+	if wrapper!=null: wrapper.custom_minimum_size.y = 48 if expanded else 32
+	if camera_bar!=null: camera_bar.position.y = 122 if expanded else 106
 
 func _upgrade_campaign() -> void:
 	var replacement: RefCounted = Journey.new(CURRENT_CHAPTER)
@@ -234,6 +253,7 @@ func _rectify_movement() -> void:
 func _refresh() -> void:
 	if travel_root == null:
 		super._refresh()
+		if timeline.get_parent() is ScrollContainer: timeline.get_parent().scroll_horizontal = 0
 		return
 	if camera_bar!=null: camera_bar.visible = not run.is_empty() and run.phase=="battle" and run.get("edition",1)>=11
 	var fighting: bool = not run.is_empty() and run.phase == "battle"

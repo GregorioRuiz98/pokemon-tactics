@@ -1,12 +1,12 @@
 # Pokémon Tactics
 
-Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: muestra de Kanto Windows 0.17.0 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
+Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: muestra de Kanto Windows 0.18.0 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
 
-**Kanto nativo:** Paleta → Brock → Monte Moon → Celeste/Misty/Bill → Carmín/S. S. Anne/Surge, con18 encuentros y desvíos.151 especies disponibles en catálogo, repertorios/MT de Let’s Go combinados, captura local, niveles/evolución, objetos, naturalezas/habilidades y PC. Ejecutable Windows offline, sin editor ni servidor. Campaña larga en desarrollo por entregas; no confundir catálogo con especies accesibles en este primer tramo.
+**Kanto nativo:** Paleta → Brock → Monte Moon → Celeste/Misty/Bill → Carmín/S. S. Anne/Surge, → Lavanda/Azulona/Erika/Rocket, con28 encuentros y desvíos.151 especies disponibles en catálogo, repertorios/MT de Let’s Go combinados, captura local, niveles/evolución, objetos, naturalezas/habilidades y PC. Ejecutable Windows offline, sin editor ni servidor. Campaña larga en desarrollo por entregas; no confundir catálogo con especies accesibles en este primer tramo.
 
-Las campañas0.16 pueden continuar con **Continuar aventura · ampliar Kanto**, con copia y diario conservados. Las anteriores siguen sus reglas. [Sprint17 e información de pruebas](docs/SPRINT_17.md) · [Cómo jugar](godot/README.md) · [Plan](docs/PLAN_SPRINTS.md).
+Las campañas0.16/0.17 pueden continuar con **Continuar aventura · ampliar Kanto**, con copia y diario conservados. Las anteriores siguen sus reglas. [Sprint18 e información de pruebas](docs/SPRINT_18.md) · [Cómo jugar](godot/README.md) · [Plan](docs/PLAN_SPRINTS.md).
 
-![Carmín](docs/qa/sprint-17/surge.png)
+![Azulona](docs/qa/sprint-18/erika.png)
 
 ## Campaña web 0.12.0
 

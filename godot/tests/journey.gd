@@ -34,6 +34,23 @@ func run_tests() -> void:
 	check(game.level_cap(fixture)==21,"Misty cap after Brock")
 	fixture.cleared.append("misty")
 	check(game.level_cap(fixture)==24,"Surge cap after Misty")
+	var ship: int = game.locations.find(game.locations.filter(func(n):return n.id=="ss-anne")[0])
+	fixture = fresh.duplicate(true)
+	fixture.stage = ship
+	fixture.cleared = ["route-6"]
+	var untouched: Dictionary = fixture.duplicate(true)
+	check(not game.transact(fixture,{"kind":"enter","at":fixture.revision}).ok and Store.equivalent(fixture,untouched),"Ship needs Bill ticket; rejection preserves RNG and state")
+	fixture.flags.append("ss-ticket")
+	check(game.transact(fixture,{"kind":"enter","at":fixture.revision}).ok,"Bill ticket enables ship")
+	if chapter_number()>=18:
+		fixture = fresh.duplicate(true)
+		fixture.stage = game.locations.find(game.locations.filter(func(n):return n.id=="pokemon-tower")[0])
+		fixture.cleared = ["tower-rival"]
+		check(not game.transact(fixture,{"kind":"enter","at":fixture.revision}).ok,"Tower ghosts require Scope")
+		fixture.flags.append("silph-scope")
+		check(game.transact(fixture,{"kind":"enter","at":fixture.revision}).ok,"Scope enables tower encounter")
+		fixture.cleared.append("pokemon-tower")
+		check(not game.transact(fixture,{"kind":"enter","at":fixture.revision}).ok,"Cleared encounter cannot be farmed")
 	var report: Dictionary = journey(game,fresh,[])
 	if chapter_number()==17:
 		var legacy_game: RefCounted = Legacy.new()
@@ -70,6 +87,20 @@ func run_tests() -> void:
 			check(restored.ok and Store.equivalent(restored.state,changed.state),"Replay changes engine exactly at upgrade")
 			check(changed.state.phase=="map" and game.locations[int(changed.state.stage)].id=="route-3","Continue after Brock without new campaign")
 			report.adoptedJourney = journey(game,changed.state,commands)
+	else:
+		var prior_path: String = output_dir().get_base_dir().path_join("qa-sprint-%d/journey-full.json" % (chapter_number()-1))
+		check(FileAccess.file_exists(prior_path),"Previous delivered campaign exists for continuity test")
+		if FileAccess.file_exists(prior_path):
+			var prior_store: RefCounted = Store.new(prior_path)
+			var previous: Dictionary = prior_store.load_campaign(game)
+			check(previous.ok,"Previous chapter replays with its frozen edition: "+str(previous.get("reason","")))
+			if previous.ok:
+				var upgrade: Dictionary = {"kind":"upgrade","edition":chapter_number()-4,"at":previous.state.revision}
+				var upgraded: Dictionary = game.transact(previous.state,upgrade)
+				check(upgraded.ok and Store.equivalent(upgraded.state.party,previous.state.party) and upgraded.state.money==previous.state.money,"Next chapter preserves owned team/HP/money")
+				if upgraded.ok:
+					previous.commands.append(upgrade)
+					report.adoptedJourney = journey(game,upgraded.state,previous.commands)
 	var combined: Dictionary = {"chapter":chapter_number(),"checks":checks,"failures":failures,"journey":report}
 	FileAccess.open(output_dir().path_join("journey-core-result.json"),FileAccess.WRITE).store_string(JSON.stringify(combined,"\t"))
 	print(JSON.stringify(combined))
@@ -94,6 +125,8 @@ func journey(game: RefCounted, start: Dictionary, journal: Array) -> Dictionary:
 				check(not record.legendary and not record.mythical,"Legendary never recruited")
 		if state.phase in ["defeat","ending"]: break
 	check(state.phase in ["complete","ending"],"Natural journey completes instead of defeat/stall")
+	if chapter_number()>=18 and state.phase in ["complete","ending"]:
+		for flag: String in ["ss-ticket","cut","silph-scope","marowak-rest","poke-flute","fresh-water"]: check(flag in state.flags,"Story milestone persisted "+flag)
 	var store: RefCounted = Store.new(output_dir().path_join("journey-full.json"))
 	check(store.save(state,journal,"journey").ok,"Save full journey")
 	var restored: Dictionary = store.load_campaign(game)

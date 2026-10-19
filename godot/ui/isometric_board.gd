@@ -38,6 +38,7 @@ func isometric() -> bool:
 
 func play_area() -> Rect2:
 	if not isometric(): return super.play_area()
+	if state.get("combatEdition",0)>=13: return Rect2(Vector2(24,172),size-Vector2(332,426))
 	return Rect2(Vector2(24,156),size-Vector2(332,410))
 
 func cell_size() -> float:

@@ -42,6 +42,17 @@ add('route-11','Ruta 11 · desvío de Carmín','route-6','kanto-route-11',option
 add('diglett-cave','Cueva Diglett','route-11','digletts-cave','cave',optional=True,count=3)
 add('route-22','Ruta 22 · desvío de Ciudad Verde','route-1','kanto-route-22',optional=True,count=3)
 
+add('route-9','Ruta 9 · hacia Túnel Roca','surge cut','kanto-route-9',chapter=18,count=5)
+add('route-10','Ruta 10 · sendero de la central','route-9','kanto-route-10',chapter=18,count=5)
+add('rock-tunnel','Túnel Roca · paso a Lavanda','route-10','rock-tunnel','cave',chapter=18,count=5,grants=['lavender-reached'],story='Cruzas los desniveles de Túnel Roca y llegas a Pueblo Lavanda. La oscuridad y el recorrido se resumen; no se exige ocupar un movimiento con Destello.')
+add('route-8','Ruta 8 · salida de Lavanda','rock-tunnel','kanto-route-8',chapter=18)
+add('route-7','Ruta 7 · llegada a Azulona','route-8','kanto-route-7',chapter=18)
+add('erika','Ciudad Azulona · Erika','route-7','kanto-route-7','grass',chapter=18,leader=True,team=team('Erika'),medal='Medalla Arcoíris',grants=['badge-rainbow','fresh-water'],story='Erika dirige su jardín de Pokémon Planta. La visita al centro comercial y el Agua Fresca para los guardias quedan resumidos al completar el gimnasio.')
+add('rocket-hideout','Guarida Rocket · Giovanni','route-7','kanto-route-7','rocket',chapter=18,team=team('Giovanni',0),grants=['silph-scope'],story='Sigues al Rocket del Casino y te enfrentas a Giovanni. Al vencer recuperas el Scope Silph. La recompensa salvaje procede de Ruta 7, acceso a Azulona; no se capturan sus Pokémon de entrenador.')
+add('tower-rival','Torre Pokémon · rival','lavender-reached','pokemon-tower','ghost',chapter=18,rivalTeams=rivals('Rival2',3),story='Tu rival te espera en la Torre Pokémon. La tabla de captura corresponde a las plantas salvajes de la torre, no a su equipo.')
+add('pokemon-tower','Torre Pokémon · el espíritu de Marowak','tower-rival silph-scope','pokemon-tower','ghost',chapter=18,count=5,grants=['marowak-rest'],story='El Scope identifica los espíritus. En este encuentro de la torre, la historia de Marowak se resume al vencer a los habitantes del tablero; no se concede una captura legendaria ni un segundo premio al revisitar.')
+add('fuji-rescue','Torre Pokémon · rescate de Fuji','pokemon-tower','pokemon-tower','ghost',chapter=18,team=[dict(speciesId=41,level=25),dict(speciesId=42,level=25),dict(speciesId=109,level=26),dict(speciesId=96,level=26)],grants=['poke-flute'],story='Expulsas al último grupo Rocket y rescatas al Sr. Fuji. Te entrega la Poké Flauta, que permitirá abrir los caminos hacia Fucsia. Composición táctica de dos grupos Rocket de la torre; recompensa salvaje local.')
+
 def build(chapter):
     result=[]
     for source in nodes:

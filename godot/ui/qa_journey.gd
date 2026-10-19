@@ -58,6 +58,12 @@ func run(app: Control, directory: String) -> void:
 			var identity: String = app.campaign.locations[int(app.run.stage)].id
 			encountered.append(identity)
 			if app.campaign.locations[int(app.run.stage)].get("leader",false) or encountered.size()==1: await capture(app,directory,identity)
+			if identity=="erika":
+				app.get_window().size = Vector2i(1024,720)
+				await capture(app,directory,"erika-1024")
+				check(app.timeline.get_parent() is ScrollContainer,"Large initiative queue can scroll")
+				check(app.timeline.get_parent().get_global_rect().end.x<=app.size.x,"Queue stays inside minimum viewport")
+				app.get_window().size = Vector2i(1280,900)
 		if app.run.phase in ["defeat","ending"]: break
 	check(app.run.phase in ["complete","ending"],"Natural journey completes")
 	var snapshot: Dictionary = app.run.duplicate(true)
