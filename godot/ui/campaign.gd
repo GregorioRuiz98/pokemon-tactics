@@ -39,6 +39,8 @@ var oak_return: Dictionary = {}
 var interface_qa_dir: String = ""
 var shop_tab: String = "supplies"
 var shop_sections: Dictionary = {}
+var shop_batch: ConfirmationDialog
+var batch_busy: bool = false
 var options_dialog: AcceptDialog
 var options_buttons: Dictionary = {}
 var new_seed: String = "kanto-14"
@@ -304,6 +306,7 @@ func _menu_selected(identity: int) -> void:
 		_: super._menu_selected(identity)
 
 func _modal_open() -> bool:
+	if batch_busy or (shop_batch!=null and shop_batch.visible): return true
 	return title_visible or super._modal_open() or (campaign_confirm != null and campaign_confirm.visible) or (options_dialog!=null and options_dialog.visible)
 
 func _player_turn() -> bool:
@@ -338,8 +341,9 @@ func _load_game() -> void:
 	ai_clock = 0
 	_refresh()
 
-func _event(command: Dictionary) -> void:
-	if _modal_open(): return
+func _event(command: Dictionary, from_batch: bool = false) -> void:
+	if batch_busy and not from_batch: return
+	if _modal_open() and not (from_batch and batch_busy): return
 	var result: Dictionary = campaign.transact(run,command)
 	if not result.ok:
 		message = result.reason
@@ -675,6 +679,9 @@ func _render_travel() -> void:
 			if run.get("edition",1)>=12 and run.party.size()>=6: capture_text = "Enviar al PC · equipo completo"
 			_travel_button("capture",capture_text,narrative,{"kind":"capture"})
 		"shop":
+			var batch: Button = _button("Comprar / usar cantidades…",_open_batch)
+			narrative.add_child(batch)
+			travel_buttons.batch = batch
 			text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos Raros: %d\n\nUn Caramelo evoluciona una etapa sin requisito de nivel. No cura. Entrenar añade +5; máximo dos compras por Pokémon.\n\nSelecciona un miembro a la derecha para usar objetos o entrenar." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
 			if run.get("edition",1) >= 2:
 				text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos Raros: %d\n\nLas estadísticas crecen al subir de nivel. La EXP se gana con victorias.\n\nEvolución: nivel requerido + un Caramelo Raro. No cura ni da niveles. Preparar movimientos es gratis." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
@@ -831,6 +838,15 @@ func _render_travel() -> void:
 		team.add_child(train)
 		travel_buttons.train = train
 		train.disabled = selected.hp <= 0 or count >= 2 or run.money < 80
+
+func _open_batch() -> void:
+	if run.phase!="shop" or batch_busy: return
+	if shop_batch==null:
+		shop_batch = load("res://ui/shop_batch.gd").new()
+		add_child(shop_batch)
+		shop_batch.setup(self)
+		_watch_dialog(shop_batch)
+	shop_batch.open()
 
 func _select_member(identity: int) -> void:
 	selected_member = identity

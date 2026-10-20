@@ -990,6 +990,10 @@ func _input(event: InputEvent) -> void:
 	_guard_input(event,get_viewport())
 
 func _guard_input(event: InputEvent, viewport: Viewport) -> void:
+	if get("batch_busy")==true:
+		if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE: get("shop_batch").stop_requested = true
+		viewport.set_input_as_handled()
+		return
 	if event.has_meta("tactics_guarded"): return
 	event.set_meta("tactics_guarded",true)
 	var focused: Control = viewport.gui_get_focus_owner()

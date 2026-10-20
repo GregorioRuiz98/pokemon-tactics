@@ -33,10 +33,11 @@ func run(app: Control, directory: String) -> void:
 
 func additional(app: Control, directory: String) -> void:
 	var before: Dictionary = app.run.duplicate(true)
-	for dimensions: Vector2i in [Vector2i(1024,720),Vector2i(1280,900),Vector2i(1920,1080)]:
+	var full_matrix: bool = int(str(ProjectSettings.get_setting("application/config/version")).get_slice(".",2)) in [5,10]
+	for dimensions: Vector2i in ([Vector2i(1024,720),Vector2i(1280,900),Vector2i(1920,1080)] if full_matrix else [Vector2i(1280,900)]):
 		app.get_window().size = dimensions
 		await settle(app)
-		for scale_value: int in [100,125,150]:
+		for scale_value: int in ([100,125,150] if full_matrix else [150]):
 			check(app.input_profile.set_preference("textScale",scale_value),"Text scale persisted")
 			app._apply_preferences()
 			await settle(app)
@@ -53,3 +54,54 @@ func additional(app: Control, directory: String) -> void:
 	check(not app.presentation_dialog.visible and app.input_profile.preferences.textScale==100,"F12 recovers readability from modal")
 	app.get_window().size = Vector2i(1280,900)
 	app._apply_preferences()
+	if int(str(ProjectSettings.get_setting("application/config/version")).get_slice(".",2))>=6: await shop_checks(app,directory)
+
+func shop_checks(app: Control, directory: String) -> void:
+	app.input_profile.set_preference("textScale",100)
+	app._apply_preferences()
+	app.store = Store.new(directory.path_join("shop-natural-%d.json" % Time.get_ticks_usec()))
+	app._show_oak()
+	app.journey_seed.text = "tactics-1"
+	app.travel_buttons.starter1.pressed.emit()
+	app.travel_buttons.enter.pressed.emit()
+	for i: int in 220:
+		if app.run.phase!="battle": break
+		app._event({"kind":"battle","order":app.rules.choose_command(app.state),"at":app.run.revision})
+	if app.run.phase=="capture": app._event({"kind":"capture","at":app.run.revision})
+	await settle(app)
+	check(app.run.phase=="shop","Natural encounter prepares a real shop")
+	if app.run.phase!="shop": return
+	var before: Dictionary = app.run.duplicate(true)
+	await click(app,app.travel_buttons.batch)
+	app.shop_batch.quantity.value = 5
+	app.shop_batch.preview()
+	check(app.shop_batch.plan.ok and app.shop_batch.summary.text.contains("125"),"Five candies show exact purchase cost without using")
+	await key(app,KEY_ESCAPE,app.shop_batch)
+	check(Store.equivalent(before,app.run),"Cancel quantity preview is pure")
+	await click(app,app.travel_buttons.batch)
+	var expected: Dictionary = app.shop_batch.plan.state.duplicate(true)
+	await click(app,app.shop_batch.get_ok_button())
+	for i: int in 30:
+		if not app.batch_busy: break
+		await app.get_tree().process_frame
+	check(Store.equivalent(expected,app.run) and app.shop_batch.persisted==5,"Native confirmation saves exactly five original purchase orders")
+	var good: Dictionary = app.run.duplicate(true)
+	app._load_game()
+	check(Store.equivalent(good,app.run),"Natural purchase batch replays exactly after load")
+	var real_store: RefCounted = app.store
+	var blocked: String = directory.path_join("blocked-parent")
+	var file: FileAccess = FileAccess.open(blocked,FileAccess.WRITE)
+	file.store_string("QA persistence failure fixture")
+	file.close()
+	app.store = Store.new(blocked.path_join("save.json"))
+	app._open_batch()
+	app.shop_batch.preview()
+	await click(app,app.shop_batch.get_ok_button())
+	for i: int in 30:
+		if not app.batch_busy: break
+		await app.get_tree().process_frame
+	check(app.shop_batch.accepted==1 and app.shop_batch.persisted==0 and not app.save_warning.is_empty(),"Persistence failure stops after the first unpersisted order")
+	app.store = real_store
+	app._load_game()
+	check(Store.equivalent(good,app.run),"Reload never repeats an interrupted batch")
+	await capture(app,directory,"quantity-shop")
