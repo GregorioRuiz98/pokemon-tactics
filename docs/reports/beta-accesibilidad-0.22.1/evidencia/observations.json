@@ -1,0 +1,191 @@
+{
+  "engine": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "method": "Synthetic native viewport keyboard events; pure engine preparation for shop; no human save",
+  "observations": [
+    {
+      "data": {
+        "class": "Button",
+        "owner": "/root/Campaign/@Control@146/@MarginContainer@148/@VBoxContainer@149/@HBoxContainer@151/@VBoxContainer@152/@Button@158",
+        "text": "Nueva partida",
+        "visible": true
+      },
+      "test": "title_initial_focus"
+    },
+    {
+      "data": {
+        "focus": {
+          "owner": null
+        },
+        "oak": true
+      },
+      "test": "title_enter_to_oak"
+    },
+    {
+      "data": {
+        "focus": {
+          "owner": null
+        },
+        "phase": "map"
+      },
+      "test": "starter_keyboard_activation"
+    },
+    {
+      "data": {
+        "class": "Button",
+        "owner": "/root/Campaign/@MarginContainer@135/@VBoxContainer@136/@HBoxContainer@216/@PanelContainer@229/@ScrollContainer@232/@VBoxContainer@233/@GridContainer@238/@VBoxContainer@239/@Button@240",
+        "text": "Bulbasaur · Nv. 5\n80 / 80 PS",
+        "visible": true
+      },
+      "test": "member_focus_before"
+    },
+    {
+      "data": {
+        "owner": null
+      },
+      "test": "member_focus_after"
+    },
+    {
+      "data": {
+        "class": "Control",
+        "owner": "/root/Campaign/@Control@2",
+        "text": null,
+        "visible": true
+      },
+      "test": "battle_entry_focus"
+    },
+    {
+      "data": {
+        "actorFont": 18,
+        "app": "(1280.0, 900.0)",
+        "boardSize": "(1280.0, 900.0)",
+        "contentScale": "(1280, 900)",
+        "targetFont": 17,
+        "window": "(1024, 720)"
+      },
+      "test": "minimum_window_layout"
+    },
+    {
+      "data": {
+        "after": "(6, 10)",
+        "before": "(5, 10)",
+        "screenDelta": "(52.0, 31.20001)"
+      },
+      "test": "cursor_right_screen_direction"
+    },
+    {
+      "data": {
+        "after": "(6, 10)",
+        "before": "(6, 10)"
+      },
+      "test": "cursor_held_repeat"
+    },
+    {
+      "data": {
+        "focus": {
+          "class": "Control",
+          "owner": "/root/Campaign/@Control@2",
+          "text": null,
+          "visible": true
+        },
+        "open": true
+      },
+      "test": "abilities_open_hotkey"
+    },
+    {
+      "data": {
+        "class": "Button",
+        "owner": "/root/Campaign/@Control@3/@PanelContainer@22/@VBoxContainer@23/@VBoxContainer@29/@Button@323",
+        "text": "1 · Básico\n0 PT · 1 cas.",
+        "visible": true
+      },
+      "test": "abilities_first_tab"
+    },
+    {
+      "data": {
+        "focus": {
+          "owner": null
+        },
+        "open": true
+      },
+      "test": "abilities_open_keyboard_button"
+    },
+    {
+      "data": {
+        "focus": {
+          "class": "Control",
+          "owner": "/root/Campaign/@Control@2",
+          "text": null,
+          "visible": true
+        },
+        "open": false
+      },
+      "test": "abilities_cancel"
+    },
+    {
+      "data": {
+        "orders": 35,
+        "phase": "shop"
+      },
+      "test": "shop_fixture"
+    },
+    {
+      "data": {
+        "class": "Button",
+        "owner": "/root/Campaign/@MarginContainer@135/@VBoxContainer@136/@HBoxContainer@684/@PanelContainer@685/@VBoxContainer@686/@ScrollContainer@689/@VBoxContainer@690/@VBoxContainer@696/@GridContainer@715/@Button@716",
+        "text": "Poción\n40 ₽ · bolsa 2",
+        "visible": true
+      },
+      "test": "purchase_focus_before"
+    },
+    {
+      "data": {
+        "bagAfter": 3,
+        "bagBefore": 2,
+        "focus": {
+          "owner": null
+        }
+      },
+      "test": "purchase_focus_after"
+    },
+    {
+      "data": {
+        "class": "Button",
+        "owner": "/root/Campaign/@MarginContainer@135/@VBoxContainer@136/@HBoxContainer@898/@PanelContainer@899/@VBoxContainer@900/@ScrollContainer@903/@VBoxContainer@904/@HBoxContainer@908/@Button@911",
+        "text": "MT y equipo",
+        "visible": true
+      },
+      "test": "shop_tab_focus_after"
+    },
+    {
+      "data": {
+        "owner": null
+      },
+      "test": "pc_tab_focus_after"
+    },
+    {
+      "data": {
+        "muted": true,
+        "reducedMotion": true
+      },
+      "test": "settings_toggled"
+    },
+    {
+      "data": {
+        "muted": false,
+        "reducedMotion": false
+      },
+      "test": "settings_fresh_scene"
+    }
+  ],
+  "version": "0.22.1"
+}

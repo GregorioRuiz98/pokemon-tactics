@@ -6,6 +6,8 @@ Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas
 
 [Nueva interfaz e inicio](docs/SPRINT_22_UI.md) · [Guía para jugar en Windows](docs/PLAYTEST_WINDOWS.md) · [Balance: 29 simulaciones y límites](docs/reports/balance-native-0.22/INFORME.md)
 
+[Informe de accesibilidad y jugabilidad](docs/reports/beta-accesibilidad-0.22.1/INFORME.md) · [9 prompts para futuras actualizaciones](docs/reports/beta-accesibilidad-0.22.1/PROMPTS_ACTUALIZACIONES.md). Auditoría y propuestas; no cambia las reglas de la entrega.
+
 Las campañas 0.16–0.21 pueden continuar con **Continuar aventura · ampliar Kanto**, con copia y diario conservados. Las anteriores siguen sus reglas. [Sprint 22 e información de pruebas](docs/SPRINT_22.md) · [Cómo jugar](godot/README.md) · [Plan](docs/PLAN_SPRINTS.md).
 
 ![Pantalla de inicio](docs/qa/sprint-22-ui/title-1280.png)

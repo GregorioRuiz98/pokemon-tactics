@@ -1,0 +1,47 @@
+{
+  "method": "sRGB relative luminance from declared opaque theme colors; not a screenshot-wide audit or compliance verdict",
+  "pairs": [
+    {
+      "pair": "texto/panel",
+      "foreground": "eee8ce",
+      "background": "122f39",
+      "ratio": 11.45
+    },
+    {
+      "pair": "secundario/panel",
+      "foreground": "b4c3ac",
+      "background": "122f39",
+      "ratio": 7.61
+    },
+    {
+      "pair": "texto/boton",
+      "foreground": "eee8ce",
+      "background": "1a3d47",
+      "ratio": 9.47
+    },
+    {
+      "pair": "texto/hover",
+      "foreground": "eee8ce",
+      "background": "28525c",
+      "ratio": 6.96
+    },
+    {
+      "pair": "deshabilitado/boton",
+      "foreground": "94a8ad",
+      "background": "142e37",
+      "ratio": 5.74
+    },
+    {
+      "pair": "foco/boton",
+      "foreground": "eccb7f",
+      "background": "1a3d47",
+      "ratio": 7.44
+    },
+    {
+      "pair": "borde/boton",
+      "foreground": "49646a",
+      "background": "1a3d47",
+      "ratio": 1.84
+    }
+  ]
+}
