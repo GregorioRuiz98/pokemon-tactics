@@ -18,6 +18,7 @@ func press(app: Control, key: String) -> void:
 	var button: Button = app.travel_buttons[key]
 	check(not button.disabled,"Control enabled: "+key)
 	if not button.disabled: button.pressed.emit()
+	if app.action_review!=null and app.action_review.visible: app.action_review.confirmed.emit()
 
 func capture(app: Control, directory: String, filename: String) -> void:
 	await app.get_tree().process_frame

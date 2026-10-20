@@ -41,6 +41,8 @@ var shop_tab: String = "supplies"
 var shop_sections: Dictionary = {}
 var shop_batch: ConfirmationDialog
 var batch_busy: bool = false
+var action_review: ConfirmationDialog
+var move_library: RefCounted = preload("res://ui/move_library.gd").new()
 var options_dialog: AcceptDialog
 var options_buttons: Dictionary = {}
 var new_seed: String = "kanto-14"
@@ -306,6 +308,7 @@ func _menu_selected(identity: int) -> void:
 		_: super._menu_selected(identity)
 
 func _modal_open() -> bool:
+	if action_review!=null and action_review.visible: return true
 	if batch_busy or (shop_batch!=null and shop_batch.visible): return true
 	return title_visible or super._modal_open() or (campaign_confirm != null and campaign_confirm.visible) or (options_dialog!=null and options_dialog.visible)
 
@@ -839,6 +842,34 @@ func _render_travel() -> void:
 		travel_buttons.train = train
 		train.disabled = selected.hp <= 0 or count >= 2 or run.money < 80
 
+func _review_dialog() -> void:
+	if action_review==null:
+		action_review = load("res://ui/action_review.gd").new()
+		add_child(action_review)
+		action_review.setup(self)
+		_watch_dialog(action_review)
+
+func _review_text(label: String, text: String) -> void:
+	_review_dialog()
+	action_review.review(label,text,Callable())
+
+func _member_summary(identity: int) -> String:
+	var member: Dictionary = campaign.target(run,identity)
+	if member.is_empty(): return "Miembro ya no disponible."
+	var unit: Dictionary = rules.member_unit(member)
+	return "%s · ID %d · Nv. %d\nPS %d/%d · %s\nObjeto: %s\nPreparados: %s" % [unit.name,identity,member.level,unit.hp,unit.maxHp,_type_names(unit.types),member.get("heldItem","ninguno"),", ".join(member.moves.map(func(id):return campaign.progression.data.moves[id].name))]
+
+func _review_swap(outgoing: int, incoming: int, revision: int) -> void:
+	_review_dialog()
+	var command: Dictionary = {"kind":"swap","member":outgoing,"reserve":incoming,"at":revision}
+	action_review.review("Comparar intercambio","SALE\n"+_member_summary(outgoing)+"\n\nENTRA\n"+_member_summary(incoming)+"\nSin curación ni coste. Se conservan los objetos.",func(): _event(command))
+
+func _review_loadout(identity: int, moves: Array, description: String) -> void:
+	_review_dialog()
+	var revision: int = int(run.revision)
+	var names: String = ", ".join(moves.map(func(id):return campaign.progression.data.moves[id].name))
+	action_review.review("Revisar repertorio",_member_summary(identity)+"\n\nNUEVO: "+names+"\n"+description+"\nBásico neutro independiente. No se consume dinero ni MT.",func(): _event({"kind":"loadout","member":identity,"moves":moves,"at":revision}))
+
 func _open_batch() -> void:
 	if run.phase!="shop" or batch_busy: return
 	if shop_batch==null:
@@ -1011,16 +1042,7 @@ func _render_moves(parent: VBoxContainer, member: Dictionary) -> void:
 	roles.tooltip_text = "Número de movimientos preparados de cada rol; no concede estadísticas adicionales."
 	parent.add_child(roles)
 	parent.add_child(_label("Básico neutro fijo · 0 PT · sin STAB\nMOVIMIENTOS · %d / 4 · cambiar es gratis" % member.moves.size(),17,GOLD))
-	for identity: String in member.knownMoves:
-		var definition: Dictionary = study.data.moves[identity]
-		var button: CheckButton = CheckButton.new()
-		button.text = "%s · %s · %d PT" % [definition.name,TYPE_NAMES.get(definition.type,definition.type),definition.cost]
-		button.button_pressed = identity in member.moves
-		button.disabled = run.phase not in ["map","shop","complete"] or member.hp <= 0 or (member.moves.size() >= 4 and not button.button_pressed)
-		button.tooltip_text = definition.description + " Quita uno para preparar otro si tienes cuatro."
-		button.toggled.connect(_toggle_move.bind(int(member.id),identity,int(run.revision)))
-		parent.add_child(button)
-		travel_buttons["move_"+identity] = button
+	move_library.render(self,parent,member)
 	var pending_moves: Array = []
 	for entry: Dictionary in study.families[int(member.speciesId)].learnset:
 		if run.get("edition",1)>=5 and (entry.level<=member.level or not entry.forms.any(func(id):return int(id)==int(member.speciesId))): continue

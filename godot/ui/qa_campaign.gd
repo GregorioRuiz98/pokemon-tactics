@@ -78,16 +78,18 @@ func shop(app: Control) -> void:
 			var member: Dictionary = app.campaign.target(app.run,int(entry.id))
 			if member.moves.size() == 4 and member.knownMoves.size() > 4 and not captured.has("loadout"):
 				var extra: String = member.knownMoves.filter(func(id):return id not in member.moves)[0]
-				check(app.travel_buttons["move_"+extra].disabled,"Fifth optional move cannot be selected")
 				var old: String = member.moves[0]
 				var money: int = app.run.money
-				app.travel_buttons["move_"+old].toggled.emit(false)
-				check(not app.travel_buttons["move_"+extra].disabled,"Removing one unlocks a free slot")
-				app.travel_buttons["move_"+extra].toggled.emit(true)
-				check(app.campaign.target(app.run,int(entry.id)).moves.size()==4 and app.run.money==money,"Four freely mixed moves cost no money")
+				app.move_library.selected_slot = 0
+				app._refresh()
+				app.travel_buttons["move_"+extra].pressed.emit()
+				app.action_review.confirmed.emit()
+				check(app.campaign.target(app.run,int(entry.id)).moves.size()==4 and app.run.money==money,"One reviewed replacement preserves four freely mixed moves")
 				if app.run.get("edition",1)>=5:
-					app.travel_buttons["move_"+extra].toggled.emit(false)
-					app.travel_buttons["move_"+old].toggled.emit(true)
+					app.move_library.selected_slot = 0
+					app._refresh()
+					app.travel_buttons["move_"+old].pressed.emit()
+					app.action_review.confirmed.emit()
 				captured.loadout = true
 		if app.run.get("edition",1)>=5: heal(app)
 		app._select_member(1)

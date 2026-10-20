@@ -105,3 +105,71 @@ func shop_checks(app: Control, directory: String) -> void:
 	app._load_game()
 	check(Store.equivalent(good,app.run),"Reload never repeats an interrupted batch")
 	await capture(app,directory,"quantity-shop")
+	if int(str(ProjectSettings.get_setting("application/config/version")).get_slice(".",2))>=7: await roster_checks(app,directory)
+
+func roster_checks(app: Control, directory: String) -> void:
+	var natural: Dictionary = app.run.duplicate(true)
+	for count: int in [0,1,6,7,30,100]:
+		app.run.reserve = []
+		for index: int in count:
+			var member: Dictionary = natural.party[0].duplicate(true)
+			member.id = 500+index
+			member.origin = "Fixture sintético · %d" % index
+			if index%3==0: member.hp = 0
+			app.run.reserve.append(member)
+		app.roster_panel.filters.clear()
+		app._roster_page("pc",0)
+		await settle(app)
+		var before: Dictionary = app.run.duplicate(true)
+		check(app.travel_buttons.has("pc_search"),"PC search remains available with "+str(count)+" entries")
+		app.travel_buttons.pc_search.grab_focus()
+		await key(app,KEY_Z)
+		check(app.roster_panel.filters.query=="z" and not app.travel_buttons.has("member_500"),"Native typing filters duplicates without activating shortcuts")
+		check(Store.equivalent(before,app.run),"Filtering PC preserves full fixture and RNG for "+str(count))
+	app.run = natural
+	app.state = app.run.battle
+	app.roster_panel.filters.clear()
+	app._roster_page("team",0)
+	if app.run.party.size()>1:
+		var incoming: int = int(app.run.party[1].id)
+		app._event({"kind":"deposit","member":incoming,"at":app.run.revision})
+		app._roster_page("pc",0)
+		app.selected_member = incoming
+		app.roster_swap = int(app.run.party[0].id)
+		app._refresh()
+		await settle(app)
+		var before: Dictionary = app.run.duplicate(true)
+		await click(app,app.travel_buttons.swap)
+		check(app.action_review.visible and app.action_review.content.text.contains("SALE"),"Swap opens full before/after comparison")
+		await key(app,KEY_ESCAPE,app.action_review)
+		check(Store.equivalent(before,app.run),"Cancelling swap preserves all members")
+		await click(app,app.travel_buttons.swap)
+		var expected: Dictionary = app.campaign.transact(before,{"kind":"swap","member":app.roster_swap,"reserve":incoming,"at":before.revision})
+		await click(app,app.action_review.get_ok_button())
+		check(expected.ok and Store.equivalent(app.run,expected.state),"Native swap matches complete authoritative state")
+	app._roster_page("pc",0)
+	app.selected_member = 1
+	app._refresh()
+	var selected: Dictionary = app.campaign.target(app.run,1)
+	var missing: int = maxi(0,app.campaign.level_cap(app.run)-int(selected.level))
+	for i: int in maxi(0,missing-int(app.run.bag["rare-candy"])): app._event({"kind":"buy","item":"rare-candy","at":app.run.revision})
+	for i: int in missing: app._event({"kind":"level-up","member":1,"at":app.run.revision})
+	selected = app.campaign.target(app.run,1)
+	var extras: Array = selected.knownMoves.filter(func(id):return id not in selected.moves)
+	check(not extras.is_empty(),"Natural level progression prepares a library replacement case")
+	if not extras.is_empty():
+		var before: Dictionary = app.run.duplicate(true)
+		var move: String = extras[0]
+		app.move_library.selected_slot = 0
+		app._refresh()
+		await settle(app)
+		var button: Button = app.travel_buttons["move_"+move]
+		button.grab_focus()
+		await key(app,KEY_ENTER)
+		check(app.action_review.visible,"Slot replacement opens comparison before any order")
+		var moves: Array = selected.moves.duplicate()
+		moves[0] = move
+		var expected: Dictionary = app.campaign.transact(before,{"kind":"loadout","member":1,"moves":moves,"at":before.revision})
+		await key(app,KEY_ENTER,app.action_review)
+		check(expected.ok and Store.equivalent(app.run,expected.state),"Single accepted replacement preserves four-slot contract")
+	await capture(app,directory,"filtered-pc-library")

@@ -1,6 +1,7 @@
 extends RefCounted
 
 const PAGE_SIZE: int = 6
+var filters: RefCounted = preload("res://ui/roster_filters.gd").new()
 
 func render(app: Control, parent: VBoxContainer) -> void:
 	var run: Dictionary = app.run
@@ -13,25 +14,29 @@ func render(app: Control, parent: VBoxContainer) -> void:
 		button.button_pressed = app.roster_tab==tab
 		tabs.add_child(button)
 		app.travel_buttons["roster_"+tab] = button
-	var collection: Array = run.party if app.roster_tab=="team" else run.reserve
+	var original: Array = run.party if app.roster_tab=="team" else run.reserve
+	if app.roster_tab=="pc": filters.render(app,parent)
+	var collection: Array = filters.filtered(app,original) if app.roster_tab=="pc" else original
+	if app.roster_tab=="pc": parent.add_child(app._label("%d / %d resultados · selección por ID" % [collection.size(),original.size()],17))
 	var heading: Label = app._label("%d en pie · se despliega este equipo" % run.party.filter(func(m):return m.hp>0).size() if app.roster_tab=="team" else "Reserva · sin curación ni EXP de combate",18,app.GOLD)
 	heading.tooltip_text = "Seis plazas, incluidos debilitados. PC sin límite y cambios gratuitos fuera del combate. Perder un combate termina la campaña aunque queden reservas vivas."
 	parent.add_child(heading)
 	if collection.is_empty():
-		parent.add_child(app._label("PC vacío. Las capturas que superen las seis\nplazas se enviarán aquí automáticamente.",17,app.MUTED))
-		app.selected_member = -1
+		parent.add_child(app._label("PC vacío. Las capturas que superen las seis\nplazas se enviarán aquí automáticamente." if original.is_empty() else "Sin coincidencias; los compañeros del PC se conservan. Limpia los filtros para verlos.",17,app.MUTED))
+		if original.is_empty(): app.selected_member = -1
+		else: parent.add_child(app._button("Mostrar todos · conservar selección ID %d" % app.selected_member,func(): filters.clear(); app._refresh()))
 		return
-	if not collection.any(func(m):return m.id==app.selected_member): app.selected_member = int(collection[0].id)
+	if not original.any(func(m):return m.id==app.selected_member): app.selected_member = int(collection[0].id)
 	var pages: int = maxi(1,int(ceil(collection.size()/float(PAGE_SIZE))))
 	app.roster_offset = clampi(app.roster_offset,0,pages-1)
 	var grid: GridContainer = GridContainer.new()
-	grid.columns = 2
+	grid.columns = 1 if load("res://ui/presentation_settings.gd").font_factor(app)>1.2 else 2
 	parent.add_child(grid)
 	for index: int in range(app.roster_offset*PAGE_SIZE,mini(collection.size(),(app.roster_offset+1)*PAGE_SIZE)):
 		var member_data: Dictionary = collection[index]
 		var unit: Dictionary = app.rules.member_unit(member_data)
 		var vitals: String = "%d / %d PS" % [unit.hp,unit.maxHp] if unit.hp>0 else "Debilitado"
-		var button: Button = app._button("%s · Nv. %d\n%s" % [unit.name,member_data.level,vitals],app._select_member.bind(int(member_data.id)),205)
+		var button: Button = app._button("%s · Nv. %d · ID %d\n%s\n%s" % [unit.name,member_data.level,member_data.id,vitals,member_data.origin],app._select_member.bind(int(member_data.id)),205)
 		button.icon = app.faces[int(member_data.speciesId)]
 		button.expand_icon = true
 		button.add_theme_constant_override("icon_max_width",32)
@@ -69,6 +74,9 @@ func render(app: Control, parent: VBoxContainer) -> void:
 		navigation.add_child(next)
 		app.travel_buttons.pc_previous = previous
 		app.travel_buttons.pc_next = next
+	if not collection.any(func(m):return m.id==app.selected_member):
+		parent.add_child(app._label("El seleccionado ID %d está fuera del filtro; elige una fila o limpia los filtros." % app.selected_member,17))
+		return
 	var selected: Dictionary = app.campaign.target(run,app.selected_member)
 	var allowed: bool = run.phase in ["map","shop","complete"]
 	if app.roster_tab=="team":
@@ -88,7 +96,11 @@ func render(app: Control, parent: VBoxContainer) -> void:
 		app.roster_swap = choices.get_selected_id()
 		choices.item_selected.connect(func(_index: int): app.roster_swap = choices.get_selected_id(); app._refresh())
 		var outgoing: Dictionary = app.campaign.target(run,app.roster_swap)
-		var swap: Button = app._travel_button("swap","Intercambiar con el equipo",parent,{"kind":"swap","member":app.roster_swap,"reserve":selected.id})
+		var swap: Button = app._button("Revisar intercambio…",app._review_swap.bind(app.roster_swap,int(selected.id),int(run.revision)))
+		parent.add_child(swap)
+		app.travel_buttons.swap = swap
 		swap.disabled = not allowed or (selected.hp<=0 and outgoing.hp>0 and run.party.filter(func(m):return m.hp>0).size()==1)
 		swap.tooltip_text = "Intercambio directo: conserva la posición del equipo y todos los datos de ambos Pokémon. Sin curación ni coste."
 		app.travel_buttons.swap_choice = choices
+		if withdraw.disabled: parent.add_child(app._label("Retirada bloqueada: equipo lleno o fase sin cambios." ,16))
+		if swap.disabled: parent.add_child(app._label("Intercambio bloqueado: conserva al menos un activo en pie y cambia fuera de combate.",16))

@@ -998,6 +998,9 @@ func _guard_input(event: InputEvent, viewport: Viewport) -> void:
 	event.set_meta("tactics_guarded",true)
 	var focused: Control = viewport.gui_get_focus_owner()
 	if focused is LineEdit or focused is TextEdit: return
+	if event is InputEventMouseButton and event.pressed and event.double_click:
+		viewport.set_input_as_handled()
+		return
 	if not input_profile.allow(event): viewport.set_input_as_handled()
 
 func _watch_dialog(dialog: Window) -> void:
