@@ -6,7 +6,7 @@ var fixture_serial: int = 0
 
 func capture(app: Control, directory: String, name: String) -> void:
 	await settle(app)
-	await RenderingServer.frame_post_draw
+	RenderingServer.force_draw()
 	check(app.get_viewport().get_texture().get_image().save_png(directory.path_join(name+".png"))==OK,"Rendered "+name)
 	screenshots.append(name+".png")
 

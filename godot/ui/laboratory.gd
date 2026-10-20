@@ -1064,6 +1064,8 @@ func _input_labels() -> void:
 	var popup: PopupMenu = menu.get_popup()
 	popup.set_item_text(popup.get_item_index(1),input_profile.shortcut("Recuperar guardado","load"))
 	popup.set_item_text(popup.get_item_index(9),input_profile.shortcut("Controles","controls"))
+	for entry: Array in [[10,"Ficha","inspect"],[11,"Último resultado","result"],[13,"Aprender / salir","practice"],[14,"Glosario","glossary"]]:
+		if popup.get_item_index(entry[0])>=0: popup.set_item_text(popup.get_item_index(entry[0]),input_profile.shortcut(entry[1],entry[2]))
 	for entry: Array in [["actions","Habilidades","abilities"],["undo","Rectificar movimiento","rectify"],["finish","Orientar y terminar","finish"],["cancel","Volver","cancel"]]:
 		buttons[entry[0]].text = input_profile.shortcut(entry[1],entry[2])
 	var index: int = 1

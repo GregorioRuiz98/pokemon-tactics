@@ -83,7 +83,9 @@ func run(app: Control, directory: String) -> void:
 			else: app.buttons.finish.pressed.emit(); app.direction_buttons[int(tactical.facing)].pressed.emit()
 		elif command.kind in ["enter","capture","continue"]: app.travel_buttons[command.kind].pressed.emit()
 		elif command.kind=="travel": app.travel_buttons["travel_"+command.location].pressed.emit()
-		elif command.kind=="destiny": app.travel_buttons["destiny_"+command.path].pressed.emit()
+		elif command.kind=="destiny":
+			app.travel_buttons["destiny_"+command.path].pressed.emit()
+			if app.action_review!=null and app.action_review.visible: app.action_review.confirmed.emit()
 		elif command.kind=="buy": app.travel_buttons["buy_"+command.item].pressed.emit()
 		elif command.kind=="level-up" or command.kind=="revive" or command.kind=="heal":
 			var reserve_index: int = -1

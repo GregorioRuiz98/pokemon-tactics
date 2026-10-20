@@ -25,7 +25,7 @@ func setup(owner_app: Control) -> void:
 	scale_choice.item_selected.connect(func(_index: int): change("textScale",scale_choice.get_selected_id()))
 	column.add_child(scale_choice)
 	widgets.textScale = scale_choice
-	for entry: Array in [["highContrast","Alto contraste"],["muted","Silenciar sonidos"],["reducedMotion","Movimiento reducido"],["followCamera","Seguir la unidad activa con la cámara"]]:
+	for entry: Array in [["highContrast","Alto contraste"],["muted","Silenciar sonidos"],["reducedMotion","Movimiento reducido"],["followCamera","Seguir la unidad activa con la cámara"],["tutorialHints","Ayudas de aventura"]]:
 		var field: String = entry[0]
 		var toggle: CheckButton = CheckButton.new()
 		toggle.text = entry[1]

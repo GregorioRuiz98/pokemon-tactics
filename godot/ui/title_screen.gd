@@ -41,7 +41,7 @@ func setup(owner_app: Control) -> void:
 	var space: Control = Control.new()
 	space.custom_minimum_size.y = 12
 	left.add_child(space)
-	for entry: Array in [["continue","Continuar aventura",app._resume_title],["new","Nueva partida",app._new_from_title]]:
+	for entry: Array in [["continue","Continuar aventura",app._resume_title],["new","Nueva partida",app._new_from_title],["practice","Aprender a jugar",app._start_practice]]:
 		var button: Button = app._button(entry[1],entry[2])
 		button.custom_minimum_size = Vector2(360,54)
 		button.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
@@ -82,7 +82,7 @@ func refresh() -> void:
 	notice.text = app.save_warning
 	caption.text = "Tu equipo. Tu estrategia.\nUn viaje desde Pueblo Paleta hasta la Liga."
 	if not app.run.is_empty():
-		caption.text = "%d medallas · %d compañeros en el equipo\nTu aventura está lista para continuar." % [app.run.get("medals",[]).size(),app.run.party.size()]
+		caption.text = "%s · %s · %d medallas\n%d / %d en pie · límite Nv. %d\nSiguiente: %s" % [app.campaign.locations[int(app.run.stage)].name,app.run.phase,app.run.get("medals",[]).size(),app.run.party.filter(func(m):return m.hp>0).size(),app.run.party.size(),app.campaign.level_cap(app.run),{"map":"elegir / entrar al encuentro","battle":"reanudar el turno guardado","shop":"gestionar equipo y continuar","capture":"resolver recompensa","ending":"aventura completada"}.get(app.run.phase,"revisar equipo")]
 	if app.title_loading: return
 	var focus: Button = controls["continue"] if available else controls["new"]
 	var focused: Control = get_viewport().gui_get_focus_owner()

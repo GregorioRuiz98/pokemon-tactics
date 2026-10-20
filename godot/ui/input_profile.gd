@@ -24,6 +24,7 @@ const ACTIONS: Dictionary = {
 	"pan_up":["Cámara arriba","Cámara",KEY_UP],"pan_down":["Cámara abajo","Cámara",KEY_DOWN],
 	"menu":["Menú","General",KEY_F1],"controls":["Controles","General",KEY_F2],
 	"inspect":["Inspeccionar unidad","Combate",KEY_I],"result":["Último resultado","Combate",KEY_L],
+	"practice":["Aprender / salir de práctica","General",KEY_F7],"glossary":["Glosario","General",KEY_F4],
 	"load":["Recuperar guardado","General",KEY_F8]
 }
 const GUI: Dictionary = {"accept":"ui_accept","cancel":"ui_cancel","left":"ui_left","right":"ui_right","up":"ui_up","down":"ui_down"}

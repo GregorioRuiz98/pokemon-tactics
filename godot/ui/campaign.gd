@@ -42,6 +42,8 @@ var shop_sections: Dictionary = {}
 var shop_batch: ConfirmationDialog
 var batch_busy: bool = false
 var action_review: ConfirmationDialog
+var practice: RefCounted = preload("res://ui/guided_practice.gd").new()
+var last_load_msec: int = 0
 var move_library: RefCounted = preload("res://ui/move_library.gd").new()
 var options_dialog: AcceptDialog
 var options_buttons: Dictionary = {}
@@ -179,6 +181,8 @@ func _boot() -> void:
 	menu.get_popup().set_item_text(menu.get_popup().get_item_index(7),"Laboratorio táctico")
 	menu.get_popup().add_separator()
 	menu.get_popup().add_item("Pantalla de inicio",8)
+	menu.get_popup().add_item("Aprender / salir de práctica",13)
+	menu.get_popup().add_item("Glosario táctico",14)
 	travel_root = MarginContainer.new()
 	travel_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for edge: String in ["left","right","top","bottom"]: travel_root.add_theme_constant_override("margin_" + edge,24)
@@ -207,6 +211,7 @@ func _boot() -> void:
 	else: _open_title()
 
 func _open_title() -> void:
+	if practice.active: practice.leave(self); return
 	if not oak_return.is_empty():
 		run = oak_return.run
 		campaign = oak_return.campaign
@@ -245,6 +250,10 @@ func _title_options() -> void:
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
+		if input_profile.matches(event,"practice") and not super._modal_open() and not campaign_confirm.visible:
+			_start_practice(); get_viewport().set_input_as_handled(); return
+		if input_profile.matches(event,"glossary") and not super._modal_open() and not campaign_confirm.visible:
+			_glossary(); get_viewport().set_input_as_handled(); return
 		if input_profile.matches(event,"controls") and not super._modal_open() and not campaign_confirm.visible and (options_dialog==null or not options_dialog.visible):
 			_open_controls(); get_viewport().set_input_as_handled(); return
 		if title_visible:
@@ -301,10 +310,13 @@ func _choose_starter(identity: int) -> void:
 	_refresh()
 
 func _menu_selected(identity: int) -> void:
+	if practice.active and identity in [0,1,7]: hint.text = practice.instruction(self); return
 	match identity:
 		0: campaign_confirm.popup_centered()
 		7: get_tree().change_scene_to_file("res://scenes/laboratory.tscn")
 		8: _open_title()
+		13: _start_practice()
+		14: _glossary()
 		_: super._menu_selected(identity)
 
 func _modal_open() -> bool:
@@ -321,7 +333,10 @@ func _save() -> void:
 	save_warning = "" if result.ok else result.reason
 
 func _load_game() -> void:
+	if practice.active: hint.text = "Sal de la práctica para recuperar tu aventura."; return
+	var started: int = Time.get_ticks_msec()
 	var result: Dictionary = store.load_campaign(campaign)
+	last_load_msec = Time.get_ticks_msec()-started
 	title_loading = false
 	if not result.ok:
 		save_warning = result.reason
@@ -347,10 +362,12 @@ func _load_game() -> void:
 func _event(command: Dictionary, from_batch: bool = false) -> void:
 	if batch_busy and not from_batch: return
 	if _modal_open() and not (from_batch and batch_busy): return
+	if not practice.allowed(self,command): message = practice.instruction(self); hint.text = message; return
 	var result: Dictionary = campaign.transact(run,command)
 	if not result.ok:
+		practice.observe(self,"blocked",command)
 		message = result.reason
-		if _player_turn(): hint.text = message
+		if _player_turn(): hint.text = practice.instruction(self)+"\n"+message if practice.active else message
 		else: _refresh()
 		return
 	if command.kind=="enter": combat_feedback.clear()
@@ -379,6 +396,7 @@ func _event(command: Dictionary, from_batch: bool = false) -> void:
 	selecting = "finish" if _player_turn() and state.moved and state.acted else "auto"
 	_save()
 	_refresh()
+	practice.observe(self,"accepted",command)
 	if command.kind=="level-up": _play("level-up")
 	if run.phase == "battle": board.grab_focus()
 
@@ -483,6 +501,10 @@ func _refresh() -> void:
 		else:
 			for direction: int in direction_buttons: direction_buttons[direction].text = {4:"↑",2:"→",0:"↓",6:"←"}[direction]
 		_layout_battle_hud()
+		if practice.active:
+			heading.text = "PRÁCTICA AISLADA · ninguna orden se guarda en tu aventura"
+			hint.text = practice.instruction(self)
+			if practice.step==9: buttons.undo.disabled = false; buttons.undo.text = input_profile.shortcut("Explicar bloqueo","rectify")
 		var fraction: float = float(active.hp)/maxi(1,int(active.maxHp))
 		actor_hp.get_theme_stylebox("fill").bg_color = Color("71c5a1") if fraction>0.5 else (Color("e9c76d") if fraction>0.25 else Color("ee997e"))
 		for action_button: Button in action_buttons.values(): action_button.add_theme_font_size_override("font_size",16)
@@ -541,11 +563,14 @@ func _show_plan(unit: Dictionary, plan: Dictionary) -> void:
 
 func _hover_tile(point: Dictionary) -> void:
 	super._hover_tile(point)
+	if practice.active:
+		if not point.is_empty() and not state.is_empty() and not Movement.same(rules.active(state),point): practice.observe(self,"cursor")
+		hint.text = practice.instruction(self)
 	if not point.is_empty() and state.get("combatEdition",0)>=11 and not _modal_open(): hint.text += "\nAltura %d · rueda: zoom · botón central: cámara." % rules.Terrain.height_at(state,point)
 
 func _travel_button(key: String, text: String, parent: Node, command: Dictionary) -> Button:
 	command.at = run.revision
-	var button: Button = _button(text,_event.bind(command))
+	var button: Button = _button(text,_travel_command.bind(command))
 	travel_buttons[key] = button
 	parent.add_child(button)
 	return button
@@ -574,6 +599,10 @@ func _render_travel() -> void:
 	var status: Label = _label(save_warning if not save_warning.is_empty() else (message if not message.is_empty() else (classic if not classic.is_empty() else ("Guardado automático local · Revivir disponible en tienda" if run.get("edition",1)>=9 else "Guardado automático local · bajas definitivas"))),17,MUTED)
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	travel_content.add_child(status)
+	if input_profile.preferences.tutorialHints and phase in ["map","shop","capture"]:
+		var guide: Label = _label({"map":"Siguiente paso: revisa el equipo y entra en el encuentro. Los PS se conservan.","shop":"Objetos fuera de combate: recupera PS, compra niveles hasta el límite y revisa el PC. El PC no cura.","capture":"La recompensa pendiente debe resolverse antes de seguir. Aprender movimientos no los prepara automáticamente."}[phase],17)
+		guide.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		travel_content.add_child(guide)
 	if run.get("edition",1)>=12 and run.get("edition",1)<CURRENT_CHAPTER-4 and run.get("phase","") in ["map","shop","complete","ending"]:
 		var upgrade: Button = _button("Actualizar versión · conservar final" if run.phase=="ending" else "Continuar aventura · ampliar Kanto",_upgrade_campaign)
 		upgrade.tooltip_text = "Conserva equipo, PS, objetos y diario. Guarda una copia antes de adoptar la expansión; no transforma un combate en curso."
@@ -1021,7 +1050,7 @@ func _progress_summary() -> String:
 		if entry.get("hpGain",0)>0: text += " · +%d PS" % entry.hpGain
 		if entry.get("xpDiscarded",0)>0: text += " · %d EXP no acumulada (límite)" % entry.xpDiscarded
 		for evolution: Dictionary in entry.get("evolutions",[]): text += " · %s → %s" % [rules.profiles[int(evolution.from)].data.name,rules.profiles[int(evolution.to)].data.name]
-		if not entry.learned.is_empty(): text += " · aprende " + ", ".join(entry.learned.map(func(id):return campaign.progression.data.moves[id].name))
+		if not entry.learned.is_empty(): text += " · aprendido (revisar ranuras para preparar): " + ", ".join(entry.learned.map(func(id):return campaign.progression.data.moves[id].name))
 		lines.append(text)
 	return "\n".join(lines)
 
@@ -1060,6 +1089,7 @@ func _toggle_move(enabled: bool, member_id: int, identity: String, revision: int
 	_event({"kind":"loadout","member":member_id,"moves":moves,"at":revision})
 
 func _default_hint() -> String:
+	if practice.active: return practice.instruction(self)
 	var classic: String = ""
 	if not run.is_empty() and run.get("edition",1)<11: classic = "Clásica %s: menú → Nueva campaña para mapas isométricos y alturas.\n" % _classic_version()
 	return classic + super._default_hint()
@@ -1117,3 +1147,31 @@ func _render_inventory(parent: VBoxContainer, member: Dictionary) -> void:
 		var button: Button = _travel_button("use_"+identity,label,parent,{"kind":"teach" if teach else "equip","member":member.id,"item":identity})
 		button.disabled = not available
 		button.tooltip_text = item.description + (" Ya aprendido o incompatible." if teach and not available else "")
+
+func _process(delta: float) -> void:
+	if practice.active: return
+	super._process(delta)
+
+func _start_practice() -> void:
+	practice.begin(self)
+
+func _select_action(identity: String) -> void:
+	super._select_action(identity)
+	practice.observe(self,"select")
+
+func _cancel() -> void:
+	super._cancel()
+	practice.observe(self,"cancel")
+
+func _inspect() -> void:
+	super._inspect()
+	if tactical_reader.visible: practice.observe(self,"inspect")
+
+func _glossary() -> void:
+	_review_text("Glosario táctico", "Movimiento y acción: uno de cada, en ambos órdenes. Aliados atravesables; no puedes ocupar su casilla.\n\nRectificar solo devuelve el movimiento antes de actuar. No deshace ataques, PT, PS ni tiradas. Orientar termina la activación.\n\nBásico: neutro, sin tipo ni STAB. Movimientos: hasta cuatro preparados, coste PT y alcance propios. STAB y eficacia se consultan en la previsión real.\n\nReglas modernas: frente usa la mitad baja del daño normal; costado la alta; espalda el máximo y +1 etapa crítica. Precisión del movimiento independiente del lado.\n\nEstados y etapas: ficha con signo y activaciones restantes. Parálisis reduce movimiento en reglas tácticas modernas. Las partidas clásicas conservan su edición.\n\nFuera de combate: PS persistentes; curar con objetos. Revivir recupera 50% en ediciones compatibles. EXP no se acumula al límite del gimnasio. Caramelo compra un nivel; evolución por umbral o piedra según especie.\n\nPC sin curación automática. Perder el combate acaba la campaña aunque queden reservas. Aprendido no equivale a preparado.\n\nAdaptación táctica: consulta las descripciones y previsiones de tu edición; no reproduce todos los efectos del cartucho.")
+
+func _travel_command(command: Dictionary) -> void:
+	if command.kind=="destiny":
+		_review_dialog()
+		action_review.review("Elegir desafío legendario", "Esta elección fija el final alternativo de esta campaña: %s. El otro desafío quedará fuera de esta aventura. Los legendarios no son reclutables.\nPuedes cancelar para conservar ambas posibilidades." % ("las tres aves" if command.path=="birds" else "Mew y Mewtwo"),func(): _event(command))
+	else: _event(command)
