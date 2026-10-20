@@ -1,12 +1,14 @@
 # Pokémon Tactics
 
-Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: campaña de Kanto Windows 0.22.2 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
+Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: campaña de Kanto Windows 0.22.3 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
 
 **Kanto nativo:** campaña hasta la Liga y dos finales legendarios alternativos. Capturas locales, niveles/evolución, movimientos/MT LGPE combinados, naturalezas/habilidades y PC. Ejecutable Windows offline. 151 especies; 49/78 habilidades normales activas. Arte provisional, pruebas humanas y publicación pendientes.
 
 [Nueva interfaz e inicio](docs/SPRINT_22_UI.md) · [Guía para jugar en Windows](docs/PLAYTEST_WINDOWS.md) · [Balance: 29 simulaciones y límites](docs/reports/balance-native-0.22/INFORME.md)
 
 [Controles configurables y navegación 0.22.2](docs/SPRINT_22_CONTROLS.md): primer bloque de las mejoras de accesibilidad. F2 configura teclas; F6 cambia de panel; foco conservado en equipo, tienda y PC.
+
+[Turno contextual0.22.3](docs/SPRINT_22_CONTEXT.md): habilidades que se preparan antes de actuar, Q/E para objetivos, orientación con flechas/Enter y cámara por cruceta o teclado.
 
 [Informe de accesibilidad y jugabilidad](docs/reports/beta-accesibilidad-0.22.1/INFORME.md) · [9 prompts para futuras actualizaciones](docs/reports/beta-accesibilidad-0.22.1/PROMPTS_ACTUALIZACIONES.md). Auditoría y propuestas; no cambia las reglas de la entrega.
 

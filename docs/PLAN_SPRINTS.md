@@ -445,3 +445,7 @@ Encargo19 de octubre: «continua con todo» autoriza cerrar17–22 en secuencia,
 ## Mejoras posteriores a la auditoría · controles 0.22.2
 
 Prompt 01 aplicado: acciones reasignables y persistentes, conflictos revisables, foco por identidad y desplazamiento conservados en equipo/tienda/PC, navegación de paneles y protección contra órdenes repetidas. Misma campaña18/combate17 y guardados; sin rebalanceo. [Entrega y comprobaciones](SPRINT_22_CONTROLS.md). El siguiente bloque es prompt 02, turno contextual; prompts 02–09 pendientes. Publicación pública aplazada.
+
+## Turno contextual0.22.3
+
+Prompt02 aplicado: selección de habilidades sin ejecución, objetivos Q/E, modos Rápido/Seguro, orientación flechas/Enter y cámara por cruceta/Alt+flechas/P. Reglas18/17 y guardados conservados. [Entrega y evidencia](SPRINT_22_CONTEXT.md). Siguiente: prompt03, inspección persistente;03–09 pendientes. Sin publicación pública.

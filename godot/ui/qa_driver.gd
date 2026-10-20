@@ -26,6 +26,10 @@ func click(app, point: Dictionary, button: int = MOUSE_BUTTON_LEFT):
 	event.pressed = true
 	event.button_index = button
 	app.board._gui_input(event)
+	if button==MOUSE_BUTTON_LEFT:
+		var release: InputEventMouseButton = event.duplicate()
+		release.pressed = false
+		app.board._gui_input(release)
 
 func choose_action(app: Control, identity: String) -> void:
 	app.buttons.actions.pressed.emit()
@@ -106,6 +110,8 @@ func run(app, directory: String):
 							click(app, target)
 						else:
 							choose_action(app, command.actionId)
+							check(Store.equivalent(app.state,before),"Own ability selection only previews")
+							click(app,Rules.active(app.state))
 						if not app.pending.is_empty():
 							check(Store.equivalent(app.state, before), "Friendly fire awaits confirmation")
 							app.buttons.confirm.pressed.emit()
@@ -214,9 +220,10 @@ func run(app, directory: String):
 	mouse.position = app.board.global_position + app.board.center(destination)
 	Input.parse_input_event(mouse)
 	await app.get_tree().process_frame
-	check(Store.equivalent(app.state, move_result.state), "Real viewport mouse click moves directly")
 	mouse.pressed = false
 	Input.parse_input_event(mouse)
+	await app.get_tree().process_frame
+	check(Store.equivalent(app.state, move_result.state), "Real viewport mouse click moves directly on release")
 	var face_result = app.rules.apply_command(app.state, {"kind": "finish", "facing": 4})
 	app.buttons.finish.pressed.emit()
 	var actor = Rules.active(app.state)
@@ -265,6 +272,9 @@ func _check_risk(app, directory: String):
 			_bounds(app, app, app.get_global_rect().grow(2))
 			click(app, unit, MOUSE_BUTTON_RIGHT)
 			check(app.pending.is_empty() and Store.equivalent(app.state, before), "Right click cancels risk without resources")
+			check(app.selected_action==action.definition.id,"Cancelling confirmation returns to prepared ability")
+			click(app,unit,MOUSE_BUTTON_RIGHT)
+			check(app.selected_action=="basic" and Store.equivalent(app.state,before),"Second cancel returns to neutral board without cost")
 			risk_checked = true
 			return
 

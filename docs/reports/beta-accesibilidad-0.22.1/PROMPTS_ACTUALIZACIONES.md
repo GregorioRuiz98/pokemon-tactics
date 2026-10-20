@@ -2,6 +2,8 @@
 
 Base: Pokémon Tactics — Kanto, Godot 4.7.2, nativo 0.22.1, commit 9bbae5a653a189d5ce0c1b1565e62bdf0ddb7626. Consultar el [informe](INFORME.md) y [sus evidencias](evidencia/README.md). **Estos encargos futuros no se han ejecutado por redactarlos.**
 
+Estado posterior:01 entregado en0.22.2 y02 en0.22.3;03–09 pendientes. Ver [turno contextual](../../SPRINT_22_CONTEXT.md).
+
 Copiar cada bloque por separado. Implementar solamente el elegido y sus dependencias estrictamente necesarias; no encadenar toda la lista. Revisar la versión real al empezar: los archivos describen la base auditada y pueden haber evolucionado.
 
 | Prompt | Resultado | Dependencias |

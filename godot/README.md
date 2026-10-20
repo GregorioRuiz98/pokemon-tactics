@@ -1,4 +1,4 @@
-# Pokémon Tactics — Kanto Windows0.22.2
+# Pokémon Tactics — Kanto Windows0.22.3
 
 Campaña Kanto completa hasta la Liga y dos desafíos legendarios alternativos. Los acontecimientos y puzzles se resumen entre tableros; sin exploración libre. Ver informe para límites de la entrega.
 
@@ -33,10 +33,12 @@ Isometría16/24, alturas0–2, subida+1 y salto terrestre1; voladores ignoran de
 
 Godot4.7.2 estándar. Recursos existentes, sin plugins nuevos. Importadores explícitos import-expedition.py y build-expedition.py; no regenerar manifiestos congelados para ocultar discrepancias. Pillow existente se localiza con PYTHONPATH=../../work/balance-python solo al importar. Los builds/juego no lo necesitan.
 
-Scripts de la raíz: godot:verify, godot:prepare, godot:test:expedition, godot:test:journey, godot:test:abilities, godot:qa:journey, godot:export y godot:qa:journey:export. QA usa archivos aislados, controles/eventos de tablero y comparación con el dominio; no sustituye valoración humana de diversión/balance. Evidencia en docs/SPRINT_22.md. Paquetes fuera de Git en outputs/releases/pokemon-tactics-0.22.2. Publicación pública aplazada.
+Scripts de la raíz: godot:verify, godot:prepare, godot:test:expedition, godot:test:journey, godot:test:abilities, godot:qa:journey, godot:export y godot:qa:journey:export. QA usa archivos aislados, controles/eventos de tablero y comparación con el dominio; no sustituye valoración humana de diversión/balance. Evidencia en docs/SPRINT_22.md. Paquetes fuera de Git en outputs/releases/pokemon-tactics-0.22.3. Publicación pública aplazada.
 
 Prueba manual: [guía Windows](../docs/PLAYTEST_WINDOWS.md). Balance y propuestas: [informe de29 simulaciones](../docs/reports/balance-native-0.22/INFORME.md). No se cambian parámetros para favorecer los ensayos.
 
 Inicio, tienda por categorías y fichas revisadas en0.22.1: [informe y comprobaciones](../docs/SPRINT_22_UI.md).
 
 Controles y navegación0.22.2: F2 abre reasignación, F6/Mayús+F6 cambia panel; foco conservado en selección/compras/PC y prevención de órdenes repetidas. Las asignaciones se guardan en controls.json fuera del diario de partida. Enter/Espacio, Escape, Tab y flechas permanecen como seguridad. Sin cambios a reglas, balance o formatos de campaña. [Informe](../docs/SPRINT_22_CONTROLS.md). Pruebas nuevas: godot:test:controls, godot:qa:input y godot:qa:input:export.
+
+Turno contextual0.22.3: seleccionar una habilidad ya no la ejecuta; Q/E elige objetivo, Enter acepta y Escape vuelve. F abre orientación con flechas/Enter. Cámara por cruceta, Alt+flechas o modo P; central opcional. Modo Rápido/Seguro persistente en F2. [Informe](../docs/SPRINT_22_CONTEXT.md). Pruebas: godot:qa:context y godot:qa:context:export.

@@ -7,6 +7,7 @@ var category: OptionButton
 var rows: VBoxContainer
 var status: Label
 var repeat: CheckButton
+var confirmation: CheckButton
 var bindings: Dictionary = {}
 var capturing: String = ""
 var proposed: Dictionary = {}
@@ -29,7 +30,7 @@ func setup(owner_app: Control, input_profile: RefCounted) -> void:
 	column.custom_maximum_size = Vector2(860,558)
 	column.add_theme_constant_override("separation",12)
 	add_child(column)
-	var instructions: Label = app._label("Elige una orden y pulsa su nueva tecla. Escape cancela la captura.\nEnter / Espacio, Escape, Tab y flechas siguen disponibles como seguridad.\nRatón: clic selecciona; derecho cancela; rueda acerca; central desplaza.",16)
+	var instructions: Label = app._label("Elige una orden y pulsa su nueva tecla. Escape cancela la captura.\nEnter / Espacio, Escape, Tab y flechas siguen disponibles como seguridad.\nCámara: cruceta, Alt + flechas o modo P; rueda acerca; central arrastra.",16)
 	column.add_child(instructions)
 	category = OptionButton.new()
 	for value: String in ["Combate","Navegación","Cámara","General"]: category.add_item(value)
@@ -53,6 +54,17 @@ func setup(owner_app: Control, input_profile: RefCounted) -> void:
 		if not profile.save(): profile.navigation_repeat = before; repeat.set_pressed_no_signal(before)
 		status.text = profile.warning if not profile.warning.is_empty() else "Preferencia guardada. Las órdenes nunca se repiten al mantener una tecla.")
 	column.add_child(repeat)
+	confirmation = CheckButton.new()
+	confirmation.text = "Modo Seguro · confirmar cada acción" if profile.confirmation_mode=="safe" else "Modo Rápido · ejecutar al aceptar objetivo"
+	confirmation.button_pressed = profile.confirmation_mode=="safe"
+	confirmation.tooltip_text = "En ambos modos se confirma el daño a aliados y el coste propio potencialmente letal. Elegir una habilidad solo la prepara."
+	confirmation.toggled.connect(func(enabled: bool):
+		var before: String = profile.confirmation_mode
+		profile.confirmation_mode = "safe" if enabled else "fast"
+		if not profile.save(): profile.confirmation_mode = before; confirmation.set_pressed_no_signal(before=="safe")
+		confirmation.text = "Modo Seguro · confirmar cada acción" if profile.confirmation_mode=="safe" else "Modo Rápido · ejecutar al aceptar objetivo"
+		status.text = profile.warning if not profile.warning.is_empty() else "Modo guardado. Seleccionar una habilidad nunca la ejecuta.")
+	column.add_child(confirmation)
 	var reset: Button = app._button("Restablecer categoría…",func(): reset_dialog.popup_centered())
 	column.add_child(reset)
 	status = app._label("",16)

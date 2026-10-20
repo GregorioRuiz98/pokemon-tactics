@@ -24,6 +24,7 @@ var pending: Dictionary = {}
 var selecting = "auto"
 var selected_action = "basic"
 var target_id = -1
+var facing_choice: int = -1
 var ai_clock = 0.0
 var qa_dir = ""
 var qa_running = false
@@ -91,7 +92,7 @@ func _ready():
 	add_child(controls_dialog)
 	controls_dialog.setup(self,input_profile)
 	for dialog: Window in [new_dialog,help_dialog,credits_dialog,details_dialog,controls_dialog,menu.get_popup()]: _watch_dialog(dialog)
-	get_window().focus_exited.connect(func(): input_profile.held.clear())
+	get_window().focus_exited.connect(func(): input_profile.held.clear(); board.cancel_pointer())
 	_input_labels()
 	sound = AudioStreamPlayer.new()
 	sound.volume_db = -15
@@ -171,6 +172,9 @@ func _build_interface() -> void:
 	board.tile_selected.connect(_select_tile)
 	board.tile_hovered.connect(_hover_tile)
 	board.cancelled.connect(_cancel)
+	board.facing_changed.connect(_preview_facing)
+	board.facing_accepted.connect(func():
+		if selecting=="finish": _set_facing(facing_choice))
 	add_child(board)
 	var overlay: Control = Control.new()
 	battle_overlay = overlay
@@ -241,7 +245,7 @@ func _build_interface() -> void:
 		var button: Button = _button(names[facing], _set_facing.bind(facing), 44)
 		button.tooltip_text = "Terminar el turno mirando al " + full_names[facing]
 		button.mouse_entered.connect(_preview_facing.bind(facing))
-		button.mouse_exited.connect(func(): board.facing_preview = -1)
+		button.toggle_mode = true
 		directions.add_child(button)
 		direction_buttons[facing] = button
 	buttons["confirm"] = _button("Sí, atacar", _confirm)
@@ -507,7 +511,11 @@ func _refresh():
 	board.route = []
 	board.affected = []
 	board.forecast_hits = []
-	board.facing_preview = -1
+	board.facing_mode = selecting=="finish" and _player_turn() and pending.is_empty()
+	if board.facing_mode and board.get("camera_mode")==true: board.toggle_camera()
+	if board.facing_mode and facing_choice<0: facing_choice = int(Rules.active(state).facing)
+	if not board.facing_mode: facing_choice = -1
+	board.facing_preview = facing_choice
 	board.reduced_motion = reduced_motion
 	menu.get_popup().set_item_disabled(menu.get_popup().get_item_index(1), not FileAccess.file_exists(store.file_path))
 	saved.text = "Guardado local" if save_warning.is_empty() else "¡Sin guardar!"
@@ -530,7 +538,9 @@ func _refresh():
 	buttons.confirm.visible = not pending.is_empty()
 	buttons.finish.visible = pending.is_empty()
 	directions.visible = selecting == "finish" and pending.is_empty()
-	for button in direction_buttons.values(): button.disabled = not _player_turn()
+	for facing: int in direction_buttons:
+		direction_buttons[facing].disabled = not _player_turn()
+		direction_buttons[facing].set_pressed_no_signal(facing==facing_choice)
 	buttons.finish.disabled = not _player_turn()
 	if state.is_empty():
 		hint.text = save_warning if not save_warning.is_empty() else "Menú → Nuevo ensayo para comenzar."
@@ -591,11 +601,22 @@ func _refresh():
 		var replacement: Control = action_buttons.get(focused_action)
 		if FocusMemory.eligible(replacement): replacement.grab_focus.call_deferred()
 
+func interaction_context() -> String:
+	# Existing selection fields remain the single source for presentation/input.
+	if _modal_open(): return "modal"
+	if not pending.is_empty(): return "confirmation"
+	if selecting=="finish": return "facing"
+	if action_page: return "ability_menu"
+	if selecting=="attack": return "target_preview" if not _unit_at({"x":board.cursor.x,"y":board.cursor.y}).is_empty() else "ability_selected"
+	if not board.forecast_hits.is_empty(): return "target_preview"
+	if not board.route.is_empty(): return "movement_preview"
+	return "board"
+
 func _default_hint() -> String:
 	if not save_warning.is_empty(): return save_warning
 	if not _player_turn(): return "Turno rival…"
-	if selecting == "finish": return "Elige hacia dónde mirar: clic en el tablero o una flecha del menú."
-	if selecting == "attack": return "%s: elige objetivo. Esc vuelve al básico." % rules.profile(Rules.active(state)).action(Rules.active(state), selected_action).definition.name
+	if selecting == "finish": return "Flechas: orientar · Enter: terminar · Esc: volver.\n%s · %s" % ["Movimiento sin usar" if not state.moved else "Movimiento usado","Acción sin usar" if not state.acted else "Acción usada"]
+	if selecting == "attack": return "%s: %s / %s cambia objetivo, Enter o clic acepta. Esc vuelve." % [rules.profile(Rules.active(state)).action(Rules.active(state), selected_action).definition.name,input_profile.label("previous_target"),input_profile.label("next_target")]
 	if state.acted and state.moved: return "Turno listo. Elige una dirección para terminar."
 	return "Clic en casilla: mover. Clic en rival: básico. Habilidades y fin de turno en el menú."
 
@@ -606,13 +627,34 @@ func _select_movement():
 func _select_action(identity: String):
 	if not _player_turn() or _modal_open() or state.acted or not pending.is_empty(): return
 	var action = rules.profile(Rules.active(state)).action(Rules.active(state), identity)
-	if action == null or Rules.active(state).tp < action.definition.cost: return
+	if action == null: return
+	if Rules.active(state).tp < action.definition.cost: hint.text = "PT insuficientes para "+action.definition.name+"."; return
 	action_page = false
 	selected_action = identity
 	selecting = "auto" if identity == "basic" else "attack"
 	_refresh()
 	board.grab_focus()
-	if action.definition.target == "self": _select_tile(Rules.active(state))
+	if action.definition.target == "self":
+		var actor: Dictionary = Rules.active(state)
+		board.cursor = Vector2i(actor.x,actor.y)
+		board.keyboard_control = true
+		_hover_tile(actor)
+
+func _cycle_target(step: int) -> void:
+	if not _player_turn() or _modal_open() or state.acted or not pending.is_empty() or selecting=="finish": return
+	var valid: Array = Rules.living(state).filter(func(unit):return rules.attack_plan(state,int(unit.id),{},selected_action).ok)
+	valid.sort_custom(func(a,b):return a.id<b.id)
+	if valid.is_empty(): hint.text = "No hay objetivos válidos para esta acción."; return
+	var index: int = -1
+	for i: int in valid.size():
+		if valid[i].x==board.cursor.x and valid[i].y==board.cursor.y: index = i; break
+	index = (index+step+valid.size())%valid.size() if index>=0 else (0 if step>0 else valid.size()-1)
+	var target: Dictionary = valid[index]
+	board.cursor = Vector2i(target.x,target.y)
+	board.keyboard_control = true
+	if board.has_method("focus_point") and not board.play_area().grow(-45).has_point(board.center(target)): board.focus_point(target)
+	_hover_tile(target)
+	board.queue_redraw()
 
 func _unit_at(point: Dictionary) -> Dictionary:
 	for unit in Rules.living(state):
@@ -621,6 +663,22 @@ func _unit_at(point: Dictionary) -> Dictionary:
 
 func _friendly_risk(plan: Dictionary) -> bool:
 	return plan.hits.any(func(hit): return Rules.unit_by_id(state, int(hit.targetId)).team == "ally" and (hit.damage > 0 or hit.status != null))
+
+func _action_risks(plan: Dictionary) -> Array[String]:
+	var risks: Array[String] = []
+	if _friendly_risk(plan): risks.append("Alcanza a aliados")
+	var actor: Dictionary = Rules.active(state)
+	var definition: Dictionary = rules.profile(actor).action(actor,selected_action).definition
+	var cost: int = int(plan.get("recoil",0))
+	var maximum: int = 0
+	for hit: Dictionary in plan.hits: maximum += mini(Rules.unit_by_id(state,int(hit.targetId)).hp,maxi(hit.get("damageMax",hit.damage),hit.get("criticalMax",hit.damage)))
+	if definition.get("selfKO",false): cost = actor.hp
+	else:
+		var recoil: int = 0 if actor.get("ability")=="rock-head" else int(floor(maximum*definition.get("recoil",0)/100.0))
+		if actor.get("heldItem")=="life-orb" and maximum>0: recoil += maxi(1,int(actor.maxHp/10.0))
+		cost = maxi(cost,recoil)
+	if cost>=actor.hp: risks.append("El coste propio puede debilitar a "+actor.name)
+	return risks
 
 func _show_plan(unit: Dictionary, plan: Dictionary):
 	target_indicators.show_unit(unit)
@@ -671,12 +729,12 @@ func _hover_tile(point: Dictionary):
 	board.route = []
 	board.affected = []
 	board.forecast_hits = []
-	board.facing_preview = -1
+	board.facing_preview = facing_choice if selecting=="finish" else -1
 	hint.text = _default_hint()
 	if point.is_empty(): return
 	var unit = _unit_at(point)
 	if _player_turn() and selecting == "finish":
-		if not Movement.same(Rules.active(state), point): board.facing_preview = Movement.facing_from(Rules.active(state), point)
+		if not Movement.same(Rules.active(state), point): _preview_facing(Movement.facing_from(Rules.active(state), point))
 		return
 	if not unit.is_empty():
 		target_id = int(unit.id)
@@ -722,11 +780,13 @@ func _select_tile(point: Dictionary):
 			hint.text = plan.reason
 			return
 		var command = {"kind": "attack", "target": unit.id, "actionId": selected_action}
-		if _friendly_risk(plan):
+		var risks: Array[String] = _action_risks(plan)
+		if not risks.is_empty() or input_profile.confirmation_mode=="safe":
 			pending = command
 			_refresh()
 			_show_plan(unit, plan)
-			hint.text = "También alcanza a aliados. Confirma el ataque o pulsa Esc."
+			hint.text = (" · ".join(risks)+".\n" if not risks.is_empty() else "")+"Confirma una vez para actuar; Esc cancela."
+			buttons.confirm.text = "Confirmar acción"
 			buttons.confirm.grab_focus()
 		else: _commit(command)
 	elif selecting == "auto" and not state.moved:
@@ -738,18 +798,30 @@ func _select_finish():
 	if not _player_turn() or _modal_open() or not pending.is_empty(): return
 	selecting = "finish"
 	action_page = false
+	if board.get("camera_mode")==true: board.toggle_camera()
 	_refresh()
 	board.grab_focus()
 
 func _preview_facing(facing: int):
-	if _player_turn() and pending.is_empty(): board.facing_preview = facing
+	if _player_turn() and selecting=="finish" and pending.is_empty():
+		facing_choice = facing
+		board.facing_preview = facing
+		for identity: int in direction_buttons: direction_buttons[identity].set_pressed_no_signal(identity==facing)
 
 func _set_facing(facing: int):
-	if not _player_turn() or _modal_open() or not pending.is_empty(): return
+	if not _player_turn() or _modal_open() or not pending.is_empty() or facing not in Rules.FACINGS: return
 	_commit({"kind": "finish", "facing": facing})
 
 func _cancel():
 	if _modal_open(): return
+	board.cancel_pointer()
+	if board.get("camera_mode")==true: board.toggle_camera(); return
+	if not pending.is_empty():
+		pending = {}
+		_refresh()
+		_hover_tile({"x":board.cursor.x,"y":board.cursor.y})
+		board.grab_focus()
+		return
 	pending = {}
 	selecting = "auto"
 	action_page = false
@@ -816,6 +888,9 @@ func _unhandled_key_input(event):
 	elif input_profile.matches(event,"menu"): menu.show_popup()
 	elif input_profile.matches(event,"controls"): _open_controls()
 	elif input_profile.matches(event,"panel"): _cycle_panel(event.shift_pressed)
+	elif input_profile.matches(event,"previous_target") or input_profile.matches(event,"next_target"):
+		if focused!=board: return
+		_cycle_target(-1 if input_profile.matches(event,"previous_target") else 1)
 	else:
 		var found: bool = false
 		for index: int in 5:
@@ -842,6 +917,7 @@ func _guard_input(event: InputEvent, viewport: Viewport) -> void:
 func _watch_dialog(dialog: Window) -> void:
 	var origin: Dictionary = {}
 	dialog.about_to_popup.connect(func():
+		board.cancel_pointer()
 		var viewport: Viewport = dialog.get_parent() if dialog.get_parent() is Window else get_viewport()
 		var focused: Control = viewport.gui_get_focus_owner()
 		origin["focus"] = weakref(focused) if focused!=null else null)
@@ -902,7 +978,7 @@ func _input_labels() -> void:
 		if separator>=0: button.text = input_profile.label("slot"+str(index))+button.text.substr(separator)
 		index += 1
 	if help_dialog!=null:
-		help_dialog.dialog_text = "Un movimiento y una acción, en cualquier orden.\nClic en casilla: mover. Clic en rival: básico neutro.\nHabilidades: %s. Ranuras: %s / %s / %s / %s / %s.\nLas habilidades propias se ejecutan al seleccionarlas.\nSolo se confirma si se alcanza a un aliado.\n\nRectificar: %s, solo movimiento y antes de actuar.\nNo recupera PS, PT, ataques, estados o tiradas.\nOrientar y terminar: %s. Aliados atravesables;\ndestinos ocupados no válidos.\n\nFlechas y Enter/Espacio siempre disponibles.\nTab / Mayús+Tab: controles. %s: cambiar panel.\nEscape o derecho: volver. %s: recuperar guardado.\n%s: reasignar controles. Guardado local por orden." % [input_profile.label("abilities"),input_profile.label("slot1"),input_profile.label("slot2"),input_profile.label("slot3"),input_profile.label("slot4"),input_profile.label("slot5"),input_profile.label("rectify"),input_profile.label("finish"),input_profile.label("panel"),input_profile.label("load"),input_profile.label("controls")]
+		help_dialog.dialog_text = "Un movimiento y una acción, en cualquier orden.\nClic en casilla: mover. Clic en rival: básico neutro.\nHabilidades: %s. Ranuras: %s / %s / %s / %s / %s.\nElegir habilidad solo prepara; Enter o clic la ejecuta.\n%s/%s recorre objetivos. Modos Rápido/Seguro en Controles.\nSiempre se avisa de aliados o coste propio letal.\n\nRectificar: %s, solo movimiento y antes de actuar.\nNo recupera PS, PT, ataques, estados o tiradas.\nOrientar y terminar: %s; flechas y Enter confirman.\nCámara: cruceta o modo %s; %s centra.\nAliados atravesables;\ndestinos ocupados no válidos.\n\nFlechas y Enter/Espacio siempre disponibles.\nTab / Mayús+Tab: controles. %s: cambiar panel.\nEscape o derecho: volver. %s: recuperar guardado.\n%s: reasignar controles. Guardado local por orden." % [input_profile.label("abilities"),input_profile.label("slot1"),input_profile.label("slot2"),input_profile.label("slot3"),input_profile.label("slot4"),input_profile.label("slot5"),input_profile.label("previous_target"),input_profile.label("next_target"),input_profile.label("rectify"),input_profile.label("finish"),input_profile.label("camera_mode"),input_profile.label("center"),input_profile.label("panel"),input_profile.label("load"),input_profile.label("controls")]
 
 func _run_qa():
 	await Qa.new().run(self, qa_dir)

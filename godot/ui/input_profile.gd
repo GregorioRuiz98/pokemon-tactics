@@ -13,9 +13,13 @@ const ACTIONS: Dictionary = {
 	"slot1":["1 · Básico","Combate",KEY_1],"slot2":["2 · Movimiento","Combate",KEY_2],
 	"slot3":["3 · Movimiento","Combate",KEY_3],"slot4":["4 · Movimiento","Combate",KEY_4],
 	"slot5":["5 · Movimiento","Combate",KEY_5],
+	"previous_target":["Objetivo anterior","Combate",KEY_Q],"next_target":["Objetivo siguiente","Combate",KEY_E],
 	"center":["Centrar unidad","Cámara",KEY_C],"grid":["Cuadrícula","Cámara",KEY_G],
 	"heights":["Alturas","Cámara",KEY_H],"zoom_in":["Acercar","Cámara",KEY_EQUAL],
 	"zoom_out":["Alejar","Cámara",KEY_MINUS],
+	"camera_mode":["Activar modo cámara","Cámara",KEY_P],
+	"pan_left":["Cámara izquierda","Cámara",KEY_LEFT],"pan_right":["Cámara derecha","Cámara",KEY_RIGHT],
+	"pan_up":["Cámara arriba","Cámara",KEY_UP],"pan_down":["Cámara abajo","Cámara",KEY_DOWN],
 	"menu":["Menú","General",KEY_F1],"controls":["Controles","General",KEY_F2],
 	"load":["Recuperar guardado","General",KEY_F8]
 }
@@ -25,13 +29,14 @@ static var native_events: Dictionary = {}
 var path: String
 var bindings: Dictionary = {}
 var navigation_repeat: bool = true
+var confirmation_mode: String = "fast"
 var warning: String = ""
 var preserved: bool = false
 var held: Dictionary = {}
 
 func _init(file_path: String = "user://controls.json") -> void:
 	path = file_path
-	for action: String in ACTIONS: bindings[action] = {"key":ACTIONS[action][2],"shift":false,"alt":false,"ctrl":false}
+	for action: String in ACTIONS: bindings[action] = default_binding(action)
 	if FileAccess.file_exists(path):
 		var file: FileAccess = FileAccess.open(path,FileAccess.READ)
 		var parser: JSON = JSON.new()
@@ -43,6 +48,14 @@ func _init(file_path: String = "user://controls.json") -> void:
 				var value: Variant = data.bindings.get(action)
 				if value is Dictionary and valid(action,value): proposed[action] = normalized(value)
 				elif value!=null: warning = "Se han recuperado controles no válidos; el archivo original se conserva."
+			# New shortcuts must not displace a player's existing assignment.
+			for action: String in ACTIONS:
+				if data.bindings.has(action): continue
+				var clashes: bool = proposed.keys().any(func(other):return other!=action and proposed[other]==proposed[action])
+				if not clashes: continue
+				for index: int in 52:
+					var free: Dictionary = normalized({"key":KEY_A+index%26,"alt":index>=26})
+					if valid(action,free) and free not in proposed.values(): proposed[action] = free; break
 			var occupied: Dictionary = {}
 			for action: String in ACTIONS:
 				var token: String = JSON.stringify(proposed[action])
@@ -50,11 +63,15 @@ func _init(file_path: String = "user://controls.json") -> void:
 				occupied[token] = action
 			bindings = proposed
 			navigation_repeat = data.get("navigationRepeat",true) if data.get("navigationRepeat",true) is bool else true
+			confirmation_mode = "safe" if data.get("confirmationMode")=="safe" else "fast"
 		else: warning = "El archivo de controles no es válido; se usan valores seguros y se conserva el original."
 	install()
 
 static func normalized(value: Dictionary) -> Dictionary:
 	return {"key":int(value.get("key",0)),"shift":value.get("shift",false)==true,"alt":value.get("alt",false)==true,"ctrl":value.get("ctrl",false)==true}
+
+static func default_binding(action: String) -> Dictionary:
+	return normalized({"key":ACTIONS[action][2],"alt":action.begins_with("pan_")})
 
 static func valid(action: String, value: Dictionary) -> bool:
 	if not (value.get("key") is int or value.get("key") is float): return false
@@ -64,7 +81,8 @@ static func valid(action: String, value: Dictionary) -> bool:
 		if value.has(field) and not value[field] is bool: return false
 	if code in [KEY_SHIFT,KEY_CTRL,KEY_ALT,KEY_META] or value.get("ctrl",false) or (value.get("alt",false) and code==KEY_F4): return false
 	if code==KEY_HOME and action!="center" or code==KEY_PLUS and action!="zoom_in": return false
-	if SAFETY.has(code) and SAFETY[code]!=action: return false
+	if SAFETY.has(code) and SAFETY[code]!=action:
+		if not (code in [KEY_LEFT,KEY_RIGHT,KEY_UP,KEY_DOWN] and action.begins_with("pan_") and value.get("alt",false) and not value.get("shift",false)): return false
 	return true
 
 func event_for(action: String) -> InputEventKey:
@@ -106,7 +124,7 @@ func matches(event: InputEvent, action: String) -> bool:
 		var unshifted: InputEventKey = event.duplicate()
 		unshifted.shift_pressed = false
 		return unshifted.is_action_pressed(PREFIX+action,false,true)
-	return event.is_action_pressed(PREFIX+action,navigation_repeat and action in ["left","right","up","down"],true)
+	return event.is_action_pressed(PREFIX+action,navigation_repeat and (action in ["left","right","up","down"] or action.begins_with("pan_")),true)
 
 func label(action: String) -> String:
 	return event_for(action).as_text_keycode()
@@ -138,15 +156,15 @@ func reset_category(category: String) -> bool:
 	var selected: Array = ACTIONS.keys().filter(func(a):return ACTIONS[a][1]==category)
 	# Restore conflicting assignments as well; never leave two active actions on one key.
 	for action: String in selected:
-		var value: Dictionary = normalized({"key":ACTIONS[action][2]})
+		var value: Dictionary = default_binding(action)
 		var other: String = conflict(action,value)
 		if not other.is_empty() and other not in selected: selected.append(other)
-	for action: String in selected: bindings[action] = normalized({"key":ACTIONS[action][2]})
+	for action: String in selected: bindings[action] = default_binding(action)
 	# A chain of swaps can reach further categories. Defaults are the safe fallback.
 	var used: Array = []
 	for action: String in ACTIONS:
 		if bindings[action] in used:
-			for entry: String in ACTIONS: bindings[entry] = normalized({"key":ACTIONS[entry][2]})
+			for entry: String in ACTIONS: bindings[entry] = default_binding(entry)
 			break
 		used.append(bindings[action])
 	if not save(): bindings = before; return false
@@ -161,7 +179,7 @@ func save() -> bool:
 		preserved = true
 	var file: FileAccess = FileAccess.open(path+".tmp",FileAccess.WRITE)
 	if file==null: warning = "No se pueden guardar los controles; el cambio no se aplica."; return false
-	file.store_string(JSON.stringify({"schema":1,"bindings":bindings,"navigationRepeat":navigation_repeat},"\t"))
+	file.store_string(JSON.stringify({"schema":1,"bindings":bindings,"navigationRepeat":navigation_repeat,"confirmationMode":confirmation_mode},"\t"))
 	file.flush()
 	var error: int = file.get_error()
 	file.close()
@@ -174,7 +192,7 @@ func allow(event: InputEvent) -> bool:
 	var identity: int = event.keycode if event.keycode!=0 else event.physical_keycode
 	if not event.pressed: held.erase(identity); return true
 	var navigation: bool = false
-	for action: String in ["left","right","up","down"]:
+	for action: String in ["left","right","up","down","pan_left","pan_right","pan_up","pan_down"]:
 		if matches(event,action): navigation = true
 	if event.echo or held.has(identity): return navigation_repeat and navigation
 	held[identity] = true

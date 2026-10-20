@@ -21,10 +21,15 @@ func _initialize() -> void:
 	if phase=="write":
 		check(profile.rebind("abilities",{"key":KEY_Z}).ok,"Write custom binding")
 		profile.navigation_repeat = false
+		profile.confirmation_mode = "safe"
 		check(profile.save(),"Write navigation preference")
 	else:
 		check(profile.bindings.abilities.key==KEY_Z,"New process reloads custom key")
 		check(not profile.navigation_repeat,"New process reloads navigation preference")
+		check(profile.confirmation_mode=="safe","New process reloads safe confirmation mode")
+		check(profile.bindings.pan_right.alt and profile.bindings.pan_right.key==KEY_RIGHT,"Camera default is Alt arrow")
+		check(profile.rebind("pan_left",{"key":KEY_LEFT,"alt":true}).ok,"Camera pan accepts reserved arrow with Alt only")
+		check(not profile.rebind("pan_left",{"key":KEY_LEFT}).ok,"Camera cannot steal unmodified cursor arrow")
 		var event: InputEventKey = InputEventKey.new()
 		event.keycode = KEY_Z
 		event.pressed = true
@@ -41,6 +46,16 @@ func _initialize() -> void:
 		var before: Dictionary = failed.bindings.duplicate(true)
 		check(not failed.rebind("abilities",{"key":KEY_Z}).ok,"Write failure rejects binding")
 		check(failed.bindings==before,"Write failure preserves previous controls")
+		var legacy_bindings: Dictionary = profile.bindings.duplicate(true)
+		for action: String in ["previous_target","next_target","camera_mode","pan_left","pan_right","pan_up","pan_down"]: legacy_bindings.erase(action)
+		legacy_bindings.abilities = Profile.normalized({"key":KEY_E})
+		var legacy_path: String = directory.path_join("legacy-custom-controls.json")
+		FileAccess.open(legacy_path,FileAccess.WRITE).store_string(JSON.stringify({"schema":1,"bindings":legacy_bindings}))
+		var legacy: RefCounted = Profile.new(legacy_path)
+		check(legacy.bindings.abilities.key==KEY_E,"Existing custom shortcut survives newly added target defaults")
+		check(legacy.bindings.next_target.key!=KEY_E and legacy.warning.is_empty(),"Only the new conflicting shortcut receives a free key")
+		check(legacy.save() and Profile.new(legacy_path).bindings==legacy.bindings,"Upgraded preferences reload without changing assignments")
+		profile.install()
 	var output: Dictionary = {"phase":phase,"assertions":assertions,"failures":failures}
 	var file: FileAccess = FileAccess.open(directory.path_join("preferences-"+phase+".json"),FileAccess.WRITE)
 	file.store_string(JSON.stringify(output,"\t"))

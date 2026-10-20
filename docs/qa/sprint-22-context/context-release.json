@@ -1,0 +1,15 @@
+{
+	"assertions": 96,
+	"failures": [],
+	"naturalReplay": true,
+	"scope": "Native viewport key/pointer events; isolated saves; no human input or balance claims",
+	"screenshots": [
+		"keyboard-facing.png",
+		"confirmation-preference.png",
+		"risk-fast.png",
+		"risk-safe.png",
+		"camera-16.png",
+		"camera-24.png"
+	],
+	"syntheticFixtures": true
+}

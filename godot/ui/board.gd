@@ -5,6 +5,8 @@ const Indicators = preload("res://ui/unit_indicators.gd")
 signal tile_selected(point: Dictionary)
 signal tile_hovered(point: Dictionary)
 signal cancelled
+signal facing_changed(facing: int)
+signal facing_accepted
 const Rules = preload("res://core/battle.gd")
 const Movement = preload("res://core/movement.gd")
 var state: Dictionary = {}
@@ -21,6 +23,38 @@ var reduced_motion = false
 var elapsed = 0.0
 var redraw_clock = 0.0
 var input_profile: RefCounted
+var facing_mode: bool = false
+var keyboard_control: bool = false
+var pointer_start: Vector2 = Vector2.ZERO
+var pointer_down: bool = false
+var pointer_dragged: bool = false
+
+func cancel_pointer() -> void:
+	pointer_down = false
+	pointer_dragged = false
+
+func _orientation_key(event: InputEvent) -> bool:
+	if not facing_mode: return false
+	for entry: Array in [["up",4],["right",2],["down",0],["left",6]]:
+		if _pressed(event,entry[0]): facing_changed.emit(entry[1]); return true
+	if _pressed(event,"accept"): facing_accepted.emit(); return true
+	return false
+
+func _pointer_click(event: InputEventMouseButton, point: Dictionary) -> void:
+	if event.button_index!=MOUSE_BUTTON_LEFT: return
+	if event.pressed:
+		pointer_start = event.position
+		pointer_down = not point.is_empty()
+		pointer_dragged = false
+	elif pointer_down:
+		var clicked: bool = not pointer_dragged and pointer_start.distance_to(event.position)<8 and not point.is_empty()
+		cancel_pointer()
+		if clicked:
+			keyboard_control = false
+			cursor = Vector2i(point.x,point.y)
+			grab_focus()
+			tile_selected.emit(point)
+	accept_event()
 
 func _pressed(event: InputEvent, action: String) -> bool:
 	if input_profile!=null: return input_profile.matches(event,action)
@@ -30,7 +64,9 @@ func _ready():
 	custom_minimum_size = Vector2(360, 360)
 	focus_mode = Control.FOCUS_ALL
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	mouse_exited.connect(func(): tile_hovered.emit({}))
+	mouse_exited.connect(func():
+		cancel_pointer()
+		if not keyboard_control: tile_hovered.emit({}))
 
 func setup(records: Array):
 	for record in records:
@@ -69,14 +105,13 @@ func _gui_input(event):
 		var local = (event.position - board_origin()) / cell_size()
 		var point = Vector2i(floori(local.x), floori(local.y))
 		if point.x >= 0 and point.x < dimensions().x and point.y >= 0 and point.y < dimensions().y:
-			cursor = point
-			if event is InputEventMouseMotion: tile_hovered.emit({"x": point.x, "y": point.y})
-			if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-				grab_focus()
-				tile_selected.emit({"x": point.x, "y": point.y})
-				accept_event()
-		elif event is InputEventMouseMotion: tile_hovered.emit({})
+			if event is InputEventMouseMotion and not keyboard_control: tile_hovered.emit({"x": point.x, "y": point.y})
+		elif event is InputEventMouseMotion and not keyboard_control: tile_hovered.emit({})
+		if event is InputEventMouseMotion and pointer_down and pointer_start.distance_to(event.position)>=8: pointer_dragged = true
+		if event is InputEventMouseButton: _pointer_click(event,{"x":point.x,"y":point.y} if point.x>=0 and point.x<dimensions().x and point.y>=0 and point.y<dimensions().y else {})
 	if event is InputEventKey and event.pressed:
+		keyboard_control = true
+		if _orientation_key(event): accept_event(); queue_redraw(); return
 		if _pressed(event,"left"): cursor.x = maxi(0,cursor.x-1)
 		elif _pressed(event,"right"): cursor.x = mini(dimensions().x-1,cursor.x+1)
 		elif _pressed(event,"up"): cursor.y = maxi(0,cursor.y-1)

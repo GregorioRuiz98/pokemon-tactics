@@ -29,6 +29,9 @@ var roster_offset: int = 0
 var roster_swap: int = 1
 var roster_panel: RefCounted = RosterPanel.new()
 var camera_bar: HBoxContainer
+var camera_pad: GridContainer
+var camera_compass: Label
+var camera_buttons: Dictionary = {}
 var title_screen: Control
 var title_visible: bool = false
 var title_loading: bool = false
@@ -40,6 +43,7 @@ var options_dialog: AcceptDialog
 var options_buttons: Dictionary = {}
 var new_seed: String = "kanto-14"
 var input_qa_dir: String = ""
+var context_qa_dir: String = ""
 var travel_memory: Dictionary = {}
 var travel_phase: String = ""
 
@@ -89,6 +93,32 @@ func _ready() -> void:
 		var camera_button: Button = _button(entry[0],_camera_order.bind(entry[1]),40)
 		camera_button.add_theme_font_size_override("font_size",16)
 		camera_bar.add_child(camera_button)
+	camera_pad = GridContainer.new()
+	camera_pad.columns = 3
+	camera_pad.position = Vector2(size.x-158,122)
+	camera_pad.add_theme_constant_override("h_separation",2)
+	camera_pad.add_theme_constant_override("v_separation",2)
+	battle_overlay.add_child(camera_pad)
+	for entry: Array in [["",""],["up","↑"],["",""],["left","←"],["mode","P"],["right","→"],["",""],["down","↓"],["",""]]:
+		if entry[0].is_empty():
+			var space: Control = Control.new()
+			space.custom_minimum_size = Vector2(40,40)
+			space.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			camera_pad.add_child(space)
+		else:
+			var identity: String = entry[0]
+			var vectors: Dictionary = {"left":Vector2(48,0),"right":Vector2(-48,0),"up":Vector2(0,48),"down":Vector2(0,-48)}
+			var callback: Callable = board.toggle_camera if identity=="mode" else board.pan.bind(vectors[identity])
+			var button: Button = _button(entry[1],_camera_order.bind(callback),40)
+			button.add_theme_font_size_override("font_size",16)
+			if identity=="mode": button.toggle_mode = true
+			camera_pad.add_child(button)
+			camera_buttons[identity] = button
+	board.camera_mode_changed.connect(_camera_labels)
+	camera_compass = _label("Cursor isométrico\n↑ −Y ↗   → +X ↘\n← −X ↖   ↓ +Y ↙",13,MUTED)
+	camera_compass.position = Vector2(size.x-276,270)
+	camera_compass.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	battle_overlay.add_child(camera_compass)
 	resized.connect(_refresh)
 	_input_labels()
 
@@ -97,6 +127,15 @@ func _input_labels() -> void:
 	if camera_bar!=null:
 		for entry: Array in [[3,"Unidad","center"],[5,"Cuadrícula","grid"],[6,"Alturas","heights"]]:
 			camera_bar.get_child(entry[0]).text = input_profile.shortcut(entry[1],entry[2])
+	_camera_labels()
+
+func _camera_labels() -> void:
+	if camera_buttons.is_empty(): return
+	camera_buttons.mode.text = input_profile.label("camera_mode")
+	camera_buttons.mode.set_pressed_no_signal(board.camera_mode)
+	camera_buttons.mode.tooltip_text = input_profile.shortcut("Modo cámara: flechas desplazan la vista; pulsa de nuevo para volver al cursor","camera_mode")
+	for identity: String in ["up","down","left","right"]:
+		camera_buttons[identity].tooltip_text = "Desplazar cámara · "+input_profile.label("pan_"+identity)
 
 func _camera_order(callback: Callable) -> void:
 	callback.call()
@@ -119,11 +158,13 @@ func _boot() -> void:
 		if argument.begins_with("--journey-qa-dir="): journey_qa_dir = argument.trim_prefix("--journey-qa-dir=")
 		if argument.begins_with("--interface-qa-dir="): interface_qa_dir = argument.trim_prefix("--interface-qa-dir=")
 		if argument.begins_with("--input-qa-dir="): input_qa_dir = argument.trim_prefix("--input-qa-dir=")
+		if argument.begins_with("--context-qa-dir="): context_qa_dir = argument.trim_prefix("--context-qa-dir=")
 	var test_dir: String = scale_qa_dir if not scale_qa_dir.is_empty() else campaign_qa_dir
 	if not roster_qa_dir.is_empty(): test_dir = roster_qa_dir
 	if not journey_qa_dir.is_empty(): test_dir = journey_qa_dir
 	if not interface_qa_dir.is_empty(): test_dir = interface_qa_dir
 	if not input_qa_dir.is_empty(): test_dir = input_qa_dir
+	if not context_qa_dir.is_empty(): test_dir = context_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -148,7 +189,8 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
-	if not input_qa_dir.is_empty(): _open_title(); call_deferred("_run_input_qa")
+	if not context_qa_dir.is_empty(): _open_title(); call_deferred("_run_context_qa")
+	elif not input_qa_dir.is_empty(): _open_title(); call_deferred("_run_input_qa")
 	elif not interface_qa_dir.is_empty(): _open_title(); call_deferred("_run_interface_qa")
 	elif not journey_qa_dir.is_empty(): call_deferred("_run_journey_qa")
 	elif not roster_qa_dir.is_empty(): call_deferred("_run_roster_qa")
@@ -223,6 +265,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
 func _run_input_qa() -> void:
 	await get_tree().process_frame
 	await load("res://ui/qa_input.gd").new().run(self,input_qa_dir)
+
+func _run_context_qa() -> void:
+	await get_tree().process_frame
+	await load("res://ui/qa_context.gd").new().run(self,context_qa_dir)
 
 func _run_interface_qa() -> void:
 	await get_tree().process_frame
@@ -412,6 +458,8 @@ func _refresh() -> void:
 		if timeline.get_parent() is ScrollContainer: timeline.get_parent().scroll_horizontal = 0
 		return
 	if camera_bar!=null: camera_bar.visible = not run.is_empty() and run.phase=="battle" and run.get("edition",1)>=11
+	if camera_pad!=null: camera_pad.visible = camera_bar.visible
+	if camera_compass!=null: camera_compass.visible = camera_bar.visible
 	var fighting: bool = not run.is_empty() and run.phase == "battle"
 	board.visible = fighting
 	battle_overlay.visible = fighting
@@ -442,6 +490,8 @@ func _refresh() -> void:
 	else: _render_travel()
 
 func _layout_battle_hud() -> void:
+	if camera_pad!=null: camera_pad.position.x = size.x-158
+	if camera_compass!=null: camera_compass.position.x = size.x-276
 	var narrow: bool = size.x<1150
 	var actor_width: float = 300 if narrow else 360
 	var target_width: float = 330 if narrow else 390

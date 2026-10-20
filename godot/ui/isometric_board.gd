@@ -14,6 +14,17 @@ var strong_grid: bool = false
 var show_heights: bool = false
 var sprite_bounds: Dictionary = {}
 var sprite_images: Dictionary = {}
+var camera_mode: bool = false
+signal camera_mode_changed
+
+func toggle_camera() -> void:
+	camera_mode = not camera_mode
+	cancel_pointer()
+	camera_mode_changed.emit()
+
+func cancel_pointer() -> void:
+	super.cancel_pointer()
+	dragging = false
 
 func setup(records: Array) -> void:
 	super.setup(records)
@@ -150,6 +161,10 @@ func _gui_input(event: InputEvent) -> void:
 			dragging = event.pressed
 			accept_event()
 			return
+		if camera_mode and event.button_index==MOUSE_BUTTON_LEFT:
+			dragging = event.pressed
+			accept_event()
+			return
 		if event.pressed and event.button_index in [MOUSE_BUTTON_WHEEL_UP,MOUSE_BUTTON_WHEEL_DOWN]:
 			change_zoom(1.12 if event.button_index==MOUSE_BUTTON_WHEEL_UP else 1/1.12)
 			accept_event()
@@ -159,19 +174,22 @@ func _gui_input(event: InputEvent) -> void:
 			accept_event()
 			return
 	if event is InputEventMouseMotion and dragging:
-		if (event.button_mask&MOUSE_BUTTON_MASK_MIDDLE)!=0:
+		if (event.button_mask&MOUSE_BUTTON_MASK_MIDDLE)!=0 or (camera_mode and (event.button_mask&MOUSE_BUTTON_MASK_LEFT)!=0):
 			pan(event.relative)
 			return
 		dragging = false
 	if event is InputEventMouseMotion or event is InputEventMouseButton:
 		var point: Dictionary = pick(event.position)
-		if not point.is_empty(): cursor = Vector2i(point.x,point.y)
-		if event is InputEventMouseMotion: tile_hovered.emit(point)
-		elif event.pressed and event.button_index==MOUSE_BUTTON_LEFT and not point.is_empty():
-			grab_focus()
-			tile_selected.emit(point)
-			accept_event()
+		if event is InputEventMouseMotion:
+			if pointer_down and pointer_start.distance_to(event.position)>=8: pointer_dragged = true
+			if not keyboard_control and not camera_mode: tile_hovered.emit(point)
+		else: _pointer_click(event,point)
 	if event is InputEventKey and event.pressed:
+		keyboard_control = true
+		if not camera_mode and _orientation_key(event): accept_event(); queue_redraw(); return
+		for entry: Array in [["pan_left",Vector2(48,0)],["pan_right",Vector2(-48,0)],["pan_up",Vector2(0,48)],["pan_down",Vector2(0,-48)]]:
+			if _pressed(event,entry[0]): pan(entry[1]); accept_event(); return
+		if _pressed(event,"camera_mode"): toggle_camera(); accept_event(); return
 		var vector: Vector2i = Vector2i.ZERO
 		if _pressed(event,"left"): vector = Vector2i.LEFT
 		elif _pressed(event,"right"): vector = Vector2i.RIGHT
@@ -182,9 +200,11 @@ func _gui_input(event: InputEvent) -> void:
 		elif _pressed(event,"heights"): show_heights = not show_heights
 		elif _pressed(event,"zoom_in"): change_zoom(1.12)
 		elif _pressed(event,"zoom_out"): change_zoom(1/1.12)
-		elif _pressed(event,"accept"): tile_selected.emit({"x":cursor.x,"y":cursor.y})
+		elif _pressed(event,"accept"):
+			if not camera_mode: tile_selected.emit({"x":cursor.x,"y":cursor.y})
 		else: return
 		if vector!=Vector2i.ZERO:
+			if camera_mode: pan(-Vector2(vector)*48); accept_event(); return
 			cursor = (cursor+vector).clamp(Vector2i.ZERO,dimensions()-Vector2i.ONE)
 			var point: Dictionary = {"x":cursor.x,"y":cursor.y}
 			if not play_area().grow(-45).has_point(center(point)): focus_point(point)

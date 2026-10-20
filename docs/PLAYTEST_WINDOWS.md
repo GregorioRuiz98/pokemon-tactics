@@ -1,4 +1,4 @@
-# Probar Pokémon Tactics en Windows ·0.22.2
+# Probar Pokémon Tactics en Windows ·0.22.3
 
 Descomprime el ZIP completo y abre **windows/PokemonTactics.exe**. Funciona sin cuenta, servidor, conexión o instalación de Godot. Mantén en la carpeta los créditos y licencias incluidos. Esta entrega es para pruebas; su publicación pública está aplazada.
 
@@ -18,10 +18,10 @@ Si el guardado es incompatible, incompleto o ha cambiado desde otra instancia, e
 
 - **F2** abre Controles; también están en Opciones o en el menú general. Permite reasignar teclas, intercambiar conflictos, restablecer categorías y elegir repetición de navegación. Las etiquetas y la ayuda muestran tus asignaciones. Enter/Espacio, Escape, Tab y flechas siguen disponibles como teclas de seguridad; Ctrl y combinaciones de sistema no se reasignan.
 - **F6** o Mayús+F6 alterna tablero/órdenes o viaje/equipo. Tab/Mayús+Tab recorre controles. Al elegir un Pokémon, comprar o cambiar página del PC se conserva el foco; si una orden deja de estar disponible se elige una alternativa válida. Las compras y órdenes requieren pulsaciones nuevas, aunque mantengas la tecla.
-- Los controles se conservan al reiniciar en el archivo independiente controls.json, junto a tu guardado local. Las opciones de sonido y animación todavía se aplican por sesión; escala de texto, cámara por pulsaciones y confirmación de habilidades propias pertenecen a los siguientes bloques.
+- Los controles se conservan al reiniciar en el archivo independiente controls.json, junto a tu guardado local. Las opciones de sonido y animación todavía se aplican por sesión; escala de texto y persistencia de sonido/animación pertenecen a los siguientes bloques.
 
 - Clic en una casilla azul para moverte; clic en un enemigo para el básico. El menú derecho reúne las otras órdenes. **R** rectifica exclusivamente el movimiento, siempre antes de actuar; **F** permite orientar y terminar. Escape cancela la selección.
-- Rueda o+/− para zoom; botón central para desplazar cámara. **C** centra la unidad; **Combate/Mapa** cambia el encuadre y **G/H** alterna guías. Flechas y Enter permiten seleccionar casillas.
+- Rueda o+/− para zoom; cruceta, Alt+flechas o modo P para desplazar cámara. Central opcional. **C** centra la unidad; **Combate/Mapa** cambia el encuadre y **G/H** alterna guías. Flechas y Enter permiten seleccionar casillas.
 - Prepara hasta cuatro movimientos y conserva el básico neutro gratuito. Consulta tipo, precisión, daño previsto, PT y estado antes de atacar. Respiro, Recuperación, Amortiguador y Descanso tienen cinco usos por combate, además de sus PT.
 - Las bajas individuales pueden recuperarse en tienda con Revivir al50% de PS. Perder todo el equipo desplegado termina la campaña aunque queden reservas vivas. No hay curación gratuita tras una victoria.
 - La tienda separa **Objetos**, **MT y equipo** y **Rasgos**. Las fichas del equipo muestran retrato y barra de PS; los curativos se usan desde la ficha seleccionada. **Seguir viaje** permanece visible al final del panel aunque desplaces las ofertas.
@@ -41,3 +41,13 @@ Si el guardado es incompatible, incompleto o ha cambiado desde otra instancia, e
 Para una incidencia, conserva una copia del guardado y anota versión, semilla, tamaño, encuentro, orden realizada y resultado esperado/observado. Un vídeo o captura ayuda si afecta a selección o cámara. Para valorar diversión, anota también dónde tomaste una decisión interesante y dónde esperaste sin decidir.
 
 Las pruebas automáticas acreditan reglas, integridad y recorridos concretos. No sustituyen estas sesiones humanas. Hay terreno provisional, efectos adaptados y29 habilidades normales sin condiciones implementadas, identificadas en ficha; no se presenta como réplica exacta de Pokémon Rojo o Let’s Go.
+
+## Turno contextual0.22.3
+
+- Habilidades por A o1–5: seleccionar nunca ejecuta, incluso los apoyos propios. Q/E recorre solo objetivos válidos con orden estable; Enter acepta. Escape cancela sin gastar. El hover no cambia la selección hecha con teclado.
+- F2 ofrece Modo Seguro: una confirmación por acción. Desactivado usa Modo Rápido: aceptar un objetivo ejecuta. Ambos avisan y piden confirmar daño a aliados o coste propio potencialmente letal. Se conserva entre sesiones.
+- Al mover y actuar se abre orientación; F la abre antes mostrando recursos sin usar. Flechas previsualizan, Enter termina; botones diagonales o clic en tablero ofrecen la alternativa de ratón. Escape vuelve sin terminar. Derecha del cursor suma X y se proyecta ↘; abajo suma Y y se proyecta ↙. La brújula lo recuerda.
+- Cámara por cruceta visible, Alt+flechas o P seguido de flechas. P vuelve al cursor sin mantener teclas. Rueda/+− acerca; C centra. El botón central es opcional. Arrastrar con el izquierdo en modo P también desplaza; soltar un arrastre no da órdenes.
+- R rectifica exclusivamente el movimiento anterior si todavía no hubo acción. Actuar antes de moverse también bloquea R.
+
+Las pruebas inyectan eventos del viewport nativo en Windows. Falta la valoración con teclado/ratón físicos y tecnologías de apoyo por personas. No se añade todavía inspección persistente (prompt03), ampliación de texto (04) ni los demás bloques.
