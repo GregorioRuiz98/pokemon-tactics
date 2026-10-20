@@ -9,7 +9,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const project = resolve(root, 'godot');
 const nativeVersion = readFileSync(resolve(project, 'project.godot'),'utf8').match(/config\/version="([^"]+)"/)[1];
 const chapter = Number(nativeVersion.split('.')[1]);
-const qaLabel = nativeVersion === '0.22.3' ? '22-context' : nativeVersion === '0.22.2' ? '22-controls' : nativeVersion === '0.22.1' ? '22-ui' : String(chapter);
+const qaLabel = Number(nativeVersion.split('.')[2])>=4 ? '22-updates-'+nativeVersion.split('.')[2] : nativeVersion === '0.22.3' ? '22-context' : nativeVersion === '0.22.2' ? '22-controls' : nativeVersion === '0.22.1' ? '22-ui' : String(chapter);
 const work = resolve(root, `../../work/qa-sprint-${qaLabel}`);
 const output = resolve(root, `../releases/pokemon-tactics-${nativeVersion}/windows`);
 const operation = process.argv[2] ?? 'test';
@@ -71,7 +71,7 @@ function verify() {
   console.log(`Verified ${manifest.files.length} assets and ${manifest.ruleSources.length} reference source hashes; ${fixtures.games.length} complete battles.`);
 }
 if (operation === 'verify') { verify(); process.exit(0); }
-if (!['qa-export','qa-campaign-export','qa-scale-export','qa-roster-export','qa-journey-export','qa-journey-psychic-export','qa-interface-export','qa-input-export','qa-context-export'].includes(operation)) {
+if (!['qa-export','qa-campaign-export','qa-scale-export','qa-roster-export','qa-journey-export','qa-journey-psychic-export','qa-interface-export','qa-input-export','qa-context-export','qa-updates-export'].includes(operation)) {
   if (!existsSync(binary)) throw new Error('Godot not found. Set GODOT_BIN to the standard Godot 4.7.2 executable.');
   const version = spawnSync(binary, ['--version'], { encoding: 'utf8', windowsHide: true });
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
@@ -80,6 +80,13 @@ const common = ['--path', project, '--log-file', resolve(work, `engine-${operati
 if (operation === 'test-controls') {
   verify();
   for(const phase of ['write','read']) run(binary,['--headless',...common,'--script','res://tests/control_preferences.gd','--','--save-dir='+work,'--phase='+phase],'preferences-'+phase);
+} else if (operation === 'qa-updates' || operation === 'qa-updates-export') {
+  const exported=operation.endsWith('export');
+  if(!exported) verify();
+  const directory=resolve(work,exported?'updates-release':'updates-source');
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--updates-qa-dir='+directory],'updates-ui-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'updates-ui-result.json'),'utf8'));
+  if(report.failures.length) throw new Error('Updates UI failed');
 } else if (operation === 'qa-context' || operation === 'qa-context-export') {
   const exported = operation.endsWith('export');
   if (!exported) verify();

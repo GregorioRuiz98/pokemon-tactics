@@ -351,6 +351,10 @@ func _draw_unit_info(unit: Dictionary) -> void:
 	if active: _tag(top,"%s · %d/%d" % [unit.name,unit.hp,unit.maxHp],Color("ffe69a"),14)
 	elif unit.get("dormant",false): _tag(top,"VIGÍA",Color("eccb7f"),12)
 	var badges: Array = Indicators.entries(unit)
+	_tag(c+Vector2(0,18),"A" if unit.team=="ally" else "E",Color("ffffff"),12)
+	var extra: int = maxi(0,badges.size()-4)
+	badges = badges.slice(0,4)
+	if extra>0: _tag(c+Vector2(42,-25),"+%d · ficha I" % extra,Color("ffffff"),12)
 	var base: Vector2 = Vector2(c.x-36,visual.used.position.y-24-(22 if active else 0))
 	for i: int in badges.size():
 		Indicators.draw_badge(self,Rect2(base+Vector2((i%2)*36,-int(i/2.0)*15),Vector2(34,14)),badges[i],get_theme_default_font(),10,true)

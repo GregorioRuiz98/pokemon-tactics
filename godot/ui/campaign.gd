@@ -44,6 +44,7 @@ var options_buttons: Dictionary = {}
 var new_seed: String = "kanto-14"
 var input_qa_dir: String = ""
 var context_qa_dir: String = ""
+var updates_qa_dir: String = ""
 var travel_memory: Dictionary = {}
 var travel_phase: String = ""
 
@@ -158,6 +159,7 @@ func _boot() -> void:
 		if argument.begins_with("--journey-qa-dir="): journey_qa_dir = argument.trim_prefix("--journey-qa-dir=")
 		if argument.begins_with("--interface-qa-dir="): interface_qa_dir = argument.trim_prefix("--interface-qa-dir=")
 		if argument.begins_with("--input-qa-dir="): input_qa_dir = argument.trim_prefix("--input-qa-dir=")
+		if argument.begins_with("--updates-qa-dir="): updates_qa_dir = argument.trim_prefix("--updates-qa-dir=")
 		if argument.begins_with("--context-qa-dir="): context_qa_dir = argument.trim_prefix("--context-qa-dir=")
 	var test_dir: String = scale_qa_dir if not scale_qa_dir.is_empty() else campaign_qa_dir
 	if not roster_qa_dir.is_empty(): test_dir = roster_qa_dir
@@ -165,6 +167,7 @@ func _boot() -> void:
 	if not interface_qa_dir.is_empty(): test_dir = interface_qa_dir
 	if not input_qa_dir.is_empty(): test_dir = input_qa_dir
 	if not context_qa_dir.is_empty(): test_dir = context_qa_dir
+	if not updates_qa_dir.is_empty(): test_dir = updates_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -189,7 +192,8 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
-	if not context_qa_dir.is_empty(): _open_title(); call_deferred("_run_context_qa")
+	if not updates_qa_dir.is_empty(): _open_title(); call_deferred("_run_updates_qa")
+	elif not context_qa_dir.is_empty(): _open_title(); call_deferred("_run_context_qa")
 	elif not input_qa_dir.is_empty(): _open_title(); call_deferred("_run_input_qa")
 	elif not interface_qa_dir.is_empty(): _open_title(); call_deferred("_run_interface_qa")
 	elif not journey_qa_dir.is_empty(): call_deferred("_run_journey_qa")
@@ -265,6 +269,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
 func _run_input_qa() -> void:
 	await get_tree().process_frame
 	await load("res://ui/qa_input.gd").new().run(self,input_qa_dir)
+
+func _run_updates_qa() -> void:
+	await get_tree().process_frame
+	await load("res://ui/qa_updates.gd").new().run(self,updates_qa_dir)
 
 func _run_context_qa() -> void:
 	await get_tree().process_frame
@@ -435,6 +443,7 @@ func _commit(command: Dictionary) -> void:
 	var plan: Dictionary = rules.attack_plan(state,int(command.target),{},command.get("actionId","basic")) if command.kind == "attack" else {}
 	_event({"kind":"battle","order":command,"at":revision})
 	if run.revision == revision: return
+	_remember_result(before,command,last_presentation.get("hits",[]))
 	if command.kind == "attack": combat_feedback.present(before,plan,last_presentation.get("hits",[]))
 	if not last_presentation.get("abilityEvents",[]).is_empty(): combat_feedback.present_abilities(state,last_presentation.abilityEvents,command.kind!="attack")
 	var leveled: bool = run.get("lastProgress",[]).any(func(entry):return entry.level > entry.before)

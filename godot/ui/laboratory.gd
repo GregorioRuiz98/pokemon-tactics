@@ -10,6 +10,8 @@ const Qa = preload("res://ui/qa_driver.gd")
 const InputProfile = preload("res://ui/input_profile.gd")
 const FocusMemory = preload("res://ui/focus_memory.gd")
 var input_profile: RefCounted
+var tactical_reader: AcceptDialog
+var recent_result: String = "Todavía no hay un resultado en esta sesión; consulta el registro guardado."
 var controls_dialog: AcceptDialog
 const CREAM = Color("eee8ce")
 const MUTED = Color("b4c3ac")
@@ -93,6 +95,10 @@ func _ready():
 	controls_dialog.setup(self,input_profile)
 	for dialog: Window in [new_dialog,help_dialog,credits_dialog,details_dialog,controls_dialog,menu.get_popup()]: _watch_dialog(dialog)
 	get_window().focus_exited.connect(func(): input_profile.held.clear(); board.cancel_pointer())
+	tactical_reader = load("res://ui/tactical_reader.gd").new()
+	add_child(tactical_reader)
+	tactical_reader.setup(self)
+	_watch_dialog(tactical_reader)
 	_input_labels()
 	sound = AudioStreamPlayer.new()
 	sound.volume_db = -15
@@ -214,6 +220,8 @@ func _build_interface() -> void:
 	popup.add_item("Créditos", 6)
 	popup.add_item("Campaña de Kanto", 7)
 	popup.add_item("Controles", 9)
+	popup.add_item("Inspeccionar unidad · I",10)
+	popup.add_item("Último resultado · L",11)
 	popup.id_pressed.connect(_menu_selected)
 	timeline = HBoxContainer.new()
 	timeline.alignment = BoxContainer.ALIGNMENT_CENTER
@@ -366,6 +374,8 @@ func _rectify_movement() -> void:
 	board.grab_focus()
 
 func _menu_selected(identity: int):
+	if identity==10: _inspect(); return
+	if identity==11: _last_result(); return
 	match identity:
 		0: new_dialog.popup_centered()
 		1: _load_game()
@@ -441,6 +451,7 @@ func _build_dialogs():
 	add_child(details_dialog)
 
 func _modal_open() -> bool:
+	if tactical_reader!=null and tactical_reader.visible: return true
 	return new_dialog.visible or help_dialog.visible or credits_dialog.visible or details_dialog.visible or menu.get_popup().visible or (controls_dialog!=null and controls_dialog.visible)
 
 func _start_from_dialog():
@@ -724,6 +735,9 @@ func _show_plan(unit: Dictionary, plan: Dictionary):
 	board.forecast_hits = plan.hits
 	if not plan.get("approach",{}).is_empty(): board.route = plan.approach.path
 
+	target_info.set_meta("details",target_info.text)
+	target_info.text = load("res://ui/tactical_info.gd").forecast(unit,plan)+( "\n¡Alcanza a aliados!" if plan.ok and _friendly_risk(plan) else "")+"\nFicha: "+input_profile.label("inspect")+" · detalle completo"
+
 func _hover_tile(point: Dictionary):
 	if state.is_empty() or _modal_open() or not pending.is_empty(): return
 	board.route = []
@@ -849,8 +863,25 @@ func _commit(command: Dictionary):
 	_save() # Persist accepted orders before presentation or sound.
 	_refresh()
 	board.grab_focus()
+	_remember_result(before,command,result.get("hits",[]))
 	if command.kind == "attack": combat_feedback.present(before,plan,result.get("hits",[]))
 	_play("victory" if state.outcome == "victory" else (combat_feedback.last_sound if command.kind == "attack" else "select"))
+
+func _inspect() -> void:
+	if not state.is_empty() and not _modal_open(): tactical_reader.open_unit()
+
+func _last_result() -> void:
+	if not state.is_empty() and not _modal_open(): tactical_reader.open_history()
+
+func _remember_result(before: Dictionary, command: Dictionary, receipts: Array) -> void:
+	recent_result = before.log.back() if not before.get("log",[]).is_empty() else ""
+	if command.kind=="attack":
+		var actor: Dictionary = rules.active(before)
+		recent_result = actor.name+" · "+command.get("actionId","basic")
+		for receipt: Dictionary in receipts:
+			var target: Dictionary = rules.unit_by_id(before,int(receipt.targetId))
+			recent_result += "\n%s: %s%s" % [target.name,"FALLO" if not receipt.hit else "%d PS reales" % receipt.damage," · CRÍTICO" if receipt.get("critical",false) else ""]
+	else: recent_result = "\n".join(state.get("log",[]).slice(-6))
 
 func _play(name: String):
 	last_sound_requested = name
@@ -887,6 +918,8 @@ func _unhandled_key_input(event):
 	elif input_profile.matches(event,"load"): _load_game()
 	elif input_profile.matches(event,"menu"): menu.show_popup()
 	elif input_profile.matches(event,"controls"): _open_controls()
+	elif input_profile.matches(event,"inspect"): _inspect()
+	elif input_profile.matches(event,"result"): _last_result()
 	elif input_profile.matches(event,"panel"): _cycle_panel(event.shift_pressed)
 	elif input_profile.matches(event,"previous_target") or input_profile.matches(event,"next_target"):
 		if focused!=board: return
