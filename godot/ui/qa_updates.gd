@@ -7,6 +7,14 @@ func run(app: Control, directory: String) -> void:
 	app.board.input_profile = app.input_profile
 	app.controls_dialog.profile = app.input_profile
 	await fixture(app,directory)
+	if "--updates-scope=legacy" in OS.get_cmdline_user_args():
+		await legacy_checks(app,directory)
+		write_report(app,directory)
+		return
+	if "--updates-scope=management" in OS.get_cmdline_user_args():
+		await shop_checks(app,directory)
+		write_report(app,directory)
+		return
 	if semantic_only:
 		app.run.phase = "shop"
 		app.run.money = 500
@@ -34,8 +42,10 @@ func run(app: Control, directory: String) -> void:
 	await key(app,KEY_ESCAPE,app.tactical_reader)
 	await capture(app,directory,"tactical-info")
 	await additional(app,directory)
+	await title_readability_checks(app,directory)
 	await practice_checks(app,directory)
 	await semantic_checks(app,directory)
+	await legacy_checks(app,directory)
 	write_report(app,directory)
 
 func write_report(app: Control, directory: String) -> void:
@@ -57,6 +67,18 @@ func additional(app: Control, directory: String) -> void:
 			check(app.actor_info.get_theme_font_size("font_size")>=18,"HUD compensates physical shrink and enlarges text")
 			check(app.board.play_area().size.x>0 and app.board.play_area().size.y>0,"Positive board with enlarged HUD")
 			await capture(app,directory,"text-%d-%d" % [dimensions.x,scale_value])
+	app.input_profile.set_preference("highContrast",true)
+	app._apply_preferences()
+	await settle(app)
+	check(app.theme.get_stylebox("normal","Button").bg_color==Color.BLACK,"High contrast applies to native controls")
+	await capture(app,directory,"high-contrast")
+	app.input_profile.set_preference("highContrast",false)
+	check(app.input_profile.rebind("grid",{"key":KEY_Z}).ok,"Camera shortcut can be remapped")
+	app._input_labels()
+	await settle(app)
+	check(app.camera_bar.get_child(5).tooltip_text.contains("Z"),"Enlarged camera tooltip shows actual remapped key")
+	app.input_profile.reset_category("Cámara")
+	app._input_labels()
 	check(Store.equivalent(before,app.run),"Presentation settings and window changes preserve complete campaign and RNG")
 	check(app.input_profile.set_preference("muted",true) and app.input_profile.set_preference("reducedMotion",true),"Silence and reduced motion save")
 	var reloaded: RefCounted = Profile.new(app.input_profile.path)
@@ -158,6 +180,7 @@ func roster_checks(app: Control, directory: String) -> void:
 		check(Store.equivalent(before,app.run),"Cancelling swap preserves all members")
 		await click(app,app.travel_buttons.swap)
 		var expected: Dictionary = app.campaign.transact(before,{"kind":"swap","member":app.roster_swap,"reserve":incoming,"at":before.revision})
+		await capture(app,directory,"swap-review")
 		await click(app,app.action_review.get_ok_button())
 		check(expected.ok and Store.equivalent(app.run,expected.state),"Native swap matches complete authoritative state")
 	app._roster_page("pc",0)
@@ -176,6 +199,7 @@ func roster_checks(app: Control, directory: String) -> void:
 		app.move_library.selected_slot = 0
 		app._refresh()
 		await settle(app)
+		if not app.travel_buttons.has("move_"+move): check(false,"Expected member library remains rendered after swap"); return
 		var button: Button = app.travel_buttons["move_"+move]
 		button.grab_focus()
 		await key(app,KEY_ENTER)
@@ -193,7 +217,6 @@ func practice_checks(app: Control, directory: String) -> void:
 	var real_store: RefCounted = app.store
 	var bytes: String = FileAccess.get_file_as_string(real_store.file_path)
 	for method: String in ["keyboard","mouse"]:
-		print("PRACTICE_START "+method)
 		app._open_title()
 		await settle(app)
 		if method=="keyboard": await key(app,KEY_F7)
@@ -244,7 +267,6 @@ func practice_checks(app: Control, directory: String) -> void:
 			await click(app,app.tactical_reader.get_ok_button())
 			await click(app,app.buttons.finish)
 			await click(app,app.direction_buttons[6])
-		print("PRACTICE_STEP "+str(app.practice.step))
 		check(app.practice.step==12,"Complete practice using "+method+"; step="+str(app.practice.step))
 		await capture(app,directory,"practice-"+method)
 		if method=="keyboard": await key(app,KEY_F7)
@@ -290,3 +312,57 @@ func semantic_checks(app: Control, directory: String) -> void:
 	FileAccess.open(directory.path_join("accessibility-probe.json"),FileAccess.WRITE).store_string(JSON.stringify(app.accessible_view.probe(),"\t"))
 	app.input_profile.set_preference("accessibleMode",false)
 	app._apply_preferences()
+
+func title_readability_checks(app: Control, directory: String) -> void:
+	app.get_window().size = Vector2i(1024,720)
+	app._open_title()
+	for scale_value: int in [100,150]:
+		app.input_profile.set_preference("textScale",scale_value)
+		app._apply_preferences()
+		await settle(app)
+		for identity: String in ["help","options","credits","lab","quit"]:
+			var button: Button = app.title_screen.controls[identity]
+			var width: float = button.get_theme_font("font").get_string_size(button.text,HORIZONTAL_ALIGNMENT_LEFT,-1,button.get_theme_font_size("font_size")).x
+			check(button.size.x>=width+20,"Title utility text has space: "+identity+" / "+str(scale_value))
+		await capture(app,directory,"title-readable-"+str(scale_value))
+	app.input_profile.set_preference("textScale",100)
+	app.get_window().size = Vector2i(1280,900)
+	app._apply_preferences()
+	app._resume_title()
+
+func legacy_checks(app: Control, directory: String) -> void:
+	var saved: Dictionary = {"campaign":app.campaign,"rules":app.rules,"run":app.run,"state":app.state,"transactions":app.transactions,"selected":app.selected_member,"tab":app.roster_tab,"offset":app.roster_offset}
+	for file: String in ["kanto_run","growth_run","vitality_run","gym_run","roster_run"]:
+		app.campaign = load("res://core/"+file+".gd").new()
+		app.rules = app.campaign.engine
+		app.run = app.campaign.create("legacy-presentation-only",1)
+		app.state = app.run.battle
+		app.transactions = []
+		app._prepare_campaign_assets()
+		var before: Dictionary = app.run.duplicate(true)
+		app._open_title()
+		await settle(app)
+		check(app.title_screen.caption.text.contains("sin límite por gimnasio") if not app.campaign.has_method("level_cap") else app.title_screen.caption.text.contains("límite Nv."),"Classic title uses edition's actual cap availability: "+file)
+		app._resume_title()
+		check(Store.equivalent(before,app.run) and app.transactions.is_empty(),"Warm classic Continue preserves entire state: "+file)
+		# Explicit synthetic phase fixture, never saved or replayed as a real shop.
+		app.run.phase = "shop"
+		app._refresh()
+		await settle(app)
+		check(app.travel_buttons.has("batch")==bool(app.run.get("edition",1)>=4),"Quantity UI respects original candy semantics: "+file)
+		if app.run.get("edition",1)>=4:
+			app._open_batch()
+			await settle(app)
+			check(app.shop_batch.visible and app.shop_batch.summary.text.contains("cap"),"Classic quantity preview has safe cap description: "+file)
+			await key(app,KEY_ESCAPE,app.shop_batch)
+	app.campaign = saved.campaign
+	app.rules = saved.rules
+	app.run = saved.run
+	app.state = saved.state
+	app.transactions = saved.transactions
+	app.selected_member = saved.selected
+	app.roster_tab = saved.tab
+	app.roster_offset = saved.offset
+	app._prepare_campaign_assets()
+	app._refresh()
+	await capture(app,directory,"legacy-restored")

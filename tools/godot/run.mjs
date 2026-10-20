@@ -18,7 +18,7 @@ mkdirSync(work, { recursive: true });
 function run(executable, args, label, cwd = root) {
   const logIndex = args.indexOf('--log-file');
   if (logIndex >= 0) writeFileSync(args[logIndex + 1], '');
-  const result = spawnSync(executable, args, { cwd, encoding: 'utf8', windowsHide: true, timeout: label==='simulate-balance' ? 1_800_000 : label.startsWith('journey-ui-') || label==='test-journey' ? 900_000 : 300_000, maxBuffer: 12 * 1024 * 1024 });
+  const result = spawnSync(executable, args, { cwd, encoding: 'utf8', windowsHide: true, timeout: label==='simulate-balance' ? 1_800_000 : label.startsWith('journey-ui-') || label.startsWith('updates-ui-') || label==='ui-release' || label==='ui-source' || label==='test-journey' ? 900_000 : 300_000, maxBuffer: 12 * 1024 * 1024 });
   const log = (result.stdout ?? '') + (result.stderr ?? '') + (logIndex >= 0 && existsSync(args[logIndex + 1]) ? '\n' + readFileSync(args[logIndex + 1], 'utf8') : '');
   writeFileSync(resolve(work, `${label}.log`), log);
   const clean = log.replace(/\x1b\[[0-9;]*m/g, '');

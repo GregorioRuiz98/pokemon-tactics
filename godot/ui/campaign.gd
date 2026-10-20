@@ -533,8 +533,10 @@ func _layout_battle_hud() -> void:
 	if camera_bar!=null:
 		for index: int in camera_bar.get_child_count():
 			var camera_button: Button = camera_bar.get_child(index)
-			var short_names: Array = ["−","+","Combate","Unidad","Mapa","G","H"]
+			var short_names: Array = ["−","+","Combate","Unidad","Mapa","Cuad.","Alt."]
 			if factor>1.2: camera_button.text = short_names[index]
+			var shortcut_action: String = {0:"zoom_out",1:"zoom_in",3:"center",5:"grid",6:"heights"}.get(index,"")
+			camera_button.tooltip_text = input_profile.shortcut(["Alejar","Acercar","Centrar combate","Centrar unidad","Vista completa","Cuadrícula","Alturas"][index],shortcut_action) if not shortcut_action.is_empty() else ["","","Centrar combate","","Vista completa","",""][index]
 			camera_button.custom_minimum_size.x = maxf(60,camera_button.text.length()*16*factor*0.6+36)
 	if camera_pad!=null and factor>1.2:
 		camera_pad.position.x = size.x-220
@@ -721,9 +723,10 @@ func _render_travel() -> void:
 			if run.get("edition",1)>=12 and run.party.size()>=6: capture_text = "Enviar al PC · equipo completo"
 			_travel_button("capture",capture_text,narrative,{"kind":"capture"})
 		"shop":
-			var batch: Button = _button("Comprar / usar cantidades…",_open_batch)
-			narrative.add_child(batch)
-			travel_buttons.batch = batch
+			if run.get("edition",1)>=4:
+				var batch: Button = _button("Comprar / usar cantidades…",_open_batch)
+				narrative.add_child(batch)
+				travel_buttons.batch = batch
 			text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos Raros: %d\n\nUn Caramelo evoluciona una etapa sin requisito de nivel. No cura. Entrenar añade +5; máximo dos compras por Pokémon.\n\nSelecciona un miembro a la derecha para usar objetos o entrenar." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
 			if run.get("edition",1) >= 2:
 				text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos Raros: %d\n\nLas estadísticas crecen al subir de nivel. La EXP se gana con victorias.\n\nEvolución: nivel requerido + un Caramelo Raro. No cura ni da niveles. Preparar movimientos es gratis." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
@@ -910,7 +913,7 @@ func _review_loadout(identity: int, moves: Array, description: String) -> void:
 	action_review.review("Revisar repertorio",_member_summary(identity)+"\n\nNUEVO: "+names+"\n"+description+"\nBásico neutro independiente. No se consume dinero ni MT.",func(): _event({"kind":"loadout","member":identity,"moves":moves,"at":revision}))
 
 func _open_batch() -> void:
-	if run.phase!="shop" or batch_busy: return
+	if run.phase!="shop" or batch_busy or run.get("edition",1)<4: return
 	if shop_batch==null:
 		shop_batch = load("res://ui/shop_batch.gd").new()
 		add_child(shop_batch)

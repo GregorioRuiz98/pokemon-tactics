@@ -1,7 +1,9 @@
 extends RefCounted
 
 static func font_factor(app: Control) -> float:
-	return app.input_profile.preferences.textScale/100.0*maxf(1,1280.0/maxi(1,app.get_window().size.x))
+	var window: Window = app.get_window()
+	var width: int = window.size.x if is_instance_valid(window) else 1280
+	return app.input_profile.preferences.textScale/100.0*maxf(1,1280.0/maxi(1,width))
 
 static func apply_fonts(app: Control, node: Node) -> void:
 	if node is Control:
@@ -19,7 +21,11 @@ static func apply_fonts(app: Control, node: Node) -> void:
 				control.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 				control.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		if control is Button:
-			control.clip_text = true
+			control.clip_text = false
+			control.autowrap_mode = TextServer.AUTOWRAP_OFF if control.get_parent() is HBoxContainer and control.custom_minimum_size.x==0 else TextServer.AUTOWRAP_WORD_SMART
+			if control is OptionButton:
+				control.fit_to_longest_item = false
+				control.custom_minimum_size.x = maxf(140,control.custom_minimum_size.x)
 			control.custom_minimum_size.y = maxf(44,value*1.2+18)
 	for child: Node in node.get_children(): apply_fonts(app,child)
 

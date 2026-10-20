@@ -10,7 +10,7 @@ var stop_requested: bool = false
 var accepted: int = 0
 var persisted: int = 0
 
-static func prepare(game: RefCounted, source: Dictionary, mode: String, item_id: String, member: int, count: int) -> Dictionary:
+static func prepare(game: RefCounted, source: Dictionary, batch_mode: String, item_id: String, member: int, count: int) -> Dictionary:
 	if count<1 or count>99 or source.phase!="shop": return {"ok":false,"reason":"Cantidad entre1 y99; solo disponible en tienda."}
 	if not game.consumables.has(item_id): return {"ok":false,"reason":"Artículo no disponible."}
 	var state: Dictionary = source.duplicate(true)
@@ -19,7 +19,7 @@ static func prepare(game: RefCounted, source: Dictionary, mode: String, item_id:
 	var restored: int = 0
 	for index: int in count:
 		var command: Dictionary = {"kind":"buy","item":item_id,"at":state.revision}
-		if mode=="use":
+		if batch_mode=="use":
 			command = {"kind":"level-up" if item_id=="rare-candy" else ("revive" if item_id=="revive" else "heal"),"member":member,"at":state.revision}
 			if command.kind=="heal": command.item = item_id
 		var previous: Dictionary = game.target(state,member).duplicate(true)
@@ -28,13 +28,13 @@ static func prepare(game: RefCounted, source: Dictionary, mode: String, item_id:
 		state = step.state
 		commands.append(command)
 		var next: Dictionary = game.target(state,member)
-		if mode=="use" and not previous.is_empty():
+		if batch_mode=="use" and not previous.is_empty():
 			restored += maxi(0,int(next.hp-previous.hp))
 			if next.level!=previous.level: events.append("Nv. %d → %d · +%d PS actuales" % [previous.level,next.level,maxi(0,int(next.hp-previous.hp))])
 			if next.speciesId!=previous.speciesId: events.append("Evoluciona: "+game.engine.profiles[int(next.speciesId)].data.name)
 			for move: String in next.get("knownMoves",[]):
 				if move not in previous.get("knownMoves",[]): events.append("Aprende "+game.progression.data.moves[move].name+" (preparación independiente)")
-	return {"ok":true,"state":state,"commands":commands,"events":events,"restored":restored,"revision":source.revision,"member":member,"mode":mode,"item":item_id,"quantity":count}
+	return {"ok":true,"state":state,"commands":commands,"events":events,"restored":restored,"revision":source.revision,"member":member,"mode":batch_mode,"item":item_id,"quantity":count}
 
 func setup(owner_app: Control) -> void:
 	app = owner_app
@@ -84,8 +84,11 @@ func preview() -> void:
 	var selected: Dictionary = app.campaign.target(app.run,app.selected_member)
 	var unit: Dictionary = app.rules.member_unit(selected) if not selected.is_empty() else {}
 	plan = prepare(app.campaign,app.run,"buy" if operation.selected==0 else "use",key,app.selected_member,int(quantity.value))
-	summary.text = "Destinatario ID %d · %s\nNv. %d · PS %d / %d · cap %d\nEn bolsa: %d · por comprar: %d\nSaldo actual: %d ₽\n" % [app.selected_member,unit.get("name","Sin destinatario"),selected.get("level",0),unit.get("hp",0),unit.get("maxHp",0),app.campaign.level_cap(app.run),app.run.bag.get(key,0),int(quantity.value) if operation.selected==0 else 0,app.run.money]
+	summary.text = "Destinatario ID %d · %s\nNv. %d · PS %d / %d · cap %s\nEn bolsa: %d · por comprar: %d\nSaldo actual: %d ₽\n" % [app.selected_member,unit.get("name","Sin destinatario"),selected.get("level",0),unit.get("hp",0),unit.get("maxHp",0),str(app.campaign.level_cap(app.run)) if app.campaign.has_method("level_cap") else "sin límite por gimnasio",app.run.bag.get(key,0),int(quantity.value) if operation.selected==0 else 0,app.run.money]
 	get_ok_button().disabled = not plan.ok
+	get_ok_button().set_meta("semantic_manual",true)
+	operation.set_meta("semantic_manual",true)
+	item.set_meta("semantic_manual",true)
 	operation.accessibility_name = "Operación: comprar o usar"
 	item.accessibility_name = "Artículo: "+item.get_item_text(item.selected)
 	quantity.accessibility_name = "Cantidad del artículo"

@@ -84,8 +84,18 @@ func run(app: Control, directory: String) -> void:
 		elif command.kind in ["enter","capture","continue"]: app.travel_buttons[command.kind].pressed.emit()
 		elif command.kind=="travel": app.travel_buttons["travel_"+command.location].pressed.emit()
 		elif command.kind=="destiny":
+			var before_choice: Dictionary = app.run.duplicate(true)
+			var journal_choice: Array = app.transactions.duplicate(true)
+			var keys: RefCounted = load("res://ui/qa_input.gd").new()
 			app.travel_buttons["destiny_"+command.path].pressed.emit()
-			if app.action_review!=null and app.action_review.visible: app.action_review.confirmed.emit()
+			check(app.action_review!=null and app.action_review.visible,"Legendary choice requires review")
+			await keys.key(app,KEY_ESCAPE,app.action_review)
+			check(Store.equivalent(before_choice,app.run) and Store.equivalent(journal_choice,app.transactions),"Cancelling legendary choice preserves both possibilities and journal")
+			app.travel_buttons["destiny_"+command.path].pressed.emit()
+			await keys.raw(app,KEY_ENTER,true,false,app.action_review)
+			for repeat: int in 3: await keys.raw(app,KEY_ENTER,true,true)
+			await keys.raw(app,KEY_ENTER,false)
+			check(app.run.revision==before_choice.revision+1,"Held confirmation accepts exactly one destiny order")
 		elif command.kind=="buy": app.travel_buttons["buy_"+command.item].pressed.emit()
 		elif command.kind=="level-up" or command.kind=="revive" or command.kind=="heal":
 			var reserve_index: int = -1

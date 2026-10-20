@@ -449,3 +449,8 @@ Prompt 01 aplicado: acciones reasignables y persistentes, conflictos revisables,
 ## Turno contextual0.22.3
 
 Prompt02 aplicado: selección de habilidades sin ejecución, objetivos Q/E, modos Rápido/Seguro, orientación flechas/Enter y cámara por cruceta/Alt+flechas/P. Reglas18/17 y guardados conservados. [Entrega y evidencia](SPRINT_22_CONTEXT.md). Siguiente: prompt03, inspección persistente;03–09 pendientes. Sin publicación pública.
+
+
+## Cierre de mejoras0.22.10
+
+El encargo «hazlo todo» del20 de octubre completa técnicamente prompts03–09 con commits separados en codex/accessibility-complete. Ver docs/SPRINT_22_ACCESSIBILITY_COMPLETE.md (desde godot: ../docs/). Inspección, preferencias, cantidades, PC/biblioteca, práctica y acceso textual; motor18/17 y datos/snapshots intactos.09 prepara kit humano sin participantes; lector audible/usuario y DPI físicos pendientes. No delegación automática, publicación ni balance nuevos.

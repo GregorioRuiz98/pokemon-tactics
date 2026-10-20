@@ -33,7 +33,7 @@ func setup(owner_app: Control) -> void:
 	panel.hide()
 
 func describe(node: Node) -> void:
-	if node is BaseButton:
+	if node is BaseButton and not node.has_meta("semantic_manual"):
 		if node is Button: node.accessibility_name = node.text
 		node.accessibility_description = node.tooltip_text
 		if node.disabled and node.accessibility_description.is_empty(): node.accessibility_description = "No disponible en la fase o selección actual."

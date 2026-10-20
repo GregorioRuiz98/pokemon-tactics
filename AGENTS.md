@@ -93,3 +93,8 @@
 - Turno contextual0.22.3: prompt02 aplicado sobre controles0.22.2. Elegir habilidad nunca ejecuta; Q/E selecciona objetivos legales, Enter/clic acepta; modos Rápido/Seguro persistentes con confirmación de aliados/autocoste letal. F/flechas/Enter orientan; R conserva límites. Cámara cruceta/Alt+flechas/P y umbral de arrastre; hover respeta teclado. Campaña18/combate17 y reglas/datos congelados. Ver docs/SPRINT_22_CONTEXT.md, QAcontext nativa aislada; siguiente prompt03, no encadenar03–09 ni publicar.
 
 - Encargo20 de octubre «hazlo todo»: autoriza completar prompts03–09 de accesibilidad con entregas/commits separados. Sustituye el límite anterior de no encadenar. Publicación y pruebas humanas siguen pendientes; sin delegación automática. Inspección0.22.4 entregada; continuar04–09.
+
+
+## Cierre de mejoras0.22.10
+
+El encargo «hazlo todo» del20 de octubre completa técnicamente prompts03–09 con commits separados en codex/accessibility-complete. Ver docs/SPRINT_22_ACCESSIBILITY_COMPLETE.md (desde godot: ../docs/). Inspección, preferencias, cantidades, PC/biblioteca, práctica y acceso textual; motor18/17 y datos/snapshots intactos.09 prepara kit humano sin participantes; lector audible/usuario y DPI físicos pendientes. No delegación automática, publicación ni balance nuevos.

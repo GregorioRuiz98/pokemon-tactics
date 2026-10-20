@@ -35,7 +35,7 @@ func render(app: Control, parent: VBoxContainer, member: Dictionary) -> void:
 	parent.add_child(search)
 	app.travel_buttons.move_search = search
 	var filters: GridContainer = GridContainer.new()
-	filters.columns = 2
+	filters.columns = 1 if load("res://ui/presentation_settings.gd").font_factor(app)>1.2 else 2
 	parent.add_child(filters)
 	var category_choice: OptionButton = OptionButton.new()
 	for text: String in ["Cualquier función","Ataques físicos/especiales","Apoyos y control"]: category_choice.add_item(text)

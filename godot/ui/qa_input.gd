@@ -33,6 +33,11 @@ func key(app: Control, code: int, viewport: Viewport = null, shift: bool = false
 
 func click(app: Control, control: Control) -> void:
 	await settle(app)
+	var ancestor: Node = control.get_parent()
+	while ancestor!=null:
+		if ancestor is ScrollContainer: ancestor.ensure_control_visible(control)
+		ancestor = ancestor.get_parent()
+	await settle(app)
 	var viewport: Viewport = control.get_viewport()
 	var point: Vector2 = control.get_global_rect().get_center()
 	if viewport!=app.get_viewport() and viewport is Window and app.get_window().gui_embed_subwindows:

@@ -1,0 +1,162 @@
+{
+  "version": "0.22.10",
+  "dateUtc": "2026-10-20T20:23:24.092068+00:00",
+  "rows": [
+    {
+      "case": "Interfaz y continuidad",
+      "source": 58,
+      "executable": 58,
+      "equal": true,
+      "sourceTimeUtc": "2026-10-20T19:40:19.307350+00:00",
+      "executableTimeUtc": "2026-10-20T19:53:13.229953+00:00",
+      "origin": "QA de controles y modelo; combina eventos y señales explícitas"
+    },
+    {
+      "case": "Teclado y foco",
+      "source": 59,
+      "executable": 59,
+      "equal": true,
+      "sourceTimeUtc": "2026-10-20T19:08:36.286652+00:00",
+      "executableTimeUtc": "2026-10-20T19:48:38.611179+00:00",
+      "origin": "Native synthetic viewport keys and pointer; shop prepared by pure engine; no human saves"
+    },
+    {
+      "case": "Turno y cámara",
+      "source": 96,
+      "executable": 96,
+      "equal": true,
+      "sourceTimeUtc": "2026-10-20T19:10:50.258648+00:00",
+      "executableTimeUtc": "2026-10-20T19:52:29.140665+00:00",
+      "origin": "Native viewport key/pointer events; isolated saves; no human input or balance claims"
+    },
+    {
+      "case": "Lectura, gestión, práctica y clásicos",
+      "source": 137,
+      "executable": 137,
+      "equal": true,
+      "sourceTimeUtc": "2026-10-20T19:39:28.703937+00:00",
+      "executableTimeUtc": "2026-10-20T19:47:29.733373+00:00",
+      "origin": "Native synthetic events and explicitly synthetic interaction fixtures; isolated saves"
+    },
+    {
+      "case": "PC y equipo",
+      "source": 540,
+      "executable": 540,
+      "equal": true,
+      "sourceTimeUtc": "2026-10-20T19:11:25.122574+00:00",
+      "executableTimeUtc": "2026-10-20T19:53:39.437669+00:00",
+      "origin": "QA de controles y modelo; combina eventos y señales explícitas"
+    },
+    {
+      "case": "Laboratorio",
+      "source": 1026,
+      "executable": 1026,
+      "equal": true,
+      "sourceTimeUtc": "2026-10-20T19:17:34.914184+00:00",
+      "executableTimeUtc": "2026-10-20T20:08:35.959744+00:00",
+      "origin": "QA de controles y modelo; combina eventos y señales explícitas"
+    },
+    {
+      "case": "Aves / mapa16",
+      "source": 901,
+      "executable": 901,
+      "equal": true,
+      "sourceTimeUtc": "2026-10-20T19:21:52.037331+00:00",
+      "executableTimeUtc": "2026-10-20T20:10:44.576622+00:00",
+      "origin": "continued-delivered-champion16"
+    },
+    {
+      "case": "Mew-Mewtwo / mapa24",
+      "source": 513,
+      "executable": 513,
+      "equal": true,
+      "sourceTimeUtc": "2026-10-20T19:22:46.521902+00:00",
+      "executableTimeUtc": "2026-10-20T20:12:17.957465+00:00",
+      "origin": "natural-current-champion24"
+    },
+    {
+      "case": "Prototipo semántico / ventanas nativas",
+      "source": 8,
+      "executable": 8,
+      "equal": true,
+      "sourceTimeUtc": "2026-10-20T19:23:10.132613+00:00",
+      "executableTimeUtc": "2026-10-20T20:12:55.241281+00:00",
+      "origin": "Native synthetic events and explicitly synthetic interaction fixtures; isolated saves"
+    }
+  ],
+  "baseline": {
+    "journey": {
+      "fullStateEqualTo0223": true,
+      "commandsEqualTo0223": true,
+      "commands": 8924
+    },
+    "journey-psychic": {
+      "fullStateEqualTo0223": true,
+      "commandsEqualTo0223": true,
+      "commands": 7396
+    }
+  },
+  "lint": {
+    "total": 0,
+    "errors": 0,
+    "warnings": 0,
+    "parse_errors": 0
+  },
+  "validation": {
+    "total": 65,
+    "errors": 0,
+    "parse_errors": 0,
+    "warnings": 65,
+    "info": 0
+  },
+  "preferences": [
+    {
+      "assertions": 2,
+      "failures": [],
+      "phase": "write"
+    },
+    {
+      "assertions": 20,
+      "failures": [],
+      "phase": "read"
+    }
+  ],
+  "batch": {
+    "assertions": 44,
+    "failures": [],
+    "syntheticFixture": true
+  },
+  "manualFixtureSource": {
+    "buyFive": true,
+    "filesWritten": false,
+    "fixture": true,
+    "swapDuplicate": true,
+    "useFive": true
+  },
+  "manualFixtureRelease": "unsupported script override; use source with Godot",
+  "accessibility": {
+    "display": "Windows",
+    "dpi": 96,
+    "enabled": true,
+    "engine": {
+      "build": "official",
+      "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+      "hex": 263938,
+      "major": 4,
+      "minor": 7,
+      "patch": 2,
+      "status": "stable",
+      "string": "4.7.2-stable (official)",
+      "timestamp": 0
+    },
+    "humanReaderTest": "pending",
+    "os": "Windows",
+    "osVersion": "10.0.26300",
+    "readerAudibleTest": "pending",
+    "renderer": "gl_compatibility",
+    "supported": true
+  },
+  "humanSessions": 0,
+  "humanPhase": "prepared-pending",
+  "publicDeployment": false
+}

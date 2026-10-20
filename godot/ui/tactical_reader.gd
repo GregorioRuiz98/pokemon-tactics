@@ -58,4 +58,5 @@ func show_unit(identity: int) -> void:
 func open_history() -> void:
 	choices.hide()
 	body.text = "RESULTADOS REALES\n"+app.recent_result+"\n\nREGISTRO DEL COMBATE\n"+"\n".join(app.state.get("log",[]))
+	body.accessibility_name = body.text
 	popup_centered(Vector2i(700,570))

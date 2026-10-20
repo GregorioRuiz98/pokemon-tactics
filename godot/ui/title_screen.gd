@@ -90,7 +90,7 @@ func refresh() -> void:
 	notice.text = app.save_warning
 	caption.text = "Tu equipo. Tu estrategia.\nUn viaje desde Pueblo Paleta hasta la Liga."
 	if not app.run.is_empty():
-		caption.text = "%s · %s · %d medallas\n%d / %d en pie · límite Nv. %d\nSiguiente: %s" % [app.campaign.locations[int(app.run.stage)].name,app.run.phase,app.run.get("medals",[]).size(),app.run.party.filter(func(m):return m.hp>0).size(),app.run.party.size(),app.campaign.level_cap(app.run),{"map":"elegir / entrar al encuentro","battle":"reanudar el turno guardado","shop":"gestionar equipo y continuar","capture":"resolver recompensa","ending":"aventura completada"}.get(app.run.phase,"revisar equipo")]
+		caption.text = "%s · %s · %d medallas\n%d / %d en pie · %s\nSiguiente: %s" % [app.campaign.locations[int(app.run.stage)].name,{"map":"Mapa","battle":"Combate","shop":"Tienda","capture":"Recompensa","complete":"Tramo completo","ending":"Final","defeat":"Derrota"}.get(app.run.phase,"Aventura"),app.run.get("medals",[]).size(),app.run.party.filter(func(m):return m.hp>0).size(),app.run.party.size(),("límite Nv. %d" % app.campaign.level_cap(app.run) if app.campaign.has_method("level_cap") else "sin límite por gimnasio"),{"map":"elegir / entrar al encuentro","battle":"reanudar el turno guardado","shop":"gestionar equipo y continuar","capture":"resolver recompensa","ending":"aventura completada"}.get(app.run.phase,"revisar equipo")]
 	if app.title_loading: return
 	var focus: Button = controls["continue"] if available else controls["new"]
 	var focused: Control = get_viewport().gui_get_focus_owner()

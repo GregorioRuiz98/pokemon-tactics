@@ -80,7 +80,7 @@ const AUDIO = {"select":preload("res://assets/audio/select.wav"),"hit":preload("
 func _ready():
 	var preferences_path: String = "user://controls.json"
 	for argument: String in OS.get_cmdline_user_args():
-		if argument.contains("qa-dir="): preferences_path = argument.get_slice("=",1).path_join("controls.json")
+		if argument.contains("qa-dir="): preferences_path = argument.get_slice("=",1).path_join("controls-%d.json" % Time.get_ticks_usec())
 	input_profile = InputProfile.new(preferences_path)
 	muted = input_profile.preferences.muted
 	reduced_motion = input_profile.preferences.reducedMotion
@@ -897,6 +897,7 @@ func _open_presentation() -> void:
 
 func _apply_preferences() -> void:
 	font_update_queued = false
+	if not is_inside_tree(): return
 	if has_method("_layout_battle_hud") and actor_portrait!=null: call("_layout_battle_hud")
 	load("res://ui/presentation_settings.gd").apply(self)
 	if get("accessible_view")!=null: get("accessible_view").update()
@@ -922,10 +923,10 @@ func _last_result() -> void:
 func _remember_result(before: Dictionary, command: Dictionary, receipts: Array) -> void:
 	recent_result = before.log.back() if not before.get("log",[]).is_empty() else ""
 	if command.kind=="attack":
-		var actor: Dictionary = rules.active(before)
+		var actor: Dictionary = Rules.active(before)
 		recent_result = actor.name+" · "+command.get("actionId","basic")
 		for receipt: Dictionary in receipts:
-			var target: Dictionary = rules.unit_by_id(before,int(receipt.targetId))
+			var target: Dictionary = Rules.unit_by_id(before,int(receipt.targetId))
 			recent_result += "\n%s: %s%s" % [target.name,"FALLO" if not receipt.hit else "%d PS reales" % receipt.damage," · CRÍTICO" if receipt.get("critical",false) else ""]
 	else: recent_result = "\n".join(state.get("log",[]).slice(-6))
 

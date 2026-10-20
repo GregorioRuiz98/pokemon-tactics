@@ -49,7 +49,7 @@ func render(app: Control, parent: VBoxContainer) -> void:
 	parent.add_child(search)
 	app.travel_buttons.pc_search = search
 	var grid: GridContainer = GridContainer.new()
-	grid.columns = 2
+	grid.columns = 1 if load("res://ui/presentation_settings.gd").font_factor(app)>1.2 else 2
 	parent.add_child(grid)
 	var lists: Array = [["Todos los estados","En pie","Debilitado"],["Todos los tipos"]+app.TYPE_NAMES.values(),["Cualquier repertorio","Con ataques preparados","Con apoyos preparados"],["Orden original","Nombre","Nivel ↓","PS ↓","Origen"]]
 	for index: int in lists.size():

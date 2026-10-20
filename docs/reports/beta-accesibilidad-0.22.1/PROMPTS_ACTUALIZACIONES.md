@@ -336,3 +336,8 @@ ParteC: experimentos separados de diseño:
 Entrega:
 Informe con defectos reproducibles,prioridad,evidencia y aceptación; resultados automáticos con denominadores/fechas; kit humano listo y resultados humanos solo si ocurrieron; backlog por impacto y riesgo. Si no hay participantes, la fase humana queda preparada/pendiente, sin fingir cierre. Cada propuesta de balance o mecánica nueva debe estar diferenciada de los fallos de acceso y quedar para autorización futura. No instalar plugins, añadir telemetría remota ni publicar para completar la prueba.
 ~~~~
+
+
+## Estado20 de octubre
+
+01–08 implementados con entregas0.22.2–0.22.9;09 ejecuta regresión0.22.10 y deja preparada la fase humana, todavía pendiente. Ver ../../SPRINT_22_ACCESSIBILITY_COMPLETE.md. No se declara compatibilidad audible ni balance humano cerrado.

@@ -51,3 +51,10 @@ Las pruebas automáticas acreditan reglas, integridad y recorridos concretos. No
 - R rectifica exclusivamente el movimiento anterior si todavía no hubo acción. Actuar antes de moverse también bloquea R.
 
 Las pruebas inyectan eventos del viewport nativo en Windows. Falta la valoración con teclado/ratón físicos y tecnologías de apoyo por personas. No se añade todavía inspección persistente (prompt03), ampliación de texto (04) ni los demás bloques.
+
+
+## Mejoras0.22.10
+
+Aprender a jugar o F7 abre práctica separada de tu aventura; F7/Inicio sale y la restaura. F4 abre el glosario. I mantiene la ficha y lista de unidades; L repite resultados reales. Opciones ofrece texto100/125/150%, contraste, silencio y movimiento reducido; F12 recupera texto100% y contraste normal. Tienda permite cantidades con revisión previa; PC y biblioteca admiten búsqueda/filtros sin alterar el equipo real. El final legendario pide confirmación. El modo textual es un prototipo: soporte de lector real pendiente.
+
+Guion de aceptación, consentimiento y plantillas en reports/aceptacion-0.22.10/KIT_HUMANO.md; en el ZIP, PRUEBAS_HUMANAS/KIT_HUMANO.md. No sustituir una partida personal para probar fixtures.
