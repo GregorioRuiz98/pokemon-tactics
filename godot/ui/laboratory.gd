@@ -7,6 +7,10 @@ const Board = preload("res://ui/board.gd")
 const Indicators = preload("res://ui/unit_indicators.gd")
 const Revision = preload("res://core/movement_revision.gd")
 const Qa = preload("res://ui/qa_driver.gd")
+const InputProfile = preload("res://ui/input_profile.gd")
+const FocusMemory = preload("res://ui/focus_memory.gd")
+var input_profile: RefCounted
+var controls_dialog: AcceptDialog
 const CREAM = Color("eee8ce")
 const MUTED = Color("b4c3ac")
 const GOLD = Color("eccb7f")
@@ -68,6 +72,10 @@ const Feedback = preload("res://ui/combat_feedback.gd")
 const AUDIO = {"select":preload("res://assets/audio/select.wav"),"hit":preload("res://assets/audio/hit.wav"),"victory":preload("res://assets/audio/victory.wav"),"miss":preload("res://assets/audio/miss.wav"),"immune":preload("res://assets/audio/immune.wav"),"level-up":preload("res://assets/audio/level-up.wav")}
 
 func _ready():
+	var preferences_path: String = "user://controls.json"
+	for argument: String in OS.get_cmdline_user_args():
+		if argument.contains("qa-dir="): preferences_path = argument.get_slice("=",1).path_join("controls.json")
+	input_profile = InputProfile.new(preferences_path)
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--qa-dir="): qa_dir = argument.trim_prefix("--qa-dir=")
 	qa_running = not qa_dir.is_empty()
@@ -79,6 +87,12 @@ func _ready():
 	_make_theme()
 	_build_interface()
 	_build_dialogs()
+	controls_dialog = load("res://ui/controls_dialog.gd").new()
+	add_child(controls_dialog)
+	controls_dialog.setup(self,input_profile)
+	for dialog: Window in [new_dialog,help_dialog,credits_dialog,details_dialog,controls_dialog,menu.get_popup()]: _watch_dialog(dialog)
+	get_window().focus_exited.connect(func(): input_profile.held.clear())
+	_input_labels()
 	sound = AudioStreamPlayer.new()
 	sound.volume_db = -15
 	add_child(sound)
@@ -151,6 +165,7 @@ func _build_interface() -> void:
 	# Overlay layout adapted from the Godot skill HUD template; the laboratory
 	# already owns state/signals, so it needs no extra manager or autoload.
 	board = _make_board()
+	board.input_profile = input_profile
 	board.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	board.setup(rules.data.species)
 	board.tile_selected.connect(_select_tile)
@@ -194,6 +209,7 @@ func _build_interface() -> void:
 	popup.set_item_checked(popup.get_item_index(5), true)
 	popup.add_item("Créditos", 6)
 	popup.add_item("Campaña de Kanto", 7)
+	popup.add_item("Controles", 9)
 	popup.id_pressed.connect(_menu_selected)
 	timeline = HBoxContainer.new()
 	timeline.alignment = BoxContainer.ALIGNMENT_CENTER
@@ -318,6 +334,12 @@ func _open_actions() -> void:
 	action_page = true
 	selecting = "auto"
 	_refresh()
+	_focus_actions.call_deferred()
+
+func _focus_actions() -> void:
+	if _modal_open() or not action_page: return
+	for button: Button in action_buttons.values():
+		if FocusMemory.eligible(button): button.grab_focus(); return
 
 func _can_rectify() -> bool:
 	return pending.is_empty() and Revision.available(state, history)
@@ -355,6 +377,7 @@ func _menu_selected(identity: int):
 		5: _toggle_motion()
 		6: credits_dialog.popup_centered(Vector2i(720, 550))
 		7: get_tree().change_scene_to_file("res://scenes/campaign.tscn")
+		9: _open_controls()
 
 func _build_dialogs():
 	new_dialog = ConfirmationDialog.new()
@@ -414,7 +437,7 @@ func _build_dialogs():
 	add_child(details_dialog)
 
 func _modal_open() -> bool:
-	return new_dialog.visible or help_dialog.visible or credits_dialog.visible or details_dialog.visible or menu.get_popup().visible
+	return new_dialog.visible or help_dialog.visible or credits_dialog.visible or details_dialog.visible or menu.get_popup().visible or (controls_dialog!=null and controls_dialog.visible)
 
 func _start_from_dialog():
 	var preserved = store.preserve_before_new()
@@ -472,6 +495,9 @@ func _player_turn() -> bool:
 	return not state.is_empty() and state.outcome == "playing" and Rules.active(state).team == "ally"
 
 func _refresh():
+	var focused_action: String = ""
+	for identity: String in action_buttons:
+		if action_buttons[identity]==get_viewport().gui_get_focus_owner(): focused_action = identity
 	_clear(timeline)
 	_clear(actions)
 	action_buttons.clear()
@@ -560,6 +586,10 @@ func _refresh():
 	target_info.text = "Pasa el cursor por una unidad\npara ver la previsión.\n\nAzul: puedes moverte.\nMarco coral: puedes atacar."
 	hint.text = _default_hint()
 	board.queue_redraw()
+	_input_labels()
+	if not focused_action.is_empty() and action_page:
+		var replacement: Control = action_buttons.get(focused_action)
+		if FocusMemory.eligible(replacement): replacement.grab_focus.call_deferred()
 
 func _default_hint() -> String:
 	if not save_warning.is_empty(): return save_warning
@@ -775,21 +805,104 @@ func _type_names(types: Array) -> String:
 func _unhandled_key_input(event):
 	if not event is InputEventKey or not event.pressed or event.echo: return
 	if _modal_open(): return
-	match event.keycode:
-		KEY_ESCAPE: _cancel()
-		KEY_M: _select_movement()
-		KEY_A: _open_actions()
-		KEY_R: _rectify_movement()
-		KEY_F: _select_finish()
-		KEY_F8: _load_game()
-		KEY_F1: menu.show_popup()
-		KEY_1, KEY_2, KEY_3, KEY_4, KEY_5:
+	var focused: Control = get_viewport().gui_get_focus_owner()
+	if focused is LineEdit or focused is TextEdit: return
+	if input_profile.matches(event,"cancel"): _cancel()
+	elif input_profile.matches(event,"movement"): _select_movement()
+	elif input_profile.matches(event,"abilities"): _open_actions()
+	elif input_profile.matches(event,"rectify"): _rectify_movement()
+	elif input_profile.matches(event,"finish"): _select_finish()
+	elif input_profile.matches(event,"load"): _load_game()
+	elif input_profile.matches(event,"menu"): menu.show_popup()
+	elif input_profile.matches(event,"controls"): _open_controls()
+	elif input_profile.matches(event,"panel"): _cycle_panel(event.shift_pressed)
+	else:
+		var found: bool = false
+		for index: int in 5:
+			if not input_profile.matches(event,"slot"+str(index+1)): continue
 			if not _player_turn(): return
-			var index = event.keycode - KEY_1
-			var entries = rules.profile(Rules.active(state)).actions_for(Rules.active(state))
+			var entries: Array = rules.profile(Rules.active(state)).actions_for(Rules.active(state))
 			if index < entries.size(): _select_action(entries[index].definition.id)
-		_: return
+			found = true
+			break
+		if not found: return
 	get_viewport().set_input_as_handled()
+
+func _input(event: InputEvent) -> void:
+	if input_profile==null: return
+	_guard_input(event,get_viewport())
+
+func _guard_input(event: InputEvent, viewport: Viewport) -> void:
+	if event.has_meta("tactics_guarded"): return
+	event.set_meta("tactics_guarded",true)
+	var focused: Control = viewport.gui_get_focus_owner()
+	if focused is LineEdit or focused is TextEdit: return
+	if not input_profile.allow(event): viewport.set_input_as_handled()
+
+func _watch_dialog(dialog: Window) -> void:
+	var origin: Dictionary = {}
+	dialog.about_to_popup.connect(func():
+		var viewport: Viewport = dialog.get_parent() if dialog.get_parent() is Window else get_viewport()
+		var focused: Control = viewport.gui_get_focus_owner()
+		origin["focus"] = weakref(focused) if focused!=null else null)
+	dialog.visibility_changed.connect(func():
+		if not dialog.visible:
+			input_profile.held.clear()
+			_restore_dialog_focus.call_deferred(origin))
+	dialog.window_input.connect(func(event: InputEvent): _dialog_input(event,dialog))
+	var listener: Node = load("res://ui/dialog_input.gd").new()
+	listener.handler = func(event: InputEvent): _dialog_input(event,dialog)
+	dialog.add_child(listener)
+
+func _dialog_input(event: InputEvent, dialog: Window) -> void:
+	if not dialog.visible: return
+	_guard_input(event,dialog)
+	if dialog.is_input_handled(): return
+	if dialog is AcceptDialog and dialog!=controls_dialog and input_profile.matches(event,"cancel"):
+		dialog.set_input_as_handled()
+		dialog.canceled.emit()
+		dialog.hide()
+
+func _restore_dialog_focus(origin: Dictionary) -> void:
+	if not is_inside_tree(): return
+	var focused: Control = origin.focus.get_ref() if origin.get("focus")!=null else null
+	if FocusMemory.eligible(focused): focused.grab_focus()
+	elif not _modal_open(): _default_focus()
+
+func _default_focus() -> void:
+	if board.visible: board.grab_focus()
+
+func _open_controls() -> void:
+	if controls_dialog!=null: controls_dialog.popup_centered(Vector2i(700,640))
+
+func _cycle_panel(_backwards: bool = false) -> void:
+	if not board.visible: return
+	var focused: Control = get_viewport().gui_get_focus_owner()
+	if focused==board:
+		if action_page: _focus_actions()
+		elif directions.visible:
+			for button: Button in direction_buttons.values():
+				if FocusMemory.eligible(button): button.grab_focus(); return
+		else:
+			for button: Button in [buttons.confirm,buttons.actions,buttons.finish,buttons.cancel]:
+				if FocusMemory.eligible(button): button.grab_focus(); return
+	else: board.grab_focus()
+
+func _input_labels() -> void:
+	if menu==null: return
+	menu.text = input_profile.shortcut("Menú","menu")
+	var popup: PopupMenu = menu.get_popup()
+	popup.set_item_text(popup.get_item_index(1),input_profile.shortcut("Recuperar guardado","load"))
+	popup.set_item_text(popup.get_item_index(9),input_profile.shortcut("Controles","controls"))
+	for entry: Array in [["actions","Habilidades","abilities"],["undo","Rectificar movimiento","rectify"],["finish","Orientar y terminar","finish"],["cancel","Volver","cancel"]]:
+		buttons[entry[0]].text = input_profile.shortcut(entry[1],entry[2])
+	var index: int = 1
+	for button: Button in action_buttons.values():
+		var separator: int = button.text.find(" · ")
+		if separator>=0: button.text = input_profile.label("slot"+str(index))+button.text.substr(separator)
+		index += 1
+	if help_dialog!=null:
+		help_dialog.dialog_text = "Un movimiento y una acción, en cualquier orden.\nClic en casilla: mover. Clic en rival: básico neutro.\nHabilidades: %s. Ranuras: %s / %s / %s / %s / %s.\nLas habilidades propias se ejecutan al seleccionarlas.\nSolo se confirma si se alcanza a un aliado.\n\nRectificar: %s, solo movimiento y antes de actuar.\nNo recupera PS, PT, ataques, estados o tiradas.\nOrientar y terminar: %s. Aliados atravesables;\ndestinos ocupados no válidos.\n\nFlechas y Enter/Espacio siempre disponibles.\nTab / Mayús+Tab: controles. %s: cambiar panel.\nEscape o derecho: volver. %s: recuperar guardado.\n%s: reasignar controles. Guardado local por orden." % [input_profile.label("abilities"),input_profile.label("slot1"),input_profile.label("slot2"),input_profile.label("slot3"),input_profile.label("slot4"),input_profile.label("slot5"),input_profile.label("rectify"),input_profile.label("finish"),input_profile.label("panel"),input_profile.label("load"),input_profile.label("controls")]
 
 func _run_qa():
 	await Qa.new().run(self, qa_dir)

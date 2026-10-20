@@ -20,6 +20,11 @@ var cursor = Vector2i(1, 6)
 var reduced_motion = false
 var elapsed = 0.0
 var redraw_clock = 0.0
+var input_profile: RefCounted
+
+func _pressed(event: InputEvent, action: String) -> bool:
+	if input_profile!=null: return input_profile.matches(event,action)
+	return event.is_action_pressed("ui_"+action,true,true) if action in ["up","down","left","right","accept","cancel"] else false
 
 func _ready():
 	custom_minimum_size = Vector2(360, 360)
@@ -71,15 +76,14 @@ func _gui_input(event):
 				tile_selected.emit({"x": point.x, "y": point.y})
 				accept_event()
 		elif event is InputEventMouseMotion: tile_hovered.emit({})
-	if event is InputEventKey and event.pressed and not event.echo:
-		match event.keycode:
-			KEY_LEFT: cursor.x = maxi(0, cursor.x - 1)
-			KEY_RIGHT: cursor.x = mini(dimensions().x - 1, cursor.x + 1)
-			KEY_UP: cursor.y = maxi(0, cursor.y - 1)
-			KEY_DOWN: cursor.y = mini(dimensions().y - 1, cursor.y + 1)
-			KEY_ENTER, KEY_KP_ENTER: tile_selected.emit({"x": cursor.x, "y": cursor.y})
-			_: return
-		if event.keycode not in [KEY_ENTER, KEY_KP_ENTER]: tile_hovered.emit({"x": cursor.x, "y": cursor.y})
+	if event is InputEventKey and event.pressed:
+		if _pressed(event,"left"): cursor.x = maxi(0,cursor.x-1)
+		elif _pressed(event,"right"): cursor.x = mini(dimensions().x-1,cursor.x+1)
+		elif _pressed(event,"up"): cursor.y = maxi(0,cursor.y-1)
+		elif _pressed(event,"down"): cursor.y = mini(dimensions().y-1,cursor.y+1)
+		elif _pressed(event,"accept"): tile_selected.emit({"x":cursor.x,"y":cursor.y})
+		else: return
+		if not _pressed(event,"accept"): tile_hovered.emit({"x":cursor.x,"y":cursor.y})
 		accept_event()
 		queue_redraw()
 

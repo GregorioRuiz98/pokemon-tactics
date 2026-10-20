@@ -9,7 +9,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const project = resolve(root, 'godot');
 const nativeVersion = readFileSync(resolve(project, 'project.godot'),'utf8').match(/config\/version="([^"]+)"/)[1];
 const chapter = Number(nativeVersion.split('.')[1]);
-const qaLabel = nativeVersion === '0.22.1' ? '22-ui' : String(chapter);
+const qaLabel = nativeVersion === '0.22.2' ? '22-controls' : nativeVersion === '0.22.1' ? '22-ui' : String(chapter);
 const work = resolve(root, `../../work/qa-sprint-${qaLabel}`);
 const output = resolve(root, `../releases/pokemon-tactics-${nativeVersion}/windows`);
 const operation = process.argv[2] ?? 'test';
@@ -71,13 +71,24 @@ function verify() {
   console.log(`Verified ${manifest.files.length} assets and ${manifest.ruleSources.length} reference source hashes; ${fixtures.games.length} complete battles.`);
 }
 if (operation === 'verify') { verify(); process.exit(0); }
-if (!['qa-export','qa-campaign-export','qa-scale-export','qa-roster-export','qa-journey-export','qa-journey-psychic-export','qa-interface-export'].includes(operation)) {
+if (!['qa-export','qa-campaign-export','qa-scale-export','qa-roster-export','qa-journey-export','qa-journey-psychic-export','qa-interface-export','qa-input-export'].includes(operation)) {
   if (!existsSync(binary)) throw new Error('Godot not found. Set GODOT_BIN to the standard Godot 4.7.2 executable.');
   const version = spawnSync(binary, ['--version'], { encoding: 'utf8', windowsHide: true });
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if (operation === 'test-release' || operation === 'simulate-balance') {
+if (operation === 'test-controls') {
+  verify();
+  for(const phase of ['write','read']) run(binary,['--headless',...common,'--script','res://tests/control_preferences.gd','--','--save-dir='+work,'--phase='+phase],'preferences-'+phase);
+} else if (operation === 'qa-input' || operation === 'qa-input-export') {
+  const exported = operation.endsWith('export');
+  if (!exported) verify();
+  const directory = resolve(work,exported ? 'input-release' : 'input-source');
+  const args = [...(exported ? [] : common),'--position','-10000,-10000','--audio-driver','Dummy','--','--input-qa-dir='+directory];
+  run(exported ? resolve(output,'PokemonTactics.exe') : binary,args,'input-ui-'+(exported?'release':'source'),exported ? output : root);
+  const report = JSON.parse(readFileSync(resolve(directory,'input-ui-result.json'),'utf8'));
+  if(report.failures.length || report.assertions<44) throw new Error('Input UI failed.');
+} else if (operation === 'test-release' || operation === 'simulate-balance') {
   verify();
   if (operation === 'simulate-balance') {
     const previous = readdirSync(work).filter(name => name === 'balance-native.json' || name === 'balance-champion-24.json' || /^balance-[147]-(16|24)-(birds|psychic)\.json$/.test(name));
@@ -107,7 +118,7 @@ if (operation === 'test-release' || operation === 'simulate-balance') {
   const psychic = operation.includes('psychic');
   if (!exported) verify();
   const directory = resolve(work,(psychic ? 'journey-psychic-' : 'journey-')+(exported ? 'release' : 'source'));
-  if (psychic && qaLabel==='22-ui') cpSync(resolve(root,'../../work/qa-sprint-22/balance-champion-24.json'),resolve(work,'balance-champion-24.json'));
+  if (psychic && qaLabel!=='22') cpSync(resolve(root,'../../work/qa-sprint-22/balance-champion-24.json'),resolve(work,'balance-champion-24.json'));
   const args = [...(exported ? [] : common),'--position','-10000,-10000','--audio-driver','Dummy','--','--journey-qa-dir='+directory,...(psychic ? ['--journey-final=psychic'] : [])];
   run(exported ? resolve(output,'PokemonTactics.exe') : binary,args,'journey-ui-'+(psychic?'psychic-':'')+(exported?'release':'source'),exported ? output : root);
   const report = JSON.parse(readFileSync(resolve(directory,'journey-ui-result.json'),'utf8'));
@@ -220,6 +231,7 @@ Evolución automática por nivel; piedras/Cable Vínculo80 ₽ cuando correspond
 Sin curación gratuita; usa objetos fuera de combate. Revivir150 ₽ devuelve50% PS. Perder acaba la campaña aunque haya reservas vivas.
 Mapas16/24 con alturas. Clic en azul: mover; clic en rival: básico. Habilidades integradas; R rectifica solo movimiento antes de actuar. F orienta y termina. Flechas/Enter y Escape disponibles.
 Rueda/+/-: zoom; botón central: cámara; C unidad; Combate/Mapa encuadran. G/H cuadrícula/alturas.
+F2: configurar controles, F6: cambiar panel. Las etiquetas reflejan las teclas reasignadas; Enter/Espacio, Escape, Tab y flechas siguen como seguridad. Preferencias independientes en controls.json; compras y órdenes no se repiten al mantener una tecla.
 Datos/repertorios LGPE combinados, sin movimientos de los iniciales especiales; historia/equipos de entrenadores de Rojo. PT/alcances y efectos complejos son adaptaciones visibles en ficha. Habilidades pendientes están etiquetadas; sin clima ni huida.
 Dos finales excluyentes tras la Liga: tres aves juntas o Mew/Mewtwo. Legendarios nunca reclutables. Recuperación, Respiro, Amortiguador y Descanso tienen cinco usos por combate además de PT. Actualizar una campaña ya terminada conserva su final.
 Consulta GUIA_DE_PRUEBA.md e INFORME_BALANCE.md para controles, sesiones propuestas y límites de las simulaciones.49/78 habilidades normales activas;29 pendientes y terreno provisional. Dificultad y diversión requieren pruebas humanas.

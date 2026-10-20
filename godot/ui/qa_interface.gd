@@ -138,7 +138,7 @@ func run(app: Control, directory: String) -> void:
 	check(app.title_visible and not app.title_screen.notice.text.is_empty(),"Failed Continue keeps title and explains the error")
 	check(FileAccess.get_file_as_string(broken)=="{broken","Failed Continue preserves corrupt bytes")
 	await capture(app,directory,"title-invalid-save")
-	var report: Dictionary = {"assertions":assertions,"failures":failures,"version":"0.22.1","screenshots":screenshots,"rulesEdition":18,"battlePaused":true,"savePreserved":true,"minimumViewport":"1024x720"}
+	var report: Dictionary = {"assertions":assertions,"failures":failures,"version":ProjectSettings.get_setting("application/config/version"),"screenshots":screenshots,"rulesEdition":18,"battlePaused":true,"savePreserved":true,"minimumViewport":"1024x720"}
 	FileAccess.open(directory.path_join("interface-ui-result.json"),FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
 	print(JSON.stringify(report))
 	app.get_tree().quit(0 if failures.is_empty() else 1)

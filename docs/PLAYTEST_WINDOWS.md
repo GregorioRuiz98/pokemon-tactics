@@ -1,4 +1,4 @@
-# Probar Pokémon Tactics en Windows ·0.22.1
+# Probar Pokémon Tactics en Windows ·0.22.2
 
 Descomprime el ZIP completo y abre **windows/PokemonTactics.exe**. Funciona sin cuenta, servidor, conexión o instalación de Godot. Mantén en la carpeta los créditos y licencias incluidos. Esta entrega es para pruebas; su publicación pública está aplazada.
 
@@ -15,6 +15,10 @@ Al cargar una campaña anterior, **Continuar aventura · ampliar Kanto** aparece
 Si el guardado es incompatible, incompleto o ha cambiado desde otra instancia, el juego informa y conserva el archivo. Cierra la otra instancia y vuelve a cargar antes de seguir guardando. Evita abrir dos partidas sobre el mismo archivo a la vez.
 
 ## Combate y preparación
+
+- **F2** abre Controles; también están en Opciones o en el menú general. Permite reasignar teclas, intercambiar conflictos, restablecer categorías y elegir repetición de navegación. Las etiquetas y la ayuda muestran tus asignaciones. Enter/Espacio, Escape, Tab y flechas siguen disponibles como teclas de seguridad; Ctrl y combinaciones de sistema no se reasignan.
+- **F6** o Mayús+F6 alterna tablero/órdenes o viaje/equipo. Tab/Mayús+Tab recorre controles. Al elegir un Pokémon, comprar o cambiar página del PC se conserva el foco; si una orden deja de estar disponible se elige una alternativa válida. Las compras y órdenes requieren pulsaciones nuevas, aunque mantengas la tecla.
+- Los controles se conservan al reiniciar en el archivo independiente controls.json, junto a tu guardado local. Las opciones de sonido y animación todavía se aplican por sesión; escala de texto, cámara por pulsaciones y confirmación de habilidades propias pertenecen a los siguientes bloques.
 
 - Clic en una casilla azul para moverte; clic en un enemigo para el básico. El menú derecho reúne las otras órdenes. **R** rectifica exclusivamente el movimiento, siempre antes de actuar; **F** permite orientar y terminar. Escape cancela la selección.
 - Rueda o+/− para zoom; botón central para desplazar cámara. **C** centra la unidad; **Combate/Mapa** cambia el encuadre y **G/H** alterna guías. Flechas y Enter permiten seleccionar casillas.

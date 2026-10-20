@@ -67,7 +67,10 @@
     "godot:test:release": "node tools/godot/run.mjs test-release",
     "godot:simulate:balance": "node tools/godot/run.mjs simulate-balance",
     "godot:qa:interface": "node tools/godot/run.mjs qa-interface",
-    "godot:qa:interface:export": "node tools/godot/run.mjs qa-interface-export"
+    "godot:qa:interface:export": "node tools/godot/run.mjs qa-interface-export",
+    "godot:test:controls": "node tools/godot/run.mjs test-controls",
+    "godot:qa:input": "node tools/godot/run.mjs qa-input",
+    "godot:qa:input:export": "node tools/godot/run.mjs qa-input-export"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

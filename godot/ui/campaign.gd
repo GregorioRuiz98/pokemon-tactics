@@ -39,6 +39,9 @@ var shop_sections: Dictionary = {}
 var options_dialog: AcceptDialog
 var options_buttons: Dictionary = {}
 var new_seed: String = "kanto-14"
+var input_qa_dir: String = ""
+var travel_memory: Dictionary = {}
+var travel_phase: String = ""
 
 func _make_theme() -> void:
 	super._make_theme()
@@ -87,6 +90,13 @@ func _ready() -> void:
 		camera_button.add_theme_font_size_override("font_size",16)
 		camera_bar.add_child(camera_button)
 	resized.connect(_refresh)
+	_input_labels()
+
+func _input_labels() -> void:
+	super._input_labels()
+	if camera_bar!=null:
+		for entry: Array in [[3,"Unidad","center"],[5,"Cuadrícula","grid"],[6,"Alturas","heights"]]:
+			camera_bar.get_child(entry[0]).text = input_profile.shortcut(entry[1],entry[2])
 
 func _camera_order(callback: Callable) -> void:
 	callback.call()
@@ -108,10 +118,12 @@ func _boot() -> void:
 		if argument.begins_with("--roster-qa-dir="): roster_qa_dir = argument.trim_prefix("--roster-qa-dir=")
 		if argument.begins_with("--journey-qa-dir="): journey_qa_dir = argument.trim_prefix("--journey-qa-dir=")
 		if argument.begins_with("--interface-qa-dir="): interface_qa_dir = argument.trim_prefix("--interface-qa-dir=")
+		if argument.begins_with("--input-qa-dir="): input_qa_dir = argument.trim_prefix("--input-qa-dir=")
 	var test_dir: String = scale_qa_dir if not scale_qa_dir.is_empty() else campaign_qa_dir
 	if not roster_qa_dir.is_empty(): test_dir = roster_qa_dir
 	if not journey_qa_dir.is_empty(): test_dir = journey_qa_dir
 	if not interface_qa_dir.is_empty(): test_dir = interface_qa_dir
+	if not input_qa_dir.is_empty(): test_dir = input_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -131,11 +143,13 @@ func _boot() -> void:
 	campaign_confirm.dialog_text = "Podrás elegir otro inicial. La campaña anterior se conservará\ncomo copia al comenzar la nueva."
 	campaign_confirm.confirmed.connect(_show_oak)
 	add_child(campaign_confirm)
+	_watch_dialog(campaign_confirm)
 	title_screen = load("res://ui/title_screen.gd").new()
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
-	if not interface_qa_dir.is_empty(): _open_title(); call_deferred("_run_interface_qa")
+	if not input_qa_dir.is_empty(): _open_title(); call_deferred("_run_input_qa")
+	elif not interface_qa_dir.is_empty(): _open_title(); call_deferred("_run_interface_qa")
 	elif not journey_qa_dir.is_empty(): call_deferred("_run_journey_qa")
 	elif not roster_qa_dir.is_empty(): call_deferred("_run_roster_qa")
 	elif not scale_qa_dir.is_empty(): call_deferred("_run_scale_qa")
@@ -178,6 +192,7 @@ func _title_options() -> void:
 		options_dialog = AcceptDialog.new()
 		options_dialog.title = "Opciones"
 		add_child(options_dialog)
+		_watch_dialog(options_dialog)
 		var content: VBoxContainer = VBoxContainer.new()
 		content.custom_minimum_size.x = 320
 		content.add_theme_constant_override("separation",16)
@@ -190,17 +205,24 @@ func _title_options() -> void:
 			content.add_child(option)
 			options_buttons[entry[0]] = option
 		content.add_child(_label("Los controles y el guardado son locales.",16,MUTED))
+		content.add_child(_button("Configurar controles…",func(): options_dialog.hide(); _open_controls.call_deferred()))
 	options_buttons["Sonidos"].set_pressed_no_signal(not muted)
 	options_buttons["Animaciones"].set_pressed_no_signal(not reduced_motion)
 	options_dialog.popup_centered()
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
+		if input_profile.matches(event,"controls") and not super._modal_open() and not campaign_confirm.visible and (options_dialog==null or not options_dialog.visible):
+			_open_controls(); get_viewport().set_input_as_handled(); return
 		if title_visible:
-			if event.keycode==KEY_ESCAPE and not run.is_empty() and not help_dialog.visible and not credits_dialog.visible and not campaign_confirm.visible and (options_dialog==null or not options_dialog.visible): _resume_title(); get_viewport().set_input_as_handled()
+			if input_profile.matches(event,"cancel") and not run.is_empty() and not help_dialog.visible and not credits_dialog.visible and not campaign_confirm.visible and (options_dialog==null or not options_dialog.visible) and not controls_dialog.visible: _resume_title(); get_viewport().set_input_as_handled()
 			return
-		if run.is_empty() and event.keycode==KEY_ESCAPE: _open_title(); get_viewport().set_input_as_handled(); return
+		if run.is_empty() and input_profile.matches(event,"cancel") and not _modal_open(): _open_title(); get_viewport().set_input_as_handled(); return
 	super._unhandled_key_input(event)
+
+func _run_input_qa() -> void:
+	await get_tree().process_frame
+	await load("res://ui/qa_input.gd").new().run(self,input_qa_dir)
 
 func _run_interface_qa() -> void:
 	await get_tree().process_frame
@@ -454,6 +476,11 @@ func _travel_button(key: String, text: String, parent: Node, command: Dictionary
 	return button
 
 func _render_travel() -> void:
+	var phase: String = run.get("phase","oak")
+	var memory: Dictionary = FocusMemory.capture(travel_root,travel_buttons)
+	if phase!=travel_phase: travel_memory = {}; travel_phase = phase
+	elif memory.inside: travel_memory = memory
+	call_deferred("_restore_travel_focus")
 	if is_instance_valid(journey_seed): new_seed = journey_seed.text
 	_clear(travel_content)
 	travel_buttons.clear()
@@ -491,6 +518,7 @@ func _render_travel() -> void:
 		journey_seed.max_length = 64
 		journey_seed.placeholder_text = "Semilla de la campaña"
 		travel_content.add_child(journey_seed)
+		travel_buttons.seed = journey_seed
 		var choices: HBoxContainer = HBoxContainer.new()
 		choices.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		travel_content.add_child(choices)
@@ -541,6 +569,8 @@ func _render_travel() -> void:
 	left_column.add_theme_constant_override("separation",12)
 	left.add_child(left_column)
 	var story_scroll: ScrollContainer = ScrollContainer.new()
+	story_scroll.set_meta("scroll_id","story")
+	story_scroll.follow_focus = true
 	story_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	story_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	left_column.add_child(story_scroll)
@@ -631,6 +661,8 @@ func _render_travel() -> void:
 	right.custom_minimum_size.x = 470
 	body.add_child(right)
 	var scroll: ScrollContainer = ScrollContainer.new()
+	scroll.set_meta("scroll_id","team")
+	scroll.follow_focus = true
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	right.add_child(scroll)
 	var team: VBoxContainer = VBoxContainer.new()
@@ -736,6 +768,25 @@ func _select_member(identity: int) -> void:
 	selected_member = identity
 	_refresh()
 
+func _restore_travel_focus() -> void:
+	if _modal_open() or not travel_root.visible: return
+	var fallback: String = "starter1" if run.is_empty() else ("enter" if run.phase=="map" else ("continue" if run.phase=="shop" else "home"))
+	FocusMemory.restore(travel_root,travel_buttons,travel_memory,fallback)
+
+func _default_focus() -> void:
+	if title_visible: title_screen.refresh()
+	elif travel_root!=null and travel_root.visible: _restore_travel_focus()
+	else: super._default_focus()
+
+func _cycle_panel(backwards: bool = false) -> void:
+	if travel_root==null or not travel_root.visible: super._cycle_panel(backwards); return
+	var focused: Control = get_viewport().gui_get_focus_owner()
+	var member: Control = travel_buttons.get("roster_team")
+	if focused==member:
+		var target: Control = travel_buttons.get("continue",travel_buttons.get("enter",travel_buttons.home))
+		if FocusMemory.eligible(target): target.grab_focus()
+	elif FocusMemory.eligible(member): member.grab_focus()
+
 func _shop_panels(parent: VBoxContainer) -> Dictionary:
 	if run.get("edition",1)<12: return {"supplies":parent,"gear":parent,"traits":parent}
 	var tabs: HBoxContainer = HBoxContainer.new()
@@ -803,6 +854,7 @@ func _render_mint_shop(parent: VBoxContainer) -> void:
 	picker.select(choices.find(selected_mint))
 	picker.item_selected.connect(func(index: int): selected_mint = choices[index]; _refresh())
 	parent.add_child(picker)
+	travel_buttons.mint_picker = picker
 	var buy: Button = _travel_button("buy_mint","Comprar Menta %s · %d ₽" % [study.traits.natures[selected_mint].name,study.traits.mintPrice],parent,{"kind":"buy","item":"mint-"+selected_mint})
 	buy.disabled = run.money<int(study.traits.mintPrice)
 	buy.tooltip_text = "Una menta de un uso. Elige su efecto y comprueba los atributos en la ficha antes de aplicarla."

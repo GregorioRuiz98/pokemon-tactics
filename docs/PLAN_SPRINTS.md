@@ -441,3 +441,7 @@ El usuario considera rara/confusa la primera presentación. Se revisan proyecci�
 Encargo19 de octubre: «continua con todo» autoriza cerrar17–22 en secuencia, con entregas/push separados y sin publicación pública.
 
 - Revisión UI0.22.1, rama codex/sprint-22-ui: Inicio nativo (sin autoload/escena adicional), pausa al volver, Continuar frío/caliente y cancelación de Oak preservada. Tienda por categorías/continuar fijo, retratos/barras de PS, fichas y tema revisados. Mismo motor18/combate17; estado completo de ambos finales idéntico0.22.0. UI fuente/.exe58, aves898 y origen510; regresión PC540/escala980,65 advertencias antiguas/0nuevas. QA aislada en work/qa-sprint-22-ui; paquete0.22.1. Sin plugins/activos nuevos ni publicación. Ver docs/SPRINT_22_UI.md.
+
+## Mejoras posteriores a la auditoría · controles 0.22.2
+
+Prompt 01 aplicado: acciones reasignables y persistentes, conflictos revisables, foco por identidad y desplazamiento conservados en equipo/tienda/PC, navegación de paneles y protección contra órdenes repetidas. Misma campaña18/combate17 y guardados; sin rebalanceo. [Entrega y comprobaciones](SPRINT_22_CONTROLS.md). El siguiente bloque es prompt 02, turno contextual; prompts 02–09 pendientes. Publicación pública aplazada.

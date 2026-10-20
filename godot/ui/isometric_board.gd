@@ -171,20 +171,19 @@ func _gui_input(event: InputEvent) -> void:
 			grab_focus()
 			tile_selected.emit(point)
 			accept_event()
-	if event is InputEventKey and event.pressed and not event.echo:
+	if event is InputEventKey and event.pressed:
 		var vector: Vector2i = Vector2i.ZERO
-		match event.keycode:
-			KEY_LEFT: vector = Vector2i.LEFT
-			KEY_RIGHT: vector = Vector2i.RIGHT
-			KEY_UP: vector = Vector2i.UP
-			KEY_DOWN: vector = Vector2i.DOWN
-			KEY_HOME, KEY_C: focus_active()
-			KEY_G: strong_grid = not strong_grid
-			KEY_H: show_heights = not show_heights
-			KEY_EQUAL, KEY_PLUS: change_zoom(1.12)
-			KEY_MINUS: change_zoom(1/1.12)
-			KEY_ENTER, KEY_KP_ENTER: tile_selected.emit({"x":cursor.x,"y":cursor.y})
-			_: return
+		if _pressed(event,"left"): vector = Vector2i.LEFT
+		elif _pressed(event,"right"): vector = Vector2i.RIGHT
+		elif _pressed(event,"up"): vector = Vector2i.UP
+		elif _pressed(event,"down"): vector = Vector2i.DOWN
+		elif _pressed(event,"center"): focus_active()
+		elif _pressed(event,"grid"): strong_grid = not strong_grid
+		elif _pressed(event,"heights"): show_heights = not show_heights
+		elif _pressed(event,"zoom_in"): change_zoom(1.12)
+		elif _pressed(event,"zoom_out"): change_zoom(1/1.12)
+		elif _pressed(event,"accept"): tile_selected.emit({"x":cursor.x,"y":cursor.y})
+		else: return
 		if vector!=Vector2i.ZERO:
 			cursor = (cursor+vector).clamp(Vector2i.ZERO,dimensions()-Vector2i.ONE)
 			var point: Dictionary = {"x":cursor.x,"y":cursor.y}
