@@ -4,6 +4,7 @@ const Rules = preload("res://core/battle.gd")
 var board: Control
 var marks: Array = []
 var age: float = 0.0
+var duration: float = 3.0
 var last_sound: String = "select"
 var last_kinds: Array = []
 const MISS = preload("res://assets/progression/miss.png")
@@ -63,7 +64,7 @@ func present(before: Dictionary, plan: Dictionary, receipts: Array) -> void:
 func _process(delta: float) -> void:
 	if marks.is_empty(): return
 	age += delta
-	if age >= 0.95: marks = []
+	if age >= duration: marks = []
 	queue_redraw()
 
 func present_abilities(before: Dictionary, events: Array, reset: bool = false) -> void:
@@ -88,7 +89,7 @@ func _draw() -> void:
 		point.y -= board.cell_size()*0.55 + (0 if board.reduced_motion else age*16)
 		if mark.kind == "recoil": point.y -= 30
 		point.y -= mark.get("offset",0)
-		var alpha: float = 1 if board.reduced_motion else minf(1,(0.95-age)*3)
+		var alpha: float = 1 if board.reduced_motion else minf(1,(duration-age)*3)
 		var color: Color = mark.color
 		color.a = alpha
 		if mark.kind in ["miss","immune"]:

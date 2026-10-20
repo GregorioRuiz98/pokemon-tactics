@@ -49,7 +49,7 @@ func isometric() -> bool:
 
 func play_area() -> Rect2:
 	if not isometric(): return super.play_area()
-	if state.get("combatEdition",0)>=13: return Rect2(Vector2(24,172),size-Vector2(332,426))
+	if state.get("combatEdition",0)>=13: return Rect2(Vector2(24,172),size-Vector2(reserved_right,426+extra_bottom))
 	return Rect2(Vector2(24,156),size-Vector2(332,410))
 
 func cell_size() -> float:
@@ -114,7 +114,7 @@ func track_turn() -> void:
 	if not actor.is_empty() and actor.id!=tracked:
 		tracked = int(actor.id)
 		cursor = Vector2i(actor.x,actor.y)
-		if not manual_camera:
+		if not manual_camera and follow_camera:
 			var screen: Vector2 = center(actor)
 			var safe: Rect2 = play_area().grow(-72)
 			var desired: Vector2 = screen.clamp(safe.position,safe.end)

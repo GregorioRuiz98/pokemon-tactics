@@ -3,6 +3,8 @@ extends RefCounted
 # Adapted from the installed Godot skill's input_remap/settings templates.
 # Preferences belong to the player, never to a deterministic campaign journal.
 const PREFIX: String = "tactics_"
+const DEFAULT_PREFERENCES: Dictionary = {"textScale":100,"highContrast":false,"muted":false,"reducedMotion":false,"followCamera":true,"volume":70,"resultSeconds":3,"tutorialHints":true,"accessibleMode":false}
+var preferences: Dictionary = DEFAULT_PREFERENCES.duplicate(true)
 const ACTIONS: Dictionary = {
 	"accept":["Aceptar","Navegación",KEY_ENTER],"cancel":["Volver / cancelar","Navegación",KEY_ESCAPE],
 	"left":["Izquierda","Navegación",KEY_LEFT],"right":["Derecha","Navegación",KEY_RIGHT],
@@ -65,6 +67,11 @@ func _init(file_path: String = "user://controls.json") -> void:
 			bindings = proposed
 			navigation_repeat = data.get("navigationRepeat",true) if data.get("navigationRepeat",true) is bool else true
 			confirmation_mode = "safe" if data.get("confirmationMode")=="safe" else "fast"
+			if data.get("preferences") is Dictionary:
+				for field: String in DEFAULT_PREFERENCES:
+					var setting: Variant = data.preferences.get(field,DEFAULT_PREFERENCES[field])
+					if preference_valid(field,setting): preferences[field] = setting if setting is bool else int(setting)
+					else: warning = "Se han recuperado ajustes no válidos; el archivo original se conserva."
 		else: warning = "El archivo de controles no es válido; se usan valores seguros y se conserva el original."
 	install()
 
@@ -81,6 +88,7 @@ static func valid(action: String, value: Dictionary) -> bool:
 	for field: String in ["shift","alt","ctrl"]:
 		if value.has(field) and not value[field] is bool: return false
 	if code in [KEY_SHIFT,KEY_CTRL,KEY_ALT,KEY_META] or value.get("ctrl",false) or (value.get("alt",false) and code==KEY_F4): return false
+	if code==KEY_F12: return false
 	if code==KEY_HOME and action!="center" or code==KEY_PLUS and action!="zoom_in": return false
 	if SAFETY.has(code) and SAFETY[code]!=action:
 		if not (code in [KEY_LEFT,KEY_RIGHT,KEY_UP,KEY_DOWN] and action.begins_with("pan_") and value.get("alt",false) and not value.get("shift",false)): return false
@@ -180,7 +188,7 @@ func save() -> bool:
 		preserved = true
 	var file: FileAccess = FileAccess.open(path+".tmp",FileAccess.WRITE)
 	if file==null: warning = "No se pueden guardar los controles; el cambio no se aplica."; return false
-	file.store_string(JSON.stringify({"schema":1,"bindings":bindings,"navigationRepeat":navigation_repeat,"confirmationMode":confirmation_mode},"\t"))
+	file.store_string(JSON.stringify({"schema":1,"bindings":bindings,"navigationRepeat":navigation_repeat,"confirmationMode":confirmation_mode,"preferences":preferences},"\t"))
 	file.flush()
 	var error: int = file.get_error()
 	file.close()
@@ -198,3 +206,18 @@ func allow(event: InputEvent) -> bool:
 	if event.echo or held.has(identity): return navigation_repeat and navigation
 	held[identity] = true
 	return true
+
+static func preference_valid(field: String, value: Variant) -> bool:
+	if not DEFAULT_PREFERENCES.has(field): return false
+	if DEFAULT_PREFERENCES[field] is bool: return value is bool
+	if not (value is int or value is float) or value!=int(value): return false
+	if field=="textScale": return int(value) in [100,125,150]
+	return value>=1 and value<=10 if field=="resultSeconds" else value>=0 and value<=100
+
+func set_preference(field: String, value: Variant) -> bool:
+	if not preference_valid(field,value): return false
+	var previous: Variant = preferences[field]
+	preferences[field] = value
+	if save(): return true
+	preferences[field] = previous
+	return false

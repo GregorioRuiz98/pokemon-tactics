@@ -22,11 +22,16 @@ func _initialize() -> void:
 		check(profile.rebind("abilities",{"key":KEY_Z}).ok,"Write custom binding")
 		profile.navigation_repeat = false
 		profile.confirmation_mode = "safe"
+		profile.preferences.textScale = 150
+		profile.preferences.muted = true
+		profile.preferences.reducedMotion = true
 		check(profile.save(),"Write navigation preference")
 	else:
 		check(profile.bindings.abilities.key==KEY_Z,"New process reloads custom key")
 		check(not profile.navigation_repeat,"New process reloads navigation preference")
 		check(profile.confirmation_mode=="safe","New process reloads safe confirmation mode")
+		check(profile.preferences.textScale==150 and profile.preferences.muted and profile.preferences.reducedMotion,"Presentation preferences survive process restart")
+		check(not profile.set_preference("textScale",999) and not profile.set_preference("volume",-1),"Invalid display and audio values rejected")
 		check(profile.bindings.pan_right.alt and profile.bindings.pan_right.key==KEY_RIGHT,"Camera default is Alt arrow")
 		check(profile.rebind("pan_left",{"key":KEY_LEFT,"alt":true}).ok,"Camera pan accepts reserved arrow with Alt only")
 		check(not profile.rebind("pan_left",{"key":KEY_LEFT}).ok,"Camera cannot steal unmodified cursor arrow")
@@ -50,7 +55,9 @@ func _initialize() -> void:
 		for action: String in ["previous_target","next_target","camera_mode","pan_left","pan_right","pan_up","pan_down"]: legacy_bindings.erase(action)
 		legacy_bindings.abilities = Profile.normalized({"key":KEY_E})
 		var legacy_path: String = directory.path_join("legacy-custom-controls.json")
-		FileAccess.open(legacy_path,FileAccess.WRITE).store_string(JSON.stringify({"schema":1,"bindings":legacy_bindings}))
+		var legacy_file: FileAccess = FileAccess.open(legacy_path,FileAccess.WRITE)
+		legacy_file.store_string(JSON.stringify({"schema":1,"bindings":legacy_bindings}))
+		legacy_file.close()
 		var legacy: RefCounted = Profile.new(legacy_path)
 		check(legacy.bindings.abilities.key==KEY_E,"Existing custom shortcut survives newly added target defaults")
 		check(legacy.bindings.next_target.key!=KEY_E and legacy.warning.is_empty(),"Only the new conflicting shortcut receives a free key")

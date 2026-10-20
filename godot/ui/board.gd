@@ -23,6 +23,9 @@ var reduced_motion = false
 var elapsed = 0.0
 var redraw_clock = 0.0
 var input_profile: RefCounted
+var reserved_right: float = 332
+var extra_bottom: float = 0
+var follow_camera: bool = true
 var facing_mode: bool = false
 var keyboard_control: bool = false
 var pointer_start: Vector2 = Vector2.ZERO
@@ -75,7 +78,7 @@ func setup(records: Array):
 
 func play_area() -> Rect2:
 	# Space inside the game scene reserved for the floating HUD.
-	return Rect2(Vector2(24, 124), size - Vector2(332, 378))
+	return Rect2(Vector2(24, 124), size - Vector2(reserved_right, 378+extra_bottom))
 
 func dimensions() -> Vector2i:
 	return Vector2i(state.board[0].size(), state.board.size()) if not state.is_empty() else Vector2i(8,8)

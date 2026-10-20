@@ -234,27 +234,10 @@ func _new_from_title() -> void:
 	else: _show_oak()
 
 func _title_options() -> void:
-	if options_dialog==null:
-		options_dialog = AcceptDialog.new()
-		options_dialog.title = "Opciones"
-		add_child(options_dialog)
-		_watch_dialog(options_dialog)
-		var content: VBoxContainer = VBoxContainer.new()
-		content.custom_minimum_size.x = 320
-		content.add_theme_constant_override("separation",16)
-		options_dialog.add_child(content)
-		for entry: Array in [["Sonidos",func(): _toggle_sound()],["Animaciones",func(): _toggle_motion()]]:
-			var option: CheckButton = CheckButton.new()
-			option.text = entry[0]
-			option.button_pressed = not muted if entry[0]=="Sonidos" else not reduced_motion
-			option.toggled.connect(func(_value: bool): entry[1].call())
-			content.add_child(option)
-			options_buttons[entry[0]] = option
-		content.add_child(_label("Los controles y el guardado son locales.",16,MUTED))
-		content.add_child(_button("Configurar controles…",func(): options_dialog.hide(); _open_controls.call_deferred()))
-	options_buttons["Sonidos"].set_pressed_no_signal(not muted)
-	options_buttons["Animaciones"].set_pressed_no_signal(not reduced_motion)
-	options_dialog.popup_centered()
+	_open_presentation()
+	options_dialog = presentation_dialog
+	options_buttons["Sonidos"] = presentation_dialog.widgets.muted
+	options_buttons["Animaciones"] = presentation_dialog.widgets.reducedMotion
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -501,15 +484,39 @@ func _refresh() -> void:
 func _layout_battle_hud() -> void:
 	if camera_pad!=null: camera_pad.position.x = size.x-158
 	if camera_compass!=null: camera_compass.position.x = size.x-276
-	var narrow: bool = size.x<1150
-	var actor_width: float = 300 if narrow else 360
-	var target_width: float = 330 if narrow else 390
+	var factor: float = load("res://ui/presentation_settings.gd").font_factor(self)
+	var narrow: bool = get_window().size.x<1150 or factor>1.2
+	board.reserved_right = 370 if narrow else 332
+	board.extra_bottom = 90 if factor>1.2 else 0
+	var header: Node = heading.get_parent()
+	header.get_child(0).visible = factor<=1.2
+	saved.visible = factor<=1.2 or not save_warning.is_empty()
+	menu.custom_minimum_size.x = 150 if factor>1.2 else 110
+	if factor>1.2:
+		buttons.undo.text = input_profile.shortcut("Rectificar","rectify")
+		buttons.finish.text = input_profile.shortcut("Orientar","finish")
+	if camera_bar!=null:
+		for index: int in camera_bar.get_child_count():
+			var camera_button: Button = camera_bar.get_child(index)
+			var short_names: Array = ["−","+","Combate","Unidad","Mapa","G","H"]
+			if factor>1.2: camera_button.text = short_names[index]
+			camera_button.custom_minimum_size.x = maxf(40,camera_button.text.length()*16*factor*0.6+20)
+	if camera_compass!=null: camera_compass.visible = camera_bar.visible and factor<=1.2
+	command_panel.offset_left = -350 if narrow else -284
+	if not action_page and selecting=="auto" and pending.is_empty():
+		command_panel.offset_top = -135 if narrow else -120
+		command_panel.offset_bottom = 165 if narrow else 120
+	var actor_width: float = 330 if narrow else 360
+	var target_width: float = 390
 	var actor_panel: Control = actor_portrait.get_parent().get_parent().get_parent()
 	actor_panel.offset_right = 18+actor_width
-	actor_portrait.custom_minimum_size = Vector2(72,72) if narrow else Vector2(104,104)
+	actor_panel.offset_top = -250 if factor>1.2 else -180
+	if factor>1.2:
+		actor_info.text = actor_info.text.replace("\n"+rules.active(state).get("abilityName",""),"") if not state.is_empty() else actor_info.text
+	actor_portrait.custom_minimum_size = Vector2(48,48) if narrow else Vector2(104,104)
 	actor_info.add_theme_font_size_override("font_size",16 if narrow else 18)
 	target_panel.offset_left = -18-target_width
-	target_portrait.custom_minimum_size = Vector2(56,56) if narrow else Vector2(80,80)
+	target_portrait.custom_minimum_size = Vector2(40,40) if narrow else Vector2(80,80)
 	target_info.custom_minimum_size.x = 200 if narrow else 250
 	target_info.add_theme_font_size_override("font_size",15 if narrow else 17)
 	var middle_left: float = 30+actor_width
@@ -518,6 +525,8 @@ func _layout_battle_hud() -> void:
 	var width: float = minf(390,middle_right-middle_left)
 	hint.get_parent().offset_left = middle-size.x/2-width/2
 	hint.get_parent().offset_right = middle-size.x/2+width/2
+	hint.get_parent().offset_top = -180 if factor>1.2 else -130
+	board.queue_redraw()
 
 func _show_plan(unit: Dictionary, plan: Dictionary) -> void:
 	super._show_plan(unit,plan)

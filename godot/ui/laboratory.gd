@@ -12,6 +12,9 @@ const FocusMemory = preload("res://ui/focus_memory.gd")
 var input_profile: RefCounted
 var tactical_reader: AcceptDialog
 var recent_result: String = "Todavía no hay un resultado en esta sesión; consulta el registro guardado."
+var presentation_dialog: AcceptDialog
+var font_update_queued: bool = false
+var actions_scroll: ScrollContainer
 var controls_dialog: AcceptDialog
 const CREAM = Color("eee8ce")
 const MUTED = Color("b4c3ac")
@@ -79,6 +82,8 @@ func _ready():
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.contains("qa-dir="): preferences_path = argument.get_slice("=",1).path_join("controls.json")
 	input_profile = InputProfile.new(preferences_path)
+	muted = input_profile.preferences.muted
+	reduced_motion = input_profile.preferences.reducedMotion
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--qa-dir="): qa_dir = argument.trim_prefix("--qa-dir=")
 	qa_running = not qa_dir.is_empty()
@@ -106,6 +111,7 @@ func _ready():
 	combat_feedback = Feedback.new()
 	combat_feedback.board = board
 	add_child(combat_feedback)
+	_apply_preferences()
 	_refresh()
 	_boot()
 
@@ -220,6 +226,7 @@ func _build_interface() -> void:
 	popup.add_item("Créditos", 6)
 	popup.add_item("Campaña de Kanto", 7)
 	popup.add_item("Controles", 9)
+	popup.add_item("Presentación y accesibilidad",12)
 	popup.add_item("Inspeccionar unidad · I",10)
 	popup.add_item("Último resultado · L",11)
 	popup.id_pressed.connect(_menu_selected)
@@ -244,7 +251,12 @@ func _build_interface() -> void:
 	for button: Button in [buttons.actions, buttons.undo, buttons.finish]: main_commands.add_child(button)
 	actions = VBoxContainer.new()
 	actions.add_theme_constant_override("separation", 6)
-	command_content.add_child(actions)
+	actions_scroll = ScrollContainer.new()
+	actions_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	actions_scroll.follow_focus = true
+	command_content.add_child(actions_scroll)
+	actions_scroll.add_child(actions)
+	actions.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	directions = HBoxContainer.new()
 	command_content.add_child(directions)
 	for facing: int in Rules.FACINGS:
@@ -374,6 +386,7 @@ func _rectify_movement() -> void:
 	board.grab_focus()
 
 func _menu_selected(identity: int):
+	if identity==12: _open_presentation(); return
 	if identity==10: _inspect(); return
 	if identity==11: _last_result(); return
 	match identity:
@@ -451,6 +464,7 @@ func _build_dialogs():
 	add_child(details_dialog)
 
 func _modal_open() -> bool:
+	if presentation_dialog!=null and presentation_dialog.visible: return true
 	if tactical_reader!=null and tactical_reader.visible: return true
 	return new_dialog.visible or help_dialog.visible or credits_dialog.visible or details_dialog.visible or menu.get_popup().visible or (controls_dialog!=null and controls_dialog.visible)
 
@@ -538,6 +552,11 @@ func _refresh():
 	command_panel.offset_bottom = menu_height / 2
 	main_commands.visible = pending.is_empty() and selecting == "auto" and not action_page
 	actions.visible = action_page and pending.is_empty()
+	actions_scroll.visible = actions.visible
+	actions_scroll.custom_minimum_size.y = 230 if actions.visible else 0
+	if action_page:
+		command_panel.offset_top = -120
+		command_panel.offset_bottom = 180
 	command_heading.text = "HABILIDADES" if action_page else ("ORIENTACIÓN" if selecting == "finish" else ("CONFIRMAR" if not pending.is_empty() else ("OBJETIVO" if selecting == "attack" else "ÓRDENES")))
 	target_panel.visible = false
 	actor_indicators.show_unit({})
@@ -867,6 +886,32 @@ func _commit(command: Dictionary):
 	if command.kind == "attack": combat_feedback.present(before,plan,result.get("hits",[]))
 	_play("victory" if state.outcome == "victory" else (combat_feedback.last_sound if command.kind == "attack" else "select"))
 
+func _open_presentation() -> void:
+	if presentation_dialog==null:
+		presentation_dialog = load("res://ui/preferences_dialog.gd").new()
+		add_child(presentation_dialog)
+		presentation_dialog.setup(self)
+		_watch_dialog(presentation_dialog)
+	_apply_preferences()
+	presentation_dialog.popup_centered(Vector2i(700,570))
+
+func _apply_preferences() -> void:
+	font_update_queued = false
+	if has_method("_layout_battle_hud") and actor_portrait!=null: call("_layout_battle_hud")
+	load("res://ui/presentation_settings.gd").apply(self)
+	if menu!=null:
+		menu.get_popup().set_item_checked(menu.get_popup().get_item_index(4),not muted)
+		menu.get_popup().set_item_checked(menu.get_popup().get_item_index(5),not reduced_motion)
+
+func _reset_readability() -> void:
+	input_profile.set_preference("textScale",100)
+	input_profile.set_preference("highContrast",false)
+	for child: Node in get_children():
+		if child is Window: child.hide()
+	_apply_preferences()
+	_refresh()
+	_default_focus.call_deferred()
+
 func _inspect() -> void:
 	if not state.is_empty() and not _modal_open(): tactical_reader.open_unit()
 
@@ -890,12 +935,14 @@ func _play(name: String):
 	sound.play()
 
 func _toggle_sound():
-	muted = not muted
+	input_profile.set_preference("muted",not muted)
+	muted = input_profile.preferences.muted
 	menu.get_popup().set_item_checked(menu.get_popup().get_item_index(4), not muted)
 	if muted: sound.stop()
 
 func _toggle_motion():
-	reduced_motion = not reduced_motion
+	input_profile.set_preference("reducedMotion",not reduced_motion)
+	reduced_motion = input_profile.preferences.reducedMotion
 	board.reduced_motion = reduced_motion
 	menu.get_popup().set_item_checked(menu.get_popup().get_item_index(5), not reduced_motion)
 
@@ -938,6 +985,8 @@ func _unhandled_key_input(event):
 
 func _input(event: InputEvent) -> void:
 	if input_profile==null: return
+	if event is InputEventKey and event.pressed and event.keycode==KEY_F12:
+		_reset_readability(); get_viewport().set_input_as_handled(); return
 	_guard_input(event,get_viewport())
 
 func _guard_input(event: InputEvent, viewport: Viewport) -> void:
@@ -965,6 +1014,8 @@ func _watch_dialog(dialog: Window) -> void:
 
 func _dialog_input(event: InputEvent, dialog: Window) -> void:
 	if not dialog.visible: return
+	if event is InputEventKey and event.pressed and event.keycode==KEY_F12:
+		_reset_readability(); dialog.set_input_as_handled(); return
 	_guard_input(event,dialog)
 	if dialog.is_input_handled(): return
 	if dialog is AcceptDialog and dialog!=controls_dialog and input_profile.matches(event,"cancel"):
@@ -998,6 +1049,9 @@ func _cycle_panel(_backwards: bool = false) -> void:
 	else: board.grab_focus()
 
 func _input_labels() -> void:
+	if not font_update_queued:
+		font_update_queued = true
+		_apply_preferences.call_deferred()
 	if menu==null: return
 	menu.text = input_profile.shortcut("Menú","menu")
 	var popup: PopupMenu = menu.get_popup()

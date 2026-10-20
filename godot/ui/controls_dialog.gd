@@ -142,6 +142,7 @@ func _exchange() -> void:
 func capture_input(event: InputEvent) -> void:
 	if not visible or conflict_dialog.visible or reset_dialog.visible: return
 	if not event is InputEventKey or not event.pressed: return
+	if event.keycode==KEY_F12: app._reset_readability(); set_input_as_handled(); return
 	if event.echo:
 		set_input_as_handled()
 		return
