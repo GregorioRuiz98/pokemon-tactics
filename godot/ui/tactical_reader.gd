@@ -41,12 +41,19 @@ func open_unit() -> void:
 
 func show_unit(identity: int) -> void:
 	var unit: Dictionary = app.rules.unit_by_id(app.state,identity)
+	if app.input_profile.preferences.accessibleMode:
+		app.board.cursor = Vector2i(unit.x,unit.y)
+		app.board.keyboard_control = true
+		if app.get("accessible_view")!=null: app.accessible_view.update()
 	body.text = Info.unit_text(app,unit)
 	if app._player_turn() and not app.state.acted:
 		var plan: Dictionary = app.rules.attack_plan(app.state,identity,{},app.selected_action)
 		app._show_plan(unit,plan)
 		body.text += "\n\nPREVISIÓN\n"+(app.target_info.get_meta("details",app.target_info.text) if plan.ok else plan.reason)
 	body.text += "\n\nPT: recurso de acciones, no dinero. Básico neutro: 0 PT, sin tipo ni STAB.\nLa orientación modifica la banda de daño y el crítico en ediciones actuales; no la precisión."
+
+	body.accessibility_name = body.text
+	choices.accessibility_name = "Unidades del tablero; cambiar selecciona la casilla de esa unidad en modo accesible"
 
 func open_history() -> void:
 	choices.hide()

@@ -1,11 +1,19 @@
 extends "res://ui/qa_context.gd"
 
 func run(app: Control, directory: String) -> void:
-	app.get_window().gui_embed_subwindows = true
+	var semantic_only: bool = "--updates-scope=semantic" in OS.get_cmdline_user_args()
+	app.get_window().gui_embed_subwindows = not semantic_only
 	app.input_profile = Profile.new(directory.path_join("updates-controls-%d.json" % Time.get_ticks_usec()))
 	app.board.input_profile = app.input_profile
 	app.controls_dialog.profile = app.input_profile
 	await fixture(app,directory)
+	if semantic_only:
+		app.run.phase = "shop"
+		app.run.money = 500
+		app._refresh()
+		await semantic_checks(app,directory)
+		write_report(app,directory)
+		return
 	var before: Dictionary = app.run.duplicate(true)
 	await key(app,KEY_I)
 	check(app.tactical_reader.visible and app.tactical_reader.body.text.contains("PS"),"Keyboard opens persistent inspection")
@@ -27,6 +35,10 @@ func run(app: Control, directory: String) -> void:
 	await capture(app,directory,"tactical-info")
 	await additional(app,directory)
 	await practice_checks(app,directory)
+	await semantic_checks(app,directory)
+	write_report(app,directory)
+
+func write_report(app: Control, directory: String) -> void:
 	var output: Dictionary = {"assertions":assertions,"failures":failures,"screenshots":screenshots,"scope":"Native synthetic events and explicitly synthetic interaction fixtures; isolated saves"}
 	FileAccess.open(directory.path_join("updates-ui-result.json"),FileAccess.WRITE).store_string(JSON.stringify(output,"\t"))
 	print("UPDATES_QA "+JSON.stringify(output))
@@ -245,3 +257,36 @@ func practice_action(app: Control, identity: String) -> void:
 	app.actions_scroll.ensure_control_visible(app.action_buttons[identity])
 	await settle(app)
 	await click(app,app.action_buttons[identity])
+
+func semantic_checks(app: Control, directory: String) -> void:
+	app.input_profile.set_preference("accessibleMode",true)
+	app._apply_preferences()
+	app._open_title()
+	await settle(app)
+	check(app.title_screen.controls["new"].accessibility_name=="Nueva partida","Title exposes native button name")
+	await key(app,KEY_F7)
+	await key(app,KEY_RIGHT)
+	await settle(app)
+	check(app.accessible_view.panel.visible and app.board.accessibility_name.contains("PT") and app.board.accessibility_name.contains("altura"),"Canvas has textual cursor, unit and height representation")
+	check(app.board.accessibility_live==AccessibilityServer.LIVE_POLITE,"One moderate board live region")
+	var before: Dictionary = app.run.duplicate(true)
+	var count: int = app.accessible_view.message_count
+	for i: int in 100: app.accessible_view.update()
+	check(count==app.accessible_view.message_count and Store.equivalent(before,app.run),"Unchanged refreshes never repeat announcements or consume RNG")
+	await key(app,KEY_I)
+	app.tactical_reader.show_unit(10001)
+	check(app.board.cursor==Vector2i(6,9) and app.tactical_reader.body.accessibility_name.contains("Quemado"),"Unit list synchronizes logical cursor and state semantics")
+	await key(app,KEY_ESCAPE,app.tactical_reader)
+	check(Store.equivalent(before,app.run),"Accessible inspection and cancellation preserve full practice state")
+	await capture(app,directory,"accessible-board")
+	await key(app,KEY_F7)
+	app._resume_title()
+	app._open_batch()
+	app.shop_batch.quantity.value = 1
+	app.shop_batch.preview()
+	await settle(app)
+	check(app.shop_batch.get_ok_button().accessibility_description.contains("Saldo") and app.shop_batch.summary.accessibility_name.contains("Destinatario"),"Shop semantics include recipient, money and reviewed operation")
+	await key(app,KEY_ESCAPE,app.shop_batch)
+	FileAccess.open(directory.path_join("accessibility-probe.json"),FileAccess.WRITE).store_string(JSON.stringify(app.accessible_view.probe(),"\t"))
+	app.input_profile.set_preference("accessibleMode",false)
+	app._apply_preferences()

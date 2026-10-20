@@ -42,6 +42,7 @@ var shop_sections: Dictionary = {}
 var shop_batch: ConfirmationDialog
 var batch_busy: bool = false
 var action_review: ConfirmationDialog
+var accessible_view: RefCounted = preload("res://ui/accessible_view.gd").new()
 var practice: RefCounted = preload("res://ui/guided_practice.gd").new()
 var last_load_msec: int = 0
 var move_library: RefCounted = preload("res://ui/move_library.gd").new()
@@ -127,6 +128,8 @@ func _ready() -> void:
 	camera_compass.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	battle_overlay.add_child(camera_compass)
 	resized.connect(_refresh)
+	accessible_view.setup(self)
+	accessible_view.update()
 	_input_labels()
 
 func _input_labels() -> void:
@@ -367,6 +370,7 @@ func _event(command: Dictionary, from_batch: bool = false) -> void:
 	if not result.ok:
 		practice.observe(self,"blocked",command)
 		message = result.reason
+		accessible_view.announce("Orden no aceptada: "+message)
 		if _player_turn(): hint.text = practice.instruction(self)+"\n"+message if practice.active else message
 		else: _refresh()
 		return
@@ -469,6 +473,7 @@ func _refresh() -> void:
 			battle_overlay.hide()
 			travel_root.hide()
 			title_screen.refresh()
+			accessible_view.update.call_deferred()
 			return
 	if travel_root == null:
 		super._refresh()
@@ -509,6 +514,7 @@ func _refresh() -> void:
 		actor_hp.get_theme_stylebox("fill").bg_color = Color("71c5a1") if fraction>0.5 else (Color("e9c76d") if fraction>0.25 else Color("ee997e"))
 		for action_button: Button in action_buttons.values(): action_button.add_theme_font_size_override("font_size",16)
 	else: _render_travel()
+	accessible_view.update.call_deferred()
 
 func _layout_battle_hud() -> void:
 	if camera_pad!=null: camera_pad.position.x = size.x-158
@@ -520,7 +526,7 @@ func _layout_battle_hud() -> void:
 	var header: Node = heading.get_parent()
 	header.get_child(0).visible = factor<=1.2
 	saved.visible = factor<=1.2 or not save_warning.is_empty()
-	menu.custom_minimum_size.x = 150 if factor>1.2 else 110
+	menu.custom_minimum_size.x = 230 if factor>1.2 else 110
 	if factor>1.2:
 		buttons.undo.text = input_profile.shortcut("Rectificar","rectify")
 		buttons.finish.text = input_profile.shortcut("Orientar","finish")
@@ -529,7 +535,10 @@ func _layout_battle_hud() -> void:
 			var camera_button: Button = camera_bar.get_child(index)
 			var short_names: Array = ["−","+","Combate","Unidad","Mapa","G","H"]
 			if factor>1.2: camera_button.text = short_names[index]
-			camera_button.custom_minimum_size.x = maxf(40,camera_button.text.length()*16*factor*0.6+20)
+			camera_button.custom_minimum_size.x = maxf(60,camera_button.text.length()*16*factor*0.6+36)
+	if camera_pad!=null and factor>1.2:
+		camera_pad.position.x = size.x-220
+		for button: Button in camera_buttons.values(): button.custom_minimum_size.x = 62
 	if camera_compass!=null: camera_compass.visible = camera_bar.visible and factor<=1.2
 	command_panel.offset_left = -350 if narrow else -284
 	if not action_page and selecting=="auto" and pending.is_empty():
@@ -563,6 +572,7 @@ func _show_plan(unit: Dictionary, plan: Dictionary) -> void:
 
 func _hover_tile(point: Dictionary) -> void:
 	super._hover_tile(point)
+	accessible_view.update.call_deferred()
 	if practice.active:
 		if not point.is_empty() and not state.is_empty() and not Movement.same(rules.active(state),point): practice.observe(self,"cursor")
 		hint.text = practice.instruction(self)

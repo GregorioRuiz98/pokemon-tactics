@@ -71,13 +71,22 @@ function verify() {
   console.log(`Verified ${manifest.files.length} assets and ${manifest.ruleSources.length} reference source hashes; ${fixtures.games.length} complete battles.`);
 }
 if (operation === 'verify') { verify(); process.exit(0); }
-if (!['qa-export','qa-campaign-export','qa-scale-export','qa-roster-export','qa-journey-export','qa-journey-psychic-export','qa-interface-export','qa-input-export','qa-context-export','qa-updates-export'].includes(operation)) {
+if (!['qa-export','qa-campaign-export','qa-scale-export','qa-roster-export','qa-journey-export','qa-journey-psychic-export','qa-interface-export','qa-input-export','qa-context-export','qa-updates-export','qa-semantic-export'].includes(operation)) {
   if (!existsSync(binary)) throw new Error('Godot not found. Set GODOT_BIN to the standard Godot 4.7.2 executable.');
   const version = spawnSync(binary, ['--version'], { encoding: 'utf8', windowsHide: true });
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if (operation === 'test-controls') {
+if (operation === 'qa-semantic' || operation === 'qa-semantic-export') {
+  const exported=operation.endsWith('export');
+  if(!exported) verify();
+  const directory=resolve(work,exported?'semantic-release':'semantic-source');
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--accessibility','always','--position','-10000,-10000','--audio-driver','Dummy','--','--updates-scope=semantic','--updates-qa-dir='+directory],'semantic-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'updates-ui-result.json'),'utf8'));
+  if(report.failures.length) throw new Error('Semantic prototype failed');
+} else if (operation === 'test-shop-batch') {
+  run(binary,['--headless',...common,'--script','res://tests/shop_batch.gd'],'shop-batch');
+} else if (operation === 'test-controls') {
   verify();
   for(const phase of ['write','read']) run(binary,['--headless',...common,'--script','res://tests/control_preferences.gd','--','--save-dir='+work,'--phase='+phase],'preferences-'+phase);
 } else if (operation === 'qa-updates' || operation === 'qa-updates-export') {

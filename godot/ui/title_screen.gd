@@ -31,7 +31,14 @@ func setup(owner_app: Control) -> void:
 	left.custom_minimum_size.x = 410
 	left.alignment = BoxContainer.ALIGNMENT_CENTER
 	left.add_theme_constant_override("separation",12)
-	center.add_child(left)
+	var left_scroll: ScrollContainer = ScrollContainer.new()
+	left_scroll.custom_minimum_size.x = 520
+	left_scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	left_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	left_scroll.follow_focus = true
+	center.add_child(left_scroll)
+	left_scroll.add_child(left)
+	left.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	left.add_child(app._label("POKÉMON",52,Color("f4e4bd")))
 	var title: Label = app._label("TACTICS",72,app.GOLD)
 	title.add_theme_constant_override("line_spacing",0)
@@ -65,6 +72,7 @@ func setup(owner_app: Control) -> void:
 	column.add_child(footer)
 	var version: Label = app._label("Proyecto de fans · %s · Guardado local" % ProjectSettings.get_setting("application/config/version"),14,Color("a4b9bd"))
 	version.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	version.clip_text = true
 	footer.add_child(version)
 	for entry: Array in [["lab","Laboratorio táctico",func(): app._menu_selected(7)],["quit","Salir",func(): app.get_tree().quit()]]:
 		var button: Button = app._button(entry[1],entry[2])

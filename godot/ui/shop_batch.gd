@@ -86,10 +86,18 @@ func preview() -> void:
 	plan = prepare(app.campaign,app.run,"buy" if operation.selected==0 else "use",key,app.selected_member,int(quantity.value))
 	summary.text = "Destinatario ID %d · %s\nNv. %d · PS %d / %d · cap %d\nEn bolsa: %d · por comprar: %d\nSaldo actual: %d ₽\n" % [app.selected_member,unit.get("name","Sin destinatario"),selected.get("level",0),unit.get("hp",0),unit.get("maxHp",0),app.campaign.level_cap(app.run),app.run.bag.get(key,0),int(quantity.value) if operation.selected==0 else 0,app.run.money]
 	get_ok_button().disabled = not plan.ok
-	if not plan.ok: summary.text += "\n"+plan.reason; return
+	operation.accessibility_name = "Operación: comprar o usar"
+	item.accessibility_name = "Artículo: "+item.get_item_text(item.selected)
+	quantity.accessibility_name = "Cantidad del artículo"
+	summary.accessibility_name = summary.text
+	if not plan.ok: summary.text += "\n"+plan.reason; summary.accessibility_name = summary.text; get_ok_button().accessibility_description = plan.reason; return
 	summary.text += "Coste total: %d ₽ · saldo final: %d ₽\nRestauración prevista: %d PS\n%s" % [app.run.money-plan.state.money,plan.state.money,plan.restored,"\n".join(plan.events)]
 	if operation.selected==1 and key in ["potion","super-potion","hyper-potion"]: summary.text += "\nCuración desperdiciada: %d PS" % [maxi(0,int(app.campaign.consumables[key].heal*quantity.value)-plan.restored)]
 	summary.text += "\nCada orden se guarda por separado. Si falla, se detiene el lote; no se repite al reiniciar. Escape durante el lote detiene las órdenes pendientes."
+
+	summary.accessibility_name = summary.text
+	get_ok_button().accessibility_name = "Aceptar operación revisada"
+	get_ok_button().accessibility_description = summary.text
 
 func accept_plan() -> void:
 	if app.batch_busy or not plan.get("ok",false): return

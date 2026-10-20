@@ -899,6 +899,7 @@ func _apply_preferences() -> void:
 	font_update_queued = false
 	if has_method("_layout_battle_hud") and actor_portrait!=null: call("_layout_battle_hud")
 	load("res://ui/presentation_settings.gd").apply(self)
+	if get("accessible_view")!=null: get("accessible_view").update()
 	if menu!=null:
 		menu.get_popup().set_item_checked(menu.get_popup().get_item_index(4),not muted)
 		menu.get_popup().set_item_checked(menu.get_popup().get_item_index(5),not reduced_motion)
@@ -927,6 +928,9 @@ func _remember_result(before: Dictionary, command: Dictionary, receipts: Array) 
 			var target: Dictionary = rules.unit_by_id(before,int(receipt.targetId))
 			recent_result += "\n%s: %s%s" % [target.name,"FALLO" if not receipt.hit else "%d PS reales" % receipt.damage," · CRÍTICO" if receipt.get("critical",false) else ""]
 	else: recent_result = "\n".join(state.get("log",[]).slice(-6))
+
+	if get("accessible_view")!=null and input_profile.preferences.accessibleMode:
+		get("accessible_view").announce("Resultado: "+recent_result)
 
 func _play(name: String):
 	last_sound_requested = name
