@@ -122,3 +122,8 @@ El encargo «hazlo todo» del20 de octubre completa técnicamente prompts03–09
 ## Rendimiento0.22.11
 
 Solicitud21 de octubre: corregir ralentizaciones. UI/representación solamente; campaña18/combate17, core/data/snapshots y guardados conservados. Tema con escrituras condicionales, previsión por contexto del cursor, semántica agrupada y terreno/minimapa con órdenes de dibujo conservadas. Invalidar geometría por mapa/cámara/HUD y marcas por cursor/alcance; preservar paredes y orden del pintor. QA específica de rendimiento y regresiones nativas, perfiles aislados; ver ../docs/SPRINT_22_PERFORMANCE.md. No delegación automática, publicación o balance nuevos.
+
+
+## Semillas0.22.12
+
+Solicitud21 de octubre: aventuras nuevas con semillas variables para variar capturas. El sorteo publicado ya usa semilla; se sustituye el valor inicial fijo de UI por generación local independiente, campo editable, Generar otra y Copiar en Oak, y copia desde Menú. Vacío genera semilla nueva; continuar/cancelar Oak preserva estado y azar. Misma semilla y decisiones reproducen; tablas/duplicados/insignias conservados. QA específica64 sondeos y dos combates naturales, perfiles aislados; ver ../docs/SPRINT_22_SEEDS.md. Core/data/snapshots congelados; sin delegación automática o publicación.

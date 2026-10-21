@@ -1,0 +1,39 @@
+{
+  "sourceFingerprint": "9bf4bb7fa0ba4434507da1554bd8cab9bbad6ea75ce0bb122465911aac86af11",
+  "version": "0.22.12",
+  "campaignEdition": 18,
+  "combatEdition": 17,
+  "exe": {
+    "path": "C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\outputs\\releases\\pokemon-tactics-0.22.12\\windows\\PokemonTactics.exe",
+    "bytes": 113739104,
+    "sha256": "48c35630c63e7f442b8270b64a377c8562ea1bbae37af5d47f50d9998905745e"
+  },
+  "zip": {
+    "path": "C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\outputs\\releases\\pokemon-tactics-0.22.12\\pokemon-tactics-0.22.12-windows.zip",
+    "bytes": 40163018,
+    "sha256": "0f486c1e85aab91b11c7fc8cff6600995ea3734d50aea149a35b0976b98a67ce"
+  },
+  "uiSourceAndReleaseEqual": true,
+  "releaseAssertions": 901,
+  "publicDeployment": false,
+  "bothEndingsVerified": true,
+  "psychicAssertions": 513,
+  "titleMenuVerified": true,
+  "interfaceAssertions": 58,
+  "controlsVerified": true,
+  "controlsAssertions": 63,
+  "contextVerified": true,
+  "contextAssertions": 96,
+  "laboratoryAssertions": 1026,
+  "fullSavedStatesEqual": true,
+  "rosterAssertions": 540,
+  "baseline0223StatesAndJournalsEqual": true,
+  "semanticAssertions": 8,
+  "updatesAssertions": 105,
+  "screenReaderHumanValidation": "pending",
+  "humanBeta": "prepared-pending",
+  "performanceAssertions": 18,
+  "scaleAssertions": 980,
+  "seedAssertions": 920,
+  "distinctSeedCaptureTraces": 64
+}

@@ -1,6 +1,6 @@
 # Pokémon Tactics
 
-Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: campaña de Kanto Windows 0.22.11 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
+Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: campaña de Kanto Windows 0.22.12 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
 
 **Kanto nativo:** campaña hasta la Liga y dos finales legendarios alternativos. Capturas locales, niveles/evolución, movimientos/MT LGPE combinados, naturalezas/habilidades y PC. Ejecutable Windows offline. 151 especies; 49/78 habilidades normales activas. Arte provisional, pruebas humanas y publicación pendientes.
 
@@ -19,6 +19,8 @@ Las campañas 0.16–0.21 pueden continuar con **Continuar aventura · ampliar K
 [Mejoras0.22.10](docs/SPRINT_22_ACCESSIBILITY_COMPLETE.md): práctica guiada, lectura ampliada, compras por cantidad, PC y biblioteca con filtros y acceso textual experimental. Ejecutable offline; pruebas humanas y lector de pantalla pendientes.
 
 [Rendimiento0.22.11](docs/SPRINT_22_PERFORMANCE.md): terreno y minimapa conservan su dibujo entre animaciones, las preferencias solo cambian valores distintos y el cursor evita previsiones repetidas. Mismas reglas y guardados.
+
+[Semillas0.22.12](docs/SPRINT_22_SEEDS.md): cada aventura nueva genera una semilla automáticamente. Puedes escribir, regenerar y copiar la semilla junto a los iniciales; Menú permite copiar la de la campaña actual. Las partidas existentes conservan su azar.
 
 ## Campaña web 0.12.0
 

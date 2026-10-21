@@ -71,6 +71,7 @@ if modern:
 archive=release/f'pokemon-tactics-{version}-windows.zip'
 performance=None
 scale=None
+seeds=None
 if chapter==22 and patch>=11:
     performance={}
     for side in ['source','release']:
@@ -83,6 +84,13 @@ if chapter==22 and patch>=11:
     assert scale==json.loads((work/'scale-release/scale-ui-result.json').read_text(encoding='utf-8')) and not scale['failures']
     assert (work/'scale-release/scale-ui-result.json').stat().st_mtime>=exe.stat().st_mtime
     shutil.copy2(ROOT/'docs/SPRINT_22_PERFORMANCE.md',bundle/'RENDIMIENTO.md')
+if chapter==22 and patch>=12:
+    seed_result=work/'seeds-release/seeds-ui-result.json'
+    seeds=json.loads((work/'seeds-source/seeds-ui-result.json').read_text(encoding='utf-8'))
+    assert seeds==json.loads(seed_result.read_text(encoding='utf-8')) and not seeds['failures']
+    assert seeds['seedProbes']==64 and seeds['distinctCaptureTraces']>1 and len(seeds['naturalCaptures'])==2
+    assert seed_result.stat().st_mtime>=exe.stat().st_mtime
+    shutil.copy2(ROOT/'docs/SPRINT_22_SEEDS.md',bundle/'SEMILLAS.md')
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as package:
     for file in sorted(bundle.rglob('*')):
         if file.is_file():package.write(file,pathlib.Path('windows')/file.relative_to(bundle))
@@ -135,6 +143,11 @@ if performance:
 if scale:
     record.update(scaleAssertions=scale['assertions'])
     for kind in ['source','release']: shutil.copy2(work/f'scale-{kind}/scale-ui-result.json',evidence/f'scale-{kind}.json')
+if seeds:
+    record.update(seedAssertions=seeds['assertions'],distinctSeedCaptureTraces=seeds['distinctCaptureTraces'])
+    for kind in ['source','release']:
+        shutil.copy2(work/f'seeds-{kind}/seeds-ui-result.json',evidence/f'seeds-{kind}.json')
+        for screenshot in seeds['screenshots']: shutil.copy2(work/f'seeds-{kind}'/screenshot,evidence/f'{kind}-{screenshot}')
 (evidence/'release.json').write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 (release/'SHA256SUMS.txt').write_text(digest+'  windows/PokemonTactics.exe\n'+zip_digest+'  '+archive.name+'\n',encoding='utf-8')
 print(json.dumps(record,ensure_ascii=False))

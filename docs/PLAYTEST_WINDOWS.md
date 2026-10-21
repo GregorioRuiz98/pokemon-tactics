@@ -1,4 +1,4 @@
-# Probar Pokémon Tactics en Windows ·0.22.11
+# Probar Pokémon Tactics en Windows ·0.22.12
 
 Descomprime el ZIP completo y abre **windows/PokemonTactics.exe**. Funciona sin cuenta, servidor, conexión o instalación de Godot. Mantén en la carpeta los créditos y licencias incluidos. Esta entrega es para pruebas; su publicación pública está aplazada.
 
@@ -7,6 +7,8 @@ Descomprime el ZIP completo y abre **windows/PokemonTactics.exe**. Funciona sin 
 La pantalla de inicio ofrece **Continuar aventura**, **Nueva partida**, ayuda, opciones de sonido/animación, créditos y laboratorio. Continuar se desactiva cuando todavía no hay guardado. Desde el juego, **Inicio** o **Menú → Pantalla de inicio** vuelve a ella y pausa el combate. Escape permite volver a una aventura abierta. Cancelar la elección de otro inicial conserva tu campaña anterior.
 
 Elige un inicial de Oak y una semilla; puedes comparar16×16 y24×24 antes del primer combate. La campaña guarda automáticamente cada orden aceptada. Cerrar y abrir permite continuar incluso durante una pelea, conservando iniciativa y azar.
+
+La semilla se genera automáticamente al comenzar otra aventura. Junto a los iniciales puedes escribir o pegar una, pulsar Generar otra o Copiar. Si dejas el campo vacío también se genera una nueva. Durante la campaña, Menú → Copiar semilla de la campaña copia la original. Misma semilla y decisiones repiten los sorteos; cambiarla permite otras capturas dentro de la tabla local. Las tablas con pocas especies pueden repetir Pokémon entre semillas y los gimnasios conservan su recompensa insignia. Continuar una partida mantiene su semilla y su captura pendiente.
 
 El guardado está en `%APPDATA%/PokemonTacticsLab/kanto-save.json`. La copia anterior usa `.bak`; comenzar otra campaña o ampliar una antigua también conserva una copia. Guarda esa carpeta si quieres transportar la partida a otro ordenador. La web y el laboratorio tienen archivos independientes.
 

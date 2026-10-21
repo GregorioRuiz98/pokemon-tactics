@@ -48,11 +48,12 @@ var last_load_msec: int = 0
 var move_library: RefCounted = preload("res://ui/move_library.gd").new()
 var options_dialog: AcceptDialog
 var options_buttons: Dictionary = {}
-var new_seed: String = "kanto-14"
+var new_seed: String = ""
 var input_qa_dir: String = ""
 var context_qa_dir: String = ""
 var updates_qa_dir: String = ""
 var performance_qa_dir: String = ""
+var seeds_qa_dir: String = ""
 var travel_memory: Dictionary = {}
 var travel_phase: String = ""
 
@@ -172,6 +173,7 @@ func _boot() -> void:
 		if argument.begins_with("--updates-qa-dir="): updates_qa_dir = argument.trim_prefix("--updates-qa-dir=")
 		if argument.begins_with("--context-qa-dir="): context_qa_dir = argument.trim_prefix("--context-qa-dir=")
 		if argument.begins_with("--performance-qa-dir="): performance_qa_dir = argument.trim_prefix("--performance-qa-dir=")
+		if argument.begins_with("--seeds-qa-dir="): seeds_qa_dir = argument.trim_prefix("--seeds-qa-dir=")
 	var test_dir: String = scale_qa_dir if not scale_qa_dir.is_empty() else campaign_qa_dir
 	if not roster_qa_dir.is_empty(): test_dir = roster_qa_dir
 	if not journey_qa_dir.is_empty(): test_dir = journey_qa_dir
@@ -180,6 +182,7 @@ func _boot() -> void:
 	if not context_qa_dir.is_empty(): test_dir = context_qa_dir
 	if not updates_qa_dir.is_empty(): test_dir = updates_qa_dir
 	if not performance_qa_dir.is_empty(): test_dir = performance_qa_dir
+	if not seeds_qa_dir.is_empty(): test_dir = seeds_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -189,6 +192,7 @@ func _boot() -> void:
 	menu.get_popup().add_item("Pantalla de inicio",8)
 	menu.get_popup().add_item("Aprender / salir de práctica",13)
 	menu.get_popup().add_item("Glosario táctico",14)
+	menu.get_popup().add_item("Copiar semilla de la campaña",15)
 	travel_root = MarginContainer.new()
 	travel_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for edge: String in ["left","right","top","bottom"]: travel_root.add_theme_constant_override("margin_" + edge,24)
@@ -206,7 +210,8 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
-	if not performance_qa_dir.is_empty(): _open_title(); call_deferred("_run_performance_qa")
+	if not seeds_qa_dir.is_empty(): _open_title(); call_deferred("_run_seeds_qa")
+	elif not performance_qa_dir.is_empty(): _open_title(); call_deferred("_run_performance_qa")
 	elif not updates_qa_dir.is_empty(): _open_title(); call_deferred("_run_updates_qa")
 	elif not context_qa_dir.is_empty(): _open_title(); call_deferred("_run_context_qa")
 	elif not input_qa_dir.is_empty(): _open_title(); call_deferred("_run_input_qa")
@@ -219,6 +224,28 @@ func _boot() -> void:
 
 func _run_performance_qa() -> void:
 	await load("res://ui/qa_performance.gd").new().run(self,performance_qa_dir)
+
+func _run_seeds_qa() -> void:
+	await load("res://ui/qa_seeds.gd").new().run(self,seeds_qa_dir)
+
+func _generate_seed() -> String:
+	# Independent OS randomness: never advances an existing campaign's PRNG.
+	var bytes: PackedByteArray = Crypto.new().generate_random_bytes(8)
+	if bytes.size()==8: return "kanto-"+bytes.hex_encode()
+	return "kanto-%d-%d" % [int(Time.get_unix_time_from_system()),Time.get_ticks_usec()]
+
+func _randomize_seed() -> void:
+	if not run.is_empty(): return
+	new_seed = _generate_seed()
+	if is_instance_valid(journey_seed): journey_seed.text = new_seed
+
+func _copy_seed() -> void:
+	var value: String = run.seed if not run.is_empty() else (journey_seed.text.strip_edges() if is_instance_valid(journey_seed) else new_seed.strip_edges())
+	if value.is_empty():
+		_randomize_seed()
+		value = new_seed
+	DisplayServer.clipboard_set(value)
+	if travel_buttons.has("copy_seed"): travel_buttons.copy_seed.text = "Copiada"
 
 func _open_title() -> void:
 	if practice.active: practice.leave(self); return
@@ -290,6 +317,8 @@ func _run_interface_qa() -> void:
 
 func _show_oak() -> void:
 	if not run.is_empty(): oak_return = {"run":run,"campaign":campaign,"transactions":transactions}
+	journey_seed = null
+	new_seed = _generate_seed()
 	title_visible = false
 	combat_feedback.clear()
 	run = {}
@@ -298,6 +327,9 @@ func _show_oak() -> void:
 	_refresh()
 
 func _choose_starter(identity: int) -> void:
+	new_seed = journey_seed.text.strip_edges()
+	if new_seed.is_empty(): new_seed = _generate_seed()
+	journey_seed.text = new_seed
 	var preserved: Dictionary = store.preserve_before_new()
 	if not preserved.ok:
 		message = preserved.reason
@@ -307,7 +339,7 @@ func _choose_starter(identity: int) -> void:
 	if not scale_qa_dir.is_empty(): campaign = load("res://core/scale_run.gd").new()
 	if campaign_qa_dir.is_empty() and scale_qa_dir.is_empty() and roster_qa_dir.is_empty(): campaign = Journey.new(CURRENT_CHAPTER)
 	rules = campaign.engine
-	run = campaign.create(journey_seed.text,identity)
+	run = campaign.create(new_seed,identity)
 	oak_return = {}
 	_prepare_campaign_assets()
 	transactions = []
@@ -327,6 +359,7 @@ func _menu_selected(identity: int) -> void:
 		8: _open_title()
 		13: _start_practice()
 		14: _glossary()
+		15: _copy_seed()
 		_: super._menu_selected(identity)
 
 func _modal_open() -> bool:
@@ -637,12 +670,26 @@ func _render_travel() -> void:
 	if run.is_empty():
 		travel_content.add_child(_label("Pueblo Paleta · Laboratorio de Oak",30,GOLD))
 		travel_content.add_child(_label("Elige un inicial de nivel 5. Gana EXP, aprende y combina cuatro movimientos\nmás el básico neutro. Oak te entrega dos pociones y 120 ₽.",20))
+		travel_content.add_child(_label("Semilla: una nueva en cada aventura. Escribe o pega una para repetir el recorrido.",16,MUTED))
+		var seed_row: HBoxContainer = HBoxContainer.new()
+		travel_content.add_child(seed_row)
+		if new_seed.strip_edges().is_empty(): new_seed = _generate_seed()
 		journey_seed = LineEdit.new()
 		journey_seed.text = new_seed
 		journey_seed.max_length = 64
+		journey_seed.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		journey_seed.placeholder_text = "Semilla de la campaña"
-		travel_content.add_child(journey_seed)
+		journey_seed.accessibility_name = "Semilla de la campaña"
+		journey_seed.tooltip_text = "La misma semilla y decisiones repiten el azar. Las capturas respetan las especies de cada zona."
+		journey_seed.text_changed.connect(func(value: String):
+			new_seed = value
+			if travel_buttons.has("copy_seed"): travel_buttons.copy_seed.text = "Copiar")
+		seed_row.add_child(journey_seed)
 		travel_buttons.seed = journey_seed
+		travel_buttons.random_seed = _button("Generar otra",_randomize_seed)
+		seed_row.add_child(travel_buttons.random_seed)
+		travel_buttons.copy_seed = _button("Copiar",_copy_seed)
+		seed_row.add_child(travel_buttons.copy_seed)
 		var choices: HBoxContainer = HBoxContainer.new()
 		choices.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		travel_content.add_child(choices)

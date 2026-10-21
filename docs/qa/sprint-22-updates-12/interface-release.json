@@ -1,0 +1,17 @@
+{
+	"assertions": 58,
+	"battlePaused": true,
+	"failures": [],
+	"minimumViewport": "1024x720",
+	"rulesEdition": 18,
+	"savePreserved": true,
+	"screenshots": [
+		"title-1280.png",
+		"title-1024.png",
+		"battle-1024.png",
+		"shop-1024.png",
+		"shop-1280.png",
+		"title-invalid-save.png"
+	],
+	"version": "0.22.12"
+}

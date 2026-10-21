@@ -1,6 +1,8 @@
-# Pokémon Tactics — Kanto Windows0.22.11
+# Pokémon Tactics — Kanto Windows0.22.12
 
 Campaña Kanto completa hasta la Liga y dos desafíos legendarios alternativos. Los acontecimientos y puzzles se resumen entre tableros; sin exploración libre. Ver informe para límites de la entrega.
+
+Cada aventura recibe una semilla nueva. Puedes editarla o generar otra con Oak y copiarla para repetirla. Durante la aventura, Menú → Copiar semilla de la campaña recupera la original. Misma semilla y decisiones conservan el mismo azar; los sorteos siguen las tablas locales y los gimnasios dan su insignia. Ver [semillas](../docs/SPRINT_22_SEEDS.md).
 
 ## Jugar y continuar
 
