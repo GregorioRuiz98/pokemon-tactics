@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-21",
+  "version": "0.22.11",
+  "suites": [
+    {
+      "suite": "updates",
+      "sourceAssertions": 105,
+      "releaseAssertions": 105,
+      "failures": [],
+      "reportsEqual": true
+    },
+    {
+      "suite": "context",
+      "sourceAssertions": 96,
+      "releaseAssertions": 96,
+      "failures": [],
+      "reportsEqual": true
+    },
+    {
+      "suite": "input",
+      "sourceAssertions": 59,
+      "releaseAssertions": 59,
+      "failures": [],
+      "reportsEqual": true
+    },
+    {
+      "suite": "interface",
+      "sourceAssertions": 58,
+      "releaseAssertions": 58,
+      "failures": [],
+      "reportsEqual": true
+    },
+    {
+      "suite": "roster",
+      "sourceAssertions": 540,
+      "releaseAssertions": 540,
+      "failures": [],
+      "reportsEqual": true
+    },
+    {
+      "suite": "scale",
+      "sourceAssertions": 980,
+      "releaseAssertions": 980,
+      "failures": [],
+      "reportsEqual": true
+    },
+    {
+      "suite": "laboratory",
+      "sourceAssertions": 1026,
+      "releaseAssertions": 1026,
+      "failures": [],
+      "reportsEqual": true
+    },
+    {
+      "suite": "journey",
+      "sourceAssertions": 901,
+      "releaseAssertions": 901,
+      "failures": [],
+      "reportsEqual": true
+    },
+    {
+      "suite": "journey-psychic",
+      "sourceAssertions": 513,
+      "releaseAssertions": 513,
+      "failures": [],
+      "reportsEqual": true
+    },
+    {
+      "suite": "semantic",
+      "sourceAssertions": 8,
+      "releaseAssertions": 8,
+      "failures": [],
+      "reportsEqual": true
+    },
+    {
+      "suite": "performance",
+      "sourceAssertions": 18,
+      "releaseAssertions": 18,
+      "failures": [],
+      "reportsEqual": "Times vary; deterministic checks pass in both"
+    }
+  ],
+  "lint": {
+    "total": 0,
+    "errors": 0,
+    "warnings": 0,
+    "parse_errors": 0
+  },
+  "engineValidation": {
+    "total": 65,
+    "errors": 0,
+    "parse_errors": 0,
+    "warnings": 65,
+    "info": 0
+  },
+  "preexistingWarnings": 65,
+  "fullSavedStatesAndCommandsEqual": true,
+  "isolatedProfiles": true,
+  "exportedChecksWithoutEditor": true
+}

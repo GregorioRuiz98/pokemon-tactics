@@ -1,0 +1,12 @@
+{
+  "birds": {
+    "fullStateEqualTo0223": true,
+    "commandsEqualTo0223": true,
+    "commands": 8924
+  },
+  "psychic": {
+    "fullStateEqualTo0223": true,
+    "commandsEqualTo0223": true,
+    "commands": 7396
+  }
+}

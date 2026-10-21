@@ -14,6 +14,7 @@ var tactical_reader: AcceptDialog
 var recent_result: String = "Todavía no hay un resultado en esta sesión; consulta el registro guardado."
 var presentation_dialog: AcceptDialog
 var font_update_queued: bool = false
+var hover_context: Array = []
 var actions_scroll: ScrollContainer
 var controls_dialog: AcceptDialog
 const CREAM = Color("eee8ce")
@@ -524,6 +525,7 @@ func _player_turn() -> bool:
 	return not state.is_empty() and state.outcome == "playing" and Rules.active(state).team == "ally"
 
 func _refresh():
+	hover_context.clear()
 	var focused_action: String = ""
 	for identity: String in action_buttons:
 		if action_buttons[identity]==get_viewport().gui_get_focus_owner(): focused_action = identity
@@ -531,6 +533,7 @@ func _refresh():
 	_clear(actions)
 	action_buttons.clear()
 	board.state = state
+	if board.has_method("invalidate_terrain"): board.invalidate_terrain()
 	board.available = {}
 	board.attackable = {}
 	board.route = []
@@ -757,18 +760,23 @@ func _show_plan(unit: Dictionary, plan: Dictionary):
 	target_info.set_meta("details",target_info.text)
 	target_info.text = load("res://ui/tactical_info.gd").forecast(unit,plan)+( "\n¡Alcanza a aliados!" if plan.ok and _friendly_risk(plan) else "")+"\nFicha: "+input_profile.label("inspect")+" · detalle completo"
 
-func _hover_tile(point: Dictionary):
-	if state.is_empty() or _modal_open() or not pending.is_empty(): return
+func _hover_tile(point: Dictionary) -> bool:
+	if state.is_empty() or _modal_open() or not pending.is_empty(): return false
+	var context: Array = [Vector2i(point.get("x",-1),point.get("y",-1)),selected_action,selecting,facing_choice]
+	if context==hover_context: return false
+	hover_context = context
+	if not point.is_empty(): board.cursor = context[0]
+	board.queue_redraw()
 	board.route = []
 	board.affected = []
 	board.forecast_hits = []
 	board.facing_preview = facing_choice if selecting=="finish" else -1
 	hint.text = _default_hint()
-	if point.is_empty(): return
+	if point.is_empty(): return true
 	var unit = _unit_at(point)
 	if _player_turn() and selecting == "finish":
 		if not Movement.same(Rules.active(state), point): _preview_facing(Movement.facing_from(Rules.active(state), point))
-		return
+		return true
 	if not unit.is_empty():
 		target_id = int(unit.id)
 		target_panel.visible = true
@@ -790,6 +798,7 @@ func _hover_tile(point: Dictionary):
 		target_panel.visible = false
 		var terrain = int(state.board[int(point.y)][int(point.x)])
 		hint.text = "%s · %s\n%s" % [Rules.coordinate(point), {0: "Suelo", 1: "Maleza", 2: "Roca", 3: "Agua"}[terrain], "Fuera del alcance de movimiento." if _player_turn() else "Inspección del terreno."]
+	return true
 
 func _preview_self(identity: String):
 	if not _player_turn() or _modal_open() or not pending.is_empty() or state.acted: return
@@ -900,7 +909,7 @@ func _apply_preferences() -> void:
 	if not is_inside_tree(): return
 	if has_method("_layout_battle_hud") and actor_portrait!=null: call("_layout_battle_hud")
 	load("res://ui/presentation_settings.gd").apply(self)
-	if get("accessible_view")!=null: get("accessible_view").update()
+	if get("accessible_view")!=null: get("accessible_view").request_update(true)
 	if menu!=null:
 		menu.get_popup().set_item_checked(menu.get_popup().get_item_index(4),not muted)
 		menu.get_popup().set_item_checked(menu.get_popup().get_item_index(5),not reduced_motion)

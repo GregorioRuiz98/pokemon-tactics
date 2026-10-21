@@ -1,4 +1,4 @@
-# Pokémon Tactics — Kanto Windows0.22.10
+# Pokémon Tactics — Kanto Windows0.22.11
 
 Campaña Kanto completa hasta la Liga y dos desafíos legendarios alternativos. Los acontecimientos y puzzles se resumen entre tableros; sin exploración libre. Ver informe para límites de la entrega.
 

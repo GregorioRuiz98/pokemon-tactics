@@ -1,0 +1,20 @@
+{
+	"assertions": 540,
+	"failures": [],
+	"layoutFixtureReserve": 13,
+	"natural": {
+		"cleared": 4,
+		"phase": "complete",
+		"transactions": 256
+	},
+	"overflowChecked": true,
+	"pcUsed": true,
+	"screenshots": [
+		"pc-natural.png",
+		"team-full.png",
+		"pc-paginated.png",
+		"team-1024.png",
+		"pc-1024.png",
+		"combat-six.png"
+	]
+}

@@ -98,3 +98,8 @@
 ## Cierre de mejoras0.22.10
 
 El encargo «hazlo todo» del20 de octubre completa técnicamente prompts03–09 con commits separados en codex/accessibility-complete. Ver docs/SPRINT_22_ACCESSIBILITY_COMPLETE.md (desde godot: ../docs/). Inspección, preferencias, cantidades, PC/biblioteca, práctica y acceso textual; motor18/17 y datos/snapshots intactos.09 prepara kit humano sin participantes; lector audible/usuario y DPI físicos pendientes. No delegación automática, publicación ni balance nuevos.
+
+
+## Rendimiento0.22.11
+
+Solicitud21 de octubre: corregir ralentizaciones. UI/representación solamente; campaña18/combate17, core/data/snapshots y guardados conservados. Tema con escrituras condicionales, previsión por contexto del cursor, semántica agrupada y terreno/minimapa con órdenes de dibujo conservadas. Invalidar geometría por mapa/cámara/HUD y marcas por cursor/alcance; preservar paredes y orden del pintor. QA específica de rendimiento y regresiones nativas, perfiles aislados; ver docs/SPRINT_22_PERFORMANCE.md. No delegación automática, publicación o balance nuevos.

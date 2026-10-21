@@ -93,7 +93,8 @@ func center(point: Dictionary) -> Vector2:
 	return board_origin() + Vector2(point.x + 0.5, point.y + 0.5) * cell_size()
 
 func _process(delta):
-	if not reduced_motion: elapsed += delta
+	if state.is_empty() or not is_visible_in_tree() or reduced_motion: return
+	elapsed += delta
 	redraw_clock += delta
 	if redraw_clock >= 1.0 / 20:
 		redraw_clock = 0

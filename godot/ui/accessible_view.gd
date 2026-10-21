@@ -7,6 +7,9 @@ var text: Label
 var last_message: String = ""
 var message_count: int = 0
 var notice: String = ""
+var update_queued: bool = false
+var controls_dirty: bool = true
+var last_context: Array = []
 
 func setup(owner_app: Control) -> void:
 	app = owner_app
@@ -32,23 +35,42 @@ func setup(owner_app: Control) -> void:
 	row.add_child(app._button("Último resultado",app._last_result))
 	panel.hide()
 
+func request_update(controls_changed: bool = false) -> void:
+	if controls_changed:
+		controls_dirty = true
+		last_context.clear()
+	if update_queued: return
+	update_queued = true
+	update.call_deferred()
+
 func describe(node: Node) -> void:
 	if node is BaseButton and not node.has_meta("semantic_manual"):
-		if node is Button: node.accessibility_name = node.text
-		node.accessibility_description = node.tooltip_text
-		if node.disabled and node.accessibility_description.is_empty(): node.accessibility_description = "No disponible en la fase o selección actual."
+		if node is Button and node.accessibility_name!=node.text: node.accessibility_name = node.text
+		var description: String = node.tooltip_text
+		if node.disabled and description.is_empty(): description = "No disponible en la fase o selección actual."
+		if node.accessibility_description!=description: node.accessibility_description = description
 	elif node is LineEdit:
-		node.accessibility_name = node.placeholder_text if not node.placeholder_text.is_empty() else "Buscar / editar texto"
-	elif node is SpinBox: node.accessibility_name = "Cantidad; usa flechas o escribe el valor"
+		var name_text: String = node.placeholder_text if not node.placeholder_text.is_empty() else "Buscar / editar texto"
+		if node.accessibility_name!=name_text: node.accessibility_name = name_text
+	elif node is SpinBox and node.accessibility_name!="Cantidad; usa flechas o escribe el valor": node.accessibility_name = "Cantidad; usa flechas o escribe el valor"
 	for child: Node in node.get_children(): describe(child)
 
 func update() -> void:
-	if app==null: return
-	describe(app)
+	update_queued = false
+	if app==null or not app.is_inside_tree(): return
+	if controls_dirty:
+		describe(app)
+		controls_dirty = false
 	panel.visible = app.input_profile.preferences.accessibleMode and not app.state.is_empty() and app.board.visible
 	app.board.accessibility_live = AccessibilityServer.LIVE_POLITE if panel.visible else AccessibilityServer.LIVE_OFF
 	app.board.accessibility_description = "Tablero táctico. Flechas: casilla. Enter: aceptar. Escape: cancelar. "+app.input_profile.label("inspect")+": lista de unidades y detalle. "+app.input_profile.label("result")+": último resultado. Reasignación en Controles."
-	if not panel.visible: app.board.accessibility_name = "Tablero táctico"; return
+	if not panel.visible:
+		last_context.clear()
+		if app.board.accessibility_name!="Tablero táctico": app.board.accessibility_name = "Tablero táctico"
+		return
+	var context: Array = [app.board.cursor,app.selected_action,app.selecting,app.state.get("moved",false),app.state.get("acted",false),app.save_warning]
+	if context==last_context and notice.is_empty(): return
+	last_context = context
 	var point: Dictionary = {"x":app.board.cursor.x,"y":app.board.cursor.y}
 	if point.x<0 or point.y<0 or point.x>=app.board.dimensions().x or point.y>=app.board.dimensions().y: return
 	var message: String = Info.tile_text(app,point)
@@ -81,7 +103,7 @@ func update() -> void:
 func announce(message: String) -> void:
 	if not app.input_profile.preferences.accessibleMode: return
 	notice = message
-	update.call_deferred()
+	request_update()
 
 func probe() -> Dictionary:
 	return {"engine":Engine.get_version_info(),"os":OS.get_name(),"osVersion":OS.get_version(),"display":DisplayServer.get_name(),"renderer":RenderingServer.get_current_rendering_method(),"dpi":DisplayServer.screen_get_dpi(),"supported":app.get_tree().is_accessibility_supported(),"enabled":app.get_tree().is_accessibility_enabled(),"readerAudibleTest":"pending","humanReaderTest":"pending"}

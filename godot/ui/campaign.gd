@@ -52,6 +52,7 @@ var new_seed: String = "kanto-14"
 var input_qa_dir: String = ""
 var context_qa_dir: String = ""
 var updates_qa_dir: String = ""
+var performance_qa_dir: String = ""
 var travel_memory: Dictionary = {}
 var travel_phase: String = ""
 
@@ -170,6 +171,7 @@ func _boot() -> void:
 		if argument.begins_with("--input-qa-dir="): input_qa_dir = argument.trim_prefix("--input-qa-dir=")
 		if argument.begins_with("--updates-qa-dir="): updates_qa_dir = argument.trim_prefix("--updates-qa-dir=")
 		if argument.begins_with("--context-qa-dir="): context_qa_dir = argument.trim_prefix("--context-qa-dir=")
+		if argument.begins_with("--performance-qa-dir="): performance_qa_dir = argument.trim_prefix("--performance-qa-dir=")
 	var test_dir: String = scale_qa_dir if not scale_qa_dir.is_empty() else campaign_qa_dir
 	if not roster_qa_dir.is_empty(): test_dir = roster_qa_dir
 	if not journey_qa_dir.is_empty(): test_dir = journey_qa_dir
@@ -177,6 +179,7 @@ func _boot() -> void:
 	if not input_qa_dir.is_empty(): test_dir = input_qa_dir
 	if not context_qa_dir.is_empty(): test_dir = context_qa_dir
 	if not updates_qa_dir.is_empty(): test_dir = updates_qa_dir
+	if not performance_qa_dir.is_empty(): test_dir = performance_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -203,7 +206,8 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
-	if not updates_qa_dir.is_empty(): _open_title(); call_deferred("_run_updates_qa")
+	if not performance_qa_dir.is_empty(): _open_title(); call_deferred("_run_performance_qa")
+	elif not updates_qa_dir.is_empty(): _open_title(); call_deferred("_run_updates_qa")
 	elif not context_qa_dir.is_empty(): _open_title(); call_deferred("_run_context_qa")
 	elif not input_qa_dir.is_empty(): _open_title(); call_deferred("_run_input_qa")
 	elif not interface_qa_dir.is_empty(): _open_title(); call_deferred("_run_interface_qa")
@@ -212,6 +216,9 @@ func _boot() -> void:
 	elif not scale_qa_dir.is_empty(): call_deferred("_run_scale_qa")
 	elif qa_running: call_deferred("_run_campaign_qa")
 	else: _open_title()
+
+func _run_performance_qa() -> void:
+	await load("res://ui/qa_performance.gd").new().run(self,performance_qa_dir)
 
 func _open_title() -> void:
 	if practice.active: practice.leave(self); return
@@ -473,7 +480,7 @@ func _refresh() -> void:
 			battle_overlay.hide()
 			travel_root.hide()
 			title_screen.refresh()
-			accessible_view.update.call_deferred()
+			accessible_view.request_update(true)
 			return
 	if travel_root == null:
 		super._refresh()
@@ -514,7 +521,7 @@ func _refresh() -> void:
 		actor_hp.get_theme_stylebox("fill").bg_color = Color("71c5a1") if fraction>0.5 else (Color("e9c76d") if fraction>0.25 else Color("ee997e"))
 		for action_button: Button in action_buttons.values(): action_button.add_theme_font_size_override("font_size",16)
 	else: _render_travel()
-	accessible_view.update.call_deferred()
+	accessible_view.request_update(true)
 
 func _layout_battle_hud() -> void:
 	if camera_pad!=null: camera_pad.position.x = size.x-158
@@ -572,13 +579,14 @@ func _show_plan(unit: Dictionary, plan: Dictionary) -> void:
 	super._show_plan(unit,plan)
 	if plan.ok and plan.has("heightDifference"): target_info.text += "\nDesnivel del objetivo: %+d · sin bonificación de daño." % plan.heightDifference
 
-func _hover_tile(point: Dictionary) -> void:
-	super._hover_tile(point)
-	accessible_view.update.call_deferred()
+func _hover_tile(point: Dictionary) -> bool:
+	if not super._hover_tile(point): return false
+	if input_profile.preferences.accessibleMode: accessible_view.request_update()
 	if practice.active:
 		if not point.is_empty() and not state.is_empty() and not Movement.same(rules.active(state),point): practice.observe(self,"cursor")
 		hint.text = practice.instruction(self)
 	if not point.is_empty() and state.get("combatEdition",0)>=11 and not _modal_open(): hint.text += "\nAltura %d · rueda: zoom · botón central: cámara." % rules.Terrain.height_at(state,point)
+	return true
 
 func _travel_button(key: String, text: String, parent: Node, command: Dictionary) -> Button:
 	command.at = run.revision

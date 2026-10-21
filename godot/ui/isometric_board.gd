@@ -15,7 +15,73 @@ var show_heights: bool = false
 var sprite_bounds: Dictionary = {}
 var sprite_images: Dictionary = {}
 var camera_mode: bool = false
+var terrain_layer: Node2D
+var minimap_layer: Node2D
+var minimap_background: Node2D
+var tile_nodes: Dictionary = {}
+var terrain_context: Array = []
+var tile_marks: Dictionary = {}
+var terrain_rebuilds: int = 0
+var tile_redraws: int = 0
 signal camera_mode_changed
+
+func _ready() -> void:
+	super._ready()
+	terrain_layer = Node2D.new()
+	terrain_layer.show_behind_parent = true
+	add_child(terrain_layer)
+	terrain_layer.draw.connect(func():terrain_layer.draw_rect(Rect2(Vector2.ZERO,size),Color("142b28")))
+	minimap_layer = Node2D.new()
+	add_child(minimap_layer)
+	minimap_layer.draw.connect(_draw_minimap_overlay)
+	minimap_background = Node2D.new()
+	minimap_background.show_behind_parent = true
+	minimap_layer.add_child(minimap_background)
+	minimap_background.draw.connect(_draw_minimap_background)
+
+func invalidate_terrain() -> void:
+	terrain_context.clear()
+
+func _update_terrain() -> void:
+	# Godot retains each tile's drawing commands, including painter order and walls.
+	# Animating sprites no longer rebuilds hundreds of unchanged tile polygons.
+	var context: Array = [size,play_area(),anchor,zoom,strong_grid,show_heights,state.biome,state.board,state.heights]
+	if context!=terrain_context:
+		terrain_context = context
+		terrain_rebuilds += 1
+		terrain_layer.queue_redraw()
+		minimap_background.queue_redraw()
+		var area: Rect2 = play_area().grow(cell_size())
+		for tile_node: Node2D in tile_nodes.values(): tile_node.hide()
+		for sum: int in dimensions().x+dimensions().y-1:
+			for x: int in dimensions().x:
+				var y: int = sum-x
+				if y<0 or y>=dimensions().y: continue
+				var point: Dictionary = {"x":x,"y":y}
+				var key: String = Movement.key(point)
+				if not area.has_point(center(point)): continue
+				if not tile_nodes.has(key):
+					var tile_node: Node2D = Node2D.new()
+					tile_node.draw.connect(_draw_tile.bind(point,tile_node))
+					terrain_layer.add_child(tile_node)
+					tile_nodes[key] = tile_node
+				# Camera changes can expose tiles created later: keep painter order.
+				terrain_layer.move_child(tile_nodes[key],terrain_layer.get_child_count()-1)
+				tile_nodes[key].show()
+				tile_nodes[key].queue_redraw()
+	var marks: Dictionary = {}
+	for key: String in available: marks[key] = 1
+	for key: String in attackable: marks[key] = int(marks.get(key,0))|2
+	for point: Dictionary in affected:
+		var key: String = Movement.key(point)
+		marks[key] = int(marks.get(key,0))|4
+	var cursor_key: String = Movement.key({"x":cursor.x,"y":cursor.y})
+	marks[cursor_key] = int(marks.get(cursor_key,0))|8
+	for key: String in tile_marks:
+		if not marks.has(key) and tile_nodes.has(key): tile_nodes[key].queue_redraw()
+	for key: String in marks:
+		if marks[key]!=tile_marks.get(key,0) and tile_nodes.has(key): tile_nodes[key].queue_redraw()
+	tile_marks = marks
 
 func toggle_camera() -> void:
 	camera_mode = not camera_mode
@@ -235,10 +301,11 @@ func edge_depth(point: Dictionary, vector: Vector2i) -> int:
 	if other.x>=dimensions().x or other.y>=dimensions().y: return Terrain.height_at(state,point)+1
 	return maxi(0,Terrain.height_at(state,point)-Terrain.height_at(state,other))
 
-func _outline(polygon: PackedVector2Array, color: Color, width: float = 1) -> void:
+func _outline(polygon: PackedVector2Array, color: Color, width: float = 1, canvas: CanvasItem = null) -> void:
+	if canvas==null: canvas = self
 	var closed: PackedVector2Array = polygon.duplicate()
 	closed.append(polygon[0])
-	draw_polyline(closed,color,width,true)
+	canvas.draw_polyline(closed,color,width,true)
 
 func _tile_color(point: Dictionary) -> Color:
 	var tile: int = int(state.board[int(point.y)][int(point.x)])
@@ -253,7 +320,8 @@ func _tile_color(point: Dictionary) -> Color:
 	elif tile==3: color = Color("548a9a")
 	return color.lightened(h*0.065+((int(point.x)+int(point.y))%2)*0.013)
 
-func _draw_tile(point: Dictionary) -> void:
+func _draw_tile(point: Dictionary, canvas: CanvasItem) -> void:
+	tile_redraws += 1
 	var polygon: PackedVector2Array = diamond(point)
 	var c: Vector2 = center(point)
 	var color: Color = _tile_color(point)
@@ -264,41 +332,41 @@ func _draw_tile(point: Dictionary) -> void:
 		var a: Vector2 = polygon[edge]
 		var b: Vector2 = polygon[(edge+1)%4]
 		var drop: Vector2 = Vector2(0,depth*LIFT*zoom)
-		draw_colored_polygon(PackedVector2Array([a,b,b+drop,a+drop]),Color("62654d").darkened(0.18 if edge==1 else 0.04))
-		draw_line(a,b,Color("d3c79d"),maxf(1,zoom))
+		canvas.draw_colored_polygon(PackedVector2Array([a,b,b+drop,a+drop]),Color("62654d").darkened(0.18 if edge==1 else 0.04))
+		canvas.draw_line(a,b,Color("d3c79d"),maxf(1,zoom))
 		# Light tread lines identify traversable single-height edges.
 		if depth==1:
-			for t: float in [0.45,0.85]: draw_line(a+drop*t,b+drop*t,Color(0.82,0.78,0.61,0.35),1)
+			for t: float in [0.45,0.85]: canvas.draw_line(a+drop*t,b+drop*t,Color(0.82,0.78,0.61,0.35),1)
 		else:
-			for t: float in [0.3,0.65]: draw_line(a.lerp(b,t),a.lerp(b,t)+drop,Color(0.1,0.17,0.12,0.22),1)
-	draw_colored_polygon(polygon,color)
-	_outline(polygon,Color(0.11,0.18,0.1,0.38 if strong_grid else 0.13))
+			for t: float in [0.3,0.65]: canvas.draw_line(a.lerp(b,t),a.lerp(b,t)+drop,Color(0.1,0.17,0.12,0.22),1)
+	canvas.draw_colored_polygon(polygon,color)
+	_outline(polygon,Color(0.11,0.18,0.1,0.38 if strong_grid else 0.13),1,canvas)
 	var tile: int = int(state.board[int(point.y)][int(point.x)])
 	if tile==1:
 		for i: int in 4:
 			var offset: Vector2 = Vector2((i%2)*14-9,int(i/2.0)*9-3)*zoom
-			draw_line(c+offset,c+offset+Vector2(-2,-6)*zoom,Color("a0b36a"),zoom)
-			draw_line(c+offset,c+offset+Vector2(3,-4)*zoom,Color("a0b36a"),zoom)
+			canvas.draw_line(c+offset,c+offset+Vector2(-2,-6)*zoom,Color("a0b36a"),zoom)
+			canvas.draw_line(c+offset,c+offset+Vector2(3,-4)*zoom,Color("a0b36a"),zoom)
 	elif tile==2:
 		var stone: PackedVector2Array = PackedVector2Array([c+Vector2(-18,3)*zoom,c+Vector2(-15,-8)*zoom,c+Vector2(-4,-13)*zoom,c+Vector2(14,-8)*zoom,c+Vector2(19,3)*zoom,c+Vector2(5,8)*zoom])
-		draw_colored_polygon(stone,Color("8c9583") if state.biome!="brock" else Color("989d90"))
-		draw_line(stone[1],stone[2],Color("bac1aa"),2*zoom)
-		draw_line(c+Vector2(-2,-8)*zoom,c+Vector2(5,3)*zoom,Color("687361"),zoom)
+		canvas.draw_colored_polygon(stone,Color("8c9583") if state.biome!="brock" else Color("989d90"))
+		canvas.draw_line(stone[1],stone[2],Color("bac1aa"),2*zoom)
+		canvas.draw_line(c+Vector2(-2,-8)*zoom,c+Vector2(5,3)*zoom,Color("687361"),zoom)
 	elif tile==0 and (int(point.x)*17+int(point.y)*13)%5==0:
-		for i: int in 2: draw_line(c+Vector2(-9+i*14,3-i*7)*zoom,c+Vector2(-6+i*14,3-i*7)*zoom,color.darkened(0.12),zoom)
+		for i: int in 2: canvas.draw_line(c+Vector2(-9+i*14,3-i*7)*zoom,c+Vector2(-6+i*14,3-i*7)*zoom,color.darkened(0.12),zoom)
 	var key: String = Movement.key(point)
 	if available.has(key):
-		draw_colored_polygon(polygon,Color(0.18,0.58,0.84,0.32))
-		_outline(polygon,Color(0.61,0.86,0.95,0.48),1)
-	if attackable.has(key): _outline(polygon,Color("f19a78"),2)
+		canvas.draw_colored_polygon(polygon,Color(0.18,0.58,0.84,0.32))
+		_outline(polygon,Color(0.61,0.86,0.95,0.48),1,canvas)
+	if attackable.has(key): _outline(polygon,Color("f19a78"),2,canvas)
 	if affected.any(func(p):return Movement.same(p,point)):
-		draw_colored_polygon(polygon,Color(0.96,0.46,0.14,0.4))
-		_outline(polygon,Color("ffc783"),2)
-	if cursor==Vector2i(point.x,point.y): _outline(polygon,Color("fff1a8"),3)
+		canvas.draw_colored_polygon(polygon,Color(0.96,0.46,0.14,0.4))
+		_outline(polygon,Color("ffc783"),2,canvas)
+	if cursor==Vector2i(point.x,point.y): _outline(polygon,Color("fff1a8"),3,canvas)
 	var height_marker: bool = (height==1 and (int(point.x)+int(point.y))%2==0) or (int(point.x)%3==0 and int(point.y)%3==0)
 	if show_heights and zoom>=0.8 and tile!=2 and height>0 and height_marker:
 		var occupied: bool = state.units.any(func(unit):return unit.hp>0 and Movement.same(unit,point))
-		if not occupied: _tag(c+Vector2(0,-2),"H%d" % height,Color("f4e8c4"),11)
+		if not occupied: _tag(c+Vector2(0,-2),"H%d" % height,Color("f4e8c4"),11,canvas)
 
 func _unit_order() -> Array:
 	var ordered: Array = state.units.filter(func(unit):return unit.hp>0)
@@ -308,12 +376,13 @@ func _unit_order() -> Array:
 func _unit_color(unit: Dictionary) -> Color:
 	return Color("64d4d1") if unit.team=="ally" else Color("ed8f74")
 
-func _tag(point: Vector2, text: String, color: Color, font_size: int = 13) -> void:
+func _tag(point: Vector2, text: String, color: Color, font_size: int = 13, canvas: CanvasItem = null) -> void:
+	if canvas==null: canvas = self
 	var font: Font = get_theme_default_font()
 	var width: float = font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
 	var rect: Rect2 = Rect2(point-Vector2(width*0.5+5,font_size+1),Vector2(width+10,font_size+6))
-	draw_rect(rect,Color("152c2b"))
-	draw_string(font,point-Vector2(width*0.5,0),text,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,color)
+	canvas.draw_rect(rect,Color("152c2b"))
+	canvas.draw_string(font,point-Vector2(width*0.5,0),text,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,color)
 
 func _draw_unit(unit: Dictionary) -> void:
 	var c: Vector2 = center(unit)
@@ -360,17 +429,14 @@ func _draw_unit_info(unit: Dictionary) -> void:
 		Indicators.draw_badge(self,Rect2(base+Vector2((i%2)*36,-int(i/2.0)*15),Vector2(34,14)),badges[i],get_theme_default_font(),10,true)
 
 func _draw() -> void:
+	terrain_layer.visible = isometric()
+	minimap_layer.visible = isometric()
 	if not isometric():
 		super._draw()
 		return
-	draw_rect(Rect2(Vector2.ZERO,size),Color("142b28"))
+	var started: int = Time.get_ticks_usec() if has_meta("draw_samples") else 0
+	_update_terrain()
 	var area: Rect2 = play_area()
-	for sum: int in dimensions().x+dimensions().y-1:
-		for x: int in dimensions().x:
-			var y: int = sum-x
-			if y<0 or y>=dimensions().y: continue
-			var point: Dictionary = {"x":x,"y":y}
-			if area.grow(cell_size()).has_point(center(point)): _draw_tile(point)
 	for index: int in range(1,route.size()):
 		draw_line(center(route[index-1]),center(route[index]),Color("fff1a8"),3,true)
 		draw_circle(center(route[index]),3,Color("fff1a8"))
@@ -390,26 +456,33 @@ func _draw() -> void:
 		var point: Vector2 = legend+Vector2(i*94,0)
 		draw_colored_polygon(PackedVector2Array([point+Vector2(0,-5),point+Vector2(7,0),point+Vector2(0,5),point+Vector2(-7,0)]),color)
 		draw_string(font,point+Vector2(12,5),["Aliado","Rival","Turno"][i],HORIZONTAL_ALIGNMENT_LEFT,-1,13,Color("b3c7b1"))
-	_draw_minimap()
+	minimap_layer.queue_redraw()
+	if started>0: get_meta("draw_samples").append((Time.get_ticks_usec()-started)/1000.0)
 
-func _draw_minimap() -> void:
+func _draw_minimap_background() -> void:
 	var origin: Vector2 = Vector2(size.x-276,130)
 	var factor: float = 108.0/(dimensions().x*TILE.x)
 	var shift: Vector2 = origin+Vector2(58,8)
 	var region: Rect2 = Rect2(origin,Vector2(116,82))
-	draw_rect(region,Color("0d211f"))
-	draw_string(get_theme_default_font(),origin+Vector2(0,-6),"VISTA GENERAL",HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("a7ba9b"))
+	minimap_background.draw_rect(region,Color("0d211f"))
+	minimap_background.draw_string(get_theme_default_font(),origin+Vector2(0,-6),"VISTA GENERAL",HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("a7ba9b"))
 	for y: int in dimensions().y:
 		for x: int in dimensions().x:
 			var point: Dictionary = {"x":x,"y":y}
 			var c: Vector2 = shift+projection(point)*factor
 			var d: Vector2 = TILE*factor*0.5
-			draw_colored_polygon(PackedVector2Array([c+Vector2(0,-d.y),c+Vector2(d.x,0),c+Vector2(0,d.y),c+Vector2(-d.x,0)]),_tile_color(point).darkened(0.25))
+			minimap_background.draw_colored_polygon(PackedVector2Array([c+Vector2(0,-d.y),c+Vector2(d.x,0),c+Vector2(0,d.y),c+Vector2(-d.x,0)]),_tile_color(point).darkened(0.25))
+
+func _draw_minimap_overlay() -> void:
+	var origin: Vector2 = Vector2(size.x-276,130)
+	var factor: float = 108.0/(dimensions().x*TILE.x)
+	var shift: Vector2 = origin+Vector2(58,8)
+	var region: Rect2 = Rect2(origin,Vector2(116,82))
 	var area: Rect2 = play_area()
 	var visible_rect: Rect2 = Rect2(shift+(anchor-area.size/(2*zoom))*factor,area.size/zoom*factor)
 	var start: Vector2 = visible_rect.position.clamp(region.position,region.end)
 	var end: Vector2 = visible_rect.end.clamp(region.position,region.end)
-	draw_rect(Rect2(start,end-start),Color(0.94,0.95,0.83,0.6),false,1)
+	minimap_layer.draw_rect(Rect2(start,end-start),Color(0.94,0.95,0.83,0.6),false,1)
 	for unit: Dictionary in state.units:
 		if unit.hp<=0: continue
-		draw_circle(shift+projection(unit)*factor,3,_unit_color(unit))
+		minimap_layer.draw_circle(shift+projection(unit)*factor,3,_unit_color(unit))

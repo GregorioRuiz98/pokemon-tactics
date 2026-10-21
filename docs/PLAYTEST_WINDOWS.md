@@ -1,4 +1,4 @@
-# Probar Pokémon Tactics en Windows ·0.22.3
+# Probar Pokémon Tactics en Windows ·0.22.11
 
 Descomprime el ZIP completo y abre **windows/PokemonTactics.exe**. Funciona sin cuenta, servidor, conexión o instalación de Godot. Mantén en la carpeta los créditos y licencias incluidos. Esta entrega es para pruebas; su publicación pública está aplazada.
 

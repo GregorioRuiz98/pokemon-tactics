@@ -69,6 +69,20 @@ if modern:
     baseline=json.loads((work/'baseline-parity.json').read_text(encoding='utf-8'))
     assert all(item['fullStateEqualTo0223'] and item['commandsEqualTo0223'] for item in baseline.values())
 archive=release/f'pokemon-tactics-{version}-windows.zip'
+performance=None
+scale=None
+if chapter==22 and patch>=11:
+    performance={}
+    for side in ['source','release']:
+        result_path=work/f'performance-{side}/performance-result.json'
+        report=json.loads(result_path.read_text(encoding='utf-8'))
+        assert not report['failures'] and report['assertions']>=18
+        if side=='release': assert result_path.stat().st_mtime>=exe.stat().st_mtime
+        performance[side]=report
+    scale=json.loads((work/'scale-source/scale-ui-result.json').read_text(encoding='utf-8'))
+    assert scale==json.loads((work/'scale-release/scale-ui-result.json').read_text(encoding='utf-8')) and not scale['failures']
+    assert (work/'scale-release/scale-ui-result.json').stat().st_mtime>=exe.stat().st_mtime
+    shutil.copy2(ROOT/'docs/SPRINT_22_PERFORMANCE.md',bundle/'RENDIMIENTO.md')
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as package:
     for file in sorted(bundle.rglob('*')):
         if file.is_file():package.write(file,pathlib.Path('windows')/file.relative_to(bundle))
@@ -113,6 +127,14 @@ if updates:
     for kind in ['source','release']:
         shutil.copy2(work/f'updates-{kind}/updates-ui-result.json',evidence/f'updates-{kind}.json')
         shutil.copy2(work/f'updates-{kind}/accessibility-probe.json',evidence/f'accessibility-{kind}.json')
+if performance:
+    record.update(performanceAssertions=performance['release']['assertions'])
+    for kind in ['source','release']:
+        shutil.copy2(work/f'performance-{kind}/performance-result.json',evidence/f'performance-{kind}.json')
+        shutil.copy2(work/f'performance-{kind}/performance-24.png',evidence/f'performance-{kind}.png')
+if scale:
+    record.update(scaleAssertions=scale['assertions'])
+    for kind in ['source','release']: shutil.copy2(work/f'scale-{kind}/scale-ui-result.json',evidence/f'scale-{kind}.json')
 (evidence/'release.json').write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 (release/'SHA256SUMS.txt').write_text(digest+'  windows/PokemonTactics.exe\n'+zip_digest+'  '+archive.name+'\n',encoding='utf-8')
 print(json.dumps(record,ensure_ascii=False))

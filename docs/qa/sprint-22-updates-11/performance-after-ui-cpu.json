@@ -1,0 +1,55 @@
+{
+  "assertions": 1,
+  "engine": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "failures": [],
+  "measurements": {
+    "ai-plan": {
+      "iterations": 3,
+      "medianMs": 2.277,
+      "p95Ms": 2.563,
+      "totalMs": 7.062
+    },
+    "hover-same-cell": {
+      "iterations": 100,
+      "medianMs": 0.005,
+      "p95Ms": 0.005,
+      "totalMs": 1.326
+    },
+    "preferences": {
+      "iterations": 30,
+      "medianMs": 1.018,
+      "p95Ms": 1.127,
+      "totalMs": 31.133
+    },
+    "refresh": {
+      "iterations": 30,
+      "medianMs": 5.495,
+      "p95Ms": 6.444,
+      "totalMs": 167.281
+    },
+    "semantic-off": {
+      "iterations": 100,
+      "medianMs": 0.01,
+      "p95Ms": 0.011,
+      "totalMs": 1.364
+    },
+    "semantic-on": {
+      "iterations": 30,
+      "medianMs": 0.012,
+      "p95Ms": 0.025,
+      "totalMs": 1.365
+    }
+  },
+  "renderer": "gl_compatibility",
+  "screenshots": []
+}
