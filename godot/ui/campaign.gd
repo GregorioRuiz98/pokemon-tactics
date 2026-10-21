@@ -29,6 +29,7 @@ var roster_offset: int = 0
 var roster_swap: int = 1
 var roster_panel: RefCounted = RosterPanel.new()
 var camera_bar: HBoxContainer
+var camera_dock: MarginContainer
 var camera_pad: GridContainer
 var camera_compass: Label
 var camera_buttons: Dictionary = {}
@@ -59,32 +60,9 @@ var travel_phase: String = ""
 
 func _make_theme() -> void:
 	super._make_theme()
-	for control_type: String in ["Button","OptionButton","MenuButton"]:
-		for entry: String in ["normal","hover","pressed","disabled","focus"]:
-			var style: StyleBoxFlat = StyleBoxFlat.new()
-			style.bg_color = Color("1a3d47") if entry=="normal" else (Color("28525c") if entry=="hover" else (Color("2a4c56") if entry=="pressed" else Color("142e37")))
-			if entry=="focus": style.draw_center = false
-			style.border_color = GOLD if entry in ["focus","pressed"] else Color("49646a")
-			style.set_border_width_all(2 if entry=="focus" else 1)
-			style.set_corner_radius_all(5)
-			style.set_content_margin_all(10)
-			theme.set_stylebox(entry,control_type,style)
-			theme.set_color("font_pressed_color",control_type,GOLD)
-			theme.set_color("font_hover_pressed_color",control_type,GOLD)
-			theme.set_color("font_focus_color",control_type,CREAM)
-	theme.set_stylebox("panel","PopupMenu",_surface())
-	theme.set_stylebox("panel","AcceptDialog",_surface())
 
 func _surface() -> StyleBoxFlat:
-	var style: StyleBoxFlat = StyleBoxFlat.new()
-	style.bg_color = Color("122f39")
-	style.border_color = Color("52717a")
-	style.set_border_width_all(1)
-	style.set_corner_radius_all(6)
-	style.set_content_margin_all(14)
-	style.shadow_color = Color(0.01,0.05,0.07,0.3)
-	style.shadow_size = 6
-	return style
+	return GameSkin.panel()
 
 func _panel() -> PanelContainer:
 	var panel: PanelContainer = PanelContainer.new()
@@ -101,14 +79,27 @@ func _ready() -> void:
 	battle_overlay.add_child(camera_bar)
 	for entry: Array in [["−",func():board.change_zoom(1/1.12)],["+",func():board.change_zoom(1.12)],["Combate",func():board.frame_combat()],["Unidad · C",func():board.focus_active()],["Mapa",func():board.fit_map()],["Cuadrícula · G",func():board.strong_grid = not board.strong_grid; board.queue_redraw()],["Alturas · H",func():board.show_heights = not board.show_heights; board.queue_redraw()]]:
 		var camera_button: Button = _button(entry[0],_camera_order.bind(entry[1]),40)
-		camera_button.add_theme_font_size_override("font_size",16)
+		camera_button.theme_type_variation = "ToolButton"
+		camera_button.add_theme_font_size_override("font_size",15)
 		camera_bar.add_child(camera_button)
+	camera_dock = MarginContainer.new()
+	battle_overlay.add_child(camera_dock)
+	camera_dock.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	camera_dock.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+	camera_dock.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var camera_stack: VBoxContainer = VBoxContainer.new()
+	camera_stack.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	camera_stack.add_theme_constant_override("separation",12)
+	camera_dock.add_child(camera_stack)
+	var camera_row: HBoxContainer = HBoxContainer.new()
+	camera_row.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	camera_row.alignment = BoxContainer.ALIGNMENT_END
+	camera_stack.add_child(camera_row)
 	camera_pad = GridContainer.new()
 	camera_pad.columns = 3
-	camera_pad.position = Vector2(size.x-158,122)
 	camera_pad.add_theme_constant_override("h_separation",2)
 	camera_pad.add_theme_constant_override("v_separation",2)
-	battle_overlay.add_child(camera_pad)
+	camera_row.add_child(camera_pad)
 	for entry: Array in [["",""],["up","↑"],["",""],["left","←"],["mode","P"],["right","→"],["",""],["down","↓"],["",""]]:
 		if entry[0].is_empty():
 			var space: Control = Control.new()
@@ -120,10 +111,13 @@ func _ready() -> void:
 			var vectors: Dictionary = {"left":Vector2(48,0),"right":Vector2(-48,0),"up":Vector2(0,48),"down":Vector2(0,-48)}
 			var callback: Callable = board.toggle_camera if identity=="mode" else board.pan.bind(vectors[identity])
 			var button: Button = _button(entry[1],_camera_order.bind(callback),40)
+			button.theme_type_variation = "ToolButton"
 			button.add_theme_font_size_override("font_size",16)
 			if identity=="mode": button.toggle_mode = true
 			camera_pad.add_child(button)
 			camera_buttons[identity] = button
+	command_panel.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	command_panel.reparent(camera_stack,false)
 	board.camera_mode_changed.connect(_camera_labels)
 	camera_compass = _label("Cursor isométrico\n↑ −Y ↗   → +X ↘\n← −X ↖   ↓ +Y ↙",13,MUTED)
 	camera_compass.position = Vector2(size.x-276,270)
@@ -550,6 +544,11 @@ func _refresh() -> void:
 			heading.text = "PRÁCTICA AISLADA · ninguna orden se guarda en tu aventura"
 			hint.text = practice.instruction(self)
 			if practice.step==9: buttons.undo.disabled = false; buttons.undo.text = input_profile.shortcut("Explicar bloqueo","rectify")
+		actor_title.text = "%s · Nv. %d" % [active.name,active.get("level",1)]
+		actor_title.tooltip_text = "Turno rival" if active.team=="enemy" else "Tu equipo · unidad en turno"
+		actor_info.text = "%d / %d PS\n%d / %d PT\n%s\n%s" % [active.hp,active.maxHp,active.tp,active.maxTp,"Mov. usado" if state.moved else "Mov. %d" % active.remaining,"Acc. usada" if state.acted else "Acc. lista"]
+		actor_info.set_meta("base_color",CREAM)
+		if actor_info.get_theme_color("font_color")!=CREAM: actor_info.add_theme_color_override("font_color",CREAM)
 		var fraction: float = float(active.hp)/maxi(1,int(active.maxHp))
 		actor_hp.get_theme_stylebox("fill").bg_color = Color("71c5a1") if fraction>0.5 else (Color("e9c76d") if fraction>0.25 else Color("ee997e"))
 		for action_button: Button in action_buttons.values(): action_button.add_theme_font_size_override("font_size",16)
@@ -557,12 +556,19 @@ func _refresh() -> void:
 	accessible_view.request_update(true)
 
 func _layout_battle_hud() -> void:
-	if camera_pad!=null: camera_pad.position.x = size.x-158
+	if camera_dock!=null:
+		camera_dock.offset_left = -350 if get_window().size.x<1150 or load("res://ui/presentation_settings.gd").font_factor(self)>1.2 else -310
+		camera_dock.offset_right = -18
+		camera_dock.offset_top = 122
+		camera_dock.offset_bottom = 122
 	if camera_compass!=null: camera_compass.position.x = size.x-276
 	var factor: float = load("res://ui/presentation_settings.gd").font_factor(self)
 	var narrow: bool = get_window().size.x<1150 or factor>1.2
-	board.reserved_right = 370 if narrow else 332
-	board.extra_bottom = 90 if factor>1.2 else 0
+	var camera_cell: float = maxf(48,ceilf(16*factor+32))
+	for button: Button in camera_buttons.values(): button.custom_minimum_size.x = camera_cell
+	board.minimap_right = camera_cell*3+4+18+128
+	board.reserved_right = 386 if narrow else 350
+	board.extra_bottom = 60 if factor>1.2 else -24
 	var header: Node = heading.get_parent()
 	header.get_child(0).visible = factor<=1.2
 	saved.visible = factor<=1.2 or not save_warning.is_empty()
@@ -578,24 +584,37 @@ func _layout_battle_hud() -> void:
 			var shortcut_action: String = {0:"zoom_out",1:"zoom_in",3:"center",5:"grid",6:"heights"}.get(index,"")
 			camera_button.tooltip_text = input_profile.shortcut(["Alejar","Acercar","Centrar combate","Centrar unidad","Vista completa","Cuadrícula","Alturas"][index],shortcut_action) if not shortcut_action.is_empty() else ["","","Centrar combate","","Vista completa","",""][index]
 			camera_button.custom_minimum_size.x = maxf(60,camera_button.text.length()*16*factor*0.6+36)
-	if camera_pad!=null and factor>1.2:
-		camera_pad.position.x = size.x-220
-		for button: Button in camera_buttons.values(): button.custom_minimum_size.x = 62
-	if camera_compass!=null: camera_compass.visible = camera_bar.visible and factor<=1.2
-	command_panel.offset_left = -350 if narrow else -284
-	if not action_page and selecting=="auto" and pending.is_empty():
-		command_panel.offset_top = -135 if narrow else -120
-		command_panel.offset_bottom = 165 if narrow else 120
-	var actor_width: float = 330 if narrow else 360
+	if camera_compass!=null: camera_compass.visible = false
+	command_panel.custom_minimum_size.x = 330 if narrow else 292
+	var camera_height: float = 3*maxf(44,theme.default_font.get_height(roundi(16*factor))+20)+4
+	var menu_overhead: float = 2*theme.default_font.get_height(roundi(18*factor))+72
+	var ability_height: float = action_buttons.size()*(2*theme.default_font.get_height(roundi(16*factor))+20)+maxi(0,action_buttons.size()-1)*6
+	actions_scroll.custom_minimum_size.y = minf(ability_height,maxf(120,size.y-122-camera_height-12-menu_overhead-18)) if action_page else 0.0
+	var menu_paper: StyleBoxFlat = command_panel.get_theme_stylebox("panel")
+	if not menu_paper.has_meta("field_menu"):
+		menu_paper = GameSkin.panel(Color("7c9696"))
+		menu_paper.bg_color = GameSkin.PAPER
+		menu_paper.set_meta("field_menu",true)
+		command_panel.add_theme_stylebox_override("panel",menu_paper)
+	var high_contrast: bool = input_profile.preferences.highContrast
+	var paper_color: Color = Color.BLACK if high_contrast else GameSkin.PAPER
+	if menu_paper.bg_color!=paper_color: menu_paper.bg_color = paper_color
+	var heading_color: Color = Color.WHITE if high_contrast else GameSkin.INK
+	if command_heading.get_theme_color("font_color")!=heading_color: command_heading.add_theme_color_override("font_color",heading_color)
+	command_heading.set_meta("base_color",GameSkin.INK)
+	for button: Button in [buttons.actions,buttons.undo,buttons.finish,buttons.cancel]+action_buttons.values():
+		if button.theme_type_variation!="FieldCommandButton": button.theme_type_variation = "FieldCommandButton"
+	var actor_width: float = 330 if narrow else 380
 	var target_width: float = 390
 	var actor_panel: Control = actor_portrait.get_parent().get_parent().get_parent()
 	actor_panel.offset_right = 18+actor_width
-	actor_panel.offset_top = -250 if factor>1.2 else -180
+	actor_panel.offset_top = -250 if factor>1.2 else -196
 	if factor>1.2:
 		actor_info.text = actor_info.text.replace("\n"+rules.active(state).get("abilityName",""),"") if not state.is_empty() else actor_info.text
-	actor_portrait.custom_minimum_size = Vector2(48,48) if narrow else Vector2(104,104)
+	actor_portrait.custom_minimum_size = Vector2(56,56) if narrow else Vector2(80,80)
 	actor_info.add_theme_font_size_override("font_size",16 if narrow else 18)
 	target_panel.offset_left = -18-target_width
+	target_panel.offset_top = -250 if factor>1.2 else -196
 	target_portrait.custom_minimum_size = Vector2(40,40) if narrow else Vector2(80,80)
 	target_info.custom_minimum_size.x = 200 if narrow else 250
 	target_info.add_theme_font_size_override("font_size",15 if narrow else 17)
@@ -605,7 +624,16 @@ func _layout_battle_hud() -> void:
 	var width: float = minf(390,middle_right-middle_left)
 	hint.get_parent().offset_left = middle-size.x/2-width/2
 	hint.get_parent().offset_right = middle-size.x/2+width/2
-	hint.get_parent().offset_top = -180 if factor>1.2 else -130
+	hint.get_parent().offset_top = -250 if factor>1.2 else -196
+	# Three information regions share one battle dock, without separate boxes.
+	for panel: PanelContainer in [actor_panel,hint.get_parent(),target_panel]:
+		if not panel.has_meta("battle_dock"):
+			var clear: StyleBoxFlat = StyleBoxFlat.new()
+			clear.bg_color = Color(0,0,0,0)
+			clear.set_content_margin_all(12)
+			panel.add_theme_stylebox_override("panel",clear)
+			panel.set_meta("battle_dock",true)
+	battle_chrome.configure(board.play_area(),280 if factor>1.2 else 204,high_contrast)
 	board.queue_redraw()
 
 func _show_plan(unit: Dictionary, plan: Dictionary) -> void:
@@ -624,6 +652,7 @@ func _hover_tile(point: Dictionary) -> bool:
 func _travel_button(key: String, text: String, parent: Node, command: Dictionary) -> Button:
 	command.at = run.revision
 	var button: Button = _button(text,_travel_command.bind(command))
+	if command.kind in ["enter","continue","capture","final-path"]: button.theme_type_variation = "PrimaryButton"
 	travel_buttons[key] = button
 	parent.add_child(button)
 	return button
@@ -644,9 +673,12 @@ func _render_travel() -> void:
 	header.add_child(title)
 	if not run.is_empty(): header.add_child(_label("%d ₽" % run.money,22,GOLD))
 	var home: Button = _button("Inicio",_open_title)
+	home.theme_type_variation = "ToolButton"
 	header.add_child(home)
 	travel_buttons.home = home
-	header.add_child(_button("Ayuda",func(): help_dialog.popup_centered(Vector2i(630,450))))
+	var help_button: Button = _button("Ayuda",func(): help_dialog.popup_centered(Vector2i(630,450)))
+	help_button.theme_type_variation = "ToolButton"
+	header.add_child(help_button)
 	var classic: String = ""
 	if not run.is_empty() and run.get("edition",1)<12: classic = "Clásica %s: conserva sus reglas. Nueva campaña para usar el PC." % _classic_version()
 	var status: Label = _label(save_warning if not save_warning.is_empty() else (message if not message.is_empty() else (classic if not classic.is_empty() else ("Guardado automático local · Revivir disponible en tienda" if run.get("edition",1)>=9 else "Guardado automático local · bajas definitivas"))),17,MUTED)
@@ -691,10 +723,12 @@ func _render_travel() -> void:
 		travel_buttons.copy_seed = _button("Copiar",_copy_seed)
 		seed_row.add_child(travel_buttons.copy_seed)
 		var choices: HBoxContainer = HBoxContainer.new()
+		choices.add_theme_constant_override("separation",16)
 		choices.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		travel_content.add_child(choices)
 		for id: int in [1,4,7]:
 			var panel: PanelContainer = _panel()
+			panel.add_theme_stylebox_override("panel",GameSkin.panel({1:Color("86bd84"),4:Color("eb9670"),7:Color("8ac6db")}[id]))
 			panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			choices.add_child(panel)
 			var content: VBoxContainer = VBoxContainer.new()
@@ -709,8 +743,10 @@ func _render_travel() -> void:
 			label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			content.add_child(label)
 			var button: Button = _button("Elegir a " + rules.profiles[id].data.name,_choose_starter.bind(id))
+			button.theme_type_variation = "PrimaryButton"
 			content.add_child(button)
 			travel_buttons["starter" + str(id)] = button
+		_apply_preferences.call_deferred()
 		return
 	var progress: HBoxContainer = HBoxContainer.new()
 	if run.get("edition",1)>=11 and run.phase=="map" and run.cleared.is_empty():
@@ -780,6 +816,7 @@ func _render_travel() -> void:
 		"shop":
 			if run.get("edition",1)>=4:
 				var batch: Button = _button("Comprar / usar cantidades…",_open_batch)
+				batch.theme_type_variation = "ToolButton"
 				narrative.add_child(batch)
 				travel_buttons.batch = batch
 			text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos Raros: %d\n\nUn Caramelo evoluciona una etapa sin requisito de nivel. No cura. Entrenar añade +5; máximo dos compras por Pokémon.\n\nSelecciona un miembro a la derecha para usar objetos o entrenar." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
@@ -821,6 +858,7 @@ func _render_travel() -> void:
 	if run.get("edition",1)>=12:
 		if run.phase in ["map","shop"]: text.text += "\n\nGestiona Equipo y PC a la derecha. Cambiar compañeros es gratis y conserva sus PS; solo los desplegados ganan EXP."
 		elif run.phase=="defeat": text.text += "\nLas reservas del PC tampoco permiten continuar tras perder un combate."
+	if run.get("edition",1)>=12 and run.phase=="shop": text.text = "Elige suministros, MT u objetos equipables.\nUsa la bolsa desde la ficha de tu Pokémon."
 	if run.get("edition",1)>=13:
 		if run.phase=="complete": text.text = "Conservas equipo, objetos, dinero y progreso. Has completado el contenido principal de este tramo. Puedes recorrer los desvíos pendientes."
 		if run.phase in ["map","complete"]: _render_destinations(narrative)
@@ -1007,6 +1045,7 @@ func _shop_panels(parent: VBoxContainer) -> Dictionary:
 	var result: Dictionary = {}
 	for entry: Array in [["supplies","Objetos"],["gear","MT y equipo"],["traits","Rasgos"]]:
 		var button: Button = _button(entry[1],_shop_page.bind(entry[0]))
+		button.theme_type_variation = "TabButton"
 		button.toggle_mode = true
 		button.button_pressed = shop_tab==entry[0]
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL

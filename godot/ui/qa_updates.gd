@@ -56,7 +56,7 @@ func write_report(app: Control, directory: String) -> void:
 
 func additional(app: Control, directory: String) -> void:
 	var before: Dictionary = app.run.duplicate(true)
-	var full_matrix: bool = int(str(ProjectSettings.get_setting("application/config/version")).get_slice(".",2)) in [5,10]
+	var full_matrix: bool = int(str(ProjectSettings.get_setting("application/config/version")).get_slice(".",2)) in [5,10,13]
 	for dimensions: Vector2i in ([Vector2i(1024,720),Vector2i(1280,900),Vector2i(1920,1080)] if full_matrix else [Vector2i(1280,900)]):
 		app.get_window().size = dimensions
 		await settle(app)
@@ -66,11 +66,31 @@ func additional(app: Control, directory: String) -> void:
 			await settle(app)
 			check(app.actor_info.get_theme_font_size("font_size")>=18,"HUD compensates physical shrink and enlarges text")
 			check(app.board.play_area().size.x>0 and app.board.play_area().size.y>0,"Positive board with enlarged HUD")
+			var actor_panel: Control = app.actor_portrait.get_parent().get_parent().get_parent()
+			check(not actor_panel.get_global_rect().intersects(app.board.play_area()),"Actor resources never cover playable tiles at %d/%d" % [dimensions.x,scale_value])
+			check(not app.command_panel.get_global_rect().intersects(app.camera_pad.get_global_rect()),"Camera and commands remain separate at %d/%d" % [dimensions.x,scale_value])
+			check(actor_panel.get_global_rect().end.y<=app.size.y,"Actor resources fit viewport at %d/%d" % [dimensions.x,scale_value])
+			var arrows_fit: bool = true
+			for camera_button: Button in app.camera_buttons.values():
+				var text_width: float = camera_button.get_theme_font("font").get_string_size(camera_button.text,HORIZONTAL_ALIGNMENT_LEFT,-1,camera_button.get_theme_font_size("font_size")).x
+				arrows_fit = arrows_fit and camera_button.size.x>=text_width+28
+			check(arrows_fit and app.camera_pad.get_global_rect().end.x<=app.size.x,"Camera glyphs fit after resizing at %d/%d" % [dimensions.x,scale_value])
 			await capture(app,directory,"text-%d-%d" % [dimensions.x,scale_value])
+			app.action_page = true
+			app._refresh()
+			app._apply_preferences()
+			await settle(app)
+			check(app.command_panel.get_global_rect().end.y<=app.size.y,"Enlarged ability list fits viewport at %d/%d" % [dimensions.x,scale_value])
+			await capture(app,directory,"abilities-%d-%d" % [dimensions.x,scale_value])
+			app.action_page = false
+			app._refresh()
+			app._apply_preferences()
+			await settle(app)
 	app.input_profile.set_preference("highContrast",true)
 	app._apply_preferences()
 	await settle(app)
 	check(app.theme.get_stylebox("normal","Button").bg_color==Color.BLACK,"High contrast applies to native controls")
+	check(app.theme.get_stylebox("normal","FieldCommandButton").bg_color==Color.BLACK and app.theme.get_color("font_color","FieldCommandButton")==Color.WHITE,"New tactical menu retains high contrast")
 	await capture(app,directory,"high-contrast")
 	app.input_profile.set_preference("highContrast",false)
 	check(app.input_profile.rebind("grid",{"key":KEY_Z}).ok,"Camera shortcut can be remapped")

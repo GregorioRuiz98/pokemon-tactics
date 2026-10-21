@@ -42,6 +42,9 @@ func setup(owner_app: Control) -> void:
 	left.add_child(app._label("POKÉMON",52,Color("f4e4bd")))
 	var title: Label = app._label("TACTICS",72,app.GOLD)
 	title.add_theme_constant_override("line_spacing",0)
+	title.add_theme_color_override("font_shadow_color",Color("592f29"))
+	title.add_theme_constant_override("shadow_offset_x",3)
+	title.add_theme_constant_override("shadow_offset_y",3)
 	left.add_child(title)
 	caption = app._label("Tu equipo. Tu estrategia.\nUn viaje desde Pueblo Paleta hasta la Liga.",19,Color("b9ccd0"))
 	left.add_child(caption)
@@ -50,7 +53,9 @@ func setup(owner_app: Control) -> void:
 	left.add_child(space)
 	for entry: Array in [["continue","Continuar aventura",app._resume_title],["new","Nueva partida",app._new_from_title],["practice","Aprender a jugar",app._start_practice]]:
 		var button: Button = app._button(entry[1],entry[2])
-		button.custom_minimum_size = Vector2(360,54)
+		button.theme_type_variation = "CommandButton"
+		button.add_theme_font_size_override("font_size",22)
+		button.custom_minimum_size = Vector2(400,58)
 		button.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		left.add_child(button)
@@ -60,6 +65,7 @@ func setup(owner_app: Control) -> void:
 	left.add_child(tools)
 	for entry: Array in [["help","Cómo jugar",func(): app.help_dialog.popup_centered(Vector2i(630,450))],["options","Opciones",app._title_options],["credits","Créditos",func(): app.credits_dialog.popup_centered(Vector2i(720,550))]]:
 		var button: Button = app._button(entry[1],entry[2])
+		button.theme_type_variation = "ToolButton"
 		button.add_theme_font_size_override("font_size",16)
 		tools.add_child(button)
 		controls[entry[0]] = button
@@ -76,6 +82,7 @@ func setup(owner_app: Control) -> void:
 	footer.add_child(version)
 	for entry: Array in [["lab","Laboratorio táctico",func(): app._menu_selected(7)],["quit","Salir",func(): app.get_tree().quit()]]:
 		var button: Button = app._button(entry[1],entry[2])
+		button.theme_type_variation = "ToolButton"
 		button.add_theme_font_size_override("font_size",16)
 		footer.add_child(button)
 		controls[entry[0]] = button

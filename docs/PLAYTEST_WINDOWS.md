@@ -1,4 +1,6 @@
-# Probar Pokémon Tactics en Windows ·0.22.12
+# Probar Pokémon Tactics en Windows ·0.22.13
+
+La interfaz reúne las órdenes en un menú táctico y los recursos/previsión en la franja inferior. La fila ámbar y su cursor indican la selección; las acciones rojas avanzan en la aventura. Teclado, ratón y atajos conservan las mismas funciones.
 
 Descomprime el ZIP completo y abre **windows/PokemonTactics.exe**. Funciona sin cuenta, servidor, conexión o instalación de Godot. Mantén en la carpeta los créditos y licencias incluidos. Esta entrega es para pruebas; su publicación pública está aplazada.
 

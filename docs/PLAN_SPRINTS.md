@@ -464,3 +464,8 @@ Solicitud21 de octubre: corregir ralentizaciones. UI/representación solamente; 
 ## Semillas0.22.12
 
 Solicitud21 de octubre: aventuras nuevas con semillas variables para variar capturas. El sorteo publicado ya usa semilla; se sustituye el valor inicial fijo de UI por generación local independiente, campo editable, Generar otra y Copiar en Oak, y copia desde Menú. Vacío genera semilla nueva; continuar/cancelar Oak preserva estado y azar. Misma semilla y decisiones reproducen; tablas/duplicados/insignias conservados. QA específica64 sondeos y dos combates naturales, perfiles aislados; ver docs/SPRINT_22_SEEDS.md. Core/data/snapshots congelados; sin delegación automática o publicación.
+
+
+## Interfaz de juego0.22.13
+
+Solicitud21 de octubre: integrar mejor la interfaz y mejorar los botones. Tema nativo compartido con variantes para órdenes, herramientas, pestañas y avance; cursor sin procesamiento continuo, menú claro y franja inferior compartida con PS/PT. Mantener controles reales, alto contraste y escalas100/125/150; reservar tablero sin solapamientos y conservar las cachés de rendimiento. Campaña18/combate17, core/data/snapshots y recursos originales congelados. Ver docs/SPRINT_22_GAME_UI.md. Sin delegación automática, publicación ni balance nuevos.

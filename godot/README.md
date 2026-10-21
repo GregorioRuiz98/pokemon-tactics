@@ -1,4 +1,6 @@
-# Pokémon Tactics — Kanto Windows0.22.12
+# Pokémon Tactics — Kanto Windows0.22.13
+
+Interfaz0.22.13: menú táctico sobre papel, cursor de selección y franja inferior con recursos y previsión; inicio, Oak, tienda y PC comparten el nuevo estilo. Ver [interfaz](../docs/SPRINT_22_GAME_UI.md).
 
 Campaña Kanto completa hasta la Liga y dos desafíos legendarios alternativos. Los acontecimientos y puzzles se resumen entre tableros; sin exploración libre. Ver informe para límites de la entrega.
 

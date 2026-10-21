@@ -125,7 +125,7 @@ func run(app: Control, directory: String) -> void:
 		await capture(app,directory,"viewport-%d" % dimensions.x)
 		check(app.board.play_area().size.x>0 and app.board.play_area().size.y>0,"Positive tactical viewport")
 		check(app.camera_bar.get_global_rect().end.x<app.size.x,"Camera controls fit window")
-		check(app.command_panel.get_global_rect().position.x>=app.board.play_area().end.x,"HUD does not cover selectable tiles")
+		check(not app.command_panel.is_visible_in_tree() or app.command_panel.get_global_rect().position.x>=app.board.play_area().end.x,"Visible HUD does not cover selectable tiles")
 		app.board.frame_combat()
 		await capture(app,directory,"combat-viewport-%d" % dimensions.x)
 	var report: Dictionary = {"assertions":assertions,"failures":failures,"completed":completed,"screenshots":screenshots,"layoutFixtures":true}

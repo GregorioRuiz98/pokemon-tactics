@@ -45,8 +45,8 @@ static func apply(app: Control) -> void:
 	var default_size: int = roundi(18*factor)
 	if app.theme.default_font_size!=default_size: app.theme.default_font_size = default_size
 	apply_fonts(app,app,factor)
-	for type: String in ["Button","OptionButton","MenuButton"]:
-		for entry: String in ["normal","hover","pressed","disabled","focus"]:
+	for type: String in preload("res://ui/game_skin.gd").TYPES:
+		for entry: String in ["normal","hover","pressed","hover_pressed","disabled","focus"]:
 			if not app.theme.has_stylebox(entry,type): continue
 			var box: StyleBoxFlat = app.theme.get_stylebox(entry,type)
 			if not box.has_meta("base_bg"): box.set_meta("base_bg",box.bg_color); box.set_meta("base_border",box.border_color)
@@ -54,3 +54,8 @@ static func apply(app: Control) -> void:
 			var border: Color = Color.WHITE if app.input_profile.preferences.highContrast else box.get_meta("base_border")
 			if box.bg_color!=background: box.bg_color = background
 			if box.border_color!=border: box.border_color = border
+		for color_name: String in ["font_color","font_focus_color","font_hover_color","font_pressed_color","font_hover_pressed_color","font_disabled_color"]:
+			var metadata: String = type+"_"+color_name
+			if not app.theme.has_meta(metadata): app.theme.set_meta(metadata,app.theme.get_color(color_name,type))
+			var color: Color = Color.WHITE if app.input_profile.preferences.highContrast else app.theme.get_meta(metadata)
+			if app.theme.get_color(color_name,type)!=color: app.theme.set_color(color_name,type,color)

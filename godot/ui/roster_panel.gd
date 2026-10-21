@@ -10,6 +10,7 @@ func render(app: Control, parent: VBoxContainer) -> void:
 	for tab: String in ["team","pc"]:
 		var label: String = "Equipo · %d/6" % run.party.size() if tab=="team" else "PC · %d" % run.reserve.size()
 		var button: Button = app._button(label,app._roster_page.bind(tab,0),205)
+		button.theme_type_variation = "TabButton"
 		button.toggle_mode = true
 		button.button_pressed = app.roster_tab==tab
 		tabs.add_child(button)
@@ -30,6 +31,8 @@ func render(app: Control, parent: VBoxContainer) -> void:
 	var pages: int = maxi(1,int(ceil(collection.size()/float(PAGE_SIZE))))
 	app.roster_offset = clampi(app.roster_offset,0,pages-1)
 	var grid: GridContainer = GridContainer.new()
+	grid.add_theme_constant_override("h_separation",8)
+	grid.add_theme_constant_override("v_separation",8)
 	grid.columns = 1 if load("res://ui/presentation_settings.gd").font_factor(app)>1.2 else 2
 	parent.add_child(grid)
 	for index: int in range(app.roster_offset*PAGE_SIZE,mini(collection.size(),(app.roster_offset+1)*PAGE_SIZE)):
@@ -81,6 +84,7 @@ func render(app: Control, parent: VBoxContainer) -> void:
 	var allowed: bool = run.phase in ["map","shop","complete"]
 	if app.roster_tab=="team":
 		var deposit: Button = app._travel_button("deposit","Guardar en el PC",parent,{"kind":"deposit","member":selected.id})
+		deposit.theme_type_variation = "ToolButton"
 		deposit.disabled = not allowed or (selected.hp>0 and run.party.filter(func(m):return m.hp>0).size()==1)
 		deposit.tooltip_text = "Gratis. Conserva PS, nivel, EXP, movimientos, rasgos y objeto equipado. Deja al menos un compañero en pie."
 	else:

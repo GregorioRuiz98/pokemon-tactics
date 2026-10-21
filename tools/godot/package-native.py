@@ -91,6 +91,12 @@ if chapter==22 and patch>=12:
     assert seeds['seedProbes']==64 and seeds['distinctCaptureTraces']>1 and len(seeds['naturalCaptures'])==2
     assert seed_result.stat().st_mtime>=exe.stat().st_mtime
     shutil.copy2(ROOT/'docs/SPRINT_22_SEEDS.md',bundle/'SEMILLAS.md')
+if chapter==22 and patch>=13:
+    shutil.copy2(ROOT/'docs/SPRINT_22_GAME_UI.md',bundle/'INTERFAZ_DE_JUEGO.md')
+    screenshots=bundle/'qa/sprint-22-updates-13'
+    screenshots.mkdir(parents=True,exist_ok=True)
+    for shot in ['battle-1024','shop-1024']:
+        shutil.copy2(work/'interface-source'/(shot+'.png'),screenshots/('source-'+shot+'.png'))
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as package:
     for file in sorted(bundle.rglob('*')):
         if file.is_file():package.write(file,pathlib.Path('windows')/file.relative_to(bundle))

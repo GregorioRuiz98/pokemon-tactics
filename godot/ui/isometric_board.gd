@@ -4,6 +4,7 @@ const Terrain = preload("res://core/terrain_movement.gd")
 const TILE = Vector2(80,48)
 const LIFT: float = 12
 const BIOME_COLORS = {"cave":"8c8b81","ground":"b29b74","water":"b4ae83","ice":"a6c8c8","ship":"957b5b","rocket":"7f9195","ghost":"85768e","psychic":"a58dba","fire":"9d7562","dragon":"8d9daf","grass":"6c9661","legends-birds":"99a7a0","legends-psychic":"9182a8"}
+var minimap_right: float = 276
 var zoom: float = 1.2
 var anchor: Vector2 = Vector2.ZERO
 var dragging: bool = false
@@ -30,7 +31,7 @@ func _ready() -> void:
 	terrain_layer = Node2D.new()
 	terrain_layer.show_behind_parent = true
 	add_child(terrain_layer)
-	terrain_layer.draw.connect(func():terrain_layer.draw_rect(Rect2(Vector2.ZERO,size),Color("142b28")))
+	terrain_layer.draw.connect(func():terrain_layer.draw_rect(Rect2(Vector2.ZERO,size),Color("0d242c")))
 	minimap_layer = Node2D.new()
 	add_child(minimap_layer)
 	minimap_layer.draw.connect(_draw_minimap_overlay)
@@ -45,7 +46,7 @@ func invalidate_terrain() -> void:
 func _update_terrain() -> void:
 	# Godot retains each tile's drawing commands, including painter order and walls.
 	# Animating sprites no longer rebuilds hundreds of unchanged tile polygons.
-	var context: Array = [size,play_area(),anchor,zoom,strong_grid,show_heights,state.biome,state.board,state.heights]
+	var context: Array = [size,play_area(),anchor,zoom,strong_grid,show_heights,minimap_right,state.biome,state.board,state.heights]
 	if context!=terrain_context:
 		terrain_context = context
 		terrain_rebuilds += 1
@@ -116,7 +117,7 @@ func isometric() -> bool:
 func play_area() -> Rect2:
 	if not isometric(): return super.play_area()
 	if state.get("combatEdition",0)>=13: return Rect2(Vector2(24,172),size-Vector2(reserved_right,426+extra_bottom))
-	return Rect2(Vector2(24,156),size-Vector2(332,410))
+	return Rect2(Vector2(24,156),size-Vector2(reserved_right,410+extra_bottom))
 
 func cell_size() -> float:
 	return TILE.x*zoom if isometric() else super.cell_size()
@@ -446,7 +447,7 @@ func _draw() -> void:
 		if area.grow(70).has_point(center(unit)): _draw_unit(unit)
 	for unit: Dictionary in ordered:
 		if area.grow(70).has_point(center(unit)): _draw_unit_info(unit)
-	for rect: Rect2 in [Rect2(0,0,size.x,area.position.y),Rect2(0,area.end.y,size.x,size.y-area.end.y),Rect2(0,area.position.y,area.position.x,area.size.y),Rect2(area.end.x,area.position.y,size.x-area.end.x,area.size.y)]: draw_rect(rect,Color("142b28"))
+	for rect: Rect2 in [Rect2(0,0,size.x,area.position.y),Rect2(0,area.end.y,size.x,size.y-area.end.y),Rect2(0,area.position.y,area.position.x,area.size.y),Rect2(area.end.x,area.position.y,size.x-area.end.x,area.size.y)]: draw_rect(rect,Color("0d242c"))
 	draw_rect(area,Color("567b68"),false,1)
 	var font: Font = get_theme_default_font()
 	draw_string(font,Vector2(30,area.end.y+23),"%s · altura %d · %d %%" % [Rules.coordinate({"x":cursor.x,"y":cursor.y}),Terrain.height_at(state,{"x":cursor.x,"y":cursor.y}),roundi(zoom*100)],HORIZONTAL_ALIGNMENT_LEFT,-1,15,Color("eccb7f"))
@@ -460,7 +461,7 @@ func _draw() -> void:
 	if started>0: get_meta("draw_samples").append((Time.get_ticks_usec()-started)/1000.0)
 
 func _draw_minimap_background() -> void:
-	var origin: Vector2 = Vector2(size.x-276,130)
+	var origin: Vector2 = Vector2(size.x-minimap_right,130)
 	var factor: float = 108.0/(dimensions().x*TILE.x)
 	var shift: Vector2 = origin+Vector2(58,8)
 	var region: Rect2 = Rect2(origin,Vector2(116,82))
@@ -474,7 +475,7 @@ func _draw_minimap_background() -> void:
 			minimap_background.draw_colored_polygon(PackedVector2Array([c+Vector2(0,-d.y),c+Vector2(d.x,0),c+Vector2(0,d.y),c+Vector2(-d.x,0)]),_tile_color(point).darkened(0.25))
 
 func _draw_minimap_overlay() -> void:
-	var origin: Vector2 = Vector2(size.x-276,130)
+	var origin: Vector2 = Vector2(size.x-minimap_right,130)
 	var factor: float = 108.0/(dimensions().x*TILE.x)
 	var shift: Vector2 = origin+Vector2(58,8)
 	var region: Rect2 = Rect2(origin,Vector2(116,82))

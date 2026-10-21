@@ -1,0 +1,16 @@
+{
+  "assertions": 920,
+  "distinctCaptureTraces": 64,
+  "failures": [],
+  "naturalCaptures": [
+    69,
+    69
+  ],
+  "route1Species": 4,
+  "scope": "64 isolated local-table probes plus two actual Route 1 battles; generated seed values and clipboard contents are not logged",
+  "screenshots": [
+    "oak-seed-1024.png",
+    "oak-seed-1280.png"
+  ],
+  "seedProbes": 64
+}

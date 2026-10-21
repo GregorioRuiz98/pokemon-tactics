@@ -1,5 +1,7 @@
 extends Control
 
+const GameSkin = preload("res://ui/game_skin.gd")
+const GameButton = preload("res://ui/game_button.gd")
 const Rules = preload("res://core/battle.gd")
 const Movement = preload("res://core/movement.gd")
 const Store = preload("res://core/save_store.gd")
@@ -46,10 +48,13 @@ var main_commands: VBoxContainer
 var command_heading: Label
 var target_panel: PanelContainer
 var target_portrait: TextureRect
+var actor_title: Label
+var actor_tp: ProgressBar
 var actor_hp: ProgressBar
 var faces: Dictionary = {}
 var direction_buttons: Dictionary = {}
 var board
+var battle_chrome: Control
 var battle_overlay: Control
 var timeline: HBoxContainer
 var menu: MenuButton
@@ -131,18 +136,7 @@ func _make_theme():
 	theme.set_color("font_color", "Label", CREAM)
 	theme.set_color("font_color", "Button", CREAM)
 	theme.set_color("font_disabled_color", "Button", Color("94a8ad"))
-	for type in ["Button", "OptionButton"]:
-		for entry in ["normal", "hover", "pressed", "disabled", "focus"]:
-			var style = StyleBoxFlat.new()
-			style.bg_color = Color("164957") if entry == "normal" else (Color("216576") if entry == "hover" else Color("102e3a"))
-			style.border_color = GOLD if entry in ["focus", "pressed"] else Color("54634b")
-			style.set_border_width_all(2 if entry == "focus" else 1)
-			style.set_corner_radius_all(3)
-			style.content_margin_left = 12
-			style.content_margin_right = 12
-			style.content_margin_top = 9
-			style.content_margin_bottom = 9
-			theme.set_stylebox(entry, type, style)
+	GameSkin.install(theme)
 
 func _label(text: String, font_size: int = 18, color: Color = CREAM) -> Label:
 	var label = Label.new()
@@ -152,7 +146,7 @@ func _label(text: String, font_size: int = 18, color: Color = CREAM) -> Label:
 	return label
 
 func _button(text: String, callback: Callable, minimum: float = 0) -> Button:
-	var button = Button.new()
+	var button: Button = GameButton.new()
 	button.text = text
 	button.custom_minimum_size = Vector2(minimum, 44)
 	button.pressed.connect(callback)
@@ -160,14 +154,7 @@ func _button(text: String, callback: Callable, minimum: float = 0) -> Button:
 
 func _panel() -> PanelContainer:
 	var panel = PanelContainer.new()
-	var style = StyleBoxFlat.new()
-	style.bg_color = Color("153d50")
-	style.shadow_color = Color(0, 0, 0, 0.3)
-	style.shadow_size = 5
-	style.border_color = Color("70a6aa")
-	style.set_border_width_all(1)
-	style.set_content_margin_all(14)
-	panel.add_theme_stylebox_override("panel", style)
+	panel.add_theme_stylebox_override("panel", GameSkin.panel())
 	return panel
 
 func _clear(container: Node):
@@ -194,6 +181,10 @@ func _build_interface() -> void:
 	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(overlay)
+	battle_chrome = load("res://ui/battle_frame.gd").new()
+	battle_chrome.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	overlay.add_child(battle_chrome)
+	battle_chrome.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var top: MarginContainer = MarginContainer.new()
 	top.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
 	top.offset_left = 18
@@ -214,6 +205,7 @@ func _build_interface() -> void:
 	header.add_child(saved)
 	menu = MenuButton.new()
 	menu.text = "Menú · F1"
+	menu.theme_type_variation = "ToolButton"
 	menu.custom_minimum_size = Vector2(110, 44)
 	header.add_child(menu)
 	var popup: PopupMenu = menu.get_popup()
@@ -240,7 +232,7 @@ func _build_interface() -> void:
 	var command_content: VBoxContainer = VBoxContainer.new()
 	command_content.add_theme_constant_override("separation", 8)
 	command_panel.add_child(command_content)
-	command_heading = _label("ÓRDENES", 24, Color("85dfdd"))
+	command_heading = _label("ÓRDENES", 18, GOLD)
 	command_content.add_child(command_heading)
 	main_commands = VBoxContainer.new()
 	main_commands.add_theme_constant_override("separation", 8)
@@ -249,7 +241,10 @@ func _build_interface() -> void:
 	buttons["undo"] = _button("Rectificar movimiento · R", _rectify_movement)
 	buttons.undo.add_theme_font_size_override("font_size", 16)
 	buttons["finish"] = _button("Orientar y terminar · F", _select_finish)
-	for button: Button in [buttons.actions, buttons.undo, buttons.finish]: main_commands.add_child(button)
+	for button: Button in [buttons.actions, buttons.undo, buttons.finish]:
+		button.theme_type_variation = "CommandButton"
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		main_commands.add_child(button)
 	actions = VBoxContainer.new()
 	actions.add_theme_constant_override("separation", 6)
 	actions_scroll = ScrollContainer.new()
@@ -271,16 +266,20 @@ func _build_interface() -> void:
 		direction_buttons[facing] = button
 	buttons["confirm"] = _button("Sí, atacar", _confirm)
 	buttons["cancel"] = _button("Volver · Esc", _cancel)
+	buttons.confirm.theme_type_variation = "PrimaryButton"
+	buttons.cancel.theme_type_variation = "CommandButton"
 	command_content.add_child(buttons.confirm)
 	command_content.add_child(buttons.cancel)
 	var actor_panel: PanelContainer = _panel()
 	_pin(actor_panel, overlay, Control.PRESET_BOTTOM_LEFT, Vector2(360, 162))
 	var actor_details: VBoxContainer = VBoxContainer.new()
 	actor_panel.add_child(actor_details)
+	actor_title = _label("EN TURNO", 16, GOLD)
+	actor_details.add_child(actor_title)
 	var actor_row: HBoxContainer = HBoxContainer.new()
 	actor_row.add_theme_constant_override("separation", 16)
 	actor_details.add_child(actor_row)
-	actor_portrait = _portrait(Vector2(104, 104))
+	actor_portrait = _portrait(Vector2(80, 80))
 	actor_row.add_child(actor_portrait)
 	var vitals: VBoxContainer = VBoxContainer.new()
 	vitals.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -299,6 +298,14 @@ func _build_interface() -> void:
 	actor_hp.add_theme_stylebox_override("fill", hp_fill)
 	actor_hp.add_theme_stylebox_override("background", hp_background)
 	vitals.add_child(actor_hp)
+	actor_tp = ProgressBar.new()
+	actor_tp.show_percentage = false
+	actor_tp.custom_minimum_size.y = 6
+	var tp_fill: StyleBoxFlat = StyleBoxFlat.new()
+	tp_fill.bg_color = Color("78b5d6")
+	actor_tp.add_theme_stylebox_override("fill",tp_fill)
+	actor_tp.add_theme_stylebox_override("background",hp_background)
+	vitals.add_child(actor_tp)
 	var message: PanelContainer = _panel()
 	_pin(message, overlay, Control.PRESET_CENTER_BOTTOM, Vector2(390, 112))
 	hint = _label("Clic en una casilla para moverte.", 16, CREAM)
@@ -316,7 +323,7 @@ func _build_interface() -> void:
 	target_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	target_scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	target_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	target_scroll.custom_minimum_size.y = 198
+	target_scroll.custom_minimum_size.y = 148
 	target_scroll.focus_mode = Control.FOCUS_ALL
 	target_row.add_child(target_scroll)
 	target_info = _label("", 17)
@@ -551,13 +558,14 @@ func _refresh():
 	saved.add_theme_color_override("font_color", MUTED if save_warning.is_empty() else GOLD)
 	command_panel.visible = _player_turn()
 	var menu_height: float = minf(size.y - 160,170 + 54 * (rules.profile(Rules.active(state)).actions_for(Rules.active(state)).size() if not state.is_empty() and state.outcome == "playing" else 3)) if action_page else (170 if selecting in ["attack", "finish"] or not pending.is_empty() else 240)
-	command_panel.offset_top = -menu_height / 2
-	command_panel.offset_bottom = menu_height / 2
+	if not command_panel.get_parent() is Container:
+		command_panel.offset_top = -menu_height / 2
+		command_panel.offset_bottom = menu_height / 2
 	main_commands.visible = pending.is_empty() and selecting == "auto" and not action_page
 	actions.visible = action_page and pending.is_empty()
 	actions_scroll.visible = actions.visible
 	actions_scroll.custom_minimum_size.y = 230 if actions.visible else 0
-	if action_page:
+	if action_page and not command_panel.get_parent() is Container:
 		command_panel.offset_top = -120
 		command_panel.offset_bottom = 180
 	command_heading.text = "HABILIDADES" if action_page else ("ORIENTACIÓN" if selecting == "finish" else ("CONFIRMAR" if not pending.is_empty() else ("OBJETIVO" if selecting == "attack" else "ÓRDENES")))
@@ -603,12 +611,17 @@ func _refresh():
 	actor_portrait.texture = faces[int(actor.speciesId)]
 	actor_hp.max_value = actor.maxHp
 	actor_hp.value = actor.hp
+	actor_title.text = "EN TURNO  /  " + ("RIVAL" if actor.team=="enemy" else "TU EQUIPO")
+	actor_tp.max_value = actor.maxTp
+	actor_tp.value = actor.tp
 	actor_info.text = "%s%s\n%d / %d PS\n%d / %d PT\n%s · %s" % [actor.name, " · IA" if actor.team == "enemy" else "", actor.hp, actor.maxHp, actor.tp, actor.maxTp, "Mov. usado" if state.moved else "Mov. %d" % actor.remaining, "Acc. usada" if state.acted else "Acc. lista"]
 	if actor.has("abilityName"): actor_info.text += "\n"+actor.abilityName
 	for index in rules.profile(actor).actions_for(actor).size():
 		var definition = rules.profile(actor).actions_for(actor)[index].definition
 		var button = _button("%d · %s\n%d PT · %d cas." % [index + 1, definition.name, definition.cost, definition.range], _select_action.bind(definition.id))
 		if actor.get("recoveryPP",{}).has(definition.id): button.text += " · %d/5 usos" % actor.recoveryPP[definition.id]
+		button.theme_type_variation = "CommandButton"
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.disabled = not _player_turn() or state.acted or actor.tp < definition.cost or not pending.is_empty()
 		if actor.get("recoveryPP",{}).has(definition.id): button.disabled = button.disabled or actor.recoveryPP[definition.id]<=0
