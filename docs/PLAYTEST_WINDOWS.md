@@ -1,4 +1,4 @@
-# Probar Pokémon Tactics en Windows ·0.22.14
+# Probar Pokémon Tactics en Windows ·0.22.15
 
 La interfaz reúne las órdenes en un menú táctico y los recursos/previsión en la franja inferior. La fila ámbar y su cursor indican la selección; las acciones rojas avanzan en la aventura. Teclado, ratón y atajos conservan las mismas funciones.
 
@@ -62,3 +62,8 @@ Las pruebas inyectan eventos del viewport nativo en Windows. Falta la valoració
 Aprender a jugar o F7 abre práctica separada de tu aventura; F7/Inicio sale y la restaura. F4 abre el glosario. I mantiene la ficha y lista de unidades; L repite resultados reales. Opciones ofrece texto100/125/150%, contraste, silencio y movimiento reducido; F12 recupera texto100% y contraste normal. Tienda permite cantidades con revisión previa; PC y biblioteca admiten búsqueda/filtros sin alterar el equipo real. El final legendario pide confirmación. El modo textual es un prototipo: soporte de lector real pendiente.
 
 Guion de aceptación, consentimiento y plantillas en reports/aceptacion-0.22.10/KIT_HUMANO.md; en el ZIP, PRUEBAS_HUMANAS/KIT_HUMANO.md. No sustituir una partida personal para probar fixtures.
+
+
+## Arte provisional 0.22.15
+
+Los fondos, suelos, obstáculos, iconos y efectos nuevos tienen placeholders identificados. Los Pokémon conservan sus recursos originales. La carpeta ARTE del paquete incluye prompts y contratos; el generador no se ha ejecutado. El identificador desaparece al sustituir un recurso por arte final válido y volver a exportar. Esta entrega permite revisar la dirección; todavía no tiene las 42 imágenes finales requeridas.

@@ -1,0 +1,68 @@
+{
+  "assertions": 18,
+  "engine": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "failures": [],
+  "measurements": {
+    "ai-plan": {
+      "iterations": 3,
+      "medianMs": 1.577,
+      "p95Ms": 2.217,
+      "totalMs": 4.973
+    },
+    "draw": {
+      "count": 37,
+      "medianMs": 0.408,
+      "p95Ms": 0.799
+    },
+    "hover-same-cell": {
+      "iterations": 100,
+      "medianMs": 0.005,
+      "p95Ms": 0.005,
+      "totalMs": 1.417
+    },
+    "idleFrames": {
+      "count": 120,
+      "medianMs": 16.663,
+      "note": "24x24 synthetic fixture; wall-clock frame intervals include pacing and are not a hardware-independent FPS guarantee.",
+      "p95Ms": 16.727
+    },
+    "preferences": {
+      "iterations": 30,
+      "medianMs": 0.464,
+      "p95Ms": 1.057,
+      "totalMs": 16.995
+    },
+    "refresh": {
+      "iterations": 30,
+      "medianMs": 4.259,
+      "p95Ms": 5.424,
+      "totalMs": 119.294
+    },
+    "semantic-off": {
+      "iterations": 100,
+      "medianMs": 0.004,
+      "p95Ms": 0.005,
+      "totalMs": 0.728
+    },
+    "semantic-on": {
+      "iterations": 30,
+      "medianMs": 0.007,
+      "p95Ms": 0.037,
+      "totalMs": 1.252
+    }
+  },
+  "renderer": "gl_compatibility",
+  "screenshots": [
+    "performance-24.png"
+  ]
+}

@@ -118,3 +118,8 @@ Solicitud21 de octubre: integrar mejor la interfaz y mejorar los botones. Tema n
 ## Hub y tienda 0.22.14
 
 Solicitud del 22 de octubre: reducir explicaciones y confusión. UI para edición 12+ con Comprar / Equipo y bolsa, cuatro categorías (Medicina, Evolución, MT y equipo, Rasgos), detalles por Ficha/Objetos/Movimientos/Rasgos y cantidades con contexto explícito. Bolsa con acciones para objetos poseídos; progreso y EXP en Resumen, avance fijo y ayuda conservada. F6, foco, escalas 100/125/150 y contraste; versiones anteriores conservan controles. Misma campaña 18/combate 17, core/data/snapshots y recursos congelados. Ver docs/SPRINT_22_HUB.md. Sin delegación automática, publicación o cambios de balance.
+
+
+## Dirección visual 0.22.15
+
+Solicitud del 22 de octubre: dirección profesional con arte nuevo provisional, sin generar imágenes. Cuaderno de Kanto, 45 slots/42 requeridos y 3 de promoción opcional, manifiesto en art/, registro con caché, escenas/terrenos/obstáculos/efectos/iconos conectados. Prompts completos y contratos; instalador verifica PNG/CRC/alfa/máscara 5:3 y conserva copia. Metadatos/icono Windows de versión 15. Publicación y arte final pendientes; no declarar ilustraciones terminadas. Campaña 18/combate 17, core/data/snapshots y recursos de terceros congelados; sin delegación automática o servicios nuevos. Ver docs/SPRINT_22_ART.md, docs/PROMPTS_ARTE_FINAL.md.

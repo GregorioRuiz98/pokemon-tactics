@@ -1,4 +1,6 @@
-# Pokémon Tactics — Kanto Windows0.22.14
+# Pokémon Tactics — Kanto Windows0.22.15
+
+Dirección visual 0.22.15: escenarios, suelos, iconos y efectos conectados a placeholders sustituibles. Ver [arte y estado](../docs/SPRINT_22_ART.md) y [prompts](../docs/PROMPTS_ARTE_FINAL.md). Los PNG finales requieren importar/exportar; no basta con copiarlos junto al EXE.
 
 Hub 0.22.14: Comprar y Equipo y bolsa separados; elige Pokémon y después Ficha, Objetos, Movimientos o Rasgos. Seguir viaje queda fijo. Ver [simplificación](../docs/SPRINT_22_HUB.md).
 

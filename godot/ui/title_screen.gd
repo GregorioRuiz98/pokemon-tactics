@@ -76,7 +76,8 @@ func setup(owner_app: Control) -> void:
 	var footer: HBoxContainer = HBoxContainer.new()
 	footer.add_theme_constant_override("separation",16)
 	column.add_child(footer)
-	var version: Label = app._label("Proyecto de fans · %s · Guardado local" % ProjectSettings.get_setting("application/config/version"),14,Color("a4b9bd"))
+	var art_status: String = "Edición Windows" if load("res://ui/visual_assets.gd").art_complete() else "Arte provisional"
+	var version: Label = app._label("Proyecto de fans · %s · %s" % [ProjectSettings.get_setting("application/config/version"),art_status],14,Color("a4b9bd"))
 	version.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	version.clip_text = true
 	footer.add_child(version)

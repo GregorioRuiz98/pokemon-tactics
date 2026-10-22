@@ -9,11 +9,11 @@ const TYPES: Array[String] = ["Button","OptionButton","MenuButton","CommandButto
 
 static func panel(accent: Color = AMBER) -> StyleBoxFlat:
 	var box: StyleBoxFlat = StyleBoxFlat.new()
-	box.bg_color = Color("162e3b")
+	box.bg_color = Color(0.075,0.16,0.20,0.97)
 	box.border_color = Color("6f8586")
 	box.set_border_width_all(1)
-	box.border_width_top = 3
-	box.border_color = accent.darkened(0.22)
+	box.border_width_top = 2
+	box.border_color = accent.lerp(Color("3b5963"),0.72)
 	box.corner_radius_top_left = 3
 	box.corner_radius_bottom_right = 12
 	box.set_content_margin_all(14)

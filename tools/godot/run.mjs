@@ -39,6 +39,10 @@ function verifyCampaign(directory) {
   for(const file of report.screenshots) if(!existsSync(resolve(directory,file))) throw new Error('Missing campaign screenshot.');
 }
 function verify() {
+  const artwork=spawnSync('python',[resolve(root,'tools/godot/art-assets.py'),'check'],{cwd:root,encoding:'utf8',windowsHide:true});
+  if(artwork.status!==0) throw new Error('Art validation failed: '+artwork.stderr);
+  const artReport=JSON.parse(artwork.stdout);
+  console.log(`Verified ${artReport.slots} artwork slots; ${artReport.pendingRequired.length} required images remain placeholders.`);
   const manifest = JSON.parse(readFileSync(resolve(project, 'data/provenance.json'), 'utf8'));
   for (const entry of manifest.files) {
     for (const [path, hash] of [[resolve(root, entry.source), entry.sourceSha256], [resolve(project, entry.target), entry.sha256]]) {

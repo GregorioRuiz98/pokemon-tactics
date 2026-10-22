@@ -9,6 +9,7 @@ var last_sound: String = "select"
 var last_kinds: Array = []
 const MISS = preload("res://assets/progression/miss.png")
 const IMMUNE = preload("res://assets/progression/immune.png")
+const Art = preload("res://ui/visual_assets.gd")
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -94,8 +95,11 @@ func _draw() -> void:
 		color.a = alpha
 		if mark.kind in ["miss","immune"]:
 			draw_circle(board.center(mark.point),board.cell_size()*0.38,color,false,2)
-			var icon: Texture2D = MISS if mark.kind == "miss" else IMMUNE
+			var icon: Texture2D = Art.texture("fx_"+mark.kind)
 			draw_texture_rect(icon,Rect2(point-Vector2(34,26),Vector2(24,24)),false,color)
+		elif mark.kind=="critical" or mark.text.begins_with("+") or (mark.kind=="hit" and mark.text.begins_with("−")):
+			var effect: String = "critical" if mark.kind=="critical" else ("heal" if mark.text.begins_with("+") else "hit")
+			draw_texture_rect(Art.texture("fx_"+effect),Rect2(point-Vector2(20,38),Vector2(40,40)),false,Color(1,1,1,alpha))
 		var width: float = font.get_string_size(mark.text,HORIZONTAL_ALIGNMENT_LEFT,-1,20).x
 		var origin: Vector2 = point-Vector2(width/2,5)
 		draw_string_outline(font,origin,mark.text,HORIZONTAL_ALIGNMENT_LEFT,-1,20,5,Color(0.02,0.05,0.06,alpha))

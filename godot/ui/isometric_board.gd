@@ -3,6 +3,7 @@ extends "res://ui/board.gd"
 const Terrain = preload("res://core/terrain_movement.gd")
 const TILE = Vector2(80,48)
 const LIFT: float = 12
+const Art = preload("res://ui/visual_assets.gd")
 const BIOME_COLORS = {"cave":"8c8b81","ground":"b29b74","water":"b4ae83","ice":"a6c8c8","ship":"957b5b","rocket":"7f9195","ghost":"85768e","psychic":"a58dba","fire":"9d7562","dragon":"8d9daf","grass":"6c9661","legends-birds":"99a7a0","legends-psychic":"9182a8"}
 var minimap_right: float = 276
 var zoom: float = 1.2
@@ -31,7 +32,9 @@ func _ready() -> void:
 	terrain_layer = Node2D.new()
 	terrain_layer.show_behind_parent = true
 	add_child(terrain_layer)
-	terrain_layer.draw.connect(func():terrain_layer.draw_rect(Rect2(Vector2.ZERO,size),Color("0d242c")))
+	terrain_layer.draw.connect(func():
+		terrain_layer.draw_rect(Rect2(Vector2.ZERO,size),Color("0d242c"))
+		terrain_layer.draw_texture_rect(Art.texture("battle_surround"),Rect2(Vector2.ZERO,size),false))
 	minimap_layer = Node2D.new()
 	add_child(minimap_layer)
 	minimap_layer.draw.connect(_draw_minimap_overlay)
@@ -341,18 +344,22 @@ func _draw_tile(point: Dictionary, canvas: CanvasItem) -> void:
 		else:
 			for t: float in [0.3,0.65]: canvas.draw_line(a.lerp(b,t),a.lerp(b,t)+drop,Color(0.1,0.17,0.12,0.22),1)
 	canvas.draw_colored_polygon(polygon,color)
-	_outline(polygon,Color(0.11,0.18,0.1,0.38 if strong_grid else 0.13),1,canvas)
 	var tile: int = int(state.board[int(point.y)][int(point.x)])
+	if tile!=3:
+		var identity: String = Art.floor_id(state.biome)
+		var floor_texture: Texture2D = Art.texture(identity)
+		var base: Color = Color(Art.entry(identity).color)
+		# Preserve height, rough terrain and the three legendary-sector color cues.
+		var tint: Color = Color(color.r/maxf(0.01,base.r),color.g/maxf(0.01,base.g),color.b/maxf(0.01,base.b))
+		canvas.draw_texture_rect(floor_texture,Rect2(c-TILE*zoom/2,TILE*zoom),false,tint)
+	_outline(polygon,Color(0.11,0.18,0.1,0.55 if strong_grid else 0.22),1,canvas)
 	if tile==1:
 		for i: int in 4:
 			var offset: Vector2 = Vector2((i%2)*14-9,int(i/2.0)*9-3)*zoom
 			canvas.draw_line(c+offset,c+offset+Vector2(-2,-6)*zoom,Color("a0b36a"),zoom)
 			canvas.draw_line(c+offset,c+offset+Vector2(3,-4)*zoom,Color("a0b36a"),zoom)
 	elif tile==2:
-		var stone: PackedVector2Array = PackedVector2Array([c+Vector2(-18,3)*zoom,c+Vector2(-15,-8)*zoom,c+Vector2(-4,-13)*zoom,c+Vector2(14,-8)*zoom,c+Vector2(19,3)*zoom,c+Vector2(5,8)*zoom])
-		canvas.draw_colored_polygon(stone,Color("8c9583") if state.biome!="brock" else Color("989d90"))
-		canvas.draw_line(stone[1],stone[2],Color("bac1aa"),2*zoom)
-		canvas.draw_line(c+Vector2(-2,-8)*zoom,c+Vector2(5,3)*zoom,Color("687361"),zoom)
+		canvas.draw_texture_rect(Art.texture(Art.prop_id(state.biome)),Rect2(c-Vector2(32,48)*zoom,Vector2(64,64)*zoom),false)
 	elif tile==0 and (int(point.x)*17+int(point.y)*13)%5==0:
 		for i: int in 2: canvas.draw_line(c+Vector2(-9+i*14,3-i*7)*zoom,c+Vector2(-6+i*14,3-i*7)*zoom,color.darkened(0.12),zoom)
 	var key: String = Movement.key(point)

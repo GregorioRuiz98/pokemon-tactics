@@ -1,0 +1,12 @@
+{
+  "journey": {
+    "fullStateEqualTo0223": true,
+    "commandsEqualTo0223": true,
+    "commands": 8924
+  },
+  "journey-psychic": {
+    "fullStateEqualTo0223": true,
+    "commandsEqualTo0223": true,
+    "commands": 7396
+  }
+}

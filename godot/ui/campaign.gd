@@ -4,6 +4,7 @@ const Campaign = preload("res://core/kanto_run.gd")
 const Advanced = preload("res://core/roster_run.gd")
 const Journey = preload("res://core/journey_run.gd")
 const CURRENT_CHAPTER: int = 22
+const Art = preload("res://ui/visual_assets.gd")
 const RosterPanel = preload("res://ui/roster_panel.gd")
 const IsometricBoard = preload("res://ui/isometric_board.gd")
 const CampaignStore = preload("res://core/journey_store.gd")
@@ -12,6 +13,7 @@ var last_presentation: Dictionary = {}
 var run: Dictionary = {}
 var transactions: Array = []
 var travel_root: MarginContainer
+var travel_art: Control
 var travel_content: VBoxContainer
 var travel_buttons: Dictionary = {}
 var journey_seed: LineEdit
@@ -190,6 +192,10 @@ func _boot() -> void:
 	menu.get_popup().add_item("Aprender / salir de práctica",13)
 	menu.get_popup().add_item("Glosario táctico",14)
 	menu.get_popup().add_item("Copiar semilla de la campaña",15)
+	travel_art = load("res://ui/artwork_slot.gd").new()
+	add_child(travel_art)
+	travel_art.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	travel_art.configure("scene_oak",true)
 	travel_root = MarginContainer.new()
 	travel_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for edge: String in ["left","right","top","bottom"]: travel_root.add_theme_constant_override("margin_" + edge,24)
@@ -510,6 +516,7 @@ func _refresh() -> void:
 			board.hide()
 			battle_overlay.hide()
 			travel_root.hide()
+			travel_art.hide()
 			title_screen.refresh()
 			accessible_view.request_update(true)
 			return
@@ -524,6 +531,7 @@ func _refresh() -> void:
 	board.visible = fighting
 	battle_overlay.visible = fighting
 	travel_root.visible = not fighting
+	travel_art.visible = not fighting
 	if fighting:
 		state = run.battle
 		history = run.battleCommands
@@ -666,6 +674,31 @@ func _travel_button(key: String, text: String, parent: Node, command: Dictionary
 func _simple_hub() -> bool:
 	return not run.is_empty() and run.get("edition",1)>=12
 
+func _art_banner(parent: VBoxContainer, identity: String) -> void:
+	var banner: Control = load("res://ui/artwork_slot.gd").new()
+	banner.custom_minimum_size.y = 108
+	banner.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	parent.add_child(banner)
+	banner.configure(identity)
+	hub_parts.art_banner = banner
+
+func _scene_art() -> String:
+	if run.is_empty(): return "scene_oak"
+	if hub_mode=="team" and roster_tab=="pc": return "scene_pc"
+	if run.phase=="ending": return "scene_ending_birds" if run.finalPath=="birds" else "scene_ending_origin"
+	return {"shop":"scene_shop","capture":"scene_capture","defeat":"scene_defeat"}.get(run.phase,"scene_travel")
+
+func _item_picture(button: Button, identity: String) -> void:
+	button.icon = Art.item_icon(identity)
+	button.expand_icon = true
+	button.add_theme_constant_override("icon_max_width",24)
+
+func _art_symbol(identity: String) -> TextureRect:
+	var symbol: TextureRect = _portrait(Vector2(24,24))
+	symbol.texture = Art.icon(identity)
+	symbol.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	return symbol
+
 func _build_hub_navigation() -> void:
 	var row: HBoxContainer = HBoxContainer.new()
 	row.add_theme_constant_override("separation",12)
@@ -678,6 +711,7 @@ func _build_hub_navigation() -> void:
 		row.add_child(button)
 		travel_buttons["hub_"+entry[0]] = button
 	var limit: Dictionary = campaign.gym_limit(run)
+	row.add_child(_art_symbol("badge"))
 	var progress: Label = _label("%d medallas · Límite Nv. %d" % [run.get("medals",[]).size(),limit.level],16,MUTED)
 	progress.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	progress.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
@@ -769,6 +803,7 @@ func _render_travel() -> void:
 		hub_mode = "overview"
 		member_view = "items" if phase=="shop" else "profile"
 	elif memory.inside: travel_memory = memory
+	travel_art.configure(_scene_art(),true)
 	call_deferred("_restore_travel_focus")
 	if is_instance_valid(journey_seed): new_seed = journey_seed.text
 	_clear(travel_content)
@@ -779,7 +814,9 @@ func _render_travel() -> void:
 	var title: Label = _label("ELIGE A TU COMPAÑERO" if run.is_empty() else "KANTO / TU AVENTURA",24,GOLD)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(title)
-	if not run.is_empty(): header.add_child(_label("%d ₽" % run.money,22,GOLD))
+	if not run.is_empty():
+		header.add_child(_art_symbol("money"))
+		header.add_child(_label("%d ₽" % run.money,22,GOLD))
 	var home: Button = _button("Inicio",_open_title)
 	home.theme_type_variation = "ToolButton"
 	header.add_child(home)
@@ -913,6 +950,7 @@ func _render_travel() -> void:
 	if run.get("edition",1)>=13 and run.phase=="complete": heading_text = "Liga y rival superados" if run.get("mainComplete",false) else "Tramo completado"
 	if run.phase=="ending": heading_text = "Final · guardianes de Kanto" if run.finalPath=="birds" else "Final · el origen de Mewtwo"
 	var chapter: Label = _label(heading_text,28,GOLD)
+	if _simple_hub(): _art_banner(narrative,_scene_art())
 	chapter.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	chapter.visible = not (_simple_hub() and run.phase=="shop")
 	narrative.add_child(chapter)
@@ -962,6 +1000,7 @@ func _render_travel() -> void:
 				if _simple_hub() and (item=="rare-candy" or (run.get("edition",1)>=13 and campaign.evolution_items.has(item))): destination = shop_sections.evolution
 				var label: String = "%s\n%d ₽ · tienes %d" % [consumables[item].name,consumables[item].price,run.bag.get(item,0)] if run.get("edition",1)>=12 else "Comprar %s · %d ₽" % [consumables[item].name,consumables[item].price]
 				var button: Button = _travel_button("buy_"+item,label,destination,{"kind":"buy","item":item})
+				if _simple_hub(): _item_picture(button,item)
 				button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 				if run.get("edition",1)>=12: button.add_theme_font_size_override("font_size",16)
 				button.disabled = run.money < consumables[item].price
@@ -1089,6 +1128,7 @@ func _render_travel() -> void:
 			var heal_text: String = "Usar %s · +%d PS" % [record.name,record.heal] if item!="max-potion" else "Usar Poción Máxima · todos los PS"
 			if modern_shop: heal_text = "Usar %s\nTienes %d" % [record.name,run.bag[item]]
 			var button: Button = _travel_button("heal_"+item,heal_text,use_parent,{"kind":"heal","item":item,"member":selected_member})
+			if _simple_hub(): _item_picture(button,item)
 			button.tooltip_text = "Recupera %d PS, hasta el máximo. Solo fuera de combate." % record.heal if item!="max-potion" else "Recupera todos los PS actuales; no revive."
 			if modern_shop: button.add_theme_font_size_override("font_size",16); button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			button.disabled = selected.hp <= 0 or selected.hp >= unit.maxHp or run.bag[item] <= 0
@@ -1285,6 +1325,7 @@ func _render_mint_shop(parent: VBoxContainer) -> void:
 	parent.add_child(picker)
 	travel_buttons.mint_picker = picker
 	var buy: Button = _travel_button("buy_mint","Comprar Menta %s · %d ₽" % [study.traits.natures[selected_mint].name,study.traits.mintPrice],parent,{"kind":"buy","item":"mint-"+selected_mint})
+	if _simple_hub(): _item_picture(buy,"mint-"+selected_mint)
 	buy.disabled = run.money<int(study.traits.mintPrice)
 	buy.tooltip_text = "Una menta de un uso. Elige su efecto y comprueba los atributos en la ficha antes de aplicarla."
 
@@ -1416,6 +1457,10 @@ func _render_stock(parent: VBoxContainer) -> void:
 		var content: VBoxContainer = VBoxContainer.new()
 		card.add_child(content)
 		var buy: Button = _travel_button("stock_"+str(i),"%s · %s" % [item.name,"AGOTADO" if offer.sold else "%d ₽" % item.price],content,{"kind":"buy-stock","slot":i})
+		if _simple_hub():
+			buy.icon = Art.icon("tm" if item.kind=="tm" else "held")
+			buy.expand_icon = true
+			buy.add_theme_constant_override("icon_max_width",24)
 		buy.disabled = offer.sold or run.money<item.price
 		var description: String = item.description
 		if item.kind == "tm":

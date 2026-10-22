@@ -6,6 +6,7 @@ __pycache__/
 work/
 godot/.godot/
 godot/export_credentials.cfg
+godot/art/history/
 .DS_Store
 .env
 .env.*

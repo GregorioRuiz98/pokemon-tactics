@@ -1,6 +1,7 @@
 extends RefCounted
 
 const PAGE_SIZE: int = 6
+const Art = preload("res://ui/visual_assets.gd")
 var filters: RefCounted = preload("res://ui/roster_filters.gd").new()
 
 func render(app: Control, parent: VBoxContainer) -> void:
@@ -12,6 +13,10 @@ func render(app: Control, parent: VBoxContainer) -> void:
 		var label: String = "Equipo · %d/6" % run.party.size() if tab=="team" else "PC · %d" % run.reserve.size()
 		var button: Button = app._button(label,app._roster_page.bind(tab,0),0 if app._simple_hub() else 205)
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		if tab=="pc":
+			button.icon = Art.icon("pc")
+			button.expand_icon = true
+			button.add_theme_constant_override("icon_max_width",20)
 		button.theme_type_variation = "TabButton"
 		button.toggle_mode = true
 		button.button_pressed = app.roster_tab==tab

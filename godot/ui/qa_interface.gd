@@ -2,9 +2,42 @@ extends RefCounted
 
 const Store = preload("res://core/journey_store.gd")
 const Policy = preload("res://ui/qa_journey_policy.gd")
+const Art = preload("res://ui/visual_assets.gd")
 var assertions: int = 0
 var failures: Array[String] = []
 var screenshots: Array[String] = []
+
+func art_checks() -> void:
+	var before: int = Art.loads
+	var texture: Texture2D = Art.texture("title_keyart")
+	for index: int in 100: check(Art.texture("title_keyart")==texture,"Artwork reuses cached texture")
+	check(Art.loads<=before+1,"Drawing does not reload artwork")
+	for record: Dictionary in Art.slots():
+		var resource: Texture2D = Art.texture(record.id)
+		check(resource!=null and resource.get_width()==record.width and resource.get_height()==record.height,"Native artwork contract: "+record.id)
+	for biome: String in Art.manifest().biomes:
+		check(Art.texture(Art.floor_id(biome))!=null and Art.texture(Art.prop_id(biome))!=null,"Biome has floor and obstacle art: "+biome)
+	# Isolated registry fixtures; no files, campaign state or game RNG are changed.
+	var trial: Dictionary = Art.entry("title_keyart").duplicate(true)
+	trial.id = "qa_wrong_dimensions"
+	trial.final = "res://art/placeholders/icon_medicine.svg"
+	Art.manifest().slots.append(trial)
+	check(Art.texture(trial.id).get_width()==1920 and not Art.final_ready(trial.id) and trial.id in Art.rejected,"Wrong final dimensions retain the placeholder")
+	Art.manifest().slots.pop_back()
+	Art.textures.erase(trial.id); Art.using_final.erase(trial.id); Art.rejected.erase(trial.id)
+	trial.id = "qa_valid_final"
+	trial.final = trial.placeholder
+	Art.manifest().slots.append(trial)
+	check(Art.texture(trial.id)!=null and Art.final_ready(trial.id),"Valid final path replaces the placeholder")
+	Art.manifest().slots.pop_back()
+	Art.textures.erase(trial.id); Art.using_final.erase(trial.id)
+	trial = Art.entry("fx_hit").duplicate(true)
+	trial.id = "qa_opaque_final"
+	trial.final = "res://art/app_icon.png"
+	Art.manifest().slots.append(trial)
+	check(Art.texture(trial.id)!=null and not Art.final_ready(trial.id) and trial.id in Art.rejected,"Opaque final retains transparent-effect placeholder")
+	Art.manifest().slots.pop_back()
+	Art.textures.erase(trial.id); Art.using_final.erase(trial.id); Art.rejected.erase(trial.id)
 
 func check(condition: bool, label: String) -> void:
 	assertions += 1
@@ -42,6 +75,7 @@ func capture(app: Control, directory: String, label: String) -> void:
 
 func run(app: Control, directory: String) -> void:
 	app.get_window().gui_embed_subwindows = true
+	art_checks()
 	var path: String = directory.path_join("session-%d.json" % Time.get_ticks_usec())
 	app.store = Store.new(path)
 	app._open_title()
@@ -122,6 +156,7 @@ func run(app: Control, directory: String) -> void:
 	if app.run.phase=="shop":
 		var before: Dictionary = app.run.duplicate(true)
 		check(app.hub_parts.shop.is_visible_in_tree() and not app.hub_parts.team.is_visible_in_tree(),"Buying has a dedicated view without use controls")
+		check(app.hub_parts.art_banner.identity=="scene_shop" and app.travel_buttons.buy_potion.icon!=null,"Shop uses replaceable scenery and item icon slots")
 		check(not app.travel_buttons["heal_potion"].is_visible_in_tree(),"Using a potion is not mixed into buying")
 		await click(app,app.travel_buttons.shop_evolution)
 		check(app.travel_buttons["buy_rare-candy"].is_visible_in_tree() and not app.travel_buttons.buy_potion.is_visible_in_tree(),"Evolution separates candies and stones from medicine")

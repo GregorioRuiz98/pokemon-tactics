@@ -111,3 +111,8 @@ Se reutilizan los32 registros nativos anteriores y se incorporan119 especies par
 Repertorios y compatibilidad de MT de Let’s Go, encuentros combinados, especies, tipos, estadísticas y habilidades normales desde PokéAPI, CSV fijados al commit81d20919845b6a445969b9265aab5cec6b04cece y respuestas API identificadas por URL/SHA256. Se conserva su aviso BSD-3-Clause. Datos compilados nuevos en expedition.json, expedition-shop.json y expedition-traits.json; manifiesto de717 archivos con fuentes/hashes. No se consulta ninguna API al jugar.
 
 Equipos/niveles de entrenadores de Rojo desde los datos factuales de pret/pokered, commitaf519899719f0754965776faac0e836a3b906e6d, data/trainers/parties.asm. No se incorpora código del juego original. Grafo, textos españoles, mapas, reglas de PT/alcance/roles, adaptaciones de efectos complejos y habilidades, economía y guardado son implementación de este proyecto. Cada snapshot journey-N-provenance registra los hashes de su capítulo.
+
+
+## Placeholders y presentación 0.22.15
+
+Guías vectoriales de composición, rombos de suelo, obstáculos esquemáticos, iconos/efectos provisionales e icono de aplicación creados mediante código para este proyecto con asistencia de IA. Son placeholders, no ilustraciones finales generadas. Manifiesto y SHA256 en art/manifest.json; encargos completos en docs/PROMPTS_ARTE_FINAL.md del repositorio. No se han modificado ni atribuido al proyecto los sprites, retratos, fuentes o sonidos de terceros. Las imágenes futuras deberán conservar su procedencia al incorporarse.
