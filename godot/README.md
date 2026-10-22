@@ -1,4 +1,6 @@
-# Pokémon Tactics — Kanto Windows0.22.13
+# Pokémon Tactics — Kanto Windows0.22.14
+
+Hub 0.22.14: Comprar y Equipo y bolsa separados; elige Pokémon y después Ficha, Objetos, Movimientos o Rasgos. Seguir viaje queda fijo. Ver [simplificación](../docs/SPRINT_22_HUB.md).
 
 Interfaz0.22.13: menú táctico sobre papel, cursor de selección y franja inferior con recursos y previsión; inicio, Oak, tienda y PC comparten el nuevo estilo. Ver [interfaz](../docs/SPRINT_22_GAME_UI.md).
 

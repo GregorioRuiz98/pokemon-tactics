@@ -469,3 +469,8 @@ Solicitud21 de octubre: aventuras nuevas con semillas variables para variar capt
 ## Interfaz de juego0.22.13
 
 Solicitud21 de octubre: integrar mejor la interfaz y mejorar los botones. Tema nativo compartido con variantes para órdenes, herramientas, pestañas y avance; cursor sin procesamiento continuo, menú claro y franja inferior compartida con PS/PT. Mantener controles reales, alto contraste y escalas100/125/150; reservar tablero sin solapamientos y conservar las cachés de rendimiento. Campaña18/combate17, core/data/snapshots y recursos originales congelados. Ver docs/SPRINT_22_GAME_UI.md. Sin delegación automática, publicación ni balance nuevos.
+
+
+## Hub y tienda 0.22.14
+
+Solicitud del 22 de octubre: reducir explicaciones y confusión. UI para edición 12+ con Comprar / Equipo y bolsa, cuatro categorías (Medicina, Evolución, MT y equipo, Rasgos), detalles por Ficha/Objetos/Movimientos/Rasgos y cantidades con contexto explícito. Bolsa con acciones para objetos poseídos; progreso y EXP en Resumen, avance fijo y ayuda conservada. F6, foco, escalas 100/125/150 y contraste; versiones anteriores conservan controles. Misma campaña 18/combate 17, core/data/snapshots y recursos congelados. Ver SPRINT_22_HUB.md. Sin delegación automática, publicación o cambios de balance.

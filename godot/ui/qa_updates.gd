@@ -127,6 +127,7 @@ func shop_checks(app: Control, directory: String) -> void:
 	check(app.run.phase=="shop","Natural encounter prepares a real shop")
 	if app.run.phase!="shop": return
 	var before: Dictionary = app.run.duplicate(true)
+	await click(app,app.travel_buttons.shop_evolution)
 	await click(app,app.travel_buttons.batch)
 	app.shop_batch.quantity.value = 5
 	app.shop_batch.preview()
@@ -217,7 +218,7 @@ func roster_checks(app: Control, directory: String) -> void:
 		var before: Dictionary = app.run.duplicate(true)
 		var move: String = extras[0]
 		app.move_library.selected_slot = 0
-		app._refresh()
+		app._set_member_view("moves")
 		await settle(app)
 		if not app.travel_buttons.has("move_"+move): check(false,"Expected member library remains rendered after swap"); return
 		var button: Button = app.travel_buttons["move_"+move]
@@ -327,7 +328,7 @@ func semantic_checks(app: Control, directory: String) -> void:
 	app.shop_batch.quantity.value = 1
 	app.shop_batch.preview()
 	await settle(app)
-	check(app.shop_batch.get_ok_button().accessibility_description.contains("Saldo") and app.shop_batch.summary.accessibility_name.contains("Destinatario"),"Shop semantics include recipient, money and reviewed operation")
+	check(app.shop_batch.get_ok_button().accessibility_description.contains("Saldo") and app.shop_batch.get_ok_button().accessibility_description.contains("Destinatario"),"Shop semantics include recipient, money and reviewed operation")
 	await key(app,KEY_ESCAPE,app.shop_batch)
 	FileAccess.open(directory.path_join("accessibility-probe.json"),FileAccess.WRITE).store_string(JSON.stringify(app.accessible_view.probe(),"\t"))
 	app.input_profile.set_preference("accessibleMode",false)
@@ -373,7 +374,7 @@ func legacy_checks(app: Control, directory: String) -> void:
 		if app.run.get("edition",1)>=4:
 			app._open_batch()
 			await settle(app)
-			check(app.shop_batch.visible and app.shop_batch.summary.text.contains("cap"),"Classic quantity preview has safe cap description: "+file)
+			check(app.shop_batch.visible and app.shop_batch.get_ok_button().accessibility_description.contains("cap"),"Classic quantity preview has safe cap description: "+file)
 			await key(app,KEY_ESCAPE,app.shop_batch)
 	app.campaign = saved.campaign
 	app.rules = saved.rules

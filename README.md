@@ -1,6 +1,6 @@
 # Pokémon Tactics
 
-Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: campaña de Kanto Windows 0.22.13 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
+Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: campaña de Kanto Windows 0.22.14 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
 
 **Kanto nativo:** campaña hasta la Liga y dos finales legendarios alternativos. Capturas locales, niveles/evolución, movimientos/MT LGPE combinados, naturalezas/habilidades y PC. Ejecutable Windows offline. 151 especies; 49/78 habilidades normales activas. Arte provisional, pruebas humanas y publicación pendientes.
 
@@ -14,7 +14,7 @@ Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas
 
 Las campañas 0.16–0.21 pueden continuar con **Continuar aventura · ampliar Kanto**, con copia y diario conservados. Las anteriores siguen sus reglas. [Sprint 22 e información de pruebas](docs/SPRINT_22.md) · [Cómo jugar](godot/README.md) · [Plan](docs/PLAN_SPRINTS.md).
 
-![Pantalla de inicio](docs/qa/sprint-22-updates-13/source-title-1280.png)
+![Pantalla de inicio](docs/qa/sprint-22-updates-14/source-title-1280.png)
 
 [Mejoras0.22.10](docs/SPRINT_22_ACCESSIBILITY_COMPLETE.md): práctica guiada, lectura ampliada, compras por cantidad, PC y biblioteca con filtros y acceso textual experimental. Ejecutable offline; pruebas humanas y lector de pantalla pendientes.
 
@@ -23,6 +23,8 @@ Las campañas 0.16–0.21 pueden continuar con **Continuar aventura · ampliar K
 [Interfaz de juego0.22.13](docs/SPRINT_22_GAME_UI.md): órdenes con cursor, fichas integradas en una franja de combate, medidores de PS/PT y jerarquías visuales para inicio, tienda y PC. Conserva controles, alto contraste y guardados.
 
 [Semillas0.22.12](docs/SPRINT_22_SEEDS.md): cada aventura nueva genera una semilla automáticamente. Puedes escribir, regenerar y copiar la semilla junto a los iniciales; Menú permite copiar la de la campaña actual. Las partidas existentes conservan su azar.
+
+[Hub y tienda simplificados 0.22.14](docs/SPRINT_22_HUB.md): Comprar y Equipo y bolsa separados, cuatro categorías y fichas por pestañas. Resúmenes bajo demanda y avance siempre visible.
 
 ## Campaña web 0.12.0
 

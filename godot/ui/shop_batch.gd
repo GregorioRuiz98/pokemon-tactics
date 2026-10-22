@@ -73,9 +73,11 @@ func setup(owner_app: Control) -> void:
 	quantity.value_changed.connect(func(_value: float): preview())
 	confirmed.connect(accept_plan)
 
-func open() -> void:
+func open(context: String = "buy") -> void:
+	operation.select(1 if context=="use" else 0)
+	operation.visible = not app._simple_hub()
 	preview()
-	popup_centered(Vector2i(700,570))
+	popup_centered(Vector2i(700,480) if app._simple_hub() else Vector2i(700,570))
 	app._apply_preferences()
 
 func preview() -> void:
@@ -85,6 +87,12 @@ func preview() -> void:
 	var unit: Dictionary = app.rules.member_unit(selected) if not selected.is_empty() else {}
 	plan = prepare(app.campaign,app.run,"buy" if operation.selected==0 else "use",key,app.selected_member,int(quantity.value))
 	summary.text = "Destinatario ID %d · %s\nNv. %d · PS %d / %d · cap %s\nEn bolsa: %d · por comprar: %d\nSaldo actual: %d ₽\n" % [app.selected_member,unit.get("name","Sin destinatario"),selected.get("level",0),unit.get("hp",0),unit.get("maxHp",0),str(app.campaign.level_cap(app.run)) if app.campaign.has_method("level_cap") else "sin límite por gimnasio",app.run.bag.get(key,0),int(quantity.value) if operation.selected==0 else 0,app.run.money]
+	if app._simple_hub():
+		title = "Comprar varias unidades" if operation.selected==0 else "Usar objetos · "+unit.get("name","")
+		ok_button_text = "Comprar" if operation.selected==0 else "Usar"
+		summary.text = "En bolsa: %d\n" % app.run.bag.get(key,0)
+		if operation.selected==0: summary.text += "Saldo: %d ₽\n" % app.run.money
+		else: summary.text += "%s · Nv. %d · Límite %d\n%d / %d PS\n" % [unit.get("name",""),selected.get("level",0),app.campaign.level_cap(app.run),unit.get("hp",0),unit.get("maxHp",0)]
 	get_ok_button().disabled = not plan.ok
 	get_ok_button().set_meta("semantic_manual",true)
 	operation.set_meta("semantic_manual",true)
@@ -94,13 +102,18 @@ func preview() -> void:
 	quantity.accessibility_name = "Cantidad del artículo"
 	summary.accessibility_name = summary.text
 	if not plan.ok: summary.text += "\n"+plan.reason; summary.accessibility_name = summary.text; get_ok_button().accessibility_description = plan.reason; return
-	summary.text += "Coste total: %d ₽ · saldo final: %d ₽\nRestauración prevista: %d PS\n%s" % [app.run.money-plan.state.money,plan.state.money,plan.restored,"\n".join(plan.events)]
-	if operation.selected==1 and key in ["potion","super-potion","hyper-potion"]: summary.text += "\nCuración desperdiciada: %d PS" % [maxi(0,int(app.campaign.consumables[key].heal*quantity.value)-plan.restored)]
-	summary.text += "\nCada orden se guarda por separado. Si falla, se detiene el lote; no se repite al reiniciar. Escape durante el lote detiene las órdenes pendientes."
+	if not app._simple_hub() or operation.selected==0: summary.text += "Coste total: %d ₽ · saldo final: %d ₽\n" % [app.run.money-plan.state.money,plan.state.money]
+	if not app._simple_hub() or operation.selected==1: summary.text += "Restauración prevista: %d PS\n%s" % [plan.restored,"\n".join(plan.events)]
+	if operation.selected==1 and key in ["potion","super-potion","hyper-potion"]:
+		var wasted: int = maxi(0,int(app.campaign.consumables[key].heal*quantity.value)-plan.restored)
+		if wasted>0 or not app._simple_hub(): summary.text += "\nCuración desperdiciada: %d PS" % wasted
+	if not app._simple_hub(): summary.text += "\nCada orden se guarda por separado. Si falla, se detiene el lote; no se repite al reiniciar. Escape durante el lote detiene las órdenes pendientes."
 
 	summary.accessibility_name = summary.text
 	get_ok_button().accessibility_name = "Aceptar operación revisada"
 	get_ok_button().accessibility_description = summary.text
+	get_ok_button().accessibility_description += "\nDestinatario: %s · cap %s" % [unit.get("name","Sin destinatario"),str(app.campaign.level_cap(app.run)) if app.campaign.has_method("level_cap") else "sin límite por gimnasio"]
+	if operation.selected==1: get_ok_button().accessibility_description += "\nSaldo: %d ₽" % app.run.money
 
 func accept_plan() -> void:
 	if app.batch_busy or not plan.get("ok",false): return
@@ -130,5 +143,6 @@ func accept_plan() -> void:
 	app.batch_busy = false
 	app.input_profile.held.clear()
 	app.message = "%d órdenes aceptadas · %d guardadas · %d pendientes.%s" % [accepted,persisted,checked.commands.size()-accepted," Revisa el aviso de guardado antes de seguir." if accepted!=persisted else ""]
+	if app._simple_hub() and accepted==persisted: app.message = "%d unidades %s.%s" % [accepted,"compradas" if checked.mode=="buy" else "usadas"," Operación detenida." if accepted<checked.commands.size() else ""]
 	if accepted!=persisted: app.save_warning += " "+app.message
 	app._refresh()

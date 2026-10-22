@@ -187,6 +187,7 @@ func run(app: Control, directory: String) -> void:
 		await raw(app,KEY_ENTER,false)
 		check(app.run.bag.potion<=quantity+1,"Holding accept never repeats purchases")
 		before = app.run.duplicate(true)
+		await click(app,app.travel_buttons.hub_team)
 		await click(app,app.travel_buttons.roster_pc)
 		check(focus_is(app,app.travel_buttons.roster_pc),"Empty PC tab retains keyboard focus")
 		await key(app,KEY_TAB)

@@ -96,6 +96,12 @@ if chapter==22 and patch>=13:
     screenshots=bundle/'qa/sprint-22-updates-13'
     screenshots.mkdir(parents=True,exist_ok=True)
     for shot in ['battle-1024','shop-1024']:
+        shutil.copy2(ROOT/'docs/qa/sprint-22-updates-13'/('source-'+shot+'.png'),screenshots/('source-'+shot+'.png'))
+if chapter==22 and patch>=14:
+    shutil.copy2(ROOT/'docs/SPRINT_22_HUB.md',bundle/'HUB_Y_TIENDA.md')
+    screenshots=bundle/'qa/sprint-22-updates-14'
+    screenshots.mkdir(parents=True,exist_ok=True)
+    for shot in ['hub-1024','shop-1024','team-bag-1280','team-1024-150','use-many']:
         shutil.copy2(work/'interface-source'/(shot+'.png'),screenshots/('source-'+shot+'.png'))
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as package:
     for file in sorted(bundle.rglob('*')):

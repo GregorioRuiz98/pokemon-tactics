@@ -39,6 +39,9 @@ var title_loading: bool = false
 var oak_return: Dictionary = {}
 var interface_qa_dir: String = ""
 var shop_tab: String = "supplies"
+var hub_mode: String = "overview"
+var member_view: String = "items"
+var hub_parts: Dictionary = {}
 var shop_sections: Dictionary = {}
 var shop_batch: ConfirmationDialog
 var batch_busy: bool = false
@@ -416,6 +419,7 @@ func _event(command: Dictionary, from_batch: bool = false) -> void:
 	selected_action = "basic"
 	action_page = false
 	message = ""
+	if command.kind=="buy" and _simple_hub() and campaign.consumables.has(command.item): message = campaign.consumables[command.item].name+" comprado."
 	if command.kind=="revive": message = "Pokémon recuperado con el 50 % de sus PS máximos."
 	if command.kind=="mint": message = "Menta aplicada: cambian los modificadores, se conserva la naturaleza original."
 	if command.kind=="capsule": message = "Cápsula aplicada: cambia la habilidad normal, sin ocupar el objeto equipado."
@@ -552,7 +556,9 @@ func _refresh() -> void:
 		var fraction: float = float(active.hp)/maxi(1,int(active.maxHp))
 		actor_hp.get_theme_stylebox("fill").bg_color = Color("71c5a1") if fraction>0.5 else (Color("e9c76d") if fraction>0.25 else Color("ee997e"))
 		for action_button: Button in action_buttons.values(): action_button.add_theme_font_size_override("font_size",16)
-	else: _render_travel()
+	else:
+		_render_travel()
+		_simplify_hub()
 	accessible_view.request_update(true)
 
 func _layout_battle_hud() -> void:
@@ -657,14 +663,116 @@ func _travel_button(key: String, text: String, parent: Node, command: Dictionary
 	parent.add_child(button)
 	return button
 
+func _simple_hub() -> bool:
+	return not run.is_empty() and run.get("edition",1)>=12
+
+func _build_hub_navigation() -> void:
+	var row: HBoxContainer = HBoxContainer.new()
+	row.add_theme_constant_override("separation",12)
+	travel_content.add_child(row)
+	for entry: Array in [["overview","Comprar" if run.phase=="shop" else "Viaje"],["team","Equipo y bolsa" if run.phase=="shop" else "Equipo / PC"]]:
+		var button: Button = _button(entry[1],_set_hub_mode.bind(entry[0]))
+		button.theme_type_variation = "TabButton"
+		button.toggle_mode = true
+		button.button_pressed = hub_mode==entry[0]
+		row.add_child(button)
+		travel_buttons["hub_"+entry[0]] = button
+	var limit: Dictionary = campaign.gym_limit(run)
+	var progress: Label = _label("%d medallas · Límite Nv. %d" % [run.get("medals",[]).size(),limit.level],16,MUTED)
+	progress.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	progress.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	row.add_child(progress)
+	if run.phase in ["capture","shop"] and not _progress_summary().is_empty():
+		var summary: Button = _button("Resumen",func(): _review_text("Último combate",_progress_summary()))
+		summary.theme_type_variation = "ToolButton"
+		row.add_child(summary)
+		travel_buttons.summary = summary
+	if run.phase=="map" and run.cleared.is_empty():
+		var sizes: HBoxContainer = HBoxContainer.new()
+		travel_content.add_child(sizes)
+		sizes.add_child(_label("Tamaño del mapa",16,MUTED))
+		for width: int in [16,24]:
+			var pick: Button = _travel_button("size_"+str(width),"%d×%d" % [width,width],sizes,{"kind":"map-size","size":width})
+			pick.theme_type_variation = "ToolButton"
+			pick.disabled = run.mapSize==width
+
+func _set_hub_mode(value: String) -> void:
+	hub_mode = value
+	if value=="overview": roster_tab = "team"; roster_offset = 0
+	_refresh()
+	travel_buttons["hub_"+value].grab_focus.call_deferred()
+
+func _build_member_navigation(parent: VBoxContainer) -> void:
+	var tabs: GridContainer = GridContainer.new()
+	tabs.columns = 2 if load("res://ui/presentation_settings.gd").font_factor(self)>1.25 else 4
+	tabs.add_theme_constant_override("h_separation",6)
+	tabs.add_theme_constant_override("v_separation",6)
+	parent.add_child(tabs)
+	for entry: Array in [["profile","Ficha"],["items","Objetos"],["moves","Movimientos"],["traits","Rasgos"]]:
+		var button: Button = _button(entry[1],_set_member_view.bind(entry[0]))
+		button.theme_type_variation = "TabButton"
+		button.toggle_mode = true
+		button.button_pressed = member_view==entry[0]
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		button.add_theme_font_size_override("font_size",16)
+		tabs.add_child(button)
+		travel_buttons["detail_"+entry[0]] = button
+
+func _set_member_view(value: String) -> void:
+	member_view = value
+	_refresh()
+	travel_buttons["detail_"+value].grab_focus.call_deferred()
+
+func _hub_group(parent: VBoxContainer, key: String) -> VBoxContainer:
+	var group: VBoxContainer = VBoxContainer.new()
+	group.add_theme_constant_override("separation",12)
+	parent.add_child(group)
+	hub_parts[key] = group
+	return group
+
+func _simplify_hub() -> void:
+	if not _simple_hub(): return
+	var managing: bool = hub_mode=="team"
+	travel_buttons.hub_overview.button_pressed = not managing
+	travel_buttons.hub_team.button_pressed = managing
+	hub_parts.shop.visible = not managing
+	hub_parts.team.visible = managing or run.phase!="shop"
+	for key: String in ["details","roster_tabs","roster_manage"]:
+		if hub_parts.has(key): hub_parts[key].visible = managing
+	for key: String in ["profile","items","moves","traits"]:
+		if hub_parts.has(key): hub_parts[key].visible = key==member_view
+	var owned: bool = false
+	for key: String in travel_buttons:
+		var item: String = ""
+		if key.begins_with("heal_"): item = key.trim_prefix("heal_")
+		elif key=="revive": item = "revive"
+		elif key=="level-up": item = "rare-candy"
+		elif key=="use_capsule": item = "ability-capsule"
+		elif key.begins_with("evolution_"):
+			# Compatibility and stock are already validated by the existing control.
+			travel_buttons[key].visible = not travel_buttons[key].disabled
+		if not item.is_empty():
+			travel_buttons[key].visible = run.bag.get(item,0)>0
+			if item in ["potion","super-potion","hyper-potion","max-potion","rare-candy","revive"]: owned = owned or travel_buttons[key].visible
+	if hub_parts.has("items") and run.phase=="shop" and not owned and not run.bag.values().any(func(count):return int(count)>0) and not hub_parts.has("empty_bag"):
+		hub_parts.empty_bag = _label("La bolsa está vacía.",17,MUTED)
+		hub_parts.items.add_child(hub_parts.empty_bag)
+	if travel_buttons.has("use_batch"): travel_buttons.use_batch.visible = owned
+	if travel_buttons.has("batch"): travel_buttons.batch.visible = shop_tab in ["supplies","evolution"]
+	_apply_preferences.call_deferred()
+
 func _render_travel() -> void:
 	var phase: String = run.get("phase","oak")
 	var memory: Dictionary = FocusMemory.capture(travel_root,travel_buttons)
-	if phase!=travel_phase: travel_memory = {}; travel_phase = phase
+	if phase!=travel_phase:
+		travel_memory = {}; travel_phase = phase
+		hub_mode = "overview"
+		member_view = "items" if phase=="shop" else "profile"
 	elif memory.inside: travel_memory = memory
 	call_deferred("_restore_travel_focus")
 	if is_instance_valid(journey_seed): new_seed = journey_seed.text
 	_clear(travel_content)
+	hub_parts.clear()
 	travel_buttons.clear()
 	var header: HBoxContainer = HBoxContainer.new()
 	travel_content.add_child(header)
@@ -679,12 +787,18 @@ func _render_travel() -> void:
 	var help_button: Button = _button("Ayuda",func(): help_dialog.popup_centered(Vector2i(630,450)))
 	help_button.theme_type_variation = "ToolButton"
 	header.add_child(help_button)
+	if _simple_hub():
+		title.text = "Tienda" if run.phase=="shop" else "Viaje por Kanto"
+		_build_hub_navigation()
 	var classic: String = ""
 	if not run.is_empty() and run.get("edition",1)<12: classic = "Clásica %s: conserva sus reglas. Nueva campaña para usar el PC." % _classic_version()
 	var status: Label = _label(save_warning if not save_warning.is_empty() else (message if not message.is_empty() else (classic if not classic.is_empty() else ("Guardado automático local · Revivir disponible en tienda" if run.get("edition",1)>=9 else "Guardado automático local · bajas definitivas"))),17,MUTED)
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	travel_content.add_child(status)
-	if input_profile.preferences.tutorialHints and phase in ["map","shop","capture"]:
+	if _simple_hub():
+		status.text = save_warning if not save_warning.is_empty() else message
+		status.visible = not status.text.is_empty()
+	if not _simple_hub() and input_profile.preferences.tutorialHints and phase in ["map","shop","capture"]:
 		var guide: Label = _label({"map":"Siguiente paso: revisa el equipo y entra en el encuentro. Los PS se conservan.","shop":"Objetos fuera de combate: recupera PS, compra niveles hasta el límite y revisa el PC. El PC no cura.","capture":"La recompensa pendiente debe resolverse antes de seguir. Aprender movimientos no los prepara automáticamente."}[phase],17)
 		guide.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		travel_content.add_child(guide)
@@ -693,7 +807,7 @@ func _render_travel() -> void:
 		upgrade.tooltip_text = "Conserva equipo, PS, objetos y diario. Guarda una copia antes de adoptar la expansión; no transforma un combate en curso."
 		travel_content.add_child(upgrade)
 		travel_buttons.upgrade = upgrade
-	if not run.is_empty() and run.get("edition",1)>=8:
+	if not run.is_empty() and run.get("edition",1)>=8 and not _simple_hub():
 		var limit: Dictionary = campaign.gym_limit(run)
 		var limit_label: Label = _label("Límite Nv. %d · %s (%s). Al alcanzar el límite no se acumula EXP." % [limit.level,limit.leader,rules.profiles[int(limit.speciesId)].data.name],17,GOLD)
 		limit_label.name = "GymLevelCap"
@@ -749,7 +863,7 @@ func _render_travel() -> void:
 		_apply_preferences.call_deferred()
 		return
 	var progress: HBoxContainer = HBoxContainer.new()
-	if run.get("edition",1)>=11 and run.phase=="map" and run.cleared.is_empty():
+	if run.get("edition",1)>=11 and run.phase=="map" and run.cleared.is_empty() and not _simple_hub():
 		travel_content.add_child(_label("Ensayo de escala · %d×%d · vista isométrica y alturas" % [run.mapSize,run.mapSize],20,GOLD))
 		var sizes: HBoxContainer = HBoxContainer.new()
 		travel_content.add_child(sizes)
@@ -758,6 +872,7 @@ func _render_travel() -> void:
 			pick.disabled = run.mapSize==width
 		travel_content.add_child(_label("Subir: +1 movimiento por nivel; salto terrestre máximo 1. Voladores ignoran desniveles.\nAltura limita alcance y línea de visión; no aumenta el daño. Eliminar rivales sigue siendo el objetivo.",16,MUTED))
 	travel_content.add_child(progress)
+	progress.visible = not _simple_hub()
 	if run.get("edition",1)>=13:
 		progress.add_child(_label("Medallas %d / 8 · Lugares superados %d / %d · Equipo %d / 6 · PC %d" % [run.medals.size(),run.cleared.size(),campaign.locations.size(),run.party.size(),run.reserve.size()],19,GOLD))
 	else:
@@ -772,6 +887,7 @@ func _render_travel() -> void:
 	var left: PanelContainer = _panel()
 	left.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	body.add_child(left)
+	hub_parts.shop = left
 	var left_column: VBoxContainer = VBoxContainer.new()
 	left_column.add_theme_constant_override("separation",12)
 	left.add_child(left_column)
@@ -786,7 +902,8 @@ func _render_travel() -> void:
 	narrative.add_theme_constant_override("separation",18)
 	story_scroll.add_child(narrative)
 	var footer: VBoxContainer = VBoxContainer.new()
-	left_column.add_child(footer)
+	if _simple_hub(): travel_content.add_child(footer)
+	else: left_column.add_child(footer)
 	var location: Dictionary = campaign.locations[mini(int(run.stage),campaign.locations.size()-1)]
 	var heading_text: String = location.name
 	if run.phase == "capture": heading_text = "¡Un nuevo compañero!"
@@ -797,13 +914,14 @@ func _render_travel() -> void:
 	if run.phase=="ending": heading_text = "Final · guardianes de Kanto" if run.finalPath=="birds" else "Final · el origen de Mewtwo"
 	var chapter: Label = _label(heading_text,28,GOLD)
 	chapter.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	chapter.visible = not (_simple_hub() and run.phase=="shop")
 	narrative.add_child(chapter)
 	var text: Label = _label(location.story,20)
 	text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	narrative.add_child(text)
 	match run.phase:
 		"map":
-			_travel_button("enter",("Visitar " if location.get("kind","")=="story" else "Entrar en ") + location.name,narrative,{"kind":"enter"})
+			_travel_button("enter",("Visitar " if location.get("kind","")=="story" else "Entrar en ") + location.name,footer if _simple_hub() else narrative,{"kind":"enter"})
 			text.text += "\n\nVisita narrativa: abre caminos y tienda, sin captura ni curación." if location.get("kind","")=="story" else "\n\nUn combate por ubicación. Al ganar: captura local, tienda y siguiente tramo. Los PS no se restauran entre encuentros."
 		"capture":
 			var image: TextureRect = _portrait(Vector2(160,160))
@@ -812,10 +930,10 @@ func _render_travel() -> void:
 			text.text = "%s\nOrigen: %s\n\nLa captura ya está sorteada y guardada. Cargar no cambia el resultado. Se admiten duplicados en esta muestra." % [rules.profiles[int(run.reward.speciesId)].data.name + (" · Nv. %d" % run.reward.level if run.reward.has("level") else ""),run.reward.origin]
 			var capture_text: String = "Dar la bienvenida al equipo"
 			if run.get("edition",1)>=12 and run.party.size()>=6: capture_text = "Enviar al PC · equipo completo"
-			_travel_button("capture",capture_text,narrative,{"kind":"capture"})
+			_travel_button("capture",capture_text,footer if _simple_hub() else narrative,{"kind":"capture"})
 		"shop":
 			if run.get("edition",1)>=4:
-				var batch: Button = _button("Comprar / usar cantidades…",_open_batch)
+				var batch: Button = _button("Comprar varias…",_open_batch)
 				batch.theme_type_variation = "ToolButton"
 				narrative.add_child(batch)
 				travel_buttons.batch = batch
@@ -834,14 +952,15 @@ func _render_travel() -> void:
 			if run.get("edition",1)>=12:
 				text.text = "Prepara al equipo antes de seguir. Compra aquí y usa los objetos desde la ficha del Pokémon."
 				var stock_grid: GridContainer = GridContainer.new()
-				stock_grid.columns = 2
+				stock_grid.columns = 3 if _simple_hub() and load("res://ui/presentation_settings.gd").font_factor(self)<=1.25 else 2
 				stock_grid.add_theme_constant_override("h_separation",8)
 				stock_grid.add_theme_constant_override("v_separation",8)
 				shop_parent.add_child(stock_grid)
 				shop_parent = stock_grid
 			for item: String in consumables:
 				var destination: Node = shop_sections.traits if item=="ability-capsule" and run.get("edition",1)>=12 else shop_parent
-				var label: String = "%s\n%d ₽ · bolsa %d" % [consumables[item].name,consumables[item].price,run.bag.get(item,0)] if run.get("edition",1)>=12 else "Comprar %s · %d ₽" % [consumables[item].name,consumables[item].price]
+				if _simple_hub() and (item=="rare-candy" or (run.get("edition",1)>=13 and campaign.evolution_items.has(item))): destination = shop_sections.evolution
+				var label: String = "%s\n%d ₽ · tienes %d" % [consumables[item].name,consumables[item].price,run.bag.get(item,0)] if run.get("edition",1)>=12 else "Comprar %s · %d ₽" % [consumables[item].name,consumables[item].price]
 				var button: Button = _travel_button("buy_"+item,label,destination,{"kind":"buy","item":item})
 				button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 				if run.get("edition",1)>=12: button.add_theme_font_size_override("font_size",16)
@@ -849,7 +968,7 @@ func _render_travel() -> void:
 				if item=="revive": button.tooltip_text = "Recupera a un Pokémon debilitado con el 50 % de sus PS máximos. Solo en la tienda; consume una unidad de la bolsa."
 			if run.get("edition",1)>=10: _render_mint_shop(shop_sections.get("traits",narrative))
 			if run.get("edition",1)>=5 and run.get("edition",1)<13:
-				var stone: Button = _travel_button("buy_leaf-stone","Comprar Piedra Hoja · 80 ₽",narrative,{"kind":"buy-stone"})
+				var stone: Button = _travel_button("buy_leaf-stone","Comprar Piedra Hoja · 80 ₽",shop_sections.evolution if _simple_hub() else narrative,{"kind":"buy-stone"})
 				stone.disabled = run.money<80
 				stone.tooltip_text = "Evoluciona Gloom y Weepinbell. No cura ni sube niveles."
 			_travel_button("continue","Seguir viaje" if run.get("edition",1)>=13 or run.stage < 3 else "Cerrar el tramo",footer,{"kind":"continue"})
@@ -858,7 +977,12 @@ func _render_travel() -> void:
 	if run.get("edition",1)>=12:
 		if run.phase in ["map","shop"]: text.text += "\n\nGestiona Equipo y PC a la derecha. Cambiar compañeros es gratis y conserva sus PS; solo los desplegados ganan EXP."
 		elif run.phase=="defeat": text.text += "\nLas reservas del PC tampoco permiten continuar tras perder un combate."
-	if run.get("edition",1)>=12 and run.phase=="shop": text.text = "Elige suministros, MT u objetos equipables.\nUsa la bolsa desde la ficha de tu Pokémon."
+	if _simple_hub():
+		if run.phase=="shop": text.text = ""
+		elif run.phase=="map": text.text = location.story
+		elif run.phase=="capture": text.text = "%s · Nv. %d\n%s" % [rules.profiles[int(run.reward.speciesId)].data.name,run.reward.level,run.reward.origin]
+		elif run.phase=="defeat": text.text = "El equipo ha caído. Puedes comenzar otra aventura desde Inicio."
+		text.visible = not text.text.is_empty()
 	if run.get("edition",1)>=13:
 		if run.phase=="complete": text.text = "Conservas equipo, objetos, dinero y progreso. Has completado el contenido principal de este tramo. Puedes recorrer los desvíos pendientes."
 		if run.phase in ["map","complete"]: _render_destinations(narrative)
@@ -870,16 +994,22 @@ func _render_travel() -> void:
 		var summary: Label = _label(_progress_summary(),17,GOLD)
 		summary.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		narrative.add_child(summary)
+		if _simple_hub(): summary.hide()
 	var right: PanelContainer = _panel()
-	right.custom_minimum_size.x = 470
+	right.custom_minimum_size.x = 360 if _simple_hub() else 470
+	right.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	hub_parts.team = right
 	body.add_child(right)
 	var scroll: ScrollContainer = ScrollContainer.new()
 	scroll.set_meta("scroll_id","team")
 	scroll.follow_focus = true
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	right.add_child(scroll)
+	var team_row: HBoxContainer = HBoxContainer.new()
+	team_row.add_theme_constant_override("separation",24)
+	right.add_child(team_row)
+	team_row.add_child(scroll)
 	var team: VBoxContainer = VBoxContainer.new()
-	team.custom_minimum_size.x = 430
+	team.custom_minimum_size.x = 320 if _simple_hub() else 430
 	team.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	team.add_theme_constant_override("separation",14)
 	scroll.add_child(team)
@@ -896,6 +1026,19 @@ func _render_travel() -> void:
 			button.toggle_mode = true
 			button.button_pressed = member.id == selected_member
 			grid.add_child(button)
+	if _simple_hub():
+		hub_parts.roster = team
+		var detail_scroll: ScrollContainer = ScrollContainer.new()
+		detail_scroll.set_meta("scroll_id","member_details")
+		detail_scroll.follow_focus = true
+		detail_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+		detail_scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		team_row.add_child(detail_scroll)
+		hub_parts.details = detail_scroll
+		team = VBoxContainer.new()
+		team.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		team.add_theme_constant_override("separation",12)
+		detail_scroll.add_child(team)
 	var selected: Dictionary = campaign.target(run,selected_member)
 	if selected.is_empty(): return
 	var unit: Dictionary = rules.member_unit(selected)
@@ -909,15 +1052,26 @@ func _render_travel() -> void:
 	info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	profile_row.add_child(info)
+	if _simple_hub():
+		info.text = "%s · Nv. %d\n%d / %d PS · %s" % [unit.name,selected.level,unit.hp,unit.maxHp,_type_names(unit.types)]
+		_build_member_navigation(team)
+		var profile: VBoxContainer = _hub_group(team,"profile")
+		profile.add_child(_label("Ataque %d · At. especial %d\nDefensa %d · Def. especial %d\nVelocidad %d" % [unit.attack,unit.specialAttack,unit.defense,unit.specialDefense,unit.speed],17))
+		profile.add_child(_label("EXP %d / %d" % [selected.xp,campaign.progression.next_xp(selected.level)],17))
+		var next_form: Dictionary = campaign.progression.evolution(selected)
+		if not next_form.is_empty(): profile.add_child(_label("%s · Nv. %d" % [rules.profiles[int(next_form.speciesId)].data.name,next_form.level],17,GOLD))
+		profile.add_child(_label("Origen: "+selected.origin,16,MUTED))
 	var modern_shop: bool = run.get("edition",1)>=12 and run.phase=="shop"
-	if run.get("edition",1)>=10 and not modern_shop: _render_traits(team,selected)
-	if run.get("edition",1)>=3 and not modern_shop: _render_inventory(team,selected)
+	if run.get("edition",1)>=10 and not modern_shop: _render_traits(_hub_group(team,"traits") if _simple_hub() else team,selected)
+	if run.get("edition",1)>=3 and not modern_shop: _render_inventory(_hub_group(team,"items") if _simple_hub() else team,selected)
 	if run.get("edition",1) >= 2 and run.phase != "shop":
-		_render_moves(team,selected)
+		_render_moves(_hub_group(team,"moves") if _simple_hub() else team,selected)
 	if run.phase == "shop":
+		var detail_root: VBoxContainer = team
+		if _simple_hub(): team = _hub_group(detail_root,"items")
 		var use_parent: Node = team
 		if modern_shop:
-			team.add_child(_label("USAR CON %s" % unit.name.to_upper(),17,GOLD))
+			team.add_child(_label("Bolsa",19,GOLD))
 			var use_grid: GridContainer = GridContainer.new()
 			use_grid.columns = 2
 			use_grid.add_theme_constant_override("h_separation",8)
@@ -933,7 +1087,7 @@ func _render_travel() -> void:
 		for item: String in (["potion","super-potion","hyper-potion","max-potion"] if run.get("edition",1)>=13 else ["potion","super-potion"]):
 			var record: Dictionary = campaign.consumables[item] if run.get("edition",1)>=13 else Campaign.ITEMS[item]
 			var heal_text: String = "Usar %s · +%d PS" % [record.name,record.heal] if item!="max-potion" else "Usar Poción Máxima · todos los PS"
-			if modern_shop: heal_text = "%s\n%d en bolsa" % [record.name,run.bag[item]]
+			if modern_shop: heal_text = "Usar %s\nTienes %d" % [record.name,run.bag[item]]
 			var button: Button = _travel_button("heal_"+item,heal_text,use_parent,{"kind":"heal","item":item,"member":selected_member})
 			button.tooltip_text = "Recupera %d PS, hasta el máximo. Solo fuera de combate." % record.heal if item!="max-potion" else "Recupera todos los PS actuales; no revive."
 			if modern_shop: button.add_theme_font_size_override("font_size",16); button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -951,13 +1105,21 @@ func _render_travel() -> void:
 			var evolution_label: Label = _label("Evolución automática: %s · Nv. %d" % [rules.profiles[int(automatic.speciesId)].data.name,automatic.level] if not automatic.is_empty() else "Sin otra evolución de Kanto",17,MUTED)
 			evolution_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			team.add_child(evolution_label)
+			if _simple_hub(): evolution_label.hide()
 			if run.get("edition",1)>=13: _render_evolution_options(team,selected)
 			if run.get("edition",1)>=5 and run.get("edition",1)<13 and campaign.progression.data.stoneEvolutions.has(str(int(selected.speciesId))):
 				evolution_label.text = "Evolución con Piedra Hoja · bolsa: %d" % run.bag["leaf-stone"]
 				var stone: Button = _travel_button("stone","Usar Piedra Hoja",team,{"kind":"stone","member":selected_member})
 				stone.disabled = selected.hp<=0 or run.bag["leaf-stone"]<=0
-			if modern_shop: _render_traits(team,selected); _render_inventory(team,selected)
-			_render_moves(team,selected)
+			if modern_shop:
+				_render_traits(_hub_group(detail_root,"traits") if _simple_hub() else team,selected)
+				_render_inventory(team,selected)
+			if _simple_hub():
+				var use_batch: Button = _button("Usar varias…",_open_batch.bind("use"))
+				use_batch.theme_type_variation = "ToolButton"
+				team.add_child(use_batch)
+				travel_buttons.use_batch = use_batch
+			_render_moves(_hub_group(detail_root,"moves") if _simple_hub() else team,selected)
 			return
 		var evolve: Button = _travel_button("evolve","Evolucionar · 1 Caramelo Raro",team,{"kind":"evolve","member":selected_member})
 		evolve.disabled = selected.hp <= 0 or not Campaign.EVOLUTIONS.has(int(selected.speciesId)) or run.bag["rare-candy"] <= 0
@@ -1005,16 +1167,25 @@ func _review_loadout(identity: int, moves: Array, description: String) -> void:
 	var names: String = ", ".join(moves.map(func(id):return campaign.progression.data.moves[id].name))
 	action_review.review("Revisar repertorio",_member_summary(identity)+"\n\nNUEVO: "+names+"\n"+description+"\nBásico neutro independiente. No se consume dinero ni MT.",func(): _event({"kind":"loadout","member":identity,"moves":moves,"at":revision}))
 
-func _open_batch() -> void:
+func _open_batch(context: String = "buy") -> void:
 	if run.phase!="shop" or batch_busy or run.get("edition",1)<4: return
 	if shop_batch==null:
 		shop_batch = load("res://ui/shop_batch.gd").new()
 		add_child(shop_batch)
 		shop_batch.setup(self)
 		_watch_dialog(shop_batch)
-	shop_batch.open()
+	if _simple_hub() and context=="buy":
+		var item_id: String = "rare-candy" if shop_tab=="evolution" else "potion"
+		for index: int in shop_batch.item.item_count:
+			if shop_batch.item.get_item_metadata(index)==item_id: shop_batch.item.select(index)
+	elif _simple_hub() and context=="use":
+		shop_batch.quantity.value = 1
+		for index: int in shop_batch.item.item_count:
+			if run.bag.get(shop_batch.item.get_item_metadata(index),0)>0: shop_batch.item.select(index); break
+	shop_batch.open(context)
 
 func _select_member(identity: int) -> void:
+	if _simple_hub(): hub_mode = "team"
 	selected_member = identity
 	_refresh()
 
@@ -1033,9 +1204,14 @@ func _cycle_panel(backwards: bool = false) -> void:
 	var focused: Control = get_viewport().gui_get_focus_owner()
 	var member: Control = travel_buttons.get("roster_team")
 	if focused==member:
+		if _simple_hub():
+			hub_mode = "overview"; roster_tab = "team"; roster_offset = 0
+			_refresh()
 		var target: Control = travel_buttons.get("continue",travel_buttons.get("enter",travel_buttons.home))
-		if FocusMemory.eligible(target): target.grab_focus()
-	elif FocusMemory.eligible(member): member.grab_focus()
+		if FocusMemory.eligible(target): target.grab_focus.call_deferred()
+	else:
+		if _simple_hub(): hub_mode = "team"; _simplify_hub()
+		if FocusMemory.eligible(member): member.grab_focus()
 
 func _shop_panels(parent: VBoxContainer) -> Dictionary:
 	if run.get("edition",1)<12: return {"supplies":parent,"gear":parent,"traits":parent}
@@ -1043,7 +1219,7 @@ func _shop_panels(parent: VBoxContainer) -> Dictionary:
 	tabs.add_theme_constant_override("separation",8)
 	parent.add_child(tabs)
 	var result: Dictionary = {}
-	for entry: Array in [["supplies","Objetos"],["gear","MT y equipo"],["traits","Rasgos"]]:
+	for entry: Array in ([["supplies","Medicina"],["evolution","Evolución"],["gear","MT y equipo"],["traits","Rasgos"]] if _simple_hub() else [["supplies","Objetos"],["gear","MT y equipo"],["traits","Rasgos"]]):
 		var button: Button = _button(entry[1],_shop_page.bind(entry[0]))
 		button.theme_type_variation = "TabButton"
 		button.toggle_mode = true
@@ -1065,6 +1241,7 @@ func _shop_page(tab: String) -> void:
 	travel_buttons["shop_"+tab].grab_focus.call_deferred()
 
 func _roster_page(tab: String, page: int) -> void:
+	if _simple_hub(): hub_mode = "team"
 	roster_tab = tab
 	roster_offset = page
 	if tab=="pc" and not run.reserve.is_empty(): selected_member = int(run.reserve[clampi(page*6,0,run.reserve.size()-1)].id)
@@ -1080,8 +1257,9 @@ func _run_journey_qa() -> void:
 
 func _render_destinations(parent: VBoxContainer) -> void:
 	var choices: Array = campaign.available(run)
+	if _simple_hub() and run.phase=="map": choices = choices.filter(func(destination):return destination.id!=campaign.locations[int(run.stage)].id)
 	if choices.is_empty(): return
-	parent.add_child(_label("DESTINOS DISPONIBLES",20,GOLD))
+	parent.add_child(_label("Otros destinos" if _simple_hub() else "DESTINOS DISPONIBLES",20,GOLD))
 	for destination: Dictionary in choices:
 		var button: Button = _travel_button("travel_"+destination.id,("Desvío · " if destination.get("optional",false) else "Historia · ")+destination.name,parent,{"kind":"travel","location":destination.id})
 		button.disabled = run.phase=="map" and destination.id==campaign.locations[int(run.stage)].id
@@ -1096,7 +1274,7 @@ func _render_evolution_options(parent: VBoxContainer, member: Dictionary) -> voi
 
 func _render_mint_shop(parent: VBoxContainer) -> void:
 	var study: RefCounted = campaign.progression
-	parent.add_child(_label("MENTAS · modificadores de naturaleza",20,GOLD))
+	parent.add_child(_label("Mentas",20,GOLD))
 	var choices: Array = study.mintable()
 	var picker: OptionButton = OptionButton.new()
 	picker.name = "MintPicker"
@@ -1123,6 +1301,20 @@ func _render_traits(parent: VBoxContainer, member: Dictionary) -> void:
 	passive.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	parent.add_child(passive)
 	if run.phase!="shop": return
+	var has_mint: bool = true
+	if _simple_hub():
+		var owned: Array = study.mintable().filter(func(key):return run.bag.get("mint-"+key,0)>0)
+		has_mint = not owned.is_empty()
+		if has_mint:
+			if hub_mode=="team" and member_view=="traits" and selected_mint not in owned: selected_mint = owned[0]
+			var picker: OptionButton = OptionButton.new()
+			picker.name = "OwnedMintPicker"
+			for key: String in owned: picker.add_item("Menta %s · tienes %d" % [study.traits.natures[key].name,run.bag["mint-"+key]])
+			picker.select(maxi(0,owned.find(selected_mint)))
+			picker.item_selected.connect(func(index: int): selected_mint = owned[index]; _refresh())
+			parent.add_child(picker)
+			travel_buttons.use_mint_picker = picker
+		else: parent.add_child(_label("No tienes mentas en la bolsa.",16,MUTED))
 	var before: Dictionary = study.member_stats(member)
 	var copy: Dictionary = member.duplicate(true)
 	copy.mint = selected_mint
@@ -1133,9 +1325,11 @@ func _render_traits(parent: VBoxContainer, member: Dictionary) -> void:
 	var preview: Label = _label("Menta %s: %s" % [study.traits.natures[selected_mint].name,", ".join(lines) if not lines.is_empty() else "los valores redondeados no cambian a este nivel"],16,MUTED)
 	preview.name = "MintPreview"
 	preview.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	preview.visible = has_mint
 	parent.add_child(preview)
 	var mint: Button = _travel_button("use_mint","Usar Menta %s · bolsa: %d" % [study.traits.natures[selected_mint].name,run.bag["mint-"+selected_mint]],parent,{"kind":"mint","member":member.id,"nature":selected_mint})
 	mint.disabled = member.hp<=0 or run.bag["mint-"+selected_mint]<=0 or not study.mint_changes(member,selected_mint)
+	mint.visible = has_mint
 	var next: int = study.next_slot(member)
 	copy.abilitySlot = next
 	var next_ability: String = study.ability(copy)

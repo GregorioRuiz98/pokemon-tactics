@@ -23,6 +23,8 @@ func press(app: Control, key: String) -> void:
 func capture(app: Control, directory: String, filename: String) -> void:
 	await app.get_tree().process_frame
 	await RenderingServer.frame_post_draw
+	if app._simple_hub() and filename.begins_with("pc") and app.travel_buttons.has("pc_filter_0"):
+		check(app.travel_buttons.pc_filter_0.size.x>=280,"PC filters fill their column: "+filename)
 	var image: Image = app.get_viewport().get_texture().get_image()
 	check(not image.is_empty() and image.save_png(directory.path_join(filename+".png"))==OK,"Rendered "+filename)
 	screenshots.append(filename+".png")
