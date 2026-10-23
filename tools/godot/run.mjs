@@ -276,7 +276,7 @@ F2 elige modo Rápido/Seguro. Ambos confirman daño a aliados o coste propio let
 F2: configurar controles, F6: cambiar panel. Las etiquetas reflejan las teclas reasignadas; Enter/Espacio, Escape, Tab y flechas siguen como seguridad. Preferencias independientes en controls.json; compras y órdenes no se repiten al mantener una tecla.
 Datos/repertorios LGPE combinados, sin movimientos de los iniciales especiales; historia/equipos de entrenadores de Rojo. PT/alcances y efectos complejos son adaptaciones visibles en ficha. Habilidades pendientes están etiquetadas; sin clima ni huida.
 Dos finales excluyentes tras la Liga: tres aves juntas o Mew/Mewtwo. Legendarios nunca reclutables. Recuperación, Respiro, Amortiguador y Descanso tienen cinco usos por combate además de PT. Actualizar una campaña ya terminada conserva su final.
-Consulta GUIA_DE_PRUEBA.md e INFORME_BALANCE.md para controles, sesiones propuestas y límites de las simulaciones.49/78 habilidades normales activas;29 pendientes y terreno provisional. Dificultad y diversión requieren pruebas humanas.
+Consulta GUIA_DE_PRUEBA.md e INFORME_BALANCE.md para controles, sesiones propuestas y límites de las simulaciones. 49/78 habilidades normales activas; 29 pendientes. Arte del juego integrado; consulta ARTE_INTEGRADO.md. Dificultad y diversión requieren pruebas humanas.
 No hay conexión de red, cuentas ni servicios al jugar. Créditos/licencias acompañan la entrega. Publicación pública aplazada.
 `, 'utf8');
   const digest = createHash('sha256').update(readFileSync(resolve(output, 'PokemonTactics.exe'))).digest('hex');

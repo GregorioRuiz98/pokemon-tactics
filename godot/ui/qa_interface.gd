@@ -15,6 +15,8 @@ func art_checks() -> void:
 	for record: Dictionary in Art.slots():
 		var resource: Texture2D = Art.texture(record.id)
 		check(resource!=null and resource.get_width()==record.width and resource.get_height()==record.height,"Native artwork contract: "+record.id)
+		if record.required and Art.manifest().get("status", "") == "generated":
+			check(Art.final_ready(record.id), "Generated artwork is used in game: " + record.id)
 	for biome: String in Art.manifest().biomes:
 		check(Art.texture(Art.floor_id(biome))!=null and Art.texture(Art.prop_id(biome))!=null,"Biome has floor and obstacle art: "+biome)
 	# Isolated registry fixtures; no files, campaign state or game RNG are changed.
@@ -33,7 +35,9 @@ func art_checks() -> void:
 	Art.textures.erase(trial.id); Art.using_final.erase(trial.id)
 	trial = Art.entry("fx_hit").duplicate(true)
 	trial.id = "qa_opaque_final"
-	trial.final = "res://art/app_icon.png"
+	trial.final = "res://art/placeholders/title_keyart.svg"
+	trial.width = 1920
+	trial.height = 1080
 	Art.manifest().slots.append(trial)
 	check(Art.texture(trial.id)!=null and not Art.final_ready(trial.id) and trial.id in Art.rejected,"Opaque final retains transparent-effect placeholder")
 	Art.manifest().slots.pop_back()

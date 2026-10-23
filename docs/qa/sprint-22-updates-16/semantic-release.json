@@ -1,0 +1,8 @@
+{
+	"assertions": 8,
+	"failures": [],
+	"scope": "Native synthetic events and explicitly synthetic interaction fixtures; isolated saves",
+	"screenshots": [
+		"accessible-board.png"
+	]
+}

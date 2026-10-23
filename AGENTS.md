@@ -123,3 +123,8 @@ Solicitud del 22 de octubre: reducir explicaciones y confusión. UI para edició
 ## Dirección visual 0.22.15
 
 Solicitud del 22 de octubre: dirección profesional con arte nuevo provisional, sin generar imágenes. Cuaderno de Kanto, 45 slots/42 requeridos y 3 de promoción opcional, manifiesto en art/, registro con caché, escenas/terrenos/obstáculos/efectos/iconos conectados. Prompts completos y contratos; instalador verifica PNG/CRC/alfa/máscara 5:3 y conserva copia. Metadatos/icono Windows de versión 15. Publicación y arte final pendientes; no declarar ilustraciones terminadas. Campaña 18/combate 17, core/data/snapshots y recursos de terceros congelados; sin delegación automática o servicios nuevos. Ver docs/SPRINT_22_ART.md, docs/PROMPTS_ARTE_FINAL.md.
+
+
+## Arte generado 0.22.16
+
+Solicitud del 22 de octubre: producir e insertar las imágenes. 42 recursos del juego generados con image_gen e integrados; 3 promocionales opcionales pendientes. Procedencia/prompts/hashes en godot/art/generated-provenance.json (art/ desde Godot), dimensiones y alfa validados. Misma campaña18/combate17, reglas/datos/snapshots y sprites originales conservados. Ver docs/SPRINT_22_GENERATED_ART.md (../docs/ desde Godot). Publicación pública sigue aplazada.

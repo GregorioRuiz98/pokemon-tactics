@@ -1,7 +1,7 @@
 {
   "version": 1,
   "direction": "Cuaderno de Kanto",
-  "status": "placeholders",
+  "status": "generated",
   "projection": {
     "tile": [
       80,
@@ -39,7 +39,8 @@
   },
   "appIcon": {
     "path": "res://art/app_icon.png",
-    "placeholderSha256": "4283beff208e4803c19f6acf862b329f1731628adf2d6912a7ed7211f770e752"
+    "placeholderSha256": "4283beff208e4803c19f6acf862b329f1731628adf2d6912a7ed7211f770e752",
+    "sha256": "8fdc578a090c5243dcad98f8ff8bf4f53f8d1eac63224238f667083abac52f88"
   },
   "slots": [
     {

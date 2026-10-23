@@ -1,4 +1,4 @@
-# Probar Pokémon Tactics en Windows ·0.22.15
+# Probar Pokémon Tactics en Windows ·0.22.16
 
 La interfaz reúne las órdenes en un menú táctico y los recursos/previsión en la franja inferior. La fila ámbar y su cursor indican la selección; las acciones rojas avanzan en la aventura. Teclado, ratón y atajos conservan las mismas funciones.
 
@@ -64,6 +64,6 @@ Aprender a jugar o F7 abre práctica separada de tu aventura; F7/Inicio sale y l
 Guion de aceptación, consentimiento y plantillas en reports/aceptacion-0.22.10/KIT_HUMANO.md; en el ZIP, PRUEBAS_HUMANAS/KIT_HUMANO.md. No sustituir una partida personal para probar fixtures.
 
 
-## Arte provisional 0.22.15
+## Arte integrado 0.22.16
 
-Los fondos, suelos, obstáculos, iconos y efectos nuevos tienen placeholders identificados. Los Pokémon conservan sus recursos originales. La carpeta ARTE del paquete incluye prompts y contratos; el generador no se ha ejecutado. El identificador desaparece al sustituir un recurso por arte final válido y volver a exportar. Esta entrega permite revisar la dirección; todavía no tiene las 42 imágenes finales requeridas.
+Las 42 imágenes del juego están generadas e integradas: portada, escenas, suelos, obstáculos, iconos y efectos. Los Pokémon conservan sus recursos originales. ARTE incluye los PNG, prompts, contratos y procedencia. Las tres imágenes promocionales opcionales siguen pendientes. Revisar la lectura del tablero, los efectos y el contraste con el tamaño de texto preferido.

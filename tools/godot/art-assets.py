@@ -71,7 +71,13 @@ def check(require_final=False):
         elif s['required']:pending.append(s['id'])
     for family in data['biomes'].values():
         if 'floor_'+family not in seen:raise ValueError('Familia sin suelo: '+family)
-    result=dict(slots=len(seen),required=sum(s['required'] for s in data['slots']),completed=completed,pendingRequired=pending,artReady=not pending,generatedImages=False)
+    provenance=ART/'generated-provenance.json'
+    generated=json.loads(provenance.read_text(encoding='utf-8')) if provenance.exists() else {}
+    for record in generated.get('images',[]):
+        target=resource('res://art/final/'+record['id']+'.png')
+        if record['id'] not in completed or hashlib.sha256(target.read_bytes()).hexdigest()!=record['sha256']:
+            raise ValueError('La imagen no coincide con su registro de procedencia: '+record['id'])
+    result=dict(slots=len(seen),required=sum(s['required'] for s in data['slots']),completed=completed,pendingRequired=pending,artReady=not pending,generatedImages=bool(generated.get('images')))
     if require_final and pending:raise ValueError(f'Faltan {len(pending)} recursos finales requeridos; versión visual provisional')
     return result
 

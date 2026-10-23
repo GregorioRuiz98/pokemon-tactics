@@ -1,6 +1,6 @@
 # Prompts de arte final · Pokémon Tactics 0.22.15
 
-La interfaz y las conexiones de arte están implementadas. **Todas las imágenes nuevas son placeholders**, no ilustraciones finales. Este archivo contiene un prompt completo por recurso; no se ha llamado a un generador de imágenes. Los sprites, retratos PMD, fuente y sonidos existentes se mantienen intactos.
+Actualización 0.22.16: **las 42 imágenes del juego están generadas e integradas** mediante image_gen. Las tres imágenes promocionales opcionales siguen pendientes. Este archivo conserva los encargos; los prompts realmente usados, ajustes de encuadre y hashes se registran en `godot/art/generated-provenance.json`. Sprites, retratos PMD, fuente y sonidos originales conservados.
 
 ## Cómo producir y sustituir el arte
 

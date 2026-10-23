@@ -351,6 +351,8 @@ func _draw_tile(point: Dictionary, canvas: CanvasItem) -> void:
 		var base: Color = Color(Art.entry(identity).color)
 		# Preserve height, rough terrain and the three legendary-sector color cues.
 		var tint: Color = Color(color.r/maxf(0.01,base.r),color.g/maxf(0.01,base.g),color.b/maxf(0.01,base.b))
+		# Keep repeating material detail subordinate to units and tactical overlays.
+		if Art.final_ready(identity): tint.a = 0.50
 		canvas.draw_texture_rect(floor_texture,Rect2(c-TILE*zoom/2,TILE*zoom),false,tint)
 	_outline(polygon,Color(0.11,0.18,0.1,0.55 if strong_grid else 0.22),1,canvas)
 	if tile==1:

@@ -1,6 +1,6 @@
-# Pokémon Tactics — Kanto Windows0.22.15
+# Pokémon Tactics — Kanto Windows0.22.16
 
-Dirección visual 0.22.15: escenarios, suelos, iconos y efectos conectados a placeholders sustituibles. Ver [arte y estado](../docs/SPRINT_22_ART.md) y [prompts](../docs/PROMPTS_ARTE_FINAL.md). Los PNG finales requieren importar/exportar; no basta con copiarlos junto al EXE.
+Arte integrado 0.22.16: 42 imágenes generadas para escenarios, suelos, iconos y efectos. Ver [arte y estado](../docs/SPRINT_22_GENERATED_ART.md) y [prompts](../docs/PROMPTS_ARTE_FINAL.md). Los PNG finales requieren importar/exportar; no basta con copiarlos junto al EXE.
 
 Hub 0.22.14: Comprar y Equipo y bolsa separados; elige Pokémon y después Ficha, Objetos, Movimientos o Rasgos. Seguir viaje queda fijo. Ver [simplificación](../docs/SPRINT_22_HUB.md).
 
@@ -35,7 +35,7 @@ Respiro, Recuperación, Amortiguador y Descanso tienen cinco usos por combate, a
 
 Clic en casilla azul: movimiento directo; clic en rival: básico. Habilidades en menú dentro del tablero. R rectifica exclusivamente movimiento antes de actuar; F orienta y termina. Flechas/Enter y Escape disponibles. Rueda/+/- zoom, botón central cámara, C unidad, Combate/Mapa encuadre, G/H guías. Las casillas vacías alcanzables siguen seleccionables aunque un sprite grande las tape parcialmente.
 
-Isometría16/24, alturas0–2, subida+1 y salto terrestre1; voladores ignoran desnivel. Altura limita alcance/visión, sin bono de daño. Grupos tardíos se incorporan por proximidad/daño o ronda3. Arte de terreno provisional; retratos/sprites originales locales. Ninguna descarga al jugar.
+Isometría16/24, alturas0–2, subida+1 y salto terrestre1; voladores ignoran desnivel. Altura limita alcance/visión, sin bono de daño. Grupos tardíos se incorporan por proximidad/daño o ronda3. Arte de terreno generado e integrado; retratos/sprites originales locales. Ninguna descarga al jugar.
 
 ## Desarrollo
 

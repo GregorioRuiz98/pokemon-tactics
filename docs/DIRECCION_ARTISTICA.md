@@ -1,6 +1,6 @@
 # Dirección artística · Cuaderno de Kanto
 
-Base visual de Pokémon Tactics 0.22.15. La distribución, tipografía, marcos, estados y jerarquía se consideran la dirección de esta entrega. El arte nuevo está representado por placeholders explícitos hasta que se generen y revisen los PNG definitivos.
+Base visual de Pokémon Tactics 0.22.15, producida en 0.22.16. Las 42 imágenes del juego están generadas e integradas; los placeholders se conservan como respaldo y para las tres piezas promocionales opcionales pendientes. La distribución, tipografía, marcos, estados y jerarquía mantienen esta dirección.
 
 ## Intención
 

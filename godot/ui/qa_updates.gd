@@ -56,7 +56,7 @@ func write_report(app: Control, directory: String) -> void:
 
 func additional(app: Control, directory: String) -> void:
 	var before: Dictionary = app.run.duplicate(true)
-	var full_matrix: bool = int(str(ProjectSettings.get_setting("application/config/version")).get_slice(".",2)) in [5,10,13,15]
+	var full_matrix: bool = int(str(ProjectSettings.get_setting("application/config/version")).get_slice(".",2)) in [5,10,13,15,16]
 	for dimensions: Vector2i in ([Vector2i(1024,720),Vector2i(1280,900),Vector2i(1920,1080)] if full_matrix else [Vector2i(1280,900)]):
 		app.get_window().size = dimensions
 		await settle(app)

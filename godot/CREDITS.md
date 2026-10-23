@@ -116,3 +116,8 @@ Equipos/niveles de entrenadores de Rojo desde los datos factuales de pret/pokere
 ## Placeholders y presentación 0.22.15
 
 Guías vectoriales de composición, rombos de suelo, obstáculos esquemáticos, iconos/efectos provisionales e icono de aplicación creados mediante código para este proyecto con asistencia de IA. Son placeholders, no ilustraciones finales generadas. Manifiesto y SHA256 en art/manifest.json; encargos completos en docs/PROMPTS_ARTE_FINAL.md del repositorio. No se han modificado ni atribuido al proyecto los sprites, retratos, fuentes o sonidos de terceros. Las imágenes futuras deberán conservar su procedencia al incorporarse.
+
+
+## Arte generado · 0.22.16
+
+42 imágenes estáticas creadas con OpenAI image_gen el 22 de octubre de 2026 para este proyecto, siguiendo Cuaderno de Kanto. Prompts completos y hashes de origen/final en art/generated-provenance.json. Preparación de tamaño, encuadre, alfa y máscara mediante Godot. Los recursos originales de Pokémon y sus créditos anteriores se conservan. Las tres piezas promocionales opcionales aún usan placeholders.

@@ -114,12 +114,20 @@ if chapter==22 and patch>=15:
         shutil.copy2(ROOT/'docs'/document,art_folder/document)
     shutil.copy2(ROOT/'godot/art/manifest.json',art_folder/'manifest.json')
     shutil.copytree(ROOT/'godot/art/placeholders',art_folder/'placeholders',dirs_exist_ok=True,ignore=shutil.ignore_patterns('*.import'))
+    if (ROOT/'godot/art/generated-provenance.json').exists():
+        shutil.copy2(ROOT/'godot/art/generated-provenance.json',art_folder/'generated-provenance.json')
+        shutil.copytree(ROOT/'godot/art/final',art_folder/'final',dirs_exist_ok=True,ignore=shutil.ignore_patterns('*.import','.gitkeep'))
     (art_folder/'ESTADO.json').write_text(json.dumps(art_report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    (art_folder/'LEEME.txt').write_text('Arte nuevo provisional. Los PNG finales se instalan en el proyecto fuente y requieren nueva importación/exportación de Godot. Copiarlos junto al EXE no los sustituye. El generador no se ha ejecutado. No publicar como arte terminado mientras ESTADO.json indique recursos pendientes.\n',encoding='utf-8')
+    (art_folder/'LEEME.txt').write_text(('Arte generado e integrado. ' if art_report['generatedImages'] else 'Arte nuevo provisional. ')+'Los PNG se instalan en el proyecto fuente y requieren nueva importación/exportación de Godot. Copiarlos junto al EXE no los sustituye. Consulta ESTADO.json para los recursos presentes y pendientes.\n',encoding='utf-8')
     shutil.copy2(ROOT/'docs/SPRINT_22_ART.md',bundle/'DIRECCION_VISUAL.md')
     screenshots=bundle/'qa/sprint-22-updates-15';screenshots.mkdir(parents=True,exist_ok=True)
     for shot in ['title-1280','battle-1024','shop-1024','hub-1024']:
-        shutil.copy2(work/'interface-source'/(shot+'.png'),screenshots/('source-'+shot+'.png'))
+        shutil.copy2(ROOT/'docs/qa/sprint-22-updates-15'/('source-'+shot+'.png'),screenshots/('source-'+shot+'.png'))
+    if patch>=16:
+        shutil.copy2(ROOT/'docs/SPRINT_22_GENERATED_ART.md',bundle/'ARTE_INTEGRADO.md')
+        screenshots=bundle/f'qa/sprint-{qa_label}';screenshots.mkdir(parents=True,exist_ok=True)
+        for shot in ['title-1280','battle-1024','shop-1024','hub-1024']:
+            shutil.copy2(work/'interface-source'/(shot+'.png'),screenshots/('source-'+shot+'.png'))
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as package:
     for file in sorted(bundle.rglob('*')):
         if file.is_file():package.write(file,pathlib.Path('windows')/file.relative_to(bundle))
@@ -178,7 +186,7 @@ if seeds:
         shutil.copy2(work/f'seeds-{kind}/seeds-ui-result.json',evidence/f'seeds-{kind}.json')
         for screenshot in seeds['screenshots']: shutil.copy2(work/f'seeds-{kind}'/screenshot,evidence/f'{kind}-{screenshot}')
 if art_report:
-    record.update(artSlots=art_report['slots'],pendingArt=len(art_report['pendingRequired']),artReady=art_report['artReady'],imageGenerationExecuted=False)
+    record.update(artSlots=art_report['slots'],pendingArt=len(art_report['pendingRequired']),artReady=art_report['artReady'],imageGenerationExecuted=art_report['generatedImages'])
     (evidence/'art-status.json').write_text(json.dumps(art_report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 (evidence/'release.json').write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 (release/'SHA256SUMS.txt').write_text(digest+'  windows/PokemonTactics.exe\n'+zip_digest+'  '+archive.name+'\n',encoding='utf-8')
