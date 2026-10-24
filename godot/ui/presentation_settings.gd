@@ -40,6 +40,7 @@ static func apply(app: Control) -> void:
 	if app.sound!=null:
 		app.sound.volume_db = linear_to_db(maxf(0.0001,app.input_profile.preferences.volume/100.0))
 		if app.muted: app.sound.stop()
+	if app.combat_sound!=null: app.combat_sound.set_volume(float(app.input_profile.preferences.volume),app.muted or app.qa_running)
 	if app.combat_feedback!=null: app.combat_feedback.duration = float(app.input_profile.preferences.resultSeconds)
 	var factor: float = font_factor(app)
 	var default_size: int = roundi(18*factor)

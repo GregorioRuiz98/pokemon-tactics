@@ -1,4 +1,4 @@
-# Probar Pokémon Tactics en Windows ·0.22.16
+# Probar Pokémon Tactics en Windows ·0.22.17
 
 La interfaz reúne las órdenes en un menú táctico y los recursos/previsión en la franja inferior. La fila ámbar y su cursor indican la selección; las acciones rojas avanzan en la aventura. Teclado, ratón y atajos conservan las mismas funciones.
 
@@ -67,3 +67,8 @@ Guion de aceptación, consentimiento y plantillas en reports/aceptacion-0.22.10/
 ## Arte integrado 0.22.16
 
 Las 42 imágenes del juego están generadas e integradas: portada, escenas, suelos, obstáculos, iconos y efectos. Los Pokémon conservan sus recursos originales. ARTE incluye los PNG, prompts, contratos y procedencia. Las tres imágenes promocionales opcionales siguen pendientes. Revisar la lectura del tablero, los efectos y el contraste con el tamaño de texto preferido.
+
+
+## Ataques y sonido
+
+Los ataques muestran preparación, recorrido e impacto según su familia y tipo. Puedes seguir dando órdenes sin esperar; esto corta el efecto anterior. En Opciones, el volumen y silencio afectan también a los sonidos nuevos. Movimiento reducido elimina desplazamientos y partículas animadas y conserva un resultado estático. El último golpe pasa directamente a recompensa con su sonido de impacto.

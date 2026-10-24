@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-24",
+  "version": "0.22.17",
+  "suites": [
+    {
+      "suite": "attack-effects",
+      "assertionsPerSide": 252,
+      "failures": []
+    },
+    {
+      "suite": "interface",
+      "assertionsPerSide": 399,
+      "failures": []
+    },
+    {
+      "suite": "input",
+      "assertionsPerSide": 63,
+      "failures": []
+    },
+    {
+      "suite": "updates",
+      "assertionsPerSide": 112,
+      "failures": []
+    },
+    {
+      "suite": "context",
+      "assertionsPerSide": 96,
+      "failures": []
+    },
+    {
+      "suite": "performance",
+      "assertionsPerSide": 18,
+      "failures": []
+    },
+    {
+      "suite": "roster",
+      "assertionsPerSide": 543,
+      "failures": []
+    },
+    {
+      "suite": "scale",
+      "assertionsPerSide": 980,
+      "failures": []
+    },
+    {
+      "suite": "laboratory",
+      "assertionsPerSide": 1046,
+      "failures": []
+    },
+    {
+      "suite": "journey",
+      "assertionsPerSide": 901,
+      "failures": []
+    },
+    {
+      "suite": "journey-psychic",
+      "assertionsPerSide": 513,
+      "failures": []
+    },
+    {
+      "suite": "semantic",
+      "assertionsPerSide": 8,
+      "failures": []
+    },
+    {
+      "suite": "seeds",
+      "assertionsPerSide": 920,
+      "failures": []
+    }
+  ],
+  "engine": {
+    "total": 65,
+    "errors": 0,
+    "parse_errors": 0,
+    "warnings": 65,
+    "info": 0
+  },
+  "preexistingWarnings": 65,
+  "newWarnings": 0,
+  "isolatedProfiles": true,
+  "noEditorForExportQA": true,
+  "rulesAndStatesPreserved": true,
+  "listening": "pending",
+  "audioWaveformsPassed": 26
+}

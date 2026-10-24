@@ -1,0 +1,2220 @@
+{
+  "audio_paths": [
+    "res://assets/combat/buff.wav",
+    "res://assets/combat/bug.wav",
+    "res://assets/combat/critical.wav",
+    "res://assets/combat/dark.wav",
+    "res://assets/combat/debuff.wav",
+    "res://assets/combat/dragon.wav",
+    "res://assets/combat/electric.wav",
+    "res://assets/combat/fairy.wav",
+    "res://assets/combat/fighting.wav",
+    "res://assets/combat/fire.wav",
+    "res://assets/combat/flying.wav",
+    "res://assets/combat/ghost.wav",
+    "res://assets/combat/grass.wav",
+    "res://assets/combat/ground.wav",
+    "res://assets/combat/guard.wav",
+    "res://assets/combat/heal.wav",
+    "res://assets/combat/ice.wav",
+    "res://assets/combat/immune.wav",
+    "res://assets/combat/impact.wav",
+    "res://assets/combat/miss.wav",
+    "res://assets/combat/normal.wav",
+    "res://assets/combat/poison.wav",
+    "res://assets/combat/psychic.wav",
+    "res://assets/combat/rock.wav",
+    "res://assets/combat/steel.wav",
+    "res://assets/combat/water.wav"
+  ],
+  "count": 26,
+  "expect_failures": [],
+  "expect_passed": true,
+  "files": [
+    {
+      "audio_path": "res://assets/combat/buff.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -0.002345,
+      "dominant_frequency_hz": null,
+      "duration_s": 0.200998,
+      "envelope": "*+-.                                            ",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.200998,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.200998,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -18.68,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 8864,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/buff.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.068,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/buff.wav",
+      "pcm_analysis": true,
+      "peak_db": -18.68,
+      "pitch_direction": "none",
+      "pitch_end_hz": null,
+      "pitch_start_hz": null,
+      "rms_db": -37.98,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.0,
+      "trailing_silence_ms": 185.805
+    },
+    {
+      "audio_path": "res://assets/combat/bug.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -0.001083,
+      "dominant_frequency_hz": 422.81,
+      "duration_s": 0.088526,
+      "envelope": "#########********************++++++++++=====-:. ",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.088526,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.088526,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -14.87,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 3904,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/bug.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.091,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/bug.wav",
+      "pcm_analysis": true,
+      "peak_db": -14.87,
+      "pitch_direction": "rising",
+      "pitch_end_hz": 646.12,
+      "pitch_start_hz": 304.78,
+      "rms_db": -21.91,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.788,
+      "trailing_silence_ms": 2.313
+    },
+    {
+      "audio_path": "res://assets/combat/critical.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -0.000285,
+      "dominant_frequency_hz": 214.74,
+      "duration_s": 0.121406,
+      "envelope": "*###*###*##****************+*+*+++++==+===----  ",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.121406,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.121406,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -13.98,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 5354,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/critical.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.091,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/critical.wav",
+      "pcm_analysis": true,
+      "peak_db": -13.98,
+      "pitch_direction": "falling",
+      "pitch_end_hz": 143.3,
+      "pitch_start_hz": 263.43,
+      "rms_db": -24.53,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.984,
+      "trailing_silence_ms": 3.311
+    },
+    {
+      "audio_path": "res://assets/combat/dark.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -0.000758,
+      "dominant_frequency_hz": null,
+      "duration_s": 0.148617,
+      "envelope": "++++#+++#*=++#+=+#*====*=====*+------:+-.::...:.",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.148617,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.148617,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -13.98,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 6554,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/dark.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.091,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/dark.wav",
+      "pcm_analysis": true,
+      "peak_db": -13.98,
+      "pitch_direction": "none",
+      "pitch_end_hz": null,
+      "pitch_start_hz": 67.94,
+      "rms_db": -28.4,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.483,
+      "trailing_silence_ms": 2.721
+    },
+    {
+      "audio_path": "res://assets/combat/debuff.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -0.000302,
+      "dominant_frequency_hz": 117.97,
+      "duration_s": 0.204172,
+      "envelope": "##########******************++++++++++====:--:. ",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.204172,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.204172,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -14.46,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 9004,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/debuff.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.136,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/debuff.wav",
+      "pcm_analysis": true,
+      "peak_db": -14.46,
+      "pitch_direction": "falling",
+      "pitch_end_hz": 71.94,
+      "pitch_start_hz": 255.18,
+      "rms_db": -22.7,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.794,
+      "trailing_silence_ms": 4.308
+    },
+    {
+      "audio_path": "res://assets/combat/dragon.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": 4.2e-05,
+      "dominant_frequency_hz": 250.83,
+      "duration_s": 0.295329,
+      "envelope": "##################*****************+++++++===--.",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.295329,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.295329,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -13.98,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 13024,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/dragon.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.091,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/dragon.wav",
+      "pcm_analysis": true,
+      "peak_db": -13.98,
+      "pitch_direction": "rising",
+      "pitch_end_hz": 276.24,
+      "pitch_start_hz": 219.08,
+      "rms_db": -23.55,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.854,
+      "trailing_silence_ms": 3.537
+    },
+    {
+      "audio_path": "res://assets/combat/electric.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -0.000849,
+      "dominant_frequency_hz": 1291.82,
+      "duration_s": 0.126848,
+      "envelope": "####################****************+++++++==-:.",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.126848,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.126848,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -13.98,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 5594,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/electric.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.091,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/electric.wav",
+      "pcm_analysis": true,
+      "peak_db": -13.98,
+      "pitch_direction": "rising",
+      "pitch_end_hz": 710.62,
+      "pitch_start_hz": 668.89,
+      "rms_db": -20.23,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.828,
+      "trailing_silence_ms": 2.426
+    },
+    {
+      "audio_path": "res://assets/combat/fairy.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -8.4e-05,
+      "dominant_frequency_hz": 1475.23,
+      "duration_s": 0.271066,
+      "envelope": "##########********************++++++++++=====--.",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.271066,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.271066,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -14.25,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 11954,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/fairy.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.091,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/fairy.wav",
+      "pcm_analysis": true,
+      "peak_db": -14.25,
+      "pitch_direction": "rising",
+      "pitch_end_hz": 1576.36,
+      "pitch_start_hz": 1479.38,
+      "rms_db": -22.58,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.914,
+      "trailing_silence_ms": 3.605
+    },
+    {
+      "audio_path": "res://assets/combat/fighting.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -0.000445,
+      "dominant_frequency_hz": 71.9,
+      "duration_s": 0.106667,
+      "envelope": "***##*###*#**#***++#***+++++=:.     ==-==:-::.  ",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.106667,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.106667,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -13.98,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 4704,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/fighting.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.091,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/fighting.wav",
+      "pcm_analysis": true,
+      "peak_db": -13.98,
+      "pitch_direction": "none",
+      "pitch_end_hz": null,
+      "pitch_start_hz": null,
+      "rms_db": -24.6,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.649,
+      "trailing_silence_ms": 2.494
+    },
+    {
+      "audio_path": "res://assets/combat/fire.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -6.7e-05,
+      "dominant_frequency_hz": null,
+      "duration_s": 0.314376,
+      "envelope": "##############*#*###*************+*+++++++====-.",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.314376,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.314376,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -13.98,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 13864,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/fire.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.159,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/fire.wav",
+      "pcm_analysis": true,
+      "peak_db": -13.98,
+      "pitch_direction": "none",
+      "pitch_end_hz": null,
+      "pitch_start_hz": null,
+      "rms_db": -23.34,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.251,
+      "trailing_silence_ms": 3.628
+    },
+    {
+      "audio_path": "res://assets/combat/flying.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": 2.5e-05,
+      "dominant_frequency_hz": null,
+      "duration_s": 0.174921,
+      "envelope": "###########********************+++++++++=====-: ",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.174921,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.174921,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -13.98,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 7714,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/flying.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.136,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/flying.wav",
+      "pcm_analysis": true,
+      "peak_db": -13.98,
+      "pitch_direction": "none",
+      "pitch_end_hz": null,
+      "pitch_start_hz": null,
+      "rms_db": -24.73,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.309,
+      "trailing_silence_ms": 4.739
+    },
+    {
+      "audio_path": "res://assets/combat/ghost.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -0.000172,
+      "dominant_frequency_hz": null,
+      "duration_s": 0.363356,
+      "envelope": "*###########****#####*************++++++++===-::",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.363356,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.363356,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -13.98,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 16024,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/ghost.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.227,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/ghost.wav",
+      "pcm_analysis": true,
+      "peak_db": -13.98,
+      "pitch_direction": "none",
+      "pitch_end_hz": null,
+      "pitch_start_hz": 74.18,
+      "rms_db": -21.52,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.479,
+      "trailing_silence_ms": 5.51
+    },
+    {
+      "audio_path": "res://assets/combat/grass.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": 4.8e-05,
+      "dominant_frequency_hz": null,
+      "duration_s": 0.142948,
+      "envelope": "#############********************++++++++====-: ",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.142948,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.142948,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -14.13,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 6304,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/grass.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.091,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/grass.wav",
+      "pcm_analysis": true,
+      "peak_db": -14.13,
+      "pitch_direction": "none",
+      "pitch_end_hz": null,
+      "pitch_start_hz": null,
+      "rms_db": -24.5,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.276,
+      "trailing_silence_ms": 2.834
+    },
+    {
+      "audio_path": "res://assets/combat/ground.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": 6.4e-05,
+      "dominant_frequency_hz": null,
+      "duration_s": 0.288073,
+      "envelope": "#*###*#*###*##*******#*********+**++**+++=+-=--.",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.288073,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.288073,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -13.98,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 12704,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/ground.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.159,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/ground.wav",
+      "pcm_analysis": true,
+      "peak_db": -13.98,
+      "pitch_direction": "none",
+      "pitch_end_hz": null,
+      "pitch_start_hz": null,
+      "rms_db": -24.19,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.406,
+      "trailing_silence_ms": 4.762
+    },
+    {
+      "audio_path": "res://assets/combat/guard.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -0.00015,
+      "dominant_frequency_hz": 684.4,
+      "duration_s": 0.219138,
+      "envelope": "######***********************++++++++++=====--:.",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.219138,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.219138,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -14.32,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 9664,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/guard.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.113,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/guard.wav",
+      "pcm_analysis": true,
+      "peak_db": -14.32,
+      "pitch_direction": "flat",
+      "pitch_end_hz": 734.23,
+      "pitch_start_hz": 725.64,
+      "rms_db": -23.36,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.993,
+      "trailing_silence_ms": 3.447
+    },
+    {
+      "audio_path": "res://assets/combat/heal.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -0.000212,
+      "dominant_frequency_hz": 1261.47,
+      "duration_s": 0.385125,
+      "envelope": "#############*******************+++++++++====--:",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.385125,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.385125,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -14.0,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 16984,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/heal.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.136,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/heal.wav",
+      "pcm_analysis": true,
+      "peak_db": -14.0,
+      "pitch_direction": "rising",
+      "pitch_end_hz": 2443.08,
+      "pitch_start_hz": 670.19,
+      "rms_db": -22.02,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.982,
+      "trailing_silence_ms": 4.104
+    },
+    {
+      "audio_path": "res://assets/combat/ice.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -5e-05,
+      "dominant_frequency_hz": 1678.29,
+      "duration_s": 0.265397,
+      "envelope": "#########*********************++++++++++=====--.",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.265397,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.265397,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -14.1,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 11704,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/ice.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.091,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/ice.wav",
+      "pcm_analysis": true,
+      "peak_db": -14.1,
+      "pitch_direction": "falling",
+      "pitch_end_hz": 1634.39,
+      "pitch_start_hz": 1800.06,
+      "rms_db": -22.57,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.953,
+      "trailing_silence_ms": 3.651
+    },
+    {
+      "audio_path": "res://assets/combat/immune.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -0.000612,
+      "dominant_frequency_hz": 74.33,
+      "duration_s": 0.143175,
+      "envelope": "###*#*#*#*#*************+****+++++=++=+====---. ",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.143175,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.143175,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -13.98,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 6314,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/immune.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.204,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/immune.wav",
+      "pcm_analysis": true,
+      "peak_db": -13.98,
+      "pitch_direction": "falling",
+      "pitch_end_hz": 58.49,
+      "pitch_start_hz": 80.74,
+      "rms_db": -22.25,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.971,
+      "trailing_silence_ms": 2.63
+    },
+    {
+      "audio_path": "res://assets/combat/impact.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -0.001908,
+      "dominant_frequency_hz": null,
+      "duration_s": 0.053152,
+      "envelope": "**#**#**##**###**++*++**++***+==*+====-==-:.    ",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.053152,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.053152,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -13.98,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 2344,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/impact.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.113,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/impact.wav",
+      "pcm_analysis": true,
+      "peak_db": -13.98,
+      "pitch_direction": "none",
+      "pitch_end_hz": null,
+      "pitch_start_hz": null,
+      "rms_db": -24.32,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.145,
+      "trailing_silence_ms": 4.422
+    },
+    {
+      "audio_path": "res://assets/combat/miss.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": 0.000126,
+      "dominant_frequency_hz": null,
+      "duration_s": 0.071746,
+      "envelope": "*####**#*****************+**+++++++++++====--:. ",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.071746,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.071746,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -14.67,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 3164,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/miss.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.136,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/miss.wav",
+      "pcm_analysis": true,
+      "peak_db": -14.67,
+      "pitch_direction": "none",
+      "pitch_end_hz": null,
+      "pitch_start_hz": null,
+      "rms_db": -26.17,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.306,
+      "trailing_silence_ms": 2.222
+    },
+    {
+      "audio_path": "res://assets/combat/normal.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -0.000841,
+      "dominant_frequency_hz": null,
+      "duration_s": 0.053379,
+      "envelope": "*###*##*##*#**#****************+++++++=====-::. ",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.053379,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.053379,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -14.54,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 2354,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/normal.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.136,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/normal.wav",
+      "pcm_analysis": true,
+      "peak_db": -14.54,
+      "pitch_direction": "none",
+      "pitch_end_hz": null,
+      "pitch_start_hz": null,
+      "rms_db": -24.24,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.258,
+      "trailing_silence_ms": 1.587
+    },
+    {
+      "audio_path": "res://assets/combat/poison.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -0.000315,
+      "dominant_frequency_hz": 129.54,
+      "duration_s": 0.269025,
+      "envelope": "##################*****************++++++++===-:",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.269025,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.269025,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -13.98,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 11864,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/poison.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.204,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/poison.wav",
+      "pcm_analysis": true,
+      "peak_db": -13.98,
+      "pitch_direction": "falling",
+      "pitch_end_hz": 109.54,
+      "pitch_start_hz": 153.32,
+      "rms_db": -20.69,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.793,
+      "trailing_silence_ms": 3.991
+    },
+    {
+      "audio_path": "res://assets/combat/psychic.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -0.000179,
+      "dominant_frequency_hz": null,
+      "duration_s": 0.323447,
+      "envelope": "###############******************++++++++====--:",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.323447,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.323447,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -14.36,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 14264,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/psychic.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.136,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/psychic.wav",
+      "pcm_analysis": true,
+      "peak_db": -14.36,
+      "pitch_direction": "none",
+      "pitch_end_hz": null,
+      "pitch_start_hz": null,
+      "rms_db": -21.67,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.541,
+      "trailing_silence_ms": 3.583
+    },
+    {
+      "audio_path": "res://assets/combat/rock.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": 0.000165,
+      "dominant_frequency_hz": null,
+      "duration_s": 0.142268,
+      "envelope": "*##*********++************+++++++==+++==+==---: ",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.142268,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.142268,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -13.98,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 6274,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/rock.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.159,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/rock.wav",
+      "pcm_analysis": true,
+      "peak_db": -13.98,
+      "pitch_direction": "none",
+      "pitch_end_hz": null,
+      "pitch_start_hz": null,
+      "rms_db": -26.3,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.46,
+      "trailing_silence_ms": 4.58
+    },
+    {
+      "audio_path": "res://assets/combat/steel.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -0.000125,
+      "dominant_frequency_hz": 308.49,
+      "duration_s": 0.160635,
+      "envelope": "#########********************+++++++++======--. ",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.160635,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.160635,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -14.28,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 7084,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/steel.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.091,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/steel.wav",
+      "pcm_analysis": true,
+      "peak_db": -14.28,
+      "pitch_direction": "falling",
+      "pitch_end_hz": 108.32,
+      "pitch_start_hz": 598.18,
+      "rms_db": -22.88,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.807,
+      "trailing_silence_ms": 3.22
+    },
+    {
+      "audio_path": "res://assets/combat/water.wav",
+      "bit_depth": 16,
+      "channels": 1,
+      "clipping_ratio": 0.0,
+      "codec": "pcm",
+      "dc_offset": -0.000389,
+      "dominant_frequency_hz": 91.93,
+      "duration_s": 0.314376,
+      "envelope": "###############************+*+++++++==-==::::.  ",
+      "expect_failures": [],
+      "expect_passed": true,
+      "expect_results": [
+        {
+          "actual": true,
+          "check": "not_silent",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 0.314376,
+          "check": "min_duration",
+          "expected": 0.04,
+          "passed": true
+        },
+        {
+          "actual": 0.314376,
+          "check": "max_duration",
+          "expected": 0.8,
+          "passed": true
+        },
+        {
+          "actual": -13.98,
+          "check": "max_peak_db",
+          "expected": -13.9,
+          "passed": true
+        },
+        {
+          "actual": true,
+          "check": "no_clipping",
+          "expected": true,
+          "passed": true
+        },
+        {
+          "actual": 44100,
+          "check": "sample_rate",
+          "expected": 44100.0,
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "check": "channels",
+          "expected": 1.0,
+          "passed": true
+        }
+      ],
+      "format": "wav",
+      "frames": 13864,
+      "import_loop": {
+        "edit/loop_mode": 0,
+        "import_path": "res://assets/combat/water.wav.import",
+        "loop_mode_name": "detect"
+      },
+      "leading_silence_ms": 0.136,
+      "loop": {
+        "begin": 0,
+        "end": 0,
+        "mode": "none",
+        "source": "none"
+      },
+      "loop_seam_delta": 0.0,
+      "path": "res://assets/combat/water.wav",
+      "pcm_analysis": true,
+      "peak_db": -13.98,
+      "pitch_direction": "falling",
+      "pitch_end_hz": 38.76,
+      "pitch_start_hz": 214.87,
+      "rms_db": -22.04,
+      "sample_rate": 44100,
+      "silence_threshold_db": -60.0,
+      "silent": false,
+      "tonality": 0.972,
+      "trailing_silence_ms": 15.533
+    }
+  ],
+  "ok": true
+}

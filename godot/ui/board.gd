@@ -31,6 +31,10 @@ var keyboard_control: bool = false
 var pointer_start: Vector2 = Vector2.ZERO
 var pointer_down: bool = false
 var pointer_dragged: bool = false
+var attack_effect: Control
+
+func attack_offset(unit: Dictionary) -> Vector2:
+	return attack_effect.offset_for(unit) if attack_effect!=null else Vector2.ZERO
 
 func cancel_pointer() -> void:
 	pointer_down = false
@@ -185,6 +189,7 @@ func _draw():
 		var texture = textures[int(unit.speciesId)]
 		var point = c + Vector2(0, cell * 0.13)
 		var destination = Rect2(point - Vector2(meta.anchorX, meta.anchorY) * scale, Vector2(meta.width, meta.height) * scale)
+		destination.position += attack_offset(unit)
 		draw_texture_rect_region(texture, destination, Rect2(frame * meta.width, unit.facing * meta.height, meta.width, meta.height))
 		var hp_rect = Rect2(c + Vector2(-cell * 0.3, cell * 0.34), Vector2(cell * 0.6, 5))
 		draw_rect(hp_rect, Color("22372b"))

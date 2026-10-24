@@ -121,3 +121,8 @@ Guías vectoriales de composición, rombos de suelo, obstáculos esquemáticos, 
 ## Arte generado · 0.22.16
 
 42 imágenes estáticas creadas con OpenAI image_gen el 22 de octubre de 2026 para este proyecto, siguiendo Cuaderno de Kanto. Prompts completos y hashes de origen/final en art/generated-provenance.json. Preparación de tamaño, encuadre, alfa y máscara mediante Godot. Los recursos originales de Pokémon y sus créditos anteriores se conservan. Las tres piezas promocionales opcionales aún usan placeholders.
+
+
+## Sonidos de combate · 0.22.17
+
+26 señales nuevas creadas con el sintetizador jsfxr ya incluido, repositorio chr15m/jsfxr, commit b7b6aa27d62f8f356db267276bf54b451555c49d, Unlicense. Parámetros, semilla, hashes y tratamiento de volumen en assets/combat/manifest.json; generador reproducible tools/godot/import-combat-audio.mjs. Motivos animados mediante dibujo nativo de Godot y efectos gráficos existentes de 0.22.16. No son sonidos extraídos de un cartucho.

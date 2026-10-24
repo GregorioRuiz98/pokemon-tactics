@@ -1,0 +1,21 @@
+{
+	"assertions": 252,
+	"audioDriver": "Dummy; waveform inspection separate; listening pending",
+	"failures": [],
+	"screenshots": [
+		"flamethrower-launch.png",
+		"flamethrower-impact.png",
+		"water-gun-launch.png",
+		"thunderbolt-launch.png",
+		"razor-leaf-impact.png",
+		"swords-dance-impact.png",
+		"recover-impact.png",
+		"miss.png",
+		"immune.png",
+		"critical.png",
+		"reduced-motion.png"
+	],
+	"sounds": 26,
+	"syntheticFixtures": true,
+	"types": 18
+}

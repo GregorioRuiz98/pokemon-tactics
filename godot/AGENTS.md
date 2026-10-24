@@ -147,3 +147,8 @@ Solicitud del 22 de octubre: dirección profesional con arte nuevo provisional, 
 ## Arte generado 0.22.16
 
 Solicitud del 22 de octubre: producir e insertar las imágenes. 42 recursos del juego generados con image_gen e integrados; 3 promocionales opcionales pendientes. Procedencia/prompts/hashes en godot/art/generated-provenance.json (art/ desde Godot), dimensiones y alfa validados. Misma campaña18/combate17, reglas/datos/snapshots y sprites originales conservados. Ver docs/SPRINT_22_GENERATED_ART.md (../docs/ desde Godot). Publicación pública sigue aplazada.
+
+
+## Animaciones y sonidos 0.22.17
+
+Encargo del 23 de octubre: secuencias de ataque de hasta 0,64 s, variantes de los 18 tipos y 26 sonidos con jsfxr existente. Solo presentación; campañas 18/17, core/data/snapshots y balance congelados. Cancela al navegar, sin callbacks que modifiquen el juego; movimiento reducido, silencio y volumen conservados. Procedencia en godot/assets/combat/manifest.json (assets/ desde Godot); QA específica attack-effects en desarrollo/EXE y comparación de estados. Ver docs/SPRINT_22_ATTACK_EFFECTS.md (../docs/ desde Godot). Sin publicación pública ni delegación.

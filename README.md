@@ -1,6 +1,6 @@
 # Pokémon Tactics
 
-Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: campaña de Kanto Windows 0.22.16 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
+Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: campaña de Kanto Windows 0.22.17 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
 
 **Kanto nativo:** campaña hasta la Liga y dos finales legendarios alternativos. Capturas locales, niveles/evolución, movimientos/MT LGPE combinados, naturalezas/habilidades y PC. Ejecutable Windows offline. 151 especies; 49/78 habilidades normales activas. 42 imágenes nuevas integradas; pruebas humanas y publicación pendientes.
 
@@ -14,7 +14,7 @@ Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas
 
 Las campañas 0.16–0.21 pueden continuar con **Continuar aventura · ampliar Kanto**, con copia y diario conservados. Las anteriores siguen sus reglas. [Sprint 22 e información de pruebas](docs/SPRINT_22.md) · [Cómo jugar](godot/README.md) · [Plan](docs/PLAN_SPRINTS.md).
 
-![Pantalla de inicio](docs/qa/sprint-22-updates-16/source-title-1280.png)
+![Pantalla de inicio](docs/qa/sprint-22-updates-17/source-title-1280.png)
 
 [Mejoras0.22.10](docs/SPRINT_22_ACCESSIBILITY_COMPLETE.md): práctica guiada, lectura ampliada, compras por cantidad, PC y biblioteca con filtros y acceso textual experimental. Ejecutable offline; pruebas humanas y lector de pantalla pendientes.
 
@@ -27,6 +27,8 @@ Las campañas 0.16–0.21 pueden continuar con **Continuar aventura · ampliar K
 [Hub y tienda simplificados 0.22.14](docs/SPRINT_22_HUB.md): Comprar y Equipo y bolsa separados, cuatro categorías y fichas por pestañas. Resúmenes bajo demanda y avance siempre visible.
 
 [Arte integrado 0.22.16](docs/SPRINT_22_GENERATED_ART.md): 42 imágenes generadas e incorporadas a portada, escenas, tablero, efectos e iconos. [Prompts completos](docs/PROMPTS_ARTE_FINAL.md) y [dirección artística](docs/DIRECCION_ARTISTICA.md). Las 3 piezas promocionales opcionales siguen pendientes.
+
+[Animaciones y sonidos 0.22.17](docs/SPRINT_22_ATTACK_EFFECTS.md): preparación, lanzamiento e impacto, variantes por tipo, 26 sonidos locales y movimiento reducido.
 
 ## Campaña web 0.12.0
 

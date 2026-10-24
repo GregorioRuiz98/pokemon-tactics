@@ -1,0 +1,20 @@
+{
+	"assertions": 112,
+	"failures": [],
+	"scope": "Native synthetic events and explicitly synthetic interaction fixtures; isolated saves",
+	"screenshots": [
+		"tactical-info.png",
+		"text-1280-150.png",
+		"abilities-1280-150.png",
+		"high-contrast.png",
+		"quantity-shop.png",
+		"swap-review.png",
+		"filtered-pc-library.png",
+		"title-readable-100.png",
+		"title-readable-150.png",
+		"practice-keyboard.png",
+		"practice-mouse.png",
+		"accessible-board.png",
+		"legacy-restored.png"
+	]
+}

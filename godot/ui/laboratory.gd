@@ -78,6 +78,7 @@ var composition_input: OptionButton
 var mode_input: OptionButton
 var variance_input: OptionButton
 var sound: AudioStreamPlayer
+var combat_sound: Node
 var combat_feedback: Control
 var last_sound_requested: String = ""
 const Feedback = preload("res://ui/combat_feedback.gd")
@@ -114,9 +115,13 @@ func _ready():
 	sound = AudioStreamPlayer.new()
 	sound.volume_db = -15
 	add_child(sound)
+	combat_sound = preload("res://ui/combat_audio.gd").new()
+	add_child(combat_sound)
 	combat_feedback = Feedback.new()
 	combat_feedback.board = board
 	add_child(combat_feedback)
+	combat_feedback.attack_effect.cue_requested.connect(_play_attack_cue)
+	combat_feedback.attack_effect.cancelled.connect(combat_sound.stop)
 	_apply_preferences()
 	_refresh()
 	_boot()
@@ -521,6 +526,7 @@ func _load_game():
 
 func _process(delta):
 	if qa_running or state.is_empty() or state.outcome != "playing" or _modal_open(): return
+	if combat_feedback.attack_effect.active: return
 	var actor = Rules.active(state)
 	if actor.team == "enemy":
 		ai_clock += delta
@@ -891,6 +897,7 @@ func _confirm():
 func _commit(command: Dictionary):
 	var before: Dictionary = state
 	var plan: Dictionary = rules.attack_plan(state,int(command.target),{},command.get("actionId","basic")) if command.kind == "attack" else {}
+	var definition: Dictionary = _attack_definition(before,command)
 	var result = rules.apply_command(state, command)
 	if not result.ok:
 		hint.text = result.reason
@@ -905,8 +912,27 @@ func _commit(command: Dictionary):
 	_refresh()
 	board.grab_focus()
 	_remember_result(before,command,result.get("hits",[]))
-	if command.kind == "attack": combat_feedback.present(before,plan,result.get("hits",[]))
-	_play("victory" if state.outcome == "victory" else (combat_feedback.last_sound if command.kind == "attack" else "select"))
+	_present_combat(before,command,plan,result.get("hits",[]),definition,"victory" if state.outcome=="victory" else "")
+
+func _attack_definition(before: Dictionary, command: Dictionary) -> Dictionary:
+	if command.kind!="attack": return {}
+	var actor: Dictionary = Rules.active(before)
+	var action: RefCounted = rules.profile(actor).action(actor,command.get("actionId","basic"))
+	return action.definition.duplicate(true) if action!=null else {}
+
+func _present_combat(before: Dictionary, command: Dictionary, plan: Dictionary, receipts: Array, definition: Dictionary, ending: String = "") -> void:
+	if command.kind=="attack":
+		combat_feedback.present(before,plan,receipts,definition)
+		last_sound_requested = combat_feedback.last_sound
+		# A final blow already transitions the campaign; preserve its outcome cue.
+		if not board.visible: _play_attack_cue(combat_feedback.last_sound if combat_feedback.last_sound!="hit" else "impact")
+	else:
+		combat_feedback.attack_effect.stop()
+		_play("select" if ending.is_empty() else ending)
+	if command.kind=="attack" and not ending.is_empty(): _play(ending)
+
+func _play_attack_cue(identity: String) -> void:
+	combat_sound.play_cue(identity,float(input_profile.preferences.volume),muted or qa_running)
 
 func _open_presentation() -> void:
 	if presentation_dialog==null:
@@ -966,6 +992,7 @@ func _toggle_sound():
 	muted = input_profile.preferences.muted
 	menu.get_popup().set_item_checked(menu.get_popup().get_item_index(4), not muted)
 	if muted: sound.stop()
+	if muted: combat_sound.stop()
 
 func _toggle_motion():
 	input_profile.set_preference("reducedMotion",not reduced_motion)

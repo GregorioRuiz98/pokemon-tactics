@@ -60,6 +60,7 @@ var context_qa_dir: String = ""
 var updates_qa_dir: String = ""
 var performance_qa_dir: String = ""
 var seeds_qa_dir: String = ""
+var attack_qa_dir: String = ""
 var travel_memory: Dictionary = {}
 var travel_phase: String = ""
 
@@ -172,6 +173,7 @@ func _boot() -> void:
 		if argument.begins_with("--updates-qa-dir="): updates_qa_dir = argument.trim_prefix("--updates-qa-dir=")
 		if argument.begins_with("--context-qa-dir="): context_qa_dir = argument.trim_prefix("--context-qa-dir=")
 		if argument.begins_with("--performance-qa-dir="): performance_qa_dir = argument.trim_prefix("--performance-qa-dir=")
+		if argument.begins_with("--attack-qa-dir="): attack_qa_dir = argument.trim_prefix("--attack-qa-dir=")
 		if argument.begins_with("--seeds-qa-dir="): seeds_qa_dir = argument.trim_prefix("--seeds-qa-dir=")
 	var test_dir: String = scale_qa_dir if not scale_qa_dir.is_empty() else campaign_qa_dir
 	if not roster_qa_dir.is_empty(): test_dir = roster_qa_dir
@@ -182,6 +184,7 @@ func _boot() -> void:
 	if not updates_qa_dir.is_empty(): test_dir = updates_qa_dir
 	if not performance_qa_dir.is_empty(): test_dir = performance_qa_dir
 	if not seeds_qa_dir.is_empty(): test_dir = seeds_qa_dir
+	if not attack_qa_dir.is_empty(): test_dir = attack_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -213,7 +216,8 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
-	if not seeds_qa_dir.is_empty(): _open_title(); call_deferred("_run_seeds_qa")
+	if not attack_qa_dir.is_empty(): _open_title(); call_deferred("_run_attack_qa")
+	elif not seeds_qa_dir.is_empty(): _open_title(); call_deferred("_run_seeds_qa")
 	elif not performance_qa_dir.is_empty(): _open_title(); call_deferred("_run_performance_qa")
 	elif not updates_qa_dir.is_empty(): _open_title(); call_deferred("_run_updates_qa")
 	elif not context_qa_dir.is_empty(): _open_title(); call_deferred("_run_context_qa")
@@ -224,6 +228,9 @@ func _boot() -> void:
 	elif not scale_qa_dir.is_empty(): call_deferred("_run_scale_qa")
 	elif qa_running: call_deferred("_run_campaign_qa")
 	else: _open_title()
+
+func _run_attack_qa() -> void:
+	await load("res://ui/qa_attack_effects.gd").new().run(self,attack_qa_dir)
 
 func _run_performance_qa() -> void:
 	await load("res://ui/qa_performance.gd").new().run(self,performance_qa_dir)
@@ -497,13 +504,13 @@ func _commit(command: Dictionary) -> void:
 	var before: Dictionary = state
 	var revision: int = run.revision
 	var plan: Dictionary = rules.attack_plan(state,int(command.target),{},command.get("actionId","basic")) if command.kind == "attack" else {}
+	var definition: Dictionary = _attack_definition(before,command)
 	_event({"kind":"battle","order":command,"at":revision})
 	if run.revision == revision: return
 	_remember_result(before,command,last_presentation.get("hits",[]))
-	if command.kind == "attack": combat_feedback.present(before,plan,last_presentation.get("hits",[]))
-	if not last_presentation.get("abilityEvents",[]).is_empty(): combat_feedback.present_abilities(state,last_presentation.abilityEvents,command.kind!="attack")
 	var leveled: bool = run.get("lastProgress",[]).any(func(entry):return entry.level > entry.before)
-	_play(("level-up" if leveled else "victory") if state.outcome == "victory" else (combat_feedback.last_sound if command.kind == "attack" else "select"))
+	_present_combat(before,command,plan,last_presentation.get("hits",[]),definition,("level-up" if leveled else "victory") if state.outcome=="victory" else "")
+	if not last_presentation.get("abilityEvents",[]).is_empty(): combat_feedback.present_abilities(state,last_presentation.abilityEvents,command.kind!="attack")
 
 func _rectify_movement() -> void:
 	if not pending.is_empty() or not _player_turn(): return

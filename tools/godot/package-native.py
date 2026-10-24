@@ -125,9 +125,21 @@ if chapter==22 and patch>=15:
         shutil.copy2(ROOT/'docs/qa/sprint-22-updates-15'/('source-'+shot+'.png'),screenshots/('source-'+shot+'.png'))
     if patch>=16:
         shutil.copy2(ROOT/'docs/SPRINT_22_GENERATED_ART.md',bundle/'ARTE_INTEGRADO.md')
-        screenshots=bundle/f'qa/sprint-{qa_label}';screenshots.mkdir(parents=True,exist_ok=True)
+        screenshots=bundle/'qa/sprint-22-updates-16';screenshots.mkdir(parents=True,exist_ok=True)
         for shot in ['title-1280','battle-1024','shop-1024','hub-1024']:
-            shutil.copy2(work/'interface-source'/(shot+'.png'),screenshots/('source-'+shot+'.png'))
+            shutil.copy2(ROOT/'docs/qa/sprint-22-updates-16'/('source-'+shot+'.png'),screenshots/('source-'+shot+'.png'))
+attack_effects=None
+if chapter==22 and patch>=17:
+    attack_effects=json.loads((work/'attack-effects-source/attack-effects-result.json').read_text(encoding='utf-8'))
+    tested=work/'attack-effects-release/attack-effects-result.json'
+    assert attack_effects==json.loads(tested.read_text(encoding='utf-8')) and not attack_effects['failures']
+    assert tested.stat().st_mtime>=exe.stat().st_mtime and attack_effects['sounds']==26
+    shutil.copy2(ROOT/'docs/SPRINT_22_ATTACK_EFFECTS.md',bundle/'ANIMACIONES_Y_SONIDOS.md')
+    screenshots=bundle/f'qa/sprint-{qa_label}';screenshots.mkdir(parents=True,exist_ok=True)
+    for shot in attack_effects['screenshots']:
+        shutil.copy2(work/'attack-effects-source'/shot,screenshots/('source-'+shot))
+    shutil.copytree(ROOT/'godot/assets/combat',bundle/'SONIDOS',dirs_exist_ok=True,ignore=shutil.ignore_patterns('*.import'))
+    shutil.copy2(ROOT/'tools/vendor/jsfxr/UNLICENSE',bundle/'SONIDOS/UNLICENSE')
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as package:
     for file in sorted(bundle.rglob('*')):
         if file.is_file():package.write(file,pathlib.Path('windows')/file.relative_to(bundle))
@@ -140,7 +152,7 @@ if psychic:
 state=json.loads(json.loads((work/'journey-source/campaign-save.json').read_text(encoding='utf-8'))['payload'])['state']
 fingerprint=hashlib.sha256()
 for path in sorted((ROOT/'godot').rglob('*')):
-    if path.is_file() and '.godot' not in path.parts and (path.suffix in ['.gd','.tscn'] or path.name in ['project.godot','export_presets.cfg'] or (path.is_relative_to(ROOT/'godot/art') and path.suffix in ['.svg','.png','.json'])):
+    if path.is_file() and '.godot' not in path.parts and (path.suffix in ['.gd','.tscn'] or path.name in ['project.godot','export_presets.cfg'] or (path.is_relative_to(ROOT/'godot/art') and path.suffix in ['.svg','.png','.json']) or (path.is_relative_to(ROOT/'godot/assets/combat') and path.suffix in ['.wav','.json'])):
         fingerprint.update(path.relative_to(ROOT).as_posix().encode());fingerprint.update(path.read_bytes())
 record={'sourceFingerprint':fingerprint.hexdigest(),'version':version,'campaignEdition':chapter-4,'combatEdition':state.get('battle',{}).get('combatEdition',0),'exe':{'path':os.path.abspath(exe),'bytes':exe.stat().st_size,'sha256':digest},'zip':{'path':os.path.abspath(archive),'bytes':archive.stat().st_size,'sha256':zip_digest},'uiSourceAndReleaseEqual':True,'releaseAssertions':source['assertions'],'publicDeployment':False}
 if psychic:record.update(bothEndingsVerified=True,psychicAssertions=psychic['assertions'])
@@ -188,6 +200,12 @@ if seeds:
 if art_report:
     record.update(artSlots=art_report['slots'],pendingArt=len(art_report['pendingRequired']),artReady=art_report['artReady'],imageGenerationExecuted=art_report['generatedImages'])
     (evidence/'art-status.json').write_text(json.dumps(art_report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+if attack_effects:
+    record.update(attackEffectsAssertions=attack_effects['assertions'],combatSounds=26)
+    for kind in ['source','release']:
+        shutil.copy2(work/f'attack-effects-{kind}/attack-effects-result.json',evidence/f'attack-effects-{kind}.json')
+        for shot in attack_effects['screenshots']:
+            shutil.copy2(work/f'attack-effects-{kind}'/shot,evidence/(kind+'-'+shot))
 (evidence/'release.json').write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 (release/'SHA256SUMS.txt').write_text(digest+'  windows/PokemonTactics.exe\n'+zip_digest+'  '+archive.name+'\n',encoding='utf-8')
 print(json.dumps(record,ensure_ascii=False))

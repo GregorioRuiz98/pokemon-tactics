@@ -1,6 +1,6 @@
 # Pokémon Tactics — Kanto Windows0.22.16
 
-Arte integrado 0.22.16: 42 imágenes generadas para escenarios, suelos, iconos y efectos. Ver [arte y estado](../docs/SPRINT_22_GENERATED_ART.md) y [prompts](../docs/PROMPTS_ARTE_FINAL.md). Los PNG finales requieren importar/exportar; no basta con copiarlos junto al EXE.
+Versión 0.22.17: [animaciones y sonidos](../docs/SPRINT_22_ATTACK_EFFECTS.md). Arte integrado desde 0.22.16: 42 imágenes generadas para escenarios, suelos, iconos y efectos. Ver [arte y estado](../docs/SPRINT_22_GENERATED_ART.md) y [prompts](../docs/PROMPTS_ARTE_FINAL.md). Los PNG finales requieren importar/exportar; no basta con copiarlos junto al EXE.
 
 Hub 0.22.14: Comprar y Equipo y bolsa separados; elige Pokémon y después Ficha, Objetos, Movimientos o Rasgos. Seguir viaje queda fijo. Ver [simplificación](../docs/SPRINT_22_HUB.md).
 

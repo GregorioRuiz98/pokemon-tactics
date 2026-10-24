@@ -403,6 +403,7 @@ func _draw_unit(unit: Dictionary) -> void:
 	draw_colored_polygon(polygon,Color(color,0.28))
 	_outline(polygon,Color("ffe69a") if active else color,3 if active else 2)
 	var visual: Dictionary = sprite_visual(unit)
+	visual.rect.position += attack_offset(unit)
 	draw_texture_rect_region(textures[int(unit.speciesId)],visual.rect,visual.source)
 	var logical: Vector2 = Vector2(Rules.VECTORS[int(unit.facing)])
 	if active and facing_preview>=0: logical = Vector2(Rules.VECTORS[facing_preview])
