@@ -30,6 +30,8 @@ Las campañas 0.16–0.21 pueden continuar con **Continuar aventura · ampliar K
 
 [Animaciones y sonidos 0.22.17](docs/SPRINT_22_ATTACK_EFFECTS.md): preparación, lanzamiento e impacto, variantes por tipo, 26 sonidos locales y movimiento reducido.
 
+[Auditoría de movimientos](docs/reports/moves-2026-10-24/INFORME.md) · [Tabla editable](docs/reports/moves-2026-10-24/auditoria-movimientos-pokemon.xlsx): 211 movimientos, básico y 15 técnicas históricas evaluados para áreas, zonas y desplazamientos. Propuestas para revisión; no cambia reglas ni balance.
+
 ## Campaña web 0.12.0
 
 Tres Pokémon iniciales aleatorios, equipo de hasta seis, ocho zonas de Kanto y dos finales excluyentes. Las instrucciones y capacidades siguientes corresponden a esta versión web.

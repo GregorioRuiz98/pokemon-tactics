@@ -1,0 +1,168 @@
+{
+  "consulted": "2026-10-24",
+  "sources": [
+    {
+      "id": "LOCAL",
+      "title": "Juego nativo 0.22.17: catálogo resuelto y resolver",
+      "url": "https://github.com/GregorioRuiz98/pokemon-tactics/tree/7616a39b11ff33a95112be1b9fcb9e226b98c106/godot",
+      "scope": "Código y datos de solo lectura; 211 movimientos, básico y 15 históricos. Revisión estática, sin simulación de balance."
+    },
+    {
+      "id": "PAPI",
+      "title": "PokéAPI, datos fijados por el proyecto",
+      "url": "https://github.com/PokeAPI/pokeapi/tree/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv",
+      "scope": "moves.csv, move_effect_prose.csv y move_flavor_text.csv. Identidad original de las técnicas; efectos históricos del dataset, no especificación exacta de todas las ediciones."
+    },
+    {
+      "id": "CQ",
+      "title": "Conquest: datos públicos de geometría y desplazamiento, veekun",
+      "url": "https://github.com/veekun/pokedex/tree/master/pokedex/data/csv",
+      "scope": "conquest_move_data/ranges/range_prose/displacement_prose; descarga de 24-10-2026, SHA256 registrados. Contraste con Serebii y fichas veekun."
+    },
+    {
+      "id": "CQ-GUIA",
+      "title": "Conquest: tabla de ataques, Serebii",
+      "url": "https://www.serebii.net/conquest/attacks.shtml",
+      "scope": "Comprobación cruzada de filas, columnas, zonas y empujes. No copiar los valores de potencia de otro sistema."
+    },
+    {
+      "id": "MD",
+      "title": "Explorers of Sky: List of Moves, Mystery Dungeon Franchise Wiki",
+      "url": "https://mobile.mysterydungeonwiki.com/wiki/Explorers_of_Sky:List_of_Moves",
+      "scope": "200 coincidencias exactas de nombres normalizados del catálogo actual; rangos codificados. No trasladar sala a mapa completo. No encontrar una fila no demuestra ausencia en toda la saga."
+    },
+    {
+      "id": "HUMO",
+      "title": "Pantalla de Humo: efectos por juego y animación, Bulbapedia",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Smokescreen_(move)",
+      "scope": "Nube visual en anime; Whiffer en primeros MD frente a bajada de Precisión en Super. La intersección de proyectiles con humo es propuesta propia."
+    },
+    {
+      "id": "REMOLINO",
+      "title": "Remolino en Mundo Misterioso, Bulbapedia",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Whirlwind_(move)",
+      "scope": "Alejamiento del enemigo. La propuesta reduce la distancia y excluye daño por choque."
+    },
+    {
+      "id": "COLA",
+      "title": "Cola Dragón: Conquest y Mundo Misterioso, Bulbapedia",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Tail_(move)",
+      "scope": "Precedentes de sustitución/desplazamiento y alejamiento. No significa que dos casillas sea un dato canónico."
+    },
+    {
+      "id": "RANGER",
+      "title": "Manual oficial de Pokémon Ranger",
+      "url": "https://www.nintendo.com/eu/media/downloads/games_8/emanuals/nintendo_ds_21/Manual_NintendoDS_PokemonRanger_EN.pdf",
+      "scope": "Acciones de campo Corte, golpe a objetos, quemar, mojar, romper, ráfaga y cruce con liana. No son un repertorio táctico de movimientos con nombres equivalentes."
+    },
+    {
+      "id": "ALMIA",
+      "title": "Manual oficial de Sombras de Almia",
+      "url": "https://www.nintendo.com/eu/media/downloads/games_8/emanuals/nintendo_ds_21/Manual_NintendoDS_PokemonRangerShadowsOfAlmia_EN.pdf",
+      "scope": "Asistencias de Planta ralentizan y las de Tierra no afectan a aéreos/levitadores. Inspiración de terreno y control temporal."
+    },
+    {
+      "id": "RANGER-JP",
+      "title": "Web oficial de Ranger: Poké Assist y campo",
+      "url": "https://www.pokemon.co.jp/game/ds/ranger/pokeassist.html",
+      "scope": "Líneas de fuego y acciones para quemar obstáculos o echar agua. Inspiración ambiental, no prueba de una geometría de combate."
+    },
+    {
+      "id": "LÁTI",
+      "title": "Anime: EP102, The Mystery Menace, Bulbapedia",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/EP102",
+      "scope": "Bulbasaur agarra con Látigo Cepa. La atracción de una casilla es adaptación propia, no regla del episodio."
+    },
+    {
+      "id": "VIENTO",
+      "title": "Tornado: representación en anime, Bulbapedia",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Gust_(move)",
+      "scope": "Ráfagas que desplazan. La disipación de nubes y su alcance en casillas son propuestas propias."
+    },
+    {
+      "id": "GIRO",
+      "title": "Giro Fuego: saga principal, MD y anime, Bulbapedia",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Fire_Spin_(move)",
+      "scope": "Vórtice y atrapamiento. No copiar bloqueo prolongado de movimiento."
+    },
+    {
+      "id": "SURF",
+      "title": "Surf: alcance según entrega de MD, Bulbapedia",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Surf_(move)",
+      "scope": "Frontal en Exploradores; sala excepto usuario en entregas posteriores. Evita atribuir el mismo alcance a toda la saga."
+    },
+    {
+      "id": "HIDRO",
+      "title": "Hidrobomba: efecto en UNITE, Bulbapedia",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Hydro_Pump_(move)",
+      "scope": "Chorro que desplaza al rival; apoyo a la adaptación de empuje."
+    },
+    {
+      "id": "UNITE",
+      "title": "Web oficial de Blastoise en UNITE",
+      "url": "https://unite.pokemon.com/en-us/pokemon/blastoise/",
+      "scope": "Identidad de defensor y desplazamiento mediante agua. No usar su movimiento Unite como prueba del alcance exacto de Hidrobomba."
+    },
+    {
+      "id": "PANTALLA",
+      "title": "Pantalla de Luz: saga principal, MD y UNITE, Bulbapedia",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Light_Screen_(move)",
+      "scope": "Reducción especial y barreras espaciales. La pantalla de cruce propuesta combina ideas y no replica una entrega concreta."
+    },
+    {
+      "id": "ROCAs",
+      "title": "Trampa Rocas: MD y UNITE, Bulbapedia",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Stealth_Rock_(move)",
+      "scope": "Trampa de suelo o zona de rocas, según juego. Cruz y activación por entrada son nuestra propuesta."
+    },
+    {
+      "id": "NIEBLA",
+      "title": "Niebla: efecto y representación animada, Bulbapedia",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Haze_(move)",
+      "scope": "Limpia etapas y aparece como nube oscura. No atribuirle cegado ni curación de estados modernos."
+    }
+  ],
+  "downloadHashes": [
+    {
+      "file": "conquest_move_data.csv",
+      "bytes": 2357,
+      "sha256": "f7a805ef6cb8751dcceffe5d49d20d27926f8e264de173e755dffa95023c208c"
+    },
+    {
+      "file": "conquest_move_displacement_prose.csv",
+      "bytes": 1257,
+      "sha256": "fab8acd10f102410ead7c58915d14907e018d1149f933ffc8170f78804517f96"
+    },
+    {
+      "file": "conquest_move_range_prose.csv",
+      "bytes": 1864,
+      "sha256": "2d85d6736c2264b8226dc4830919e9b8a458e1e0432e4c8684d07c51bacd2834"
+    },
+    {
+      "file": "conquest_move_ranges.csv",
+      "bytes": 354,
+      "sha256": "9336342762687ae37fbe670f4770485ead11552f5d9562dfb41ed486f7d72533"
+    },
+    {
+      "file": "move_effect_prose.csv",
+      "bytes": 253898,
+      "sha256": "f6d9bf0d28433a010a8b8b6a0a14d1ef72fbfcb997717f71b0e34483b7ee9697"
+    },
+    {
+      "file": "move_flavor_text.csv",
+      "bytes": 5392794,
+      "sha256": "43177df8d76dac477fc837aa19b2a50d74ee2c94e47fb827506768c58b360087"
+    },
+    {
+      "file": "pmd-ranges.json",
+      "bytes": 17139,
+      "sha256": "14d98f392594cdc9ed1f97fdb580719c22be58929d04d2e35234deb92b4cad7f"
+    },
+    {
+      "file": "pmd-sky.html",
+      "bytes": 361551,
+      "sha256": "1195e3ad8d250db5448ae1d00002f2397ec3adea6930bed853ed53d4069e880c"
+    }
+  ],
+  "catalogSha256": "c1abe3062a759eb1f0847f97dcc0bb5b22f902a231da143e065a2c321f3afceb"
+}
