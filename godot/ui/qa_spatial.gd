@@ -149,11 +149,11 @@ func run(app: Control, directory: String) -> void:
 
 func natural_battle(app: Control, directory: String) -> void:
 	app.combat_feedback.clear()
-	app.store = SpatialStore.new(directory.path_join("natural-campaign.json"))
+	app.store = app.CampaignStore.new(directory.path_join("natural-campaign.json"))
 	app._show_oak()
 	app.journey_seed.text = "spatial-natural"
 	await click(app,app.travel_buttons.starter1)
-	check(app.run.edition==19,"Oak creates edition19 by default")
+	check(app.run.edition==app.CURRENT_CHAPTER-4,"Oak creates the installed campaign edition")
 	await click(app,app.travel_buttons.enter)
 	for i: int in 120:
 		if app.run.phase!="battle": break
@@ -164,5 +164,5 @@ func natural_battle(app: Control, directory: String) -> void:
 		if app.run.revision==prior: break
 		app.combat_feedback.clear()
 	check(app.run.phase!="battle","Natural opening combat terminates")
-	var loaded: Dictionary = SpatialStore.new(app.store.file_path).load_campaign(app.campaign)
+	var loaded: Dictionary = app.CampaignStore.new(app.store.file_path).load_campaign(app.campaign)
 	check(loaded.ok and Store.equivalent(loaded.get("state",{}),app.run),"Cold replay of natural campaign preserves all spatial state")

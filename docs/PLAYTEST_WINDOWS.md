@@ -1,8 +1,10 @@
-# Probar Pokémon Tactics en Windows ·0.22.17
+# Probar Pokémon Tactics en Windows ·0.24.0
 
 La interfaz reúne las órdenes en un menú táctico y los recursos/previsión en la franja inferior. La fila ámbar y su cursor indican la selección; las acciones rojas avanzan en la aventura. Teclado, ratón y atajos conservan las mismas funciones.
 
 Descomprime el ZIP completo y abre **windows/PokemonTactics.exe**. Funciona sin cuenta, servidor, conexión o instalación de Godot. Mantén en la carpeta los créditos y licencias incluidos. Esta entrega es para pruebas; su publicación pública está aplazada.
+
+Progresión0.24: curvas originales de EXP por especie; 1 ₽ por EXP pendiente, con revisión antes de pagar. Sin Caramelos/piedras/cables en la tienda. Capturas locales: otro sorteo cuesta60/120/180… ₽ antes de aceptar, con especie distinta si hay alternativas; insignias fijas. Gimnasios de4–6 Pokémon. Detalles y límites de balance en CAMBIOS_0.24.md dentro del paquete.
 
 ## Empezar o continuar
 
@@ -29,8 +31,8 @@ Si el guardado es incompatible, incompleto o ha cambiado desde otra instancia, e
 - Prepara hasta cuatro movimientos y conserva el básico neutro gratuito. Consulta tipo, precisión, daño previsto, PT y estado antes de atacar. Respiro, Recuperación, Amortiguador y Descanso tienen cinco usos por combate, además de sus PT.
 - Las bajas individuales pueden recuperarse en tienda con Revivir al50% de PS. Perder todo el equipo desplegado termina la campaña aunque queden reservas vivas. No hay curación gratuita tras una victoria.
 - **Comprar** ofrece Medicina, Evolución, MT y equipo y Rasgos. **Equipo y bolsa** permite elegir Pokémon y usar lo que ya posees en Objetos; Ficha, Movimientos y Rasgos muestran el resto por separado. Comprar añade a la bolsa. Comprar varias y Usar varias abren su propia revisión. **Seguir viaje** queda siempre visible; Resumen abre las ganancias del último combate.
-- Capturas sobrantes van al PC. Cambiar miembros fuera de combate es gratis y conserva sus PS. El dinero permite curar, subir niveles con Caramelos, comprar MT/equipables o renovar las tres ofertas.
-- Los niveles tienen tope por insignia del siguiente gimnasio. La Liga permite65 y el postgame75. Una subida recupera los PS máximos ganados; las piedras evolutivas no curan.
+- Capturas sobrantes van al PC. Cambiar miembros fuera de combate es gratis y conserva sus PS. El dinero permite curar, completar el siguiente nivel pagando la EXP pendiente desde Entrenar, comprar MT/equipables o renovar las tres ofertas.
+- Los niveles tienen tope por insignia del siguiente gimnasio. La Liga permite65 y el postgame75. Una subida recupera los PS máximos ganados; las antiguas evoluciones por piedra/intercambio son gratuitas desde Ficha, con un nivel mínimo adaptado y sin curación.
 
 ## Sesiones de prueba propuestas
 

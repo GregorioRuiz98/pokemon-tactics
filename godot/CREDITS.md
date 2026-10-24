@@ -133,3 +133,8 @@ Guías vectoriales de composición, rombos de suelo, obstáculos esquemáticos, 
 40 muestras WAV nombradas por movimiento, incluido PRSFX- Hyper Beam.wav, desde AxelLoquendo/PokeDot-Engine, commit edc3ffb06439b01a1f9ba31272b0bb187712dff0. Archivos originales sin modificar, URL individual, SHA256, duración y ganancia en assets/original-moves/manifest.json. Grabaciones de Pokémon: GAME FREAK/Nintendo/Creatures y titulares respectivos; su disponibilidad pública no implica licencia de audio ni cesión de derechos. La licencia de código del repositorio no se aplica automáticamente a las grabaciones. Edición concreta de origen no verificada; algunas muestras numeradas son fases individuales. Aviso conservado en licenses/POKEMON_MOVE_AUDIO.txt.
 
 Geometrías, símbolos de zona, secuencias y motivos vectoriales nuevos creados para este proyecto. Se reutilizan los sprites, retratos, tipografía y recursos anteriores sin modificarlos.
+
+
+## Experiencia y progresión 0.24.0
+
+Grupos y tablas de EXP reutilizados de PokéAPI, commit `81d20919845b6a445969b9265aab5cec6b04cece`: `pokemon_species.csv` y `experience.csv`. URLs y SHA256 en `data/economy.json`; comprobación reproducible en `tools/godot/verify-economy.py` desde la raíz. Datos locales, sin red al jugar. Referencia de equipos de revancha: https://www.serebii.net/letsgopikachueevee/gymrematch.shtml. Niveles, precios, recompensas, formas tempranas y umbrales para evolución sin objetos son adaptaciones propias; no se atribuyen al cartucho.

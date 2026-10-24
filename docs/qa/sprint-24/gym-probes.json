@@ -1,0 +1,141 @@
+{
+	"failures": [],
+	"results": [
+		{
+			"enemies": 4,
+			"gym": "brock",
+			"orders": 96,
+			"outcome": "victory",
+			"playerLevel": 12,
+			"playerSpecies": [
+				1,
+				4,
+				7,
+				16,
+				25,
+				43
+			],
+			"rounds": 5,
+			"scope": "Synthetic fixed six-member healthy roster two levels below ace; evolved only when eligible; no items or heals. Not a natural campaign win."
+		},
+		{
+			"enemies": 4,
+			"gym": "misty",
+			"orders": 132,
+			"outcome": "victory",
+			"playerLevel": 19,
+			"playerSpecies": [
+				2,
+				5,
+				8,
+				17,
+				25,
+				43
+			],
+			"rounds": 7,
+			"scope": "Synthetic fixed six-member healthy roster two levels below ace; evolved only when eligible; no items or heals. Not a natural campaign win."
+		},
+		{
+			"enemies": 5,
+			"gym": "surge",
+			"orders": 200,
+			"outcome": "victory",
+			"playerLevel": 22,
+			"playerSpecies": [
+				2,
+				5,
+				8,
+				17,
+				26,
+				44
+			],
+			"rounds": 10,
+			"scope": "Synthetic fixed six-member healthy roster two levels below ace; evolved only when eligible; no items or heals. Not a natural campaign win."
+		},
+		{
+			"enemies": 5,
+			"gym": "erika",
+			"orders": 263,
+			"outcome": "defeat",
+			"playerLevel": 27,
+			"playerSpecies": [
+				2,
+				5,
+				8,
+				17,
+				26,
+				44
+			],
+			"rounds": 19,
+			"scope": "Synthetic fixed six-member healthy roster two levels below ace; evolved only when eligible; no items or heals. Not a natural campaign win."
+		},
+		{
+			"enemies": 6,
+			"gym": "koga",
+			"orders": 398,
+			"outcome": "victory",
+			"playerLevel": 41,
+			"playerSpecies": [
+				3,
+				6,
+				9,
+				18,
+				26,
+				45
+			],
+			"rounds": 20,
+			"scope": "Synthetic fixed six-member healthy roster two levels below ace; evolved only when eligible; no items or heals. Not a natural campaign win."
+		},
+		{
+			"enemies": 6,
+			"gym": "sabrina",
+			"orders": 305,
+			"outcome": "victory",
+			"playerLevel": 41,
+			"playerSpecies": [
+				3,
+				6,
+				9,
+				18,
+				26,
+				45
+			],
+			"rounds": 17,
+			"scope": "Synthetic fixed six-member healthy roster two levels below ace; evolved only when eligible; no items or heals. Not a natural campaign win."
+		},
+		{
+			"enemies": 6,
+			"gym": "blaine",
+			"orders": 395,
+			"outcome": "defeat",
+			"playerLevel": 45,
+			"playerSpecies": [
+				3,
+				6,
+				9,
+				18,
+				26,
+				45
+			],
+			"rounds": 23,
+			"scope": "Synthetic fixed six-member healthy roster two levels below ace; evolved only when eligible; no items or heals. Not a natural campaign win."
+		},
+		{
+			"enemies": 6,
+			"gym": "giovanni-gym",
+			"orders": 261,
+			"outcome": "victory",
+			"playerLevel": 48,
+			"playerSpecies": [
+				3,
+				6,
+				9,
+				18,
+				26,
+				45
+			],
+			"rounds": 19,
+			"scope": "Synthetic fixed six-member healthy roster two levels below ace; evolved only when eligible; no items or heals. Not a natural campaign win."
+		}
+	]
+}

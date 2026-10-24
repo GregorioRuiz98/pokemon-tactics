@@ -80,13 +80,23 @@ function verify() {
   console.log(`Verified ${manifest.files.length} assets and ${manifest.ruleSources.length} reference source hashes; ${fixtures.games.length} complete battles.`);
 }
 if (operation === 'verify') { verify(); process.exit(0); }
-if (!['qa-moves-export','qa-spatial-export','qa-attack-effects-export','qa-export','qa-campaign-export','qa-scale-export','qa-roster-export','qa-journey-export','qa-journey-psychic-export','qa-interface-export','qa-input-export','qa-context-export','qa-updates-export','qa-semantic-export','qa-performance-export','qa-seeds-export'].includes(operation)) {
+if (!['qa-economy-export','qa-moves-export','qa-spatial-export','qa-attack-effects-export','qa-export','qa-campaign-export','qa-scale-export','qa-roster-export','qa-journey-export','qa-journey-psychic-export','qa-interface-export','qa-input-export','qa-context-export','qa-updates-export','qa-semantic-export','qa-performance-export','qa-seeds-export'].includes(operation)) {
   if (!existsSync(binary)) throw new Error('Godot not found. Set GODOT_BIN to the standard Godot 4.7.2 executable.');
   const version = spawnSync(binary, ['--version'], { encoding: 'utf8', windowsHide: true });
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'test-spatial') {
+if(operation === 'test-economy') {
+  run(binary,['--headless',...common,'--script','res://tests/economy.gd','--','--save-dir='+work],'test-economy');
+} else if(operation === 'simulate-economy') {
+  run(binary,['--headless',...common,'--script','res://tests/economy_balance.gd','--','--save-dir='+work],'simulate-balance');
+} else if(operation === 'qa-economy' || operation === 'qa-economy-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,exported?'economy-release':'economy-source');
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--economy-qa-dir='+directory],'economy-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'economy-ui-result.json'),'utf8'));
+  if(report.failures.length || report.assertions<40) throw new Error('Economy QA failed');
+} else if(operation === 'test-spatial') {
   run(binary,['--headless',...common,'--script','res://tests/spatial.gd','--','--save-dir='+work],'test-spatial');
 } else if(operation === 'qa-moves' || operation === 'qa-moves-export') {
   const exported=operation.endsWith('export');
@@ -292,8 +302,7 @@ Contenido: ${route.length} lugares; historia hasta ${end}.
 Elige inicial de Oak. Mapa de destinos, capturas locales únicas, tiendas, PC de reserva y seis plazas de equipo.
 Para continuar una campaña0.16 o posterior, carga y pulsa Continuar aventura en el mapa, tienda o final del tramo. Conserva copia y diario. Una batalla pendiente conserva su edición hasta terminar.
 Guardado automático local: %APPDATA%/PokemonTacticsLab/kanto-save.json. No borres ni sustituyas el archivo para actualizar.
-Cuatro movimientos preparados más básico neutro. EXP y Caramelos25 ₽ suben niveles con límite del siguiente gimnasio. PS actuales recuperan el aumento de PS máximos.
-Evolución automática por nivel; piedras/Cable Vínculo80 ₽ cuando corresponda. Pikachu20 y Graveler36 son excepciones adaptadas.
+${chapter>=24?'Cuatro movimientos preparados más básico neutro. Curvas de EXP por especie; tienda Entrenar cobra1 ₽ por cada EXP que falte para el siguiente nivel, respetando el tope del próximo gimnasio. El aumento de PS máximos también se recupera.\nSin Caramelos ni piedras/cables. Evoluciones por nivel automáticas; antiguas evoluciones por objeto/intercambio se eligen gratis desde Ficha al alcanzar el mínimo adaptado. Eevee permite elegir rama. Reroll local antes de aceptar captura:60/120/180... ₽; insignia de gimnasio fija. Actualizar desde mapa/tienda conserva niveles/PS, proporción de EXP parcial y devuelve el precio de objetos retirados.':'Cuatro movimientos preparados más básico neutro. EXP y Caramelos25 ₽ suben niveles con límite del siguiente gimnasio. PS actuales recuperan el aumento de PS máximos.\nEvolución automática por nivel; piedras/Cable Vínculo80 ₽ cuando corresponda. Pikachu20 y Graveler36 son excepciones adaptadas.'}
 Sin curación gratuita; usa objetos fuera de combate. Revivir150 ₽ devuelve50% PS. Perder acaba la campaña aunque haya reservas vivas.
 Mapas16/24 con alturas. Clic en azul: mover; clic en rival: básico. Habilidades integradas; R rectifica solo movimiento antes de actuar. F orienta y termina. Flechas/Enter y Escape disponibles.
 Seleccionar habilidad solo prepara; Q/E recorre objetivos; Enter o clic acepta. F abre orientación: flechas previsualizan y Enter termina.

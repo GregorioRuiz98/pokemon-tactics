@@ -1,0 +1,429 @@
+{
+	"failures": [],
+	"policy": "Automated tactical AI; free evolutions, diverse loadouts, paid healing/revives; EXP training only to reference level while retaining120; no rerolls/MT purchases. Defeats retained. Synthetic unit tests are separate.",
+	"results": [
+		{
+			"fights": [
+				{
+					"cap": 14,
+					"levels": [
+						5
+					],
+					"location": "route-1",
+					"money": 120
+				},
+				{
+					"cap": 14,
+					"levels": [
+						6,
+						6
+					],
+					"location": "route-2",
+					"money": 256
+				},
+				{
+					"cap": 14,
+					"levels": [
+						7,
+						8,
+						7
+					],
+					"location": "forest",
+					"money": 148
+				}
+			],
+			"lastLocation": "forest",
+			"medals": 0,
+			"money": 148,
+			"orders": 216,
+			"party": [
+				{
+					"hp": 0,
+					"level": 7,
+					"species": 1,
+					"xp": 0
+				},
+				{
+					"hp": 0,
+					"level": 8,
+					"species": 69,
+					"xp": 25
+				},
+				{
+					"hp": 0,
+					"level": 7,
+					"species": 69,
+					"xp": 0
+				}
+			],
+			"phase": "defeat",
+			"replay": true,
+			"sample": "opening",
+			"seed": "economy-0",
+			"starter": 1,
+			"trainingLevels": 3,
+			"trainingSpent": 112
+		},
+		{
+			"fights": [
+				{
+					"cap": 14,
+					"levels": [
+						5
+					],
+					"location": "route-1",
+					"money": 120
+				},
+				{
+					"cap": 14,
+					"levels": [
+						6,
+						6
+					],
+					"location": "route-2",
+					"money": 256
+				},
+				{
+					"cap": 14,
+					"levels": [
+						8,
+						8,
+						7
+					],
+					"location": "forest",
+					"money": 439
+				},
+				{
+					"cap": 14,
+					"levels": [
+						10,
+						10,
+						10,
+						9
+					],
+					"location": "brock",
+					"money": 313
+				}
+			],
+			"lastLocation": "brock",
+			"medals": 1,
+			"money": 993,
+			"orders": 235,
+			"party": [
+				{
+					"hp": 136,
+					"level": 12,
+					"species": 1,
+					"xp": 65
+				},
+				{
+					"hp": 104,
+					"level": 12,
+					"species": 16,
+					"xp": 19
+				},
+				{
+					"hp": 113,
+					"level": 12,
+					"species": 43,
+					"xp": 0
+				},
+				{
+					"hp": 0,
+					"level": 9,
+					"species": 15,
+					"xp": 0
+				}
+			],
+			"phase": "capture",
+			"replay": true,
+			"sample": "opening",
+			"seed": "economy-1",
+			"starter": 1,
+			"trainingLevels": 4,
+			"trainingSpent": 402
+		},
+		{
+			"fights": [
+				{
+					"cap": 14,
+					"levels": [
+						5
+					],
+					"location": "route-1",
+					"money": 120
+				},
+				{
+					"cap": 14,
+					"levels": [
+						6,
+						6
+					],
+					"location": "route-2",
+					"money": 256
+				},
+				{
+					"cap": 14,
+					"levels": [
+						8,
+						8,
+						7
+					],
+					"location": "forest",
+					"money": 309
+				}
+			],
+			"lastLocation": "forest",
+			"medals": 0,
+			"money": 309,
+			"orders": 185,
+			"party": [
+				{
+					"hp": 0,
+					"level": 8,
+					"species": 4,
+					"xp": 71
+				},
+				{
+					"hp": 0,
+					"level": 8,
+					"species": 69,
+					"xp": 25
+				},
+				{
+					"hp": 0,
+					"level": 7,
+					"species": 69,
+					"xp": 0
+				}
+			],
+			"phase": "defeat",
+			"replay": true,
+			"sample": "opening",
+			"seed": "economy-0",
+			"starter": 4,
+			"trainingLevels": 2,
+			"trainingSpent": 101
+		},
+		{
+			"fights": [
+				{
+					"cap": 14,
+					"levels": [
+						5
+					],
+					"location": "route-1",
+					"money": 120
+				},
+				{
+					"cap": 14,
+					"levels": [
+						6,
+						6
+					],
+					"location": "route-2",
+					"money": 256
+				},
+				{
+					"cap": 14,
+					"levels": [
+						8,
+						8,
+						7
+					],
+					"location": "forest",
+					"money": 399
+				},
+				{
+					"cap": 14,
+					"levels": [
+						10,
+						10,
+						10,
+						9
+					],
+					"location": "brock",
+					"money": 283
+				}
+			],
+			"lastLocation": "brock",
+			"medals": 1,
+			"money": 963,
+			"orders": 301,
+			"party": [
+				{
+					"hp": 29,
+					"level": 12,
+					"species": 4,
+					"xp": 65
+				},
+				{
+					"hp": 0,
+					"level": 10,
+					"species": 16,
+					"xp": 19
+				},
+				{
+					"hp": 124,
+					"level": 12,
+					"species": 43,
+					"xp": 0
+				},
+				{
+					"hp": 0,
+					"level": 9,
+					"species": 15,
+					"xp": 0
+				}
+			],
+			"phase": "capture",
+			"replay": true,
+			"sample": "opening",
+			"seed": "economy-1",
+			"starter": 4,
+			"trainingLevels": 4,
+			"trainingSpent": 402
+		},
+		{
+			"fights": [
+				{
+					"cap": 14,
+					"levels": [
+						5
+					],
+					"location": "route-1",
+					"money": 120
+				},
+				{
+					"cap": 14,
+					"levels": [
+						6,
+						6
+					],
+					"location": "route-2",
+					"money": 256
+				},
+				{
+					"cap": 14,
+					"levels": [
+						8,
+						8,
+						7
+					],
+					"location": "forest",
+					"money": 269
+				}
+			],
+			"lastLocation": "forest",
+			"medals": 0,
+			"money": 269,
+			"orders": 204,
+			"party": [
+				{
+					"hp": 0,
+					"level": 8,
+					"species": 7,
+					"xp": 71
+				},
+				{
+					"hp": 0,
+					"level": 8,
+					"species": 69,
+					"xp": 25
+				},
+				{
+					"hp": 0,
+					"level": 7,
+					"species": 69,
+					"xp": 0
+				}
+			],
+			"phase": "defeat",
+			"replay": true,
+			"sample": "opening",
+			"seed": "economy-0",
+			"starter": 7,
+			"trainingLevels": 2,
+			"trainingSpent": 101
+		},
+		{
+			"fights": [
+				{
+					"cap": 14,
+					"levels": [
+						5
+					],
+					"location": "route-1",
+					"money": 120
+				},
+				{
+					"cap": 14,
+					"levels": [
+						6,
+						6
+					],
+					"location": "route-2",
+					"money": 256
+				},
+				{
+					"cap": 14,
+					"levels": [
+						7,
+						8,
+						7
+					],
+					"location": "forest",
+					"money": 148
+				},
+				{
+					"cap": 14,
+					"levels": [
+						10,
+						10,
+						9,
+						8
+					],
+					"location": "brock",
+					"money": 199
+				}
+			],
+			"lastLocation": "brock",
+			"medals": 1,
+			"money": 879,
+			"orders": 302,
+			"party": [
+				{
+					"hp": 61,
+					"level": 12,
+					"species": 7,
+					"xp": 0
+				},
+				{
+					"hp": 24,
+					"level": 12,
+					"species": 16,
+					"xp": 19
+				},
+				{
+					"hp": 128,
+					"level": 11,
+					"species": 43,
+					"xp": 147
+				},
+				{
+					"hp": 30,
+					"level": 9,
+					"species": 15,
+					"xp": 196
+				}
+			],
+			"phase": "capture",
+			"replay": true,
+			"sample": "opening",
+			"seed": "economy-1",
+			"starter": 7,
+			"trainingLevels": 4,
+			"trainingSpent": 196
+		}
+	]
+}

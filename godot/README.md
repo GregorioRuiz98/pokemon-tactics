@@ -1,4 +1,6 @@
-# Pokémon Tactics — Kanto Windows 0.23.1
+# Pokémon Tactics — Kanto Windows 0.24.0
+
+**Windows 0.24.0:** [progresión, capturas y gimnasios](../docs/SPRINT_24_ECONOMY.md). EXP por especie y entrenamiento por los puntos restantes; evoluciones sin objetos, reroll local pagado y líderes de4–6 Pokémon. Actualización explícita con copia, reembolso y conservación de niveles/PS. Balance provisional.
 
 **0.23.1:** corregidas las ranuras de Equipo → Movimientos: nombres completos, columnas que ocupan el panel y selección con teclado/ratón. Conserva guardados y reglas. [Comprobaciones](../docs/FIX_MOVES_0.23.1.md).
 
@@ -44,7 +46,7 @@ Isometría16/24, alturas0–2, subida+1 y salto terrestre1; voladores ignoran de
 
 Godot4.7.2 estándar. Recursos existentes, sin plugins nuevos. Importadores explícitos import-expedition.py y build-expedition.py; no regenerar manifiestos congelados para ocultar discrepancias. Pillow existente se localiza con PYTHONPATH=../../work/balance-python solo al importar. Los builds/juego no lo necesitan.
 
-Scripts de la raíz: godot:verify, godot:prepare, godot:test:expedition, godot:test:journey, godot:test:abilities, godot:qa:journey, godot:export y godot:qa:journey:export. QA usa archivos aislados, controles/eventos de tablero y comparación con el dominio; no sustituye valoración humana de diversión/balance. Evidencia en docs/SPRINT_22.md. Paquetes fuera de Git en outputs/releases/pokemon-tactics-0.23.1. Publicación pública aplazada.
+Scripts de la raíz: godot:verify, godot:prepare, godot:test:expedition, godot:test:journey, godot:test:abilities, godot:qa:journey, godot:export y godot:qa:journey:export. QA usa archivos aislados, controles/eventos de tablero y comparación con el dominio; no sustituye valoración humana de diversión/balance. Evidencia en docs/SPRINT_22.md. Paquetes fuera de Git en outputs/releases/pokemon-tactics-0.24.0. Publicación pública aplazada.
 
 Prueba manual: [guía Windows](../docs/PLAYTEST_WINDOWS.md). Balance y propuestas: [informe de29 simulaciones](../docs/reports/balance-native-0.22/INFORME.md). No se cambian parámetros para favorecer los ensayos.
 

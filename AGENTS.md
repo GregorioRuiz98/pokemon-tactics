@@ -145,3 +145,8 @@ Formas y zonas comparten geometría/visión/alturas con IA y previsión; aliados
 ## Corrección visual 0.23.1
 
 Ranuras de Equipo → Movimientos: GridContainer y botones expanden ambas columnas; no alterar reglas por un fallo de presentación. Campaña19/combate18 y guardados conservados. QA específica qa_moves, texto 100/125/150 y tres resoluciones, desarrollo/EXE, ratón/teclado y cancelación sin órdenes. Ver docs/FIX_MOVES_0.23.1.md. Sin delegación ni publicación pública; commit/push privado autorizado.
+
+
+## Progresión y gimnasios 0.24.0
+
+Encargo del24 de octubre: nueva campaña20/combate18 en economy_study/battle/run/store, economy.json y journey-24.json. Preservar motores/datos/tests publicados anteriores; transición explícita19→20 fuera de combate, conserva niveles/PS, proporción de barra EXP y reembolsa25/80 ₽ por consumibles retirados. Curvas PokéAPI por especie; train-xp cobra1 ₽ por EXP restante, cotización validada y cap. Sin Caramelos/piedras/cables utilizables; evoluciones normales automáticas, antiguas de objeto/intercambio gratis y voluntarias por umbrales adaptados desde Ficha, ramas de Eevee elegibles. Reroll previo a captura común60/120/180…, distinta especie si hay alternativas, mismo nivel/ID; insignias fijas. Líderes4–6, encuentros/recompensas reajustados. Sin delegación ni publicación pública; commit/push privado autorizado. Ver docs/SPRINT_24_ECONOMY.md. No declarar balance cerrado ni campaña20 completa: muestras naturales alcanzan hasta3 medallas y contienen derrotas; los ocho sondeos de gimnasios son sintéticos.

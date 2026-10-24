@@ -1,0 +1,684 @@
+{
+	"failures": [],
+	"policy": "Automated tactical AI; free evolutions, diverse loadouts, paid healing/revives; EXP training only to reference level while retaining120; no rerolls/MT purchases. Defeats retained. Synthetic unit tests are separate.",
+	"results": [
+		{
+			"fights": [
+				{
+					"cap": 14,
+					"levels": [
+						5
+					],
+					"location": "route-1",
+					"money": 120
+				},
+				{
+					"cap": 14,
+					"levels": [
+						6,
+						6
+					],
+					"location": "route-2",
+					"money": 256
+				},
+				{
+					"cap": 14,
+					"levels": [
+						8,
+						8,
+						7
+					],
+					"location": "forest",
+					"money": 439
+				},
+				{
+					"cap": 14,
+					"levels": [
+						10,
+						10,
+						10,
+						9
+					],
+					"location": "brock",
+					"money": 313
+				},
+				{
+					"cap": 21,
+					"levels": [
+						12,
+						12,
+						12,
+						14
+					],
+					"location": "route-3",
+					"money": 913
+				},
+				{
+					"cap": 21,
+					"levels": [
+						13,
+						13,
+						14,
+						13
+					],
+					"location": "mt-moon",
+					"money": 674
+				},
+				{
+					"cap": 21,
+					"levels": [
+						13,
+						14,
+						14,
+						15
+					],
+					"location": "route-4",
+					"money": 405
+				},
+				{
+					"cap": 21,
+					"levels": [
+						14,
+						15,
+						15,
+						15
+					],
+					"location": "cerulean-rival",
+					"money": 670
+				},
+				{
+					"cap": 21,
+					"levels": [
+						15,
+						15,
+						16,
+						16
+					],
+					"location": "route-24",
+					"money": 326
+				},
+				{
+					"cap": 21,
+					"levels": [
+						14,
+						15,
+						16,
+						17
+					],
+					"location": "route-25",
+					"money": 201
+				},
+				{
+					"cap": 21,
+					"levels": [
+						17,
+						16,
+						17,
+						9
+					],
+					"location": "misty",
+					"money": 206
+				},
+				{
+					"cap": 24,
+					"levels": [
+						21,
+						16,
+						19,
+						10
+					],
+					"location": "route-5",
+					"money": 220
+				},
+				{
+					"cap": 24,
+					"levels": [
+						21,
+						17,
+						20,
+						20
+					],
+					"location": "route-6",
+					"money": 495
+				}
+			],
+			"lastLocation": "route-6",
+			"medals": 2,
+			"money": 495,
+			"orders": 1743,
+			"party": [
+				{
+					"hp": 0,
+					"level": 21,
+					"species": 121,
+					"xp": 499
+				},
+				{
+					"hp": 0,
+					"level": 17,
+					"species": 56,
+					"xp": 77
+				},
+				{
+					"hp": 0,
+					"level": 20,
+					"species": 43,
+					"xp": 74
+				},
+				{
+					"hp": 0,
+					"level": 20,
+					"species": 37,
+					"xp": 0
+				},
+				{
+					"hp": 0,
+					"level": 17,
+					"species": 95,
+					"xp": 317
+				},
+				{
+					"hp": 0,
+					"level": 13,
+					"species": 19,
+					"xp": 0
+				}
+			],
+			"phase": "defeat",
+			"replay": true,
+			"sample": "full",
+			"seed": "economy-1",
+			"starter": 1,
+			"trainingLevels": 9,
+			"trainingSpent": 1950
+		},
+		{
+			"fights": [
+				{
+					"cap": 14,
+					"levels": [
+						5
+					],
+					"location": "route-1",
+					"money": 120
+				},
+				{
+					"cap": 14,
+					"levels": [
+						6,
+						6
+					],
+					"location": "route-2",
+					"money": 256
+				},
+				{
+					"cap": 14,
+					"levels": [
+						8,
+						8,
+						7
+					],
+					"location": "forest",
+					"money": 399
+				},
+				{
+					"cap": 14,
+					"levels": [
+						10,
+						10,
+						10,
+						9
+					],
+					"location": "brock",
+					"money": 283
+				},
+				{
+					"cap": 21,
+					"levels": [
+						12,
+						12,
+						12,
+						14
+					],
+					"location": "route-3",
+					"money": 249
+				},
+				{
+					"cap": 21,
+					"levels": [
+						12,
+						13,
+						14,
+						12
+					],
+					"location": "mt-moon",
+					"money": 329
+				},
+				{
+					"cap": 21,
+					"levels": [
+						14,
+						12,
+						14,
+						15,
+						13
+					],
+					"location": "route-4",
+					"money": 437
+				},
+				{
+					"cap": 21,
+					"levels": [
+						15,
+						13,
+						15,
+						14,
+						15,
+						14
+					],
+					"location": "cerulean-rival",
+					"money": 505
+				},
+				{
+					"cap": 21,
+					"levels": [
+						16,
+						14,
+						16,
+						15,
+						16,
+						15
+					],
+					"location": "route-24",
+					"money": 555
+				},
+				{
+					"cap": 21,
+					"levels": [
+						17,
+						15,
+						17,
+						16,
+						17,
+						16
+					],
+					"location": "route-25",
+					"money": 482
+				},
+				{
+					"cap": 21,
+					"levels": [
+						19,
+						16,
+						19,
+						17,
+						18,
+						17
+					],
+					"location": "misty",
+					"money": 516
+				},
+				{
+					"cap": 24,
+					"levels": [
+						20,
+						18,
+						20,
+						19,
+						20,
+						18
+					],
+					"location": "route-5",
+					"money": 478
+				},
+				{
+					"cap": 24,
+					"levels": [
+						21,
+						19,
+						21,
+						19,
+						20,
+						19
+					],
+					"location": "route-6",
+					"money": 121
+				},
+				{
+					"cap": 24,
+					"levels": [
+						21,
+						19,
+						21,
+						20,
+						20,
+						19
+					],
+					"location": "ss-anne",
+					"money": 253
+				},
+				{
+					"cap": 24,
+					"levels": [
+						22,
+						20,
+						22,
+						20,
+						21,
+						20
+					],
+					"location": "surge",
+					"money": 139
+				},
+				{
+					"cap": 29,
+					"levels": [
+						24,
+						22,
+						24,
+						24,
+						23,
+						21
+					],
+					"location": "route-9",
+					"money": 707
+				},
+				{
+					"cap": 29,
+					"levels": [
+						24,
+						22,
+						24,
+						24,
+						23,
+						21
+					],
+					"location": "route-10",
+					"money": 822
+				}
+			],
+			"lastLocation": "route-10",
+			"medals": 3,
+			"money": 822,
+			"orders": 2655,
+			"party": [
+				{
+					"hp": 0,
+					"level": 24,
+					"species": 5,
+					"xp": 764
+				},
+				{
+					"hp": 0,
+					"level": 22,
+					"species": 46,
+					"xp": 764
+				},
+				{
+					"hp": 0,
+					"level": 24,
+					"species": 44,
+					"xp": 764
+				},
+				{
+					"hp": 0,
+					"level": 24,
+					"species": 26,
+					"xp": 764
+				},
+				{
+					"hp": 0,
+					"level": 23,
+					"species": 95,
+					"xp": 846
+				},
+				{
+					"hp": 0,
+					"level": 21,
+					"species": 121,
+					"xp": 764
+				}
+			],
+			"phase": "defeat",
+			"replay": true,
+			"sample": "full",
+			"seed": "economy-1",
+			"starter": 4,
+			"trainingLevels": 22,
+			"trainingSpent": 2603
+		},
+		{
+			"fights": [
+				{
+					"cap": 14,
+					"levels": [
+						5
+					],
+					"location": "route-1",
+					"money": 120
+				},
+				{
+					"cap": 14,
+					"levels": [
+						6,
+						6
+					],
+					"location": "route-2",
+					"money": 256
+				},
+				{
+					"cap": 14,
+					"levels": [
+						7,
+						8,
+						7
+					],
+					"location": "forest",
+					"money": 148
+				},
+				{
+					"cap": 14,
+					"levels": [
+						10,
+						10,
+						9,
+						8
+					],
+					"location": "brock",
+					"money": 199
+				},
+				{
+					"cap": 21,
+					"levels": [
+						12,
+						12,
+						12,
+						10,
+						14
+					],
+					"location": "route-3",
+					"money": 450
+				},
+				{
+					"cap": 21,
+					"levels": [
+						13,
+						13,
+						13,
+						12,
+						14,
+						12
+					],
+					"location": "mt-moon",
+					"money": 150
+				},
+				{
+					"cap": 21,
+					"levels": [
+						14,
+						14,
+						14,
+						13,
+						15,
+						13
+					],
+					"location": "route-4",
+					"money": 310
+				},
+				{
+					"cap": 21,
+					"levels": [
+						15,
+						15,
+						15,
+						14,
+						15,
+						14
+					],
+					"location": "cerulean-rival",
+					"money": 475
+				},
+				{
+					"cap": 21,
+					"levels": [
+						16,
+						16,
+						16,
+						15,
+						16,
+						15
+					],
+					"location": "route-24",
+					"money": 498
+				},
+				{
+					"cap": 21,
+					"levels": [
+						17,
+						17,
+						17,
+						16,
+						17,
+						16
+					],
+					"location": "route-25",
+					"money": 415
+				},
+				{
+					"cap": 21,
+					"levels": [
+						17,
+						19,
+						19,
+						18,
+						15,
+						14
+					],
+					"location": "misty",
+					"money": 120
+				},
+				{
+					"cap": 24,
+					"levels": [
+						19,
+						20,
+						20,
+						19,
+						21,
+						16
+					],
+					"location": "route-5",
+					"money": 223
+				},
+				{
+					"cap": 24,
+					"levels": [
+						19,
+						21,
+						21,
+						19,
+						21,
+						20
+					],
+					"location": "route-6",
+					"money": 383
+				},
+				{
+					"cap": 24,
+					"levels": [
+						20,
+						21,
+						21,
+						20,
+						21,
+						20
+					],
+					"location": "ss-anne",
+					"money": 345
+				},
+				{
+					"cap": 24,
+					"levels": [
+						19,
+						22,
+						22,
+						20,
+						22,
+						21
+					],
+					"location": "surge",
+					"money": 147
+				}
+			],
+			"lastLocation": "surge",
+			"medals": 2,
+			"money": 147,
+			"orders": 2154,
+			"party": [
+				{
+					"hp": 0,
+					"level": 19,
+					"species": 17,
+					"xp": 0
+				},
+				{
+					"hp": 0,
+					"level": 22,
+					"species": 17,
+					"xp": 19
+				},
+				{
+					"hp": 0,
+					"level": 22,
+					"species": 44,
+					"xp": 0
+				},
+				{
+					"hp": 0,
+					"level": 20,
+					"species": 15,
+					"xp": 834
+				},
+				{
+					"hp": 0,
+					"level": 22,
+					"species": 121,
+					"xp": 0
+				},
+				{
+					"hp": 0,
+					"level": 21,
+					"species": 37,
+					"xp": 0
+				}
+			],
+			"phase": "defeat",
+			"replay": true,
+			"sample": "full",
+			"seed": "economy-1",
+			"starter": 7,
+			"trainingLevels": 17,
+			"trainingSpent": 2658
+		}
+	]
+}

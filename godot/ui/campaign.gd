@@ -2,16 +2,17 @@ extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
 const Advanced = preload("res://core/roster_run.gd")
-const Journey = preload("res://core/spatial_run.gd")
-const CURRENT_CHAPTER: int = 23
+const Journey = preload("res://core/economy_run.gd")
+const CURRENT_CHAPTER: int = 24
 const Art = preload("res://ui/visual_assets.gd")
 const RosterPanel = preload("res://ui/roster_panel.gd")
 const IsometricBoard = preload("res://ui/isometric_board.gd")
-const CampaignStore = preload("res://core/spatial_store.gd")
+const CampaignStore = preload("res://core/economy_store.gd")
 var campaign: RefCounted = Advanced.new()
 var last_presentation: Dictionary = {}
 var spatial_qa_dir: String = ""
 var moves_qa_dir: String = ""
+var economy_qa_dir: String = ""
 var run: Dictionary = {}
 var transactions: Array = []
 var travel_root: MarginContainer
@@ -166,6 +167,7 @@ func _boot() -> void:
 		get_tree().change_scene_to_file.call_deferred("res://scenes/laboratory.tscn")
 		return
 	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--economy-qa-dir="): economy_qa_dir = argument.trim_prefix("--economy-qa-dir=")
 		if argument.begins_with("--moves-qa-dir="): moves_qa_dir = argument.trim_prefix("--moves-qa-dir=")
 		if argument.begins_with("--spatial-qa-dir="): spatial_qa_dir = argument.trim_prefix("--spatial-qa-dir=")
 		if argument.begins_with("--campaign-qa-dir="): campaign_qa_dir = argument.trim_prefix("--campaign-qa-dir=")
@@ -191,6 +193,7 @@ func _boot() -> void:
 	if not attack_qa_dir.is_empty(): test_dir = attack_qa_dir
 	if not spatial_qa_dir.is_empty(): test_dir = spatial_qa_dir
 	if not moves_qa_dir.is_empty(): test_dir = moves_qa_dir
+	if not economy_qa_dir.is_empty(): test_dir = economy_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -222,7 +225,8 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
-	if not moves_qa_dir.is_empty(): _open_title(); call_deferred("_run_moves_qa")
+	if not economy_qa_dir.is_empty(): _open_title(); call_deferred("_run_economy_qa")
+	elif not moves_qa_dir.is_empty(): _open_title(); call_deferred("_run_moves_qa")
 	elif not spatial_qa_dir.is_empty(): _open_title(); call_deferred("_run_spatial_qa")
 	elif not attack_qa_dir.is_empty(): _open_title(); call_deferred("_run_attack_qa")
 	elif not seeds_qa_dir.is_empty(): _open_title(); call_deferred("_run_seeds_qa")
@@ -242,6 +246,9 @@ func _run_attack_qa() -> void:
 
 func _run_spatial_qa() -> void:
 	await load("res://ui/qa_spatial.gd").new().run(self,spatial_qa_dir)
+
+func _run_economy_qa() -> void:
+	await load("res://ui/qa_economy.gd").new().run(self,economy_qa_dir)
 
 func _run_moves_qa() -> void:
 	await load("res://ui/qa_moves.gd").new().run(self,moves_qa_dir)
@@ -466,7 +473,7 @@ func _event(command: Dictionary, from_batch: bool = false) -> void:
 	_save()
 	_refresh()
 	practice.observe(self,"accepted",command)
-	if command.kind=="level-up": _play("level-up")
+	if command.kind in ["level-up","train-xp","evolve-free"]: _play("level-up")
 	if run.phase == "battle": board.grab_focus()
 
 func _prepare_campaign_assets() -> void:
@@ -510,7 +517,7 @@ func _upgrade_campaign() -> void:
 	run = result.state
 	transactions.append(command)
 	_prepare_campaign_assets()
-	message = "Versión actualizada. Final, equipo y diario conservados; copia anterior guardada." if run.phase=="ending" else "Aventura ampliada. Equipo, objetos, PS y diario conservados; copia de la partida anterior guardada."
+	message = "Progresión actualizada; niveles y PS conservados. Objetos retirados: +%d ₽ devueltos. Copia anterior guardada." % run.get("economyRefund",0) if run.edition>=20 else ("Versión actualizada. Final, equipo y diario conservados; copia anterior guardada." if run.phase=="ending" else "Aventura ampliada. Equipo, objetos, PS y diario conservados; copia de la partida anterior guardada.")
 	_save()
 	_refresh()
 
@@ -813,7 +820,7 @@ func _simplify_hub() -> void:
 		hub_parts.empty_bag = _label("La bolsa está vacía.",17,MUTED)
 		hub_parts.items.add_child(hub_parts.empty_bag)
 	if travel_buttons.has("use_batch"): travel_buttons.use_batch.visible = owned
-	if travel_buttons.has("batch"): travel_buttons.batch.visible = shop_tab in ["supplies","evolution"]
+	if travel_buttons.has("batch"): travel_buttons.batch.visible = shop_tab in (["supplies"] if run.get("edition",1)>=20 else ["supplies","evolution"])
 	_apply_preferences.call_deferred()
 
 func _render_travel() -> void:
@@ -861,8 +868,8 @@ func _render_travel() -> void:
 		guide.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		travel_content.add_child(guide)
 	if run.get("edition",1)>=12 and run.get("edition",1)<CURRENT_CHAPTER-4 and run.get("phase","") in ["map","shop","complete","ending"]:
-		var upgrade: Button = _button("Actualizar versión · conservar final" if run.phase=="ending" else "Continuar aventura · ampliar Kanto",_upgrade_campaign)
-		upgrade.tooltip_text = "Conserva equipo, PS, objetos y diario. Guarda una copia antes de adoptar la expansión; no transforma un combate en curso."
+		var upgrade: Button = _button("Actualizar versión · conservar final" if run.phase=="ending" else "Actualizar progresión y gimnasios" if CURRENT_CHAPTER>=24 else "Continuar aventura · ampliar Kanto",_upgrade_campaign)
+		upgrade.tooltip_text = "Conserva equipo, nivel, PS y diario; guarda copia. La nueva progresión conserva la proporción de EXP parcial y devuelve el precio de Caramelos/piedras/cables sobrantes. No transforma combates pendientes."
 		travel_content.add_child(upgrade)
 		travel_buttons.upgrade = upgrade
 	if not run.is_empty() and run.get("edition",1)>=8 and not _simple_hub():
@@ -989,6 +996,7 @@ func _render_travel() -> void:
 			text.text = "%s\nOrigen: %s\n\nLa captura ya está sorteada y guardada. Cargar no cambia el resultado. Se admiten duplicados en esta muestra." % [rules.profiles[int(run.reward.speciesId)].data.name + (" · Nv. %d" % run.reward.level if run.reward.has("level") else ""),run.reward.origin]
 			var capture_text: String = "Dar la bienvenida al equipo"
 			if run.get("edition",1)>=12 and run.party.size()>=6: capture_text = "Enviar al PC · equipo completo"
+			if run.get("edition",1)>=20: load("res://ui/economy_menu.gd").capture(self,narrative)
 			_travel_button("capture",capture_text,footer if _simple_hub() else narrative,{"kind":"capture"})
 		"shop":
 			if run.get("edition",1)>=4:
@@ -1016,6 +1024,7 @@ func _render_travel() -> void:
 				stock_grid.add_theme_constant_override("v_separation",8)
 				shop_parent.add_child(stock_grid)
 				shop_parent = stock_grid
+			if run.get("edition",1)>=20: load("res://ui/economy_menu.gd").shop(self,shop_sections.evolution)
 			for item: String in consumables:
 				var destination: Node = shop_sections.traits if item=="ability-capsule" and run.get("edition",1)>=12 else shop_parent
 				if _simple_hub() and (item=="rare-candy" or (run.get("edition",1)>=13 and campaign.evolution_items.has(item))): destination = shop_sections.evolution
@@ -1117,7 +1126,8 @@ func _render_travel() -> void:
 		_build_member_navigation(team)
 		var profile: VBoxContainer = _hub_group(team,"profile")
 		profile.add_child(_label("Ataque %d · At. especial %d\nDefensa %d · Def. especial %d\nVelocidad %d" % [unit.attack,unit.specialAttack,unit.defense,unit.specialDefense,unit.speed],17))
-		profile.add_child(_label("EXP %d / %d" % [selected.xp,campaign.progression.next_xp(selected.level)],17))
+		profile.add_child(_label("EXP %d / %d" % [selected.xp,load("res://ui/economy_menu.gd").needed(self,selected)],17))
+		if run.get("edition",1)>=20: load("res://ui/economy_menu.gd").evolutions(self,profile,selected)
 		var next_form: Dictionary = campaign.progression.evolution(selected)
 		if not next_form.is_empty(): profile.add_child(_label("%s · Nv. %d" % [rules.profiles[int(next_form.speciesId)].data.name,next_form.level],17,GOLD))
 		profile.add_child(_label("Origen: "+selected.origin,16,MUTED))
@@ -1154,20 +1164,22 @@ func _render_travel() -> void:
 			if modern_shop: button.add_theme_font_size_override("font_size",16); button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			button.disabled = selected.hp <= 0 or selected.hp >= unit.maxHp or run.bag[item] <= 0
 		if run.get("edition",1)>=4:
-			var candy: Button = _travel_button("level-up","Usar Caramelo Raro · +1 nivel",team,{"kind":"level-up","member":selected_member})
-			candy.disabled = selected.hp<=0 or selected.level>=campaign.progression.data.levelCap or run.bag["rare-candy"]<=0
-			candy.tooltip_text = "Conserva EXP parcial y PS actuales. La evolución ocurre automáticamente al alcanzar su nivel."
-			if run.get("edition",1)>=7: candy.tooltip_text = "Conserva EXP parcial. Recupera el aumento de PS máximos, incluida la evolución automática al subir de nivel."
-			if run.get("edition",1)>=8:
-				var cap: int = campaign.level_cap(run)
-				candy.disabled = candy.disabled or selected.level>=cap
-				candy.tooltip_text += " Límite actual: nivel %d. No se puede usar al alcanzarlo; la EXP parcial se descarta al llegar al límite." % cap
+			if run.get("edition",1)>=20: load("res://ui/economy_menu.gd").training(self,team,selected)
+			else:
+				var candy: Button = _travel_button("level-up","Usar Caramelo Raro · +1 nivel",team,{"kind":"level-up","member":selected_member})
+				candy.disabled = selected.hp<=0 or selected.level>=campaign.progression.data.levelCap or run.bag["rare-candy"]<=0
+				candy.tooltip_text = "Conserva EXP parcial y PS actuales. La evolución ocurre automáticamente al alcanzar su nivel."
+				if run.get("edition",1)>=7: candy.tooltip_text = "Conserva EXP parcial. Recupera el aumento de PS máximos, incluida la evolución automática al subir de nivel."
+				if run.get("edition",1)>=8:
+					var cap: int = campaign.level_cap(run)
+					candy.disabled = candy.disabled or selected.level>=cap
+					candy.tooltip_text += " Límite actual: nivel %d. No se puede usar al alcanzarlo; la EXP parcial se descarta al llegar al límite." % cap
 			var automatic: Dictionary = campaign.progression.evolution(selected)
 			var evolution_label: Label = _label("Evolución automática: %s · Nv. %d" % [rules.profiles[int(automatic.speciesId)].data.name,automatic.level] if not automatic.is_empty() else "Sin otra evolución de Kanto",17,MUTED)
 			evolution_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			team.add_child(evolution_label)
 			if _simple_hub(): evolution_label.hide()
-			if run.get("edition",1)>=13: _render_evolution_options(team,selected)
+			if run.get("edition",1)>=13 and run.get("edition",1)<20: _render_evolution_options(team,selected)
 			if run.get("edition",1)>=5 and run.get("edition",1)<13 and campaign.progression.data.stoneEvolutions.has(str(int(selected.speciesId))):
 				evolution_label.text = "Evolución con Piedra Hoja · bolsa: %d" % run.bag["leaf-stone"]
 				var stone: Button = _travel_button("stone","Usar Piedra Hoja",team,{"kind":"stone","member":selected_member})
@@ -1280,7 +1292,7 @@ func _shop_panels(parent: VBoxContainer) -> Dictionary:
 	tabs.add_theme_constant_override("separation",8)
 	parent.add_child(tabs)
 	var result: Dictionary = {}
-	for entry: Array in ([["supplies","Medicina"],["evolution","Evolución"],["gear","MT y equipo"],["traits","Rasgos"]] if _simple_hub() else [["supplies","Objetos"],["gear","MT y equipo"],["traits","Rasgos"]]):
+	for entry: Array in ([["supplies","Medicina"],["evolution","Entrenar" if run.get("edition",1)>=20 else "Evolución"],["gear","MT y equipo"],["traits","Rasgos"]] if _simple_hub() else [["supplies","Objetos"],["gear","MT y equipo"],["traits","Rasgos"]]):
 		var button: Button = _button(entry[1],_shop_page.bind(entry[0]))
 		button.theme_type_variation = "TabButton"
 		button.toggle_mode = true
@@ -1420,11 +1432,11 @@ func _progress_summary() -> String:
 func _render_moves(parent: VBoxContainer, member: Dictionary) -> void:
 	var study: RefCounted = campaign.progression
 	var at_cap: bool = run.get("edition",1)>=8 and member.level>=campaign.level_cap(run)
-	var experience: Label = _label("Nv. %d · Límite alcanzado · EXP detenida" % member.level if at_cap else "Nv. %d · EXP %d / %d" % [member.level,member.xp,study.next_xp(member.level)],20,GOLD)
+	var experience: Label = _label("Nv. %d · Límite alcanzado · EXP detenida" % member.level if at_cap else "Nv. %d · EXP %d / %d" % [member.level,member.xp,load("res://ui/economy_menu.gd").needed(self,member)],20,GOLD)
 	experience.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	parent.add_child(experience)
 	var bar: ProgressBar = ProgressBar.new()
-	bar.max_value = study.next_xp(member.level)
+	bar.max_value = load("res://ui/economy_menu.gd").needed(self,member)
 	bar.value = member.xp
 	bar.show_percentage = false
 	bar.custom_minimum_size.y = 9

@@ -1,0 +1,27 @@
+{
+  "version": "0.24.0",
+  "campaignEdition": 20,
+  "combatEdition": 18,
+  "baseline": "4e7b9d7fd6395f31bc37dc80edac1e7925fb9fce",
+  "publishedFilesUnchanged": true,
+  "validatorErrors": 0,
+  "existingWarnings": 65,
+  "newWarnings": 0,
+  "coreChecks": 964,
+  "legacySpatialChecks": 557,
+  "uiChecksPerBuild": {
+    "economy": 57,
+    "spatial": 55,
+    "moves": 304
+  },
+  "sourceExecutableDataAndNaturalJournalsEqual": true,
+  "openingSamples": 6,
+  "openingBrockWins": 3,
+  "longSamples": 3,
+  "longWins": 0,
+  "bestNaturalMedals": 3,
+  "syntheticGymProbes": 8,
+  "syntheticGymWins": 6,
+  "balanceClosed": false,
+  "publicDeployment": false
+}
