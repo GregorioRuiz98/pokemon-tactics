@@ -254,7 +254,8 @@ func _run_moves_qa() -> void:
 	await load("res://ui/qa_moves.gd").new().run(self,moves_qa_dir)
 
 func _run_performance_qa() -> void:
-	await load("res://ui/qa_performance.gd").new().run(self,performance_qa_dir)
+	var script: String = "res://ui/qa_fluency.gd" if "--performance-current" in OS.get_cmdline_user_args() else "res://ui/qa_performance.gd"
+	await load(script).new().run(self,performance_qa_dir)
 
 func _run_seeds_qa() -> void:
 	await load("res://ui/qa_seeds.gd").new().run(self,seeds_qa_dir)

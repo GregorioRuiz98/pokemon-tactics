@@ -1,0 +1,67 @@
+{
+  "assertions": 2,
+  "engine": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "failures": [],
+  "measurements": {
+    "ai-plan-current-12": {
+      "iterations": 5,
+      "medianMs": 6.588,
+      "p95Ms": 6.984,
+      "totalMs": 32.735
+    },
+    "area-hover-current-12": {
+      "iterations": 50,
+      "medianMs": 0.148,
+      "p95Ms": 0.162,
+      "totalMs": 7.609
+    },
+    "area-select-current-12": {
+      "iterations": 10,
+      "medianMs": 5.109,
+      "p95Ms": 5.976,
+      "totalMs": 51.984
+    },
+    "drawCurrent": {
+      "count": 13,
+      "medianMs": 0.709,
+      "p95Ms": 3.123
+    },
+    "framesCurrent": {
+      "count": 120,
+      "medianMs": 3.916,
+      "p95Ms": 5.261
+    },
+    "pick-current-24": {
+      "iterations": 200,
+      "medianMs": 0.003,
+      "p95Ms": 0.004,
+      "totalMs": 0.86
+    },
+    "refresh-current-12": {
+      "iterations": 15,
+      "medianMs": 3.741,
+      "p95Ms": 4.383,
+      "totalMs": 56.894
+    },
+    "save-current-12": {
+      "iterations": 8,
+      "medianMs": 8.673,
+      "p95Ms": 10.349,
+      "totalMs": 66.078
+    }
+  },
+  "renderer": "gl_compatibility",
+  "screenshots": [
+    "current-12-units.png"
+  ]
+}

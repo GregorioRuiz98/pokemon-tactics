@@ -10,7 +10,7 @@ static func aim(app: Control, point: Dictionary) -> Dictionary:
 	return {"x":point.x,"y":point.y,"axis":app.spatial_axis,"throwFacing":app.spatial_throw}
 
 static func preview(app: Control, point: Dictionary) -> Dictionary:
-	var plan: Dictionary = app.rules.cast_plan(app.state,aim(app,point),app.selected_action)
+	var plan: Dictionary = app._spatial_plan(aim(app,point),app.selected_action)
 	app.target_panel.visible = true
 	var unit: Dictionary = app._unit_at(point)
 	app.target_portrait.visible = not unit.is_empty()

@@ -79,6 +79,8 @@
     "godot:qa:context": "node tools/godot/run.mjs qa-context",
     "godot:qa:context:export": "node tools/godot/run.mjs qa-context-export",
     "godot:qa:performance": "node tools/godot/run.mjs qa-performance",
+    "godot:qa:fluency": "node tools/godot/run.mjs qa-fluency",
+    "godot:qa:fluency:export": "node tools/godot/run.mjs qa-fluency-export",
     "godot:qa:performance:export": "node tools/godot/run.mjs qa-performance-export",
     "godot:qa:attack-effects": "node tools/godot/run.mjs qa-attack-effects",
     "godot:qa:attack-effects:export": "node tools/godot/run.mjs qa-attack-effects-export",

@@ -1,0 +1,41 @@
+{
+  "version": "0.24.1",
+  "baseline": "fd1607e814abc1aab96682e6075789ea23711537",
+  "protectedPathsUnchanged": [
+    "godot/core",
+    "godot/data",
+    "godot/tests",
+    "src",
+    "public",
+    "tests",
+    "CREDITS.md"
+  ],
+  "validatorOk": true,
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "coreChecks": {
+    "economy": 964,
+    "spatial": 557
+  },
+  "uiChecksPerBuild": {
+    "economy": 57,
+    "spatial": 55,
+    "moves": 304,
+    "performance": 18,
+    "fluency": 220
+  },
+  "identicalAiCases": 93,
+  "sourceAndExeDecisionsAndReplayMatch": true,
+  "fullCampaignRerun": false,
+  "previousCampaignEvidence": "docs/qa/sprint-24",
+  "publicDeployment": false,
+  "exe": {
+    "bytes": 129950568,
+    "sha256": "abbf5dc798efb472467efe07d387af00596b3ed34af829c3e58c7767fe57e3d0"
+  },
+  "zip": {
+    "bytes": 53854521,
+    "sha256": "c16d944c97a2c51088d8bb2e50c266c107a739dac71da6d8c48223c3b12a4c64"
+  }
+}

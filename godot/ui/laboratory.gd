@@ -1,6 +1,9 @@
 extends Control
 
 const SpatialInput = preload("res://ui/spatial_interaction.gd")
+const TurnPlanner = preload("res://ui/turn_planner.gd")
+var turn_planner: RefCounted = TurnPlanner.new()
+var spatial_plans: Dictionary = {}
 var spatial_axis: int = 0
 var spatial_throw: int = 0
 
@@ -534,15 +537,21 @@ func _process(delta):
 	var actor = Rules.active(state)
 	if actor.team == "enemy":
 		ai_clock += delta
+		if SpatialInput.enabled(self):
+			if turn_planner.phase=="idle": turn_planner.start(rules,state)
+			turn_planner.advance()
+			if not turn_planner.complete: return
 		if ai_clock >= (0.1 if reduced_motion else 0.45):
 			ai_clock = 0
-			_commit(rules.choose_command(state))
+			_commit(turn_planner.decision if SpatialInput.enabled(self) else rules.choose_command(state))
 
 func _player_turn() -> bool:
 	return not state.is_empty() and state.outcome == "playing" and Rules.active(state).team == "ally"
 
 func _refresh():
 	hover_context.clear()
+	turn_planner.clear()
+	spatial_plans.clear()
 	var focused_action: String = ""
 	for identity: String in action_buttons:
 		if action_buttons[identity]==get_viewport().gui_get_focus_owner(): focused_action = identity
@@ -649,7 +658,7 @@ func _refresh():
 		if not state.acted and selecting != "finish":
 			if SpatialInput.enabled(self) and selecting=="attack":
 				for point: Dictionary in rules.aim_points(state,selected_action):
-					if rules.cast_plan(state,SpatialInput.aim(self,point),selected_action).ok: board.attackable[Movement.key(point)] = true
+					if _spatial_plan(SpatialInput.aim(self,point),selected_action).ok: board.attackable[Movement.key(point)] = true
 			else:
 				for unit in Rules.living(state):
 					if rules.attack_plan(state, int(unit.id), {}, selected_action).ok: board.attackable[Movement.key(unit)] = true
@@ -660,6 +669,11 @@ func _refresh():
 	if not focused_action.is_empty() and action_page:
 		var replacement: Control = action_buttons.get(focused_action)
 		if FocusMemory.eligible(replacement): replacement.grab_focus.call_deferred()
+
+func _spatial_plan(point: Dictionary, identity: String) -> Dictionary:
+	var key: String = "%s:%d:%d:%d:%d" % [identity,point.x,point.y,point.get("axis",0),point.get("throwFacing",0)]
+	if not spatial_plans.has(key): spatial_plans[key] = rules.cast_plan(state,point,identity)
+	return spatial_plans[key]
 
 func interaction_context() -> String:
 	# Existing selection fields remain the single source for presentation/input.

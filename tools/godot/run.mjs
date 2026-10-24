@@ -80,7 +80,7 @@ function verify() {
   console.log(`Verified ${manifest.files.length} assets and ${manifest.ruleSources.length} reference source hashes; ${fixtures.games.length} complete battles.`);
 }
 if (operation === 'verify') { verify(); process.exit(0); }
-if (!['qa-economy-export','qa-moves-export','qa-spatial-export','qa-attack-effects-export','qa-export','qa-campaign-export','qa-scale-export','qa-roster-export','qa-journey-export','qa-journey-psychic-export','qa-interface-export','qa-input-export','qa-context-export','qa-updates-export','qa-semantic-export','qa-performance-export','qa-seeds-export'].includes(operation)) {
+if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-export','qa-attack-effects-export','qa-export','qa-campaign-export','qa-scale-export','qa-roster-export','qa-journey-export','qa-journey-psychic-export','qa-interface-export','qa-input-export','qa-context-export','qa-updates-export','qa-semantic-export','qa-performance-export','qa-seeds-export'].includes(operation)) {
   if (!existsSync(binary)) throw new Error('Godot not found. Set GODOT_BIN to the standard Godot 4.7.2 executable.');
   const version = spawnSync(binary, ['--version'], { encoding: 'utf8', windowsHide: true });
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
@@ -123,6 +123,12 @@ if(operation === 'test-economy') {
   run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--seeds-qa-dir='+directory],'seeds-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'seeds-ui-result.json'),'utf8'));
   if(report.failures.length || report.seedProbes!==64 || report.distinctCaptureTraces<2 || report.naturalCaptures.length!==2) throw new Error('Seed regression failed');
+} else if (operation === 'qa-fluency' || operation === 'qa-fluency-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,exported?'fluency-release':'fluency-source');
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--performance-current','--performance-qa-dir='+directory],'fluency-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'performance-result.json'),'utf8'));
+  if(report.failures.length || report.assertions<100 || report.measurements.planner.cases<50) throw new Error('Current performance and AI equivalence QA failed');
 } else if (operation === 'qa-performance' || operation === 'qa-performance-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,exported?'performance-release':'performance-source');

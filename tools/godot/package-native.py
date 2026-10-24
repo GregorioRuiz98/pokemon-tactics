@@ -7,6 +7,9 @@ chapter=int(version.split('.')[1]);patch=int(version.split('.')[2]);modern=chapt
 if version=='0.24.0':
     runpy.run_path(str(ROOT/'tools/godot/package-economy.py'),run_name='__main__')
     raise SystemExit(0)
+if version=='0.24.1':
+    runpy.run_path(str(ROOT/'tools/godot/package-fluency.py'),run_name='__main__')
+    raise SystemExit(0)
 if version=='0.23.1':
     runpy.run_path(str(ROOT/'tools/godot/package-moves.py'),run_name='__main__')
     raise SystemExit(0)

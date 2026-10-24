@@ -1,4 +1,6 @@
-# Pokémon Tactics — Kanto Windows 0.24.0
+# Pokémon Tactics — Kanto Windows 0.24.1
+
+**0.24.1:** [mejoras de fluidez](../docs/PERFORMANCE_0.24.1.md): IA repartida entre fotogramas y caché de previsiones espaciales. Conserva decisiones, balance y guardados.
 
 **Windows 0.24.0:** [progresión, capturas y gimnasios](../docs/SPRINT_24_ECONOMY.md). EXP por especie y entrenamiento por los puntos restantes; evoluciones sin objetos, reroll local pagado y líderes de4–6 Pokémon. Actualización explícita con copia, reembolso y conservación de niveles/PS. Balance provisional.
 
