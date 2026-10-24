@@ -1,0 +1,25 @@
+{
+  "version": "0.23.0",
+  "campaignEdition": 19,
+  "combatEdition": 18,
+  "sourceFingerprint": "296381f32b324714afb8b95b84373e8b07fcbca279a96685e6ffbd02e753652b",
+  "coreChecks": 557,
+  "spatialUiChecks": 63,
+  "birdsChecks": 1121,
+  "psychicChecks": 575,
+  "sourceAndExecutableStatesAndJournalsEqual": true,
+  "finaleOrigin": "previously earned champion checkpoints, explicitly upgraded",
+  "originalSounds": 40,
+  "audioListening": "pending; PCM/hash validation and playback under Dummy",
+  "publicDeployment": false,
+  "exe": {
+    "path": "C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\outputs\\releases\\pokemon-tactics-0.23.0\\windows\\PokemonTactics.exe",
+    "bytes": 129738296,
+    "sha256": "4fd304061f318795d9b7081e8431baf0ee174d22d8e986d3667219d87a8e325d"
+  },
+  "zip": {
+    "path": "C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\outputs\\releases\\pokemon-tactics-0.23.0\\pokemon-tactics-0.23.0-windows.zip",
+    "bytes": 53787164,
+    "sha256": "02e03aa40f9528d3a34caf712cfe0a24f36db806dc54bea4e6c89c7177db85af"
+  }
+}

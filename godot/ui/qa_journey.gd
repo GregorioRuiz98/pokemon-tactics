@@ -75,7 +75,10 @@ func run(app: Control, directory: String) -> void:
 					app.action_page = false
 					app._refresh()
 				driver.choose_action(app,tactical.actionId)
-				var target: Dictionary = app.rules.unit_by_id(app.state,int(tactical.target))
+				var target: Dictionary = tactical.get("aim",app.rules.unit_by_id(app.state,int(tactical.target)))
+				if tactical.has("aim"):
+					app.spatial_axis = int(tactical.aim.get("axis",0))
+					app.spatial_throw = int(tactical.aim.get("throwFacing",0))
 				app.board.focus_point(target)
 				driver.hover(app,target)
 				driver.click(app,target)
@@ -109,7 +112,9 @@ func run(app: Control, directory: String) -> void:
 		else: app._event(command)
 		var matching: bool = Store.equivalent(app.run,expected.state)
 		check(matching,"UI matches authoritative journey result: "+str(command))
-		if not matching: break
+		if not matching:
+			print("JOURNEY_MISMATCH actual order: "+str(app.run.get("battleCommands",[]).back() if not app.run.get("battleCommands",[]).is_empty() else {}))
+			break
 		if command.kind=="enter" and app.campaign.locations[int(app.run.stage)].get("kind","")=="story":
 			check(app.run.phase=="shop" and "surf" in app.run.flags,"Safari narrative enters shop without fake combat")
 			await capture(app,directory,"safari")

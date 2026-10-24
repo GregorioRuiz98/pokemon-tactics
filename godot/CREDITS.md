@@ -126,3 +126,10 @@ Guías vectoriales de composición, rombos de suelo, obstáculos esquemáticos, 
 ## Sonidos de combate · 0.22.17
 
 26 señales nuevas creadas con el sintetizador jsfxr ya incluido, repositorio chr15m/jsfxr, commit b7b6aa27d62f8f356db267276bf54b451555c49d, Unlicense. Parámetros, semilla, hashes y tratamiento de volumen en assets/combat/manifest.json; generador reproducible tools/godot/import-combat-audio.mjs. Motivos animados mediante dibujo nativo de Godot y efectos gráficos existentes de 0.22.16. No son sonidos extraídos de un cartucho.
+
+
+## Movimientos espaciales y audio · 0.23.0
+
+40 muestras WAV nombradas por movimiento, incluido PRSFX- Hyper Beam.wav, desde AxelLoquendo/PokeDot-Engine, commit edc3ffb06439b01a1f9ba31272b0bb187712dff0. Archivos originales sin modificar, URL individual, SHA256, duración y ganancia en assets/original-moves/manifest.json. Grabaciones de Pokémon: GAME FREAK/Nintendo/Creatures y titulares respectivos; su disponibilidad pública no implica licencia de audio ni cesión de derechos. La licencia de código del repositorio no se aplica automáticamente a las grabaciones. Edición concreta de origen no verificada; algunas muestras numeradas son fases individuales. Aviso conservado en licenses/POKEMON_MOVE_AUDIO.txt.
+
+Geometrías, símbolos de zona, secuencias y motivos vectoriales nuevos creados para este proyecto. Se reutilizan los sprites, retratos, tipografía y recursos anteriores sin modificarlos.

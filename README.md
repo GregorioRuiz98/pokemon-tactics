@@ -1,6 +1,7 @@
 # Pokémon Tactics
 
-Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: campaña de Kanto Windows 0.22.17 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
+**Windows 0.23.0:** [movimientos espaciales, zonas y sonidos originales](docs/SPRINT_23_SPATIAL.md). [Tabla aplicada para revisión](docs/reports/moves-2026-10-24/aplicacion-0.23.csv). Actualización de aventura desde mapa/tienda; las partidas anteriores conservan sus reglas hasta actualizar.
+Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: campaña de Kanto Windows 0.23.0 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
 
 **Kanto nativo:** campaña hasta la Liga y dos finales legendarios alternativos. Capturas locales, niveles/evolución, movimientos/MT LGPE combinados, naturalezas/habilidades y PC. Ejecutable Windows offline. 151 especies; 49/78 habilidades normales activas. 42 imágenes nuevas integradas; pruebas humanas y publicación pendientes.
 

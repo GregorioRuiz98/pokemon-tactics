@@ -4,6 +4,7 @@ signal cue_requested(identity: String)
 signal cancelled
 const Rules = preload("res://core/battle.gd")
 const Art = preload("res://ui/visual_assets.gd")
+const SpatialEffects = preload("res://ui/spatial_effects.gd")
 const COLORS: Dictionary = {"normal":"e8dcb5","fire":"ff9c48","water":"65c9fa","electric":"ffe46b","grass":"9de477","ice":"b4f2ff","fighting":"eea079","poison":"cd9eea","ground":"d4ac75","flying":"c8eaf3","psychic":"f0a3e8","bug":"c5db71","rock":"d3bb96","ghost":"b7a7f1","dragon":"9eaffe","dark":"bba9c9","steel":"d2e1e6","fairy":"ffd0eb"}
 var board: Control
 var origin: Dictionary = {}
@@ -15,6 +16,8 @@ var length: float = 0.64
 var impacted: bool = false
 var active: bool = false
 var outcome_cue: String = "impact"
+var tiles: Array = []
+var aim: Dictionary = {}
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -37,12 +40,20 @@ static func describe(definition: Dictionary) -> Dictionary:
 	elif definition.get("category","")=="physical" and int(definition.get("range",1))<=1: style = "strike"
 	elif identity.contains("beam") or identity in ["flamethrower","hydro-pump","thunderbolt","psychic"]: style = "beam"
 	elif definition.get("kind","")=="area-damage" or identity in ["earthquake","surf","explosion","self-destruct"]: style = "wave"
-	return {"element":element,"color":Color(COLORS[element]),"style":style,"cue":cue,"name":str(definition.get("name","Ataque"))}
+	var result: Dictionary = {"element":element,"color":Color(COLORS[element]),"style":style,"cue":cue,"name":str(definition.get("name","Ataque")),"spatial":definition.has("spatialDescription")}
+	if result.spatial:
+		result.signature = SpatialEffects.style(definition)
+		result.variant = absi(identity.hash())%11
+		var original: Dictionary = SpatialEffects.audio(identity)
+		if not original.is_empty(): result.cue = "original/"+identity; result.audioDuration = float(original.duration)
+	return result
 
 func stop() -> void:
 	active = false
 	origin = {}
 	targets = []
+	tiles = []
+	aim = {}
 	set_process(false)
 	queue_redraw()
 	if board!=null: board.queue_redraw()
@@ -53,10 +64,18 @@ func start(before: Dictionary, plan: Dictionary, receipts: Array, definition: Di
 	origin = Rules.active(before).duplicate(true)
 	if origin.is_empty() or board==null or not board.visible: return
 	profile = describe(definition)
+	tiles = plan.get("tiles",[]).duplicate(true)
+	aim = plan.get("aim",origin).duplicate()
+	if str(definition.get("shape","")).begins_with("L"):
+		for point: Dictionary in tiles:
+			if absi(int(point.x)-int(origin.x))+absi(int(point.y)-int(origin.y))>absi(int(aim.x)-int(origin.x))+absi(int(aim.y)-int(origin.y)): aim = point.duplicate()
 	clock = 0
 	impacted = false
 	impact_at = 0.0 if board.reduced_motion else (0.14 if profile.style in ["heal","guard","support"] else 0.24)
 	length = 0.32 if board.reduced_motion else 0.64
+	if profile.get("spatial",false):
+		impact_at = 0.0 if board.reduced_motion else (.55 if profile.signature=="hyper-beam" else .28)
+		length = maxf(length,float(profile.get("audioDuration",0))+.08)
 	var cues: Array = []
 	for receipt: Dictionary in receipts:
 		if receipt.get("recoil",false): continue
@@ -74,6 +93,7 @@ func start(before: Dictionary, plan: Dictionary, receipts: Array, definition: Di
 		elif receipt.damage==0: kind = "buff" if unit.team==origin.team else "debuff"
 		cues.append(kind)
 		targets.append({"unit":unit.duplicate(true),"kind":kind})
+	if targets.is_empty() and profile.get("spatial",false): targets.append({"unit":{"x":aim.x,"y":aim.y,"id":-1},"kind":"field"})
 	if targets.is_empty(): stop(); return
 	for candidate: String in ["critical","impact","heal","guard","buff","debuff","immune","miss"]:
 		if candidate in cues: outcome_cue = candidate; break
@@ -90,7 +110,7 @@ func advance(delta: float) -> void:
 	clock += delta
 	if not impacted and (clock>=impact_at or board.reduced_motion):
 		impacted = true
-		cue_requested.emit(outcome_cue)
+		if not profile.cue.begins_with("original/"): cue_requested.emit(outcome_cue)
 	if clock>=length: stop(); return
 	position = board.play_area().position
 	size = board.play_area().size
@@ -103,6 +123,7 @@ func _process(delta: float) -> void:
 func offset_for(unit: Dictionary) -> Vector2:
 	if not active or board.reduced_motion: return Vector2.ZERO
 	if unit.id==origin.id and clock<impact_at:
+		if targets.is_empty(): return Vector2.ZERO
 		var toward: Vector2 = (board.center(targets[0].unit)-board.center(origin)).normalized()
 		var progress: float = clampf(clock/maxf(impact_at,0.01),0,1)
 		return (board.center(origin)-board.center(unit))*(1-progress)+toward*sin(progress*PI)*(12 if profile.style in ["strike","slash"] else 3)
@@ -113,6 +134,7 @@ func offset_for(unit: Dictionary) -> Vector2:
 		var amount: float = clampf((clock-impact_at)/maxf(0.01,length-impact_at),0,1)
 		for target: Dictionary in targets:
 			if target.unit.id==unit.id and target.kind in ["impact","critical","miss"]:
+				if profile.get("signature","")=="throw": return (board.center(target.unit)-board.center(unit))*(1-amount)-Vector2(0,sin(amount*PI)*38)
 				return (board.center(target.unit)-board.center(unit))*(1-amount)+Vector2(sin(amount*PI)*(-8 if target.kind=="miss" else 5),0)
 	return Vector2.ZERO
 
@@ -151,9 +173,12 @@ func _draw() -> void:
 	var color: Color = profile.color
 	var unit_scale: float = clampf(board.cell_size()/64.0,0.65,1.3)
 	var preparation: float = clampf(clock/maxf(0.01,impact_at),0,1)
+	SpatialEffects.cast(self)
 	for target: Dictionary in targets:
+		if target.kind=="field": continue
 		var to: Vector2 = _point(target.unit)
 		if not impacted and not board.reduced_motion:
+			if profile.get("spatial",false) and profile.signature!="signature": continue
 			if profile.style in ["strike","slash"]:
 				draw_arc(from,12*unit_scale,0,TAU*preparation,16,Color(color,.65),2)
 			elif profile.style in ["heal","support","guard"]:

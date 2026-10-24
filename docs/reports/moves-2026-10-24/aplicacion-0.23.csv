@@ -1,0 +1,213 @@
+﻿ID;Forma aplicada;Zona;Especial;Empuje;Atracción;PT mínimo;Daño de área;Estado breve;Descripción aplicada
+absorb;individual a tres casillas;;;0;0;0;1;;Mantener drenaje sobre un solo objetivo.
+acid;cono corto;;;0;0;3;0.8;;Abanico corto de ácido, sin charco por defecto.
+aqua-jet;aproximación y golpe;;;0;0;0;1;;Mantener acercamiento vigente y golpe individual. Mostrar recorrido y destino antes de aceptar.
+sharpen;usuario;;;0;0;0;1;;Mantener la mejora de Ataque propia.
+vice-grip;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+agility;usuario;;;0;0;0;1;;Mantener la mejora propia de Velocidad.
+tail-whip;cono corto;;;0;0;3;0.8;;Aplicar la bajada de Defensa a un frente corto.
+feint;individual;;;0;0;0;1;;Individual: superar la protección activa del objetivo, sin ignorar paredes.
+amnesia;usuario;;;0;0;0;1;;Mantener la mejora propia de Defensa Especial.
+disable;individual a dos casillas;;disable;0;0;0;1;;Impedir usar el último movimiento del rival durante una activación.
+scratch;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+acid-armor;usuario;;;0;0;0;1;;Disuelve su cuerpo para ganar Defensa.
+ember;individual a tres casillas;;;0;0;0;1;;Mantener proyectil de fuego individual.
+bind;individual;;bound;0;0;0;1;;Agarre individual: dificulta alejarse del usuario durante la siguiente activación del rival.
+sky-attack;salto y golpe;;;0;0;0;1;;Elegir aterrizaje próximo y atacar un objetivo. La cruz de aterrizaje es una alternativa posterior.
+wing-attack;aproximación y golpe;;;0;0;0;1;;Mantener acercamiento vigente y golpe individual. Mostrar recorrido y destino antes de aceptar.
+sand-attack;cono corto;;;0;0;3;0.8;;Abanico instantáneo de arena que baja Precisión. No deja zona persistente.
+fury-attack;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+quick-attack;aproximación y golpe;;;0;0;0;1;;Mantener acercamiento vigente y golpe individual. Mostrar recorrido y destino antes de aceptar.
+slam;individual;;;0;0;0;1;;Conservar el golpe individual y el empuje actual de una casilla.
+self-destruct;ocho casillas alrededor;;;0;0;5;0.8;;Explosión pequeña de ocho vecinos y autodebilitamiento.
+rock-slide;franja transversal;;;0;0;3;0.8;;Tres casillas en una fila a alcance tres, elegidas como caída de rocas.
+barrier;pantalla de tres casillas;wall;field;0;0;4;0.8;;"Crea una barrera temporal de tres casillas libres. Bloquea movimiento y visión; Q/E gira su orientación."
+basic;individual;;;0;0;0;1.0;;Mantener golpe neutro gratuito, sin STAB, sobre un solo objetivo.
+lovely-kiss;individual a dos casillas;;;0;0;0;1;;Mantener estado sobre un objetivo, con duración temporal visible.
+shadow-ball;individual a tres casillas;;;0;0;0;1;;Mantener un proyectil individual y sus efectos secundarios.
+egg-bomb;cruz de cinco casillas;;;0;0;3;0.8;;Proyectil arrojado hasta tres casillas y explosión en cruz al impactar.
+sludge-bomb;cruz de cinco casillas;;;0;0;3;0.8;;Proyectil arrojado hasta tres casillas y explosión en cruz al impactar.
+sonic-boom;línea de tres;;;0;0;3;0.8;;Onda en línea de tres casillas. Conserva la fórmula de daño táctica existente.
+barrage;cruz de cinco casillas;;;0;0;3;0.8;;"Lanzar una tanda al centro de una cruz; repartir un presupuesto total de impactos."
+yawn;individual a dos casillas;;yawn;0;0;0;1;;"Aplicar somnolencia anunciada; el sueño llega al finalizar la siguiente activación del objetivo."
+dazzling-gleam;ocho casillas alrededor;;;0;0;4;0.8;;Pulso alrededor del usuario, ocho casillas contiguas.
+bubble;cono corto;;;0;0;3;0.8;;Abanico de burbujas, con su efecto de Velocidad por objetivo.
+skull-bash;aproximación y golpe;;;1;0;0;1;;Carga individual de hasta dos casillas de aproximación y empuje de una casilla al impactar.
+flash-cannon;línea de tres;;;0;0;3;0.8;;Rayo de tres casillas, con efectos secundarios actuales por objetivo.
+sing;ocho casillas alrededor;;;0;0;4;0.8;1;Canto local alrededor del usuario, que intenta dormir a quienes lo oyen.
+play-rough;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+waterfall;aproximación y golpe;;;0;0;0;1;;"Avance corto hacia un objetivo y golpe individual; permitir subir solo un desnivel legal."
+screech;cono corto;;;0;0;3;0.8;;Cono corto de sonido que aplica la bajada de atributos propia.
+leech-life;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+spike-cannon;línea de tres;;;0;0;3;0.8;;Salva dirigida por un corredor de tres casillas, repartiendo impactos.
+dragon-tail;individual;;;2;0;0;1;;Golpe de cola individual que empuja dos casillas.
+iron-tail;barrido frontal;;;1;0;3;0.8;;Barrido de cola de tres casillas frontales y empuje de una casilla.
+dream-eater;individual a tres casillas;;;0;0;0;1;;Mantener drenaje sobre un solo objetivo.
+confusion;individual a tres casillas;;;0;0;0;1;;Mantener daño psíquico individual, sin atracción por defecto.
+wrap;individual;;bound;0;0;0;1;;Agarre individual: dificulta alejarse del usuario durante la siguiente activación del rival.
+counter;individual a tres casillas;;counter;0;0;0;1;;"Respuesta dirigida al último agresor válido; daño condicionado al tipo físico o especial recibido."
+conversion;usuario;;conversion;0;0;0;1;;Adopta hasta acabar el combate el tipo del primer movimiento ofensivo preparado.
+horn-attack;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+bulk-up;usuario;;;0;0;0;1;;Mantener Ataque y Defensa propios.
+cut;barrido frontal;;;0;0;3;0.8;;Barrido de tres casillas inmediatamente delante del usuario.
+slash;barrido frontal;;;0;0;3;0.8;;Barrido de tres casillas inmediatamente delante del usuario.
+quiver-dance;usuario;;;0;0;0;1;;Mantener las tres mejoras propias.
+swords-dance;usuario;;;0;0;0;1;;Mantener Ataque propio.
+petal-dance;cruz cercana;;;0;0;3;0.8;;Cruz de cuatro vecinos alrededor del usuario, sin incluir al propio usuario.
+brick-break;individual;;;0;0;0;1;;Golpe individual que elimina la pantalla o barrera intersectada antes del daño.
+take-down;aproximación y golpe;;;1;0;0;1;;Carga individual de hasta dos casillas de aproximación y empuje de una casilla al impactar.
+growth;usuario;;;0;0;0;1;;Mantener el crecimiento de Ataque y Ataque Especial propio.
+rest;usuario;;;0;0;0;1;;Mantener recuperación propia. Descanso conserva sueño y Respiro su posible coste de exposición.
+glare;individual a dos casillas;;;0;0;0;1;;Mantener estado sobre un objetivo, con duración temporal visible.
+flash;ocho casillas alrededor;;;0;0;4;0.8;;Destello inmediato en ocho vecinos, con bajada de Precisión temporal.
+pound;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+pay-day;individual a tres casillas;;pay-day;0;0;0;1;;Proyecta monedas a un objetivo. Otorga 25 ₽ adicionales al ganar, una sola vez por encuentro.
+string-shot;línea de tres;web;field;0;0;3;0.8;;Deja hilo en un corredor de tres casillas. Añade coste de movimiento a quien cruza por tierra.
+twineedle;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+double-slap;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+double-team;usuario;;;0;0;0;1;;Mantener Evasión propia. No crear clones sólidos en este primer rework.
+double-edge;aproximación y golpe;;;1;0;0;1;;Carga individual de hasta dos casillas de aproximación y empuje de una casilla al impactar.
+double-kick;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+leech-seed;individual a dos casillas;;;0;0;0;1;;Planta Drenadoras en un objetivo a dos casillas. No crea una trampa de suelo.
+outrage;ocho casillas alrededor;;;0;0;4;0.8;;Ataque alrededor del usuario, sin elegir enemigos lejanos.
+flare-blitz;aproximación y golpe;;;1;0;0;1;;Carga individual de hasta dos casillas de aproximación y empuje de una casilla al impactar.
+scald;línea de dos;;;0;0;3;0.8;;"Chorro corto de dos casillas que conserva posibilidad de quemar; apaga fuego de suelo en el corredor."
+mirror-move;individual a tres casillas;;mirror-move;0;0;3;1;;Repetir el último movimiento recibido válido, con objetivos y forma legales.
+spore;cruz cercana;;;0;0;3;0.8;1;Esporas en los cuatro vecinos cardinales, sin nube persistente.
+ice-shard;individual a tres casillas;;;0;0;0;1;;Proyectil individual de hasta tres casillas.
+dig;salto y golpe;;;0;0;0;1;;Desplazamiento subterráneo corto y ataque individual al emerger.
+explosion;rombo de radio dos;;;0;0;5;0.8;;Explosión en rombo de radio dos alrededor del usuario, con autodebilitamiento.
+facade;individual;;;0;0;0;1;;Golpe individual con el doble de potencia si el usuario tiene un estado principal.
+fissure;línea de tres;;;0;0;3;0.8;;Grieta de tres casillas en suelo continuo, sin KO automático.
+focus-energy;usuario;;;0;0;0;1;;Mantener la preparación personal de crítico.
+harden;usuario;;;0;0;0;1;;Mantener la mejora de Defensa propia.
+will-o-wisp;individual a dos casillas;;;0;0;0;1;;Mantener estado sobre un objetivo, con duración temporal visible.
+strength;individual;;;1;0;0;1;;"Golpe individual que empuja una casilla; Fuerza podría empujar dos en un prototipo posterior."
+superpower;individual;;;0;0;0;1;;Mantener golpe individual fuerte y bajadas propias posteriores.
+moonblast;individual a tres casillas;;;0;0;0;1;;Mantener un proyectil individual y sus efectos secundarios.
+rage;usuario;;rage;0;0;0;1;;Mantener o recuperar una mejora propia al recibir daño tras activarla.
+dragon-rage;individual a tres casillas;;;0;0;0;1;;Mantener objetivo individual y daño fijo adaptado.
+poison-gas;cruz de cinco casillas;poison;field;0;0;3;0.8;;Nube venenosa en cruz. Intenta envenenar al entrar o comenzar activación dentro.
+fire-spin;cruz de cinco casillas;fire;;0;0;3;0.6;;Vórtice local: daño inicial bajo, paso terrestre más caro y daño al comenzar activación dentro.
+sucker-punch;aproximación y golpe;;;0;0;0;1;;Mantener acercamiento vigente y golpe individual. Mostrar recorrido y destino antes de aceptar.
+headbutt;individual;;;0;0;0;1;;Conservar el golpe individual y el empuje actual de una casilla.
+body-slam;individual;;;1;0;0;1;;Golpe individual que puede paralizar y empuja una casilla si queda libre.
+karate-chop;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+fury-swipes;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+growl;cono corto;;;0;0;3;0.8;;Cono corto de sonido que aplica la bajada de atributos propia.
+guillotine;individual;;;0;0;0;1;;Mantener golpe potente individual, sin KO directo.
+hydro-pump;línea de tres;;;1;0;3;0.8;;Chorro perforante con empuje de una casilla a los objetivos alcanzados.
+hyper-fang;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+hyper-beam;línea de cuatro;;;0;0;4;0.8;;Línea perforante de cuatro casillas. Señalar la trayectoria antes de resolverla.
+hypnosis;individual a dos casillas;;;0;0;0;1;;Mantener estado sobre un objetivo, con duración temporal visible.
+razor-leaf;cono corto;;;0;0;3;0.8;;Abanico de hojas con la bonificación de crítico actual por objetivo.
+bone-club;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+bonemerang;línea de tres;;;0;0;3;0.8;;Hueso que recorre una línea de tres casillas y vuelve por ella.
+u-turn;golpe y retirada;;;0;0;0;1;;Golpe individual seguido de retirada de una casilla libre.
+thunder-shock;individual a tres casillas;;;0;0;0;1;;Mantener descarga individual a distancia.
+foul-play;individual;;;0;0;0;1;;Golpe individual que usa el Ataque del rival para calcular su potencia.
+kinesis;individual a dos casillas;;;0;0;0;1;;Mantener desorientación visual de un objetivo.
+flamethrower;línea de tres;;;0;0;3;0.8;;Chorro que daña las tres casillas frontales. Conservar la posibilidad de quemadura.
+rock-throw;individual a tres casillas;;;0;0;0;1;;Proyectil individual de roca a tres casillas.
+power-whip;barrido frontal;;;0;0;3;0.8;;Barrido fuerte frontal de tres casillas, sin atracción por defecto.
+vine-whip;individual a dos casillas;;;0;1;0;1;;Látigo a dos casillas. Atrae una casilla hacia el usuario si queda libre.
+lick;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+fire-blast;estrella de siete casillas;;;0;0;4;0.8;;Silueta de siete casillas inspirada en el kanji 大, orientada desde el usuario.
+leer;cono corto;;;0;0;3;0.8;;Aplicar la bajada de Defensa a un frente corto.
+mirror-coat;individual a tres casillas;;counter;0;0;0;1;;"Respuesta dirigida al último agresor válido; daño condicionado al tipo físico o especial recibido."
+nasty-plot;usuario;;;0;0;0;1;;Mantener Ataque Especial propio.
+crabhammer;individual;;;1;0;0;1;;Golpe individual que empuja una casilla si queda libre.
+meditate;usuario;;;0;0;0;1;;Mantener la mejora propia de Ataque.
+mega-drain;individual a tres casillas;;;0;0;0;1;;Mantener drenaje sobre un solo objetivo.
+megahorn;aproximación y golpe;;;0;0;0;1;;Aproximación recta hasta dos casillas y golpe individual.
+mega-kick;individual;;;1;0;0;1;;"Golpe individual que empuja una casilla; Fuerza podría empujar dos en un prototipo posterior."
+mega-punch;individual;;;1;0;0;1;;"Golpe individual que empuja una casilla; Fuerza podría empujar dos en un prototipo posterior."
+swift;cono corto;;;0;0;3;0.8;;Abanico de cuatro casillas. Conserva su propiedad de no fallar.
+metronome;técnica aleatoria;;metronome;0;0;3;1;;"Elige al confirmar entre Ascuas, Bola Sombra e Impactrueno. La previsión muestra el intervalo posible; no enseña el resultado del sorteo."
+mimic;individual a dos casillas;;mimic;0;0;0;1;;Copia el último movimiento válido del objetivo en la ranura de Mimético hasta acabar el combate.
+taunt;individual a dos casillas;;taunt;0;0;0;1;;"El rival no puede usar apoyo durante una activación; conserva ataques y movimiento."
+bite;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+mist;cruz de cinco casillas;mist;field;0;0;3;0.8;;Neblina protectora: las unidades dentro no reciben bajadas de atributos de rivales.
+haze;rombo de radio dos;;haze;0;0;4;0.8;;Restablecer las etapas de atributos de todos los Pokémon del rombo, incluido el usuario.
+clear-smog;cruz de cinco casillas;;;0;0;3;0.8;;Daño en cruz y restablecimiento de etapas de los objetivos impactados.
+heat-wave;ola de seis casillas;;;0;0;4;0.8;;Onda frontal de seis casillas en dos filas de tres.
+thunder-wave;individual a dos casillas;;;0;0;0;1;;Mantener parálisis dirigida a un objetivo.
+encore;individual a dos casillas;;encore;0;0;0;1;;Durante una activación, limitar la elección al último movimiento o al básico si aquel es ilegal.
+soft-boiled;aliado próximo;;;0;0;0;1;;Permitir curar a un aliado a dos casillas, manteniendo una opción propia.
+smokescreen;cruz de cinco casillas;smoke;field;0;0;3;0.8;;Nube en cruz a alcance tres. Una única penalización virtual de Precisión −1 al atacar desde ella o al cruzarla con un disparo visual.
+light-screen;pantalla de tres casillas;light-screen;field;0;0;3;0.8;;Colocar una pantalla de tres casillas que reduce el daño especial de disparos que la cruzan.
+stun-spore;cono corto;;;0;0;3;0.8;;Abanico instantáneo de polvo. Aplicar el estado propio a cada objetivo alcanzado.
+low-kick;individual;;;0;0;0;1;;"Golpe individual; conserva la potencia táctica adaptada, sin cálculo por peso."
+rolling-kick;barrido frontal;;;0;0;3;0.8;;Barrido frontal corto de tres casillas, sin empuje inicial.
+jump-kick;salto y golpe;;;0;0;0;1;;Salto a un objetivo a dos casillas con aterrizaje legal y golpe individual.
+high-jump-kick;salto y golpe;;;0;0;0;1;;Salto a un objetivo a dos casillas con aterrizaje legal y golpe individual.
+calm-mind;usuario;;;0;0;0;1;;Mantener Ataque Especial y Defensa Especial propios.
+horn-drill;individual;;;0;0;0;1;;Mantener golpe potente individual, sin KO directo.
+drill-peck;aproximación y golpe;;;0;0;0;1;;Aproximación recta hasta dos casillas y golpe individual.
+peck;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+poison-sting;individual a dos casillas;;;0;0;0;1;;Proyectil venenoso individual a dos casillas, sin nube.
+pin-missile;línea de tres;;;0;0;3;0.8;;Salva dirigida por un corredor de tres casillas, repartiendo impactos.
+stomp;individual;;;1;0;0;1;;Golpe individual que empuja una casilla si queda libre.
+water-gun;línea de dos;;;0;0;3;0.8;;Chorro corto de dos casillas, sin empuje inicial.
+tackle;individual;;;0;0;0;1;;Mantener una embestida individual sin empuje.
+smog;cruz de cinco casillas;poison;;0;0;3;0.65;;Daño inicial reducido en cruz y nube que puede envenenar, sin reducir Precisión.
+poison-powder;cono corto;;;0;0;3;0.8;;Abanico instantáneo de polvo. Aplicar el estado propio a cada objetivo alcanzado.
+protect;usuario;;;0;0;0;1;;"Conservar protección individual; definir su duración hasta la próxima activación si se revisa."
+psywave;individual a tres casillas;;;0;0;0;1;;Ataque individual con la adaptación actual, sin fórmula nueva ligada al nivel.
+psybeam;línea de tres;;;0;0;3;0.8;;Rayo de tres casillas, con efectos secundarios actuales por objetivo.
+psychic;cruz de cinco casillas;;;0;0;3;0.8;;Impacto psíquico en una cruz de cinco casillas a alcance tres.
+dragon-pulse;línea de tres;;;0;0;3;0.8;;Rayo de tres casillas, con efectos secundarios actuales por objetivo.
+dark-pulse;ocho casillas alrededor;;;0;0;4;0.8;;Pulso alrededor del usuario, ocho casillas contiguas.
+comet-punch;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+fire-punch;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+ice-punch;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+dizzy-punch;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+thunder-punch;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+poison-jab;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+thunderbolt;franja transversal;;;0;0;3;0.8;;Descarga en fila de tres casillas, centrada en la casilla elegida a alcance tres.
+aurora-beam;línea de tres;;;0;0;3;0.8;;Rayo de tres casillas, con efectos secundarios actuales por objetivo.
+bubble-beam;línea de tres;;;0;0;3;0.8;;Hilera de burbujas en tres casillas con su bajada de Velocidad actual.
+confuse-ray;individual a dos casillas;;;0;0;0;1;;Mantener estado sobre un objetivo, con duración temporal visible.
+ice-beam;línea de tres;;;0;0;3;0.8;;Rayo perforante de tres casillas con su efecto de hielo actual.
+solar-beam;línea de cuatro;;;0;0;4;0.8;;Línea perforante de cuatro casillas. Señalar la trayectoria antes de resolverla.
+recover;usuario;;;0;0;0;1;;Mantener recuperación propia. Descanso conserva sueño y Respiro su posible coste de exposición.
+minimize;usuario;;;0;0;0;1;;Mantener Evasión propia.
+reflect;pantalla de tres casillas;reflect;field;0;0;3;0.8;;Pantalla de tres casillas: protege del daño físico que atraviesa su frente.
+helping-hand;aliado próximo;;help;0;0;0;1;;Dar a un aliado próximo una mejora para su próxima acción ofensiva.
+withdraw;usuario;;;0;0;0;1;;Mantener Defensa propia.
+whirlwind;cono corto;;push;2;0;3;0.8;;Cono de viento que empuja dos casillas y limpia humo o gases intersectados.
+sludge;cruz de cinco casillas;mud;;0;0;3;0.7;;Impacto en una cruz y charco que cuesta un punto adicional de movimiento a terrestres.
+roost;usuario;;;0;0;0;1;;Mantener recuperación propia. Descanso conserva sueño y Respiro su posible coste de exposición.
+constrict;individual;;bound;0;0;0;1;;Agarre individual: dificulta alejarse del usuario durante la siguiente activación del rival.
+defense-curl;usuario;;;0;0;0;1;;Mantener Defensa propia.
+shell-smash;usuario;;;0;0;0;1;;Mantener mejoras y bajadas del propio usuario.
+roar;cono corto;;push;1;0;3;0.8;;Grito en cono que empuja una casilla a las unidades alcanzadas. No da protección.
+splash;destino libre;;teleport;0;0;0;1;;Salta a una casilla adyacente libre gastando la acción. No da protección.
+thrash;ocho casillas alrededor;;;0;0;4;0.8;;Ataque alrededor del usuario, sin elegir enemigos lejanos.
+seismic-toss;lanzamiento dirigido;;throw;2;0;0;1;;Agarre adyacente y lanzamiento a una casilla libre próxima elegida, sin daño de aterrizaje en área.
+sleep-powder;cono corto;;;0;0;3;0.8;1;Abanico instantáneo de polvo. Aplicar el estado propio a cada objetivo alcanzado.
+fake-out;individual;;fake-out;0;0;0;1;;Individual: apertura o interrupción breve claramente limitada, sin bloqueo repetible.
+submission;lanzamiento dirigido;;throw;2;0;0;1;;Agarre adyacente y lanzamiento a una casilla libre próxima elegida, sin daño de aterrizaje en área.
+super-fang;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+supersonic;línea de dos;;;0;0;3;0.8;;Onda estrecha de dos casillas que puede confundir a quien alcance.
+surf;ola de seis casillas;;;1;0;4;0.8;;Ola frontal ancha que avanza dos filas y empuja una casilla.
+substitute;usuario;;substitute;0;0;3;1;;Paga un cuarto de sus PS máximos para crear un escudo de esos PS. Absorbe impactos y efectos directos durante tres activaciones.
+air-slash;franja transversal;;;0;0;3;0.8;;Barrido frontal de tres casillas a distancia dos o tres.
+drill-run;aproximación y golpe;;;0;0;0;1;;Aproximación recta hasta dos casillas y golpe individual.
+teleport;destino libre;;teleport;0;0;0;1;;Mover al usuario a una casilla libre visible a un máximo de tres, sin daño.
+clamp;individual;;bound;0;0;0;1;;Agarre individual: dificulta alejarse del usuario durante la siguiente activación del rival.
+earthquake;rombo de radio dos;;;0;0;4;0.8;;Onda terrestre en rombo de radio dos, centrada en el usuario.
+x-scissor;aspa;;;0;0;3;0.8;;Cruce de cinco casillas centrado una casilla delante del usuario.
+night-shade;individual a tres casillas;;;0;0;0;1;;Daño individual con la adaptación actual, sin fórmula nueva ligada al nivel.
+gust;línea de dos;;;1;0;3;0.8;;Ráfaga en línea de dos casillas. Empuja una casilla al primer rival y disipa humo y gas en el corredor.
+toxic;individual a dos casillas;;;0;0;0;1;;Mantener estado sobre un objetivo, con duración temporal visible.
+stealth-rock;cruz de cinco casillas;rocks;field;0;0;3;0.8;;Colocar rocas visibles sobre cinco casillas transitables. Dañan al entrar, incluidos empujes y atracciones.
+transform;individual a dos casillas;;;0;0;0;1;;Mantener Transformación actual sobre un objetivo, sin área.
+tri-attack;abanico;;;0;0;3;0.8;;"Un haz central y un frente de tres casillas al fondo; conservar la selección de estado por impacto."
+crunch;individual;;;0;0;0;1;;Mantener un objetivo. Conservar sus efectos actuales y revisar aparte los efectos originales que falten.
+thunder;cruz de cinco casillas;;;0;0;3;0.8;;Rayo caído sobre una cruz de cinco casillas a alcance tres.
+bide;usuario;;bide;0;0;0;1;;Acumula daño tras prepararse. Desde la siguiente activación puede devolver el doble a un rival, hasta sus propios PS máximos. Hay que liberarlo antes de que caduque.
+blizzard;ola de seis casillas;;;0;0;4;0.8;;Cono ancho representado por dos filas de tres casillas delante del usuario.
+razor-wind;franja transversal;;;0;0;3;0.8;;Barrido frontal de tres casillas a distancia dos o tres.
+fly;salto y golpe;;;0;0;0;1;;Elegir aterrizaje próximo y atacar un objetivo. La cruz de aterrizaje es una alternativa posterior.
+bug-buzz;ocho casillas alrededor;;;0;0;4;0.8;;Pulso alrededor del usuario, ocho casillas contiguas.

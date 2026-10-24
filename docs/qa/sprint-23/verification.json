@@ -1,0 +1,24 @@
+{
+  "baseline": "dd6c87871661f54c8555e19ab4738ae551dadc82",
+  "publishedFilesChecked": 406,
+  "publishedFilesUnchanged": true,
+  "changedPublishedFiles": [],
+  "errors": 0,
+  "warnings": 65,
+  "baselineWarnings": 65,
+  "newWarnings": 0,
+  "legacyParity": {
+    "checks": 503579,
+    "commands": 506,
+    "referenceBattles": 16,
+    "scenarios": 25,
+    "failures": []
+  },
+  "legacyFinaleChecks": 45,
+  "legacyAbilityChecks": 16,
+  "validatorOk": true,
+  "originalAudio": "40 immutable SHA256; 16-bit PCM import; runtime gain only",
+  "comparison": "Text compared with repository CRLF/LF normalization; binary bytes compared exactly.",
+  "lintErrors": 0,
+  "configWarnings": 0
+}

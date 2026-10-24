@@ -200,6 +200,12 @@ func pick(screen: Vector2) -> Dictionary:
 	# Feet identify the occupied square even when a tall neighbour overlaps it.
 	for unit: Dictionary in state.units:
 		if unit.hp>0 and center(unit).distance_to(screen)<cell_size()*0.13: return {"x":unit.x,"y":unit.y}
+	if state.get("combatEdition",0)>=18:
+		# Ground-targeted attacks need the same centre priority as movement tiles.
+		for identity: String in attackable:
+			var coordinates: PackedStringArray = identity.split(",")
+			var point: Dictionary = {"x":int(coordinates[0]),"y":int(coordinates[1])}
+			if center(point).distance_to(screen)<cell_size()*.1: return point
 	if state.get("combatEdition",0)>=13:
 		# A tall sprite must not make the centre of a reachable empty tile unclickable.
 		for route_entry: Dictionary in available.values():
@@ -451,7 +457,9 @@ func _draw() -> void:
 	for index: int in range(1,route.size()):
 		draw_line(center(route[index-1]),center(route[index]),Color("fff1a8"),3,true)
 		draw_circle(center(route[index]),3,Color("fff1a8"))
-	for field: Dictionary in state.fields: draw_circle(center(field),cell_size()*0.17,Color(0.95,0.3,0.1,0.45))
+	if state.get("combatEdition",0)>=18: preload("res://ui/spatial_effects.gd").fields(self)
+	else:
+		for field: Dictionary in state.fields: draw_circle(center(field),cell_size()*0.17,Color(0.95,0.3,0.1,0.45))
 	var ordered: Array = _unit_order()
 	for unit: Dictionary in ordered:
 		if area.grow(70).has_point(center(unit)): _draw_unit(unit)

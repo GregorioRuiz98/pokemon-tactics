@@ -97,7 +97,7 @@ func run(app: Control, directory: String) -> void:
 	check(not app.title_visible and app.run.is_empty(),"New game opens Oak")
 	app.journey_seed.text = "tactics-1"
 	await click(app,app.travel_buttons.starter1)
-	check(app.run.get("edition",0)==18 and FileAccess.file_exists(path),"Oak creates and saves unchanged rules18")
+	check(app.run.get("edition",0)==app.CURRENT_CHAPTER-4 and FileAccess.file_exists(path),"Oak creates and saves the installed rules edition")
 	check(not app.travel_buttons.has("travel_route-1"),"Current destination is not repeated as a disabled choice")
 	await capture(app,directory,"hub-1024")
 	var saved: Dictionary = app.run.duplicate(true)

@@ -1,5 +1,9 @@
 extends Control
 
+const SpatialInput = preload("res://ui/spatial_interaction.gd")
+var spatial_axis: int = 0
+var spatial_throw: int = 0
+
 const GameSkin = preload("res://ui/game_skin.gd")
 const GameButton = preload("res://ui/game_button.gd")
 const Rules = preload("res://core/battle.gd")
@@ -379,7 +383,7 @@ func _focus_actions() -> void:
 		if FocusMemory.eligible(button): button.grab_focus(); return
 
 func _can_rectify() -> bool:
-	return pending.is_empty() and Revision.available(state, history)
+	return not state.get("movementLocked",false) and pending.is_empty() and Revision.available(state, history)
 
 func _rectify_movement() -> void:
 	if _modal_open() or not _can_rectify(): return
@@ -643,8 +647,12 @@ func _refresh():
 			for identity in routes:
 				if routes[identity].cost > 0 and routes[identity].cost <= actor.remaining: board.available[identity] = routes[identity]
 		if not state.acted and selecting != "finish":
-			for unit in Rules.living(state):
-				if rules.attack_plan(state, int(unit.id), {}, selected_action).ok: board.attackable[Movement.key(unit)] = true
+			if SpatialInput.enabled(self) and selecting=="attack":
+				for point: Dictionary in rules.aim_points(state,selected_action):
+					if rules.cast_plan(state,SpatialInput.aim(self,point),selected_action).ok: board.attackable[Movement.key(point)] = true
+			else:
+				for unit in Rules.living(state):
+					if rules.attack_plan(state, int(unit.id), {}, selected_action).ok: board.attackable[Movement.key(unit)] = true
 	target_info.text = "Pasa el cursor por una unidad\npara ver la previsión.\n\nAzul: puedes moverte.\nMarco coral: puedes atacar."
 	hint.text = _default_hint()
 	board.queue_redraw()
@@ -659,7 +667,7 @@ func interaction_context() -> String:
 	if not pending.is_empty(): return "confirmation"
 	if selecting=="finish": return "facing"
 	if action_page: return "ability_menu"
-	if selecting=="attack": return "target_preview" if not _unit_at({"x":board.cursor.x,"y":board.cursor.y}).is_empty() else "ability_selected"
+	if selecting=="attack": return "target_preview" if not board.affected.is_empty() or not _unit_at({"x":board.cursor.x,"y":board.cursor.y}).is_empty() else "ability_selected"
 	if not board.forecast_hits.is_empty(): return "target_preview"
 	if not board.route.is_empty(): return "movement_preview"
 	return "board"
@@ -683,6 +691,7 @@ func _select_action(identity: String):
 	if Rules.active(state).tp < action.definition.cost: hint.text = "PT insuficientes para "+action.definition.name+"."; return
 	action_page = false
 	selected_action = identity
+	if SpatialInput.enabled(self) and action.definition.get("special","")=="throw": spatial_throw = Rules.FACINGS.find(Rules.active(state).facing)
 	selecting = "auto" if identity == "basic" else "attack"
 	_refresh()
 	board.grab_focus()
@@ -694,6 +703,7 @@ func _select_action(identity: String):
 
 func _cycle_target(step: int) -> void:
 	if not _player_turn() or _modal_open() or state.acted or not pending.is_empty() or selecting=="finish": return
+	if SpatialInput.rotate(self,step): return
 	var valid: Array = Rules.living(state).filter(func(unit):return rules.attack_plan(state,int(unit.id),{},selected_action).ok)
 	valid.sort_custom(func(a,b):return a.id<b.id)
 	if valid.is_empty(): hint.text = "No hay objetivos válidos para esta acción."; return
@@ -714,7 +724,9 @@ func _unit_at(point: Dictionary) -> Dictionary:
 	return {}
 
 func _friendly_risk(plan: Dictionary) -> bool:
-	return plan.hits.any(func(hit): return Rules.unit_by_id(state, int(hit.targetId)).team == "ally" and (hit.damage > 0 or hit.status != null))
+	return plan.get("hazardRisk",false) or plan.hits.any(func(hit):
+		var unit: Dictionary = Rules.unit_by_id(state,int(hit.targetId))
+		return unit.team=="ally" and (hit.damage>0 or hit.status!=null or hit.get("push")!=null or hit.get("volatile",{}).get("kind","") in ["confusion","seed"] or hit.get("changes",[]).any(func(c):return c.stages<0) or (hit.get("clearStages",false) and unit.stages.values().any(func(stage):return stage>0))))
 
 func _action_risks(plan: Dictionary) -> Array[String]:
 	var risks: Array[String] = []
@@ -733,6 +745,7 @@ func _action_risks(plan: Dictionary) -> Array[String]:
 	return risks
 
 func _show_plan(unit: Dictionary, plan: Dictionary):
+	target_portrait.visible = true
 	target_indicators.show_unit(unit)
 	target_panel.visible = true
 	target_portrait.texture = faces[int(unit.speciesId)]
@@ -796,7 +809,11 @@ func _hover_tile(point: Dictionary) -> bool:
 	if _player_turn() and selecting == "finish":
 		if not Movement.same(Rules.active(state), point): _preview_facing(Movement.facing_from(Rules.active(state), point))
 		return true
+	if SpatialInput.enabled(self) and _player_turn() and selecting=="attack" and not state.acted:
+		SpatialInput.preview(self,point)
+		return true
 	if not unit.is_empty():
+		target_portrait.visible = true
 		target_id = int(unit.id)
 		target_panel.visible = true
 		target_portrait.texture = faces[int(unit.speciesId)]
@@ -833,9 +850,13 @@ func _select_tile(point: Dictionary):
 	if selecting == "finish":
 		if not Movement.same(actor, point): _set_facing(Movement.facing_from(actor, point))
 		return
+	if SpatialInput.enabled(self) and selecting=="attack":
+		SpatialInput.select(self,point)
+		return
 	var unit = _unit_at(point)
 	if not unit.is_empty():
 		if state.acted: return
+		if SpatialInput.enabled(self): SpatialInput.select(self,point); return
 		var plan = rules.attack_plan(state, int(unit.id), {}, selected_action)
 		if not plan.ok:
 			hint.text = plan.reason
@@ -896,7 +917,7 @@ func _confirm():
 
 func _commit(command: Dictionary):
 	var before: Dictionary = state
-	var plan: Dictionary = rules.attack_plan(state,int(command.target),{},command.get("actionId","basic")) if command.kind == "attack" else {}
+	var plan: Dictionary = _command_plan(state,command)
 	var definition: Dictionary = _attack_definition(before,command)
 	var result = rules.apply_command(state, command)
 	if not result.ok:
@@ -914,6 +935,11 @@ func _commit(command: Dictionary):
 	_remember_result(before,command,result.get("hits",[]))
 	_present_combat(before,command,plan,result.get("hits",[]),definition,"victory" if state.outcome=="victory" else "")
 
+func _command_plan(before: Dictionary, command: Dictionary) -> Dictionary:
+	if command.kind!="attack": return {}
+	if rules.has_method("cast_plan") and command.has("aim"): return rules.cast_plan(before,command.aim,command.get("actionId","basic"))
+	return rules.attack_plan(before,int(command.target),{},command.get("actionId","basic"))
+
 func _attack_definition(before: Dictionary, command: Dictionary) -> Dictionary:
 	if command.kind!="attack": return {}
 	var actor: Dictionary = Rules.active(before)
@@ -925,7 +951,9 @@ func _present_combat(before: Dictionary, command: Dictionary, plan: Dictionary, 
 		combat_feedback.present(before,plan,receipts,definition)
 		last_sound_requested = combat_feedback.last_sound
 		# A final blow already transitions the campaign; preserve its outcome cue.
-		if not board.visible: _play_attack_cue(combat_feedback.last_sound if combat_feedback.last_sound!="hit" else "impact")
+		if not board.visible:
+			var sound_profile: Dictionary = preload("res://ui/attack_effect.gd").describe(definition)
+			_play_attack_cue(sound_profile.cue if sound_profile.cue.begins_with("original/") else (combat_feedback.last_sound if combat_feedback.last_sound!="hit" else "impact"))
 	else:
 		combat_feedback.attack_effect.stop()
 		_play("select" if ending.is_empty() else ending)

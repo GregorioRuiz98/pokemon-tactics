@@ -2,14 +2,15 @@ extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
 const Advanced = preload("res://core/roster_run.gd")
-const Journey = preload("res://core/journey_run.gd")
-const CURRENT_CHAPTER: int = 22
+const Journey = preload("res://core/spatial_run.gd")
+const CURRENT_CHAPTER: int = 23
 const Art = preload("res://ui/visual_assets.gd")
 const RosterPanel = preload("res://ui/roster_panel.gd")
 const IsometricBoard = preload("res://ui/isometric_board.gd")
-const CampaignStore = preload("res://core/journey_store.gd")
+const CampaignStore = preload("res://core/spatial_store.gd")
 var campaign: RefCounted = Advanced.new()
 var last_presentation: Dictionary = {}
+var spatial_qa_dir: String = ""
 var run: Dictionary = {}
 var transactions: Array = []
 var travel_root: MarginContainer
@@ -164,6 +165,7 @@ func _boot() -> void:
 		get_tree().change_scene_to_file.call_deferred("res://scenes/laboratory.tscn")
 		return
 	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--spatial-qa-dir="): spatial_qa_dir = argument.trim_prefix("--spatial-qa-dir=")
 		if argument.begins_with("--campaign-qa-dir="): campaign_qa_dir = argument.trim_prefix("--campaign-qa-dir=")
 		if argument.begins_with("--scale-qa-dir="): scale_qa_dir = argument.trim_prefix("--scale-qa-dir=")
 		if argument.begins_with("--roster-qa-dir="): roster_qa_dir = argument.trim_prefix("--roster-qa-dir=")
@@ -185,6 +187,7 @@ func _boot() -> void:
 	if not performance_qa_dir.is_empty(): test_dir = performance_qa_dir
 	if not seeds_qa_dir.is_empty(): test_dir = seeds_qa_dir
 	if not attack_qa_dir.is_empty(): test_dir = attack_qa_dir
+	if not spatial_qa_dir.is_empty(): test_dir = spatial_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -216,7 +219,8 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
-	if not attack_qa_dir.is_empty(): _open_title(); call_deferred("_run_attack_qa")
+	if not spatial_qa_dir.is_empty(): _open_title(); call_deferred("_run_spatial_qa")
+	elif not attack_qa_dir.is_empty(): _open_title(); call_deferred("_run_attack_qa")
 	elif not seeds_qa_dir.is_empty(): _open_title(); call_deferred("_run_seeds_qa")
 	elif not performance_qa_dir.is_empty(): _open_title(); call_deferred("_run_performance_qa")
 	elif not updates_qa_dir.is_empty(): _open_title(); call_deferred("_run_updates_qa")
@@ -231,6 +235,9 @@ func _boot() -> void:
 
 func _run_attack_qa() -> void:
 	await load("res://ui/qa_attack_effects.gd").new().run(self,attack_qa_dir)
+
+func _run_spatial_qa() -> void:
+	await load("res://ui/qa_spatial.gd").new().run(self,spatial_qa_dir)
 
 func _run_performance_qa() -> void:
 	await load("res://ui/qa_performance.gd").new().run(self,performance_qa_dir)
@@ -503,13 +510,13 @@ func _upgrade_campaign() -> void:
 func _commit(command: Dictionary) -> void:
 	var before: Dictionary = state
 	var revision: int = run.revision
-	var plan: Dictionary = rules.attack_plan(state,int(command.target),{},command.get("actionId","basic")) if command.kind == "attack" else {}
+	var plan: Dictionary = _command_plan(state,command)
 	var definition: Dictionary = _attack_definition(before,command)
 	_event({"kind":"battle","order":command,"at":revision})
 	if run.revision == revision: return
 	_remember_result(before,command,last_presentation.get("hits",[]))
 	var leveled: bool = run.get("lastProgress",[]).any(func(entry):return entry.level > entry.before)
-	_present_combat(before,command,plan,last_presentation.get("hits",[]),definition,("level-up" if leveled else "victory") if state.outcome=="victory" else "")
+	_present_combat(before,command,plan,last_presentation.get("hits",[]),last_presentation.get("visualDefinition",definition),("level-up" if leveled else "victory") if state.outcome=="victory" else "")
 	if not last_presentation.get("abilityEvents",[]).is_empty(): combat_feedback.present_abilities(state,last_presentation.abilityEvents,command.kind!="attack")
 
 func _rectify_movement() -> void:

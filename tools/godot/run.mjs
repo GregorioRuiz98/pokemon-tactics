@@ -39,6 +39,8 @@ function verifyCampaign(directory) {
   for(const file of report.screenshots) if(!existsSync(resolve(directory,file))) throw new Error('Missing campaign screenshot.');
 }
 function verify() {
+  const originalAudio=spawnSync('python',[resolve(root,'tools/godot/verify-original-moves.py')],{cwd:root,encoding:'utf8',windowsHide:true});
+  if(originalAudio.status!==0) throw new Error('Original audio integrity failed: '+originalAudio.stderr);
   const combatAudio=spawnSync('python',[resolve(root,'tools/godot/verify-combat-audio.py')],{cwd:root,encoding:'utf8',windowsHide:true});
   if(combatAudio.status!==0) throw new Error('Combat audio validation failed: '+combatAudio.stderr);
   console.log('Verified 26 combat sounds and pinned synthesizer hashes.');
@@ -78,13 +80,21 @@ function verify() {
   console.log(`Verified ${manifest.files.length} assets and ${manifest.ruleSources.length} reference source hashes; ${fixtures.games.length} complete battles.`);
 }
 if (operation === 'verify') { verify(); process.exit(0); }
-if (!['qa-attack-effects-export','qa-export','qa-campaign-export','qa-scale-export','qa-roster-export','qa-journey-export','qa-journey-psychic-export','qa-interface-export','qa-input-export','qa-context-export','qa-updates-export','qa-semantic-export','qa-performance-export','qa-seeds-export'].includes(operation)) {
+if (!['qa-spatial-export','qa-attack-effects-export','qa-export','qa-campaign-export','qa-scale-export','qa-roster-export','qa-journey-export','qa-journey-psychic-export','qa-interface-export','qa-input-export','qa-context-export','qa-updates-export','qa-semantic-export','qa-performance-export','qa-seeds-export'].includes(operation)) {
   if (!existsSync(binary)) throw new Error('Godot not found. Set GODOT_BIN to the standard Godot 4.7.2 executable.');
   const version = spawnSync(binary, ['--version'], { encoding: 'utf8', windowsHide: true });
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if (operation === 'qa-attack-effects' || operation === 'qa-attack-effects-export') {
+if(operation === 'test-spatial') {
+  run(binary,['--headless',...common,'--script','res://tests/spatial.gd','--','--save-dir='+work],'test-spatial');
+} else if(operation === 'qa-spatial' || operation === 'qa-spatial-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,exported?'spatial-release':'spatial-source');
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--spatial-qa-dir='+directory],'spatial-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'spatial-ui-result.json'),'utf8'));
+  if(report.failures.length || report.originalSounds!==40 || !report.naturalCampaignReplay) throw new Error('Spatial QA failed');
+} else if (operation === 'qa-attack-effects' || operation === 'qa-attack-effects-export') {
   const exported=operation.endsWith('export');
   if(!exported) verify();
   const directory=resolve(work,exported?'attack-effects-release':'attack-effects-source');
@@ -264,7 +274,7 @@ if (operation === 'qa-attack-effects' || operation === 'qa-attack-effects-export
     cpSync(resolve(root, 'docs/PLAYTEST_WINDOWS.md'), resolve(output, 'GUIA_DE_PRUEBA.md'));
     const report = readFileSync(resolve(root, 'docs/reports/balance-native-0.22/INFORME.md'), 'utf8')
       .replace('(results.json)', '(BALANCE_RESULTADOS.json)').replace('(../../PLAYTEST_WINDOWS.md)', '(GUIA_DE_PRUEBA.md)');
-    writeFileSync(resolve(output, 'INFORME_BALANCE.md'), report);
+    writeFileSync(resolve(output, 'INFORME_BALANCE.md'), (chapter>=23?'# Informe histórico de 0.22\n\nLas nuevas reglas espaciales de 0.23 requieren otras pruebas de balance. Este informe describe exclusivamente la edición anterior.\n\n':'')+report);
     cpSync(resolve(root, 'docs/reports/balance-native-0.22/results.json'), resolve(output, 'BALANCE_RESULTADOS.json'));
   }
   const route = JSON.parse(readFileSync(resolve(project,`data/journey-${Math.min(chapter,21)}.json`),'utf8'));

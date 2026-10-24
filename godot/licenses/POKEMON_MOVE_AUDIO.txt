@@ -1,0 +1,18 @@
+Pokémon move recordings — imported at the user's request, 2026-10-24.
+
+Source repository: https://github.com/AxelLoquendo/PokeDot-Engine
+Pinned commit: edc3ffb06439b01a1f9ba31272b0bb187712dff0
+Directory: sfx/se/anim/
+Exact filenames, immutable URLs, PCM properties and SHA-256:
+assets/original-moves/manifest.json inside the project.
+
+Pokémon / audio rights: GAME FREAK, Nintendo, Creatures and the respective
+rights holders. Public repository availability is not a license grant for
+these recordings. A code license in the source repository does not relicense
+Pokémon audio. No authorship or ownership of those recordings is claimed.
+The exact original game/version of each sample has not been independently
+verified. Some bank entries are numbered components of a longer sequence.
+
+Files are preserved byte-for-byte. Only playback gain is adjusted. The full
+Hyper Beam sample is used; no synthetic substitute is presented as original.
+Importer: tools/godot/import-original-moves.py. No runtime network access.

@@ -16,6 +16,11 @@ static func entries(unit: Dictionary) -> Array:
 		if stage!=0:
 			var remaining: int = unit.get("stageTurns",{}).get(key,0)
 			result.append({"key":key,"text":STATS[key][0],"stage":stage,"hint":"%s: %s%d etapas%s" % [STATS[key][1],"+" if stage>0 else "",stage," · %d activaciones" % remaining if remaining>0 else ""]})
+	var spatial_names: Dictionary = {"bound":["LAZ","Atado: alejarse cuesta +1"],"disable":["ANU","Anulación"],"taunt":["MOF","Mofa: impide apoyo"],"encore":["OTR","Otra Vez"],"yawn":["BOS","Bostezo: sueño al terminar"],"help":["AYU","Refuerzo: siguiente ataque ×1,5"],"substitute":["SUS","Sustituto"],"bide":["VEN","Venganza preparada"],"rage":["FUR","Furia"],"flinch":["RET","Retroceso: impide acción"],"immunity":["RES","Respiro: inmune a sueño y congelación"]}
+	for key: String in unit.get("spatial",{}).get("effects",{}):
+		if not spatial_names.has(key): continue
+		var effect: Dictionary = unit.spatial.effects[key]
+		result.append({"key":key,"text":spatial_names[key][0],"stage":0,"remaining":effect.remaining,"hint":spatial_names[key][1]+" · %d activaciones" % effect.remaining+(" · %d PS" % effect.hp if key=="substitute" else "")})
 	return result
 
 func _ready() -> void:

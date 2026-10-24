@@ -1,8 +1,12 @@
 """Package the already tested native release; no editor, network or dependencies."""
 import hashlib,json,os,pathlib,re,shutil,zipfile
+import runpy
 ROOT=pathlib.Path(__file__).resolve().parents[2]
 version=re.search(r'config/version="([^"]+)"',(ROOT/'godot/project.godot').read_text(encoding='utf-8'))[1]
 chapter=int(version.split('.')[1]);patch=int(version.split('.')[2]);modern=chapter==22 and patch>=4;qa_label={'0.22.1':'22-ui','0.22.2':'22-controls','0.22.3':'22-context'}.get(version,'22-updates-'+str(patch) if modern else str(chapter));work=ROOT/f'../../work/qa-sprint-{qa_label}'
+if chapter==23:
+    runpy.run_path(str(ROOT/'tools/godot/package-spatial.py'),run_name='__main__')
+    raise SystemExit(0)
 source=json.loads((work/'journey-source/journey-ui-result.json').read_text(encoding='utf-8'))
 exported=json.loads((work/'journey-release/journey-ui-result.json').read_text(encoding='utf-8'))
 assert source==exported and not source['failures'] and source['phase'] in ['complete','ending']
