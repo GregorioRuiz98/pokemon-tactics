@@ -12,10 +12,16 @@ func render(app: Control, parent: VBoxContainer, member: Dictionary) -> void:
 	if owner_id!=member.id: owner_id = int(member.id); selected_slot = -1
 	var slots: GridContainer = GridContainer.new()
 	slots.columns = 2
+	slots.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	slots.add_theme_constant_override("h_separation",8)
+	slots.add_theme_constant_override("v_separation",8)
 	parent.add_child(slots)
 	for index: int in 4:
 		var label: String = "%d · %s" % [index+1,app.campaign.progression.data.moves[member.moves[index]].name if index<member.moves.size() else "Vacía"]
 		var slot: Button = app._button(label,func(): selected_slot = index; app._refresh())
+		# Wrapped buttons have no text-based minimum width: expand both grid columns.
+		slot.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		slot.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		slot.disabled = index>member.moves.size()
 		slot.tooltip_text = "Rellena primero la primera ranura vacía; las ranuras preparadas son consecutivas."
 		slot.toggle_mode = true

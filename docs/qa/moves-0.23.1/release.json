@@ -1,0 +1,33 @@
+{
+  "version": "0.23.1",
+  "baseline": "6285412ace7d19fd6038011a2b693aa43cb42fc4",
+  "protectedPathsUnchanged": [
+    "godot/core",
+    "godot/data",
+    "godot/tests",
+    "src",
+    "public",
+    "tests",
+    "CREDITS.md"
+  ],
+  "validatorOk": true,
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "coreChecks": 557,
+  "uiChecksPerBuild": {
+    "moves": 304,
+    "spatial": 63
+  },
+  "fullCampaignRerun": false,
+  "previousFinaleEvidence": "docs/qa/sprint-23",
+  "publicDeployment": false,
+  "exe": {
+    "bytes": 129744416,
+    "sha256": "7ba5aafad8d1a87a53e9ec787795386c4db01688d755917e5f33f724c4e81cee"
+  },
+  "zip": {
+    "bytes": 53792795,
+    "sha256": "7e1b8e30b3abf3025d2c44190283103f6532e53031dde3e845dbb5a822c0d0f2"
+  }
+}

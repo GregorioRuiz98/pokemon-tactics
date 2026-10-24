@@ -1,4 +1,6 @@
-# Pokémon Tactics — Kanto Windows 0.23.0
+# Pokémon Tactics — Kanto Windows 0.23.1
+
+**0.23.1:** corregidas las ranuras de Equipo → Movimientos: nombres completos, columnas que ocupan el panel y selección con teclado/ratón. Conserva guardados y reglas. [Comprobaciones](../docs/FIX_MOVES_0.23.1.md).
 
 **0.23.0:** [movimientos espaciales](../docs/SPRINT_23_SPATIAL.md): líneas, conos y otras áreas; zonas temporales, empujes/atracciones, pantallas y técnicas especiales. Habilidades apuntables al suelo, Q/E para girar pantallas/lanzamientos, VFX y 40 muestras originales de sonido. Actualiza la aventura entre encuentros para activar las reglas nuevas. Costes/daño de área provisionales.
 Presentación anterior 0.22.17: [animaciones y sonidos](../docs/SPRINT_22_ATTACK_EFFECTS.md). Arte integrado desde 0.22.16: 42 imágenes generadas para escenarios, suelos, iconos y efectos. Ver [arte y estado](../docs/SPRINT_22_GENERATED_ART.md) y [prompts](../docs/PROMPTS_ARTE_FINAL.md). Los PNG finales requieren importar/exportar; no basta con copiarlos junto al EXE.
@@ -42,7 +44,7 @@ Isometría16/24, alturas0–2, subida+1 y salto terrestre1; voladores ignoran de
 
 Godot4.7.2 estándar. Recursos existentes, sin plugins nuevos. Importadores explícitos import-expedition.py y build-expedition.py; no regenerar manifiestos congelados para ocultar discrepancias. Pillow existente se localiza con PYTHONPATH=../../work/balance-python solo al importar. Los builds/juego no lo necesitan.
 
-Scripts de la raíz: godot:verify, godot:prepare, godot:test:expedition, godot:test:journey, godot:test:abilities, godot:qa:journey, godot:export y godot:qa:journey:export. QA usa archivos aislados, controles/eventos de tablero y comparación con el dominio; no sustituye valoración humana de diversión/balance. Evidencia en docs/SPRINT_22.md. Paquetes fuera de Git en outputs/releases/pokemon-tactics-0.23.0. Publicación pública aplazada.
+Scripts de la raíz: godot:verify, godot:prepare, godot:test:expedition, godot:test:journey, godot:test:abilities, godot:qa:journey, godot:export y godot:qa:journey:export. QA usa archivos aislados, controles/eventos de tablero y comparación con el dominio; no sustituye valoración humana de diversión/balance. Evidencia en docs/SPRINT_22.md. Paquetes fuera de Git en outputs/releases/pokemon-tactics-0.23.1. Publicación pública aplazada.
 
 Prueba manual: [guía Windows](../docs/PLAYTEST_WINDOWS.md). Balance y propuestas: [informe de29 simulaciones](../docs/reports/balance-native-0.22/INFORME.md). No se cambian parámetros para favorecer los ensayos.
 

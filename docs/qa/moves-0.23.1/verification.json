@@ -1,0 +1,24 @@
+{
+  "baseline": "6285412ace7d19fd6038011a2b693aa43cb42fc4",
+  "protectedPathsUnchanged": [
+    "godot/core",
+    "godot/data",
+    "godot/tests",
+    "src",
+    "public",
+    "tests",
+    "CREDITS.md"
+  ],
+  "validatorOk": true,
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "coreChecks": 557,
+  "uiChecksPerBuild": {
+    "moves": 304,
+    "spatial": 63
+  },
+  "fullCampaignRerun": false,
+  "previousFinaleEvidence": "docs/qa/sprint-23",
+  "publicDeployment": false
+}

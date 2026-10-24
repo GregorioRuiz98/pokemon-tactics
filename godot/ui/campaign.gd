@@ -11,6 +11,7 @@ const CampaignStore = preload("res://core/spatial_store.gd")
 var campaign: RefCounted = Advanced.new()
 var last_presentation: Dictionary = {}
 var spatial_qa_dir: String = ""
+var moves_qa_dir: String = ""
 var run: Dictionary = {}
 var transactions: Array = []
 var travel_root: MarginContainer
@@ -165,6 +166,7 @@ func _boot() -> void:
 		get_tree().change_scene_to_file.call_deferred("res://scenes/laboratory.tscn")
 		return
 	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--moves-qa-dir="): moves_qa_dir = argument.trim_prefix("--moves-qa-dir=")
 		if argument.begins_with("--spatial-qa-dir="): spatial_qa_dir = argument.trim_prefix("--spatial-qa-dir=")
 		if argument.begins_with("--campaign-qa-dir="): campaign_qa_dir = argument.trim_prefix("--campaign-qa-dir=")
 		if argument.begins_with("--scale-qa-dir="): scale_qa_dir = argument.trim_prefix("--scale-qa-dir=")
@@ -188,6 +190,7 @@ func _boot() -> void:
 	if not seeds_qa_dir.is_empty(): test_dir = seeds_qa_dir
 	if not attack_qa_dir.is_empty(): test_dir = attack_qa_dir
 	if not spatial_qa_dir.is_empty(): test_dir = spatial_qa_dir
+	if not moves_qa_dir.is_empty(): test_dir = moves_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -219,7 +222,8 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
-	if not spatial_qa_dir.is_empty(): _open_title(); call_deferred("_run_spatial_qa")
+	if not moves_qa_dir.is_empty(): _open_title(); call_deferred("_run_moves_qa")
+	elif not spatial_qa_dir.is_empty(): _open_title(); call_deferred("_run_spatial_qa")
 	elif not attack_qa_dir.is_empty(): _open_title(); call_deferred("_run_attack_qa")
 	elif not seeds_qa_dir.is_empty(): _open_title(); call_deferred("_run_seeds_qa")
 	elif not performance_qa_dir.is_empty(): _open_title(); call_deferred("_run_performance_qa")
@@ -238,6 +242,9 @@ func _run_attack_qa() -> void:
 
 func _run_spatial_qa() -> void:
 	await load("res://ui/qa_spatial.gd").new().run(self,spatial_qa_dir)
+
+func _run_moves_qa() -> void:
+	await load("res://ui/qa_moves.gd").new().run(self,moves_qa_dir)
 
 func _run_performance_qa() -> void:
 	await load("res://ui/qa_performance.gd").new().run(self,performance_qa_dir)

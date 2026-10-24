@@ -159,3 +159,8 @@ Encargo del 23 de octubre: secuencias de ataque de hasta 0,64 s, variantes de lo
 Auditoría aprobada aplicada al catálogo actual: campaña19/combate18 en nuevos spatial_*.gd y data/spatial.json. No modificar reglas/datos/fixtures publicados para cambiar ediciones anteriores. La actualización es explícita entre encuentros, con copia y replay por edición; un combate pendiente conserva su motor. Fuente de decisiones y límites: ../docs/SPRINT_23_SPATIAL.md; tabla aplicada en ../docs/reports/moves-2026-10-24/aplicacion-0.23.csv.
 
 Formas y zonas comparten geometría/visión/alturas con IA y previsión; aliados pueden recibir áreas. Aim de suelo canónico incluye x/y/axis/throwFacing; target se conserva para validación antigua. Cursor/VFX/audio sin PRNG. No rectificar consecuencias de zona ni tiradas. Pantallas2 rondas completas, controles nuevos1 activación, sueño de áreas1; daño/PT provisionales, sin afirmar balance cerrado.40 muestras WAV de PokeDot fijadas y acreditadas, incluida Hiperrayo; no atribuir licencia del código al audio. Sin red al jugar. Sin delegación automática ni publicación; commit/push privado autorizado.
+
+
+## Corrección visual 0.23.1
+
+Ranuras de Equipo → Movimientos: GridContainer y botones expanden ambas columnas; no alterar reglas por un fallo de presentación. Campaña19/combate18 y guardados conservados. QA específica qa_moves, texto 100/125/150 y tres resoluciones, desarrollo/EXE, ratón/teclado y cancelación sin órdenes. Ver ../docs/FIX_MOVES_0.23.1.md. Sin delegación ni publicación pública; commit/push privado autorizado.

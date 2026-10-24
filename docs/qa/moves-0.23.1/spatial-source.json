@@ -1,0 +1,15 @@
+{
+	"assertions": 63,
+	"audioDriver": "Dummy; listening pending",
+	"failures": [],
+	"naturalCampaignReplay": true,
+	"originalSounds": 40,
+	"screenshots": [
+		"smoke.png",
+		"barrier.png",
+		"hyper-beam.png",
+		"throw.png",
+		"reduced-motion.png"
+	],
+	"syntheticFixtures": true
+}
