@@ -14,6 +14,9 @@ static func training(app: Control, parent: VBoxContainer, member: Dictionary, ke
 	button.disabled = app.run.money<quote.price
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	button.tooltip_text = "%d EXP por pokédolar. Se compra solo lo que falta para este nivel; respeta el límite del próximo gimnasio." % quote.rate
+	if quote.has("discount"):
+		button.text += " · recuperación −%d %%" % quote.discount
+		button.tooltip_text = "Tarifa de recuperación: −%d %%. Completa los %d EXP pendientes por %d ₽. Descuento por estar al menos tres niveles por debajo de la media del equipo; conserva el límite del gimnasio." % [quote.discount,quote.points,quote.price]
 	parent.add_child(button)
 	app.travel_buttons[key] = button
 

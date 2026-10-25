@@ -21,8 +21,9 @@ static func fields(canvas: Control) -> void:
 		canvas.draw_colored_polygon(canvas.diamond(field),Color(tint,.19))
 		canvas._outline(canvas.diamond(field),Color(tint,.65),1)
 		glyph(canvas,at,radius,tint,field.kind,0)
-		canvas.draw_string_outline(font,at+Vector2(radius,-radius*.3),str(maxi(1,int(field.expires)-int(canvas.state.round)-1)),HORIZONTAL_ALIGNMENT_LEFT,-1,11,3,Color("142d30"))
-		canvas.draw_string(font,at+Vector2(radius,-radius*.3),str(maxi(1,int(field.expires)-int(canvas.state.round)-1)),HORIZONTAL_ALIGNMENT_LEFT,-1,11,tint)
+		var duration: String = "∞" if field.get("source",1)==0 and int(field.expires)>=999 else str(maxi(1,int(field.expires)-int(canvas.state.round)-1))
+		canvas.draw_string_outline(font,at+Vector2(radius,-radius*.3),duration,HORIZONTAL_ALIGNMENT_LEFT,-1,11,3,Color("142d30"))
+		canvas.draw_string(font,at+Vector2(radius,-radius*.3),duration,HORIZONTAL_ALIGNMENT_LEFT,-1,11,tint)
 
 static func glyph(canvas: CanvasItem, at: Vector2, radius: float, color: Color, motif: String, phase: float) -> void:
 	match motif:

@@ -1,4 +1,4 @@
-# Probar Pokémon Tactics en Windows ·0.24.1
+# Probar Pokémon Tactics en Windows ·0.25.0
 
 La interfaz reúne las órdenes en un menú táctico y los recursos/previsión en la franja inferior. La fila ámbar y su cursor indican la selección; las acciones rojas avanzan en la aventura. Teclado, ratón y atajos conservan las mismas funciones.
 
@@ -7,6 +7,8 @@ Descomprime el ZIP completo y abre **windows/PokemonTactics.exe**. Funciona sin 
 Progresión0.24: curvas originales de EXP por especie; 1 ₽ por EXP pendiente, con revisión antes de pagar. Sin Caramelos/piedras/cables en la tienda. Capturas locales: otro sorteo cuesta60/120/180… ₽ antes de aceptar, con especie distinta si hay alternativas; insignias fijas. Gimnasios de4–6 Pokémon. Detalles y límites de balance en CAMBIOS_0.24.md dentro del paquete.
 
 Fluidez0.24.1: el rival planifica en varios fotogramas y las previsiones de área reutilizan consultas. Conserva las decisiones y los guardados. Detalles en FLUIDEZ_0.24.1.md dentro del paquete.
+
+Novedades0.25: preparación por clic o arrastre; B comienza y T alterna amenazas. Reto/F9 guarda una tarjeta y copia un código que se puede pegar como semilla en Oak. Gimnasios con arenas propias, misiones y recuperación para rezagados. Consulta CAMBIOS_0.25.md y sus límites de balance.
 
 ## Empezar o continuar
 

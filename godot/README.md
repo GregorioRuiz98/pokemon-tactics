@@ -1,4 +1,6 @@
-# Pokémon Tactics — Kanto Windows 0.24.1
+# Pokémon Tactics — Kanto Windows 0.25.0
+
+[Entrega 0.25](../docs/SPRINT_25_TACTICAL.md): coloca aliados antes de actuar; B comienza, T alterna amenazas y F9 guarda tarjeta/código de reto desde el hub. Ocho arenas propias, tres misiones, recuperación de EXP y nuevos efectos de terreno. Actualiza una campaña anterior entre encuentros, con copia. Balance humano pendiente.
 
 **0.24.1:** [mejoras de fluidez](../docs/PERFORMANCE_0.24.1.md): IA repartida entre fotogramas y caché de previsiones espaciales. Conserva decisiones, balance y guardados.
 

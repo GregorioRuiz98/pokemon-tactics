@@ -153,7 +153,7 @@ func natural_battle(app: Control, directory: String) -> void:
 	app._show_oak()
 	app.journey_seed.text = "spatial-natural"
 	await click(app,app.travel_buttons.starter1)
-	check(app.run.edition==app.CURRENT_CHAPTER-4,"Oak creates the installed campaign edition")
+	check(app.run.edition==app.campaign.chapter-4,"Oak creates the requested compatibility edition")
 	await click(app,app.travel_buttons.enter)
 	for i: int in 120:
 		if app.run.phase!="battle": break

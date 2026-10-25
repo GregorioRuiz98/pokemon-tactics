@@ -496,3 +496,8 @@ Encargo del 23 de octubre: secuencias de ataque de hasta 0,64 s, variantes de lo
 Auditoría aprobada aplicada al catálogo actual: campaña19/combate18 en nuevos spatial_*.gd y data/spatial.json. No modificar reglas/datos/fixtures publicados para cambiar ediciones anteriores. La actualización es explícita entre encuentros, con copia y replay por edición; un combate pendiente conserva su motor. Fuente de decisiones y límites: docs/SPRINT_23_SPATIAL.md; tabla aplicada en docs/reports/moves-2026-10-24/aplicacion-0.23.csv.
 
 Formas y zonas comparten geometría/visión/alturas con IA y previsión; aliados pueden recibir áreas. Aim de suelo canónico incluye x/y/axis/throwFacing; target se conserva para validación antigua. Cursor/VFX/audio sin PRNG. No rectificar consecuencias de zona ni tiradas. Pantallas2 rondas completas, controles nuevos1 activación, sueño de áreas1; daño/PT provisionales, sin afirmar balance cerrado.40 muestras WAV de PokeDot fijadas y acreditadas, incluida Hiperrayo; no atribuir licencia del código al audio. Sin red al jugar. Sin delegación automática ni publicación; commit/push privado autorizado.
+
+
+## Sprint 25 — mejoras tácticas, 0.25.0
+
+El encargo del25 de octubre autoriza todas las propuestas: despliegue, amenazas, arenas, ritmo, recuperación, IA, objetivos, terreno y presentación/retos compartibles. Nueva campaña21/combate19, módulos históricos congelados y actualización entre encuentros con copia. Ver [entrega y límites](SPRINT_25_TACTICAL.md). Simulaciones naturales2/6 superan Brock; balance humano y recorrido completo21 pendientes. Sin delegación, publicación pública ni servicios nuevos.

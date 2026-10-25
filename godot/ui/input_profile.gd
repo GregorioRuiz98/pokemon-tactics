@@ -25,7 +25,10 @@ const ACTIONS: Dictionary = {
 	"menu":["Menú","General",KEY_F1],"controls":["Controles","General",KEY_F2],
 	"inspect":["Inspeccionar unidad","Combate",KEY_I],"result":["Último resultado","Combate",KEY_L],
 	"practice":["Aprender / salir de práctica","General",KEY_F7],"glossary":["Glosario","General",KEY_F4],
-	"load":["Recuperar guardado","General",KEY_F8]
+	"load":["Recuperar guardado","General",KEY_F8],
+	"threats":["Mostrar amenazas","Combate",KEY_T],
+	"deploy_start":["Confirmar despliegue","Combate",KEY_B],
+	"share":["Compartir aventura","General",KEY_F9]
 }
 const GUI: Dictionary = {"accept":"ui_accept","cancel":"ui_cancel","left":"ui_left","right":"ui_right","up":"ui_up","down":"ui_down"}
 const SAFETY: Dictionary = {KEY_ENTER:"accept",KEY_KP_ENTER:"accept",KEY_SPACE:"accept",KEY_ESCAPE:"cancel",KEY_LEFT:"left",KEY_RIGHT:"right",KEY_UP:"up",KEY_DOWN:"down",KEY_TAB:"tab",KEY_BACKTAB:"tab"}

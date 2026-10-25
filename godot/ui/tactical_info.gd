@@ -28,5 +28,10 @@ static func tile_text(app: Control, point: Dictionary) -> String:
 	var text: String = app.rules.coordinate(point)+" · "+{0:"Suelo",1:"Maleza",2:"Roca",3:"Agua"}.get(int(app.state.board[int(point.y)][int(point.x)]),"Terreno")
 	if app.state.get("combatEdition",0)>=11: text += " · altura %d" % app.rules.Terrain.height_at(app.state,point)
 	for field: Dictionary in app.state.get("fields",[]):
-		if field.x==point.x and field.y==point.y and app.state.get("combatEdition",0)>=18: text += "\n"+preload("res://ui/spatial_interaction.gd").NAMES.get(field.kind,field.kind)+" · %d rondas" % maxi(1,int(field.expires)-int(app.state.round)-1)
+		if field.x==point.x and field.y==point.y and app.state.get("combatEdition",0)>=18: text += "\n"+preload("res://ui/spatial_interaction.gd").NAMES.get(field.kind,field.kind)+( " · campo del escenario" if field.get("source",1)==0 and int(field.expires)>=999 else " · %d rondas" % maxi(1,int(field.expires)-int(app.state.round)-1))
+	if app.state.get("combatEdition",0)>=19:
+		var mission: Dictionary = app.state.get("mission",{})
+		if mission.get("points",[]).any(func(p):return app.Movement.same(p,point)): text += "\nObjetivo: "+{"secure":"terminal","protect":"proteger a Fuji","escape":"salida"}.get(mission.kind,"")
+		for pair: Array in app.state.get("arena",{}).get("portals",[]):
+			if app.Movement.same(point,pair[0]) or app.Movement.same(point,pair[1]): text += "\nTransportador: salida en "+app.rules.coordinate(pair[1] if app.Movement.same(point,pair[0]) else pair[0])+"; solo funciona si está libre."
 	return text+"\n"+unit_text(app,app._unit_at(point))

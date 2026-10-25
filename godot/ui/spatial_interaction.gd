@@ -33,6 +33,14 @@ static func preview(app: Control, point: Dictionary) -> Dictionary:
 		if hit.get("criticalChance",0)>0: text += " · crítico %.1f %%" % [hit.criticalChance*100]
 	if app._friendly_risk(plan): text += "\n¡Alcanza a aliados!"
 	if plan.get("recoil",0)>0: text += "\nCoste propio: hasta %d PS." % plan.recoil
+	if app.state.get("combatEdition",0)>=19:
+		var reactions: Dictionary = {}
+		for field: Dictionary in app.state.fields:
+			if not plan.tiles.any(func(p):return app.rules.Movement.same(p,field)): continue
+			if field.kind=="web" and plan.definition.get("type")=="fire": reactions["Seda → fuego temporal"] = true
+			if field.kind=="fire" and plan.definition.get("extinguish",false): reactions["Fuego → lodo temporal"] = true
+			if field.kind in ["smoke","poison"] and plan.definition.get("dispel",false): reactions["Dispersa humo y gas"] = true
+		for reaction: String in reactions: text += "\nTerreno: "+reaction
 	if plan.shape=="WALL3" or plan.definition.get("special","")=="throw": text += "\n%s/%s: girar · Enter: aceptar" % [app.input_profile.label("previous_target"),app.input_profile.label("next_target")]
 	app.target_info.text = text
 	app.target_info.set_meta("details",text+"\n"+plan.definition.description)

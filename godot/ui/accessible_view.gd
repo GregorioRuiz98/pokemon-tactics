@@ -68,15 +68,17 @@ func update() -> void:
 		last_context.clear()
 		if app.board.accessibility_name!="Tablero táctico": app.board.accessibility_name = "Tablero táctico"
 		return
-	var context: Array = [app.board.cursor,app.selected_action,app.selecting,app.state.get("moved",false),app.state.get("acted",false),app.save_warning]
+	var context: Array = [app.board.cursor,app.selected_action,app.selecting,app.state.get("moved",false),app.state.get("acted",false),app.save_warning,app.state.get("deployment",false)]
 	if context==last_context and notice.is_empty(): return
 	last_context = context
 	var point: Dictionary = {"x":app.board.cursor.x,"y":app.board.cursor.y}
 	if point.x<0 or point.y<0 or point.x>=app.board.dimensions().x or point.y>=app.board.dimensions().y: return
 	var message: String = Info.tile_text(app,point)
 	var actor: Dictionary = app.rules.active(app.state)
-	message = "Turno: "+actor.name+".\n"+message
-	if app._player_turn():
+	message = ("Preparación del equipo; el combate está pausado.\n" if app.state.get("deployment",false) else "Turno: "+actor.name+".\n")+message
+	if app.state.get("deployment",false):
+		message += "\nElige aliado y casilla verde, o arrastra. "+app.input_profile.shortcut("Comenzar","deploy_start")+". "+app.state.arena.description
+	elif app._player_turn():
 		var target: Dictionary = app._unit_at(point)
 		if app.selecting=="finish": message += "\nOrientación: flechas eligen; Enter termina. Escape vuelve."
 		elif not target.is_empty() and not app.state.acted:

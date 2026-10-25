@@ -1,0 +1,18 @@
+{
+  "version": 21,
+  "arenas": {
+    "brock": {"title":"Cantera de Plateada","description":"Dos pasos entre rocas; la terraza central ofrece un flanco.","walls":[[7,3],[7,4],[7,6],[7,7],[7,10],[7,11]],"rough":[[6,5],[6,9]],"high":[[8,7],[8,8],[9,7],[9,8]]},
+    "misty": {"title":"Piscinas de Celeste","description":"Canales para nadadores y dos pasarelas para el resto del equipo.","water":[[7,3],[7,4],[7,6],[7,7],[7,9],[7,10],[7,11],[8,3],[8,4],[8,6],[8,7],[8,9],[8,10],[8,11]],"high":[[7,5],[8,5],[7,8],[8,8]]},
+    "surge": {"title":"Patio eléctrico","description":"Las máquinas bloquean las líneas de tiro: avanza de cobertura en cobertura.","walls":[[6,4],[6,5],[8,7],[8,8],[10,9],[10,10]],"high":[[9,3],[9,4],[10,3]]},
+    "erika": {"title":"Jardines de Azulona","description":"Maleza, rocas y seda separan las avenidas del jardín.","rough":[[6,4],[6,5],[6,6],[7,7],[8,8],[9,9],[10,10]],"walls":[[8,4],[6,10],[11,8]],"fields":[["web",7,7],["web",8,8],["web",9,9]]},
+    "koga": {"title":"Dojo de la niebla","description":"El humo corta la precisión a distancia. Despéjalo o busca un flanco.","walls":[[6,3],[6,4],[10,8],[10,9]],"fields":[["smoke",7,6],["smoke",7,7],["smoke",8,7],["poison",9,8]]},
+    "sabrina": {"title":"Cámaras de Azafrán","description":"Acabar un movimiento sobre un transportador lleva a su pareja si está libre. No permite rectificar.","walls":[[7,3],[7,4],[7,5],[7,9],[7,10],[7,11]],"portals":[[6,7,10,4],[6,10,11,8]]},
+    "blaine": {"title":"Laboratorio volcánico","description":"El fuego residual protege las posiciones altas; el agua lo apaga y deja lodo temporal.","high":[[9,3],[9,4],[9,5],[10,3],[10,4]],"walls":[[6,4],[8,10]],"fields":[["fire",7,6],["fire",7,7],["fire",8,7]]},
+    "giovanni-gym": {"title":"Falla de Ciudad Verde","description":"Pasos estrechos y trampas de rocas. Los voladores pueden cruzar los desniveles.","walls":[[6,3],[6,4],[9,9],[9,10]],"high":[[7,5],[8,5],[9,5],[7,6],[7,7]],"fields":[["rocks",7,8],["rocks",8,8],["rocks",9,7]]},
+    "rocket-hideout": {"title":"Operación Rocket","description":"Termina activaciones sobre ambos terminales para desactivarlos, o derrota a los rivales.","mission":"secure","points":[[7,5],[10,8]]},
+    "fuji-rescue": {"title":"Rescate de Fuji","description":"Protege a Fuji hasta la ronda 4, o derrota a los rivales. Cada rival que termine adyacente le quita un punto de protección.","mission":"protect","points":[[6,9]]},
+    "victory-road": {"title":"Cruzar la Calle Victoria","description":"Lleva a todos los aliados que sigan en pie a las salidas, o derrota a los rivales.","mission":"escape","points":[[12,3],[12,4],[12,5],[13,3],[13,4],[13,5]]}
+  },
+  "recovery": {"faintedPercent":50,"behindPerLevelPercent":25,"maxBonusPercent":100,"trainingGap":3,"trainingDiscountPercent":25},
+  "interactions": ["El viento dispersa humo y gas.","El agua apaga fuego y deja lodo durante una ronda completa.","El fuego quema seda y deja llamas durante una ronda completa.","Los empujes pueden activar trampas: consulta las áreas y evita alcanzar aliados."]
+}

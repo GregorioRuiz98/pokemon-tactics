@@ -1,0 +1,40 @@
+{
+	"assertions": 100,
+	"combatEdition": 19,
+	"edition": 21,
+	"failures": [],
+	"fullCampaignPlayed": false,
+	"gyms": 8,
+	"journalHash": "59e07628619edf19a4c9984271e59f6b8e2f88ba80c40591bbc40f18fbbf0c1b",
+	"naturalStateHash": "5bb704649b56b56ecea1f8ba1de42768c09664fd07124a51a763b8607b348433",
+	"performance": {
+		"drawSamples": 38,
+		"maxSliceMs": 3.387,
+		"medianBoardDrawMs": 4.011,
+		"queryCpuMs": 646.752,
+		"slices": 403
+	},
+	"screenshots": [
+		"preparation-threats.png",
+		"deploy-1024-100.png",
+		"deploy-1024-125.png",
+		"deploy-1024-150.png",
+		"abilities-1024-150.png",
+		"deploy-1280-100.png",
+		"deploy-1280-125.png",
+		"deploy-1280-150.png",
+		"abilities-1280-150.png",
+		"deployment-contrast.png",
+		"terrain-reaction.png",
+		"brock.png",
+		"misty.png",
+		"surge.png",
+		"erika.png",
+		"koga.png",
+		"sabrina.png",
+		"blaine.png",
+		"giovanni-gym.png",
+		"all-threats.png"
+	],
+	"syntheticGymFixtures": true
+}

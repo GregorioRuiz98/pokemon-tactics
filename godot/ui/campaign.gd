@@ -2,17 +2,19 @@ extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
 const Advanced = preload("res://core/roster_run.gd")
-const Journey = preload("res://core/economy_run.gd")
-const CURRENT_CHAPTER: int = 24
+const Journey = preload("res://core/adventure_run.gd")
+const CURRENT_CHAPTER: int = 25
 const Art = preload("res://ui/visual_assets.gd")
 const RosterPanel = preload("res://ui/roster_panel.gd")
-const IsometricBoard = preload("res://ui/isometric_board.gd")
-const CampaignStore = preload("res://core/economy_store.gd")
+const IsometricBoard = preload("res://ui/adventure_board.gd")
+const CampaignStore = preload("res://core/adventure_store.gd")
+var adventure: RefCounted = preload("res://ui/adventure_ui.gd").new()
 var campaign: RefCounted = Advanced.new()
 var last_presentation: Dictionary = {}
 var spatial_qa_dir: String = ""
 var moves_qa_dir: String = ""
 var economy_qa_dir: String = ""
+var adventure_qa_dir: String = ""
 var run: Dictionary = {}
 var transactions: Array = []
 var travel_root: MarginContainer
@@ -136,6 +138,8 @@ func _ready() -> void:
 	accessible_view.setup(self)
 	accessible_view.update()
 	_input_labels()
+	adventure.setup(self)
+	adventure.refresh(self)
 
 func _input_labels() -> void:
 	super._input_labels()
@@ -167,6 +171,7 @@ func _boot() -> void:
 		get_tree().change_scene_to_file.call_deferred("res://scenes/laboratory.tscn")
 		return
 	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--adventure-qa-dir="): adventure_qa_dir = argument.trim_prefix("--adventure-qa-dir=")
 		if argument.begins_with("--economy-qa-dir="): economy_qa_dir = argument.trim_prefix("--economy-qa-dir=")
 		if argument.begins_with("--moves-qa-dir="): moves_qa_dir = argument.trim_prefix("--moves-qa-dir=")
 		if argument.begins_with("--spatial-qa-dir="): spatial_qa_dir = argument.trim_prefix("--spatial-qa-dir=")
@@ -194,6 +199,7 @@ func _boot() -> void:
 	if not spatial_qa_dir.is_empty(): test_dir = spatial_qa_dir
 	if not moves_qa_dir.is_empty(): test_dir = moves_qa_dir
 	if not economy_qa_dir.is_empty(): test_dir = economy_qa_dir
+	if not adventure_qa_dir.is_empty(): test_dir = adventure_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -228,6 +234,7 @@ func _boot() -> void:
 	if not economy_qa_dir.is_empty(): _open_title(); call_deferred("_run_economy_qa")
 	elif not moves_qa_dir.is_empty(): _open_title(); call_deferred("_run_moves_qa")
 	elif not spatial_qa_dir.is_empty(): _open_title(); call_deferred("_run_spatial_qa")
+	elif not adventure_qa_dir.is_empty(): _open_title(); call_deferred("_run_adventure_qa")
 	elif not attack_qa_dir.is_empty(): _open_title(); call_deferred("_run_attack_qa")
 	elif not seeds_qa_dir.is_empty(): _open_title(); call_deferred("_run_seeds_qa")
 	elif not performance_qa_dir.is_empty(): _open_title(); call_deferred("_run_performance_qa")
@@ -243,6 +250,9 @@ func _boot() -> void:
 
 func _run_attack_qa() -> void:
 	await load("res://ui/qa_attack_effects.gd").new().run(self,attack_qa_dir)
+
+func _run_adventure_qa() -> void:
+	await load("res://ui/qa_adventure.gd").new().run(self,adventure_qa_dir)
 
 func _run_spatial_qa() -> void:
 	await load("res://ui/qa_spatial.gd").new().run(self,spatial_qa_dir)
@@ -318,6 +328,7 @@ func _title_options() -> void:
 	options_buttons["Animaciones"] = presentation_dialog.widgets.reducedMotion
 
 func _unhandled_key_input(event: InputEvent) -> void:
+	if event is InputEventKey and adventure.input(self,event): get_viewport().set_input_as_handled(); return
 	if event is InputEventKey and event.pressed and not event.echo:
 		if input_profile.matches(event,"practice") and not super._modal_open() and not campaign_confirm.visible:
 			_start_practice(); get_viewport().set_input_as_handled(); return
@@ -359,6 +370,11 @@ func _show_oak() -> void:
 	_refresh()
 
 func _choose_starter(identity: int) -> void:
+	var challenge: Dictionary = {}
+	if journey_seed.text.strip_edges().begins_with("KT25:"):
+		challenge = load("res://core/journey_challenge.gd").decode(journey_seed.text.strip_edges())
+		if challenge.is_empty(): _review_text("Código de reto no válido","Este código debe corresponder a la edición 21, con inicial y tamaño de mapa compatibles."); return
+		journey_seed.text = challenge.seed; identity = int(challenge.starter)
 	new_seed = journey_seed.text.strip_edges()
 	if new_seed.is_empty(): new_seed = _generate_seed()
 	journey_seed.text = new_seed
@@ -369,12 +385,16 @@ func _choose_starter(identity: int) -> void:
 		return
 	campaign = Advanced.new() if campaign_qa_dir.is_empty() else load("res://core/traits_run.gd").new()
 	if not scale_qa_dir.is_empty(): campaign = load("res://core/scale_run.gd").new()
-	if campaign_qa_dir.is_empty() and scale_qa_dir.is_empty() and roster_qa_dir.is_empty(): campaign = Journey.new(CURRENT_CHAPTER)
+	if campaign_qa_dir.is_empty() and scale_qa_dir.is_empty() and roster_qa_dir.is_empty(): campaign = Journey.new(24 if "--compat-economy" in OS.get_cmdline_user_args() else CURRENT_CHAPTER)
 	rules = campaign.engine
 	run = campaign.create(new_seed,identity)
 	oak_return = {}
 	_prepare_campaign_assets()
 	transactions = []
+	if not challenge.is_empty() and int(challenge.mapSize)!=int(run.mapSize):
+		var command: Dictionary = {"kind":"map-size","size":int(challenge.mapSize),"at":run.revision}
+		var resized_run: Dictionary = campaign.transact(run,command)
+		if resized_run.ok: run = resized_run.state; transactions.append(command)
 	selected_member = 1
 	roster_tab = "team"
 	roster_offset = 0
@@ -400,7 +420,7 @@ func _modal_open() -> bool:
 	return title_visible or super._modal_open() or (campaign_confirm != null and campaign_confirm.visible) or (options_dialog!=null and options_dialog.visible)
 
 func _player_turn() -> bool:
-	return not run.is_empty() and run.phase == "battle" and super._player_turn()
+	return not run.is_empty() and run.phase == "battle" and not run.battle.get("deployment",false) and super._player_turn()
 
 func _save() -> void:
 	if run.is_empty(): return
@@ -438,6 +458,7 @@ func _event(command: Dictionary, from_batch: bool = false) -> void:
 	if batch_busy and not from_batch: return
 	if _modal_open() and not (from_batch and batch_busy): return
 	if not practice.allowed(self,command): message = practice.instruction(self); hint.text = message; return
+	var previous: Dictionary = run
 	var result: Dictionary = campaign.transact(run,command)
 	if not result.ok:
 		practice.observe(self,"blocked",command)
@@ -473,6 +494,7 @@ func _event(command: Dictionary, from_batch: bool = false) -> void:
 	selecting = "finish" if _player_turn() and state.moved and state.acted else "auto"
 	_save()
 	_refresh()
+	adventure.present(self,command,previous)
 	practice.observe(self,"accepted",command)
 	if command.kind in ["level-up","train-xp","evolve-free"]: _play("level-up")
 	if run.phase == "battle": board.grab_focus()
@@ -532,6 +554,10 @@ func _commit(command: Dictionary) -> void:
 	_remember_result(before,command,last_presentation.get("hits",[]))
 	var leveled: bool = run.get("lastProgress",[]).any(func(entry):return entry.level > entry.before)
 	_present_combat(before,command,plan,last_presentation.get("hits",[]),last_presentation.get("visualDefinition",definition),("level-up" if leveled else "victory") if state.outcome=="victory" else "")
+	if state.get("combatEdition",0)>=19 and command.get("kind")=="attack":
+		for event: Dictionary in state.get("tacticalEvents",[]):
+			combat_feedback.marks.append({"point":{"x":event.x,"y":event.y},"kind":"terrain","text":event.text,"color":Color("b3e0bb"),"offset":24})
+		combat_feedback.queue_redraw()
 	if not last_presentation.get("abilityEvents",[]).is_empty(): combat_feedback.present_abilities(state,last_presentation.abilityEvents,command.kind!="attack")
 
 func _rectify_movement() -> void:
@@ -542,6 +568,7 @@ func _refresh() -> void:
 	if title_screen!=null:
 		title_screen.visible = title_visible
 		if title_visible:
+			adventure.refresh(self)
 			board.hide()
 			battle_overlay.hide()
 			travel_root.hide()
@@ -597,6 +624,13 @@ func _refresh() -> void:
 		_render_travel()
 		_simplify_hub()
 	accessible_view.request_update(true)
+	adventure.refresh(self)
+	if adventure.enabled(self) and run.phase!="battle" and not travel_buttons.has("share_journey"):
+		var share: Button = _button(input_profile.shortcut("Reto","share"),func():adventure.export_card(self))
+		share.theme_type_variation = "ToolButton"
+		share.tooltip_text = "Guardar tarjeta del equipo y copiar código de reto reproducible."
+		travel_content.get_child(0).add_child(share)
+		travel_buttons.share_journey = share
 
 func _layout_battle_hud() -> void:
 	if camera_dock!=null:
@@ -632,7 +666,8 @@ func _layout_battle_hud() -> void:
 	var camera_height: float = 3*maxf(44,theme.default_font.get_height(roundi(16*factor))+20)+4
 	var menu_overhead: float = 2*theme.default_font.get_height(roundi(18*factor))+72
 	var ability_height: float = action_buttons.size()*(2*theme.default_font.get_height(roundi(16*factor))+20)+maxi(0,action_buttons.size()-1)*6
-	actions_scroll.custom_minimum_size.y = minf(ability_height,maxf(120,size.y-122-camera_height-12-menu_overhead-18)) if action_page else 0.0
+	var threat_height: float = maxf(44,theme.default_font.get_height(roundi(18*factor))+20)+12 if run.get("edition",0)>=21 else 0.0
+	actions_scroll.custom_minimum_size.y = minf(ability_height,maxf(120,size.y-122-camera_height-12-menu_overhead-18-threat_height)) if action_page else 0.0
 	var menu_paper: StyleBoxFlat = command_panel.get_theme_stylebox("panel")
 	if not menu_paper.has_meta("field_menu"):
 		menu_paper = GameSkin.panel(Color("7c9696"))
@@ -690,7 +725,12 @@ func _hover_tile(point: Dictionary) -> bool:
 		if not point.is_empty() and not state.is_empty() and not Movement.same(rules.active(state),point): practice.observe(self,"cursor")
 		hint.text = practice.instruction(self)
 	if not point.is_empty() and state.get("combatEdition",0)>=11 and not _modal_open(): hint.text += "\nAltura %d · rueda: zoom · botón central: cámara." % rules.Terrain.height_at(state,point)
+	adventure.hover(self,point)
 	return true
+
+func _select_tile(point: Dictionary) -> void:
+	if adventure.select(self,point): return
+	super._select_tile(point)
 
 func _travel_button(key: String, text: String, parent: Node, command: Dictionary) -> Button:
 	command.at = run.revision
@@ -869,8 +909,9 @@ func _render_travel() -> void:
 		guide.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		travel_content.add_child(guide)
 	if run.get("edition",1)>=12 and run.get("edition",1)<CURRENT_CHAPTER-4 and run.get("phase","") in ["map","shop","complete","ending"]:
-		var upgrade: Button = _button("Actualizar versión · conservar final" if run.phase=="ending" else "Actualizar progresión y gimnasios" if CURRENT_CHAPTER>=24 else "Continuar aventura · ampliar Kanto",_upgrade_campaign)
+		var upgrade: Button = _button("Actualizar versión · conservar final" if run.phase=="ending" else "Actualizar aventura táctica" if CURRENT_CHAPTER>=25 else "Actualizar progresión y gimnasios" if CURRENT_CHAPTER>=24 else "Continuar aventura · ampliar Kanto",_upgrade_campaign)
 		upgrade.tooltip_text = "Conserva equipo, nivel, PS y diario; guarda copia. La nueva progresión conserva la proporción de EXP parcial y devuelve el precio de Caramelos/piedras/cables sobrantes. No transforma combates pendientes."
+		if CURRENT_CHAPTER>=25: upgrade.tooltip_text = "Añade despliegue, arenas, objetivos y recuperación de EXP para próximos encuentros. Conserva equipo, PS y diario con copia previa; desde edición20 mantiene la EXP exacta. Un combate pendiente conserva sus reglas."
 		travel_content.add_child(upgrade)
 		travel_buttons.upgrade = upgrade
 	if not run.is_empty() and run.get("edition",1)>=8 and not _simple_hub():
@@ -888,9 +929,9 @@ func _render_travel() -> void:
 		if new_seed.strip_edges().is_empty(): new_seed = _generate_seed()
 		journey_seed = LineEdit.new()
 		journey_seed.text = new_seed
-		journey_seed.max_length = 64
+		journey_seed.max_length = 1024
 		journey_seed.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		journey_seed.placeholder_text = "Semilla de la campaña"
+		journey_seed.placeholder_text = "Semilla o código de reto KT25"
 		journey_seed.accessibility_name = "Semilla de la campaña"
 		journey_seed.tooltip_text = "La misma semilla y decisiones repiten el azar. Las capturas respetan las especies de cada zona."
 		journey_seed.text_changed.connect(func(value: String):
@@ -1051,7 +1092,7 @@ func _render_travel() -> void:
 		if run.phase=="shop": text.text = ""
 		elif run.phase=="map": text.text = location.story
 		elif run.phase=="capture": text.text = "%s · Nv. %d\n%s" % [rules.profiles[int(run.reward.speciesId)].data.name,run.reward.level,run.reward.origin]
-		elif run.phase=="defeat": text.text = "El equipo ha caído. Puedes comenzar otra aventura desde Inicio."
+		elif run.phase=="defeat": text.text = "El rescate ha fracasado: Fuji se ha quedado sin protección. Puedes comenzar otra aventura desde Inicio." if run.get("battle",{}).get("mission",{}).get("kind")=="protect" and run.battle.mission.health<=0 else "El equipo ha caído. Puedes comenzar otra aventura desde Inicio."
 		text.visible = not text.text.is_empty()
 	if run.get("edition",1)>=13:
 		if run.phase=="complete": text.text = "Conservas equipo, objetos, dinero y progreso. Has completado el contenido principal de este tramo. Puedes recorrer los desvíos pendientes."
@@ -1530,6 +1571,8 @@ func _render_inventory(parent: VBoxContainer, member: Dictionary) -> void:
 
 func _process(delta: float) -> void:
 	if practice.active: return
+	if not qa_running: adventure.tick(self,delta)
+	if not run.is_empty() and run.get("battle",{}).get("deployment",false): return
 	super._process(delta)
 
 func _start_practice() -> void:

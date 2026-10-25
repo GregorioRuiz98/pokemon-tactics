@@ -1,0 +1,19 @@
+{
+	"assertions": 57,
+	"campaignEdition": 20,
+	"combatEdition": 18,
+	"curveHash": "af2d4b4fd6d268355250d28ab71831ac6c408827168ef2eae4f930bfe2e160ff",
+	"failures": [],
+	"journeyHash": "c234b2b62d994c17403f6bd6d95c979ab365c26432088427c36ed02dc747329f",
+	"naturalReplay": "natural-campaign.json; synthetic Eevee fixture stored separately",
+	"screenshots": [
+		"local-reroll.png",
+		"training-shop.png",
+		"training-1024-100.png",
+		"training-1024-125.png",
+		"training-1024-150.png",
+		"training-1280-100.png",
+		"training-1280-125.png",
+		"training-1280-150.png"
+	]
+}

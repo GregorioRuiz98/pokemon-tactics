@@ -86,14 +86,24 @@ if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-expo
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'test-economy') {
+if(operation === 'simulate-adventure') {
+  run(binary,['--headless',...common,'--script','res://tests/adventure_balance.gd','--','--save-dir='+work],'simulate-balance');
+} else if(operation === 'test-adventure') {
+  run(binary,['--headless',...common,'--script','res://tests/adventure.gd','--','--save-dir='+work],'test-adventure');
+} else if(operation === 'qa-adventure' || operation === 'qa-adventure-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,exported?'adventure-release':'adventure-source');
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--adventure-qa-dir='+directory],'adventure-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'adventure-ui-result.json'),'utf8'));
+  if(report.failures.length || report.assertions<20) throw new Error('Adventure UI failed');
+} else if(operation === 'test-economy') {
   run(binary,['--headless',...common,'--script','res://tests/economy.gd','--','--save-dir='+work],'test-economy');
 } else if(operation === 'simulate-economy') {
   run(binary,['--headless',...common,'--script','res://tests/economy_balance.gd','--','--save-dir='+work],'simulate-balance');
 } else if(operation === 'qa-economy' || operation === 'qa-economy-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,exported?'economy-release':'economy-source');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--economy-qa-dir='+directory],'economy-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--compat-economy','--economy-qa-dir='+directory],'economy-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'economy-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<40) throw new Error('Economy QA failed');
 } else if(operation === 'test-spatial') {
@@ -101,13 +111,13 @@ if(operation === 'test-economy') {
 } else if(operation === 'qa-moves' || operation === 'qa-moves-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,exported?'moves-release':'moves-source');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--moves-qa-dir='+directory],'moves-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--compat-economy','--moves-qa-dir='+directory],'moves-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'moves-ui-result.json'),'utf8'));
   if(report.failures.length || report.layouts.length!==56) throw new Error('Equipped move UI regression failed');
 } else if(operation === 'qa-spatial' || operation === 'qa-spatial-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,exported?'spatial-release':'spatial-source');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--spatial-qa-dir='+directory],'spatial-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--compat-economy','--spatial-qa-dir='+directory],'spatial-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'spatial-ui-result.json'),'utf8'));
   if(report.failures.length || report.originalSounds!==40 || !report.naturalCampaignReplay) throw new Error('Spatial QA failed');
 } else if (operation === 'qa-attack-effects' || operation === 'qa-attack-effects-export') {

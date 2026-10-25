@@ -1,0 +1,39 @@
+{
+  "version": "0.25.0",
+  "baseline": "a52d10a56b87037e5fff6e58d69fcab6e5ae4082",
+  "publishedModulesUnchanged": [
+    "godot/core",
+    "godot/data",
+    "godot/tests",
+    "src",
+    "public",
+    "tests",
+    "CREDITS.md"
+  ],
+  "campaignEdition": 21,
+  "combatEdition": 19,
+  "validatorOk": true,
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "coreChecks": {
+    "adventure": 105,
+    "economy": 964,
+    "spatial": 557
+  },
+  "uiChecksPerBuild": {
+    "adventure": 100,
+    "economy": 57,
+    "spatial": 55,
+    "moves": 304,
+    "performance": 18,
+    "fluency": 220
+  },
+  "historicalAiCases": 93,
+  "sourceAndExeNaturalReplayMatch": true,
+  "openingSamples": 6,
+  "openingBrockWins": 2,
+  "balanceClosed": false,
+  "fullCampaignRerun": false,
+  "publicDeployment": false
+}

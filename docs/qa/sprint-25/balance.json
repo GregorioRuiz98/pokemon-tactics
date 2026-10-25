@@ -1,0 +1,408 @@
+{
+	"failures": [],
+	"policy": "Automated AI with default deployment; existing economy policy for free evolutions, diverse learned moves and paid healing/training; no capture rerolls or TM purchases. Six fixed opening samples; defeats retained, no claim of human balance or complete Kanto.",
+	"results": [
+		{
+			"fights": [
+				{
+					"levels": [
+						5
+					],
+					"location": "route-1",
+					"money": 120
+				},
+				{
+					"levels": [
+						6,
+						6
+					],
+					"location": "route-2",
+					"money": 256
+				},
+				{
+					"levels": [
+						8,
+						8,
+						7
+					],
+					"location": "forest",
+					"money": 359
+				}
+			],
+			"lastLocation": "forest",
+			"medals": 0,
+			"money": 359,
+			"party": [
+				{
+					"hp": 0,
+					"level": 8,
+					"species": 1,
+					"xp": 71
+				},
+				{
+					"hp": 0,
+					"level": 8,
+					"species": 69,
+					"xp": 25
+				},
+				{
+					"hp": 0,
+					"level": 7,
+					"species": 69,
+					"xp": 0
+				}
+			],
+			"phase": "defeat",
+			"replay": true,
+			"seed": "economy-0",
+			"spentMedicine": 80,
+			"spentTraining": 101,
+			"starter": 1,
+			"stats": {
+				"battles": 3,
+				"distantMoves": 0,
+				"kos": 3,
+				"orders": 178,
+				"rounds": 22
+			}
+		},
+		{
+			"fights": [
+				{
+					"levels": [
+						5
+					],
+					"location": "route-1",
+					"money": 120
+				},
+				{
+					"levels": [
+						6,
+						6
+					],
+					"location": "route-2",
+					"money": 256
+				},
+				{
+					"levels": [
+						8,
+						8,
+						7
+					],
+					"location": "forest",
+					"money": 439
+				},
+				{
+					"levels": [
+						10,
+						10,
+						10,
+						9
+					],
+					"location": "brock",
+					"money": 353
+				}
+			],
+			"lastLocation": "brock",
+			"medals": 1,
+			"money": 1033,
+			"party": [
+				{
+					"hp": 106,
+					"level": 12,
+					"species": 1,
+					"xp": 65
+				},
+				{
+					"hp": 41,
+					"level": 12,
+					"species": 16,
+					"xp": 19
+				},
+				{
+					"hp": 136,
+					"level": 12,
+					"species": 43,
+					"xp": 0
+				},
+				{
+					"hp": 124,
+					"level": 10,
+					"species": 15,
+					"xp": 142
+				}
+			],
+			"phase": "capture",
+			"replay": true,
+			"seed": "economy-1",
+			"spentMedicine": 90,
+			"spentTraining": 402,
+			"starter": 1,
+			"stats": {
+				"battles": 4,
+				"distantMoves": 0,
+				"kos": 0,
+				"orders": 200,
+				"rounds": 22
+			}
+		},
+		{
+			"fights": [
+				{
+					"levels": [
+						5
+					],
+					"location": "route-1",
+					"money": 120
+				},
+				{
+					"levels": [
+						6,
+						6
+					],
+					"location": "route-2",
+					"money": 256
+				}
+			],
+			"lastLocation": "route-2",
+			"medals": 0,
+			"money": 256,
+			"party": [
+				{
+					"hp": 0,
+					"level": 6,
+					"species": 4,
+					"xp": 46
+				},
+				{
+					"hp": 0,
+					"level": 6,
+					"species": 69,
+					"xp": 0
+				}
+			],
+			"phase": "defeat",
+			"replay": true,
+			"seed": "economy-0",
+			"spentMedicine": 0,
+			"spentTraining": 44,
+			"starter": 4,
+			"stats": {
+				"battles": 2,
+				"distantMoves": 0,
+				"kos": 2,
+				"orders": 95,
+				"rounds": 16
+			}
+		},
+		{
+			"fights": [
+				{
+					"levels": [
+						5
+					],
+					"location": "route-1",
+					"money": 120
+				},
+				{
+					"levels": [
+						6,
+						6
+					],
+					"location": "route-2",
+					"money": 256
+				},
+				{
+					"levels": [
+						8,
+						8,
+						7
+					],
+					"location": "forest",
+					"money": 399
+				},
+				{
+					"levels": [
+						10,
+						10,
+						10,
+						9
+					],
+					"location": "brock",
+					"money": 283
+				}
+			],
+			"lastLocation": "brock",
+			"medals": 0,
+			"money": 283,
+			"party": [
+				{
+					"hp": 0,
+					"level": 10,
+					"species": 4,
+					"xp": 65
+				},
+				{
+					"hp": 0,
+					"level": 10,
+					"species": 16,
+					"xp": 19
+				},
+				{
+					"hp": 0,
+					"level": 10,
+					"species": 43,
+					"xp": 0
+				},
+				{
+					"hp": 0,
+					"level": 9,
+					"species": 15,
+					"xp": 0
+				}
+			],
+			"phase": "defeat",
+			"replay": true,
+			"seed": "economy-1",
+			"spentMedicine": 160,
+			"spentTraining": 402,
+			"starter": 4,
+			"stats": {
+				"battles": 4,
+				"distantMoves": 0,
+				"kos": 4,
+				"orders": 315,
+				"rounds": 35
+			}
+		},
+		{
+			"fights": [
+				{
+					"levels": [
+						5
+					],
+					"location": "route-1",
+					"money": 120
+				},
+				{
+					"levels": [
+						6,
+						6
+					],
+					"location": "route-2",
+					"money": 256
+				}
+			],
+			"lastLocation": "route-2",
+			"medals": 0,
+			"money": 256,
+			"party": [
+				{
+					"hp": 0,
+					"level": 6,
+					"species": 7,
+					"xp": 46
+				},
+				{
+					"hp": 0,
+					"level": 6,
+					"species": 69,
+					"xp": 0
+				}
+			],
+			"phase": "defeat",
+			"replay": true,
+			"seed": "economy-0",
+			"spentMedicine": 0,
+			"spentTraining": 44,
+			"starter": 7,
+			"stats": {
+				"battles": 2,
+				"distantMoves": 0,
+				"kos": 2,
+				"orders": 87,
+				"rounds": 15
+			}
+		},
+		{
+			"fights": [
+				{
+					"levels": [
+						5
+					],
+					"location": "route-1",
+					"money": 120
+				},
+				{
+					"levels": [
+						6,
+						6
+					],
+					"location": "route-2",
+					"money": 256
+				},
+				{
+					"levels": [
+						8,
+						8,
+						7
+					],
+					"location": "forest",
+					"money": 399
+				},
+				{
+					"levels": [
+						10,
+						10,
+						10,
+						9
+					],
+					"location": "brock",
+					"money": 233
+				}
+			],
+			"lastLocation": "brock",
+			"medals": 1,
+			"money": 913,
+			"party": [
+				{
+					"hp": 31,
+					"level": 12,
+					"species": 7,
+					"xp": 65
+				},
+				{
+					"hp": 0,
+					"level": 11,
+					"species": 16,
+					"xp": 43
+				},
+				{
+					"hp": 129,
+					"level": 12,
+					"species": 43,
+					"xp": 0
+				},
+				{
+					"hp": 0,
+					"level": 9,
+					"species": 15,
+					"xp": 206
+				}
+			],
+			"phase": "capture",
+			"replay": true,
+			"seed": "economy-1",
+			"spentMedicine": 210,
+			"spentTraining": 402,
+			"starter": 7,
+			"stats": {
+				"battles": 4,
+				"distantMoves": 0,
+				"kos": 2,
+				"orders": 257,
+				"rounds": 29
+			}
+		}
+	]
+}
