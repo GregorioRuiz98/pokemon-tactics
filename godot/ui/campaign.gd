@@ -7,7 +7,9 @@ const CURRENT_CHAPTER: int = 25
 const Art = preload("res://ui/visual_assets.gd")
 const RosterPanel = preload("res://ui/roster_panel.gd")
 const IsometricBoard = preload("res://ui/adventure_board.gd")
-const CampaignStore = preload("res://core/adventure_store.gd")
+const CampaignStore = preload("res://core/profile_campaign_store.gd")
+var trainer: RefCounted = preload("res://ui/trainer_session.gd").new()
+var trainer_qa_dir: String = ""
 var adventure: RefCounted = preload("res://ui/adventure_ui.gd").new()
 var campaign: RefCounted = Advanced.new()
 var last_presentation: Dictionary = {}
@@ -173,6 +175,7 @@ func _boot() -> void:
 		get_tree().change_scene_to_file.call_deferred("res://scenes/laboratory.tscn")
 		return
 	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--trainer-qa-dir="): trainer_qa_dir = argument.trim_prefix("--trainer-qa-dir=")
 		if argument.begins_with("--player-qa-dir="): player_qa_dir = argument.trim_prefix("--player-qa-dir=")
 		if argument.begins_with("--adventure-qa-dir="): adventure_qa_dir = argument.trim_prefix("--adventure-qa-dir=")
 		if argument.begins_with("--economy-qa-dir="): economy_qa_dir = argument.trim_prefix("--economy-qa-dir=")
@@ -204,9 +207,11 @@ func _boot() -> void:
 	if not economy_qa_dir.is_empty(): test_dir = economy_qa_dir
 	if not adventure_qa_dir.is_empty(): test_dir = adventure_qa_dir
 	if not player_qa_dir.is_empty(): test_dir = player_qa_dir
+	if not trainer_qa_dir.is_empty(): test_dir = trainer_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
+	trainer.setup(self,test_dir.path_join("trainer-profile.json") if qa_running else "user://trainer-profile.json")
 	menu.get_popup().set_item_text(menu.get_popup().get_item_index(0),"Nueva campaña")
 	menu.get_popup().set_item_text(menu.get_popup().get_item_index(7),"Laboratorio táctico")
 	menu.get_popup().add_separator()
@@ -214,6 +219,7 @@ func _boot() -> void:
 	menu.get_popup().add_item("Aprender / salir de práctica",13)
 	menu.get_popup().add_item("Glosario táctico",14)
 	menu.get_popup().add_item("Copiar semilla de la campaña",15)
+	menu.get_popup().add_item("Perfil de entrenador",16)
 	if "--developer" not in OS.get_cmdline_user_args(): menu.get_popup().remove_item(menu.get_popup().get_item_index(7))
 	travel_art = load("res://ui/artwork_slot.gd").new()
 	add_child(travel_art)
@@ -236,7 +242,8 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
-	if not player_qa_dir.is_empty(): _open_title(); call_deferred("_run_player_qa")
+	if not trainer_qa_dir.is_empty(): _open_title(); call_deferred("_run_trainer_qa")
+	elif not player_qa_dir.is_empty(): _open_title(); call_deferred("_run_player_qa")
 	elif not economy_qa_dir.is_empty(): _open_title(); call_deferred("_run_economy_qa")
 	elif not moves_qa_dir.is_empty(): _open_title(); call_deferred("_run_moves_qa")
 	elif not spatial_qa_dir.is_empty(): _open_title(); call_deferred("_run_spatial_qa")
@@ -437,6 +444,9 @@ func _update_seed_hint() -> void:
 func _run_player_qa() -> void:
 	await load("res://ui/qa_player.gd").new().run(self,player_qa_dir)
 
+func _run_trainer_qa() -> void:
+	await load("res://ui/qa_trainer.gd").new().run(self,trainer_qa_dir)
+
 func _choose_starter(identity: int) -> void:
 	var challenge: Dictionary = {}
 	var requested_seed: String = journey_seed.text.strip_edges()
@@ -459,6 +469,7 @@ func _choose_starter(identity: int) -> void:
 	if campaign_qa_dir.is_empty() and scale_qa_dir.is_empty() and roster_qa_dir.is_empty(): campaign = Journey.new(24 if "--compat-economy" in OS.get_cmdline_user_args() else CURRENT_CHAPTER)
 	rules = campaign.engine
 	run = campaign.create(new_seed,identity)
+	trainer.begin_new(self)
 	oak_return = {}
 	_prepare_campaign_assets()
 	transactions = []
@@ -483,9 +494,11 @@ func _menu_selected(identity: int) -> void:
 		13: _start_practice()
 		14: _glossary()
 		15: _copy_seed()
+		16: trainer.open(self)
 		_: super._menu_selected(identity)
 
 func _modal_open() -> bool:
+	if trainer.dialog!=null and trainer.dialog.visible: return true
 	if action_review!=null and action_review.visible: return true
 	if batch_busy or (shop_batch!=null and shop_batch.visible): return true
 	return title_visible or super._modal_open() or (campaign_confirm != null and campaign_confirm.visible) or (options_dialog!=null and options_dialog.visible)
@@ -497,6 +510,7 @@ func _save() -> void:
 	if run.is_empty(): return
 	var result: Dictionary = store.save(run,transactions,"kanto-14")
 	save_warning = "" if result.ok else result.reason
+	if result.ok: trainer.sync(self)
 
 func _load_game() -> void:
 	if practice.active: hint.text = "Sal de la práctica para recuperar tu aventura."; return
@@ -516,6 +530,8 @@ func _load_game() -> void:
 	run = result.state
 	_prepare_campaign_assets()
 	transactions = result.commands
+	trainer.signature = ""
+	trainer.sync(self)
 	save_warning = ""
 	message = "Campaña recuperada." if run.get("edition",1) >= 12 else "Partida clásica %s: conserva sus reglas. Nueva campaña para usar el PC." % _classic_version()
 	pending = {}
@@ -563,6 +579,7 @@ func _event(command: Dictionary, from_batch: bool = false) -> void:
 	if command.kind=="enter": _prepare_campaign_assets()
 	history = run.battleCommands
 	selecting = "finish" if _player_turn() and state.moved and state.acted else "auto"
+	trainer.prepare(self,previous,command,result)
 	_save()
 	_refresh()
 	adventure.present(self,command,previous)
@@ -645,6 +662,7 @@ func _refresh() -> void:
 			travel_root.hide()
 			travel_art.hide()
 			title_screen.refresh()
+			trainer.update_title(self)
 			accessible_view.request_update(true)
 			return
 	if travel_root == null:
@@ -1636,6 +1654,7 @@ func _render_inventory(parent: VBoxContainer, member: Dictionary) -> void:
 		button.tooltip_text = (preload("res://ui/move_info.gd").details(campaign.progression.data.moves[item.move]) if teach else item.description) + (" Ya aprendido o incompatible." if teach and not available else "")
 
 func _process(delta: float) -> void:
+	if not qa_running: trainer.tick(self,delta)
 	if practice.active: return
 	if not qa_running: adventure.tick(self,delta)
 	if not run.is_empty() and run.get("battle",{}).get("deployment",false): return

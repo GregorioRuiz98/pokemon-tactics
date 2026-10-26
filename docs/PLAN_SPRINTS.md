@@ -511,3 +511,8 @@ El encargo del25 de octubre autoriza todas las propuestas: despliegue, amenazas,
 - **29: variedad táctica.** Pendiente; revisar disponibilidad de movimientos y oportunidades de uso, con nueva edición si cambian reglas.
 
 El encargo «empieza a implementar» inicia26. Completar cada sprint por separado; no se publica el juego en Internet.
+
+
+## Entrega27 y continuación autorizada
+
+27: perfil local implementado en0.27.0; [informe](SPRINT_27_TRAINER.md). El usuario pide «implementa todo», autorizando completar también28 (tienda) y29 (variedad táctica) con entrega independiente por sprint. Se conserva la publicación pública aplazada.

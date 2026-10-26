@@ -156,3 +156,6 @@ Encargo del24 de octubre: nueva campaña20/combate18 en economy_study/battle/run
 
 
 - Sprint26 autorizado con «empieza a implementar»: 0.26.0, presentación para jugadores, no ejecutar automáticamente27–29. Semillas opcionales en Oak, información compartida de potencia/precisión/área y ayuda según edición. Campaña21/combate19 y módulos publicados intactos. Ver docs/SPRINT_26_PLAYER.md; QA y ejecutable aislados; commit/push privado autorizado. Perfil/logros y tienda Kecleon pendientes.
+
+
+- 26 de octubre: «implementa todo» autoriza completar sprints27–29 en entregas separadas, con comprobaciones, ejecutable y commit/push privado por sprint; sustituye el límite anterior de no continuar automáticamente. Sin delegación ni publicación pública. Sprint27: perfil local fuera del estado de campaña, IDs/outbox en metadatos del sobre, recuperación explícita y logros cosméticos. Ver docs/SPRINT_27_TRAINER.md.

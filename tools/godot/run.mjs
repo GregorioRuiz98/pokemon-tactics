@@ -90,7 +90,15 @@ if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-expo
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'simulate-adventure') {
+if(operation === 'test-trainer') {
+  run(binary,['--headless',...common,'--script','res://tests/trainer.gd','--','--save-dir='+work],'test-trainer');
+} else if(operation === 'qa-trainer' || operation === 'qa-trainer-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,exported?'trainer-release':'trainer-source');
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--trainer-qa-dir='+directory],'trainer-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'trainer-ui-result.json'),'utf8'));
+  if(report.failures.length || report.assertions<50) throw new Error('Trainer UI failed');
+} else if(operation === 'simulate-adventure') {
   run(binary,['--headless',...common,'--script','res://tests/adventure_balance.gd','--','--save-dir='+work],'simulate-balance');
 } else if(operation === 'test-adventure') {
   run(binary,['--headless',...common,'--script','res://tests/adventure.gd','--','--save-dir='+work],'test-adventure');

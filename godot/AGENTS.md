@@ -183,3 +183,8 @@ Encargo25 de octubre: implementar todas las mejoras propuestas. Campaña21/comba
 ## Presentación para jugadores 0.26.0
 
 Sprint26: conservar campaña21/combate19, códigoKT25 y reglas. Opciones de partida plegadas en Oak, semilla automática, ayuda por edición y move_info/move_diagram compartidos. Las consultas no consumen azar; las semillas inválidas se rechazan antes de sustituir guardados. Ver ../docs/SPRINT_26_PLAYER.md. QA específica player y regresiones de interfaz en fuente/EXE; APPDATA/LOCALAPPDATA aislados en el ejecutor. Sin recursos externos ni delegación/publicación. No iniciar perfil27, tienda28 o repertorios29 automáticamente.
+
+
+## Perfil de entrenador 0.27.0
+
+TrainerProfile/TrainerStore y ProfileCampaignStore añaden perfil local trainer/1 y metadatos fuera del estado reproducido. Persistir campaña con outbox antes de proyectar al perfil; nunca duplicar eventos al cargar. Perfil inválido conserva archivo y requiere recuperación explícita. Logros cosméticos, sin ventajas de dominio. Ver ../docs/SPRINT_27_TRAINER.md. El usuario autoriza completar27–29 separados; conservar módulos publicados y guardar QA en rutas aisladas.

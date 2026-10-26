@@ -1,0 +1,39 @@
+{
+  "version": "0.27.0",
+  "baseline": "be221c89082013c288adf3e28bb8acfb872e1474",
+  "publishedFilesUnchanged": [
+    "godot/core",
+    "godot/data",
+    "godot/tests",
+    "godot/assets",
+    "godot/art",
+    "src",
+    "public",
+    "tests",
+    "CREDITS.md"
+  ],
+  "campaignEdition": 21,
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "coreChecks": {
+    "trainer": 120,
+    "adventure": 105
+  },
+  "uiChecksPerBuild": {
+    "trainer": 69,
+    "player": 719
+  },
+  "sourceAndExeStateMatch": true,
+  "publicDeployment": false,
+  "fullCampaignPlayed": false,
+  "sourceFingerprint": "73a7bb12bf61583ef552573a96f3bacca78e2a1bcf1be3904e7377ddd6e0f009",
+  "exe": {
+    "bytes": 130058112,
+    "sha256": "97f2e47f64a4bc41c0be58bf16494c20a1122e320d926ecb087599b8c5d324b6"
+  },
+  "zip": {
+    "bytes": 53932109,
+    "sha256": "99b946694b1ca452b907259d01229aab1fb716caf86d01fb998c223f990e3e41"
+  }
+}

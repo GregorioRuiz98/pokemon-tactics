@@ -51,7 +51,7 @@ func setup(owner_app: Control) -> void:
 	var space: Control = Control.new()
 	space.custom_minimum_size.y = 12
 	left.add_child(space)
-	for entry: Array in [["continue","Continuar aventura",app._resume_title],["new","Nueva aventura",app._new_from_title],["practice","Aprender a jugar",app._start_practice]]:
+	for entry: Array in [["continue","Continuar aventura",app._resume_title],["new","Nueva aventura",app._new_from_title],["practice","Aprender a jugar",app._start_practice],["trainer","Perfil de entrenador",func():app.trainer.open(app)]]:
 		var button: Button = app._button(entry[1],entry[2])
 		button.theme_type_variation = "CommandButton"
 		button.add_theme_font_size_override("font_size",22)
