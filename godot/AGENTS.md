@@ -178,3 +178,8 @@ Planificador cooperativo de presentación turn_planner.gd para combate18: mismos
 ## Aventura táctica 0.25.0
 
 Encargo25 de octubre: implementar todas las mejoras propuestas. Campaña21/combate19 mediante adventure_*.gd, adventure.json; tablas24 heredadas y módulos publicados congelados. Despliegue guardado sin RNG, B para iniciar, T amenazas geométricas cooperativas, F9 tarjeta/códigoKT25 local. Ocho arenas, objetivos Rocket/Fuji/Calle Victoria, IA sin bonificaciones, recuperación50% a debilitados desplegados sin revivir/25% por nivel rezagado hasta100%, descuento25% a partir de3 niveles bajo media, caps. Ruta1 introductoria con básico rival. Agua/fuego/seda con previsión y feedback. Portales solo si salida libre, no rectificables. Actualización voluntaria20→21 conserva EXP exacta;12–19 pasan conversión20 dentro de la transacción y con diario mixto. Pruebas/alcance en ../docs/SPRINT_25_TACTICAL.md. No afirmar balance ni campaña21 completa:2/6 muestras llegan a superar Brock, resto derrotas retenidas; gimnasios tardíos sintéticos. Mantener cachés, controles, guardado antes de feedback. Sin delegación ni publicación pública; commit/push privado autorizado.
+
+
+## Presentación para jugadores 0.26.0
+
+Sprint26: conservar campaña21/combate19, códigoKT25 y reglas. Opciones de partida plegadas en Oak, semilla automática, ayuda por edición y move_info/move_diagram compartidos. Las consultas no consumen azar; las semillas inválidas se rechazan antes de sustituir guardados. Ver ../docs/SPRINT_26_PLAYER.md. QA específica player y regresiones de interfaz en fuente/EXE; APPDATA/LOCALAPPDATA aislados en el ejecutor. Sin recursos externos ni delegación/publicación. No iniciar perfil27, tienda28 o repertorios29 automáticamente.

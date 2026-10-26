@@ -637,7 +637,7 @@ func _refresh():
 	if actor.has("abilityName"): actor_info.text += "\n"+actor.abilityName
 	for index in rules.profile(actor).actions_for(actor).size():
 		var definition = rules.profile(actor).actions_for(actor)[index].definition
-		var button = _button("%d · %s\n%d PT · %d cas." % [index + 1, definition.name, definition.cost, definition.range], _select_action.bind(definition.id))
+		var button = _button("%d · %s\n%s" % [index + 1, definition.name,preload("res://ui/move_info.gd").compact(definition)], _select_action.bind(definition.id))
 		if actor.get("recoveryPP",{}).has(definition.id): button.text += " · %d/5 usos" % actor.recoveryPP[definition.id]
 		button.theme_type_variation = "CommandButton"
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
@@ -646,7 +646,8 @@ func _refresh():
 		if actor.get("recoveryPP",{}).has(definition.id): button.disabled = button.disabled or actor.recoveryPP[definition.id]<=0
 		button.toggle_mode = true
 		button.button_pressed = definition.id == selected_action and selecting != "finish" and not state.acted
-		button.tooltip_text = definition.description
+		button.tooltip_text = preload("res://ui/move_info.gd").details(definition)
+		button.accessibility_description = button.tooltip_text
 		button.mouse_entered.connect(_preview_self.bind(definition.id))
 		actions.add_child(button)
 		action_buttons[definition.id] = button
@@ -799,12 +800,14 @@ func _show_plan(unit: Dictionary, plan: Dictionary):
 	for hit in plan.hits:
 		if hit.targetId != unit.id: target_info.text += "\n%s: %d PS · %d %%" % [Rules.unit_by_id(state, int(hit.targetId)).name, hit.damage, hit.accuracy]
 	if not plan.embers.is_empty(): target_info.text += "\nDeja ascuas en el área."
+	var action: RefCounted = rules.profile(Rules.active(state)).action(Rules.active(state),selected_action)
+	if action!=null: target_info.text += "\nPotencia base: "+preload("res://ui/move_info.gd").power(action.definition)
 	board.affected = plan.tiles
 	board.forecast_hits = plan.hits
 	if not plan.get("approach",{}).is_empty(): board.route = plan.approach.path
 
-	target_info.set_meta("details",target_info.text)
-	target_info.text = load("res://ui/tactical_info.gd").forecast(unit,plan)+( "\n¡Alcanza a aliados!" if plan.ok and _friendly_risk(plan) else "")+"\nFicha: "+input_profile.label("inspect")+" · detalle completo"
+	target_info.set_meta("details",target_info.text+("\n\n"+preload("res://ui/move_info.gd").details(action.definition) if action!=null else ""))
+	target_info.text = load("res://ui/tactical_info.gd").forecast(unit,plan)+( "\nPotencia base: "+preload("res://ui/move_info.gd").power(action.definition) if action!=null else "")+( "\n¡Alcanza a aliados!" if plan.ok and _friendly_risk(plan) else "")+"\nFicha: "+input_profile.label("inspect")+" · detalle completo"
 
 func _hover_tile(point: Dictionary) -> bool:
 	if state.is_empty() or _modal_open() or not pending.is_empty(): return false

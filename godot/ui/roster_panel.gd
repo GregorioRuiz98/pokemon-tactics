@@ -25,14 +25,14 @@ func render(app: Control, parent: VBoxContainer) -> void:
 	var original: Array = run.party if app.roster_tab=="team" else run.reserve
 	if app.roster_tab=="pc": filters.render(app,parent)
 	var collection: Array = filters.filtered(app,original) if app.roster_tab=="pc" else original
-	if app.roster_tab=="pc": parent.add_child(app._label("%d / %d resultados · selección por ID" % [collection.size(),original.size()],17))
+	if app.roster_tab=="pc": parent.add_child(app._label("%d / %d Pokémon" % [collection.size(),original.size()],17))
 	var heading: Label = app._label("%d en pie" % run.party.filter(func(m):return m.hp>0).size() if app.roster_tab=="team" else "Reserva",18,app.GOLD)
 	heading.tooltip_text = "Seis plazas, incluidos debilitados. PC sin límite y cambios gratuitos fuera del combate. Perder un combate termina la campaña aunque queden reservas vivas."
 	parent.add_child(heading)
 	if collection.is_empty():
 		parent.add_child(app._label("PC vacío. Las capturas que superen las seis\nplazas se enviarán aquí automáticamente." if original.is_empty() else "Sin coincidencias; los compañeros del PC se conservan. Limpia los filtros para verlos.",17,app.MUTED))
 		if original.is_empty(): app.selected_member = -1
-		else: parent.add_child(app._button("Mostrar todos · conservar selección ID %d" % app.selected_member,func(): filters.clear(); app._refresh()))
+		else: parent.add_child(app._button("Mostrar todos",func(): filters.clear(); app._refresh()))
 		return
 	if not original.any(func(m):return m.id==app.selected_member): app.selected_member = int(collection[0].id)
 	var pages: int = maxi(1,int(ceil(collection.size()/float(PAGE_SIZE))))
@@ -48,13 +48,13 @@ func render(app: Control, parent: VBoxContainer) -> void:
 		var unit: Dictionary = app.rules.member_unit(member_data)
 		var vitals: String = "%d / %d PS" % [unit.hp,unit.maxHp] if unit.hp>0 else "Debilitado"
 		var button: Button = app._button("%s · Nv. %d\n%s" % [unit.name,member_data.level,vitals],app._select_member.bind(int(member_data.id)),0 if app._simple_hub() else 205)
-		button.accessibility_description = "Origen: %s · ID %d" % [member_data.origin,member_data.id]
+		button.accessibility_description = "Origen: %s · Pokémon %d de la lista" % [member_data.origin,index+1]
 		button.icon = app.faces[int(member_data.speciesId)]
 		button.expand_icon = true
 		button.add_theme_constant_override("icon_max_width",32)
 		button.add_theme_font_size_override("font_size",16)
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
-		button.tooltip_text = app._type_names(unit.types)+" · "+member_data.origin+" · ID %d" % member_data.id
+		button.tooltip_text = app._type_names(unit.types)+" · "+member_data.origin
 		button.toggle_mode = true
 		button.button_pressed = member_data.id==app.selected_member
 		var cell: VBoxContainer = VBoxContainer.new()
@@ -88,7 +88,7 @@ func render(app: Control, parent: VBoxContainer) -> void:
 		app.travel_buttons.pc_previous = previous
 		app.travel_buttons.pc_next = next
 	if not collection.any(func(m):return m.id==app.selected_member):
-		parent.add_child(app._label("El seleccionado ID %d está fuera del filtro; elige una fila o limpia los filtros." % app.selected_member,17))
+		parent.add_child(app._label("Tu selección no aparece con estos filtros. Elige otro Pokémon o limpia los filtros.",17))
 		return
 	var selected: Dictionary = app.campaign.target(run,app.selected_member)
 	var allowed: bool = run.phase in ["map","shop","complete"]

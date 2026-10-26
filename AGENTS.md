@@ -153,3 +153,6 @@ Encargo del24 de octubre: nueva campaña20/combate18 en economy_study/battle/run
 
 
 - 25 de octubre: usuario autoriza todas las mejoras propuestas. Entrega0.25.0/campaña21/combate19, ver godot/AGENTS.md y docs/SPRINT_25_TACTICAL.md. Módulos históricos conservados, actualización explícita entre encuentros y nuevo despliegue/objetivos/recuperación/IA/retos locales. Simulaciones no sustituyen balance humano. Sin delegación ni publicación pública.
+
+
+- Sprint26 autorizado con «empieza a implementar»: 0.26.0, presentación para jugadores, no ejecutar automáticamente27–29. Semillas opcionales en Oak, información compartida de potencia/precisión/área y ayuda según edición. Campaña21/combate19 y módulos publicados intactos. Ver docs/SPRINT_26_PLAYER.md; QA y ejecutable aislados; commit/push privado autorizado. Perfil/logros y tienda Kecleon pendientes.

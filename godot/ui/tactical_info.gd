@@ -5,7 +5,7 @@ const Indicators = preload("res://ui/unit_indicators.gd")
 static func unit_text(app: Control, unit: Dictionary) -> String:
 	if unit.is_empty(): return "Casilla sin ocupante."
 	var active: bool = app.rules.active(app.state).get("id")==unit.id
-	var text: String = "%s · Nv. %d · ID %d\n%s%s\nPS %d / %d · PT %d / %d\nTipos: %s\nMovimiento: %d · %s\nOrientación: %s" % [unit.name,unit.get("level",1),unit.id,"Aliado" if unit.team=="ally" else "Rival"," · turno activo" if active else "",unit.hp,unit.maxHp,unit.tp,unit.maxTp,app._type_names(unit.types),unit.remaining,"acción usada" if active and app.state.acted else "acción disponible" if active else "fuera de su activación",{4:"norte",2:"este",0:"sur",6:"oeste"}.get(int(unit.facing),str(unit.facing))]
+	var text: String = "%s · Nv. %d\n%s%s\nPS %d / %d · PT %d / %d\nTipos: %s\nMovimiento: %d · %s\nOrientación: %s" % [unit.name,unit.get("level",1),"Aliado" if unit.team=="ally" else "Rival"," · turno activo" if active else "",unit.hp,unit.maxHp,unit.tp,unit.maxTp,app._type_names(unit.types),unit.remaining,"acción usada" if active and app.state.acted else "acción disponible" if active else "fuera de su activación",{4:"norte",2:"este",0:"sur",6:"oeste"}.get(int(unit.facing),str(unit.facing))]
 	if app.state.get("combatEdition",0)>=11: text += " · altura %d" % app.rules.Terrain.height_at(app.state,unit)
 	if unit.has("abilityName"): text += "\nHabilidad: "+unit.abilityName+"\n"+unit.get("abilityDescription","")
 	for entry: Dictionary in Indicators.entries(unit): text += "\n"+entry.hint

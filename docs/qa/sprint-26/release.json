@@ -1,0 +1,43 @@
+{
+  "version": "0.26.0",
+  "baseline": "60ea4c76b689757837e4d6f68ec04b08ef0684b3",
+  "unchanged": [
+    "godot/core",
+    "godot/data",
+    "godot/tests",
+    "godot/assets",
+    "godot/art",
+    "src",
+    "public",
+    "tests",
+    "CREDITS.md"
+  ],
+  "campaignEdition": 21,
+  "combatEdition": 19,
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "coreChecks": 105,
+  "uiChecksPerBuild": {
+    "player": 719,
+    "moves": 304,
+    "spatial": 55,
+    "economy": 57,
+    "adventure": 100
+  },
+  "moveDefinitions": 211,
+  "sourceAndExeNaturalReplayMatch": true,
+  "fullCampaignRerun": false,
+  "balanceChanged": false,
+  "playerProfileImplemented": false,
+  "publicDeployment": false,
+  "sourceFingerprint": "6af4d1bb60e6ff01eade5cb713fae4a18fe523a010c353dbd0c902d5492bf137",
+  "exe": {
+    "bytes": 130027296,
+    "sha256": "1eb1f4c2b16a22b5535c4486450a3a0aacbd07f1286a4ee6ced373da58c72769"
+  },
+  "zip": {
+    "bytes": 53902734,
+    "sha256": "3b88283d815d29ce886291c82b6c15a0d26090d2e1f8e417edcf4a8f321feb8d"
+  }
+}

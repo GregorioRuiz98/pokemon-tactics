@@ -501,3 +501,13 @@ Formas y zonas comparten geometría/visión/alturas con IA y previsión; aliados
 ## Sprint 25 — mejoras tácticas, 0.25.0
 
 El encargo del25 de octubre autoriza todas las propuestas: despliegue, amenazas, arenas, ritmo, recuperación, IA, objetivos, terreno y presentación/retos compartibles. Nueva campaña21/combate19, módulos históricos congelados y actualización entre encuentros con copia. Ver [entrega y límites](SPRINT_25_TACTICAL.md). Simulaciones naturales2/6 superan Brock; balance humano y recorrido completo21 pendientes. Sin delegación, publicación pública ni servicios nuevos.
+
+
+## Acabado para jugadores — sprints26–29
+
+- **26: inicio, textos y movimientos (0.26.0), completado.** Implementación y comprobaciones en [informe](SPRINT_26_PLAYER.md). Mantiene campaña21/combate19.
+- **27: perfil local e historial de logros.** Pendiente; progreso entre campañas, sin ventajas estadísticas permanentes.
+- **28: tienda Kecleon y acabado visual.** Pendiente; interacción integrada, teclado/ratón y movimiento reducido.
+- **29: variedad táctica.** Pendiente; revisar disponibilidad de movimientos y oportunidades de uso, con nueva edición si cambian reglas.
+
+El encargo «empieza a implementar» inicia26. Completar cada sprint por separado; no se publica el juego en Internet.

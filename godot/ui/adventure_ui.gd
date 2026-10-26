@@ -57,7 +57,10 @@ func setup(app: Control) -> void:
 	toast_image.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	row.add_child(toast_image)
 	toast_text = app._label("",19,app.GOLD)
-	toast_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	toast_text.autowrap_mode = TextServer.AUTOWRAP_OFF
+	toast_text.clip_text = true
+	toast_text.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	toast_text.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	toast_text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	toast_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	row.add_child(toast_text)
@@ -178,8 +181,9 @@ func present(app: Control, command: Dictionary, previous: Dictionary) -> void:
 			species = int(entry.evolutions[-1].to); text = "¡Ha evolucionado a "+app.rules.profiles[species].data.name+"!"
 	if species==0: return
 	toast_image.texture = app.faces[species]; toast_text.text = text
-	toast.custom_minimum_size = Vector2(minf(600,app.size.x-48),76)
-	toast.position = Vector2((app.size.x-toast.custom_minimum_size.x)*.5,app.size.y*.5-38)
+	toast_text.tooltip_text = text
+	toast.custom_minimum_size = Vector2(minf(600,app.size.x-48),maxf(76,preload("res://ui/presentation_settings.gd").font_factor(app)*40+28))
+	toast.position = Vector2((app.size.x-toast.custom_minimum_size.x)*.5,app.size.y*.5-toast.custom_minimum_size.y*.5)
 	toast.size = toast.custom_minimum_size
 	toast.show(); toast_remaining = maxf(2.2,float(app.input_profile.preferences.resultSeconds))
 	app.accessible_view.announce(text)
@@ -205,5 +209,5 @@ func export_card(app: Control, output_path: String = "", copy_code: bool = true)
 	viewport.queue_free(); exporting = false
 	if result==OK:
 		if copy_code: DisplayServer.clipboard_set(code)
-		app._review_text("Resumen de la aventura","Tarjeta guardada en:\n"+ProjectSettings.globalize_path(path)+"\n\nCódigo de reto copiado. Pégalo en el campo de semilla de Oak: fija semilla, inicial, tamaño y edición. Las decisiones durante la aventura pueden cambiar los resultados.")
+		app._review_text("Resumen de la aventura","Tarjeta guardada en:\n"+ProjectSettings.globalize_path(path)+"\n\nCódigo de reto copiado. Pégalo en Opciones de partida al elegir inicial. El reto fija el inicial y el mapa; tus decisiones pueden cambiar el resultado.")
 	else: app._review_text("No se pudo guardar la tarjeta","No se ha podido escribir el PNG. Tu aventura se conserva.")

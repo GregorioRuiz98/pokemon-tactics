@@ -90,6 +90,8 @@
     "godot:test:economy": "node tools/godot/run.mjs test-economy",
     "godot:test:adventure": "node tools/godot/run.mjs test-adventure",
     "godot:simulate:adventure": "node tools/godot/run.mjs simulate-adventure",
+    "godot:qa:player": "node tools/godot/run.mjs qa-player",
+    "godot:qa:player:export": "node tools/godot/run.mjs qa-player-export",
     "godot:qa:adventure": "node tools/godot/run.mjs qa-adventure",
     "godot:qa:adventure:export": "node tools/godot/run.mjs qa-adventure-export",
     "godot:simulate:economy": "node tools/godot/run.mjs simulate-economy",

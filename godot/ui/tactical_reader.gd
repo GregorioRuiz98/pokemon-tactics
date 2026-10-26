@@ -34,7 +34,7 @@ func open_unit() -> void:
 	var target: Dictionary = app._unit_at({"x":app.board.cursor.x,"y":app.board.cursor.y})
 	if target.is_empty(): target = app.rules.active(app.state)
 	for unit: Dictionary in app.rules.living(app.state):
-		choices.add_item("%s · %s · ID %d" % [unit.name,"aliado" if unit.team=="ally" else "rival",unit.id],int(unit.id))
+		choices.add_item("%s · %s · %s" % [unit.name,"aliado" if unit.team=="ally" else "rival",app.rules.coordinate(unit)],int(unit.id))
 		if unit.id==target.id: choices.select(choices.item_count-1)
 	show_unit(int(target.id))
 	popup_centered(Vector2i(700,570))

@@ -15,10 +15,14 @@ const output = resolve(root, `../releases/pokemon-tactics-${nativeVersion}/windo
 const operation = process.argv[2] ?? 'test';
 const binary = process.env.GODOT_BIN ?? resolve(root, '../../work/godot-4.7.2/Godot_v4.7.2-stable_win64_console.exe');
 mkdirSync(work, { recursive: true });
+const isolatedProfile = resolve(work, 'profile');
+const isolatedLocal = resolve(work, 'local-profile');
+mkdirSync(isolatedProfile, { recursive: true });
+mkdirSync(isolatedLocal, { recursive: true });
 function run(executable, args, label, cwd = root) {
   const logIndex = args.indexOf('--log-file');
   if (logIndex >= 0) writeFileSync(args[logIndex + 1], '');
-  const result = spawnSync(executable, args, { cwd, encoding: 'utf8', windowsHide: true, timeout: label==='simulate-balance' ? 1_800_000 : label.startsWith('journey-ui-') || label.startsWith('updates-ui-') || label==='ui-release' || label==='ui-source' || label==='test-journey' ? 900_000 : 300_000, maxBuffer: 12 * 1024 * 1024 });
+  const result = spawnSync(executable, args, { cwd, env:{...process.env,APPDATA:isolatedProfile,LOCALAPPDATA:isolatedLocal}, encoding: 'utf8', windowsHide: true, timeout: label==='simulate-balance' ? 1_800_000 : label.startsWith('journey-ui-') || label.startsWith('updates-ui-') || label==='ui-release' || label==='ui-source' || label==='test-journey' ? 900_000 : 300_000, maxBuffer: 12 * 1024 * 1024 });
   const log = (result.stdout ?? '') + (result.stderr ?? '') + (logIndex >= 0 && existsSync(args[logIndex + 1]) ? '\n' + readFileSync(args[logIndex + 1], 'utf8') : '');
   writeFileSync(resolve(work, `${label}.log`), log);
   const clean = log.replace(/\x1b\[[0-9;]*m/g, '');
@@ -90,6 +94,12 @@ if(operation === 'simulate-adventure') {
   run(binary,['--headless',...common,'--script','res://tests/adventure_balance.gd','--','--save-dir='+work],'simulate-balance');
 } else if(operation === 'test-adventure') {
   run(binary,['--headless',...common,'--script','res://tests/adventure.gd','--','--save-dir='+work],'test-adventure');
+} else if(operation === 'qa-player' || operation === 'qa-player-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,exported?'player-release':'player-source');
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--player-qa-dir='+directory],'player-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'player-ui-result.json'),'utf8'));
+  if(report.failures.length || report.assertions<100 || report.naturalPhase!=='shop') throw new Error('Player UI failed');
 } else if(operation === 'qa-adventure' || operation === 'qa-adventure-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,exported?'adventure-release':'adventure-source');

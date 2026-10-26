@@ -1,5 +1,7 @@
 extends RefCounted
 
+const Info = preload("res://ui/move_info.gd")
+
 var selected_slot: int = -1
 var owner_id: int = -1
 var query: String = ""
@@ -57,7 +59,10 @@ func render(app: Control, parent: VBoxContainer, member: Dictionary) -> void:
 	cost.min_value = 0
 	cost.max_value = 5
 	cost.value = max_cost
-	cost.prefix = "PT máximos: "
+	cost.prefix = "PT: "
+	cost.custom_minimum_size.x = 160
+	cost.tooltip_text = "Coste máximo para filtrar movimientos. No consume PT."
+	cost.accessibility_name = "Coste máximo de movimiento, en PT"
 	cost.value_changed.connect(func(value: float): max_cost = int(value); app._refresh())
 	filters.add_child(cost)
 	var count: int = 0
@@ -68,16 +73,18 @@ func render(app: Control, parent: VBoxContainer, member: Dictionary) -> void:
 		if type_index>0 and definition.type!=app.TYPE_NAMES.keys()[type_index-1]: continue
 		if definition.cost>max_cost: continue
 		count += 1
-		var button: Button = app._button("%s · %s · %d PT · alcance %d%s" % [definition.name,app.TYPE_NAMES.get(definition.type,definition.type),definition.cost,definition.range," · preparado" if id in member.moves else ""],choose.bind(app,member,id))
-		button.tooltip_text = definition.description
+		var button: Button = app._button("%s%s\n%s" % [definition.name," · preparado" if id in member.moves else "",Info.summary(definition)],choose.bind(app,member,id))
+		button.tooltip_text = Info.details(definition)
+		button.accessibility_description = button.tooltip_text
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		parent.add_child(button)
 		app.travel_buttons["move_"+id] = button
-	parent.add_child(app._label("%d movimientos disponibles. Elegir una ranura y un movimiento muestra la comparación; no consume MT." % count,16))
+	parent.add_child(app._label("%d movimientos conocidos. Elige una ranura y un movimiento para prepararlo gratis." % count,16))
 
 func choose(app: Control, member: Dictionary, id: String) -> void:
 	var definition: Dictionary = app.campaign.progression.data.moves[id]
 	if selected_slot<0:
-		app._review_text("Detalle de movimiento",definition.name+"\n"+definition.description+"\nElige primero una ranura para preparar.")
+		app._review_text(definition.name,Info.details(definition)+"\n\nElige primero una ranura para prepararlo.",definition)
 		return
 	if app.run.phase not in ["map","shop","complete"] or member.hp<=0:
 		app._review_text("Preparación no disponible","Solo fuera de combate y con un compañero en pie.")
@@ -88,4 +95,4 @@ func choose(app: Control, member: Dictionary, id: String) -> void:
 	var moves: Array = member.moves.duplicate()
 	if selected_slot<moves.size(): moves[selected_slot] = id
 	else: moves.append(id)
-	app._review_loadout(int(member.id),moves,definition.name+"\n"+definition.description)
+	app._review_loadout(int(member.id),moves,definition.name+"\n"+Info.details(definition),definition)

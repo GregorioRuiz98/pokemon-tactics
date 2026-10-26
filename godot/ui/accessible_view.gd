@@ -84,6 +84,8 @@ func update() -> void:
 		elif not target.is_empty() and not app.state.acted:
 			var plan: Dictionary = app.rules.attack_plan(app.state,int(target.id),{},app.selected_action)
 			message += "\n"+Info.forecast(target,plan)
+			var action: RefCounted = app.rules.profile(actor).action(actor,app.selected_action)
+			if action!=null: message += "\n"+preload("res://ui/move_info.gd").summary(action.definition)
 			if plan.ok:
 				message += "\nSTAB ×%s; eficacia ×%s." % [plan.stab,plan.multiplier]
 				var risks: Array[String] = app._action_risks(plan)

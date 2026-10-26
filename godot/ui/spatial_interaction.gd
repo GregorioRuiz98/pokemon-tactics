@@ -20,7 +20,7 @@ static func preview(app: Control, point: Dictionary) -> Dictionary:
 	if not plan.ok:
 		app.target_info.text += "\n"+plan.reason
 		return plan
-	var text: String = "%s · %d PT\n%s · %d casillas" % [plan.name,plan.cost,SHAPES.get(plan.shape,"Objetivo"),plan.tiles.size()]
+	var text: String = "%s · %d PT · Pot. %s\n%s · Casillas afectadas: %d" % [plan.name,plan.cost,preload("res://ui/move_info.gd").power(plan.definition),SHAPES.get(plan.shape,"Objetivo"),plan.tiles.size()]
 	if plan.field!="": text += "\n"+NAMES.get(plan.field,plan.field)+"\nDura dos rondas completas."
 	if plan.get("randomTechnique",false): text += "\nTécnica aleatoria: %d–%d PS previstos." % [plan.damageMin,plan.damageMax]
 	for hit: Dictionary in plan.hits:
@@ -43,7 +43,7 @@ static func preview(app: Control, point: Dictionary) -> Dictionary:
 		for reaction: String in reactions: text += "\nTerreno: "+reaction
 	if plan.shape=="WALL3" or plan.definition.get("special","")=="throw": text += "\n%s/%s: girar · Enter: aceptar" % [app.input_profile.label("previous_target"),app.input_profile.label("next_target")]
 	app.target_info.text = text
-	app.target_info.set_meta("details",text+"\n"+plan.definition.description)
+	app.target_info.set_meta("details",text+"\n\n"+preload("res://ui/move_info.gd").details(plan.definition))
 	app.board.affected = plan.tiles
 	app.board.forecast_hits = plan.hits
 	if not plan.approach.is_empty(): app.board.route = plan.approach.path

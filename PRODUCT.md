@@ -235,3 +235,8 @@ Las reservas permiten consultar/configurar movimientos, MT y equipables; consumi
 - Sprint 22: entrega técnica 0.22.0/edición 18, combate 17/snapshot 21 conservados. Actualización de finales, guardado 16 MB/futuras ediciones y paleta 24 comprobados. 29 simulaciones sin errores, derrotas incluidas; sin rebalanceo general. Fuente/.exe 898 aves 16 y 510 origen 24 iguales; paquete offline y guía. Pruebas humanas/publicación pendientes;49/78 habilidades activas, terreno provisional. Encargo 17–22 entregado técnicamente; ver docs/SPRINT_22.md. No iniciar nuevos cambios de balance ni publicar por haber documentado propuestas.
 
 - Revisión UI0.22.1, rama codex/sprint-22-ui: Inicio nativo (sin autoload/escena adicional), pausa al volver, Continuar frío/caliente y cancelación de Oak preservada. Tienda por categorías/continuar fijo, retratos/barras de PS, fichas y tema revisados. Mismo motor18/combate17; estado completo de ambos finales idéntico0.22.0. UI fuente/.exe58, aves898 y origen510; regresión PC540/escala980,65 advertencias antiguas/0nuevas. QA aislada en work/qa-sprint-22-ui; paquete0.22.1. Sin plugins/activos nuevos ni publicación. Ver docs/SPRINT_22_UI.md.
+
+
+## Presentación para jugadores — 26 de octubre de 2026
+
+La entrega0.26.0 conserva la campaña táctica21/combate19 y simplifica el inicio con semilla automática y opciones plegadas. Expone potencia base, precisión y funciones de movimientos con una presentación común y ayuda según edición. Ver docs/SPRINT_26_PLAYER.md. El perfil local con logros, la tienda Kecleon y la revisión de repertorios se planifican como sprints27–29; no están implementados por documentarlos.

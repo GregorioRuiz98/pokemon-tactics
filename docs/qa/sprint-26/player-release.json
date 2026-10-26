@@ -1,0 +1,46 @@
+{
+  "assertions": 719,
+  "campaignEdition": 21,
+  "catalog": 211,
+  "combatEdition": 19.0,
+  "failures": [],
+  "layouts": [
+    [
+      1024,
+      100
+    ],
+    [
+      1024,
+      125
+    ],
+    [
+      1024,
+      150
+    ],
+    [
+      1280,
+      100
+    ],
+    [
+      1280,
+      125
+    ],
+    [
+      1280,
+      150
+    ]
+  ],
+  "naturalPhase": "shop",
+  "scope": "Default and shared-code starts, isolated save/cancel/reload, complete move catalog queries, natural Route1 and accessibility layouts. No balance changes.",
+  "screenshots": [
+    "oak-1024-150.png",
+    "oak-1280-150.png",
+    "moves-1024-150.png",
+    "move-dialog.png",
+    "moves-details.png",
+    "abilities-power.png",
+    "combat-power.png",
+    "shop-power.png"
+  ],
+  "stateHash": "ae3be1016c924a1076408583013b8ef3ac67aaf458ddaeefff98f977b7eff808"
+}
