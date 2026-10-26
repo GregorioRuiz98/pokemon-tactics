@@ -1,5 +1,7 @@
 # Pokémon Tactics
 
+**Windows 0.29.0:** semillas automáticas, [perfil e historial de logros](docs/SPRINT_27_TRAINER.md), [tienda Kecleon animada](docs/SPRINT_28_KECLEON.md) y [combinaciones por rol, filtros tácticos y recomendaciones de MT](docs/SPRINT_29_VARIETY.md). Ejecutable offline; guardados y reglas conservados.
+
 **Windows 0.25.0:** [aventura táctica](docs/SPRINT_25_TACTICAL.md): despliegue, amenazas, ocho arenas, objetivos, recuperación de EXP, IA, terreno y tarjetas de reto. Guardados anteriores compatibles; balance provisional.
 
 **Windows 0.24.1:** [mejoras de fluidez](docs/PERFORMANCE_0.24.1.md): planificación del rival entre fotogramas y previsiones de área reutilizadas. Conserva decisiones y guardados.
@@ -9,7 +11,7 @@
 **0.23.1:** corregidas las ranuras de Equipo → Movimientos: nombres completos, columnas que ocupan el panel y selección con teclado/ratón. Conserva guardados y reglas. [Comprobaciones](docs/FIX_MOVES_0.23.1.md).
 
 **Windows 0.23.0:** [movimientos espaciales, zonas y sonidos originales](docs/SPRINT_23_SPATIAL.md). [Tabla aplicada para revisión](docs/reports/moves-2026-10-24/aplicacion-0.23.csv). Actualización de aventura desde mapa/tienda; las partidas anteriores conservan sus reglas hasta actualizar.
-Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: campaña de Kanto Windows 0.25.0 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
+Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: campaña de Kanto Windows 0.29.0 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
 
 **Kanto nativo:** campaña hasta la Liga y dos finales legendarios alternativos. Capturas locales, niveles/evolución, movimientos/MT LGPE combinados, naturalezas/habilidades y PC. Ejecutable Windows offline. 151 especies; 49/78 habilidades normales activas. 42 imágenes nuevas integradas; pruebas humanas y publicación pendientes.
 

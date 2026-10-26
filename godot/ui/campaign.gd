@@ -12,6 +12,7 @@ var trainer: RefCounted = preload("res://ui/trainer_session.gd").new()
 var trainer_qa_dir: String = ""
 var kecleon: RefCounted = preload("res://ui/kecleon_shop.gd").new()
 var shop_qa_dir: String = ""
+var variety_qa_dir: String = ""
 var adventure: RefCounted = preload("res://ui/adventure_ui.gd").new()
 var campaign: RefCounted = Advanced.new()
 var last_presentation: Dictionary = {}
@@ -178,6 +179,7 @@ func _boot() -> void:
 		return
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--shop-qa-dir="): shop_qa_dir = argument.trim_prefix("--shop-qa-dir=")
+		if argument.begins_with("--variety-qa-dir="): variety_qa_dir = argument.trim_prefix("--variety-qa-dir=")
 		if argument.begins_with("--trainer-qa-dir="): trainer_qa_dir = argument.trim_prefix("--trainer-qa-dir=")
 		if argument.begins_with("--player-qa-dir="): player_qa_dir = argument.trim_prefix("--player-qa-dir=")
 		if argument.begins_with("--adventure-qa-dir="): adventure_qa_dir = argument.trim_prefix("--adventure-qa-dir=")
@@ -212,6 +214,7 @@ func _boot() -> void:
 	if not player_qa_dir.is_empty(): test_dir = player_qa_dir
 	if not trainer_qa_dir.is_empty(): test_dir = trainer_qa_dir
 	if not shop_qa_dir.is_empty(): test_dir = shop_qa_dir
+	if not variety_qa_dir.is_empty(): test_dir = variety_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -247,6 +250,7 @@ func _boot() -> void:
 	title_screen.setup(self)
 	title_screen.hide()
 	if not shop_qa_dir.is_empty(): _open_title(); call_deferred("_run_shop_qa")
+	elif not variety_qa_dir.is_empty(): _open_title(); call_deferred("_run_variety_qa")
 	elif not trainer_qa_dir.is_empty(): _open_title(); call_deferred("_run_trainer_qa")
 	elif not player_qa_dir.is_empty(): _open_title(); call_deferred("_run_player_qa")
 	elif not economy_qa_dir.is_empty(): _open_title(); call_deferred("_run_economy_qa")
@@ -454,6 +458,9 @@ func _run_trainer_qa() -> void:
 
 func _run_shop_qa() -> void:
 	await load("res://ui/qa_kecleon.gd").new().run(self,shop_qa_dir)
+
+func _run_variety_qa() -> void:
+	await load("res://ui/qa_variety.gd").new().run(self,variety_qa_dir)
 
 func _choose_starter(identity: int) -> void:
 	var challenge: Dictionary = {}
@@ -1580,9 +1587,18 @@ func _render_moves(parent: VBoxContainer, member: Dictionary) -> void:
 	var roles: Label = _label(study.roles(member),17,MUTED)
 	roles.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	roles.tooltip_text = "Número de movimientos preparados de cada rol; no concede estadísticas adicionales."
-	parent.add_child(roles)
+	if run.get("edition",0)<21: parent.add_child(roles)
+	else: roles.queue_free()
 	parent.add_child(_label("Básico neutro fijo · 0 PT · sin STAB\nMOVIMIENTOS · %d / 4 · cambiar es gratis" % member.moves.size(),17,GOLD))
 	move_library.render(self,parent,member)
+	if run.get("edition",0)>=21:
+		var entries: Array = preload("res://ui/tactical_loadouts.gd").learning(study,member,campaign.level_cap(run))
+		var lines: Array[String] = []
+		for entry: Dictionary in entries:
+			lines.append("%s · Nv. %d%s%s" % [study.data.moves[entry.id].name,entry.level," · después del límite actual" if entry.lockedByCap else ""," · "+" / ".join(entry.tags) if not entry.tags.is_empty() else ""])
+		var future: Label = _label("Próximos: "+("; ".join(lines) if not lines.is_empty() else "sin nuevos movimientos por nivel en esta forma"),16,MUTED)
+		future.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART; parent.add_child(future)
+		return
 	var pending_moves: Array = []
 	for entry: Dictionary in study.families[int(member.speciesId)].learnset:
 		if run.get("edition",1)>=5 and (entry.level<=member.level or not entry.forms.any(func(id):return int(id)==int(member.speciesId))): continue

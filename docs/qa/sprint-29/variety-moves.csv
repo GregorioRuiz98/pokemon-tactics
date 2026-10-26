@@ -1,0 +1,212 @@
+id,nombre,tipo,categoria,potencia,precision,PT,alcance,forma,herramientas,familias
+absorb,Absorber,grass,special,20.0,100.0,1,3.0,individual a tres casillas,Curación,oddish / zubat / paras / tangela / kabuto
+acid,Ácido,poison,special,40.0,100.0,3,2.0,cono corto,Área / Control,oddish / bellsprout / ekans / tentacool / lickitung
+agility,Agilidad,psychic,status,0.0,100.0,3,0.0,usuario,Control,weedle / pidgey / pikachu / spearow / venonat / diglett / growlithe / ponyta / farfetchd / doduo / krabby / hitmonchan / horsea / goldeen / scyther / eevee / porygon / aerodactyl / articuno / zapdos / moltres / dratini / mewtwo
+air-slash,Tajo Aéreo,flying,special,75.0,95.0,3,3.0,franja transversal,Área,charmander / caterpie / pidgey / zubat / farfetchd / scyther / moltres
+amnesia,Amnesia,psychic,status,0.0,100.0,3,0.0,usuario,Control,bulbasaur / clefairy / meowth / psyduck / slowpoke / krabby / tangela / snorlax / mewtwo / mew
+aqua-jet,Acua Jet,water,physical,40.0,100.0,2,3.0,aproximación y golpe,Acercamiento,squirtle / seel / kabuto / dratini
+bide,Venganza,normal,status,0.0,100.0,2,3.0,usuario,,geodude / jigglypuff / machop / omanyte
+bind,Atadura,normal,physical,15.0,85.0,1,1.0,individual,Control,onix / lickitung / tangela / pinsir / magikarp
+bite,Mordisco,dark,physical,60.0,100.0,2,1.0,individual,,squirtle / rattata / ekans / nidoran-f / zubat / meowth / growlithe / kangaskhan / magikarp / eevee / omanyte / aerodactyl
+brick-break,Demolición,fighting,physical,75.0,100.0,2,1.0,individual,,machop / hitmonlee / pinsir
+bubble,Burbuja,water,special,40.0,100.0,3,2.0,cono corto,Área / Control,squirtle / poliwag / krabby / horsea
+bubble-beam,Rayo Burbuja,water,special,65.0,100.0,3,3.0,línea de tres,Área / Control,squirtle / poliwag / tentacool / krabby / horsea / staryu
+bug-buzz,Zumbido,bug,special,90.0,100.0,4,3.0,ocho casillas alrededor,Área / Control,caterpie / venonat
+clear-smog,Niebla Clara,poison,special,50.0,100.0,3,3.0,cruz de cinco casillas,Área,bellsprout / koffing / horsea / magmar
+confusion,Confusión,psychic,special,50.0,100.0,1,3.0,individual a tres casillas,Control,caterpie / venonat / psyduck / abra / slowpoke / drowzee / exeggcute / tangela / mr-mime / jynx / mewtwo / mew
+counter,Contraataque,fighting,physical,0.0,100.0,1,3.0,individual a tres casillas,,charmander / rattata / sandshrew / nidoran-f / nidoran-m / mankey / machop / hitmonchan / rhyhorn
+crunch,Triturar,dark,physical,80.0,100.0,2,1.0,individual,Control,charmander / rattata / ekans / nidoran-f / zubat / growlithe / rhyhorn / kangaskhan / magikarp / aerodactyl / snorlax
+defense-curl,Rizo Defensa,normal,status,0.0,100.0,2,0.0,usuario,Control,geodude / sandshrew / clefairy / jigglypuff / chansey / snorlax
+dig,Excavar,ground,physical,80.0,100.0,2,4.0,salto y golpe,Acercamiento,onix / sandshrew / diglett
+double-edge,Doble Filo,normal,physical,120.0,100.0,4,3.0,aproximación y golpe,Empuje / Acercamiento,bulbasaur / rattata / geodude / onix / jigglypuff / growlithe / seel / cubone / chansey / tauros / eevee
+double-kick,Doble Patada,fighting,physical,60.0,100.0,1,1.0,individual,,pikachu / nidoran-f / nidoran-m / ponyta / hitmonlee / eevee
+double-team,Doble Equipo,normal,status,0.0,100.0,2,0.0,usuario,Control,pikachu / scyther
+dragon-rage,Furia Dragón,dragon,special,0.0,100.0,1,3.0,individual a tres casillas,,charmander / magikarp / dratini
+earthquake,Terremoto,ground,physical,100.0,100.0,4,3.0,rombo de radio dos,Área,geodude / onix / sandshrew / diglett / rhyhorn
+ember,Ascuas,fire,special,40.0,100.0,1,3.0,individual a tres casillas,Control,charmander / vulpix / growlithe / ponyta / magmar / eevee / moltres
+encore,Otra Vez,normal,status,0.0,100.0,2,2.0,individual a dos casillas,Control,pikachu / clefairy / psyduck / mankey / abra / machop / seel / mr-mime
+explosion,Explosión,normal,physical,250.0,100.0,5,3.0,rombo de radio dos,Área,geodude / voltorb / koffing
+fake-out,Sorpresa,normal,physical,40.0,100.0,1,1.0,individual,,squirtle / pikachu / meowth / seel / kangaskhan
+fire-spin,Giro Fuego,fire,special,35.0,85.0,3,3.0,cruz de cinco casillas,Área / Zona,charmander / vulpix / ponyta / magmar / eevee / moltres
+flamethrower,Lanzallamas,fire,special,90.0,100.0,3,3.0,línea de tres,Área / Control,charmander / vulpix / growlithe / magmar / moltres
+flare-blitz,Envite Ígneo,fire,physical,120.0,100.0,4,3.0,aproximación y golpe,Empuje / Acercamiento / Control,charmander / growlithe / ponyta / eevee
+flash-cannon,Cañón Resplandor,steel,special,80.0,100.0,3,3.0,línea de tres,Área / Control,squirtle / magnemite
+focus-energy,Foco Energía,normal,status,0.0,100.0,3,0.0,usuario,,weedle / rattata / spearow / nidoran-m / mankey / machop / farfetchd / cubone / hitmonlee / hitmonchan / horsea / scyther / pinsir / tauros / eevee
+fury-attack,Ataque Furia,normal,physical,30.0,85.0,1,1.0,individual,,weedle / spearow / nidoran-m / ponyta / farfetchd / doduo / rhyhorn / goldeen
+fury-swipes,Golpes Furia,normal,physical,36.0,80.0,1,1.0,individual,,charmander / rattata / sandshrew / nidoran-f / paras / diglett / meowth / psyduck / mankey
+growl,Gruñido,normal,status,0.0,100.0,3,2.0,cono corto,Área / Control,bulbasaur / charmander / pikachu / spearow / nidoran-f / clefairy / diglett / meowth / ponyta / slowpoke / doduo / seel / cubone / chansey / lapras / eevee
+growth,Desarrollo,normal,status,0.0,100.0,3,0.0,usuario,Control,bulbasaur / oddish / bellsprout / paras / tangela
+gust,Tornado,flying,special,40.0,100.0,3,2.0,línea de dos,Área / Empuje / Disipa,caterpie / pidgey / venonat / articuno
+harden,Fortaleza,normal,status,0.0,100.0,2,0.0,usuario,Control,caterpie / weedle / onix / grimer / krabby / staryu / pinsir / kabuto
+headbutt,Golpe Cabeza,normal,physical,70.0,100.0,2,1.0,individual,Empuje,squirtle / seel / drowzee / cubone / snorlax
+heat-wave,Onda Ígnea,fire,special,95.0,90.0,4,2.0,ola de seis casillas,Área / Control,charmander / pidgey / growlithe / moltres
+hydro-pump,Hidrobomba,water,special,110.0,80.0,3,3.0,línea de tres,Área / Empuje,squirtle / psyduck / poliwag / tentacool / shellder / horsea / staryu / magikarp / lapras / eevee / omanyte
+hyper-fang,Hipercolmillo,normal,physical,80.0,90.0,3,1.0,individual,Crítico,rattata
+iron-tail,Cola Férrea,steel,physical,100.0,75.0,3,3.0,barrido frontal,Área / Empuje / Control,onix
+leech-life,Chupavidas,bug,physical,80.0,100.0,2,1.0,individual,Curación,bellsprout / zubat / paras / venonat / kabuto
+leech-seed,Drenadoras,grass,status,0.0,90.0,1,2.0,individual a dos casillas,Curación / Control,bulbasaur / paras / exeggcute / tangela
+light-screen,Pantalla de Luz,psychic,status,0.0,100.0,3,3.0,pantalla de tres casillas,Área / Zona,pikachu / magnemite / voltorb / chansey / staryu / mr-mime / electabuzz / zapdos
+mega-drain,Megaagotar,grass,special,40.0,100.0,1,3.0,individual a tres casillas,Curación,oddish / tangela
+mega-punch,Megapuño,normal,physical,80.0,85.0,2,1.0,individual,Empuje,geodude / hitmonchan / kangaskhan / mew
+mirror-move,Espejo,flying,status,0.0,100.0,3,3.0,individual a tres casillas,,pidgey / spearow / farfetchd / doduo
+moonblast,Fuerza Lunar,fairy,special,95.0,100.0,3,3.0,individual a tres casillas,Control,oddish / clefairy / grimer
+outrage,Enfado,dragon,physical,120.0,100.0,4,3.0,ocho casillas alrededor,Área,weedle / mankey / growlithe / kangaskhan / tauros / magikarp / dratini
+peck,Picotazo,flying,physical,35.0,100.0,1,1.0,individual,,weedle / spearow / nidoran-m / farfetchd / doduo / goldeen / zapdos
+petal-dance,Danza Pétalo,grass,special,120.0,100.0,4,3.0,cruz cercana,Área,bulbasaur / oddish
+pin-missile,Pin Misil,bug,physical,50.0,95.0,3,3.0,línea de tres,Área,weedle / eevee
+poison-jab,Puya Nociva,poison,physical,80.0,100.0,2,1.0,individual,Control,weedle / bellsprout / ekans / nidoran-m / tentacool / ponyta / farfetchd
+poison-powder,Polvo Veneno,poison,status,0.0,75.0,3,2.0,cono corto,Área / Control,bulbasaur / caterpie / oddish / bellsprout / paras / venonat / exeggcute / tangela
+poison-sting,Picotazo Veneno,poison,physical,15.0,100.0,1,2.0,individual a dos casillas,Control,weedle / ekans / sandshrew / nidoran-f / nidoran-m / tentacool
+power-whip,Latigazo,grass,physical,120.0,85.0,4,3.0,barrido frontal,Área,bulbasaur / bellsprout / exeggcute / lickitung / tangela
+protect,Protección,normal,status,0.0,100.0,1,0.0,usuario,Protección,squirtle / sandshrew / shellder / krabby / omanyte
+psybeam,Psicorrayo,psychic,special,65.0,100.0,3,3.0,línea de tres,Área / Control,caterpie / venonat / psyduck / abra / drowzee / exeggcute / koffing / goldeen / mr-mime / porygon / mewtwo
+quick-attack,Ataque Rápido,normal,physical,40.0,100.0,2,3.0,aproximación y golpe,Acercamiento,pidgey / rattata / pikachu / spearow / vulpix / zubat / ponyta / farfetchd / doduo / goldeen / scyther / electabuzz / eevee
+quiver-dance,Danza Aleteo,bug,status,0.0,100.0,4,0.0,usuario,Control,caterpie / venonat
+rage,Furia,normal,status,0.0,100.0,2,0.0,usuario,,weedle / onix / mankey / doduo / cubone / kangaskhan / tauros / magikarp
+razor-leaf,Hoja Afilada,grass,physical,55.0,95.0,3,2.0,cono corto,Área / Crítico,bulbasaur / oddish / bellsprout / farfetchd
+razor-wind,Viento Cortante,normal,special,80.0,100.0,4,3.0,franja transversal,Área / Crítico,pidgey / scyther
+rock-slide,Avalancha,rock,physical,75.0,90.0,3,3.0,franja transversal,Área,geodude / onix / rhyhorn / omanyte / kabuto / aerodactyl
+rock-throw,Lanzarrocas,rock,physical,50.0,90.0,1,3.0,individual a tres casillas,,geodude / onix / rhyhorn / omanyte / kabuto / aerodactyl
+roost,Respiro,flying,status,0.0,100.0,2,0.0,usuario,Curación,pidgey / spearow / articuno / zapdos / moltres / dratini
+sand-attack,Ataque Arena,ground,status,0.0,100.0,3,2.0,cono corto,Área / Control,pidgey / geodude / sandshrew / diglett / farfetchd / rhyhorn / eevee / kabuto
+scald,Escaldar,water,special,80.0,100.0,3,2.0,línea de dos,Área / Control,
+scratch,Arañazo,normal,physical,40.0,100.0,1,1.0,individual,,charmander / sandshrew / nidoran-f / paras / diglett / meowth / psyduck / mankey / kabuto
+screech,Chirrido,normal,status,0.0,85.0,3,2.0,cono corto,Área / Control,onix / ekans / paras / venonat / diglett / meowth / psyduck / mankey / tentacool / magnemite / grimer / voltorb / cubone / lickitung / koffing / jynx / electabuzz / kabuto / snorlax
+self-destruct,Autodestrucción,normal,physical,200.0,100.0,5,3.0,ocho casillas alrededor,Área,geodude / voltorb / koffing
+skull-bash,Cabezazo,normal,physical,130.0,100.0,4,3.0,aproximación y golpe,Empuje / Acercamiento,squirtle / goldeen
+sky-attack,Ataque Aéreo,flying,physical,140.0,90.0,4,4.0,salto y golpe,Acercamiento / Crítico,pidgey / spearow / farfetchd / articuno / zapdos / moltres
+slam,Atizar,normal,physical,80.0,75.0,2,1.0,individual,Empuje,pikachu / onix / bellsprout / ekans / krabby / lickitung / tangela / dratini
+slash,Cuchillada,normal,physical,70.0,100.0,3,3.0,barrido frontal,Área / Crítico,charmander / sandshrew / paras / diglett / meowth / farfetchd / scyther / kabuto
+sleep-powder,Somnífero,grass,status,0.0,75.0,3,2.0,cono corto,Área / Control,bulbasaur / caterpie / oddish / bellsprout / paras / venonat / exeggcute / tangela
+smokescreen,Pantalla de Humo,normal,status,0.0,100.0,3,3.0,cruz de cinco casillas,Área / Zona,charmander / horsea / magmar
+solar-beam,Rayo Solar,grass,special,120.0,100.0,4,4.0,línea de cuatro,Área,bulbasaur / oddish / exeggcute / moltres
+stealth-rock,Trampa Rocas,rock,status,0.0,100.0,3,3.0,cruz de cinco casillas,Área / Zona,geodude / onix
+string-shot,Disparo Demora,bug,status,0.0,95.0,3,3.0,línea de tres,Área / Zona,caterpie / weedle
+stun-spore,Paralizador,grass,status,0.0,75.0,3,2.0,cono corto,Área / Control,caterpie / oddish / bellsprout / paras / venonat / exeggcute / tangela
+sucker-punch,Golpe Bajo,dark,physical,70.0,100.0,3,3.0,aproximación y golpe,Acercamiento,rattata / bellsprout / ekans / diglett / gastly / kangaskhan
+super-fang,Superdiente,normal,physical,0.0,90.0,1,1.0,individual,,rattata / nidoran-f
+supersonic,Supersónico,normal,status,0.0,55.0,3,2.0,línea de dos,Área / Control,caterpie / nidoran-f / nidoran-m / zubat / venonat / tentacool / magnemite / doduo / shellder / goldeen / omanyte / aerodactyl
+swords-dance,Danza Espada,normal,status,0.0,100.0,3,0.0,usuario,Control,rattata / bellsprout / sandshrew / farfetchd / doduo / cubone / scyther / pinsir / kabuto
+tackle,Placaje,normal,physical,40.0,100.0,1,1.0,individual,,bulbasaur / squirtle / caterpie / pidgey / rattata / geodude / onix / vulpix / venonat / ponyta / slowpoke / magnemite / shellder / voltorb / koffing / staryu / tauros / magikarp / eevee / porygon / snorlax
+tail-whip,Agitacola,normal,status,0.0,100.0,3,2.0,cono corto,Área / Control,squirtle / rattata / pikachu / nidoran-f / vulpix / psyduck / ponyta / cubone / rhyhorn / chansey / kangaskhan / goldeen / tauros / eevee
+take-down,Derribo,normal,physical,90.0,85.0,3,3.0,aproximación y golpe,Empuje / Acercamiento,bulbasaur / geodude / growlithe / ponyta / seel / rhyhorn / chansey / tauros / eevee / aerodactyl
+thunder,Trueno,electric,special,110.0,70.0,3,3.0,cruz de cinco casillas,Área / Control,pikachu / magnemite / electabuzz / eevee / zapdos
+thunder-punch,Puño Trueno,electric,physical,75.0,100.0,2,1.0,individual,Control,pikachu / hitmonchan / electabuzz / dratini
+thunder-shock,Impactrueno,electric,special,40.0,100.0,1,3.0,individual a tres casillas,Control,pikachu / magnemite / voltorb / electabuzz / eevee / zapdos
+thunder-wave,Onda Trueno,electric,status,0.0,90.0,2,2.0,individual a dos casillas,Control,pikachu / magnemite / electabuzz / eevee / porygon / zapdos / dratini
+thunderbolt,Rayo,electric,special,90.0,100.0,3,3.0,franja transversal,Área / Control,pikachu / magnemite / voltorb / electabuzz / zapdos
+toxic,Tóxico,poison,status,0.0,90.0,2,2.0,individual a dos casillas,Control,oddish / ekans / nidoran-f / nidoran-m / zubat / grimer / gastly / koffing
+twineedle,Doble Ataque,bug,physical,50.0,100.0,1,1.0,individual,Control,weedle / shellder
+vine-whip,Látigo Cepa,grass,physical,45.0,100.0,1,2.0,individual a dos casillas,Atracción,bulbasaur / bellsprout / tangela
+water-gun,Pistola Agua,water,special,40.0,100.0,3,2.0,línea de dos,Área,squirtle / psyduck / poliwag / slowpoke / shellder / horsea / staryu / lapras / eevee / omanyte
+whirlwind,Remolino,normal,status,0.0,100.0,3,2.0,cono corto,Área / Empuje / Disipa,caterpie / pidgey / zubat
+wing-attack,Ataque Ala,flying,physical,60.0,100.0,2,2.0,aproximación y golpe,Acercamiento,charmander / pidgey / zubat / scyther / aerodactyl / moltres / dratini
+withdraw,Refugio,water,status,0.0,100.0,2,0.0,usuario,Control,squirtle / slowpoke / shellder / omanyte
+wrap,Constricción,normal,physical,15.0,90.0,1,1.0,individual,Control,bellsprout / ekans / tentacool / lickitung / dratini
+acid-armor,Armadura Ácida,poison,status,0.0,100.0,3,0.0,usuario,Control,grimer / eevee
+aurora-beam,Rayo Aurora,ice,special,65.0,100.0,3,3.0,línea de tres,Área / Control,seel / shellder / eevee
+barrage,Bombardeo,normal,physical,30.0,85.0,3,3.0,cruz de cinco casillas,Área,exeggcute
+barrier,Barrera,psychic,status,0.0,100.0,4,3.0,pantalla de tres casillas,Área / Zona,abra / tentacool / shellder / drowzee / mr-mime / porygon / mewtwo / mew
+blizzard,Ventisca,ice,special,110.0,70.0,4,2.0,ola de seis casillas,Área / Control,jynx / lapras / articuno
+body-slam,Golpe Cuerpo,normal,physical,85.0,100.0,2,1.0,individual,Empuje / Control,nidoran-f / clefairy / jigglypuff / poliwag / jynx / lapras / snorlax
+bone-club,Hueso Palo,ground,physical,65.0,85.0,2,1.0,individual,,cubone
+bonemerang,Huesomerang,ground,physical,100.0,90.0,3,3.0,línea de tres,Área,cubone
+bulk-up,Corpulencia,fighting,status,0.0,100.0,3,0.0,usuario,Control,poliwag / machop
+calm-mind,Paz Mental,psychic,status,0.0,100.0,3,0.0,usuario,Control,abra / mewtwo
+clamp,Tenaza,water,physical,35.0,85.0,1,1.0,individual,Control,shellder
+comet-punch,Puño Cometa,normal,physical,36.0,85.0,1,1.0,individual,,hitmonchan / kangaskhan
+confuse-ray,Rayo Confuso,ghost,status,0.0,100.0,2,2.0,individual a dos casillas,Control,vulpix / zubat / gastly / staryu / magmar / lapras / kabuto / mewtwo
+constrict,Restricción,normal,physical,10.0,100.0,1,1.0,individual,Control,tentacool / tangela / omanyte
+conversion,Conversión,normal,status,0.0,100.0,2,0.0,usuario,,porygon
+crabhammer,Martillazo,water,physical,100.0,90.0,3,1.0,individual,Empuje,krabby
+cut,Corte,normal,physical,50.0,95.0,3,3.0,barrido frontal,Área,farfetchd
+dark-pulse,Pulso Umbrío,dark,special,80.0,100.0,4,3.0,ocho casillas alrededor,Área,gastly
+dazzling-gleam,Brillo Mágico,fairy,special,80.0,100.0,4,3.0,ocho casillas alrededor,Área,
+disable,Anulación,normal,status,0.0,100.0,2,2.0,individual a dos casillas,Control,jigglypuff / venonat / psyduck / abra / slowpoke / grimer / gastly / drowzee / lickitung / horsea / mewtwo
+dizzy-punch,Puño Mareo,normal,physical,70.0,100.0,2,1.0,individual,Control,hitmonchan / kangaskhan
+double-slap,Doble Bofetón,normal,physical,30.0,85.0,1,1.0,individual,,clefairy / jigglypuff / poliwag / chansey / mr-mime / jynx
+dragon-pulse,Pulso Dragón,dragon,special,85.0,100.0,3,3.0,línea de tres,Área,horsea / lapras
+dragon-tail,Cola Dragón,dragon,physical,60.0,90.0,2,1.0,individual,Empuje,magikarp / dratini
+dream-eater,Comesueños,psychic,special,100.0,100.0,3,3.0,individual a tres casillas,Curación,gastly / drowzee
+drill-peck,Pico Taladro,flying,physical,80.0,100.0,2,3.0,aproximación y golpe,Acercamiento,spearow / doduo / zapdos
+drill-run,Taladradora,ground,physical,80.0,95.0,2,3.0,aproximación y golpe,Acercamiento,spearow / rhyhorn
+egg-bomb,Bomba Huevo,normal,physical,100.0,75.0,3,3.0,cruz de cinco casillas,Área,exeggcute / chansey
+facade,Fachada,normal,physical,70.0,100.0,2,1.0,individual,,hitmonlee
+feint,Amago,normal,physical,30.0,100.0,1,1.0,individual,,meowth / farfetchd / hitmonlee / hitmonchan / scyther / kabuto
+fire-blast,Llamarada,fire,special,110.0,85.0,4,3.0,estrella de siete casillas,Área / Control,vulpix / ponyta / magmar
+fire-punch,Puño Fuego,fire,physical,75.0,100.0,2,1.0,individual,Control,hitmonchan / magmar / dratini
+fissure,Fisura,ground,physical,100,30.0,5,3.0,línea de tres,Área,diglett
+flash,Destello,normal,status,0.0,100.0,4,3.0,ocho casillas alrededor,Área / Control,abra
+fly,Vuelo,flying,physical,90.0,95.0,3,4.0,salto y golpe,Acercamiento,aerodactyl
+foul-play,Juego Sucio,dark,physical,95.0,100.0,3,1.0,individual,,
+glare,Deslumbrar,normal,status,0.0,100.0,2,2.0,individual a dos casillas,Control,ekans
+guillotine,Guillotina,normal,physical,100,30.0,5,1.0,individual,,krabby / pinsir
+haze,Niebla,ice,status,0.0,100.0,4,3.0,rombo de radio dos,Área,ekans / zubat / poliwag / tentacool / grimer / gastly / koffing / eevee
+helping-hand,Refuerzo,normal,status,0.0,100.0,2,2.0,aliado próximo,,nidoran-f / nidoran-m / growlithe / eevee
+high-jump-kick,Patada Salto Alta,fighting,physical,130.0,90.0,4,2.0,salto y golpe,Acercamiento,hitmonlee
+horn-attack,Cornada,normal,physical,65.0,100.0,2,1.0,individual,,nidoran-m / rhyhorn / goldeen / tauros
+horn-drill,Perforador,normal,physical,100,30.0,5,1.0,individual,,nidoran-m / ponyta / seel / rhyhorn / goldeen
+hyper-beam,Hiperrayo,normal,special,150.0,90.0,4,4.0,línea de cuatro,Área,magikarp / porygon / aerodactyl / dratini
+hypnosis,Hipnosis,psychic,status,0.0,60.0,2,2.0,individual a dos casillas,Control,vulpix / meowth / poliwag / ponyta / gastly / drowzee / exeggcute
+ice-beam,Rayo Hielo,ice,special,90.0,100.0,3,3.0,línea de tres,Área / Control,seel / shellder / lapras / articuno
+ice-punch,Puño Hielo,ice,physical,75.0,100.0,2,1.0,individual,Control,hitmonchan / jynx
+ice-shard,Esquirla Helada,ice,physical,40.0,100.0,1,3.0,individual a tres casillas,,seel / shellder / lapras / articuno
+jump-kick,Patada Salto,fighting,physical,100.0,95.0,3,2.0,salto y golpe,Acercamiento,doduo / hitmonlee
+karate-chop,Golpe Kárate,fighting,physical,50.0,100.0,1,1.0,individual,,mankey / machop
+kinesis,Kinético,psychic,status,0.0,80.0,1,2.0,individual a dos casillas,Control,abra
+leer,Malicioso,normal,status,0.0,100.0,3,2.0,cono corto,Área / Control,spearow / ekans / nidoran-m / mankey / growlithe / machop / farfetchd / shellder / krabby / cubone / hitmonchan / kangaskhan / horsea / scyther / electabuzz / magmar / tauros / magikarp / omanyte / kabuto / articuno / zapdos / moltres / dratini
+lick,Lengüetazo,ghost,physical,30.0,100.0,1,1.0,individual,Control,gastly / lickitung / jynx / snorlax
+lovely-kiss,Beso Amoroso,normal,status,0.0,75.0,2,2.0,individual a dos casillas,Control,jynx
+low-kick,Patada Baja,fighting,physical,0.0,100.0,1,1.0,individual,,mankey / poliwag / machop / electabuzz / magmar
+meditate,Meditación,psychic,status,0.0,100.0,2,0.0,usuario,Control,drowzee / hitmonlee / mr-mime
+mega-kick,Megapatada,normal,physical,120.0,75.0,4,1.0,individual,Empuje,hitmonlee
+megahorn,Megacuerno,bug,physical,120.0,85.0,4,3.0,aproximación y golpe,Acercamiento,nidoran-m / ponyta / rhyhorn / goldeen
+metronome,Metrónomo,normal,status,0.0,100.0,3,3.0,técnica aleatoria,,clefairy / mew
+mimic,Mimético,normal,status,0.0,100.0,2,2.0,individual a dos casillas,,jigglypuff / mr-mime / mew
+minimize,Reducción,normal,status,0.0,100.0,3,0.0,usuario,Control,clefairy / jigglypuff / grimer / chansey / staryu
+mirror-coat,Manto Espejo,psychic,special,0.0,100.0,1,3.0,individual a tres casillas,,tentacool / voltorb / articuno
+mist,Neblina,ice,status,0.0,100.0,3,3.0,cruz de cinco casillas,Área / Zona,poliwag / lapras / articuno / dratini / mewtwo
+nasty-plot,Maquinación,dark,status,0.0,100.0,3,0.0,usuario,Control,vulpix / meowth / drowzee / mew
+night-shade,Tinieblas,ghost,special,0.0,100.0,1,3.0,individual a tres casillas,,abra / gastly
+pay-day,Día de Pago,normal,physical,40.0,100.0,1,3.0,individual a tres casillas,,meowth
+play-rough,Carantoña,fairy,physical,90.0,90.0,3,1.0,individual,Control,meowth / growlithe
+poison-gas,Gas Venenoso,poison,status,0.0,90.0,3,3.0,cruz de cinco casillas,Área / Zona / Control,grimer / gastly / drowzee / koffing
+pound,Destructor,normal,physical,40.0,100.0,1,1.0,individual,,clefairy / jigglypuff / poliwag / grimer / drowzee / chansey / mr-mime / jynx / mew
+psychic,Psíquico,psychic,special,90.0,100.0,3,3.0,cruz de cinco casillas,Área / Control,venonat / abra / slowpoke / drowzee / staryu / mr-mime / jynx / mewtwo / mew
+psywave,Psicoonda,psychic,special,0.0,100.0,1,3.0,individual a tres casillas,,staryu / mr-mime / mewtwo / mew
+recover,Recuperación,normal,status,0.0,100.0,3,0,usuario,Curación,abra / staryu / porygon / mewtwo
+reflect,Reflejo,psychic,status,0.0,100.0,3,3.0,pantalla de tres casillas,Área / Zona,abra / exeggcute / mr-mime / articuno
+rest,Descanso,psychic,status,0.0,100.0,4,0,usuario,Curación,jigglypuff / slowpoke / seel / tauros / snorlax
+roar,Rugido,normal,status,0.0,100.0,3,2.0,cono corto,Área / Empuje,vulpix / growlithe / aerodactyl
+rolling-kick,Patada Giro,fighting,physical,60.0,85.0,3,3.0,barrido frontal,Área,hitmonlee
+seismic-toss,Sísmico,fighting,physical,0.0,100.0,1,1.0,lanzamiento dirigido,Empuje,mankey / machop / pinsir
+shadow-ball,Bola Sombra,ghost,special,80.0,100.0,2,3.0,individual a tres casillas,Control,gastly
+sharpen,Afilar,normal,status,0.0,100.0,2,0.0,usuario,Control,porygon
+shell-smash,Rompecoraza,normal,status,0.0,100.0,5,0.0,usuario,Control,shellder / omanyte
+sing,Canto,normal,status,0.0,55.0,4,3.0,ocho casillas alrededor,Área / Control,clefairy / jigglypuff / chansey / lapras
+sludge,Residuos,poison,special,65.0,100.0,3,3.0,cruz de cinco casillas,Área / Zona / Control,grimer / koffing
+sludge-bomb,Bomba Lodo,poison,special,90.0,100.0,3,3.0,cruz de cinco casillas,Área / Control,grimer / koffing
+smog,Polución,poison,special,30.0,70.0,3,3.0,cruz de cinco casillas,Área / Zona,gastly / koffing / magmar / eevee
+soft-boiled,Ovocuración,normal,status,0.0,100.0,3,2.0,aliado próximo,Curación,chansey
+sonic-boom,Bomba Sónica,normal,special,0.0,90.0,3,3.0,línea de tres,Área,magnemite / voltorb
+spike-cannon,Clavo Cañón,normal,physical,40.0,100.0,3,3.0,línea de tres,Área,shellder / omanyte
+splash,Salpicadura,normal,status,0.0,100.0,2,1.0,destino libre,,magikarp
+spore,Espora,grass,status,0.0,100.0,3,3.0,cruz cercana,Área / Control,paras
+stomp,Pisotón,normal,physical,65.0,100.0,2,1.0,individual,Empuje,ponyta / slowpoke / krabby / exeggcute / lickitung / rhyhorn
+strength,Fuerza,normal,physical,80.0,100.0,2,1.0,individual,Empuje,machop
+submission,Sumisión,fighting,physical,80.0,80.0,2,1.0,lanzamiento dirigido,Empuje,poliwag / machop / pinsir
+substitute,Sustituto,normal,status,0.0,100.0,3,0.0,usuario,,abra / mr-mime
+superpower,Fuerza Bruta,fighting,physical,120.0,100.0,4,1.0,individual,Control,nidoran-f / poliwag / machop / pinsir / snorlax
+surf,Surf,water,special,90.0,100.0,4,2.0,ola de seis casillas,Área / Empuje,psyduck / tentacool / slowpoke / lapras
+swift,Meteoros,normal,special,60.0,100.0,3,2.0,cono corto,Área,sandshrew / zubat / meowth / voltorb / hitmonchan / staryu / electabuzz / eevee / mewtwo / mew
+taunt,Mofa,dark,status,0.0,100.0,2,2.0,individual a dos casillas,Control,meowth / mankey
+teleport,Teletransporte,psychic,status,0.0,100.0,2,3.0,destino libre,,abra / mewtwo
+thrash,Saña,normal,physical,120.0,100.0,4,3.0,ocho casillas alrededor,Área,nidoran-m / mankey / doduo / cubone / lickitung / pinsir / tauros / magikarp
+transform,Transformación,normal,status,0.0,100.0,3,2.0,individual a dos casillas,,ditto / mew
+tri-attack,Triataque,normal,special,80.0,100.0,3,2.0,abanico,Área,diglett / magnemite / doduo / porygon
+u-turn,Ida y Vuelta,bug,physical,70.0,100.0,2,1.0,golpe y retirada,,mankey
+vice-grip,Agarre,normal,physical,55.0,100.0,2,1.0,individual,,krabby / pinsir
+waterfall,Cascada,water,physical,80.0,100.0,2,3.0,aproximación y golpe,Acercamiento,seel / horsea / goldeen / magikarp
+will-o-wisp,Fuego Fatuo,fire,status,0.0,85.0,2,2.0,individual a dos casillas,Control,vulpix / gastly
+x-scissor,Tijera X,bug,physical,80.0,100.0,3,3.0,aspa,Área,paras / scyther / pinsir
+yawn,Bostezo,normal,status,0.0,100.0,2,2.0,individual a dos casillas,Control,psyduck / slowpoke / eevee / snorlax

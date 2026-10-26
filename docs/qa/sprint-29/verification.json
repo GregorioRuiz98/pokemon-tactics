@@ -1,0 +1,34 @@
+{
+  "version": "0.29.0",
+  "baseline": "8bbe5dcd078a50bca7140b8858eae77e5d9685a7",
+  "publishedFilesUnchanged": [
+    "godot/core",
+    "godot/data",
+    "godot/tests",
+    "godot/assets",
+    "godot/art",
+    "src",
+    "public",
+    "tests",
+    "CREDITS.md"
+  ],
+  "campaignEdition": 21,
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "coreChecks": {
+    "variety": 7428,
+    "trainer": 120,
+    "adventure": 105
+  },
+  "uiChecksPerBuild": {
+    "variety": 72,
+    "shop": 70,
+    "trainer": 69,
+    "player": 719,
+    "moves": 304
+  },
+  "sourceAndExeStateMatch": true,
+  "publicDeployment": false,
+  "fullCampaignPlayed": false
+}

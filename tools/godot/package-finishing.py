@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 VERSION = re.search(r'config/version="([^"]+)"', (ROOT/'godot/project.godot').read_text(encoding='utf-8'))[1]
 CHAPTER = int(VERSION.split('.')[1])
 CONFIG = {
+    29: {'baseline': '8bbe5dcd078a50bca7140b8858eae77e5d9685a7', 'report': 'SPRINT_29_VARIETY.md', 'ui': {'variety': 72, 'shop': 70, 'trainer': 69, 'player': 719, 'moves': 304}, 'core': {'variety': 7428, 'trainer': 120, 'adventure': 105}, 'edition': 21},
     28: {'baseline': '9d87cd1091815f72525ec66a4d4752065579c2f4', 'report': 'SPRINT_28_KECLEON.md', 'ui': {'shop': 70, 'trainer': 69, 'player': 719}, 'core': {'trainer': 120, 'adventure': 105}, 'edition': 21},
     27: {'baseline': 'be221c89082013c288adf3e28bb8acfb872e1474', 'report': 'SPRINT_27_TRAINER.md', 'ui': {'trainer': 69, 'player': 719}, 'core': {'trainer': 120, 'adventure': 105}, 'edition': 21},
 }[CHAPTER]
@@ -69,11 +70,19 @@ def main():
         if path.is_file():
             path.replace(docs/name)
     shutil.copy2(ROOT/'docs'/CONFIG['report'], docs/f'CAMBIOS_0.{CHAPTER}.md')
+    if CHAPTER >= 29:
+        for name in ['variety-moves.csv', 'variety-opening.csv']:
+            shutil.copy2(WORK/name, docs/name)
+            shutil.copy2(WORK/name, EVIDENCE/name)
     verification = {'version': VERSION, 'baseline': CONFIG['baseline'], 'publishedFilesUnchanged': protected, 'campaignEdition': CONFIG['edition'], 'errors': 0, 'warnings': 65, 'newWarnings': 0, 'coreChecks': core, 'uiChecksPerBuild': counts, 'sourceAndExeStateMatch': True, 'publicDeployment': False, 'fullCampaignPlayed': False}
     for path in [EVIDENCE/'verification.json', docs/f'QA_0.{CHAPTER}.json']:
         path.write_text(json.dumps(verification, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     readme = (ROOT/'../releases/pokemon-tactics-0.26.0/windows/LEEME.txt').read_text(encoding='utf-8')
     readme += '\nPerfil de entrenador: nombre, retrato, Pokédex, historial y logros se conservan entre aventuras. Los títulos y marcos son cosméticos.\n'
+    if CHAPTER >= 28:
+        readme += '\nTienda Kecleon: tres ofertas, ficha antes de comprar, renovación con precio creciente y accesos a Medicina, Entrenar y Equipo. Movimiento reducido desactiva sus animaciones.\n'
+    if CHAPTER >= 29:
+        readme += '\nEquipo → Movimientos: consulta propuestas de rol, compáralas y confirma para preparar hasta cuatro técnicas aprendidas. El básico neutro permanece. Filtra áreas, zonas, desplazamientos y apoyos; Herramientas del equipo resume tus opciones. Las MT indican qué función añaden.\n'
     (BUNDLE/'LEEME.txt').write_text(readme, encoding='utf-8')
     archive = RELEASE/f'pokemon-tactics-{VERSION}-windows.zip'
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as package:

@@ -506,9 +506,9 @@ El encargo del25 de octubre autoriza todas las propuestas: despliegue, amenazas,
 ## Acabado para jugadores — sprints26–29
 
 - **26: inicio, textos y movimientos (0.26.0), completado.** Implementación y comprobaciones en [informe](SPRINT_26_PLAYER.md). Mantiene campaña21/combate19.
-- **27: perfil local e historial de logros.** Pendiente; progreso entre campañas, sin ventajas estadísticas permanentes.
-- **28: tienda Kecleon y acabado visual.** Pendiente; interacción integrada, teclado/ratón y movimiento reducido.
-- **29: variedad táctica.** Pendiente; revisar disponibilidad de movimientos y oportunidades de uso, con nueva edición si cambian reglas.
+- **27: perfil local e historial de logros (0.27.0), completado.** Progreso entre campañas, sin ventajas estadísticas permanentes.
+- **28: tienda Kecleon y acabado visual (0.28.0), completado.** Interacción integrada, teclado/ratón y movimiento reducido.
+- **29: variedad táctica (0.29.0), completado.** Auditoría de211 movimientos, propuestas por rol, herramientas del equipo y recomendaciones de MT. Usa órdenes existentes; no cambia repertorios ni reglas.
 
 El encargo «empieza a implementar» inicia26. Completar cada sprint por separado; no se publica el juego en Internet.
 
@@ -520,3 +520,8 @@ El encargo «empieza a implementar» inicia26. Completar cada sprint por separad
 ## Entrega28
 
 Tienda Kecleon completada en0.28.0; [informe y comprobaciones](SPRINT_28_KECLEON.md). Siguiente29: disponibilidad y variedad táctica con edición nueva cuando cambien resultados. Perfil27 y presentación26 conservados.
+
+
+## Entrega29 y cierre del encargo
+
+[Informe](SPRINT_29_VARIETY.md): catálogo actual hecho visible y configurable, dos propuestas de rol por línea, filtros por función y plan de aprendizaje. Misma campaña21/combate19; no requiere migración al usar transacciones existentes. Sprints26–29 implementados y empaquetados por separado. Balance humano, pruebas completas de Kanto y publicación pública siguen pendientes; no se presentan como ejecutados.

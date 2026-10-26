@@ -108,6 +108,12 @@ func select(app: Control, index: int) -> void:
 				if member.hp>0 and app.campaign.compatible(member,app.run.stock[index].item) and item.move not in member.knownMoves: names.append(app.rules.profiles[int(member.speciesId)].data.name)
 			detail.text = item.name+"\n"+Info.summary(definition)+"\nPuede aprender: "+(", ".join(names) if not names.is_empty() else "ningún Pokémon disponible")
 		else: detail.text = item.name+"\n"+item.description
+		if item.kind=="tm":
+			var recommendations: Array[String] = []
+			for member: Dictionary in app.run.party:
+				if member.hp<=0 or not app.campaign.compatible(member,app.run.stock[index].item) or item.move in member.knownMoves: continue
+				recommendations.append(app.campaign.progression.species[int(member.speciesId)].name+": "+preload("res://ui/tactical_loadouts.gd").improvement(app.campaign.progression,member,item.move))
+			if not recommendations.is_empty(): detail.text += "\n"+"\n".join(recommendations)
 	for slot: int in cards:
 		if not is_instance_valid(cards[slot]): continue
 		cards[slot].add_theme_stylebox_override("panel",preload("res://ui/game_skin.gd").panel(app.GOLD if slot==index else Color("547985")))

@@ -1,0 +1,14 @@
+{
+  "assertions": 72,
+  "campaignEdition": 21,
+  "failures": [],
+  "naturalStateHash": "000fb8cd30d21aeece74bd012dc0b7341905951eb06a1d8afede90da4fcc2286",
+  "scope": "Natural starter, role comparison/cancel/confirm/stale revision, tactical filters, team tools, keyboard/scales100/125/150, Route1/capture/Kecleon advice and replay. Existing edition and learnsets.",
+  "screenshots": [
+    "variety-team-tools.png",
+    "variety-roles-1024-150.png",
+    "variety-roles-1280-150.png",
+    "variety-shop-advice.png"
+  ],
+  "stateHash": "0e62777c95049fbeb6eb14c14a20b5f3dfa5aefedfb5eb0113036ae1b9325011"
+}

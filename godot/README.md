@@ -1,4 +1,6 @@
-# Pokémon Tactics — Kanto Windows 0.25.0
+# Pokémon Tactics — Kanto Windows 0.29.0
+
+**0.29.0:** perfil persistente y logros cosméticos, tienda Kecleon animada, combinaciones de movimientos por rol y recomendaciones de MT. Inicio con semilla automática; las opciones manuales son opcionales. [Cambios y comprobaciones](../docs/SPRINT_29_VARIETY.md). Campaña21/combate19 y guardados conservados.
 
 [Entrega 0.25](../docs/SPRINT_25_TACTICAL.md): coloca aliados antes de actuar; B comienza, T alterna amenazas y F9 guarda tarjeta/código de reto desde el hub. Ocho arenas propias, tres misiones, recuperación de EXP y nuevos efectos de terreno. Actualiza una campaña anterior entre encuentros, con copia. Balance humano pendiente.
 

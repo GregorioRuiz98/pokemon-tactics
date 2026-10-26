@@ -1,0 +1,13 @@
+{
+  "assertions": 70,
+  "campaignEdition": 21,
+  "failures": [],
+  "scope": "Natural Route1/shop, original merchant animation, three offers, purchase/rerolls, services, keyboard, scales100/125/150, contrast/reduced motion and reload. No balance changes.",
+  "screenshots": [
+    "kecleon-counter.png",
+    "kecleon-1024-150.png",
+    "kecleon-1280-150.png",
+    "kecleon-contrast.png"
+  ],
+  "stateHash": "d541b36052adff3e404ee9fc56dd62e74b6f2f5c4e7c4d84636c9a41436841aa"
+}

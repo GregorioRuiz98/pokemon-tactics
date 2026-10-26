@@ -105,7 +105,10 @@
     "godot:qa:moves": "node tools/godot/run.mjs qa-moves",
     "godot:qa:moves:export": "node tools/godot/run.mjs qa-moves-export",
     "godot:qa:spatial": "node tools/godot/run.mjs qa-spatial",
-    "godot:qa:spatial:export": "node tools/godot/run.mjs qa-spatial-export"
+    "godot:qa:spatial:export": "node tools/godot/run.mjs qa-spatial-export",
+    "godot:test:variety": "node tools/godot/run.mjs test-variety",
+    "godot:qa:variety": "node tools/godot/run.mjs qa-variety",
+    "godot:qa:variety:export": "node tools/godot/run.mjs qa-variety-export"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

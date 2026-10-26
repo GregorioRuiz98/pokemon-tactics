@@ -192,3 +192,7 @@ TrainerProfile/TrainerStore y ProfileCampaignStore añaden perfil local trainer/
 ## Tienda Kecleon 0.28.0
 
 Mostrador integrado, animación SpriteCollab original y recursos locales verificados; especie352 solo vendedor. Campaña21/combate19 intacta. Ver ../docs/SPRINT_28_KECLEON.md. Guardar antes del feedback, no RNG en UI, respetar movimiento reducido. Continuar29 autorizado; sin delegación ni publicación pública.
+
+## Herramientas tácticas 0.29.0
+
+Dos propuestas opcionales por línea basadas en conocidos, consulta pura en ui/tactical_loadouts.gd. Aplicar mediante loadout existente y revisión exacta, sin RNG ni ventajas de rol. Filtros/MT/plan de aprendizaje usan el motor de la partida. Campaña21/combate19 y datos publicados congelados; no hay edición nueva al no cambiar reglas. Ver ../docs/SPRINT_29_VARIETY.md. Sprints26–29 terminados técnicamente; pruebas humanas y publicación pública pendientes. Sin delegación.

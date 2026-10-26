@@ -97,7 +97,17 @@ if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-expo
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'qa-shop' || operation === 'qa-shop-export') {
+if(operation === 'test-variety') {
+  verify();
+  run(binary,['--headless',...common,'--script','res://tests/variety.gd','--','--save-dir='+work],'variety-core');
+} else if(operation === 'qa-variety' || operation === 'qa-variety-export') {
+  const exported=operation.endsWith('-export');
+  if(!exported) verify();
+  const directory=resolve(work,'variety-'+(exported?'release':'source'));
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--variety-qa-dir='+directory],'variety-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'variety-ui-result.json'),'utf8'));
+  if(report.failures.length || report.assertions<50) throw new Error('Variety UI failed.');
+} else if(operation === 'qa-shop' || operation === 'qa-shop-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,exported?'shop-release':'shop-source');
   run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--shop-qa-dir='+directory],'shop-'+(exported?'release':'source'),exported?output:root);

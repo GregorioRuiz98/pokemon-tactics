@@ -1,0 +1,23 @@
+{
+  "campaignEdition": 21,
+  "checks": 7428,
+  "combatEdition": 19,
+  "failures": [],
+  "families": 79,
+  "features": {
+    "Acercamiento": 17,
+    "Atracción": 1,
+    "Control": 84,
+    "Crítico": 5,
+    "Curación": 9,
+    "Disipa": 2,
+    "Empuje": 21,
+    "Protección": 1,
+    "Zona": 11,
+    "Área": 78
+  },
+  "moves": 211,
+  "proposals": 1208,
+  "rulesChanged": false,
+  "species": 151
+}

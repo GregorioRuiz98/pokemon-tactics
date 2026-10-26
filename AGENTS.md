@@ -163,3 +163,7 @@ Encargo del24 de octubre: nueva campaña20/combate18 en economy_study/battle/run
 ## Tienda Kecleon 0.28.0
 
 Mostrador integrado con tres ofertas, compras directas y fichas, accesos a entrenamiento/equipo/medicina/rasgos. Recursos originales SpriteCollab de Kecleon solo como vendedor; hashes, commit y créditos en assets/merchant. Respetar movimiento reducido y guardar órdenes antes de feedback; UI/animaciones sin RNG. Campaña21/combate19 intacta. Ver docs/SPRINT_28_KECLEON.md (../docs desde Godot). Autorización vigente para continuar29, sin delegación ni publicación pública.
+
+## Herramientas tácticas 0.29.0
+
+Sprint29 implementado: propuestas de rol basadas exclusivamente en movimientos aprendidos, filtros tácticos, herramientas del equipo, aprendizaje futuro y aportación de MT. Consultas en ui/tactical_loadouts.gd; usar la orden loadout existente con revisión, guardado antes de feedback. Campaña21/combate19, repertorios/datos/reglas publicados y códigosKT25 intactos; no crear migración por cambios de presentación. Ver docs/SPRINT_29_VARIETY.md (../docs desde Godot), auditorías CSV y QA aislada. Sprints26–29 cerrados técnicamente; balance humano/campaña completa y publicación pública pendientes. Sin delegación.
