@@ -1,0 +1,29 @@
+{
+  "version": "0.31.0",
+  "baseline": "7ae0893684e2f72f65593b00f41c693dfdfd73f3",
+  "publishedFilesUnchanged": [
+    "godot/core",
+    "godot/data",
+    "godot/tests",
+    "godot/assets",
+    "godot/art",
+    "src",
+    "public",
+    "tests",
+    "CREDITS.md"
+  ],
+  "campaignEdition": 23,
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "coreChecks": {
+    "power": 1602
+  },
+  "uiChecksPerBuild": {
+    "power": 233,
+    "copy": 503
+  },
+  "sourceAndExeStateMatch": true,
+  "publicDeployment": false,
+  "fullCampaignPlayed": false
+}

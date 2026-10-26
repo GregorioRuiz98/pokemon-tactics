@@ -112,6 +112,9 @@
     "godot:test:kanto": "node tools/godot/run.mjs test-kanto",
     "godot:qa:kanto": "node tools/godot/run.mjs qa-kanto",
     "godot:qa:kanto:export": "node tools/godot/run.mjs qa-kanto-export",
+    "godot:test:power": "node tools/godot/run.mjs test-power",
+    "godot:qa:power": "node tools/godot/run.mjs qa-power",
+    "godot:qa:power:export": "node tools/godot/run.mjs qa-power-export",
     "godot:qa:copy": "node tools/godot/run.mjs qa-copy",
     "godot:qa:copy:export": "node tools/godot/run.mjs qa-copy-export"
   },

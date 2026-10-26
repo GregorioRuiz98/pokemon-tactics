@@ -1,0 +1,15 @@
+{
+  "assertions": 503,
+  "campaignEdition": 22,
+  "failures": [],
+  "scope": "211 move number summaries, concise destinations and optional tactical rules; keyboard, text150%, natural opening/capture/shop, price/irreversibility confirmations and replay. Pure presentation.",
+  "screenshots": [
+    "moves-150.png",
+    "travel.png",
+    "deployment.png",
+    "kecleon.png",
+    "training-cost.png",
+    "tactical-rules.png"
+  ],
+  "stateHash": "cab849a622133d94e17416928def7f3ce874f41fa868190a9d5dde1726aa0626"
+}

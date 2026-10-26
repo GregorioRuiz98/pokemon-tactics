@@ -6,6 +6,7 @@ static func unit_text(app: Control, unit: Dictionary) -> String:
 	if unit.is_empty(): return "Casilla sin ocupante."
 	var active: bool = app.rules.active(app.state).get("id")==unit.id
 	var text: String = "%s · Nv. %d\n%s%s\nPS %d / %d · PT %d / %d\nTipos: %s\nMovimiento: %d · %s\nOrientación: %s" % [unit.name,unit.get("level",1),"Aliado" if unit.team=="ally" else "Rival"," · turno activo" if active else "",unit.hp,unit.maxHp,unit.tp,unit.maxTp,app._type_names(unit.types),unit.remaining,"acción usada" if active and app.state.acted else "acción disponible" if active else "fuera de su activación",{4:"norte",2:"este",0:"sur",6:"oeste"}.get(int(unit.facing),str(unit.facing))]
+	if unit.get("permanentStages",false): text = text.replace(" · PT %d / %d" % [unit.tp,unit.maxTp]," · PP equipados %d / %d" % [unit.ppUsed,unit.ppCapacity])
 	if app.state.get("combatEdition",0)>=11: text += " · altura %d" % app.rules.Terrain.height_at(app.state,unit)
 	if unit.has("abilityName"): text += "\nHabilidad: "+unit.abilityName+"\n"+unit.get("abilityDescription","")
 	for entry: Dictionary in Indicators.entries(unit): text += "\n"+entry.hint
@@ -14,6 +15,7 @@ static func unit_text(app: Control, unit: Dictionary) -> String:
 static func forecast(unit: Dictionary, plan: Dictionary) -> String:
 	if not plan.ok: return unit.name+"\nNo disponible: "+plan.reason
 	var text: String = "%s → %s\nCoste: %d PT · precisión %d %%" % [plan.name,unit.name,plan.cost,plan.accuracy]
+	if plan.definition.has("loadoutCost"): text = text.replace("Coste: %d PT · " % plan.cost,"")
 	text += "\nDaño normal: %d–%d PS" % [plan.get("damageMin",plan.damage),plan.get("damageMax",plan.damage)]
 	if plan.heal: text += "\nCuración: %d PS" % plan.heal
 	if plan.get("criticalChance",0)>0: text += "\nCrítico: %.2f %% · %d–%d PS" % [100*plan.criticalChance,plan.criticalMin,plan.criticalMax]
@@ -24,6 +26,7 @@ static func forecast(unit: Dictionary, plan: Dictionary) -> String:
 static func tile_text(app: Control, point: Dictionary) -> String:
 	if app.state.is_empty(): return "No hay combate abierto."
 	var text: String = app.rules.coordinate(point)+" · "+{0:"Suelo",1:"Maleza",2:"Roca",3:"Agua"}.get(int(app.state.board[int(point.y)][int(point.x)]),"Terreno")
+	if preload("res://core/restorative_tiles.gd").contains(app.state,point): text += "\nManantial: cura estados y confusión al terminar el turno. Ambos bandos; no recupera PS."
 	if app.state.get("combatEdition",0)>=11: text += " · altura %d" % app.rules.Terrain.height_at(app.state,point)
 	for field: Dictionary in app.state.get("fields",[]):
 		if field.x==point.x and field.y==point.y and app.state.get("combatEdition",0)>=18: text += "\n"+preload("res://ui/spatial_interaction.gd").NAMES.get(field.kind,field.kind)+( " · campo del escenario" if field.get("source",1)==0 and int(field.expires)>=999 else " · %d rondas" % maxi(1,int(field.expires)-int(app.state.round)-1))

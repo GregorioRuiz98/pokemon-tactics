@@ -20,6 +20,7 @@ const isolatedLocal = resolve(work, 'local-profile');
 mkdirSync(isolatedProfile, { recursive: true });
 mkdirSync(isolatedLocal, { recursive: true });
 function run(executable, args, label, cwd = root) {
+  if(chapter>=31 && /^(copy|kanto)-(source|release)$/.test(label)) args=[...args,'--compat-kanto'];
   // Historical UI suites keep their published edition. Current content has qa-kanto.
   if(chapter>=30 && /^(player|shop|trainer)-(source|release)$/.test(label)) args=[...args,'--compat-adventure'];
   const logIndex = args.indexOf('--log-file');
@@ -104,7 +105,15 @@ if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-expo
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'qa-copy' || operation === 'qa-copy-export') {
+if(operation === 'test-power') {
+  run(binary,['--headless',...common,'--script','res://tests/power.gd','--','--save-dir='+work],'power-core');
+} else if(operation === 'qa-power' || operation === 'qa-power-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'power-'+(exported?'release':'source'));
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--power-qa-dir='+directory],'power-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'power-ui-result.json'),'utf8'));
+  if(report.failures.length || report.assertions<20) throw new Error('Power UI failed.');
+} else if(operation === 'qa-copy' || operation === 'qa-copy-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'copy-'+(exported?'release':'source'));
   run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--copy-qa-dir='+directory],'copy-'+(exported?'release':'source'),exported?output:root);

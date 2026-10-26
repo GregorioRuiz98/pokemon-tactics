@@ -20,12 +20,14 @@ static func area(definition: Dictionary) -> String:
 	return definition.get("shapeName","Sobre sí mismo" if definition.get("target")=="self" else "Un objetivo" if definition.get("kind")!="area-damage" else "Área alrededor del objetivo")
 
 static func compact(definition: Dictionary) -> String:
+	if definition.has("loadoutCost"): return "Pot. %s · %d cas." % [power(definition),definition.get("range",0)]
 	return "Pot. %s · %d PT · %d cas." % [power(definition),definition.get("cost",0),definition.get("range",0)]
 
 static func summary(definition: Dictionary) -> String:
 	var type_name: String = "Sin tipo · sin STAB" if definition.get("id")=="basic" else TYPES.get(definition.get("type",""),"Sin tipo")
 	var reach: int = int(definition.get("range",0))
-	return "%s · %s\nPotencia: %s · Precisión: %s\nCoste: %d PT · Alcance: %d %s\nÁrea: %s" % [type_name,CATEGORIES.get(definition.get("category",""),"Estado"),power(definition),accuracy(definition),definition.get("cost",0),reach,"casilla" if reach==1 else "casillas",area(definition)]
+	var cost_text: String = "Equipar: %d PP" % definition.loadoutCost if definition.has("loadoutCost") else "Coste: %d PT" % definition.get("cost",0)
+	return "%s · %s\nPotencia: %s · Precisión: %s\n%s · Alcance: %d %s\nÁrea: %s" % [type_name,CATEGORIES.get(definition.get("category",""),"Estado"),power(definition),accuracy(definition),cost_text,reach,"casilla" if reach==1 else "casillas",area(definition)]
 
 static func description(definition: Dictionary) -> String:
 	var lines: Array[String] = []
@@ -48,7 +50,7 @@ static func description(definition: Dictionary) -> String:
 	for change: Dictionary in definition.get("changes",[]):
 		text += "\n%s: %s %s%d" % ["Sobre el usuario" if definition.get("changesSelf",false) else "Sobre el objetivo",preload("res://ui/unit_indicators.gd").STATS[change.stat][1],"+" if change.stages>0 else "",change.stages]
 		if definition.get("changeChance",100)<100: text += " · %d %%" % definition.changeChance
-	if definition.has("shape") and not definition.get("changes",[]).is_empty(): text += "\nAtributos: 3 activaciones."
+	if definition.has("shape") and not definition.get("changes",[]).is_empty(): text += "\nAtributos: durante el combate." if definition.get("permanentStages",false) else "\nAtributos: 3 activaciones."
 	if definition.get("kind")=="drain": text += "\nDrena el 50 % del daño."
 	return text.strip_edges()
 

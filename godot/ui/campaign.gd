@@ -2,15 +2,16 @@ extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
 const Advanced = preload("res://core/roster_run.gd")
-const Journey = preload("res://core/kanto_journey.gd")
-const CURRENT_CHAPTER: int = 26
+const Journey = preload("res://core/power_run.gd")
+const CURRENT_CHAPTER: int = 27
 const Art = preload("res://ui/visual_assets.gd")
 const RosterPanel = preload("res://ui/roster_panel.gd")
 const IsometricBoard = preload("res://ui/kanto_board.gd")
-const CampaignStore = preload("res://core/kanto_campaign_store.gd")
+const CampaignStore = preload("res://core/power_store.gd")
 const Copy = preload("res://ui/concise_copy.gd")
 var kanto_qa_dir: String = ""
 var copy_qa_dir: String = ""
+var power_qa_dir: String = ""
 var trainer: RefCounted = preload("res://ui/trainer_session.gd").new()
 var trainer_qa_dir: String = ""
 var kecleon: RefCounted = preload("res://ui/kecleon_shop.gd").new()
@@ -181,6 +182,7 @@ func _boot() -> void:
 		get_tree().change_scene_to_file.call_deferred("res://scenes/laboratory.tscn")
 		return
 	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--power-qa-dir="): power_qa_dir = argument.trim_prefix("--power-qa-dir=")
 		if argument.begins_with("--copy-qa-dir="): copy_qa_dir = argument.trim_prefix("--copy-qa-dir=")
 		if argument.begins_with("--kanto-qa-dir="): kanto_qa_dir = argument.trim_prefix("--kanto-qa-dir=")
 		if argument.begins_with("--shop-qa-dir="): shop_qa_dir = argument.trim_prefix("--shop-qa-dir=")
@@ -222,6 +224,7 @@ func _boot() -> void:
 	if not variety_qa_dir.is_empty(): test_dir = variety_qa_dir
 	if not kanto_qa_dir.is_empty(): test_dir = kanto_qa_dir
 	if not copy_qa_dir.is_empty(): test_dir = copy_qa_dir
+	if not power_qa_dir.is_empty(): test_dir = power_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -256,7 +259,8 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
-	if not copy_qa_dir.is_empty(): _open_title(); call_deferred("_run_copy_qa")
+	if not power_qa_dir.is_empty(): _open_title(); call_deferred("_run_power_qa")
+	elif not copy_qa_dir.is_empty(): _open_title(); call_deferred("_run_copy_qa")
 	elif not kanto_qa_dir.is_empty(): _open_title(); call_deferred("_run_kanto_qa")
 	elif not shop_qa_dir.is_empty(): _open_title(); call_deferred("_run_shop_qa")
 	elif not variety_qa_dir.is_empty(): _open_title(); call_deferred("_run_variety_qa")
@@ -455,7 +459,7 @@ func _update_seed_hint() -> void:
 	var value: String = journey_seed.text.strip_edges()
 	var text: String = "Una semilla admite hasta 64 caracteres."
 	if value.begins_with("KT") and ":" in value:
-		var challenge: Dictionary = preload("res://core/journey_challenge.gd").decode(value)
+		var challenge: Dictionary = preload("res://core/power_challenge.gd").decode(value)
 		text = "Código incompleto o incompatible. Comprueba que lo has pegado entero." if challenge.is_empty() else "Reto con %s · mapa %d×%d. Al comenzar se usará este inicial." % [rules.profiles[int(challenge.starter)].data.name,challenge.mapSize,challenge.mapSize]
 	travel_buttons.seed_hint.text = text
 
@@ -474,6 +478,9 @@ func _run_variety_qa() -> void:
 func _run_kanto_qa() -> void:
 	await load("res://ui/qa_kanto.gd").new().run(self,kanto_qa_dir)
 
+func _run_power_qa() -> void:
+	await load("res://ui/qa_power.gd").new().run(self,power_qa_dir)
+
 func _run_copy_qa() -> void:
 	await load("res://ui/qa_copy.gd").new().run(self,copy_qa_dir)
 
@@ -481,7 +488,7 @@ func _choose_starter(identity: int) -> void:
 	var challenge: Dictionary = {}
 	var requested_seed: String = journey_seed.text.strip_edges()
 	if requested_seed.begins_with("KT") and ":" in requested_seed:
-		challenge = load("res://core/kanto_challenge.gd").decode(requested_seed)
+		challenge = load("res://core/power_challenge.gd").decode(requested_seed)
 		if challenge.is_empty(): _review_text("Código de reto no válido","Comprueba que has pegado el código completo. Este reto debe ser compatible con la aventura actual. Tu partida guardada se conserva."); return
 		requested_seed = challenge.seed; identity = int(challenge.starter)
 	elif requested_seed.length()>64:
@@ -496,7 +503,7 @@ func _choose_starter(identity: int) -> void:
 	journey_seed.text = new_seed
 	campaign = Advanced.new() if campaign_qa_dir.is_empty() else load("res://core/traits_run.gd").new()
 	if not scale_qa_dir.is_empty(): campaign = load("res://core/scale_run.gd").new()
-	if campaign_qa_dir.is_empty() and scale_qa_dir.is_empty() and roster_qa_dir.is_empty(): campaign = Journey.new(int(challenge.edition)+4 if not challenge.is_empty() else 24 if "--compat-economy" in OS.get_cmdline_user_args() else 25 if "--compat-adventure" in OS.get_cmdline_user_args() else CURRENT_CHAPTER)
+	if campaign_qa_dir.is_empty() and scale_qa_dir.is_empty() and roster_qa_dir.is_empty(): campaign = Journey.new(int(challenge.edition)+4 if not challenge.is_empty() else 24 if "--compat-economy" in OS.get_cmdline_user_args() else 25 if "--compat-adventure" in OS.get_cmdline_user_args() else 26 if "--compat-kanto" in OS.get_cmdline_user_args() else CURRENT_CHAPTER)
 	rules = campaign.engine
 	run = campaign.create(new_seed,identity)
 	trainer.begin_new(self)
@@ -660,6 +667,7 @@ func _upgrade_campaign() -> void:
 	transactions.append(command)
 	_prepare_campaign_assets()
 	message = "Progresión actualizada; niveles y PS conservados. Objetos retirados: +%d ₽ devueltos. Copia anterior guardada." % run.get("economyRefund",0) if run.edition>=20 else ("Versión actualizada. Final, equipo y diario conservados; copia anterior guardada." if run.phase=="ending" else "Aventura ampliada. Equipo, objetos, PS y diario conservados; copia de la partida anterior guardada.")
+	if run.edition>=23: message = "PP de equipamiento activados. Revisa las ranuras; todos los movimientos aprendidos se conservan. Copia anterior guardada."
 	_save()
 	_refresh()
 
@@ -745,6 +753,7 @@ func _refresh() -> void:
 		_simplify_hub()
 	accessible_view.request_update(true)
 	adventure.refresh(self)
+	if state.get("combatEdition",0)>=20: preload("res://ui/power_copy.gd").refresh_battle(self)
 	if adventure.enabled(self) and run.phase!="battle" and not travel_buttons.has("share_journey"):
 		var share: Button = _button(input_profile.shortcut("Reto","share"),func():adventure.export_card(self))
 		share.theme_type_variation = "ToolButton"
@@ -846,6 +855,7 @@ func _hover_tile(point: Dictionary) -> bool:
 		hint.text = practice.instruction(self)
 	if not point.is_empty() and state.get("combatEdition",0)>=11 and not _modal_open(): hint.text += "\nAltura %d · rueda: zoom · botón central: cámara." % rules.Terrain.height_at(state,point)
 	adventure.hover(self,point)
+	if not point.is_empty() and preload("res://core/restorative_tiles.gd").contains(state,point): hint.text += "\nManantial: cura estados al terminar aquí; no recupera PS."
 	return true
 
 func _select_tile(point: Dictionary) -> void:
@@ -1040,9 +1050,10 @@ func _render_travel() -> void:
 		guide.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		travel_content.add_child(guide)
 	if run.get("edition",1)>=12 and run.get("edition",1)<CURRENT_CHAPTER-4 and run.get("phase","") in ["map","shop","complete","ending"]:
-		var upgrade: Button = _button("Actualizar Kanto · mapas y dos desafíos" if CURRENT_CHAPTER>=26 else "Actualizar versión · conservar final" if run.phase=="ending" else "Actualizar aventura táctica",_upgrade_campaign)
+		var upgrade: Button = _button("Actualizar a PP de equipamiento" if CURRENT_CHAPTER>=27 else "Actualizar Kanto · mapas y dos desafíos" if CURRENT_CHAPTER>=26 else "Actualizar versión · conservar final" if run.phase=="ending" else "Actualizar aventura táctica",_upgrade_campaign)
 		upgrade.tooltip_text = "Conserva equipo, nivel, PS y progreso con una copia previa. Los objetos retirados se reembolsan. El combate pendiente conserva sus reglas."
 		if CURRENT_CHAPTER>=25: upgrade.tooltip_text = "Añade mapas propios y encadena las tres aves antes de Mew y Mewtwo. Conserva victorias, equipo, PS y progreso con una copia previa. Los combates pendientes terminan con sus reglas actuales."
+		if CURRENT_CHAPTER>=27: upgrade.tooltip_text = "PP al equipar, usos sin gasto y atributos durante el combate. Conserva movimientos aprendidos; los que excedan el presupuesto se desequipan en orden inverso. Copia previa automática."
 		travel_content.add_child(upgrade)
 		travel_buttons.upgrade = upgrade
 	if not run.is_empty() and run.get("edition",1)>=8 and not _simple_hub():
@@ -1396,6 +1407,12 @@ func _review_swap(outgoing: int, incoming: int, revision: int) -> void:
 func _review_loadout(identity: int, moves: Array, description: String, definition: Dictionary = {}) -> void:
 	_review_dialog()
 	var revision: int = int(run.revision)
+	if run.get("edition",0)>=23:
+		var points: GDScript = preload("res://core/power_points.gd")
+		var selected: Dictionary = campaign.target(run,identity)
+		var used: int = points.used(moves,campaign.progression.data.moves)
+		if used>points.capacity(selected.level): _review_text("PP insuficientes","Equipar requiere %d PP; capacidad %d." % [used,points.capacity(selected.level)]); return
+		description += "\nPP equipados: %d / %d" % [used,points.capacity(selected.level)]
 	var names: String = ", ".join(moves.map(func(id):return campaign.progression.data.moves[id].name))
 	action_review.review("Preparar movimientos",_member_summary(identity)+"\n\nNUEVO: "+names+"\n"+description+"\nBásico neutro conservado.",func(): _event({"kind":"loadout","member":identity,"moves":moves,"at":revision}),definition)
 
@@ -1611,6 +1628,7 @@ func _render_moves(parent: VBoxContainer, member: Dictionary) -> void:
 	if run.get("edition",0)<21: parent.add_child(roles)
 	else: roles.queue_free()
 	parent.add_child(_label("MOVIMIENTOS · %d / 4\nBásico neutro · 0 PT" % member.moves.size(),17,GOLD))
+	if run.get("edition",0)>=23: parent.get_child(parent.get_child_count()-1).text = "MOVIMIENTOS · %d / 4\nPP equipados: %d / %d · básico gratuito" % [member.moves.size(),preload("res://core/power_points.gd").used(member.moves,study.data.moves),preload("res://core/power_points.gd").capacity(member.level)]
 	move_library.render(self,parent,member)
 	if run.get("edition",0)>=21:
 		var entries: Array = preload("res://ui/tactical_loadouts.gd").learning(study,member,campaign.level_cap(run))

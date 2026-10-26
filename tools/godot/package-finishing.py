@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 VERSION = re.search(r'config/version="([^"]+)"', (ROOT/'godot/project.godot').read_text(encoding='utf-8'))[1]
 CHAPTER = int(VERSION.split('.')[1])
 CONFIG = {
+    31: {'baseline':'7ae0893684e2f72f65593b00f41c693dfdfd73f3','report':'SPRINT_31_POWER.md','ui':{'power':233,'copy':503},'core':{'power':1602},'edition':23},
     30: {'baseline':'99e74e8c8df880f4a2657bf7084b081c8d2e0de4','report':'SPRINT_30_KANTO.md','ui':{'kanto':428,'player':719},'core':{'kanto':7626,'trainer':120,'adventure':105},'edition':22},
     29: {'baseline': '8bbe5dcd078a50bca7140b8858eae77e5d9685a7', 'report': 'SPRINT_29_VARIETY.md', 'ui': {'variety': 72, 'shop': 70, 'trainer': 69, 'player': 719, 'moves': 304}, 'core': {'variety': 7428, 'trainer': 120, 'adventure': 105}, 'edition': 21},
     28: {'baseline': '9d87cd1091815f72525ec66a4d4752065579c2f4', 'report': 'SPRINT_28_KECLEON.md', 'ui': {'shop': 70, 'trainer': 69, 'player': 719}, 'core': {'trainer': 120, 'adventure': 105}, 'edition': 21},
@@ -92,10 +93,16 @@ def main():
         readme += '\nTienda Kecleon: tres ofertas, ficha antes de comprar, renovación con precio creciente y accesos a Medicina, Entrenar y Equipo. Movimiento reducido desactiva sus animaciones.\n'
     if CHAPTER == 29:
         readme += '\nEquipo → Movimientos: consulta propuestas de rol, compáralas y confirma para preparar hasta cuatro técnicas aprendidas. El básico neutro permanece. Filtra áreas, zonas, desplazamientos y apoyos; Herramientas del equipo resume tus opciones. Las MT indican qué función añaden.\n'
+    if CHAPTER >= 31:
+        readme += '\nPP de equipamiento: capacidad10 desde el inicio, +1 por cada5 niveles desde Nv.5, máximo20. Hasta cuatro técnicas y básico gratuito. Se paga presupuesto al preparar; no se gastan puntos en combate. Estados temporales, atributos hasta finalizar el combate. Manantiales: curan estados y confusión al terminar el turno encima, para ambos bandos, sin curar PS.\nLa actualización es voluntaria entre encuentros con copia. Todos los movimientos aprendidos se conservan; si exceden PP, se desequipan los que no caben, respetando el orden de ranuras. Presión no tiene efecto en esta edición. Códigos nuevos KT31.\n'
+        shutil.copy2(WORK/'power-prices.csv',docs/'PP_MOVIMIENTOS.csv')
+        shutil.copy2(WORK/'power-prices.csv',EVIDENCE/'power-prices.csv')
     if CHAPTER >= 30:
         readme = readme.replace('0.26.0',VERSION)
         readme += '\nKanto:58 lugares con geometría propia en16/24 casillas, alturas y obstáculos temáticos. La maleza es transitable; árboles, rocas y muebles sólidos bloquean movimiento y visión. Las copas se atenúan ante unidades y cursor.\nLiga y rival → tres aves juntas → tienda → Mew y Mewtwo. No hay captura legendaria. La actualización es voluntaria entre encuentros, con copia; conserva victorias previas y permite completar el desafío que falte.\nSin roles predefinidos: combina cuatro técnicas aprendidas más básico neutro. Filtros, potencia, diagramas, compatibilidad de MT y herramientas del equipo se conservan. Los valores de combate/EXP/precios no han cambiado. Códigos nuevos KT30; KT25 conserva sus reglas históricas.\n'
         shutil.copy2(ROOT/'docs/reports/kanto-0.30/mapas.csv',docs/'MAPAS_KANTO.csv')
+    if CHAPTER >= 31:
+        readme = readme.replace('Los valores de combate/EXP/precios no han cambiado.', 'Se conservan potencia, estadísticas, EXP, precios y recompensas. La disponibilidad de acciones cambia con los PP.')
     (BUNDLE/'LEEME.txt').write_text(readme, encoding='utf-8')
     archive = RELEASE/f'pokemon-tactics-{VERSION}-windows.zip'
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as package:

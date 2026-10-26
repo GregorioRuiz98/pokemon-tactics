@@ -543,3 +543,7 @@ La petición posterior «implementa los cambios a los mapas y el resto de cambio
 ## Revisión de textos0.30.1
 
 [Textos simplificados](FIX_TEXT_0.30.1.md): viaje, despliegue, equipo, movimientos y tienda; controles y reglas tácticas en ayuda opcional. Mantiene datos de decisión, objetivos y consecuencias. Presentación solamente, misma campaña22/combate19 y guardados. Sin publicación pública.
+
+## Entrega0.31 — PP de equipamiento
+
+Cambio autorizado: sustituir gasto durante el combate por presupuesto al preparar, creciente con nivel. Se descarta el presupuesto inicial4–8; primera tabla1–5 por técnica con capacidad10–20. Atributos durante el combate, estados temporales y manantiales compartidos. Actualización voluntaria con copia, nueva edición23. [Informe y tabla](SPRINT_31_POWER.md). Pruebas humanas de equilibrio y publicación pública siguen pendientes.

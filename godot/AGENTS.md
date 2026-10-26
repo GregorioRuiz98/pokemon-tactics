@@ -209,3 +209,7 @@ El26 de octubre el usuario autoriza implementar mapas, identidad y finales conse
 ## Textos0.30.1
 
 Presentación únicamente: concise_copy resume destinos/objetivos y reglas tácticas opcionales; move_info conserva cifras y efectos/duraciones. Evitar repetir explicaciones básicas en cada ficha. No alterar reglas/RNG/guardados ni borrar avisos relevantes. QA copy503 y Kanto428, fuente/EXE; evidencia sprint-30-ui-1. Ver ../docs/FIX_TEXT_0.30.1.md.
+
+## PP0.31.0
+
+Nuevos módulos power_* y restorative_tiles; edición23/capítulo27/combate20, sin modificar motores publicados. PP solo equipamiento (10–20, costes1–5), iguales para ambos equipos; MT/niveles/evoluciones respetan presupuesto. Mantener consultas puras, RNG/guardado antes de animar y replay mixto. Estados temporales, atributos/Foco Energía hasta fin de combate; manantiales sin PS para ambos bandos al terminar turno. Presión sin efecto, visible. QA power y copy fuente/EXE. Ver ../docs/SPRINT_31_POWER.md.

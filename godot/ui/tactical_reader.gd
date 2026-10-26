@@ -52,6 +52,7 @@ func show_unit(identity: int) -> void:
 		body.text += "\n\nPREVISIÓN\n"+(app.target_info.get_meta("details",app.target_info.text) if plan.ok else plan.reason)
 	body.text += "\n\nPT: recurso de acciones, no dinero. Básico neutro: 0 PT, sin tipo ni STAB.\nLa orientación modifica la banda de daño y el crítico en ediciones actuales; no la precisión."
 
+	if app.state.get("combatEdition",0)>=20: body.text = body.text.split("\n\nPT: recurso")[0]
 	body.accessibility_name = body.text
 	choices.accessibility_name = "Unidades del tablero; cambiar selecciona la casilla de esa unidad en modo accesible"
 

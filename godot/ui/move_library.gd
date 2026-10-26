@@ -22,6 +22,7 @@ func render(app: Control, parent: VBoxContainer, member: Dictionary) -> void:
 	parent.add_child(slots)
 	for index: int in 4:
 		var label: String = "%d · %s" % [index+1,app.campaign.progression.data.moves[member.moves[index]].name if index<member.moves.size() else "Vacía"]
+		if app.run.get("edition",0)>=23 and index<member.moves.size(): label += " · %d PP" % app.campaign.progression.data.moves[member.moves[index]].loadoutCost
 		var slot: Button = app._button(label,func(): selected_slot = index; app._refresh())
 		# Wrapped buttons have no text-based minimum width: expand both grid columns.
 		slot.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -64,10 +65,11 @@ func render(app: Control, parent: VBoxContainer, member: Dictionary) -> void:
 	cost.min_value = 0
 	cost.max_value = 5
 	cost.value = max_cost
-	cost.prefix = "PT: "
+	cost.prefix = "PP: " if app.run.get("edition",0)>=23 else "PT: "
 	cost.custom_minimum_size.x = 160
 	cost.tooltip_text = "Coste máximo para filtrar movimientos. No consume PT."
-	cost.accessibility_name = "Coste máximo de movimiento, en PT"
+	cost.accessibility_name = "Coste máximo al equipar, en PP" if app.run.get("edition",0)>=23 else "Coste máximo de movimiento, en PT"
+	if app.run.get("edition",0)>=23: cost.tooltip_text = "Filtrar por PP necesarios al equipar."
 	cost.value_changed.connect(func(value: float): max_cost = int(value); app._refresh())
 	filters.add_child(cost)
 	var tactics: OptionButton = OptionButton.new()
@@ -82,7 +84,7 @@ func render(app: Control, parent: VBoxContainer, member: Dictionary) -> void:
 		if not query.is_empty() and query.to_lower() not in definition.name.to_lower(): continue
 		if category==1 and definition.category=="status" or category==2 and definition.category!="status": continue
 		if type_index>0 and definition.type!=app.TYPE_NAMES.keys()[type_index-1]: continue
-		if definition.cost>max_cost: continue
+		if int(definition.get("loadoutCost",definition.cost))>max_cost: continue
 		if not Tactics.matches(definition,tactical_filter): continue
 		count += 1
 		var features: Array[String] = Tactics.tags(definition)

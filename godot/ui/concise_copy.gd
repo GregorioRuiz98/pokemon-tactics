@@ -28,4 +28,8 @@ static func tactical_rules(edition: int) -> String:
 	if edition>=20: text += "\nEntrenar compra la EXP pendiente del nivel. Evoluciones de piedra/intercambio: elección gratuita al nivel mínimo indicado."
 	if edition>=8: text += "\nEl próximo gimnasio fija el nivel máximo; la EXP sobrante no se acumula."
 	if edition>=22: text += "\n\nTERRENO\nObstáculos sólidos: bloquean paso y visión. Subir un nivel de altura cuesta +1 movimiento; saltos mayores requieren rodear o volar."
+	if edition>=23:
+		text = text.replace("Cuatro movimientos + básico neutro de 0 PT.","Cuatro movimientos, limitados por PP al equipar, + básico gratuito. Usarlos no gasta puntos.")
+		text = text.replace("Estados y atributos temporales.","Estados temporales; atributos durante el combate.")
+		text += "\nManantial: cura estados y confusión al terminar el turno; ambos bandos, sin curar PS."
 	return text

@@ -633,17 +633,18 @@ func _refresh():
 	actor_title.text = "EN TURNO  /  " + ("RIVAL" if actor.team=="enemy" else "TU EQUIPO")
 	actor_tp.max_value = actor.maxTp
 	actor_tp.value = actor.tp
+	actor_tp.visible = not actor.get("permanentStages",false)
 	actor_info.text = "%s%s\n%d / %d PS\n%d / %d PT\n%s · %s" % [actor.name, " · IA" if actor.team == "enemy" else "", actor.hp, actor.maxHp, actor.tp, actor.maxTp, "Mov. usado" if state.moved else "Mov. %d" % actor.remaining, "Acc. usada" if state.acted else "Acc. lista"]
 	if actor.has("abilityName"): actor_info.text += "\n"+actor.abilityName
 	for index in rules.profile(actor).actions_for(actor).size():
 		var definition = rules.profile(actor).actions_for(actor)[index].definition
 		var button = _button("%d · %s\n%s" % [index + 1, definition.name,preload("res://ui/move_info.gd").compact(definition)], _select_action.bind(definition.id))
-		if actor.get("recoveryPP",{}).has(definition.id): button.text += " · %d/5 usos" % actor.recoveryPP[definition.id]
+		if not actor.get("permanentStages",false) and actor.get("recoveryPP",{}).has(definition.id): button.text += " · %d/5 usos" % actor.recoveryPP[definition.id]
 		button.theme_type_variation = "CommandButton"
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.disabled = not _player_turn() or state.acted or actor.tp < definition.cost or not pending.is_empty()
-		if actor.get("recoveryPP",{}).has(definition.id): button.disabled = button.disabled or actor.recoveryPP[definition.id]<=0
+		if not actor.get("permanentStages",false) and actor.get("recoveryPP",{}).has(definition.id): button.disabled = button.disabled or actor.recoveryPP[definition.id]<=0
 		button.toggle_mode = true
 		button.button_pressed = definition.id == selected_action and selecting != "finish" and not state.acted
 		button.tooltip_text = preload("res://ui/move_info.gd").details(definition)
@@ -839,6 +840,7 @@ func _hover_tile(point: Dictionary) -> bool:
 		else:
 			target_indicators.show_unit(unit)
 			target_info.text = "%s · %d / %d PS\n%s\n%d PT · velocidad %d\n%s" % [unit.name, unit.hp, unit.maxHp, _type_names(unit.types), unit.tp, unit.speed, _status_name(unit.status.kind) if unit.status != null else "Sin estado"]
+			if unit.get("permanentStages",false): target_info.text = target_info.text.replace("%d PT · " % unit.tp,"")
 			if unit.has("abilityName"):
 				target_info.text += "\n"+unit.abilityName
 				target_info.tooltip_text = unit.natureText+"\n"+unit.abilityDescription

@@ -21,6 +21,7 @@ static func preview(app: Control, point: Dictionary) -> Dictionary:
 		app.target_info.text += "\n"+plan.reason
 		return plan
 	var text: String = "%s · %d PT · Pot. %s\n%s · Casillas afectadas: %d" % [plan.name,plan.cost,preload("res://ui/move_info.gd").power(plan.definition),SHAPES.get(plan.shape,"Objetivo"),plan.tiles.size()]
+	if plan.definition.has("loadoutCost"): text = text.replace(" · %d PT" % plan.cost,"")
 	if plan.field!="": text += "\n"+NAMES.get(plan.field,plan.field)+"\nDura dos rondas completas."
 	if plan.get("randomTechnique",false): text += "\nTécnica aleatoria: %d–%d PS previstos." % [plan.damageMin,plan.damageMax]
 	for hit: Dictionary in plan.hits:

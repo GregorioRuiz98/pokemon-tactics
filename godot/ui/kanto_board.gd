@@ -24,6 +24,12 @@ func _draw() -> void:
 
 func _draw_tile(point: Dictionary, canvas: CanvasItem) -> void:
 	super._draw_tile(point,canvas)
+	if preload("res://core/restorative_tiles.gd").contains(state,point):
+		_outline(diamond(point),Color("a6f5ff"),3,canvas)
+		var middle: Vector2 = center(point)
+		canvas.draw_circle(middle,9*zoom,Color("164857"))
+		canvas.draw_line(middle-Vector2(5,0)*zoom,middle+Vector2(5,0)*zoom,Color("c1fbff"),3*zoom)
+		canvas.draw_line(middle-Vector2(0,5)*zoom,middle+Vector2(0,5)*zoom,Color("c1fbff"),3*zoom)
 	if not state.has("landscape") or int(state.board[int(point.y)][int(point.x)])!=2: return
 	# A visible footprint marks every solid tile, including gaps between border props.
 	var polygon: PackedVector2Array = diamond(point)

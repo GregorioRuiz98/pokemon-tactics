@@ -1,4 +1,6 @@
-# Pokémon Tactics — Kanto Windows 0.30.1
+# Pokémon Tactics — Kanto Windows 0.31.0
+
+**0.31.0:** PP al equipar, capacidad10–20 por nivel y técnicas de1–5 PP. Usarlas no gasta puntos. Atributos durante el combate y estados temporales; manantiales para curarlos. [Cambios, costes y comprobaciones](../docs/SPRINT_31_POWER.md). Partidas anteriores conservan reglas hasta actualizar entre encuentros, con copia.
 
 **0.30.1:** textos resumidos en viaje, combate, equipo y tienda. Conserva cifras, objetivos, costes y consecuencias; controles y reglas tácticas disponibles en la ayuda. [Cambios y comprobaciones](../docs/FIX_TEXT_0.30.1.md). Mismos guardados y balance.
 
