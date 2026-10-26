@@ -2,12 +2,13 @@ extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
 const Advanced = preload("res://core/roster_run.gd")
-const Journey = preload("res://core/adventure_run.gd")
-const CURRENT_CHAPTER: int = 25
+const Journey = preload("res://core/kanto_journey.gd")
+const CURRENT_CHAPTER: int = 26
 const Art = preload("res://ui/visual_assets.gd")
 const RosterPanel = preload("res://ui/roster_panel.gd")
-const IsometricBoard = preload("res://ui/adventure_board.gd")
-const CampaignStore = preload("res://core/profile_campaign_store.gd")
+const IsometricBoard = preload("res://ui/kanto_board.gd")
+const CampaignStore = preload("res://core/kanto_campaign_store.gd")
+var kanto_qa_dir: String = ""
 var trainer: RefCounted = preload("res://ui/trainer_session.gd").new()
 var trainer_qa_dir: String = ""
 var kecleon: RefCounted = preload("res://ui/kecleon_shop.gd").new()
@@ -178,6 +179,7 @@ func _boot() -> void:
 		get_tree().change_scene_to_file.call_deferred("res://scenes/laboratory.tscn")
 		return
 	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--kanto-qa-dir="): kanto_qa_dir = argument.trim_prefix("--kanto-qa-dir=")
 		if argument.begins_with("--shop-qa-dir="): shop_qa_dir = argument.trim_prefix("--shop-qa-dir=")
 		if argument.begins_with("--variety-qa-dir="): variety_qa_dir = argument.trim_prefix("--variety-qa-dir=")
 		if argument.begins_with("--trainer-qa-dir="): trainer_qa_dir = argument.trim_prefix("--trainer-qa-dir=")
@@ -215,6 +217,7 @@ func _boot() -> void:
 	if not trainer_qa_dir.is_empty(): test_dir = trainer_qa_dir
 	if not shop_qa_dir.is_empty(): test_dir = shop_qa_dir
 	if not variety_qa_dir.is_empty(): test_dir = variety_qa_dir
+	if not kanto_qa_dir.is_empty(): test_dir = kanto_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -249,7 +252,8 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
-	if not shop_qa_dir.is_empty(): _open_title(); call_deferred("_run_shop_qa")
+	if not kanto_qa_dir.is_empty(): _open_title(); call_deferred("_run_kanto_qa")
+	elif not shop_qa_dir.is_empty(): _open_title(); call_deferred("_run_shop_qa")
 	elif not variety_qa_dir.is_empty(): _open_title(); call_deferred("_run_variety_qa")
 	elif not trainer_qa_dir.is_empty(): _open_title(); call_deferred("_run_trainer_qa")
 	elif not player_qa_dir.is_empty(): _open_title(); call_deferred("_run_player_qa")
@@ -462,11 +466,14 @@ func _run_shop_qa() -> void:
 func _run_variety_qa() -> void:
 	await load("res://ui/qa_variety.gd").new().run(self,variety_qa_dir)
 
+func _run_kanto_qa() -> void:
+	await load("res://ui/qa_kanto.gd").new().run(self,kanto_qa_dir)
+
 func _choose_starter(identity: int) -> void:
 	var challenge: Dictionary = {}
 	var requested_seed: String = journey_seed.text.strip_edges()
 	if requested_seed.begins_with("KT") and ":" in requested_seed:
-		challenge = load("res://core/journey_challenge.gd").decode(requested_seed)
+		challenge = load("res://core/kanto_challenge.gd").decode(requested_seed)
 		if challenge.is_empty(): _review_text("Código de reto no válido","Comprueba que has pegado el código completo. Este reto debe ser compatible con la aventura actual. Tu partida guardada se conserva."); return
 		requested_seed = challenge.seed; identity = int(challenge.starter)
 	elif requested_seed.length()>64:
@@ -481,7 +488,7 @@ func _choose_starter(identity: int) -> void:
 	journey_seed.text = new_seed
 	campaign = Advanced.new() if campaign_qa_dir.is_empty() else load("res://core/traits_run.gd").new()
 	if not scale_qa_dir.is_empty(): campaign = load("res://core/scale_run.gd").new()
-	if campaign_qa_dir.is_empty() and scale_qa_dir.is_empty() and roster_qa_dir.is_empty(): campaign = Journey.new(24 if "--compat-economy" in OS.get_cmdline_user_args() else CURRENT_CHAPTER)
+	if campaign_qa_dir.is_empty() and scale_qa_dir.is_empty() and roster_qa_dir.is_empty(): campaign = Journey.new(int(challenge.edition)+4 if not challenge.is_empty() else 24 if "--compat-economy" in OS.get_cmdline_user_args() else 25 if "--compat-adventure" in OS.get_cmdline_user_args() else CURRENT_CHAPTER)
 	rules = campaign.engine
 	run = campaign.create(new_seed,identity)
 	trainer.begin_new(self)
@@ -704,7 +711,7 @@ func _refresh() -> void:
 		var active: Dictionary = rules.active(state)
 		if active.has("level"):
 			actor_info.text = "Nv. %d · " % active.level + actor_info.text
-			actor_info.tooltip_text = campaign.progression.roles(active)
+			actor_info.tooltip_text = "Cuatro movimientos preparados y básico neutro. Sin clases ni bonificaciones de rol."
 			if active.has("abilityDescription"): actor_info.tooltip_text += "\n"+active.natureText+"\n"+active.abilityDescription
 		if run.get("edition",1)>=11:
 			board.track_turn()
@@ -849,7 +856,9 @@ func _simple_hub() -> bool:
 	return not run.is_empty() and run.get("edition",1)>=12
 
 func _art_banner(parent: VBoxContainer, identity: String) -> void:
-	var banner: Control = load("res://ui/artwork_slot.gd").new()
+	var local_scene: bool = run.get("edition",0)>=22 and run.phase=="map"
+	var banner: Control = load("res://ui/kanto_vignette.gd" if local_scene else "res://ui/artwork_slot.gd").new()
+	if local_scene: banner.location = campaign.locations[int(run.stage)].id; banner.clip_contents = true
 	banner.custom_minimum_size.y = 108
 	banner.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	parent.add_child(banner)
@@ -1023,9 +1032,9 @@ func _render_travel() -> void:
 		guide.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		travel_content.add_child(guide)
 	if run.get("edition",1)>=12 and run.get("edition",1)<CURRENT_CHAPTER-4 and run.get("phase","") in ["map","shop","complete","ending"]:
-		var upgrade: Button = _button("Actualizar versión · conservar final" if run.phase=="ending" else "Actualizar aventura táctica" if CURRENT_CHAPTER>=25 else "Actualizar progresión y gimnasios" if CURRENT_CHAPTER>=24 else "Continuar aventura · ampliar Kanto",_upgrade_campaign)
+		var upgrade: Button = _button("Actualizar Kanto · mapas y dos desafíos" if CURRENT_CHAPTER>=26 else "Actualizar versión · conservar final" if run.phase=="ending" else "Actualizar aventura táctica",_upgrade_campaign)
 		upgrade.tooltip_text = "Conserva equipo, nivel, PS y progreso con una copia previa. Los objetos retirados se reembolsan. El combate pendiente conserva sus reglas."
-		if CURRENT_CHAPTER>=25: upgrade.tooltip_text = "Añade preparación del equipo, nuevas arenas y objetivos. Conserva equipo, PS y progreso con una copia previa. Los combates pendientes terminan con sus reglas actuales."
+		if CURRENT_CHAPTER>=25: upgrade.tooltip_text = "Añade mapas propios y encadena las tres aves antes de Mew y Mewtwo. Conserva victorias, equipo, PS y progreso con una copia previa. Los combates pendientes terminan con sus reglas actuales."
 		travel_content.add_child(upgrade)
 		travel_buttons.upgrade = upgrade
 	if not run.is_empty() and run.get("edition",1)>=8 and not _simple_hub():
@@ -1192,10 +1201,14 @@ func _render_travel() -> void:
 	if run.get("edition",1)>=13:
 		if run.phase=="complete": text.text = "Conservas equipo, objetos, dinero y progreso. Has completado el contenido principal de este tramo. Puedes recorrer los desvíos pendientes."
 		if run.phase in ["map","complete"]: _render_destinations(narrative)
-		if run.phase=="complete" and run.mainComplete and run.chapter>=21 and run.finalPath=="":
+		if run.phase=="complete" and run.mainComplete and run.chapter>=21 and run.finalPath=="" and run.get("edition",1)<22:
 			text.text = "Has vencido al Alto Mando y al rival. Elige un único desafío final; las dos rutas son excluyentes y no conceden capturas legendarias."
 			for path: String in ["birds","psychic"]: _travel_button("destiny_"+path,"Articuno, Zapdos y Moltres" if path=="birds" else "Mew y Mewtwo",narrative,{"kind":"destiny","path":path})
 		if run.phase=="ending": text.text = "¡Has completado tu aventura por Kanto! Has vencido al rival y superado el desafío legendario. Tu equipo y tu recorrido quedan guardados para consultarlos."
+		if run.get("edition",0)>=22 and run.get("mainComplete",false):
+			text.text = "Próximo desafío: Mew y Mewtwo. Puedes preparar el equipo en la tienda." if "legendary-birds" in run.cleared else "Próximo desafío: Articuno, Zapdos y Moltres juntos. Después te esperan Mew y Mewtwo."
+			if run.phase=="ending": text.text = "¡Aventura completada! Liga, rival, las tres aves y Mew y Mewtwo. Tu equipo y tu recorrido quedan guardados."
+			text.visible = true
 	if run.get("edition",1) >= 2 and run.phase in ["capture","shop"]:
 		var summary: Label = _label(_progress_summary(),17,GOLD)
 		summary.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART

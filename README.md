@@ -1,5 +1,7 @@
 # Pokémon Tactics
 
+**Windows 0.30.0:** [Kanto reconocible y desafíos consecutivos](docs/SPRINT_30_KANTO.md):58 lugares con alturas/obstáculos, cuatro movimientos libres sin roles y Liga/rival → aves → Mew/Mewtwo. Ejecutable offline; actualización voluntaria con copia.
+
 **Windows 0.29.0:** semillas automáticas, [perfil e historial de logros](docs/SPRINT_27_TRAINER.md), [tienda Kecleon animada](docs/SPRINT_28_KECLEON.md) y [combinaciones por rol, filtros tácticos y recomendaciones de MT](docs/SPRINT_29_VARIETY.md). Ejecutable offline; guardados y reglas conservados.
 
 **Windows 0.25.0:** [aventura táctica](docs/SPRINT_25_TACTICAL.md): despliegue, amenazas, ocho arenas, objetivos, recuperación de EXP, IA, terreno y tarjetas de reto. Guardados anteriores compatibles; balance provisional.

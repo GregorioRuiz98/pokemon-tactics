@@ -113,4 +113,4 @@ static func team_summary(app: Control) -> String:
 	var absent: Array[String] = []
 	for feature: String in ["Área","Zona","Empuje","Atracción","Disipa","Curación"]:
 		if not coverage.has(feature): absent.append(feature)
-	return "HERRAMIENTAS PREPARADAS\n"+"\n".join(lines)+"\n\nSin preparar: "+(", ".join(absent) if not absent.is_empty() else "todas las funciones indicadas están cubiertas")+".\n\nNo necesitas cubrirlo todo. Las áreas pueden alcanzar aliados; consulta la previsión. Los roles no conceden estadísticas."
+	return "HERRAMIENTAS PREPARADAS\n"+"\n".join(lines)+"\n\nSin preparar: "+(", ".join(absent) if not absent.is_empty() else "todas las funciones indicadas están cubiertas")+".\n\nCombina libremente los movimientos aprendidos. Las áreas pueden alcanzar aliados; consulta la previsión."

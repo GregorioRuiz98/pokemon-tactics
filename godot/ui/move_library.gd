@@ -32,7 +32,9 @@ func render(app: Control, parent: VBoxContainer, member: Dictionary) -> void:
 		slot.button_pressed = selected_slot==index
 		slots.add_child(slot)
 		app.travel_buttons["move_slot_"+str(index)] = slot
-	if app.run.get("edition",0)>=21: render_proposals(app,parent,member)
+	if app.run.get("edition",0)>=21:
+		var team: Button = app._button("Herramientas del equipo",func():app._review_text("Movimientos del equipo",Tactics.team_summary(app)))
+		team.theme_type_variation = "ToolButton"; parent.add_child(team); app.travel_buttons.team_tools = team
 	if selected_slot>=0 and selected_slot<member.moves.size():
 		parent.add_child(app._button("Vaciar la ranura seleccionada…",func():
 			var moves: Array = member.moves.duplicate()

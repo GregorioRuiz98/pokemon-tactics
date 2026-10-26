@@ -1,0 +1,40 @@
+{
+  "checks": 7626,
+  "combatEdition": 19,
+  "edition": 22,
+  "failures": [],
+  "maps": 116,
+  "openings": [
+    {
+      "cleared": [
+        "route-1"
+      ],
+      "hp": 75,
+      "orders": 10,
+      "phase": "capture",
+      "seed": "kecleon-ui",
+      "starter": 1
+    },
+    {
+      "cleared": [
+        "route-1"
+      ],
+      "hp": 64,
+      "orders": 14,
+      "phase": "capture",
+      "seed": "kecleon-ui",
+      "starter": 4
+    },
+    {
+      "cleared": [
+        "route-1"
+      ],
+      "hp": 68,
+      "orders": 14,
+      "phase": "capture",
+      "seed": "kecleon-ui",
+      "starter": 7
+    }
+  ],
+  "scope": "All authored layouts and geometry, synthetic sequential endings, replay and compatibility; natural opening with three starters, no full human campaign."
+}

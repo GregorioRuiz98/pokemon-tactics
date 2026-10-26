@@ -19,4 +19,5 @@ static func glossary(edition: int) -> String:
 	if edition>=8: text += "\nEl próximo gimnasio fija el nivel máximo. Al alcanzarlo no se acumula EXP adicional."
 	if edition>=12: text += "\nEl PC no cura. Perder un combate termina la aventura aunque queden Pokémon en la reserva."
 	text += "\nAprender un movimiento no lo prepara automáticamente: revísalo en Equipo → Movimientos.\n\nLa previsión al apuntar muestra el resultado posible y los riesgos para aliados."
+	if edition>=22: text += "\n\nKANTO\nÁrboles, rocas, muebles y lápidas sólidos bloquean movimiento y visión. La maleza se atraviesa con el coste de tu perfil. Una diferencia de altura de un nivel se puede recorrer; más de uno requiere rodear o volar. Las copas se atenúan para mostrar unidades y cursor.\n\nDespués de la Liga y el rival llegan dos combates seguidos: las tres aves legendarias, tienda de preparación y Mew con Mewtwo. Ningún legendario es reclutable."
 	return text

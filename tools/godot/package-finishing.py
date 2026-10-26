@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 VERSION = re.search(r'config/version="([^"]+)"', (ROOT/'godot/project.godot').read_text(encoding='utf-8'))[1]
 CHAPTER = int(VERSION.split('.')[1])
 CONFIG = {
+    30: {'baseline':'99e74e8c8df880f4a2657bf7084b081c8d2e0de4','report':'SPRINT_30_KANTO.md','ui':{'kanto':428,'player':719},'core':{'kanto':7626,'trainer':120,'adventure':105},'edition':22},
     29: {'baseline': '8bbe5dcd078a50bca7140b8858eae77e5d9685a7', 'report': 'SPRINT_29_VARIETY.md', 'ui': {'variety': 72, 'shop': 70, 'trainer': 69, 'player': 719, 'moves': 304}, 'core': {'variety': 7428, 'trainer': 120, 'adventure': 105}, 'edition': 21},
     28: {'baseline': '9d87cd1091815f72525ec66a4d4752065579c2f4', 'report': 'SPRINT_28_KECLEON.md', 'ui': {'shop': 70, 'trainer': 69, 'player': 719}, 'core': {'trainer': 120, 'adventure': 105}, 'edition': 21},
     27: {'baseline': 'be221c89082013c288adf3e28bb8acfb872e1474', 'report': 'SPRINT_27_TRAINER.md', 'ui': {'trainer': 69, 'player': 719}, 'core': {'trainer': 120, 'adventure': 105}, 'edition': 21},
@@ -47,11 +48,16 @@ def main():
             assert not report['failures'] and report['assertions'] >= minimum, suite
             shutil.copy2(path, EVIDENCE/f'{suite}-{side}.json')
             pair.append(report)
-        for key in ['assertions', 'stateHash', 'naturalStateHash', 'journalHash', 'campaignEdition', 'profileSchema']:
+        for key in ['assertions', 'stateHash', 'naturalStateHash', 'journalHash', 'campaignEdition', 'profileSchema', 'mapCatalogHash', 'gallery']:
             if key in pair[0]:
                 assert pair[0][key] == pair[1][key], (suite, key)
+        if suite == 'kanto':
+            assert pair[0]['mapCatalogHash'] == digest(ROOT/'godot/data/kanto-landscapes.json')
         counts[suite] = pair[0]['assertions']
-        for name in pair[0].get('screenshots', [])[:8]:
+        selected = pair[0].get('screenshots', [])[:8]
+        if suite == 'kanto':
+            selected += [name for name in pair[0].get('screenshots', []) if name in ['legendary-birds.png','legendary-origin.png','blastoise-cannons.png']]
+        for name in selected:
             shutil.copy2(WORK/f'{suite}-source'/name, EVIDENCE/f'{suite}-{name}')
     core = {}
     for suite, minimum in CONFIG['core'].items():
@@ -70,7 +76,7 @@ def main():
         if path.is_file():
             path.replace(docs/name)
     shutil.copy2(ROOT/'docs'/CONFIG['report'], docs/f'CAMBIOS_0.{CHAPTER}.md')
-    if CHAPTER >= 29:
+    if CHAPTER == 29:
         for name in ['variety-moves.csv', 'variety-opening.csv']:
             shutil.copy2(WORK/name, docs/name)
             shutil.copy2(WORK/name, EVIDENCE/name)
@@ -81,8 +87,12 @@ def main():
     readme += '\nPerfil de entrenador: nombre, retrato, Pokédex, historial y logros se conservan entre aventuras. Los títulos y marcos son cosméticos.\n'
     if CHAPTER >= 28:
         readme += '\nTienda Kecleon: tres ofertas, ficha antes de comprar, renovación con precio creciente y accesos a Medicina, Entrenar y Equipo. Movimiento reducido desactiva sus animaciones.\n'
-    if CHAPTER >= 29:
+    if CHAPTER == 29:
         readme += '\nEquipo → Movimientos: consulta propuestas de rol, compáralas y confirma para preparar hasta cuatro técnicas aprendidas. El básico neutro permanece. Filtra áreas, zonas, desplazamientos y apoyos; Herramientas del equipo resume tus opciones. Las MT indican qué función añaden.\n'
+    if CHAPTER >= 30:
+        readme = readme.replace('0.26.0',VERSION)
+        readme += '\nKanto:58 lugares con geometría propia en16/24 casillas, alturas y obstáculos temáticos. La maleza es transitable; árboles, rocas y muebles sólidos bloquean movimiento y visión. Las copas se atenúan ante unidades y cursor.\nLiga y rival → tres aves juntas → tienda → Mew y Mewtwo. No hay captura legendaria. La actualización es voluntaria entre encuentros, con copia; conserva victorias previas y permite completar el desafío que falte.\nSin roles predefinidos: combina cuatro técnicas aprendidas más básico neutro. Filtros, potencia, diagramas, compatibilidad de MT y herramientas del equipo se conservan. Los valores de combate/EXP/precios no han cambiado. Códigos nuevos KT30; KT25 conserva sus reglas históricas.\n'
+        shutil.copy2(ROOT/'docs/reports/kanto-0.30/mapas.csv',docs/'MAPAS_KANTO.csv')
     (BUNDLE/'LEEME.txt').write_text(readme, encoding='utf-8')
     archive = RELEASE/f'pokemon-tactics-{VERSION}-windows.zip'
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as package:

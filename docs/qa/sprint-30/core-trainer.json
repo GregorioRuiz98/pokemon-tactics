@@ -1,0 +1,8 @@
+{
+  "campaignEdition": 21,
+  "checks": 120,
+  "failures": [],
+  "naturalPhase": "capture",
+  "profileSchema": 1,
+  "scope": "Natural Route1, separate persistence/outbox, duplicate/recovery/concurrent/legacy cases; cosmetics and retroactivity fixtures."
+}

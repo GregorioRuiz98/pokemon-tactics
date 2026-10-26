@@ -108,7 +108,10 @@
     "godot:qa:spatial:export": "node tools/godot/run.mjs qa-spatial-export",
     "godot:test:variety": "node tools/godot/run.mjs test-variety",
     "godot:qa:variety": "node tools/godot/run.mjs qa-variety",
-    "godot:qa:variety:export": "node tools/godot/run.mjs qa-variety-export"
+    "godot:qa:variety:export": "node tools/godot/run.mjs qa-variety-export",
+    "godot:test:kanto": "node tools/godot/run.mjs test-kanto",
+    "godot:qa:kanto": "node tools/godot/run.mjs qa-kanto",
+    "godot:qa:kanto:export": "node tools/godot/run.mjs qa-kanto-export"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

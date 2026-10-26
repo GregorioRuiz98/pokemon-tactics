@@ -196,3 +196,12 @@ Mostrador integrado, animación SpriteCollab original y recursos locales verific
 ## Herramientas tácticas 0.29.0
 
 Dos propuestas opcionales por línea basadas en conocidos, consulta pura en ui/tactical_loadouts.gd. Aplicar mediante loadout existente y revisión exacta, sin RNG ni ventajas de rol. Filtros/MT/plan de aprendizaje usan el motor de la partida. Campaña21/combate19 y datos publicados congelados; no hay edición nueva al no cambiar reglas. Ver ../docs/SPRINT_29_VARIETY.md. Sprints26–29 terminados técnicamente; pruebas humanas y publicación pública pendientes. Sin delegación.
+
+## Dirección posterior a0.29 —26 de octubre
+
+Balance actual aceptado por el usuario; no rebalanceo general. Abandonar presentación de dos roles por línea y basar identidad en Pokédex, usos competitivos y movimientos. Mapas propios de Kanto con alturas y obstáculos temáticos; muestra inicial propuesta Bosque Verde. Ver ../docs/DESIGN_POKEMON_KANTO_IDENTITY.md. Diseño documentado, no implementación ni autorización automática para ejecutar sprints30–34. Conservar parámetros/repertorios LGPE por defecto, cuatro técnicas + básico, motores publicados y guardados; probar efectos tácticos de nuevas geometrías.
+
+
+## Kanto0.30 — implementación autorizada
+
+El26 de octubre el usuario autoriza implementar mapas, identidad y finales consecutivos. Sustituye el límite anterior de solo diseñar/no iniciar30–34. Entrega0.30.0: campaña22/capítulo26, motor numérico de combate19 conservado. Nuevos kanto_journey, landscape_battle, kanto_landscape y kanto_campaign_store; no modificar motores/datos publicados para alterar sus resultados. Actualización explícita12–21→22 entre encuentros con copia/diario mixto. Guardados en combate conservan su mapa. Finales: Liga/rival → aves → tienda → Mew/Mewtwo; victorias anteriores no se borran ni se inventan. KT30 nuevo; KT25 abre21. Sin roles en UI; cuatro técnicas+básico, filtros/MT conservados.58 localizaciones/116 diseños, Safari narrativo, arte local cacheado y sin red. Ver ../docs/SPRINT_30_KANTO.md. Balance numérico aceptado; geometría puede cambiar dificultad. No afirmar campaña completa humana por galerías o fixtures de jefes. Publicación pública y delegación no autorizadas; commit/push privado al cerrar sí.

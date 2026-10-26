@@ -1,0 +1,14 @@
+{
+  "version": "0.30.0",
+  "source": "OpenAI image_gen",
+  "created": "2026-10-26",
+  "target": "assets/kanto/props.png",
+  "sha256": "588a8bf883b972eea65f835f0a0d74b58a3ed0b96d318f9d169f0c8a0ca5ad62",
+  "layout": "4x4 equal cells; runtime UV regions, original PNG unedited",
+  "prompt": "Transparent isometric 2:1 pixel-art atlas. Row1 broadleaf tree, conifer, low bush, log; row2 cave boulder, pillar, wooden fence, bridge railing; row3 laboratory desk, server, bin, guardian statue; row4 tombstone, cottage, turbine, crystal. Isolated padded cells, no text, no ground background.",
+  "reuse": "Existing local PMD/SpriteCollab units and original generated floor materials are retained. No new plugin or runtime network.",
+  "width": 1254,
+  "height": 1254,
+  "promptFile": "assets/kanto/prompt.txt",
+  "promptSha256": "d2e2d5fb4f1b2db4f9a464c07de278d394fce6f7419217afb61146f7839f9493"
+}

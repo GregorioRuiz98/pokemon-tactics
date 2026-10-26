@@ -143,3 +143,8 @@ Grupos y tablas de EXP reutilizados de PokéAPI, commit `81d20919845b6a445969b92
 ## Tienda Kecleon — 0.28.0
 
 Comerciante352, sin incorporación al catálogo reclutable. Hojas Idle y retrato Normal originales de PMDCollab/SpriteCollab, commit6ad5f1c6229af6b055de2c64442e5e508664290c. Idle/Normal de CHUNSOFT; se conservan también los historiales individuales de colaboradores distribuidos en assets/merchant/sprite-credits.txt y portrait-credits.txt. Condiciones CC BY-NC4.0 ya incluidas en licenses/. No se editan los PNG originales; el motor selecciona sus fotogramas. Manifest con cinco hashes y geometría en assets/merchant/manifest.json; importador explícito tools/godot/import-kecleon.py. Fondo de tienda y símbolos reutilizados de los recursos ya acreditados.
+
+
+## Entornos de Kanto —0.30.0
+
+Atlas nuevo de16 objetos generado con OpenAI image_gen el26 de octubre de2026, integrado como PNG original sin retoque y regiones UV en ejecución. Prompt y SHA256 en assets/kanto/provenance.json y assets/kanto/prompt.txt. Árboles, maleza, tronco, roca, pilar, valla, barandilla, escritorio, servidor, papelera, estatua, lápida, casa, turbina y cristal. Se reutilizan los suelos e ilustraciones locales existentes y los sprites PMD/SpriteCollab acreditados arriba. No se añaden plugins ni descargas durante la partida.

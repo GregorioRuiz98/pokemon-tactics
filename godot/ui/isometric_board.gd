@@ -33,8 +33,7 @@ func _ready() -> void:
 	terrain_layer.show_behind_parent = true
 	add_child(terrain_layer)
 	terrain_layer.draw.connect(func():
-		terrain_layer.draw_rect(Rect2(Vector2.ZERO,size),Color("0d242c"))
-		terrain_layer.draw_texture_rect(Art.texture("battle_surround"),Rect2(Vector2.ZERO,size),false))
+		_draw_surround(terrain_layer))
 	minimap_layer = Node2D.new()
 	add_child(minimap_layer)
 	minimap_layer.draw.connect(_draw_minimap_overlay)
@@ -352,7 +351,7 @@ func _draw_tile(point: Dictionary, canvas: CanvasItem) -> void:
 	canvas.draw_colored_polygon(polygon,color)
 	var tile: int = int(state.board[int(point.y)][int(point.x)])
 	if tile!=3:
-		var identity: String = Art.floor_id(state.biome)
+		var identity: String = _floor_identity()
 		var floor_texture: Texture2D = Art.texture(identity)
 		var base: Color = Color(Art.entry(identity).color)
 		# Preserve height, rough terrain and the three legendary-sector color cues.
@@ -366,7 +365,7 @@ func _draw_tile(point: Dictionary, canvas: CanvasItem) -> void:
 			var offset: Vector2 = Vector2((i%2)*14-9,int(i/2.0)*9-3)*zoom
 			canvas.draw_line(c+offset,c+offset+Vector2(-2,-6)*zoom,Color("a0b36a"),zoom)
 			canvas.draw_line(c+offset,c+offset+Vector2(3,-4)*zoom,Color("a0b36a"),zoom)
-	elif tile==2:
+	elif tile==2 and not state.has("landscape"):
 		canvas.draw_texture_rect(Art.texture(Art.prop_id(state.biome)),Rect2(c-Vector2(32,48)*zoom,Vector2(64,64)*zoom),false)
 	elif tile==0 and (int(point.x)*17+int(point.y)*13)%5==0:
 		for i: int in 2: canvas.draw_line(c+Vector2(-9+i*14,3-i*7)*zoom,c+Vector2(-6+i*14,3-i*7)*zoom,color.darkened(0.12),zoom)
@@ -461,8 +460,7 @@ func _draw() -> void:
 	else:
 		for field: Dictionary in state.fields: draw_circle(center(field),cell_size()*0.17,Color(0.95,0.3,0.1,0.45))
 	var ordered: Array = _unit_order()
-	for unit: Dictionary in ordered:
-		if area.grow(70).has_point(center(unit)): _draw_unit(unit)
+	_draw_actors(ordered,area)
 	for unit: Dictionary in ordered:
 		if area.grow(70).has_point(center(unit)): _draw_unit_info(unit)
 	for rect: Rect2 in [Rect2(0,0,size.x,area.position.y),Rect2(0,area.end.y,size.x,size.y-area.end.y),Rect2(0,area.position.y,area.position.x,area.size.y),Rect2(area.end.x,area.position.y,size.x-area.end.x,area.size.y)]: draw_rect(rect,Color("0d242c"))
@@ -477,6 +475,17 @@ func _draw() -> void:
 		draw_string(font,point+Vector2(12,5),["Aliado","Rival","Turno"][i],HORIZONTAL_ALIGNMENT_LEFT,-1,13,Color("b3c7b1"))
 	minimap_layer.queue_redraw()
 	if started>0: get_meta("draw_samples").append((Time.get_ticks_usec()-started)/1000.0)
+
+func _draw_actors(ordered: Array, area: Rect2) -> void:
+	for unit: Dictionary in ordered:
+		if area.grow(70).has_point(center(unit)): _draw_unit(unit)
+
+func _floor_identity() -> String:
+	return Art.floor_id(state.biome)
+
+func _draw_surround(canvas: CanvasItem) -> void:
+	canvas.draw_rect(Rect2(Vector2.ZERO,size),Color("0d242c"))
+	canvas.draw_texture_rect(Art.texture("battle_surround"),Rect2(Vector2.ZERO,size),false)
 
 func _draw_minimap_background() -> void:
 	var origin: Vector2 = Vector2(size.x-minimap_right,130)

@@ -240,3 +240,17 @@ Las reservas permiten consultar/configurar movimientos, MT y equipables; consumi
 ## Presentación para jugadores — 26 de octubre de 2026
 
 La entrega0.26.0 conserva la campaña táctica21/combate19 y simplifica el inicio con semilla automática y opciones plegadas. Expone potencia base, precisión y funciones de movimientos con una presentación común y ayuda según edición. Ver docs/SPRINT_26_PLAYER.md. El perfil local con logros, la tienda Kecleon y la revisión de repertorios se planifican como sprints27–29; no están implementados por documentarlos.
+
+## Nueva dirección — identidad y escenarios, 26 de octubre de2026
+
+El usuario acepta el balance actual y pide abandonar los roles predefinidos para diferenciar Pokémon mediante sus movimientos, descripciones de Pokédex y usos competitivos reconocibles. También solicita mapas propios de las localizaciones de Kanto, con mejores alturas y obstáculos adecuados al lugar. Diseño desarrollado en docs/DESIGN_POKEMON_KANTO_IDENTITY.md. Preservar cuatro movimientos preparados + básico, la base de aprendizaje LGPE y parámetros actuales salvo cambio específico autorizado; una referencia competitiva de otra generación no añade su repertorio automáticamente.
+
+Prioridad propuesta: identidad/movimientos; Bosque Verde como muestra; Paleta–Brock; resto de Kanto por tramos; recorrido y acabado final. Distinguir arte de colisión/visión; mantener legibilidad y rendimiento. Cambiar mapas puede modificar dificultad sin cambiar cifras: comprobarlo contra la referencia aceptada. Estas propuestas están documentadas y todavía no implementadas en0.29.0.
+
+
+El desarrollo individual de escenarios está en docs/DESIGN_MAPAS_KANTO.md:58 nodos de campaña, alturas, obstáculos, composición y vistas de ciudad/servicios. Es propuesta, no contenido implementado; preserva el balance numérico aceptado y los objetivos/recompensas actuales.
+
+
+## Revisión implementada0.30 —26 de octubre
+
+El usuario autoriza implementar la dirección documentada y sustituye los finales alternativos por una secuencia obligatoria: Liga y rival, tres aves juntas, tienda y Mew/Mewtwo. Los legendarios siguen sin poder reclutarse. Nueva campaña22 con58 localizaciones/116 diseños16–24, alturas y obstáculos temáticos; retirada de propuestas de roles, movimientos libres y consultas conservadas. Se mantienen repertorios LGPE y todas las cifras de combate, EXP y economía. Los guardados históricos conservan su motor; actualización entre encuentros con copia y replay. [Informe de entrega](docs/SPRINT_30_KANTO.md). Las composiciones son adaptaciones tácticas, no mapas de exploración copiados ni ciudades explorables nuevas. Publicación aplazada.

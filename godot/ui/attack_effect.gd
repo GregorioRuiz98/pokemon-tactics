@@ -141,6 +141,13 @@ func offset_for(unit: Dictionary) -> Vector2:
 func _point(unit: Dictionary) -> Vector2:
 	return board.center(unit)-position-Vector2(0,board.cell_size()*0.26)
 
+func source_points() -> Array[Vector2]:
+	if not board.has_method("isometric") or not board.isometric() or not board.sprite_bounds.has(int(origin.get("speciesId",0))): return [_point(origin)]
+	var used: Rect2 = board.sprite_visual(origin).used
+	var points: Array[Vector2] = []
+	for anchor: Vector2 in preload("res://ui/pokemon_pose.gd").anchors(int(origin.speciesId),profile.element): points.append(used.position+used.size*anchor-position)
+	return points
+
 func _glyph(at: Vector2, radius: float, color: Color, element: String, phase: float) -> void:
 	if element=="fire":
 		var flicker: float = sin(phase)*radius*.25
@@ -169,7 +176,7 @@ func _glyph(at: Vector2, radius: float, color: Color, element: String, phase: fl
 
 func _draw() -> void:
 	if not active or origin.is_empty(): return
-	var from: Vector2 = _point(origin)
+	var from: Vector2 = source_points()[0]
 	var color: Color = profile.color
 	var unit_scale: float = clampf(board.cell_size()/64.0,0.65,1.3)
 	var preparation: float = clampf(clock/maxf(0.01,impact_at),0,1)

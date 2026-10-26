@@ -20,6 +20,8 @@ const isolatedLocal = resolve(work, 'local-profile');
 mkdirSync(isolatedProfile, { recursive: true });
 mkdirSync(isolatedLocal, { recursive: true });
 function run(executable, args, label, cwd = root) {
+  // Historical UI suites keep their published edition. Current content has qa-kanto.
+  if(chapter>=30 && /^(player|shop|trainer)-(source|release)$/.test(label)) args=[...args,'--compat-adventure'];
   const logIndex = args.indexOf('--log-file');
   if (logIndex >= 0) writeFileSync(args[logIndex + 1], '');
   const result = spawnSync(executable, args, { cwd, env:{...process.env,APPDATA:isolatedProfile,LOCALAPPDATA:isolatedLocal}, encoding: 'utf8', windowsHide: true, timeout: label==='simulate-balance' ? 1_800_000 : label.startsWith('journey-ui-') || label.startsWith('updates-ui-') || label==='ui-release' || label==='ui-source' || label==='test-journey' ? 900_000 : 300_000, maxBuffer: 12 * 1024 * 1024 });
@@ -43,6 +45,11 @@ function verifyCampaign(directory) {
   for(const file of report.screenshots) if(!existsSync(resolve(directory,file))) throw new Error('Missing campaign screenshot.');
 }
 function verify() {
+  if(chapter>=30) {
+    const kanto=spawnSync('python',[resolve(root,'tools/godot/verify-kanto.py')],{cwd:root,encoding:'utf8',windowsHide:true});
+    if(kanto.status!==0) throw new Error('Kanto resources failed: '+kanto.stderr);
+    console.log('Verified Kanto atlas alpha/CRC/hash,116 authored layouts and unchanged numerical encounters.');
+  }
   const merchantPath=resolve(project,'assets/merchant/manifest.json');
   if(existsSync(merchantPath)) {
     const manifest=JSON.parse(readFileSync(merchantPath,'utf8'));
@@ -97,7 +104,16 @@ if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-expo
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'test-variety') {
+if(operation === 'test-kanto') {
+  verify();
+  run(binary,['--headless',...common,'--script','res://tests/kanto_landscapes.gd','--','--save-dir='+work],'kanto-core');
+} else if(operation === 'qa-kanto' || operation === 'qa-kanto-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'kanto-'+(exported?'release':'source'));
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--kanto-qa-dir='+directory],'kanto-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'kanto-ui-result.json'),'utf8'));
+  if(report.failures.length || report.assertions<100) throw new Error('Kanto UI failed.');
+} else if(operation === 'test-variety') {
   verify();
   run(binary,['--headless',...common,'--script','res://tests/variety.gd','--','--save-dir='+work],'variety-core');
 } else if(operation === 'qa-variety' || operation === 'qa-variety-export') {

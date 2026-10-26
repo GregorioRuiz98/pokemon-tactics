@@ -42,7 +42,7 @@ func begin_new(app: Control) -> void:
 	if not supported(app): return
 	var old: String = app.store.campaign_id
 	if old.is_empty() and FileAccess.file_exists(app.store.file_path):
-		var reader: RefCounted = load("res://core/profile_campaign_store.gd").new(app.store.file_path)
+		var reader: RefCounted = load("res://core/kanto_campaign_store.gd").new(app.store.file_path)
 		var loaded: Dictionary = reader.load_campaign(app.campaign)
 		if loaded.ok: old = reader.campaign_id
 	model.abandon(old)

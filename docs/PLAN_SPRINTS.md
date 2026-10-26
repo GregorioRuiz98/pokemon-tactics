@@ -525,3 +525,17 @@ Tienda Kecleon completada en0.28.0; [informe y comprobaciones](SPRINT_28_KECLEON
 ## Entrega29 y cierre del encargo
 
 [Informe](SPRINT_29_VARIETY.md): catálogo actual hecho visible y configurable, dos propuestas de rol por línea, filtros por función y plan de aprendizaje. Misma campaña21/combate19; no requiere migración al usar transacciones existentes. Sprints26–29 implementados y empaquetados por separado. Balance humano, pruebas completas de Kanto y publicación pública siguen pendientes; no se presentan como ejecutados.
+
+## Dirección confirmada — identidad Pokémon y mapas reconocibles
+
+El usuario considera correcto el balance actual: se conserva como referencia y se retira el rebalanceo general de la siguiente fase. Abandona los dos roles predefinidos por línea y pide identidad basada en Pokédex, movimientos reconocibles y usos competitivos. Quiere localizaciones propias de Kanto, alturas intencionadas y obstáculos específicos, como árboles en Bosque Verde.
+
+Diseño y propuesta de sprints30–34 en [DESIGN_POKEMON_KANTO_IDENTITY.md](DESIGN_POKEMON_KANTO_IDENTITY.md):30 identidad y retirada de presentación de roles;31 Bosque Verde como muestra;32 Paleta–Brock;33 Kanto por tramos;34 recorrido y acabado final. La base de aprendizaje LGPE y los parámetros vigentes se conservan salvo excepción explícita. Los cambios de geometría se validarán por sus efectos en la dificultad. Se trata de planificación; estos sprints no están implementados ni iniciados automáticamente por documentarlos.
+
+
+Desarrollo por localización: [mapas de Kanto](DESIGN_MAPAS_KANTO.md),58 nodos cubiertos, ciudades y tienda; conserva Safari narrativo y finales alternativos. Documento de diseño sin cambios en el ejecutable.
+
+
+## Implementación de identidad y Kanto0.30
+
+La petición posterior «implementa los cambios a los mapas y el resto de cambios» autoriza esta entrega conjunta.30: roles retirados, consultas y repertorios conservados, orígenes visuales por especie.31–33:58 localizaciones, dos tamaños, atlas de16 objetos, alturas/huellas/ocultación y transportadores señalizados.34: finales consecutivos, compatibilidad, logros, QA y paquete Windows; prueba humana completa de Kanto sigue pendiente. No considerar una galería de escenarios o un remate sintético como campaña jugada. [Informe y alcance exacto](SPRINT_30_KANTO.md).

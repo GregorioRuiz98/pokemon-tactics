@@ -1,0 +1,117 @@
+﻿id,escenario,material,tamaño,altura_maxima,objetos,agua,maleza,hito
+route-1,Camino de Paleta,meadow,16,1,33,0,53,Camino de tierra entre Paleta y Ciudad Verde; lomas suaves y hierba lateral.
+route-1,Camino de Paleta,meadow,24,1,49,0,89,Camino de tierra entre Paleta y Ciudad Verde; lomas suaves y hierba lateral.
+route-2,Linde del Bosque Verde,forest,16,1,35,0,53,"El camino se estrecha al entrar en el bosque, con un desvío junto al talud."
+route-2,Linde del Bosque Verde,forest,24,1,51,0,88,"El camino se estrecha al entrar en el bosque, con un desvío junto al talud."
+forest,Claros del Bosque Verde,forest,16,2,58,0,46,"Troncos sólidos, dos claros conectados, maleza y una terraza al este."
+forest,Claros del Bosque Verde,forest,24,2,74,0,88,"Troncos sólidos, dos claros conectados, maleza y una terraza al este."
+brock,Gimnasio de Plateada,stone,16,2,37,0,0,"Estatuas de entrada, grupos de roca y plataforma del líder entre pasos laterales."
+brock,Gimnasio de Plateada,stone,24,2,53,0,0,"Estatuas de entrada, grupos de roca y plataforma del líder entre pasos laterales."
+route-3,Terrazas de la Ruta 3,rock,16,2,35,0,0,"Sendero al pie de las montañas, salientes y acceso oriental a Monte Moon."
+route-3,Terrazas de la Ruta 3,rock,24,2,51,0,0,"Sendero al pie de las montañas, salientes y acceso oriental a Monte Moon."
+mt-moon,Cámaras de Monte Moon,cave,16,2,37,0,0,"Galerías de roca, cámara de fósiles y pasos alrededor de grandes columnas."
+mt-moon,Cámaras de Monte Moon,cave,24,2,53,0,0,"Galerías de roca, cámara de fósiles y pasos alrededor de grandes columnas."
+route-4,Salida de Monte Moon,rock,16,2,34,0,1,La boca de la cueva queda arriba; el camino desciende hacia Celeste.
+route-4,Salida de Monte Moon,rock,24,2,50,0,1,La boca de la cueva queda arriba; el camino desciende hacia Celeste.
+cerulean-rival,Plaza de Ciudad Celeste,city,16,1,34,4,2,"Plaza de piedra, canal lateral y jardines ante el Puente Pepita."
+cerulean-rival,Plaza de Ciudad Celeste,city,24,1,50,5,2,"Plaza de piedra, canal lateral y jardines ante el Puente Pepita."
+route-24,Puente Pepita,bridge,16,1,34,26,0,Puente ancho sobre el canal y una orilla de tierra conectada por ambos extremos.
+route-24,Puente Pepita,bridge,24,1,50,26,0,Puente ancho sobre el canal y una orilla de tierra conectada por ambos extremos.
+route-25,Camino de Bill,meadow,16,1,35,0,57,"Laberinto suave de setos, costa y la casa de Bill al fondo."
+route-25,Camino de Bill,meadow,24,1,51,0,92,"Laberinto suave de setos, costa y la casa de Bill al fondo."
+misty,Gimnasio de Ciudad Celeste,water,16,1,32,12,0,"Dos piscinas separadas por pasarelas, acceso terrestre continuo y plataforma de Misty."
+misty,Gimnasio de Ciudad Celeste,water,24,1,48,12,0,"Dos piscinas separadas por pasarelas, acceso terrestre continuo y plataforma de Misty."
+route-5,Cuesta de la guardería,meadow,16,1,34,0,53,"Camino descendente, cercado de la guardería y entrada al paso subterráneo."
+route-5,Cuesta de la guardería,meadow,24,1,50,0,89,"Camino descendente, cercado de la guardería y entrada al paso subterráneo."
+route-6,Estanque de la Ruta 6,meadow,16,1,33,4,54,"Salida del túnel, estanque lateral y aproximación abierta a Ciudad Carmín."
+route-6,Estanque de la Ruta 6,meadow,24,1,49,4,89,"Salida del túnel, estanque lateral y aproximación abierta a Ciudad Carmín."
+ss-anne,Cubierta del S. S. Anne,wood,16,2,35,28,0,"Cubierta de madera con camarotes, barandillas y escaleras a la toldilla."
+ss-anne,Cubierta del S. S. Anne,wood,24,2,51,28,0,"Cubierta de madera con camarotes, barandillas y escaleras a la toldilla."
+surge,Gimnasio de Ciudad Carmín,industrial,16,1,36,0,0,"Hileras de papeleras, máquinas eléctricas y pasos abiertos entre ellas."
+surge,Gimnasio de Ciudad Carmín,industrial,24,1,52,0,0,"Hileras de papeleras, máquinas eléctricas y pasos abiertos entre ellas."
+route-11,Pradera de Carmín,meadow,16,1,34,0,53,"Pradera ancha, árboles dispersos y entrada a la Cueva Diglett."
+route-11,Pradera de Carmín,meadow,24,1,50,0,89,"Pradera ancha, árboles dispersos y entrada a la Cueva Diglett."
+diglett-cave,Túnel de Diglett,cave,16,1,36,0,0,Un corredor de tierra comunica dos bocas; la cámara central permite rodear al rival.
+diglett-cave,Túnel de Diglett,cave,24,1,52,0,0,Un corredor de tierra comunica dos bocas; la cámara central permite rodear al rival.
+route-22,Camino hacia la Liga,meadow,16,1,34,4,54,Pradera con estanque y puerta de la Liga; el mismo terreno se revisita ante el rival.
+route-22,Camino hacia la Liga,meadow,24,1,50,4,89,Pradera con estanque y puerta de la Liga; el mismo terreno se revisita ante el rival.
+route-9,Recodos de la Ruta 9,rock,16,2,35,0,0,Zigzag de roca entre terrazas y pasos laterales a distinta altura.
+route-9,Recodos de la Ruta 9,rock,24,2,51,0,0,Zigzag de roca entre terrazas y pasos laterales a distinta altura.
+route-10,Ribera del Túnel Roca,meadow,16,1,33,6,53,"Río lateral, postes del tendido eléctrico y entrada de cueva en la ladera."
+route-10,Ribera del Túnel Roca,meadow,24,1,49,6,88,"Río lateral, postes del tendido eléctrico y entrada de cueva en la ladera."
+rock-tunnel,Galerías del Túnel Roca,cave,16,2,36,0,0,Cavernas profundas con pilares y rampas visibles; la oscuridad no cambia precisión.
+rock-tunnel,Galerías del Túnel Roca,cave,24,2,52,0,0,Cavernas profundas con pilares y rampas visibles; la oscuridad no cambia precisión.
+route-8,Setos de Lavanda,meadow,16,1,35,0,54,"Hierba cercada, paso subterráneo y senda hacia Azulona."
+route-8,Setos de Lavanda,meadow,24,1,51,0,89,"Hierba cercada, paso subterráneo y senda hacia Azulona."
+route-7,Entrada a Azulona,city,16,1,33,0,1,Tramo urbano corto con parterres y acceso al paso subterráneo.
+route-7,Entrada a Azulona,city,24,1,49,0,1,Tramo urbano corto con parterres y acceso al paso subterráneo.
+erika,Jardín de Erika,forest,16,1,35,0,54,Senderos entre parterres y grandes árboles del gimnasio de Azulona.
+erika,Jardín de Erika,forest,24,1,51,0,89,Senderos entre parterres y grandes árboles del gimnasio de Azulona.
+rocket-hideout,Almacén Rocket,industrial,16,1,34,0,0,"Cajas, servidores y dos terminales operativos; acaba una activación sobre cada terminal."
+rocket-hideout,Almacén Rocket,industrial,24,1,50,0,0,"Cajas, servidores y dos terminales operativos; acaba una activación sobre cada terminal."
+tower-rival,Vestíbulo de la Torre Pokémon,haunted,16,1,34,0,0,"Primer piso amplio, lápidas a los lados y encuentro con el rival ante la escalera."
+tower-rival,Vestíbulo de la Torre Pokémon,haunted,24,1,50,0,0,"Primer piso amplio, lápidas a los lados y encuentro con el rival ante la escalera."
+pokemon-tower,Cámara de Marowak,haunted,16,2,35,0,0,Anillo de lápidas en torno a una plataforma ceremonial conectada por dos accesos.
+pokemon-tower,Cámara de Marowak,haunted,24,2,51,0,0,Anillo de lápidas en torno a una plataforma ceremonial conectada por dos accesos.
+fuji-rescue,Último piso de la Torre,haunted,16,1,34,0,0,Fuji espera en un claro de lápidas; conserva sus cuatro puntos de protección hasta la ronda 4.
+fuji-rescue,Último piso de la Torre,haunted,24,1,50,0,0,Fuji espera en un claro de lápidas; conserva sus cuatro puntos de protección hasta la ronda 4.
+route-12,Pasarela de los pescadores,bridge,16,1,34,26,0,Pasarelas de madera junto al agua y una orilla seca para rodear el encuentro.
+route-12,Pasarela de los pescadores,bridge,24,1,50,26,0,Pasarelas de madera junto al agua y una orilla seca para rodear el encuentro.
+route-13,Cercados de la costa,meadow,16,1,36,0,54,Vallas y setos dibujan pasos conectados; la zona central conserva espacio para desplegarse.
+route-13,Cercados de la costa,meadow,24,1,52,0,89,Vallas y setos dibujan pasos conectados; la zona central conserva espacio para desplegarse.
+route-14,Corredor de hierba alta,meadow,16,1,35,0,54,Pradera longitudinal con arboleda oriental y una senda despejada.
+route-14,Corredor de hierba alta,meadow,24,1,51,0,89,Pradera longitudinal con arboleda oriental y una senda despejada.
+route-15,Terrazas de Fucsia,meadow,16,2,34,0,54,"Dos caminos paralelos, superior e inferior, unidos por pendientes transitables."
+route-15,Terrazas de Fucsia,meadow,24,2,50,0,89,"Dos caminos paralelos, superior e inferior, unidos por pendientes transitables."
+route-16,Entrada al Camino de Bicis,city,16,1,33,0,0,"Límite urbano, caseta del acceso y carretera que comienza a descender."
+route-16,Entrada al Camino de Bicis,city,24,1,49,0,0,"Límite urbano, caseta del acceso y carretera que comienza a descender."
+route-17,Camino de Bicis,road,16,2,34,0,0,Carretera ancha en terrazas descendentes con arcenes; no hay deslizamiento automático.
+route-17,Camino de Bicis,road,24,2,50,0,0,Carretera ancha en terrazas descendentes con arcenes; no hay deslizamiento automático.
+route-18,Salida del Camino de Bicis,meadow,16,1,33,0,54,"Carretera llana, pequeños parterres y acceso occidental a Ciudad Fucsia."
+route-18,Salida del Camino de Bicis,meadow,24,1,49,0,89,"Carretera llana, pequeños parterres y acceso occidental a Ciudad Fucsia."
+safari,Entrada de la Zona Safari,forest,16,1,34,0,54,"Visita narrativa: entrada, estanque y arboleda. No añade otro combate ni captura."
+safari,Entrada de la Zona Safari,forest,24,1,50,0,89,"Visita narrativa: entrada, estanque y arboleda. No añade otro combate ni captura."
+koga,Dojo de Koga,wood,16,1,35,0,0,"Paneles del dojo visibles, pasillos de rodeo y las zonas de humo y veneno ya conocidas."
+koga,Dojo de Koga,wood,24,1,51,0,0,"Paneles del dojo visibles, pasillos de rodeo y las zonas de humo y veneno ya conocidas."
+silph-rival,Pasillos de Silph,industrial,16,1,34,0,0,"Oficinas con escritorios, servidores y un corredor ancho ante el rival."
+silph-rival,Pasillos de Silph,industrial,24,1,50,0,0,"Oficinas con escritorios, servidores y un corredor ancho ante el rival."
+silph-giovanni,Sala de juntas de Silph,industrial,16,1,34,0,0,"Despacho de la presidencia, alfombra central y plataforma de Giovanni."
+silph-giovanni,Sala de juntas de Silph,industrial,24,1,50,0,0,"Despacho de la presidencia, alfombra central y plataforma de Giovanni."
+sabrina,Cámaras de Sabrina,psychic,16,1,36,0,0,Salas conectadas por transportadores emparejados; la salida ocupada impide el transporte.
+sabrina,Cámaras de Sabrina,psychic,24,1,52,0,0,Salas conectadas por transportadores emparejados; la salida ocupada impide el transporte.
+route-19,Playa de Fucsia,sand,16,1,33,13,0,"Franja de arena, agua a ambos lados y rocas que separan calas conectadas."
+route-19,Playa de Fucsia,sand,24,1,49,13,0,"Franja de arena, agua a ambos lados y rocas que separan calas conectadas."
+route-20,Islotes del sur,water,16,2,34,12,0,Islas rocosas y pasos de piedra mantienen una ruta terrestre continua entre orillas.
+route-20,Islotes del sur,water,24,2,50,10,0,Islas rocosas y pasos de piedra mantienen una ruta terrestre continua entre orillas.
+seafoam,Cámaras de las Islas Espuma,ice,16,2,34,0,0,"Cueva de hielo con agua, cristales y terrazas transitables; el hielo no desliza."
+seafoam,Cámaras de las Islas Espuma,ice,24,2,50,0,0,"Cueva de hielo con agua, cristales y terrazas transitables; el hielo no desliza."
+route-21,Costa de Pueblo Paleta,sand,16,1,33,10,1,"Costa cálida con arena, pequeñas islas y vista hacia Paleta."
+route-21,Costa de Pueblo Paleta,sand,24,1,49,10,1,"Costa cálida con arena, pequeñas islas y vista hacia Paleta."
+pokemon-mansion,Mansión Pokémon,ruin,16,2,35,0,0,"Laboratorio abandonado, estatuas, escritorios y restos de una galería superior."
+pokemon-mansion,Mansión Pokémon,ruin,24,2,51,0,0,"Laboratorio abandonado, estatuas, escritorios y restos de una galería superior."
+blaine,Laboratorio de Blaine,industrial,16,1,34,0,0,"Salas tecnológicas del gimnasio, monitores y fuego residual claramente señalado."
+blaine,Laboratorio de Blaine,industrial,24,1,50,0,0,"Salas tecnológicas del gimnasio, monitores y fuego residual claramente señalado."
+giovanni-gym,Gimnasio de Ciudad Verde,stone,16,2,35,0,0,"Suelo geométrico, estatuas y plataformas de roca; las trampas conservan su señalización."
+giovanni-gym,Gimnasio de Ciudad Verde,stone,24,2,51,0,0,"Suelo geométrico, estatuas y plataformas de roca; las trampas conservan su señalización."
+power-plant,Central de Energía,industrial,16,1,35,0,0,Turbinas averiadas y pasillos técnicos. Zapdos espera junto a las otras aves al final.
+power-plant,Central de Energía,industrial,24,1,51,0,0,Turbinas averiadas y pasillos técnicos. Zapdos espera junto a las otras aves al final.
+league-rival,Regreso a la Ruta 22,meadow,16,1,34,4,54,"La misma pradera y puerta de la Liga, ahora con el equipo final del rival."
+league-rival,Regreso a la Ruta 22,meadow,24,1,50,4,89,"La misma pradera y puerta de la Liga, ahora con el equipo final del rival."
+route-23,Puertas de las ocho medallas,stone,16,2,34,0,0,Puertas de piedra escalonadas y ascenso a la Calle Victoria.
+route-23,Puertas de las ocho medallas,stone,24,2,50,0,0,Puertas de piedra escalonadas y ascenso a la Calle Victoria.
+victory-road,Ascenso de Calle Victoria,cave,16,2,35,0,0,Cámaras y terrazas con varios accesos; todas las casillas de salida están conectadas.
+victory-road,Ascenso de Calle Victoria,cave,24,2,51,0,0,Cámaras y terrazas con varios accesos; todas las casillas de salida están conectadas.
+lorelei,Cámara de Lorelei,ice,16,1,34,10,0,"Piscinas laterales, columnas heladas y plataforma formal del Alto Mando."
+lorelei,Cámara de Lorelei,ice,24,1,50,10,0,"Piscinas laterales, columnas heladas y plataforma formal del Alto Mando."
+bruno,Dojo de Bruno,stone,16,2,34,0,0,"Sala de entrenamiento de piedra, grandes rocas y ascenso central al Alto Mando."
+bruno,Dojo de Bruno,stone,24,2,50,0,0,"Sala de entrenamiento de piedra, grandes rocas y ascenso central al Alto Mando."
+agatha,Cámara de Agatha,haunted,16,1,35,0,0,Lápidas monumentales alrededor de un espacio abierto de combate.
+agatha,Cámara de Agatha,haunted,24,1,51,0,0,Lápidas monumentales alrededor de un espacio abierto de combate.
+lance,Cámara de Lance,league,16,2,35,0,0,Entrada curva entre pilares y una arena amplia con plataforma del maestro dragón.
+lance,Cámara de Lance,league,24,2,51,0,0,Entrada curva entre pilares y una arena amplia con plataforma del maestro dragón.
+champion,Sala del Campeón,league,16,2,34,0,0,"Sala ceremonial simétrica, emblema central y columnas fuera de las líneas principales."
+champion,Sala del Campeón,league,24,2,50,0,0,"Sala ceremonial simétrica, emblema central y columnas fuera de las líneas principales."
+legendary-birds,Santuario de las tres aves,birds,16,2,34,0,0,"Tres sectores de hielo, electricidad y fuego unidos por rampas y un claro central. Primera prueba legendaria."
+legendary-birds,Santuario de las tres aves,birds,24,2,50,0,0,"Tres sectores de hielo, electricidad y fuego unidos por rampas y un claro central. Primera prueba legendaria."
+legendary-origin,Caverna del origen,origin,16,2,35,51,0,"Anillo de agua, cristales y pasos de roca; Mew y Mewtwo aguardan después de las tres aves."
+legendary-origin,Caverna del origen,origin,24,2,51,50,0,"Anillo de agua, cristales y pasos de roca; Mew y Mewtwo aguardan después de las tres aves."

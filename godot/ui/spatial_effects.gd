@@ -84,7 +84,7 @@ static func cast(effect: Control) -> void:
 	var profile: Dictionary = effect.profile
 	if not profile.get("spatial",false): return
 	var style_name: String = profile.signature
-	var from: Vector2 = effect._point(effect.origin)
+	var from: Vector2 = effect.source_points()[0]
 	var to: Vector2 = effect.board.center(effect.aim)-effect.position-Vector2(0,effect.board.cell_size()*.26)
 	var color: Color = profile.color
 	var progress: float = .75 if effect.board.reduced_motion else clampf(effect.clock/maxf(.01,effect.impact_at),0,1)
@@ -101,10 +101,12 @@ static func cast(effect: Control) -> void:
 	if style_name in ["hyper-beam","solar-beam","ice-beam","aurora-beam","hydro-pump","flamethrower","ray"]:
 		var tip: Vector2 = from.lerp(to,progress)
 		var width: float = (12 if style_name=="hyper-beam" else 7)*scale*fade
-		effect.draw_line(from,tip,Color(color,.4*fade),width*2)
-		effect.draw_line(from,tip,Color(color,.95*fade),maxf(1,width))
-		effect.draw_line(from,tip,Color(1,.98,.88,fade),maxf(1,width*.3))
-		effect.draw_circle(from,(6+sin(progress*PI)*8)*scale,Color(color,fade))
+		for source: Vector2 in effect.source_points():
+			var end: Vector2 = source.lerp(to,progress)
+			effect.draw_line(source,end,Color(color,.4*fade),width*2)
+			effect.draw_line(source,end,Color(color,.95*fade),maxf(1,width))
+			effect.draw_line(source,end,Color(1,.98,.88,fade),maxf(1,width*.3))
+			effect.draw_circle(source,(6+sin(progress*PI)*8)*scale,Color(color,fade))
 		if style_name in ["ice-beam","aurora-beam"]:
 			for i: int in 5:
 				var crystal: Vector2 = from.lerp(tip,(i+1)/6.0)
