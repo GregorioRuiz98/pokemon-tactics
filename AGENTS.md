@@ -159,3 +159,7 @@ Encargo del24 de octubre: nueva campaña20/combate18 en economy_study/battle/run
 
 
 - 26 de octubre: «implementa todo» autoriza completar sprints27–29 en entregas separadas, con comprobaciones, ejecutable y commit/push privado por sprint; sustituye el límite anterior de no continuar automáticamente. Sin delegación ni publicación pública. Sprint27: perfil local fuera del estado de campaña, IDs/outbox en metadatos del sobre, recuperación explícita y logros cosméticos. Ver docs/SPRINT_27_TRAINER.md.
+
+## Tienda Kecleon 0.28.0
+
+Mostrador integrado con tres ofertas, compras directas y fichas, accesos a entrenamiento/equipo/medicina/rasgos. Recursos originales SpriteCollab de Kecleon solo como vendedor; hashes, commit y créditos en assets/merchant. Respetar movimiento reducido y guardar órdenes antes de feedback; UI/animaciones sin RNG. Campaña21/combate19 intacta. Ver docs/SPRINT_28_KECLEON.md (../docs desde Godot). Autorización vigente para continuar29, sin delegación ni publicación pública.

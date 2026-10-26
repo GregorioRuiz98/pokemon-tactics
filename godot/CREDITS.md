@@ -138,3 +138,8 @@ Geometrías, símbolos de zona, secuencias y motivos vectoriales nuevos creados 
 ## Experiencia y progresión 0.24.0
 
 Grupos y tablas de EXP reutilizados de PokéAPI, commit `81d20919845b6a445969b9265aab5cec6b04cece`: `pokemon_species.csv` y `experience.csv`. URLs y SHA256 en `data/economy.json`; comprobación reproducible en `tools/godot/verify-economy.py` desde la raíz. Datos locales, sin red al jugar. Referencia de equipos de revancha: https://www.serebii.net/letsgopikachueevee/gymrematch.shtml. Niveles, precios, recompensas, formas tempranas y umbrales para evolución sin objetos son adaptaciones propias; no se atribuyen al cartucho.
+
+
+## Tienda Kecleon — 0.28.0
+
+Comerciante352, sin incorporación al catálogo reclutable. Hojas Idle y retrato Normal originales de PMDCollab/SpriteCollab, commit6ad5f1c6229af6b055de2c64442e5e508664290c. Idle/Normal de CHUNSOFT; se conservan también los historiales individuales de colaboradores distribuidos en assets/merchant/sprite-credits.txt y portrait-credits.txt. Condiciones CC BY-NC4.0 ya incluidas en licenses/. No se editan los PNG originales; el motor selecciona sus fotogramas. Manifest con cinco hashes y geometría en assets/merchant/manifest.json; importador explícito tools/godot/import-kecleon.py. Fondo de tienda y símbolos reutilizados de los recursos ya acreditados.

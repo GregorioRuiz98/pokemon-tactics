@@ -10,6 +10,8 @@ const IsometricBoard = preload("res://ui/adventure_board.gd")
 const CampaignStore = preload("res://core/profile_campaign_store.gd")
 var trainer: RefCounted = preload("res://ui/trainer_session.gd").new()
 var trainer_qa_dir: String = ""
+var kecleon: RefCounted = preload("res://ui/kecleon_shop.gd").new()
+var shop_qa_dir: String = ""
 var adventure: RefCounted = preload("res://ui/adventure_ui.gd").new()
 var campaign: RefCounted = Advanced.new()
 var last_presentation: Dictionary = {}
@@ -175,6 +177,7 @@ func _boot() -> void:
 		get_tree().change_scene_to_file.call_deferred("res://scenes/laboratory.tscn")
 		return
 	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--shop-qa-dir="): shop_qa_dir = argument.trim_prefix("--shop-qa-dir=")
 		if argument.begins_with("--trainer-qa-dir="): trainer_qa_dir = argument.trim_prefix("--trainer-qa-dir=")
 		if argument.begins_with("--player-qa-dir="): player_qa_dir = argument.trim_prefix("--player-qa-dir=")
 		if argument.begins_with("--adventure-qa-dir="): adventure_qa_dir = argument.trim_prefix("--adventure-qa-dir=")
@@ -208,6 +211,7 @@ func _boot() -> void:
 	if not adventure_qa_dir.is_empty(): test_dir = adventure_qa_dir
 	if not player_qa_dir.is_empty(): test_dir = player_qa_dir
 	if not trainer_qa_dir.is_empty(): test_dir = trainer_qa_dir
+	if not shop_qa_dir.is_empty(): test_dir = shop_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -242,7 +246,8 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
-	if not trainer_qa_dir.is_empty(): _open_title(); call_deferred("_run_trainer_qa")
+	if not shop_qa_dir.is_empty(): _open_title(); call_deferred("_run_shop_qa")
+	elif not trainer_qa_dir.is_empty(): _open_title(); call_deferred("_run_trainer_qa")
 	elif not player_qa_dir.is_empty(): _open_title(); call_deferred("_run_player_qa")
 	elif not economy_qa_dir.is_empty(): _open_title(); call_deferred("_run_economy_qa")
 	elif not moves_qa_dir.is_empty(): _open_title(); call_deferred("_run_moves_qa")
@@ -447,6 +452,9 @@ func _run_player_qa() -> void:
 func _run_trainer_qa() -> void:
 	await load("res://ui/qa_trainer.gd").new().run(self,trainer_qa_dir)
 
+func _run_shop_qa() -> void:
+	await load("res://ui/qa_kecleon.gd").new().run(self,shop_qa_dir)
+
 func _choose_starter(identity: int) -> void:
 	var challenge: Dictionary = {}
 	var requested_seed: String = journey_seed.text.strip_edges()
@@ -562,7 +570,7 @@ func _event(command: Dictionary, from_batch: bool = false) -> void:
 	selected_action = "basic"
 	action_page = false
 	message = ""
-	if command.kind=="buy" and _simple_hub() and campaign.consumables.has(command.item): message = campaign.consumables[command.item].name+" comprado."
+	if command.kind=="buy" and _simple_hub() and campaign.consumables.has(command.item): message = "Compra completada: "+campaign.consumables[command.item].name+"."
 	if command.kind=="revive": message = "Pokémon recuperado con el 50 % de sus PS máximos."
 	if command.kind=="mint": message = "Menta aplicada: cambian los modificadores, se conserva la naturaleza original."
 	if command.kind=="capsule": message = "Cápsula aplicada: cambia la habilidad normal, sin ocupar el objeto equipado."
@@ -583,6 +591,7 @@ func _event(command: Dictionary, from_batch: bool = false) -> void:
 	_save()
 	_refresh()
 	adventure.present(self,command,previous)
+	kecleon.present(self,command)
 	practice.observe(self,"accepted",command)
 	if command.kind in ["level-up","train-xp","evolve-free"]: _play("level-up")
 	if run.phase == "battle": board.grab_focus()
@@ -923,6 +932,7 @@ func _hub_group(parent: VBoxContainer, key: String) -> VBoxContainer:
 	return group
 
 func _simplify_hub() -> void:
+	if kecleon.using_scene(self): _apply_preferences.call_deferred(); return
 	if not _simple_hub(): return
 	var managing: bool = hub_mode=="team"
 	travel_buttons.hub_overview.button_pressed = not managing
@@ -960,6 +970,7 @@ func _render_travel() -> void:
 		travel_memory = {}; travel_phase = phase
 		hub_mode = "overview"
 		member_view = "items" if phase=="shop" else "profile"
+		if kecleon.available(self): shop_tab = "gear"; kecleon.arrive()
 	elif memory.inside: travel_memory = memory
 	travel_art.configure(_scene_art(),true)
 	call_deferred("_restore_travel_focus")
@@ -982,6 +993,10 @@ func _render_travel() -> void:
 	var help_button: Button = _button("Ayuda",func(): help_dialog.popup_centered(Vector2i(630,450)))
 	help_button.theme_type_variation = "ToolButton"
 	header.add_child(help_button)
+	if kecleon.using_scene(self):
+		title.text = "Tienda Kecleon"
+		kecleon.render(self,travel_content)
+		return
 	if _simple_hub():
 		title.text = "Tienda" if run.phase=="shop" else "Viaje por Kanto"
 		_build_hub_navigation()
@@ -1389,6 +1404,7 @@ func _default_focus() -> void:
 	else: super._default_focus()
 
 func _cycle_panel(backwards: bool = false) -> void:
+	if kecleon.using_scene(self): _set_hub_mode("team"); return
 	if travel_root==null or not travel_root.visible: super._cycle_panel(backwards); return
 	var focused: Control = get_viewport().gui_get_focus_owner()
 	var member: Control = travel_buttons.get("roster_team")

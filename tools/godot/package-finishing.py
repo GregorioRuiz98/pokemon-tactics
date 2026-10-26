@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 VERSION = re.search(r'config/version="([^"]+)"', (ROOT/'godot/project.godot').read_text(encoding='utf-8'))[1]
 CHAPTER = int(VERSION.split('.')[1])
 CONFIG = {
+    28: {'baseline': '9d87cd1091815f72525ec66a4d4752065579c2f4', 'report': 'SPRINT_28_KECLEON.md', 'ui': {'shop': 70, 'trainer': 69, 'player': 719}, 'core': {'trainer': 120, 'adventure': 105}, 'edition': 21},
     27: {'baseline': 'be221c89082013c288adf3e28bb8acfb872e1474', 'report': 'SPRINT_27_TRAINER.md', 'ui': {'trainer': 69, 'player': 719}, 'core': {'trainer': 120, 'adventure': 105}, 'edition': 21},
 }[CHAPTER]
 WORK = (ROOT/f'../../work/qa-sprint-{CHAPTER}').resolve()

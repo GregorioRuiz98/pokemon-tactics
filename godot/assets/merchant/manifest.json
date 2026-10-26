@@ -1,0 +1,56 @@
+{
+  "speciesId": 352,
+  "role": "Merchant only; never added to the Kanto roster",
+  "repository": "https://github.com/PMDCollab/SpriteCollab",
+  "commit": "6ad5f1c6229af6b055de2c64442e5e508664290c",
+  "license": "CC BY-NC 4.0; individual attribution in accompanying credits",
+  "animation": {
+    "w": 32,
+    "h": 48,
+    "n": 4,
+    "d": [
+      40,
+      2,
+      6,
+      2
+    ]
+  },
+  "bounds": [
+    5,
+    4,
+    27,
+    30
+  ],
+  "files": [
+    {
+      "target": "assets/merchant/AnimData.xml",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0352/AnimData.xml",
+      "sha256": "758ad0444871d5adcf89da8a5eb9cfeba1e01a87ca380e3c3ffd0585bb91fecb",
+      "modification": "None"
+    },
+    {
+      "target": "assets/merchant/Idle.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0352/Idle-Anim.png",
+      "sha256": "91a8ce6a45dd58bb481dfce075a99ab6661958933a399aef06e22f6b60ad671d",
+      "modification": "None"
+    },
+    {
+      "target": "assets/merchant/sprite-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/sprite/0352/credits.txt",
+      "sha256": "43f5c9a5734ca890730e4727aec86ef256b34ab28d97660be26ccb527529b771",
+      "modification": "None"
+    },
+    {
+      "target": "assets/merchant/Normal.png",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0352/Normal.png",
+      "sha256": "641c1685d274e3ffe5f543d5508e59b4069c460e155d0fed22befc569a22a1ec",
+      "modification": "None"
+    },
+    {
+      "target": "assets/merchant/portrait-credits.txt",
+      "source": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/6ad5f1c6229af6b055de2c64442e5e508664290c/portrait/0352/credits.txt",
+      "sha256": "0cb37064e5f3402b826589d71b691383abfb392183d195f05c62dfac06267c32",
+      "modification": "None"
+    }
+  ]
+}

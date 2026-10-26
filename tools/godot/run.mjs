@@ -43,6 +43,13 @@ function verifyCampaign(directory) {
   for(const file of report.screenshots) if(!existsSync(resolve(directory,file))) throw new Error('Missing campaign screenshot.');
 }
 function verify() {
+  const merchantPath=resolve(project,'assets/merchant/manifest.json');
+  if(existsSync(merchantPath)) {
+    const manifest=JSON.parse(readFileSync(merchantPath,'utf8'));
+    for(const entry of manifest.files) if(createHash('sha256').update(readFileSync(resolve(project,entry.target))).digest('hex')!==entry.sha256) throw new Error('Merchant resource hash mismatch');
+    console.log('Verified '+manifest.files.length+' original Kecleon resources and credits.');
+  }
+
   const originalAudio=spawnSync('python',[resolve(root,'tools/godot/verify-original-moves.py')],{cwd:root,encoding:'utf8',windowsHide:true});
   if(originalAudio.status!==0) throw new Error('Original audio integrity failed: '+originalAudio.stderr);
   const combatAudio=spawnSync('python',[resolve(root,'tools/godot/verify-combat-audio.py')],{cwd:root,encoding:'utf8',windowsHide:true});
@@ -90,7 +97,13 @@ if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-expo
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'test-trainer') {
+if(operation === 'qa-shop' || operation === 'qa-shop-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,exported?'shop-release':'shop-source');
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--shop-qa-dir='+directory],'shop-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'shop-ui-result.json'),'utf8'));
+  if(report.failures.length || report.assertions<50) throw new Error('Kecleon shop failed');
+} else if(operation === 'test-trainer') {
   run(binary,['--headless',...common,'--script','res://tests/trainer.gd','--','--save-dir='+work],'test-trainer');
 } else if(operation === 'qa-trainer' || operation === 'qa-trainer-export') {
   const exported=operation.endsWith('export');

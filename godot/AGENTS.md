@@ -188,3 +188,7 @@ Sprint26: conservar campaña21/combate19, códigoKT25 y reglas. Opciones de part
 ## Perfil de entrenador 0.27.0
 
 TrainerProfile/TrainerStore y ProfileCampaignStore añaden perfil local trainer/1 y metadatos fuera del estado reproducido. Persistir campaña con outbox antes de proyectar al perfil; nunca duplicar eventos al cargar. Perfil inválido conserva archivo y requiere recuperación explícita. Logros cosméticos, sin ventajas de dominio. Ver ../docs/SPRINT_27_TRAINER.md. El usuario autoriza completar27–29 separados; conservar módulos publicados y guardar QA en rutas aisladas.
+
+## Tienda Kecleon 0.28.0
+
+Mostrador integrado, animación SpriteCollab original y recursos locales verificados; especie352 solo vendedor. Campaña21/combate19 intacta. Ver ../docs/SPRINT_28_KECLEON.md. Guardar antes del feedback, no RNG en UI, respetar movimiento reducido. Continuar29 autorizado; sin delegación ni publicación pública.

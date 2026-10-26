@@ -516,3 +516,7 @@ El encargo «empieza a implementar» inicia26. Completar cada sprint por separad
 ## Entrega27 y continuación autorizada
 
 27: perfil local implementado en0.27.0; [informe](SPRINT_27_TRAINER.md). El usuario pide «implementa todo», autorizando completar también28 (tienda) y29 (variedad táctica) con entrega independiente por sprint. Se conserva la publicación pública aplazada.
+
+## Entrega28
+
+Tienda Kecleon completada en0.28.0; [informe y comprobaciones](SPRINT_28_KECLEON.md). Siguiente29: disponibilidad y variedad táctica con edición nueva cuando cambien resultados. Perfil27 y presentación26 conservados.
