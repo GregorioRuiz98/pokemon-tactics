@@ -663,7 +663,7 @@ func _refresh():
 			else:
 				for unit in Rules.living(state):
 					if rules.attack_plan(state, int(unit.id), {}, selected_action).ok: board.attackable[Movement.key(unit)] = true
-	target_info.text = "Pasa el cursor por una unidad\npara ver la previsión.\n\nAzul: puedes moverte.\nMarco coral: puedes atacar."
+	target_info.text = "Sin objetivo"
 	hint.text = _default_hint()
 	board.queue_redraw()
 	_input_labels()
@@ -692,8 +692,8 @@ func _default_hint() -> String:
 	if not _player_turn(): return "Turno rival…"
 	if selecting == "finish": return "Flechas: orientar · Enter: terminar · Esc: volver.\n%s · %s" % ["Movimiento sin usar" if not state.moved else "Movimiento usado","Acción sin usar" if not state.acted else "Acción usada"]
 	if selecting == "attack": return "%s: %s / %s cambia objetivo, Enter o clic acepta. Esc vuelve." % [rules.profile(Rules.active(state)).action(Rules.active(state), selected_action).definition.name,input_profile.label("previous_target"),input_profile.label("next_target")]
-	if state.acted and state.moved: return "Turno listo. Elige una dirección para terminar."
-	return "Clic en casilla: mover. Clic en rival: básico. Habilidades y fin de turno en el menú."
+	if state.acted and state.moved: return "Orienta y termina el turno."
+	return "Elige un destino o una acción."
 
 func _select_movement():
 	if not _player_turn() or _modal_open(): return
@@ -846,7 +846,7 @@ func _hover_tile(point: Dictionary) -> bool:
 		target_panel.visible = false
 		var route = board.available[Movement.key(point)]
 		board.route = route.path
-		hint.text = "%s · coste %d. Clic para desplazarte. Puedes atravesar aliados." % [Rules.coordinate(point), route.cost]
+		hint.text = "%s · coste %d Mov." % [Rules.coordinate(point), route.cost]
 	else:
 		target_panel.visible = false
 		var terrain = int(state.board[int(point.y)][int(point.x)])
@@ -1173,7 +1173,7 @@ func _input_labels() -> void:
 		if separator>=0: button.text = input_profile.label("slot"+str(index))+button.text.substr(separator)
 		index += 1
 	if help_dialog!=null:
-		help_dialog.dialog_text = "Un movimiento y una acción, en cualquier orden.\nClic en casilla: mover. Clic en rival: básico neutro.\nHabilidades: %s. Ranuras: %s / %s / %s / %s / %s.\nElegir habilidad solo prepara; Enter o clic la ejecuta.\n%s/%s recorre objetivos. Modos Rápido/Seguro en Controles.\nSiempre se avisa de aliados o coste propio letal.\n\nRectificar: %s, solo movimiento y antes de actuar.\nNo recupera PS, PT, ataques, estados o tiradas.\nOrientar y terminar: %s; flechas y Enter confirman.\nCámara: cruceta o modo %s; %s centra.\nAliados atravesables;\ndestinos ocupados no válidos.\n\nFlechas y Enter/Espacio siempre disponibles.\nTab / Mayús+Tab: controles. %s: cambiar panel.\nEscape o derecho: volver. %s: recuperar guardado.\n%s: reasignar controles. Guardado local por orden." % [input_profile.label("abilities"),input_profile.label("slot1"),input_profile.label("slot2"),input_profile.label("slot3"),input_profile.label("slot4"),input_profile.label("slot5"),input_profile.label("previous_target"),input_profile.label("next_target"),input_profile.label("rectify"),input_profile.label("finish"),input_profile.label("camera_mode"),input_profile.label("center"),input_profile.label("panel"),input_profile.label("load"),input_profile.label("controls")]
+		help_dialog.dialog_text = "Clic en casilla: mover · clic en rival: básico.\n%s: movimientos · %s / %s / %s / %s / %s: ranuras.\n%s / %s: objetivo · Enter o clic: confirmar.\n%s: rectificar movimiento, solo antes de actuar.\n%s: orientar y terminar.\n%s: cámara · %s: centrar unidad.\nTab: navegar menús · %s: cambiar panel.\nEsc o clic derecho: cancelar · %s: cargar.\n%s: configurar controles." % [input_profile.label("abilities"),input_profile.label("slot1"),input_profile.label("slot2"),input_profile.label("slot3"),input_profile.label("slot4"),input_profile.label("slot5"),input_profile.label("previous_target"),input_profile.label("next_target"),input_profile.label("rectify"),input_profile.label("finish"),input_profile.label("camera_mode"),input_profile.label("center"),input_profile.label("panel"),input_profile.label("load"),input_profile.label("controls")]
 
 func _run_qa():
 	await Qa.new().run(self, qa_dir)

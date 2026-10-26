@@ -84,7 +84,7 @@ func render_card() -> void:
 	var toggle: CheckButton = CheckButton.new(); toggle.text = "Avisos de logros"; toggle.button_pressed = model.data.get("notifications",true)
 	body.add_child(toggle); controls.notifications = toggle
 	var save: Button = app._button("Guardar perfil",save_card); body.add_child(save); controls.save = save
-	body.add_child(app._label("Las medallas desbloquean títulos y marcos. Son cambios de apariencia.",16,app.MUTED))
+	body.add_child(app._label("Títulos y marcos cosméticos.",16,app.MUTED))
 
 func save_card() -> void:
 	var copy: RefCounted = session.Model.new(session.model.data)

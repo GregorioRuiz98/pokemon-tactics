@@ -9,8 +9,6 @@ static func unit_text(app: Control, unit: Dictionary) -> String:
 	if app.state.get("combatEdition",0)>=11: text += " · altura %d" % app.rules.Terrain.height_at(app.state,unit)
 	if unit.has("abilityName"): text += "\nHabilidad: "+unit.abilityName+"\n"+unit.get("abilityDescription","")
 	for entry: Dictionary in Indicators.entries(unit): text += "\n"+entry.hint
-	if app.state.get("combatEdition",0)>=6: text += "\nEstados y etapas: caducan por activaciones propias. Parálisis: mitad de desplazamiento."
-	else: text += "\nPartida clásica: conserva las duraciones y efectos de su edición."
 	return text
 
 static func forecast(unit: Dictionary, plan: Dictionary) -> String:
@@ -19,7 +17,7 @@ static func forecast(unit: Dictionary, plan: Dictionary) -> String:
 	text += "\nDaño normal: %d–%d PS" % [plan.get("damageMin",plan.damage),plan.get("damageMax",plan.damage)]
 	if plan.heal: text += "\nCuración: %d PS" % plan.heal
 	if plan.get("criticalChance",0)>0: text += "\nCrítico: %.2f %% · %d–%d PS" % [100*plan.criticalChance,plan.criticalMin,plan.criticalMax]
-	if maxi(plan.get("damageMax",plan.damage),plan.get("criticalMax",0))>=unit.hp and plan.accuracy>0: text += "\nKO posible; no garantiza acierto ni superar pasivas."
+	if maxi(plan.get("damageMax",plan.damage),plan.get("criticalMax",0))>=unit.hp and plan.accuracy>0: text += "\nKO posible."
 	if plan.get("sturdy",false): text += "\nRobustez puede dejar 1 PS."
 	return text
 

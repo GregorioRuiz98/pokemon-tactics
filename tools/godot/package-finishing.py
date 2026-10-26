@@ -16,11 +16,14 @@ CONFIG = {
     28: {'baseline': '9d87cd1091815f72525ec66a4d4752065579c2f4', 'report': 'SPRINT_28_KECLEON.md', 'ui': {'shop': 70, 'trainer': 69, 'player': 719}, 'core': {'trainer': 120, 'adventure': 105}, 'edition': 21},
     27: {'baseline': 'be221c89082013c288adf3e28bb8acfb872e1474', 'report': 'SPRINT_27_TRAINER.md', 'ui': {'trainer': 69, 'player': 719}, 'core': {'trainer': 120, 'adventure': 105}, 'edition': 21},
 }[CHAPTER]
-WORK = (ROOT/f'../../work/qa-sprint-{CHAPTER}').resolve()
+if VERSION == '0.30.1':
+    CONFIG = {'baseline':'8175544ee876251596cdb356d1bb4d20fe42fc1a','report':'FIX_TEXT_0.30.1.md','ui':{'copy':503,'kanto':428},'core':{},'edition':22}
+QA_LABEL = '30-ui-1' if VERSION == '0.30.1' else str(CHAPTER)
+WORK = (ROOT/f'../../work/qa-sprint-{QA_LABEL}').resolve()
 RELEASE = (ROOT/f'../releases/pokemon-tactics-{VERSION}').resolve()
 BUNDLE = RELEASE/'windows'
 EXE = BUNDLE/'PokemonTactics.exe'
-EVIDENCE = ROOT/f'docs/qa/sprint-{CHAPTER}'
+EVIDENCE = ROOT/f'docs/qa/sprint-{QA_LABEL}'
 
 
 def read(path):

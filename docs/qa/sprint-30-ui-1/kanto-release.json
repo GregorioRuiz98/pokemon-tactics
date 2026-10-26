@@ -1,0 +1,607 @@
+{
+  "assertions": 428,
+  "campaignEdition": 22,
+  "drawP95Ms": 3.93,
+  "failures": [],
+  "gallery": [
+    {
+      "id": "route-1",
+      "mapSize": 16,
+      "props": 33
+    },
+    {
+      "id": "route-2",
+      "mapSize": 16,
+      "props": 35
+    },
+    {
+      "id": "forest",
+      "mapSize": 16,
+      "props": 58
+    },
+    {
+      "id": "brock",
+      "mapSize": 16,
+      "props": 37
+    },
+    {
+      "id": "route-3",
+      "mapSize": 16,
+      "props": 35
+    },
+    {
+      "id": "mt-moon",
+      "mapSize": 16,
+      "props": 37
+    },
+    {
+      "id": "route-4",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "cerulean-rival",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "route-24",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "route-25",
+      "mapSize": 16,
+      "props": 35
+    },
+    {
+      "id": "misty",
+      "mapSize": 16,
+      "props": 32
+    },
+    {
+      "id": "route-5",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "route-6",
+      "mapSize": 16,
+      "props": 33
+    },
+    {
+      "id": "ss-anne",
+      "mapSize": 16,
+      "props": 35
+    },
+    {
+      "id": "surge",
+      "mapSize": 16,
+      "props": 36
+    },
+    {
+      "id": "route-11",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "diglett-cave",
+      "mapSize": 16,
+      "props": 36
+    },
+    {
+      "id": "route-22",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "route-9",
+      "mapSize": 16,
+      "props": 35
+    },
+    {
+      "id": "route-10",
+      "mapSize": 16,
+      "props": 33
+    },
+    {
+      "id": "rock-tunnel",
+      "mapSize": 16,
+      "props": 36
+    },
+    {
+      "id": "route-8",
+      "mapSize": 16,
+      "props": 35
+    },
+    {
+      "id": "route-7",
+      "mapSize": 16,
+      "props": 33
+    },
+    {
+      "id": "erika",
+      "mapSize": 16,
+      "props": 35
+    },
+    {
+      "id": "rocket-hideout",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "tower-rival",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "pokemon-tower",
+      "mapSize": 16,
+      "props": 35
+    },
+    {
+      "id": "fuji-rescue",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "route-12",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "route-13",
+      "mapSize": 16,
+      "props": 36
+    },
+    {
+      "id": "route-14",
+      "mapSize": 16,
+      "props": 35
+    },
+    {
+      "id": "route-15",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "route-16",
+      "mapSize": 16,
+      "props": 33
+    },
+    {
+      "id": "route-17",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "route-18",
+      "mapSize": 16,
+      "props": 33
+    },
+    {
+      "id": "safari",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "koga",
+      "mapSize": 16,
+      "props": 35
+    },
+    {
+      "id": "silph-rival",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "silph-giovanni",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "sabrina",
+      "mapSize": 16,
+      "props": 36
+    },
+    {
+      "id": "route-19",
+      "mapSize": 16,
+      "props": 33
+    },
+    {
+      "id": "route-20",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "seafoam",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "route-21",
+      "mapSize": 16,
+      "props": 33
+    },
+    {
+      "id": "pokemon-mansion",
+      "mapSize": 16,
+      "props": 35
+    },
+    {
+      "id": "blaine",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "giovanni-gym",
+      "mapSize": 16,
+      "props": 35
+    },
+    {
+      "id": "power-plant",
+      "mapSize": 16,
+      "props": 35
+    },
+    {
+      "id": "league-rival",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "route-23",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "victory-road",
+      "mapSize": 16,
+      "props": 35
+    },
+    {
+      "id": "lorelei",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "bruno",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "agatha",
+      "mapSize": 16,
+      "props": 35
+    },
+    {
+      "id": "lance",
+      "mapSize": 16,
+      "props": 35
+    },
+    {
+      "id": "champion",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "legendary-birds",
+      "mapSize": 16,
+      "props": 34
+    },
+    {
+      "id": "legendary-origin",
+      "mapSize": 16,
+      "props": 35
+    },
+    {
+      "id": "route-1",
+      "mapSize": 24,
+      "props": 49
+    },
+    {
+      "id": "route-2",
+      "mapSize": 24,
+      "props": 51
+    },
+    {
+      "id": "forest",
+      "mapSize": 24,
+      "props": 74
+    },
+    {
+      "id": "brock",
+      "mapSize": 24,
+      "props": 53
+    },
+    {
+      "id": "route-3",
+      "mapSize": 24,
+      "props": 51
+    },
+    {
+      "id": "mt-moon",
+      "mapSize": 24,
+      "props": 53
+    },
+    {
+      "id": "route-4",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "cerulean-rival",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "route-24",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "route-25",
+      "mapSize": 24,
+      "props": 51
+    },
+    {
+      "id": "misty",
+      "mapSize": 24,
+      "props": 48
+    },
+    {
+      "id": "route-5",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "route-6",
+      "mapSize": 24,
+      "props": 49
+    },
+    {
+      "id": "ss-anne",
+      "mapSize": 24,
+      "props": 51
+    },
+    {
+      "id": "surge",
+      "mapSize": 24,
+      "props": 52
+    },
+    {
+      "id": "route-11",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "diglett-cave",
+      "mapSize": 24,
+      "props": 52
+    },
+    {
+      "id": "route-22",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "route-9",
+      "mapSize": 24,
+      "props": 51
+    },
+    {
+      "id": "route-10",
+      "mapSize": 24,
+      "props": 49
+    },
+    {
+      "id": "rock-tunnel",
+      "mapSize": 24,
+      "props": 52
+    },
+    {
+      "id": "route-8",
+      "mapSize": 24,
+      "props": 51
+    },
+    {
+      "id": "route-7",
+      "mapSize": 24,
+      "props": 49
+    },
+    {
+      "id": "erika",
+      "mapSize": 24,
+      "props": 51
+    },
+    {
+      "id": "rocket-hideout",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "tower-rival",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "pokemon-tower",
+      "mapSize": 24,
+      "props": 51
+    },
+    {
+      "id": "fuji-rescue",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "route-12",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "route-13",
+      "mapSize": 24,
+      "props": 52
+    },
+    {
+      "id": "route-14",
+      "mapSize": 24,
+      "props": 51
+    },
+    {
+      "id": "route-15",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "route-16",
+      "mapSize": 24,
+      "props": 49
+    },
+    {
+      "id": "route-17",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "route-18",
+      "mapSize": 24,
+      "props": 49
+    },
+    {
+      "id": "safari",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "koga",
+      "mapSize": 24,
+      "props": 51
+    },
+    {
+      "id": "silph-rival",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "silph-giovanni",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "sabrina",
+      "mapSize": 24,
+      "props": 52
+    },
+    {
+      "id": "route-19",
+      "mapSize": 24,
+      "props": 49
+    },
+    {
+      "id": "route-20",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "seafoam",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "route-21",
+      "mapSize": 24,
+      "props": 49
+    },
+    {
+      "id": "pokemon-mansion",
+      "mapSize": 24,
+      "props": 51
+    },
+    {
+      "id": "blaine",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "giovanni-gym",
+      "mapSize": 24,
+      "props": 51
+    },
+    {
+      "id": "power-plant",
+      "mapSize": 24,
+      "props": 51
+    },
+    {
+      "id": "league-rival",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "route-23",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "victory-road",
+      "mapSize": 24,
+      "props": 51
+    },
+    {
+      "id": "lorelei",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "bruno",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "agatha",
+      "mapSize": 24,
+      "props": 51
+    },
+    {
+      "id": "lance",
+      "mapSize": 24,
+      "props": 51
+    },
+    {
+      "id": "champion",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "legendary-birds",
+      "mapSize": 24,
+      "props": 50
+    },
+    {
+      "id": "legendary-origin",
+      "mapSize": 24,
+      "props": 51
+    }
+  ],
+  "mapCatalogHash": "892e00cb8e12b4c64eafa835f3b8bd22d6f87c1bbf7da4b02fab1babc25a1b63",
+  "naturalStateHash": "e02de16f40958a649e6ed28da89b2f7f971c9282cfe52363fea2b898bdd0528a",
+  "scope": "Natural Charmander Route1/capture/shop/replay; keyboard and text scaling; synthetic rendering gallery116, not a completed campaign.",
+  "screenshots": [
+    "moves-1024-150.png",
+    "moves-1280-150.png",
+    "natural-kecleon.png",
+    "forest.png",
+    "brock.png",
+    "mt-moon.png",
+    "ss-anne.png",
+    "sabrina.png",
+    "pokemon-mansion.png",
+    "blaine.png",
+    "legendary-birds.png",
+    "legendary-origin.png",
+    "blastoise-cannons.png",
+    "final-map-150.png"
+  ]
+}

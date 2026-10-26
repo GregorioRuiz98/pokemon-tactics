@@ -8,7 +8,9 @@ const Art = preload("res://ui/visual_assets.gd")
 const RosterPanel = preload("res://ui/roster_panel.gd")
 const IsometricBoard = preload("res://ui/kanto_board.gd")
 const CampaignStore = preload("res://core/kanto_campaign_store.gd")
+const Copy = preload("res://ui/concise_copy.gd")
 var kanto_qa_dir: String = ""
+var copy_qa_dir: String = ""
 var trainer: RefCounted = preload("res://ui/trainer_session.gd").new()
 var trainer_qa_dir: String = ""
 var kecleon: RefCounted = preload("res://ui/kecleon_shop.gd").new()
@@ -179,6 +181,7 @@ func _boot() -> void:
 		get_tree().change_scene_to_file.call_deferred("res://scenes/laboratory.tscn")
 		return
 	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--copy-qa-dir="): copy_qa_dir = argument.trim_prefix("--copy-qa-dir=")
 		if argument.begins_with("--kanto-qa-dir="): kanto_qa_dir = argument.trim_prefix("--kanto-qa-dir=")
 		if argument.begins_with("--shop-qa-dir="): shop_qa_dir = argument.trim_prefix("--shop-qa-dir=")
 		if argument.begins_with("--variety-qa-dir="): variety_qa_dir = argument.trim_prefix("--variety-qa-dir=")
@@ -218,6 +221,7 @@ func _boot() -> void:
 	if not shop_qa_dir.is_empty(): test_dir = shop_qa_dir
 	if not variety_qa_dir.is_empty(): test_dir = variety_qa_dir
 	if not kanto_qa_dir.is_empty(): test_dir = kanto_qa_dir
+	if not copy_qa_dir.is_empty(): test_dir = copy_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -227,8 +231,8 @@ func _boot() -> void:
 	menu.get_popup().add_separator()
 	menu.get_popup().add_item("Pantalla de inicio",8)
 	menu.get_popup().add_item("Aprender / salir de práctica",13)
-	menu.get_popup().add_item("Glosario táctico",14)
-	menu.get_popup().add_item("Copiar semilla de la campaña",15)
+	menu.get_popup().add_item("Reglas tácticas",14)
+	menu.get_popup().add_item("Copiar semilla",15)
 	menu.get_popup().add_item("Perfil de entrenador",16)
 	if "--developer" not in OS.get_cmdline_user_args(): menu.get_popup().remove_item(menu.get_popup().get_item_index(7))
 	travel_art = load("res://ui/artwork_slot.gd").new()
@@ -252,7 +256,8 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
-	if not kanto_qa_dir.is_empty(): _open_title(); call_deferred("_run_kanto_qa")
+	if not copy_qa_dir.is_empty(): _open_title(); call_deferred("_run_copy_qa")
+	elif not kanto_qa_dir.is_empty(): _open_title(); call_deferred("_run_kanto_qa")
 	elif not shop_qa_dir.is_empty(): _open_title(); call_deferred("_run_shop_qa")
 	elif not variety_qa_dir.is_empty(): _open_title(); call_deferred("_run_variety_qa")
 	elif not trainer_qa_dir.is_empty(): _open_title(); call_deferred("_run_trainer_qa")
@@ -419,7 +424,7 @@ func _render_seed_options() -> void:
 	panel.visible = seed_options_open
 	travel_content.add_child(panel)
 	travel_buttons.seed_panel = panel
-	panel.add_child(_label("La semilla se genera sola. Puedes cambiarla o pegar un reto compartido.",16,MUTED))
+	panel.add_child(_label("Semilla o código de reto.",16,MUTED))
 	var seed_row: HBoxContainer = HBoxContainer.new()
 	panel.add_child(seed_row)
 	if new_seed.strip_edges().is_empty(): new_seed = _generate_seed()
@@ -468,6 +473,9 @@ func _run_variety_qa() -> void:
 
 func _run_kanto_qa() -> void:
 	await load("res://ui/qa_kanto.gd").new().run(self,kanto_qa_dir)
+
+func _run_copy_qa() -> void:
+	await load("res://ui/qa_copy.gd").new().run(self,copy_qa_dir)
 
 func _choose_starter(identity: int) -> void:
 	var challenge: Dictionary = {}
@@ -586,17 +594,17 @@ func _event(command: Dictionary, from_batch: bool = false) -> void:
 	message = ""
 	if command.kind=="buy" and _simple_hub() and campaign.consumables.has(command.item): message = "Compra completada: "+campaign.consumables[command.item].name+"."
 	if command.kind=="revive": message = "Pokémon recuperado con el 50 % de sus PS máximos."
-	if command.kind=="mint": message = "Menta aplicada: cambian los modificadores, se conserva la naturaleza original."
-	if command.kind=="capsule": message = "Cápsula aplicada: cambia la habilidad normal, sin ocupar el objeto equipado."
+	if command.kind=="mint": message = "Menta aplicada."
+	if command.kind=="capsule": message = "Habilidad cambiada."
 	if command.kind=="capture" and run.get("edition",1)>=12:
 		message = "Captura enviada al PC: el equipo tiene seis plazas." if run.reserve.any(func(m):return m.id==run.nextId-1) else "Nuevo compañero en el equipo."
-	if command.kind=="deposit": message = "Compañero guardado en el PC. Conserva sus PS y su objeto."
-	if command.kind=="withdraw": message = "Compañero añadido al equipo. Conserva sus PS y su objeto."
+	if command.kind=="deposit": message = "Guardado en el PC."
+	if command.kind=="withdraw": message = "Añadido al equipo."
 	if command.kind=="swap":
 		selected_member = int(command.reserve)
 		roster_tab = "team"
 		roster_offset = 0
-		message = "Intercambio completado, sin curación ni coste."
+		message = "Intercambio completado."
 	state = run.battle
 	if command.kind=="enter": _prepare_campaign_assets()
 	history = run.battleCommands
@@ -711,7 +719,7 @@ func _refresh() -> void:
 		var active: Dictionary = rules.active(state)
 		if active.has("level"):
 			actor_info.text = "Nv. %d · " % active.level + actor_info.text
-			actor_info.tooltip_text = "Cuatro movimientos preparados y básico neutro. Sin clases ni bonificaciones de rol."
+			actor_info.tooltip_text = "Básico neutro · 0 PT"
 			if active.has("abilityDescription"): actor_info.tooltip_text += "\n"+active.natureText+"\n"+active.abilityDescription
 		if run.get("edition",1)>=11:
 			board.track_turn()
@@ -1194,20 +1202,20 @@ func _render_travel() -> void:
 		elif run.phase=="defeat": text.text += "\nLas reservas del PC tampoco permiten continuar tras perder un combate."
 	if _simple_hub():
 		if run.phase=="shop": text.text = ""
-		elif run.phase=="map": text.text = location.story
+		elif run.phase=="map": text.text = Copy.destination(location)
 		elif run.phase=="capture": text.text = "%s · Nv. %d\n%s" % [rules.profiles[int(run.reward.speciesId)].data.name,run.reward.level,run.reward.origin]
-		elif run.phase=="defeat": text.text = "El rescate ha fracasado: Fuji se ha quedado sin protección. Puedes comenzar otra aventura desde Inicio." if run.get("battle",{}).get("mission",{}).get("kind")=="protect" and run.battle.mission.health<=0 else "El equipo ha caído. Puedes comenzar otra aventura desde Inicio."
+		elif run.phase=="defeat": text.text = "Fuji ha caído. Fin de la aventura." if run.get("battle",{}).get("mission",{}).get("kind")=="protect" and run.battle.mission.health<=0 else "Fin de la aventura. Las reservas no permiten continuar."
 		text.visible = not text.text.is_empty()
 	if run.get("edition",1)>=13:
-		if run.phase=="complete": text.text = "Conservas equipo, objetos, dinero y progreso. Has completado el contenido principal de este tramo. Puedes recorrer los desvíos pendientes."
+		if run.phase=="complete": text.text = "Quedan desvíos por explorar." if not campaign.available(run).is_empty() else "Tramo completado."
 		if run.phase in ["map","complete"]: _render_destinations(narrative)
 		if run.phase=="complete" and run.mainComplete and run.chapter>=21 and run.finalPath=="" and run.get("edition",1)<22:
 			text.text = "Has vencido al Alto Mando y al rival. Elige un único desafío final; las dos rutas son excluyentes y no conceden capturas legendarias."
 			for path: String in ["birds","psychic"]: _travel_button("destiny_"+path,"Articuno, Zapdos y Moltres" if path=="birds" else "Mew y Mewtwo",narrative,{"kind":"destiny","path":path})
-		if run.phase=="ending": text.text = "¡Has completado tu aventura por Kanto! Has vencido al rival y superado el desafío legendario. Tu equipo y tu recorrido quedan guardados para consultarlos."
+		if run.phase=="ending": text.text = "¡Aventura completada!"
 		if run.get("edition",0)>=22 and run.get("mainComplete",false):
-			text.text = "Próximo desafío: Mew y Mewtwo. Puedes preparar el equipo en la tienda." if "legendary-birds" in run.cleared else "Próximo desafío: Articuno, Zapdos y Moltres juntos. Después te esperan Mew y Mewtwo."
-			if run.phase=="ending": text.text = "¡Aventura completada! Liga, rival, las tres aves y Mew y Mewtwo. Tu equipo y tu recorrido quedan guardados."
+			text.text = "Siguiente: Mew y Mewtwo." if "legendary-birds" in run.cleared else "Siguiente: Articuno, Zapdos y Moltres."
+			if run.phase=="ending": text.text = "¡Aventura completada!"
 			text.visible = true
 	if run.get("edition",1) >= 2 and run.phase in ["capture","shop"]:
 		var summary: Label = _label(_progress_summary(),17,GOLD)
@@ -1383,13 +1391,13 @@ func _member_summary(identity: int) -> String:
 func _review_swap(outgoing: int, incoming: int, revision: int) -> void:
 	_review_dialog()
 	var command: Dictionary = {"kind":"swap","member":outgoing,"reserve":incoming,"at":revision}
-	action_review.review("Comparar intercambio","SALE\n"+_member_summary(outgoing)+"\n\nENTRA\n"+_member_summary(incoming)+"\nSin curación ni coste. Se conservan los objetos.",func(): _event(command))
+	action_review.review("Cambiar equipo","SALE\n"+_member_summary(outgoing)+"\n\nENTRA\n"+_member_summary(incoming)+"\nSin curación ni coste. Se conservan los objetos.",func(): _event(command))
 
 func _review_loadout(identity: int, moves: Array, description: String, definition: Dictionary = {}) -> void:
 	_review_dialog()
 	var revision: int = int(run.revision)
 	var names: String = ", ".join(moves.map(func(id):return campaign.progression.data.moves[id].name))
-	action_review.review("Preparar movimientos",_member_summary(identity)+"\n\nNUEVO: "+names+"\n"+description+"\nEl básico se conserva. Cambiar movimientos es gratis.",func(): _event({"kind":"loadout","member":identity,"moves":moves,"at":revision}),definition)
+	action_review.review("Preparar movimientos",_member_summary(identity)+"\n\nNUEVO: "+names+"\n"+description+"\nBásico neutro conservado.",func(): _event({"kind":"loadout","member":identity,"moves":moves,"at":revision}),definition)
 
 func _open_batch(context: String = "buy") -> void:
 	if run.phase!="shop" or batch_busy or run.get("edition",1)<4: return
@@ -1516,7 +1524,7 @@ func _render_mint_shop(parent: VBoxContainer) -> void:
 	var buy: Button = _travel_button("buy_mint","Comprar Menta %s · %d ₽" % [study.traits.natures[selected_mint].name,study.traits.mintPrice],parent,{"kind":"buy","item":"mint-"+selected_mint})
 	if _simple_hub(): _item_picture(buy,"mint-"+selected_mint)
 	buy.disabled = run.money<int(study.traits.mintPrice)
-	buy.tooltip_text = "Una menta de un uso. Elige su efecto y comprueba los atributos en la ficha antes de aplicarla."
+	buy.tooltip_text = "Un uso. Aplica los modificadores indicados."
 
 func _render_traits(parent: VBoxContainer, member: Dictionary) -> void:
 	var study: RefCounted = campaign.progression
@@ -1565,7 +1573,7 @@ func _render_traits(parent: VBoxContainer, member: Dictionary) -> void:
 	var next_ability: String = study.ability(copy)
 	var capsule: Button = _travel_button("use_capsule","Usar Cápsula Habilidad · bolsa: %d\n" % run.bag["ability-capsule"]+(study.traits.abilities[next_ability].name if next!=0 else "Una sola habilidad normal"),parent,{"kind":"capsule","member":member.id})
 	capsule.disabled = member.hp<=0 or next==0 or run.bag["ability-capsule"]<=0
-	capsule.tooltip_text = study.traits.abilities[next_ability].description if next!=0 else "No se consume en especies con una única habilidad normal. Las habilidades ocultas requieren Parche Habilidad, reservado para después."
+	capsule.tooltip_text = study.traits.abilities[next_ability].description if next!=0 else "No tiene otra habilidad normal."
 
 func _train(revision: int) -> void:
 	_event({"kind":"train","stat":Campaign.STATS.keys()[training_choice.selected],"member":selected_member,"at":revision})
@@ -1602,7 +1610,7 @@ func _render_moves(parent: VBoxContainer, member: Dictionary) -> void:
 	roles.tooltip_text = "Número de movimientos preparados de cada rol; no concede estadísticas adicionales."
 	if run.get("edition",0)<21: parent.add_child(roles)
 	else: roles.queue_free()
-	parent.add_child(_label("Básico neutro fijo · 0 PT · sin STAB\nMOVIMIENTOS · %d / 4 · cambiar es gratis" % member.moves.size(),17,GOLD))
+	parent.add_child(_label("MOVIMIENTOS · %d / 4\nBásico neutro · 0 PT" % member.moves.size(),17,GOLD))
 	move_library.render(self,parent,member)
 	if run.get("edition",0)>=21:
 		var entries: Array = preload("res://ui/tactical_loadouts.gd").learning(study,member,campaign.level_cap(run))
@@ -1721,7 +1729,7 @@ func _inspect() -> void:
 	if tactical_reader.visible: practice.observe(self,"inspect")
 
 func _glossary() -> void:
-	_review_text("Cómo jugar",preload("res://ui/player_copy.gd").glossary(int(run.get("edition",21))))
+	_review_text("Reglas tácticas",preload("res://ui/player_copy.gd").glossary(int(run.get("edition",21))))
 
 func _travel_command(command: Dictionary) -> void:
 	if command.kind=="destiny":

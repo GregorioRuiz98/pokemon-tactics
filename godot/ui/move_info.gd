@@ -30,13 +30,15 @@ static func summary(definition: Dictionary) -> String:
 static func description(definition: Dictionary) -> String:
 	var lines: Array[String] = []
 	for line: String in definition.get("description","").split("\n"):
-		if line.begins_with("Área:"): continue
+		if line.begins_with("Área:"):
+			if "Zona temporal:" in line: lines.append(line.substr(line.find("Zona temporal:")))
+			continue
 		lines.append(line.replace(" · PT y alcance tácticos.","").strip_edges())
 	var text: String = "\n".join(lines)
 	for stat: String in ["specialAttack","specialDefense","accuracy","evasion","attack","defense","speed"]:
 		text = text.replace(stat,preload("res://ui/unit_indicators.gd").STATS[stat][1])
-	if text==definition.get("name",""):
-		text = "Inflige daño físico." if definition.get("category")=="physical" else "Inflige daño especial." if definition.get("category")=="special" else ""
+	if text==definition.get("name","") or text in ["Inflige daño físico.","Inflige daño especial."]: text = ""
+	text = text.replace("Una única penalización virtual de Precisión −1","Precisión −1").replace("un disparo visual","un ataque a distancia")
 	for effect: String in ["effect","secondary"]:
 		var status: Variant = definition.get(effect)
 		if not status is Dictionary or not status.has("kind"): continue
@@ -46,7 +48,8 @@ static func description(definition: Dictionary) -> String:
 	for change: Dictionary in definition.get("changes",[]):
 		text += "\n%s: %s %s%d" % ["Sobre el usuario" if definition.get("changesSelf",false) else "Sobre el objetivo",preload("res://ui/unit_indicators.gd").STATS[change.stat][1],"+" if change.stages>0 else "",change.stages]
 		if definition.get("changeChance",100)<100: text += " · %d %%" % definition.changeChance
-	if definition.get("kind")=="drain": text += "\nRecupera PS equivalentes a la mitad del daño causado."
+	if definition.has("shape") and not definition.get("changes",[]).is_empty(): text += "\nAtributos: 3 activaciones."
+	if definition.get("kind")=="drain": text += "\nDrena el 50 % del daño."
 	return text.strip_edges()
 
 static func details(definition: Dictionary) -> String:
@@ -61,9 +64,7 @@ static func details(definition: Dictionary) -> String:
 		"bide": text += "\nAcumula daño y lo devuelve según su estado de preparación. Consulta la previsión."
 		"metronome": text += "\nLa potencia depende de la técnica sorteada al actuar."
 		"mirror-move": text += "\nLa potencia depende del movimiento que se pueda copiar."
-	if definition.get("sharedDamageBudget",false): text += "\nReparte un presupuesto de daño entre los objetivos; no aplica impactos completos a cada uno."
-	if definition.get("areaScale",1.0)!=1.0: text += "\nEl daño del área se ajusta en la previsión de cada objetivo."
-	if definition.get("category")!="status": text += "\nPotencia base y daño en PS son distintos. La previsión aplica estadísticas, tipos, STAB, posición y efectos."
+	if definition.get("sharedDamageBudget",false): text += "\nReparte el daño entre los objetivos."
 	return text
 
 static func diagram(definition: Dictionary) -> Dictionary:

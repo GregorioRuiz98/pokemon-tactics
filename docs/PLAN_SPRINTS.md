@@ -539,3 +539,7 @@ Desarrollo por localización: [mapas de Kanto](DESIGN_MAPAS_KANTO.md),58 nodos c
 ## Implementación de identidad y Kanto0.30
 
 La petición posterior «implementa los cambios a los mapas y el resto de cambios» autoriza esta entrega conjunta.30: roles retirados, consultas y repertorios conservados, orígenes visuales por especie.31–33:58 localizaciones, dos tamaños, atlas de16 objetos, alturas/huellas/ocultación y transportadores señalizados.34: finales consecutivos, compatibilidad, logros, QA y paquete Windows; prueba humana completa de Kanto sigue pendiente. No considerar una galería de escenarios o un remate sintético como campaña jugada. [Informe y alcance exacto](SPRINT_30_KANTO.md).
+
+## Revisión de textos0.30.1
+
+[Textos simplificados](FIX_TEXT_0.30.1.md): viaje, despliegue, equipo, movimientos y tienda; controles y reglas tácticas en ayuda opcional. Mantiene datos de decisión, objetivos y consecuencias. Presentación solamente, misma campaña22/combate19 y guardados. Sin publicación pública.

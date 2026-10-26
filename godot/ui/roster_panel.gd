@@ -30,7 +30,7 @@ func render(app: Control, parent: VBoxContainer) -> void:
 	heading.tooltip_text = "Seis plazas, incluidos debilitados. PC sin límite y cambios gratuitos fuera del combate. Perder un combate termina la campaña aunque queden reservas vivas."
 	parent.add_child(heading)
 	if collection.is_empty():
-		parent.add_child(app._label("PC vacío. Las capturas que superen las seis\nplazas se enviarán aquí automáticamente." if original.is_empty() else "Sin coincidencias; los compañeros del PC se conservan. Limpia los filtros para verlos.",17,app.MUTED))
+		parent.add_child(app._label("PC vacío." if original.is_empty() else "Sin coincidencias.",17,app.MUTED))
 		if original.is_empty(): app.selected_member = -1
 		else: parent.add_child(app._button("Mostrar todos",func(): filters.clear(); app._refresh()))
 		return
@@ -88,7 +88,7 @@ func render(app: Control, parent: VBoxContainer) -> void:
 		app.travel_buttons.pc_previous = previous
 		app.travel_buttons.pc_next = next
 	if not collection.any(func(m):return m.id==app.selected_member):
-		parent.add_child(app._label("Tu selección no aparece con estos filtros. Elige otro Pokémon o limpia los filtros.",17))
+		parent.add_child(app._label("Sin selección. Revisa los filtros.",17))
 		return
 	var selected: Dictionary = app.campaign.target(run,app.selected_member)
 	var allowed: bool = run.phase in ["map","shop","complete"]
@@ -102,7 +102,7 @@ func render(app: Control, parent: VBoxContainer) -> void:
 		var deposit: Button = app._travel_button("deposit","Guardar en el PC",parent,{"kind":"deposit","member":selected.id})
 		deposit.theme_type_variation = "ToolButton"
 		deposit.disabled = not allowed or (selected.hp>0 and run.party.filter(func(m):return m.hp>0).size()==1)
-		deposit.tooltip_text = "Gratis. Conserva PS, nivel, EXP, movimientos, rasgos y objeto equipado. Deja al menos un compañero en pie."
+		deposit.tooltip_text = "Sin curación. Deja un aliado en pie."
 	else:
 		var withdraw: Button = app._travel_button("withdraw","Añadir al equipo · %d/6 plazas" % run.party.size(),parent,{"kind":"withdraw","member":selected.id})
 		withdraw.disabled = not allowed or run.party.size()>=6
@@ -120,7 +120,7 @@ func render(app: Control, parent: VBoxContainer) -> void:
 		parent.add_child(swap)
 		app.travel_buttons.swap = swap
 		swap.disabled = not allowed or (selected.hp<=0 and outgoing.hp>0 and run.party.filter(func(m):return m.hp>0).size()==1)
-		swap.tooltip_text = "Intercambio directo: conserva la posición del equipo y todos los datos de ambos Pokémon. Sin curación ni coste."
+		swap.tooltip_text = "Cambio gratuito, sin curación."
 		app.travel_buttons.swap_choice = choices
 		if withdraw.disabled: parent.add_child(app._label("Retirada bloqueada: equipo lleno o fase sin cambios." ,16))
 		if swap.disabled: parent.add_child(app._label("Intercambio bloqueado: conserva al menos un activo en pie y cambia fuera de combate.",16))

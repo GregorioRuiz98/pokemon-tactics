@@ -205,3 +205,7 @@ Balance actual aceptado por el usuario; no rebalanceo general. Abandonar present
 ## Kanto0.30 — implementación autorizada
 
 El26 de octubre el usuario autoriza implementar mapas, identidad y finales consecutivos. Sustituye el límite anterior de solo diseñar/no iniciar30–34. Entrega0.30.0: campaña22/capítulo26, motor numérico de combate19 conservado. Nuevos kanto_journey, landscape_battle, kanto_landscape y kanto_campaign_store; no modificar motores/datos publicados para alterar sus resultados. Actualización explícita12–21→22 entre encuentros con copia/diario mixto. Guardados en combate conservan su mapa. Finales: Liga/rival → aves → tienda → Mew/Mewtwo; victorias anteriores no se borran ni se inventan. KT30 nuevo; KT25 abre21. Sin roles en UI; cuatro técnicas+básico, filtros/MT conservados.58 localizaciones/116 diseños, Safari narrativo, arte local cacheado y sin red. Ver ../docs/SPRINT_30_KANTO.md. Balance numérico aceptado; geometría puede cambiar dificultad. No afirmar campaña completa humana por galerías o fixtures de jefes. Publicación pública y delegación no autorizadas; commit/push privado al cerrar sí.
+
+## Textos0.30.1
+
+Presentación únicamente: concise_copy resume destinos/objetivos y reglas tácticas opcionales; move_info conserva cifras y efectos/duraciones. Evitar repetir explicaciones básicas en cada ficha. No alterar reglas/RNG/guardados ni borrar avisos relevantes. QA copy503 y Kanto428, fuente/EXE; evidencia sprint-30-ui-1. Ver ../docs/FIX_TEXT_0.30.1.md.

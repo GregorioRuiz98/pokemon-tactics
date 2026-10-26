@@ -103,7 +103,7 @@ func refresh(app: Control) -> void:
 		start_button.text = app.input_profile.shortcut("Comenzar","deploy_start")
 		app.board.available = {}
 		for point: Dictionary in app.state.arena.deployment: app.board.available[app.rules.Movement.key(point)] = {"path":[point],"cost":0}
-		app.hint.text = "Arrastra aliados o elige aliado y casilla. Intercambia posiciones sin coste.\n"+app.state.arena.description
+		app.hint.text = "Despliega en las casillas verdes.\n"+preload("res://ui/concise_copy.gd").objective(app.state)
 	else:
 		var mission: Dictionary = app.state.get("mission",{})
 		if mission.get("kind","defeat")!="defeat": app.heading.text += " · "+{"secure":"Terminales %d/%d" % [mission.captured.size(),mission.points.size()],"protect":"Fuji %d · hasta ronda %d" % [mission.health,mission.untilRound],"escape":"Alcanza las salidas"}.get(mission.kind,"")

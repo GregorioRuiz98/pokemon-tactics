@@ -1,6 +1,7 @@
 extends RefCounted
 
 static func glossary(edition: int) -> String:
+	if edition>=21: return preload("res://ui/concise_copy.gd").tactical_rules(edition)
 	var text: String = "TU TURNO\nUn movimiento y una acción, en cualquier orden. Puedes atravesar aliados, pero no terminar sobre ellos.\n\nRectificar devuelve solo el movimiento, mientras no hayas actuado ni terminado el turno. No recupera PS ni recursos.\n\nPT son puntos tácticos: el recurso de tus movimientos. No son dinero ni los PP de los juegos originales. El básico cuesta 0 PT, no tiene tipo ni STAB. Puedes preparar otros cuatro movimientos fuera de combate.\n\nPOTENCIA Y DAÑO\nLa potencia es la fuerza base del movimiento. La previsión muestra el daño en PS contra el objetivo, aplicando estadísticas, tipos, STAB y efectos."
 	if edition>=6:
 		text += "\n\nDe frente se usa la mitad baja del daño normal; de costado, la alta; por la espalda, el máximo y una etapa crítica adicional. El lado no modifica la precisión.\n\nEstados y cambios de estadísticas caducan por activaciones del afectado. La parálisis reduce a la mitad el desplazamiento."

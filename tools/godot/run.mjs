@@ -104,7 +104,13 @@ if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-expo
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'test-kanto') {
+if(operation === 'qa-copy' || operation === 'qa-copy-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'copy-'+(exported?'release':'source'));
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--copy-qa-dir='+directory],'copy-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'copy-ui-result.json'),'utf8'));
+  if(report.failures.length || report.assertions<250) throw new Error('Player copy UI failed.');
+} else if(operation === 'test-kanto') {
   verify();
   run(binary,['--headless',...common,'--script','res://tests/kanto_landscapes.gd','--','--save-dir='+work],'kanto-core');
 } else if(operation === 'qa-kanto' || operation === 'qa-kanto-export') {

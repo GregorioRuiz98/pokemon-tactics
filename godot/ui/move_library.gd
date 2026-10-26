@@ -27,7 +27,7 @@ func render(app: Control, parent: VBoxContainer, member: Dictionary) -> void:
 		slot.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		slot.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		slot.disabled = index>member.moves.size()
-		slot.tooltip_text = "Rellena primero la primera ranura vacía; las ranuras preparadas son consecutivas."
+		slot.tooltip_text = "Elige una ranura para cambiarla."
 		slot.toggle_mode = true
 		slot.button_pressed = selected_slot==index
 		slots.add_child(slot)
@@ -92,7 +92,7 @@ func render(app: Control, parent: VBoxContainer, member: Dictionary) -> void:
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		parent.add_child(button)
 		app.travel_buttons["move_"+id] = button
-	parent.add_child(app._label("%d movimientos conocidos. Elige una ranura y un movimiento para prepararlo gratis." % count,16))
+	parent.add_child(app._label("%d movimientos conocidos." % count,16))
 
 func render_proposals(app: Control, parent: VBoxContainer, member: Dictionary) -> void:
 	var suggestions: Array = [Tactics.propose(app.campaign.progression,member,0),Tactics.propose(app.campaign.progression,member,1)]
@@ -123,7 +123,7 @@ func choose(app: Control, member: Dictionary, id: String) -> void:
 		app._review_text("Preparación no disponible","Solo fuera de combate y con un compañero en pie.")
 		return
 	if id in member.moves:
-		app._review_text("Ya preparado",definition.name+" ya ocupa una ranura; no se puede duplicar.")
+		app._review_text("Ya preparado",definition.name+" ya está preparado.")
 		return
 	var moves: Array = member.moves.duplicate()
 	if selected_slot<moves.size(): moves[selected_slot] = id

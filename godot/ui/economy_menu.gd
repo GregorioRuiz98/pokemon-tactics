@@ -13,7 +13,7 @@ static func training(app: Control, parent: VBoxContainer, member: Dictionary, ke
 	var button: Button = app._button("Completar nivel · %d ₽" % quote.price,review_training.bind(app,int(member.id)))
 	button.disabled = app.run.money<quote.price
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	button.tooltip_text = "%d EXP por pokédolar. Se compra solo lo que falta para este nivel; respeta el límite del próximo gimnasio." % quote.rate
+	button.tooltip_text = "%d EXP por pokédolar. Hasta el límite del gimnasio." % quote.rate
 	if quote.has("discount"):
 		button.text += " · recuperación −%d %%" % quote.discount
 		button.tooltip_text = "Tarifa de recuperación: −%d %%. Completa los %d EXP pendientes por %d ₽. Descuento por estar al menos tres niveles por debajo de la media del equipo; conserva el límite del gimnasio." % [quote.discount,quote.points,quote.price]
@@ -26,7 +26,7 @@ static func review_training(app: Control, identity: int) -> void:
 	if not quote.ok: return
 	app._review_dialog()
 	var command: Dictionary = {"kind":"train-xp","member":identity,"price":quote.price,"points":quote.points,"at":app.run.revision}
-	app.action_review.review("Completar nivel",app.rules.profiles[int(member.speciesId)].data.name+" · Nv. %d → %d\n%d EXP pendientes · %d ₽\nSaldo: %d → %d ₽\nRecupera únicamente el aumento de PS máximos." % [member.level,member.level+1,quote.points,quote.price,app.run.money,app.run.money-quote.price],func():app._event(command))
+	app.action_review.review("Completar nivel",app.rules.profiles[int(member.speciesId)].data.name+" · Nv. %d → %d\n%d EXP pendientes · %d ₽\nSaldo: %d → %d ₽\nRecupera el aumento de PS máximos." % [member.level,member.level+1,quote.points,quote.price,app.run.money,app.run.money-quote.price],func():app._event(command))
 
 static func shop(app: Control, parent: VBoxContainer) -> void:
 	var picker: OptionButton = OptionButton.new()
@@ -47,7 +47,7 @@ static func evolutions(app: Control, parent: VBoxContainer, member: Dictionary) 
 		var name_text: String = app.rules.profiles[species_id].data.name
 		var button: Button = app._button("Evolucionar a %s · Nv. %d · gratis" % [name_text,minimum],review_evolution.bind(app,int(member.id),species_id))
 		button.disabled = member.hp<=0 or member.level<minimum or app.run.phase not in ["map","shop","complete"]
-		button.tooltip_text = "Decisión permanente. Conserva PS actuales, EXP y objeto. No requiere piedra ni intercambio."
+		button.tooltip_text = "Evolución permanente. Conserva PS actuales, EXP y objeto."
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		parent.add_child(button)
 		app.travel_buttons["evolution_"+str(species_id)] = button
@@ -55,7 +55,7 @@ static func evolutions(app: Control, parent: VBoxContainer, member: Dictionary) 
 static func review_evolution(app: Control, identity: int, species_id: int) -> void:
 	app._review_dialog()
 	var command: Dictionary = {"kind":"evolve-free","member":identity,"species":species_id,"at":app.run.revision}
-	app.action_review.review("Elegir evolución",app._member_summary(identity)+"\n\nEvolucionará a "+app.rules.profiles[species_id].data.name+". Gratis; conserva sus PS actuales. Esta elección es permanente.",func():app._event(command))
+	app.action_review.review("Elegir evolución",app._member_summary(identity)+"\n\nEvolucionará a "+app.rules.profiles[species_id].data.name+". Gratis. Elección permanente; PS actuales conservados.",func():app._event(command))
 
 static func capture(app: Control, parent: VBoxContainer) -> void:
 	if app.campaign.capture_options(app.run).is_empty(): return
@@ -63,7 +63,7 @@ static func capture(app: Control, parent: VBoxContainer) -> void:
 	var button: Button = app._button("Otro Pokémon de la zona · %d ₽" % price,review_capture.bind(app))
 	button.disabled = app.run.money<price
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	button.tooltip_text = "Sustituye la oferta actual por otra especie local, al mismo nivel. Cada intento cuesta 60 ₽ más. Aceptar la captura cierra el sorteo."
+	button.tooltip_text = "Otra especie local al mismo nivel. Siguiente intento: +60 ₽."
 	parent.add_child(button)
 	app.travel_buttons.reroll_capture = button
 
@@ -71,4 +71,4 @@ static func review_capture(app: Control) -> void:
 	app._review_dialog()
 	var price: int = app.campaign.capture_price(app.run)
 	var command: Dictionary = {"kind":"reroll-capture","at":app.run.revision}
-	app.action_review.review("Repetir sorteo local","Sustituirá la oferta actual por otra especie de la zona.\nCoste: %d ₽ · saldo restante: %d ₽\nMismo nivel; el precio siguiente será %d ₽.\nEl resultado se guarda al confirmar." % [price,app.run.money-price,price+60],func():app._event(command))
+	app.action_review.review("Repetir sorteo local","Sustituirá la oferta actual por otra especie de la zona.\nCoste: %d ₽ · saldo restante: %d ₽\nMismo nivel; el precio siguiente será %d ₽.\nNo se puede deshacer." % [price,app.run.money-price,price+60],func():app._event(command))

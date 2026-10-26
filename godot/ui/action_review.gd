@@ -25,7 +25,7 @@ func setup(owner_app: Control) -> void:
 	column.add_child(content)
 	diagram = preload("res://ui/move_diagram.gd").new()
 	column.add_child(diagram)
-	diagram_caption = app._label("Ejemplo en suelo libre: U = usuario; X = efecto. Al apuntar verás el área real.",16)
+	diagram_caption = app._label("U: usuario · X: efecto",16)
 	column.add_child(diagram_caption)
 	confirmed.connect(func():
 		hide()

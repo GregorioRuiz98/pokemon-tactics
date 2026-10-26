@@ -46,12 +46,12 @@ func setup(owner_app: Control) -> void:
 	title.add_theme_constant_override("shadow_offset_x",3)
 	title.add_theme_constant_override("shadow_offset_y",3)
 	left.add_child(title)
-	caption = app._label("Tu equipo. Tu estrategia.\nUn viaje desde Pueblo Paleta hasta la Liga.",19,Color("b9ccd0"))
+	caption = app._label("Una aventura táctica por Kanto.",19,Color("b9ccd0"))
 	left.add_child(caption)
 	var space: Control = Control.new()
 	space.custom_minimum_size.y = 12
 	left.add_child(space)
-	for entry: Array in [["continue","Continuar aventura",app._resume_title],["new","Nueva aventura",app._new_from_title],["practice","Aprender a jugar",app._start_practice],["trainer","Perfil de entrenador",func():app.trainer.open(app)]]:
+	for entry: Array in [["continue","Continuar aventura",app._resume_title],["new","Nueva aventura",app._new_from_title],["practice","Práctica táctica",app._start_practice],["trainer","Perfil de entrenador",func():app.trainer.open(app)]]:
 		var button: Button = app._button(entry[1],entry[2])
 		button.theme_type_variation = "CommandButton"
 		button.add_theme_font_size_override("font_size",22)
@@ -63,7 +63,7 @@ func setup(owner_app: Control) -> void:
 	var tools: HBoxContainer = HBoxContainer.new()
 	tools.add_theme_constant_override("separation",8)
 	left.add_child(tools)
-	for entry: Array in [["help","Cómo jugar",func(): app.help_dialog.popup_centered(Vector2i(630,450))],["options","Opciones",app._title_options],["credits","Créditos",func(): app.credits_dialog.popup_centered(Vector2i(720,550))]]:
+	for entry: Array in [["help","Controles",func(): app.help_dialog.popup_centered(Vector2i(630,450))],["options","Opciones",app._title_options],["credits","Créditos",func(): app.credits_dialog.popup_centered(Vector2i(720,550))]]:
 		var button: Button = app._button(entry[1],entry[2])
 		button.theme_type_variation = "ToolButton"
 		button.add_theme_font_size_override("font_size",16)
@@ -97,7 +97,7 @@ func refresh() -> void:
 	controls["continue"].text = "Continuar aventura" if available else "Sin partida guardada"
 	controls["continue"].tooltip_text = "Recupera tu equipo y tu progreso." if available else "Elige Nueva aventura para visitar a Oak."
 	notice.text = app.save_warning
-	caption.text = "Tu equipo. Tu estrategia.\nUn viaje desde Pueblo Paleta hasta la Liga."
+	caption.text = "Una aventura táctica por Kanto."
 	if not app.run.is_empty():
 		caption.text = "%s · %s · %d medallas\n%d / %d en pie · %s\nSiguiente: %s" % [app.campaign.locations[int(app.run.stage)].name,{"map":"Mapa","battle":"Combate","shop":"Tienda","capture":"Recompensa","complete":"Recorrido completo","ending":"Final","defeat":"Derrota"}.get(app.run.phase,"Aventura"),app.run.get("medals",[]).size(),app.run.party.filter(func(m):return m.hp>0).size(),app.run.party.size(),("límite Nv. %d" % app.campaign.level_cap(app.run) if app.campaign.has_method("level_cap") else "sin límite por gimnasio"),{"map":"elegir el próximo encuentro","battle":"continuar el combate","shop":"preparar el equipo","capture":"recibir tu Pokémon","ending":"aventura completada"}.get(app.run.phase,"consultar tu equipo")]
 	if app.title_loading: return

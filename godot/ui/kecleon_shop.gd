@@ -51,7 +51,7 @@ func render(app: Control, parent: VBoxContainer) -> void:
 	if not app.message.is_empty(): body.add_child(app._label(app.message,17,app.GOLD))
 	match app.shop_tab:
 		"evolution":
-			body.add_child(app._label("Completa la EXP pendiente de tu Pokémon.",18,app.GOLD))
+			body.add_child(app._label("Entrenamiento",18,app.GOLD))
 			preload("res://ui/economy_menu.gd").shop(app,body)
 		"supplies": medicines(app,body)
 		"traits":
@@ -66,7 +66,7 @@ func render(app: Control, parent: VBoxContainer) -> void:
 
 func offers(app: Control, parent: VBoxContainer) -> void:
 	var heading: HBoxContainer = HBoxContainer.new(); parent.add_child(heading)
-	var title: Label = app._label("OFERTAS DEL MOSTRADOR",19,app.GOLD); title.size_flags_horizontal = Control.SIZE_EXPAND_FILL; heading.add_child(title)
+	var title: Label = app._label("OFERTAS",19,app.GOLD); title.size_flags_horizontal = Control.SIZE_EXPAND_FILL; heading.add_child(title)
 	var cost: int = app.campaign.reroll_price(app.run)
 	var renew: Button = app._travel_button("reroll","Renovar · %d ₽" % cost,heading,{"kind":"reroll"})
 	renew.theme_type_variation = "ToolButton"; renew.disabled = app.run.money<cost
@@ -133,7 +133,7 @@ func medicines(app: Control, parent: VBoxContainer) -> void:
 		var item: Dictionary = app.campaign.consumables[key]
 		var buy: Button = app._travel_button("buy_"+key,"%s · %d ₽\nTienes: %d" % [item.name,item.price,app.run.bag.get(key,0)],grid,{"kind":"buy","item":key})
 		buy.size_flags_horizontal = Control.SIZE_EXPAND_FILL; app._item_picture(buy,key); buy.disabled = app.run.money<item.price
-		buy.tooltip_text = "Recupera la mitad de los PS máximos de un debilitado. Solo se usa en la tienda." if key=="revive" else "Se compra para la bolsa. Úsalo desde Equipo, fuera de combate."
+		buy.tooltip_text = "Revivir · 50 % de PS · solo en tienda." if key=="revive" else "Uso fuera de combate."
 	var batch: Button = app._button("Comprar varias…",app._open_batch); parent.add_child(batch); app.travel_buttons.batch = batch
 
 func present(app: Control, command: Dictionary) -> void:

@@ -1,4 +1,6 @@
-# Pokémon Tactics — Kanto Windows 0.30.0
+# Pokémon Tactics — Kanto Windows 0.30.1
+
+**0.30.1:** textos resumidos en viaje, combate, equipo y tienda. Conserva cifras, objetivos, costes y consecuencias; controles y reglas tácticas disponibles en la ayuda. [Cambios y comprobaciones](../docs/FIX_TEXT_0.30.1.md). Mismos guardados y balance.
 
 **0.30.0:**58 escenarios con geometría propia, recursos temáticos y alturas; sin roles predefinidos. Liga y rival → tres aves → tienda → Mew/Mewtwo. Campaña22/combate19; se conservan las cifras y las partidas anteriores. [Entrega y comprobaciones](../docs/SPRINT_30_KANTO.md).
 
