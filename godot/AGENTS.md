@@ -213,3 +213,7 @@ Presentación únicamente: concise_copy resume destinos/objetivos y reglas táct
 ## PP0.31.0
 
 Nuevos módulos power_* y restorative_tiles; edición23/capítulo27/combate20, sin modificar motores publicados. PP solo equipamiento (10–20, costes1–5), iguales para ambos equipos; MT/niveles/evoluciones respetan presupuesto. Mantener consultas puras, RNG/guardado antes de animar y replay mixto. Estados temporales, atributos/Foco Energía hasta fin de combate; manantiales sin PS para ambos bandos al terminar turno. Presión sin efecto, visible. QA power y copy fuente/EXE. Ver ../docs/SPRINT_31_POWER.md.
+
+## Sueño0.31.1
+
+SleepBattle añade bloqueo puro de rutas/comando dormido; no alterar PowerBattle publicado. SleepRun24 permite transición23 en combate, conserva estado y reinicia solo el historial local de Rectificar con un checkpoint; diario completo intacto. Carga23 actualiza con copia automáticamente; QA histórica power usa --compat-power. KT31S nuevo; sin cambios a otros estados/PP/mapas. Ver ../docs/FIX_SLEEP_0.31.1.md.

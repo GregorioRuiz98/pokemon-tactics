@@ -1,0 +1,13 @@
+{
+  "assertions": 233,
+  "campaignEdition": 23,
+  "failures": [],
+  "screenshots": [
+    "equipment.png",
+    "equipment-150.png",
+    "restorative-tiles.png",
+    "combat.png",
+    "kecleon.png"
+  ],
+  "stateHash": "fbd98454ad231693608042ec8fbdab92c8f5178b59e9e34bfb93a979c7a02d42"
+}

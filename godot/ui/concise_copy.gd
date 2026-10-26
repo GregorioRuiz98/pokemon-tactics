@@ -32,4 +32,5 @@ static func tactical_rules(edition: int) -> String:
 		text = text.replace("Cuatro movimientos + básico neutro de 0 PT.","Cuatro movimientos, limitados por PP al equipar, + básico gratuito. Usarlos no gasta puntos.")
 		text = text.replace("Estados y atributos temporales.","Estados temporales; atributos durante el combate.")
 		text += "\nManantial: cura estados y confusión al terminar el turno; ambos bandos, sin curar PS."
+	if edition>=24: text += "\nSueño: no puedes moverte ni actuar; termina el turno para despertar cuando expire."
 	return text

@@ -19,7 +19,9 @@ CONFIG = {
 }[CHAPTER]
 if VERSION == '0.30.1':
     CONFIG = {'baseline':'8175544ee876251596cdb356d1bb4d20fe42fc1a','report':'FIX_TEXT_0.30.1.md','ui':{'copy':503,'kanto':428},'core':{},'edition':22}
-QA_LABEL = '30-ui-1' if VERSION == '0.30.1' else str(CHAPTER)
+if VERSION == '0.31.1':
+    CONFIG = {'baseline':'e8eb2a8493e1f3e99e8f1f77038821c8fc89f105','report':'FIX_SLEEP_0.31.1.md','ui':{'sleep':15,'power':233},'core':{'sleep':35},'edition':24}
+QA_LABEL = '31-ui-1' if VERSION == '0.31.1' else '30-ui-1' if VERSION == '0.30.1' else str(CHAPTER)
 WORK = (ROOT/f'../../work/qa-sprint-{QA_LABEL}').resolve()
 RELEASE = (ROOT/f'../releases/pokemon-tactics-{VERSION}').resolve()
 BUNDLE = RELEASE/'windows'
@@ -85,6 +87,8 @@ def main():
             shutil.copy2(WORK/name, docs/name)
             shutil.copy2(WORK/name, EVIDENCE/name)
     verification = {'version': VERSION, 'baseline': CONFIG['baseline'], 'publishedFilesUnchanged': protected, 'campaignEdition': CONFIG['edition'], 'errors': 0, 'warnings': 65, 'newWarnings': 0, 'coreChecks': core, 'uiChecksPerBuild': counts, 'sourceAndExeStateMatch': True, 'publicDeployment': False, 'fullCampaignPlayed': False}
+    if VERSION == '0.31.1':
+        verification['sleepCorrection'] = 'Sleeping blocks movement routes and commands; old edition23 loads with backup and mixed replay.'
     for path in [EVIDENCE/'verification.json', docs/f'QA_0.{CHAPTER}.json']:
         path.write_text(json.dumps(verification, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     readme = (ROOT/'../releases/pokemon-tactics-0.26.0/windows/LEEME.txt').read_text(encoding='utf-8')
@@ -95,14 +99,17 @@ def main():
         readme += '\nEquipo → Movimientos: consulta propuestas de rol, compáralas y confirma para preparar hasta cuatro técnicas aprendidas. El básico neutro permanece. Filtra áreas, zonas, desplazamientos y apoyos; Herramientas del equipo resume tus opciones. Las MT indican qué función añaden.\n'
     if CHAPTER >= 31:
         readme += '\nPP de equipamiento: capacidad10 desde el inicio, +1 por cada5 niveles desde Nv.5, máximo20. Hasta cuatro técnicas y básico gratuito. Se paga presupuesto al preparar; no se gastan puntos en combate. Estados temporales, atributos hasta finalizar el combate. Manantiales: curan estados y confusión al terminar el turno encima, para ambos bandos, sin curar PS.\nLa actualización es voluntaria entre encuentros con copia. Todos los movimientos aprendidos se conservan; si exceden PP, se desequipan los que no caben, respetando el orden de ranuras. Presión no tiene efecto en esta edición. Códigos nuevos KT31.\n'
-        shutil.copy2(WORK/'power-prices.csv',docs/'PP_MOVIMIENTOS.csv')
-        shutil.copy2(WORK/'power-prices.csv',EVIDENCE/'power-prices.csv')
+        price_source = WORK/'power-prices.csv' if (WORK/'power-prices.csv').exists() else (ROOT/'docs/qa/sprint-31/power-prices.csv')
+        shutil.copy2(price_source,docs/'PP_MOVIMIENTOS.csv')
+        shutil.copy2(price_source,EVIDENCE/'power-prices.csv')
     if CHAPTER >= 30:
         readme = readme.replace('0.26.0',VERSION)
         readme += '\nKanto:58 lugares con geometría propia en16/24 casillas, alturas y obstáculos temáticos. La maleza es transitable; árboles, rocas y muebles sólidos bloquean movimiento y visión. Las copas se atenúan ante unidades y cursor.\nLiga y rival → tres aves juntas → tienda → Mew y Mewtwo. No hay captura legendaria. La actualización es voluntaria entre encuentros, con copia; conserva victorias previas y permite completar el desafío que falte.\nSin roles predefinidos: combina cuatro técnicas aprendidas más básico neutro. Filtros, potencia, diagramas, compatibilidad de MT y herramientas del equipo se conservan. Los valores de combate/EXP/precios no han cambiado. Códigos nuevos KT30; KT25 conserva sus reglas históricas.\n'
         shutil.copy2(ROOT/'docs/reports/kanto-0.30/mapas.csv',docs/'MAPAS_KANTO.csv')
     if CHAPTER >= 31:
         readme = readme.replace('Los valores de combate/EXP/precios no han cambiado.', 'Se conservan potencia, estadísticas, EXP, precios y recompensas. La disponibilidad de acciones cambia con los PP.')
+    if VERSION == '0.31.1':
+        readme += '\nCorrección del sueño: un Pokémon dormido no se mueve ni actúa. Puedes orientar y terminar para que caduque el estado; al despertar recupera movimiento. Al cargar0.31.0 se aplica la corrección automáticamente, con copia y conservando combate/PS/RNG. Rectificar empieza desde ese punto. Nuevos códigos KT31S.\n'
     (BUNDLE/'LEEME.txt').write_text(readme, encoding='utf-8')
     archive = RELEASE/f'pokemon-tactics-{VERSION}-windows.zip'
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as package:

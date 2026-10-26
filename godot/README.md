@@ -1,4 +1,6 @@
-# Pokémon Tactics — Kanto Windows 0.31.0
+# Pokémon Tactics — Kanto Windows 0.31.1
+
+**0.31.1:** dormir bloquea movimiento y acción; al despertar vuelven las rutas. [Corrección y pruebas](../docs/FIX_SLEEP_0.31.1.md). Cargar0.31.0 aplica el arreglo con copia, incluso en combate.
 
 **0.31.0:** PP al equipar, capacidad10–20 por nivel y técnicas de1–5 PP. Usarlas no gasta puntos. Atributos durante el combate y estados temporales; manantiales para curarlos. [Cambios, costes y comprobaciones](../docs/SPRINT_31_POWER.md). Partidas anteriores conservan reglas hasta actualizar entre encuentros, con copia.
 

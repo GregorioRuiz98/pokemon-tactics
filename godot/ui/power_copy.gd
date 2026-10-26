@@ -6,6 +6,7 @@ static func refresh_battle(app: Control) -> void:
 	if app.state.get("deployment",false):
 		var selected: Dictionary = app.rules.unit_by_id(app.state,int(app.adventure.selected))
 		if not selected.is_empty(): unit = selected
+	if app.state.get("combatEdition",0)>=21 and preload("res://core/sleep_battle.gd").asleep(unit): app.actor_info.text = app.actor_info.text.replace("Mov. %d" % unit.remaining,"Dormido")
 	app.actor_tp.hide()
 	app.actor_info.text = app.actor_info.text.replace("%d / %d PT\n" % [unit.tp,unit.maxTp],"")
 	app.actor_info.tooltip_text = "PP equipados: %d / %d · sin gasto al actuar" % [unit.ppUsed,unit.ppCapacity]

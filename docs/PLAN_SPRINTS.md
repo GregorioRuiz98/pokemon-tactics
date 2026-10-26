@@ -547,3 +547,7 @@ La petición posterior «implementa los cambios a los mapas y el resto de cambio
 ## Entrega0.31 — PP de equipamiento
 
 Cambio autorizado: sustituir gasto durante el combate por presupuesto al preparar, creciente con nivel. Se descarta el presupuesto inicial4–8; primera tabla1–5 por técnica con capacidad10–20. Atributos durante el combate, estados temporales y manantiales compartidos. Actualización voluntaria con copia, nueva edición23. [Informe y tabla](SPRINT_31_POWER.md). Pruebas humanas de equilibrio y publicación pública siguen pendientes.
+
+## Corrección0.31.1
+
+[Movimiento durante el sueño](FIX_SLEEP_0.31.1.md): rutas y comandos bloqueados, despertar restituye movimiento, IA termina. Actualización con copia al cargar0.31.0, incluso en combate; no reiniciar campaña. Reglas y recursos anteriores conservados.
