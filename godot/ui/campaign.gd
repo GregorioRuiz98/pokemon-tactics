@@ -18,6 +18,8 @@ var playthrough_qa_dir: String = ""
 var review_journal_path: String = ""
 var portable_smoke_path: String = ""
 var review_qa_dir: String = ""
+var briefing_qa_dir: String = ""
+var encounter_preview: RefCounted = preload("res://ui/encounter_preview.gd").new()
 var climate_qa_dir: String = ""
 var trainer: RefCounted = preload("res://ui/trainer_session.gd").new()
 var trainer_qa_dir: String = ""
@@ -157,6 +159,7 @@ func _ready() -> void:
 	accessible_view.update()
 	_input_labels()
 	adventure.setup(self)
+	encounter_preview.setup(self)
 	adventure.refresh(self)
 
 func _input_labels() -> void:
@@ -193,6 +196,7 @@ func _boot() -> void:
 		if argument.begins_with("--review-journal="): review_journal_path = argument.trim_prefix("--review-journal=")
 		if argument.begins_with("--smoke-report="): portable_smoke_path = argument.trim_prefix("--smoke-report=")
 		if argument.begins_with("--review-qa-dir="): review_qa_dir = argument.trim_prefix("--review-qa-dir=")
+		if argument.begins_with("--briefing-qa-dir="): briefing_qa_dir = argument.trim_prefix("--briefing-qa-dir=")
 		if argument.begins_with("--climate-qa-dir="): climate_qa_dir = argument.trim_prefix("--climate-qa-dir=")
 		if argument.begins_with("--symbols-qa-dir="): symbols_qa_dir = argument.trim_prefix("--symbols-qa-dir=")
 		if argument.begins_with("--sleep-qa-dir="): sleep_qa_dir = argument.trim_prefix("--sleep-qa-dir=")
@@ -243,6 +247,7 @@ func _boot() -> void:
 	if not symbols_qa_dir.is_empty(): test_dir = symbols_qa_dir
 	if not climate_qa_dir.is_empty(): test_dir = climate_qa_dir
 	if not review_qa_dir.is_empty(): test_dir = review_qa_dir
+	if not briefing_qa_dir.is_empty(): test_dir = briefing_qa_dir
 	if not playthrough_qa_dir.is_empty(): test_dir = playthrough_qa_dir
 	if not portable_smoke_path.is_empty(): test_dir = portable_smoke_path.get_base_dir().path_join("diagnostic-profile")
 	qa_running = not test_dir.is_empty()
@@ -281,6 +286,7 @@ func _boot() -> void:
 	title_screen.hide()
 	if not portable_smoke_path.is_empty(): _open_title(); call_deferred("_run_portable_smoke")
 	elif not playthrough_qa_dir.is_empty(): _open_title(); call_deferred("_run_playthrough_qa")
+	elif not briefing_qa_dir.is_empty(): _open_title(); call_deferred("_run_briefing_qa")
 	elif not review_qa_dir.is_empty(): _open_title(); call_deferred("_run_review_qa")
 	elif not climate_qa_dir.is_empty(): _open_title(); call_deferred("_run_climate_qa")
 	elif not symbols_qa_dir.is_empty(): _open_title(); call_deferred("_run_symbols_qa")
@@ -513,6 +519,9 @@ func _run_playthrough_qa() -> void:
 func _run_review_qa() -> void:
 	await load("res://ui/qa_review.gd").new().run(self,review_qa_dir)
 
+func _run_briefing_qa() -> void:
+	await load("res://ui/qa_briefing.gd").new().run(self,briefing_qa_dir)
+
 func _run_climate_qa() -> void:
 	await load("res://ui/qa_climate.gd").new().run(self,climate_qa_dir)
 
@@ -579,6 +588,7 @@ func _menu_selected(identity: int) -> void:
 		_: super._menu_selected(identity)
 
 func _modal_open() -> bool:
+	if encounter_preview.dialog!=null and encounter_preview.dialog.visible: return true
 	if trainer.dialog!=null and trainer.dialog.visible: return true
 	if action_review!=null and action_review.visible: return true
 	if batch_busy or (shop_batch!=null and shop_batch.visible): return true
@@ -805,6 +815,7 @@ func _refresh() -> void:
 	adventure.refresh(self)
 	if fighting and run.get("edition",0)>=25: preload("res://ui/climate_hud.gd").refresh(self)
 	if state.get("combatEdition",0)>=20: preload("res://ui/power_copy.gd").refresh_battle(self)
+	encounter_preview.refresh(self)
 	if adventure.enabled(self) and run.phase!="battle" and not travel_buttons.has("share_journey"):
 		var share: Button = _button(input_profile.shortcut("Reto","share"),func():adventure.export_card(self))
 		share.theme_type_variation = "ToolButton"
@@ -841,6 +852,7 @@ func _layout_battle_hud() -> void:
 			var shortcut_action: String = {0:"zoom_out",1:"zoom_in",3:"center",5:"grid",6:"heights"}.get(index,"")
 			camera_button.tooltip_text = input_profile.shortcut(["Alejar","Acercar","Centrar combate","Centrar unidad","Vista completa","Cuadrícula","Alturas"][index],shortcut_action) if not shortcut_action.is_empty() else ["","","Centrar combate","","Vista completa","",""][index]
 			camera_button.custom_minimum_size.x = maxf(60,camera_button.text.length()*16*factor*0.6+36)
+		camera_bar.reset_size()
 	if camera_compass!=null: camera_compass.visible = false
 	command_panel.custom_minimum_size.x = 330 if narrow else 292
 	var camera_height: float = 3*maxf(44,theme.default_font.get_height(roundi(16*factor))+20)+4

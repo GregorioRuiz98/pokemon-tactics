@@ -1,4 +1,4 @@
-POKÉMON TACTICS — KANTO — 0.33.0
+POKÉMON TACTICS — KANTO — 0.33.1
 
 Abre PokemonTactics.exe. No requiere instalar Godot, servidor ni cuenta.
 Los recursos están integrados y el juego funciona sin conexión.
@@ -7,6 +7,9 @@ Oak: elige inicial y comienza. La semilla se genera automáticamente.
 Tablero: clic o flechas/Enter. A: técnicas. R: rectificar solo movimiento
 antes de actuar. F: orientar y terminar. Escape: cancelar. F2: controles.
 F6: cambiar panel. C: centrar unidad. Rueda o +/-: zoom.
+
+Antes de empezar cada combate, consulta el equipo rival en las tarjetas
+inferiores. Clic o Tab/Enter abre su ficha; Escape vuelve. B: comenzar.
 
 Seis Pokémon y PC. Cuatro técnicas más básico neutro. Los PP se pagan
 al equipar; no se gastan al atacar. No hay límite de cinco curaciones.

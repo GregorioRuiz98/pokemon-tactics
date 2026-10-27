@@ -1,0 +1,17 @@
+{
+  "assertions": 270,
+  "campaignEdition": 24,
+  "failures": [],
+  "scope": "Natural opening, local icons, mouse/keyboard equipment and XP purchase/cancel/load; enlarged text, contrast and reduced motion screenshots.",
+  "screenshots": [
+    "moves-100.png",
+    "type-filter.png",
+    "moves-150.png",
+    "combat-symbols.png",
+    "shop-symbols.png",
+    "team-level-up.png",
+    "move-details.png",
+    "moves-1024-150-contrast.png"
+  ],
+  "stateHash": "57ea6a2dbe51b89ab48753530b344c6f3e10b76fd51c3d7e84a986379109e595"
+}

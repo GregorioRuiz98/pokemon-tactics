@@ -129,7 +129,9 @@
     "godot:qa:review": "node tools/godot/run.mjs qa-review",
     "godot:qa:review:export": "node tools/godot/run.mjs qa-review-export",
     "godot:qa:playthrough": "node tools/godot/run.mjs qa-playthrough",
-    "godot:qa:playthrough:export": "node tools/godot/run.mjs qa-playthrough-export"
+    "godot:qa:playthrough:export": "node tools/godot/run.mjs qa-playthrough-export",
+    "godot:qa:briefing": "node tools/godot/run.mjs qa-briefing",
+    "godot:qa:briefing:export": "node tools/godot/run.mjs qa-briefing-export"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

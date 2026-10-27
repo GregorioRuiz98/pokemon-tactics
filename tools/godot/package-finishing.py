@@ -25,7 +25,9 @@ if VERSION == '0.31.1':
     CONFIG = {'baseline':'e8eb2a8493e1f3e99e8f1f77038821c8fc89f105','report':'FIX_SLEEP_0.31.1.md','ui':{'sleep':15,'power':233},'core':{'sleep':35},'edition':24}
 if VERSION == '0.31.2':
     CONFIG = {'baseline':'958c720e8e6f2b55b6f1c9921af286c949362798','report':'UI_SYMBOLS_0.31.2.md','ui':{'symbols':270,'sleep':15,'power':233},'core':{},'edition':24}
-QA_LABEL = '31-ui-2' if VERSION == '0.31.2' else '31-ui-1' if VERSION == '0.31.1' else '30-ui-1' if VERSION == '0.30.1' else str(CHAPTER)
+if VERSION == '0.33.1':
+    CONFIG = {'baseline':'745552d96c424fbe8a5b0d4c8dbb652ae94d1744','report':'UI_BUTTONS_BRIEFING_0.33.1.md','ui':{'briefing':300,'review':46,'symbols':270},'core':{},'edition':26}
+QA_LABEL = '33-ui-1' if VERSION == '0.33.1' else '31-ui-2' if VERSION == '0.31.2' else '31-ui-1' if VERSION == '0.31.1' else '30-ui-1' if VERSION == '0.30.1' else str(CHAPTER)
 WORK = (ROOT/f'../../work/qa-sprint-{QA_LABEL}').resolve()
 RELEASE = (ROOT/f'../releases/pokemon-tactics-{VERSION}').resolve()
 BUNDLE = RELEASE/'windows'
@@ -93,7 +95,7 @@ def main():
             shutil.copy2(WORK/name, docs/name)
             shutil.copy2(WORK/name, EVIDENCE/name)
     verification = {'version': VERSION, 'baseline': CONFIG['baseline'], 'publishedFilesUnchanged': protected, 'campaignEdition': CONFIG['edition'], 'errors': 0, 'warnings': 65, 'newWarnings': 0, 'coreChecks': core, 'uiChecksPerBuild': counts, 'sourceAndExeStateMatch': True, 'publicDeployment': False, 'fullCampaignPlayed': False}
-    if CHAPTER == 33:
+    if VERSION == '0.33.0':
         campaign = read(WORK/'campaign-summary.json')
         assert campaign['completeAutomated'] and campaign['locations'] == 58 and not campaign['failures']
         verification.update({'fullCampaignPlayed':True,'fullCampaignMode':'Automated legal campaign and full native UI replay','humanPlaytest':False,'externalHardwareTest':False,'campaignOrders':campaign['orders'],'campaignLocations':58})
@@ -150,6 +152,9 @@ def main():
             prices += f'{identity},"{move["name"]}",2,0,U,0\n'
         for path in [docs/'PP_MOVIMIENTOS.csv',EVIDENCE/'power-prices.csv']: path.write_text(prices,encoding='utf-8')
     if CHAPTER == 33:
+        for name in ['REGLAS_ACTUALES.md','PLAYTEST_WINDOWS.md','SPRINT_32_CLIMATE.md']:
+            shutil.copy2(ROOT/'docs'/name,docs/name)
+        shutil.copy2(ROOT/'tools/godot/check-pc.cmd',BUNDLE/'Comprobar-equipo.cmd')
         readme = (ROOT/'docs/LEEME_WINDOWS.txt').read_text(encoding='utf-8')
     (BUNDLE/'LEEME.txt').write_text(readme, encoding='utf-8')
     archive = RELEASE/f'pokemon-tactics-{VERSION}-windows.zip'

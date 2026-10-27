@@ -122,6 +122,12 @@ if(operation === 'qa-playthrough' || operation === 'qa-playthrough-export') {
 } else if(operation === 'test-review') {
   run(binary,['--headless',...common,'--quit-after','60','--script','res://tests/review_rules.gd','--','--save-dir='+work],'review-core');
   cpSync(resolve(work,'climate-result.json'),resolve(work,'review-result.json'));
+} else if(operation === 'qa-briefing' || operation === 'qa-briefing-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'briefing-'+(exported?'release':'source'));
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--briefing-qa-dir='+directory],'briefing-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'briefing-ui-result.json'),'utf8'));
+  if(report.failures.length || report.assertions<300 || report.encounters.length!==58) throw new Error('Encounter preview UI failed.');
 } else if(operation === 'qa-review' || operation === 'qa-review-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'review-'+(exported?'release':'source'));
