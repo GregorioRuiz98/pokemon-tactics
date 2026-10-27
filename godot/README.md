@@ -1,4 +1,6 @@
-# Pokémon Tactics — Kanto Windows 0.31.2
+# Pokémon Tactics — Kanto Windows 0.32.0
+
+**0.32.0:** climas de sol/lluvia/arena, treinta habilidades pendientes aplicadas, sexo persistente y mentas con atributos ↑/↓ antes de comprar. Tres técnicas climáticas y MT; auras y previsión integradas. Actualización voluntaria entre combates con copia. [Cambios y comprobaciones](../docs/SPRINT_32_CLIMATE.md).
 
 **0.31.2:** subida de nivel en Equipo → Ficha; tienda sin pestaña Entrenar. Iconos locales de los 18 tipos y las categorías Físico/Especial/Estado en movimientos, combate y MT, con etiquetas y alto contraste. Mismos guardados, precios y reglas. [Entrega y procedencia](../docs/UI_SYMBOLS_0.31.2.md).
 

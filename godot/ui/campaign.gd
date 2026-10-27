@@ -2,18 +2,19 @@ extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
 const Advanced = preload("res://core/roster_run.gd")
-const Journey = preload("res://core/sleep_run.gd")
-const CURRENT_CHAPTER: int = 28
+const Journey = preload("res://core/climate_run.gd")
+const CURRENT_CHAPTER: int = 29
 const Art = preload("res://ui/visual_assets.gd")
 const RosterPanel = preload("res://ui/roster_panel.gd")
-const IsometricBoard = preload("res://ui/kanto_board.gd")
-const CampaignStore = preload("res://core/sleep_store.gd")
+const IsometricBoard = preload("res://ui/climate_board.gd")
+const CampaignStore = preload("res://core/climate_store.gd")
 const Copy = preload("res://ui/concise_copy.gd")
 var kanto_qa_dir: String = ""
 var copy_qa_dir: String = ""
 var power_qa_dir: String = ""
 var sleep_qa_dir: String = ""
 var symbols_qa_dir: String = ""
+var climate_qa_dir: String = ""
 var trainer: RefCounted = preload("res://ui/trainer_session.gd").new()
 var trainer_qa_dir: String = ""
 var kecleon: RefCounted = preload("res://ui/kecleon_shop.gd").new()
@@ -184,6 +185,7 @@ func _boot() -> void:
 		get_tree().change_scene_to_file.call_deferred("res://scenes/laboratory.tscn")
 		return
 	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--climate-qa-dir="): climate_qa_dir = argument.trim_prefix("--climate-qa-dir=")
 		if argument.begins_with("--symbols-qa-dir="): symbols_qa_dir = argument.trim_prefix("--symbols-qa-dir=")
 		if argument.begins_with("--sleep-qa-dir="): sleep_qa_dir = argument.trim_prefix("--sleep-qa-dir=")
 		if argument.begins_with("--power-qa-dir="): power_qa_dir = argument.trim_prefix("--power-qa-dir=")
@@ -231,6 +233,7 @@ func _boot() -> void:
 	if not power_qa_dir.is_empty(): test_dir = power_qa_dir
 	if not sleep_qa_dir.is_empty(): test_dir = sleep_qa_dir
 	if not symbols_qa_dir.is_empty(): test_dir = symbols_qa_dir
+	if not climate_qa_dir.is_empty(): test_dir = climate_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -265,7 +268,8 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
-	if not symbols_qa_dir.is_empty(): _open_title(); call_deferred("_run_symbols_qa")
+	if not climate_qa_dir.is_empty(): _open_title(); call_deferred("_run_climate_qa")
+	elif not symbols_qa_dir.is_empty(): _open_title(); call_deferred("_run_symbols_qa")
 	elif not sleep_qa_dir.is_empty(): _open_title(); call_deferred("_run_sleep_qa")
 	elif not power_qa_dir.is_empty(): _open_title(); call_deferred("_run_power_qa")
 	elif not copy_qa_dir.is_empty(): _open_title(); call_deferred("_run_copy_qa")
@@ -467,7 +471,7 @@ func _update_seed_hint() -> void:
 	var value: String = journey_seed.text.strip_edges()
 	var text: String = "Una semilla admite hasta 64 caracteres."
 	if value.begins_with("KT") and ":" in value:
-		var challenge: Dictionary = preload("res://core/sleep_challenge.gd").decode(value)
+		var challenge: Dictionary = preload("res://core/climate_challenge.gd").decode(value)
 		text = "Código incompleto o incompatible. Comprueba que lo has pegado entero." if challenge.is_empty() else "Reto con %s · mapa %d×%d. Al comenzar se usará este inicial." % [rules.profiles[int(challenge.starter)].data.name,challenge.mapSize,challenge.mapSize]
 	travel_buttons.seed_hint.text = text
 
@@ -486,6 +490,9 @@ func _run_variety_qa() -> void:
 func _run_kanto_qa() -> void:
 	await load("res://ui/qa_kanto.gd").new().run(self,kanto_qa_dir)
 
+func _run_climate_qa() -> void:
+	await load("res://ui/qa_climate.gd").new().run(self,climate_qa_dir)
+
 func _run_symbols_qa() -> void:
 	await load("res://ui/qa_symbols.gd").new().run(self,symbols_qa_dir)
 
@@ -502,7 +509,7 @@ func _choose_starter(identity: int) -> void:
 	var challenge: Dictionary = {}
 	var requested_seed: String = journey_seed.text.strip_edges()
 	if requested_seed.begins_with("KT") and ":" in requested_seed:
-		challenge = load("res://core/sleep_challenge.gd").decode(requested_seed)
+		challenge = load("res://core/climate_challenge.gd").decode(requested_seed)
 		if challenge.is_empty(): _review_text("Código de reto no válido","Comprueba que has pegado el código completo. Este reto debe ser compatible con la aventura actual. Tu partida guardada se conserva."); return
 		requested_seed = challenge.seed; identity = int(challenge.starter)
 	elif requested_seed.length()>64:
@@ -517,7 +524,7 @@ func _choose_starter(identity: int) -> void:
 	journey_seed.text = new_seed
 	campaign = Advanced.new() if campaign_qa_dir.is_empty() else load("res://core/traits_run.gd").new()
 	if not scale_qa_dir.is_empty(): campaign = load("res://core/scale_run.gd").new()
-	if campaign_qa_dir.is_empty() and scale_qa_dir.is_empty() and roster_qa_dir.is_empty(): campaign = Journey.new(int(challenge.edition)+4 if not challenge.is_empty() else 24 if "--compat-economy" in OS.get_cmdline_user_args() else 25 if "--compat-adventure" in OS.get_cmdline_user_args() else 26 if "--compat-kanto" in OS.get_cmdline_user_args() else 27 if "--compat-power" in OS.get_cmdline_user_args() else CURRENT_CHAPTER)
+	if campaign_qa_dir.is_empty() and scale_qa_dir.is_empty() and roster_qa_dir.is_empty(): campaign = Journey.new(int(challenge.edition)+4 if not challenge.is_empty() else 24 if "--compat-economy" in OS.get_cmdline_user_args() else 25 if "--compat-adventure" in OS.get_cmdline_user_args() else 26 if "--compat-kanto" in OS.get_cmdline_user_args() else 27 if "--compat-power" in OS.get_cmdline_user_args() else 28 if "--compat-sleep" in OS.get_cmdline_user_args() else CURRENT_CHAPTER)
 	rules = campaign.engine
 	run = campaign.create(new_seed,identity)
 	trainer.begin_new(self)
@@ -591,7 +598,7 @@ func _load_game() -> void:
 	selected_action = "basic"
 	ai_clock = 0
 	if run.edition==23 and "--compat-power" not in OS.get_cmdline_user_args():
-		_upgrade_campaign()
+		_upgrade_campaign(28)
 		return
 	_refresh()
 
@@ -671,9 +678,9 @@ func _queue_scrolling(expanded: bool) -> void:
 	if wrapper!=null: wrapper.custom_minimum_size.y = 48 if expanded else 32
 	if camera_bar!=null: camera_bar.position.y = 122 if expanded else 106
 
-func _upgrade_campaign() -> void:
-	var replacement: RefCounted = Journey.new(CURRENT_CHAPTER)
-	var command: Dictionary = {"kind":"upgrade","edition":CURRENT_CHAPTER-4,"at":run.revision}
+func _upgrade_campaign(target_chapter: int = CURRENT_CHAPTER) -> void:
+	var replacement: RefCounted = Journey.new(target_chapter)
+	var command: Dictionary = {"kind":"upgrade","edition":target_chapter-4,"at":run.revision}
 	var result: Dictionary = replacement.transact(run,command)
 	if not result.ok: message = result.reason; _refresh(); return
 	var backup: Dictionary = store.preserve_before_new()
@@ -686,6 +693,7 @@ func _upgrade_campaign() -> void:
 	message = "Progresión actualizada; niveles y PS conservados. Objetos retirados: +%d ₽ devueltos. Copia anterior guardada." % run.get("economyRefund",0) if run.edition>=20 else ("Versión actualizada. Final, equipo y diario conservados; copia anterior guardada." if run.phase=="ending" else "Aventura ampliada. Equipo, objetos, PS y diario conservados; copia de la partida anterior guardada.")
 	if run.edition>=23: message = "PP de equipamiento activados. Revisa las ranuras; todos los movimientos aprendidos se conservan. Copia anterior guardada."
 	if run.edition>=24: message = "Corrección del sueño aplicada. Progreso y combate conservados; copia anterior guardada."
+	if run.edition>=25: message = "Climas y habilidades activados. Equipo y progreso conservados; copia anterior guardada."
 	_save()
 	_refresh()
 
@@ -771,6 +779,7 @@ func _refresh() -> void:
 		_simplify_hub()
 	accessible_view.request_update(true)
 	adventure.refresh(self)
+	if fighting and run.get("edition",0)>=25: preload("res://ui/climate_hud.gd").refresh(self)
 	if state.get("combatEdition",0)>=20: preload("res://ui/power_copy.gd").refresh_battle(self)
 	if adventure.enabled(self) and run.phase!="battle" and not travel_buttons.has("share_journey"):
 		var share: Button = _button(input_profile.shortcut("Reto","share"),func():adventure.export_card(self))
@@ -1068,11 +1077,12 @@ func _render_travel() -> void:
 		guide.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		travel_content.add_child(guide)
 	if run.get("edition",1)>=12 and run.get("edition",1)<CURRENT_CHAPTER-4 and run.get("phase","") in ["map","shop","complete","ending"]:
-		var upgrade: Button = _button("Aplicar corrección de sueño" if run.get("edition",0)==23 else "Actualizar a PP de equipamiento" if CURRENT_CHAPTER>=27 else "Actualizar Kanto · mapas y dos desafíos" if CURRENT_CHAPTER>=26 else "Actualizar versión · conservar final" if run.phase=="ending" else "Actualizar aventura táctica",_upgrade_campaign)
+		var upgrade: Button = _button("Actualizar climas y habilidades" if CURRENT_CHAPTER>=29 else "Aplicar corrección de sueño" if run.get("edition",0)==23 else "Actualizar a PP de equipamiento" if CURRENT_CHAPTER>=27 else "Actualizar Kanto · mapas y dos desafíos" if CURRENT_CHAPTER>=26 else "Actualizar versión · conservar final" if run.phase=="ending" else "Actualizar aventura táctica",_upgrade_campaign)
 		upgrade.tooltip_text = "Conserva equipo, nivel, PS y progreso con una copia previa. Los objetos retirados se reembolsan. El combate pendiente conserva sus reglas."
 		if CURRENT_CHAPTER>=25: upgrade.tooltip_text = "Añade mapas propios y encadena las tres aves antes de Mew y Mewtwo. Conserva victorias, equipo, PS y progreso con una copia previa. Los combates pendientes terminan con sus reglas actuales."
 		if CURRENT_CHAPTER>=27: upgrade.tooltip_text = "PP al equipar, usos sin gasto y atributos durante el combate. Conserva movimientos aprendidos; los que excedan el presupuesto se desequipan en orden inverso. Copia previa automática."
 		if run.get("edition",0)==23: upgrade.tooltip_text = "Impide moverse mientras duerme. Conserva combate, mapa, equipo y RNG con copia previa."
+		if CURRENT_CHAPTER>=29: upgrade.tooltip_text = "Añade climas, habilidades y sexo de los Pokémon. Conserva equipo, PS, EXP, dinero y diario; copia previa. Solo entre encuentros."
 		travel_content.add_child(upgrade)
 		travel_buttons.upgrade = upgrade
 	if not run.is_empty() and run.get("edition",1)>=8 and not _simple_hub():
@@ -1312,6 +1322,7 @@ func _render_travel() -> void:
 	identity.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	profile_row.add_child(identity); identity.add_child(info)
 	preload("res://ui/move_symbols.gd").type_badges(identity,unit.types)
+	if selected.has("gender"): identity.add_child(_label("Sexo: "+preload("res://core/climate_context.gd").gender_symbol(selected),16,MUTED))
 	if _simple_hub():
 		info.text = "%s · Nv. %d\n%d / %d PS" % [unit.name,selected.level,unit.hp,unit.maxHp]
 		_build_member_navigation(team)
@@ -1558,15 +1569,16 @@ func _render_mint_shop(parent: VBoxContainer) -> void:
 	var picker: OptionButton = OptionButton.new()
 	picker.name = "MintPicker"
 	picker.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	for identity: String in choices: picker.add_item("Menta %s · bolsa: %d" % [study.traits.natures[identity].name,run.bag["mint-"+identity]])
+	for identity: String in choices: picker.add_item(preload("res://ui/mint_info.gd").caption(study,identity)+" · tienes %d" % run.bag["mint-"+identity])
 	picker.select(choices.find(selected_mint))
 	picker.item_selected.connect(func(index: int): selected_mint = choices[index]; _refresh())
 	parent.add_child(picker)
 	travel_buttons.mint_picker = picker
+	parent.add_child(_label(preload("res://ui/mint_info.gd").details(study,selected_mint),17,GOLD))
 	var buy: Button = _travel_button("buy_mint","Comprar Menta %s · %d ₽" % [study.traits.natures[selected_mint].name,study.traits.mintPrice],parent,{"kind":"buy","item":"mint-"+selected_mint})
 	if _simple_hub(): _item_picture(buy,"mint-"+selected_mint)
 	buy.disabled = run.money<int(study.traits.mintPrice)
-	buy.tooltip_text = "Un uso. Aplica los modificadores indicados."
+	buy.tooltip_text = preload("res://ui/mint_info.gd").details(study,selected_mint)+"\nUn uso."
 
 func _render_traits(parent: VBoxContainer, member: Dictionary) -> void:
 	var study: RefCounted = campaign.progression
@@ -1589,12 +1601,13 @@ func _render_traits(parent: VBoxContainer, member: Dictionary) -> void:
 			if hub_mode=="team" and member_view=="traits" and selected_mint not in owned: selected_mint = owned[0]
 			var picker: OptionButton = OptionButton.new()
 			picker.name = "OwnedMintPicker"
-			for key: String in owned: picker.add_item("Menta %s · tienes %d" % [study.traits.natures[key].name,run.bag["mint-"+key]])
+			for key: String in owned: picker.add_item(preload("res://ui/mint_info.gd").caption(study,key)+" · tienes %d" % run.bag["mint-"+key])
 			picker.select(maxi(0,owned.find(selected_mint)))
 			picker.item_selected.connect(func(index: int): selected_mint = owned[index]; _refresh())
 			parent.add_child(picker)
 			travel_buttons.use_mint_picker = picker
 		else: parent.add_child(_label("No tienes mentas en la bolsa.",16,MUTED))
+	if has_mint: parent.add_child(_label(preload("res://ui/mint_info.gd").details(study,selected_mint),16,GOLD))
 	var before: Dictionary = study.member_stats(member)
 	var copy: Dictionary = member.duplicate(true)
 	copy.mint = selected_mint

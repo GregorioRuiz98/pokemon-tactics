@@ -1,7 +1,7 @@
 extends RefCounted
 
 const Threat = preload("res://core/threat_query.gd")
-const Challenge = preload("res://core/sleep_challenge.gd")
+const Challenge = preload("res://core/climate_challenge.gd")
 const Card = preload("res://ui/journey_card.gd")
 var deploy_panel: PanelContainer
 var deploy_label: Label

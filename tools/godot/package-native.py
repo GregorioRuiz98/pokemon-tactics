@@ -3,7 +3,7 @@ import hashlib,json,os,pathlib,re,shutil,zipfile
 import runpy
 ROOT=pathlib.Path(__file__).resolve().parents[2]
 version=re.search(r'config/version="([^"]+)"',(ROOT/'godot/project.godot').read_text(encoding='utf-8'))[1]
-if version in ['0.27.0','0.28.0','0.29.0','0.30.0','0.30.1','0.31.0','0.31.1','0.31.2']:
+if version in ['0.27.0','0.28.0','0.29.0','0.30.0','0.30.1','0.31.0','0.31.1','0.31.2','0.32.0']:
     runpy.run_path(str(ROOT/'tools/godot/package-finishing.py'),run_name='__main__')
     raise SystemExit(0)
 chapter=int(version.split('.')[1]);patch=int(version.split('.')[2]);modern=chapter==22 and patch>=4;qa_label={'0.22.1':'22-ui','0.22.2':'22-controls','0.22.3':'22-context'}.get(version,'22-updates-'+str(patch) if modern else str(chapter));work=ROOT/f'../../work/qa-sprint-{qa_label}'

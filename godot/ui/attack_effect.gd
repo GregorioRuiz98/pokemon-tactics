@@ -41,6 +41,8 @@ static func describe(definition: Dictionary) -> Dictionary:
 	elif identity.contains("beam") or identity in ["flamethrower","hydro-pump","thunderbolt","psychic"]: style = "beam"
 	elif definition.get("kind","")=="area-damage" or identity in ["earthquake","surf","explosion","self-destruct"]: style = "wave"
 	var result: Dictionary = {"element":element,"color":Color(COLORS[element]),"style":style,"cue":cue,"name":str(definition.get("name","Ataque")),"spatial":definition.has("spatialDescription")}
+	if definition.has("weather"):
+		result.weather = definition.weather; result.style = "weather"; result.cue = element
 	if result.spatial:
 		result.signature = SpatialEffects.style(definition)
 		result.variant = absi(identity.hash())%11
@@ -175,6 +177,9 @@ func _glyph(at: Vector2, radius: float, color: Color, element: String, phase: fl
 		draw_circle(at+Vector2(-radius*.2,-radius*.3),radius*.45,Color(1,1,.85,color.a*.65))
 
 func _draw() -> void:
+	if active and profile.has("weather"):
+		preload("res://ui/climate_effect.gd").draw(self)
+		return
 	if not active or origin.is_empty(): return
 	var from: Vector2 = source_points()[0]
 	var color: Color = profile.color

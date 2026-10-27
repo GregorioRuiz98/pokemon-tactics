@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 VERSION = re.search(r'config/version="([^"]+)"', (ROOT/'godot/project.godot').read_text(encoding='utf-8'))[1]
 CHAPTER = int(VERSION.split('.')[1])
 CONFIG = {
+    32: {'baseline':'aa18d6fbe039ec8c230db0c8b645a6f892e294db','report':'SPRINT_32_CLIMATE.md','ui':{'climate':112,'symbols':270,'sleep':15},'core':{'climate':487},'edition':25},
     31: {'baseline':'7ae0893684e2f72f65593b00f41c693dfdfd73f3','report':'SPRINT_31_POWER.md','ui':{'power':233,'copy':503},'core':{'power':1602},'edition':23},
     30: {'baseline':'99e74e8c8df880f4a2657bf7084b081c8d2e0de4','report':'SPRINT_30_KANTO.md','ui':{'kanto':428,'player':719},'core':{'kanto':7626,'trainer':120,'adventure':105},'edition':22},
     29: {'baseline': '8bbe5dcd078a50bca7140b8858eae77e5d9685a7', 'report': 'SPRINT_29_VARIETY.md', 'ui': {'variety': 72, 'shop': 70, 'trainer': 69, 'player': 719, 'moves': 304}, 'core': {'variety': 7428, 'trainer': 120, 'adventure': 105}, 'edition': 21},
@@ -116,6 +117,17 @@ def main():
         readme = readme.replace('Medicina, Entrenar y Equipo','Medicina, Mentas y habilidades, y Equipo')
         readme += '\nEquipo → Ficha: completa los EXP restantes del nivel por pokédolares, durante la visita a tienda. Se conserva el precio y el límite de gimnasio. La pestaña Entrenar de la tienda se ha retirado. Iconos locales de los 18 tipos y de movimiento físico, especial y de estado; etiquetas y detalles numéricos accesibles.\n'
         shutil.copytree(ROOT/'godot/assets/ui-symbols',BUNDLE/'credits-ui-symbols',dirs_exist_ok=True,ignore=shutil.ignore_patterns('*.import'))
+    if CHAPTER == 32:
+        readme = readme.replace('Medicina, Entrenar y Equipo','Medicina, Mentas y habilidades, y Equipo')
+        readme = readme.replace('Presión no tiene efecto en esta edición. Códigos nuevos KT31.', 'Presión reduce el movimiento enemigo en su aura. Códigos nuevos KT32.')
+        readme += '\nClimas: sol, lluvia y arena; tres técnicas y MT de80 pokédolares/2 PP de equipamiento. Las treinta habilidades pendientes tienen efecto táctico y las mentas muestran los atributos que suben y bajan. Actualiza voluntariamente entre encuentros, con copia; los combates antiguos conservan su motor. Detalles en Documentacion/CAMBIOS_0.32.md.\nEquipo → Ficha permite comprar EXP en tienda; no hay pestaña Entrenar.\n'
+        shutil.copytree(ROOT/'godot/assets/ui-symbols',BUNDLE/'credits-ui-symbols',dirs_exist_ok=True,ignore=shutil.ignore_patterns('*.import'))
+        for name in ['climate-credits.md','climate-provenance.json']:
+            shutil.copy2(ROOT/'godot/data'/name,docs/name)
+        prices = (docs/'PP_MOVIMIENTOS.csv').read_text(encoding='utf-8')
+        for identity, move in read(ROOT/'godot/data/climate.json')['moves'].items():
+            prices += f'{identity},"{move["name"]}",2,0,U,0\n'
+        for path in [docs/'PP_MOVIMIENTOS.csv',EVIDENCE/'power-prices.csv']: path.write_text(prices,encoding='utf-8')
     (BUNDLE/'LEEME.txt').write_text(readme, encoding='utf-8')
     archive = RELEASE/f'pokemon-tactics-{VERSION}-windows.zip'
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as package:

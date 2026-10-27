@@ -468,7 +468,7 @@ func _build_dialogs():
 	credits.fit_content = true
 	credits.custom_minimum_size.x = 640
 	credits.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	credits.text = FileAccess.get_file_as_string("res://CREDITS.md") + "\n\n" + FileAccess.get_file_as_string("res://assets/ui-symbols/CREDITS.md") + "\n\n" + Engine.get_license_text() + "\n\nBibliotecas de Godot y atribuciones:\n" + JSON.stringify(Engine.get_copyright_info(), "  ")
+	credits.text = FileAccess.get_file_as_string("res://CREDITS.md") + "\n\n" + FileAccess.get_file_as_string("res://assets/ui-symbols/CREDITS.md") + "\n\n" + FileAccess.get_file_as_string("res://data/climate-credits.md") + "\n\n" + Engine.get_license_text() + "\n\nBibliotecas de Godot y atribuciones:\n" + JSON.stringify(Engine.get_copyright_info(), "  ")
 	for license in Engine.get_license_info(): credits.text += "\n\n" + license + "\n" + Engine.get_license_info()[license]
 	scroll.add_child(credits)
 	add_child(credits_dialog)

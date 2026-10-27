@@ -221,3 +221,8 @@ SleepBattle añade bloqueo puro de rutas/comando dormido; no alterar PowerBattle
 ## Interfaz0.31.2
 
 Entrenar retirado de Kecleon; subir nivel en Equipo → Ficha junto a EXP, solo en tienda y con la transacción anterior. MoveSymbols cachea texturas/estilos, conserva textos/foco y alto contraste. Originales PokéSprite en assets/ui-symbols con commit, hashes y créditos; importador explícito, sin red en juego. Campaña24/combate21 y guardados intactos. QA symbols actual; sleep y power históricas conservadas. Ver ../docs/UI_SYMBOLS_0.31.2.md.
+
+
+## Climas y habilidades 0.32.0
+
+27 de octubre: usuario autoriza aplicar climas y habilidades pendientes. Campaña25/capítulo29/combate22 en nuevos climate_*.gd, data/climate.json y pruebas nuevas. No sobrescribir motores/datos/tests/recursos publicados. Tres climas y MT de80 ₽/2 PP, aprendizaje climático al15 para familias compatibles, auras visibles,30 habilidades pendientes con efecto y Piel Seca completada. Sexo151 especies por hash separado, mentas ↑/↓ antes de comprar. Actualización12–24→25 voluntaria entre encuentros, copia y diario mixto; KT32. Preservar sueño, rectificar solo movimiento, PP al equipar y guardado antes del feedback. Las consultas no consumen RNG. Fuentes cacheadas/hash, sin servicios nuevos, delegación ni publicación pública; commit/push privado autorizado. Ver docs/SPRINT_32_CLIMATE.md (../docs desde Godot).

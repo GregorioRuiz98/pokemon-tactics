@@ -58,6 +58,7 @@ func present(before: Dictionary, plan: Dictionary, receipts: Array, definition: 
 			text = "+%d PS" % receipt.get("heal",forecast.heal)
 			color = Color("a4e9b3")
 		elif forecast.get("guard",false): text = "PROTEGIDO"
+		elif definition.has("weather"): text = preload("res://core/climate_context.gd").WEATHER_NAMES[definition.weather].to_upper()
 		elif receipt.damage == 0: text = "ATRIBUTO" if forecast.has("statChange") or not forecast.get("changes",[]).is_empty() else "ESTADO"
 		if receipt.get("critical",false):
 			kind = "critical"

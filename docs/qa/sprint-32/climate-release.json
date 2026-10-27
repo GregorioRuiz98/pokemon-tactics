@@ -1,0 +1,17 @@
+{
+  "assertions": 112,
+  "campaignEdition": 25,
+  "failures": [],
+  "naturalStateHash": "7e3782c97a56935d8672208dd48de4a36baaa287274504ef3fd325512a2298ea",
+  "scope": "Natural opening/capture/shop/mint purchase/load; separate weather input and old-save upgrade fixtures; keyboard, icons, auras and150% text.",
+  "screenshots": [
+    "deployment-weather.png",
+    "mint-before-purchase.png",
+    "mint-before-purchase-150.png",
+    "mint-comparison.png",
+    "rain-and-light-aura.png",
+    "weather-150.png",
+    "weather-loadout.png"
+  ],
+  "stateHash": "cd7a02206fd4fc07214b7062625bb12da2a9f627d0f366290a74e5d534d53623"
+}

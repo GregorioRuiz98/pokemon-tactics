@@ -21,7 +21,8 @@ mkdirSync(isolatedProfile, { recursive: true });
 mkdirSync(isolatedLocal, { recursive: true });
 function run(executable, args, label, cwd = root) {
   if(chapter>=31 && /^(copy|kanto)-(source|release)$/.test(label)) args=[...args,'--compat-kanto'];
-  if(nativeVersion.startsWith('0.31.') && Number(nativeVersion.split('.')[2])>=1 && /^power-(source|release)$/.test(label)) args=[...args,'--compat-power'];
+  if((chapter>=32 || (nativeVersion.startsWith('0.31.') && Number(nativeVersion.split('.')[2])>=1)) && /^power-(source|release)$/.test(label)) args=[...args,'--compat-power'];
+  if(chapter>=32 && /^(sleep|symbols)-(source|release)$/.test(label)) args=[...args,'--compat-sleep'];
   // Historical UI suites keep their published edition. Current content has qa-kanto.
   if(chapter>=30 && /^(player|shop|trainer)-(source|release)$/.test(label)) args=[...args,'--compat-adventure'];
   const logIndex = args.indexOf('--log-file');
@@ -47,6 +48,8 @@ function verifyCampaign(directory) {
   for(const file of report.screenshots) if(!existsSync(resolve(directory,file))) throw new Error('Missing campaign screenshot.');
 }
 function verify() {
+  const climate=JSON.parse(readFileSync(resolve(project,'data/climate-provenance.json'),'utf8'));
+  for(const entry of climate.files) if(createHash('sha256').update(readFileSync(resolve(project,entry.target))).digest('hex')!==entry.sha256) throw new Error('Climate data changed without review');
   const symbols=spawnSync('python',[resolve(root,'tools/godot/import-ui-symbols.py')],{cwd:root,encoding:'utf8',windowsHide:true});
   if(symbols.status!==0) throw new Error('UI sprite integrity failed: '+symbols.stderr);
   console.log('Verified 21 original type/category sprites and pinned credits offline.');
@@ -109,7 +112,15 @@ if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-expo
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'qa-symbols' || operation === 'qa-symbols-export') {
+if(operation === 'test-climate') {
+  run(binary,['--headless',...common,'--quit-after','60','--script','res://tests/climate.gd','--','--save-dir='+work],'climate-core');
+} else if(operation === 'qa-climate' || operation === 'qa-climate-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'climate-'+(exported?'release':'source'));
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--climate-qa-dir='+directory],'climate-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'climate-ui-result.json'),'utf8'));
+  if(report.failures.length || report.assertions<30) throw new Error('Climate UI failed.');
+} else if(operation === 'qa-symbols' || operation === 'qa-symbols-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'symbols-'+(exported?'release':'source'));
   run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--symbols-qa-dir='+directory],'symbols-'+(exported?'release':'source'),exported?output:root);

@@ -254,3 +254,8 @@ El desarrollo individual de escenarios está en docs/DESIGN_MAPAS_KANTO.md:58 no
 ## Revisión implementada0.30 —26 de octubre
 
 El usuario autoriza implementar la dirección documentada y sustituye los finales alternativos por una secuencia obligatoria: Liga y rival, tres aves juntas, tienda y Mew/Mewtwo. Los legendarios siguen sin poder reclutarse. Nueva campaña22 con58 localizaciones/116 diseños16–24, alturas y obstáculos temáticos; retirada de propuestas de roles, movimientos libres y consultas conservadas. Se mantienen repertorios LGPE y todas las cifras de combate, EXP y economía. Los guardados históricos conservan su motor; actualización entre encuentros con copia y replay. [Informe de entrega](docs/SPRINT_30_KANTO.md). Las composiciones son adaptaciones tácticas, no mapas de exploración copiados ni ciudades explorables nuevas. Publicación aplazada.
+
+
+## Climas y habilidades 0.32.0
+
+27 de octubre: usuario autoriza aplicar climas y habilidades pendientes. Campaña25/capítulo29/combate22 en nuevos climate_*.gd, data/climate.json y pruebas nuevas. No sobrescribir motores/datos/tests/recursos publicados. Tres climas y MT de80 ₽/2 PP, aprendizaje climático al15 para familias compatibles, auras visibles,30 habilidades pendientes con efecto y Piel Seca completada. Sexo151 especies por hash separado, mentas ↑/↓ antes de comprar. Actualización12–24→25 voluntaria entre encuentros, copia y diario mixto; KT32. Preservar sueño, rectificar solo movimiento, PP al equipar y guardado antes del feedback. Las consultas no consumen RNG. Fuentes cacheadas/hash, sin servicios nuevos, delegación ni publicación pública; commit/push privado autorizado. Ver docs/SPRINT_32_CLIMATE.md (../docs desde Godot).
