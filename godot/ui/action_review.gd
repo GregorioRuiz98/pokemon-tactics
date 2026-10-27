@@ -1,6 +1,7 @@
 extends ConfirmationDialog
 
 var app: Control
+var symbols: HFlowContainer
 var content: Label
 var callback: Callable
 var diagram: Control
@@ -19,6 +20,7 @@ func setup(owner_app: Control) -> void:
 	var column: VBoxContainer = VBoxContainer.new()
 	column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.add_child(column)
+	symbols = HFlowContainer.new(); column.add_child(symbols)
 	content = app._label("",18)
 	content.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -36,6 +38,14 @@ func setup(owner_app: Control) -> void:
 func review(label: String, text: String, action: Callable, definition: Dictionary = {}) -> void:
 	title = label
 	content.text = text
+	for child: Node in symbols.get_children():
+		symbols.remove_child(child); child.queue_free()
+	symbols.visible = definition.has("category")
+	if symbols.visible:
+		var icons: GDScript = preload("res://ui/move_symbols.gd")
+		if definition.get("id","")!="basic" and definition.get("type","") in icons.Info.TYPES:
+			symbols.add_child(icons.badge("types",definition.type,icons.type_name(definition)))
+		symbols.add_child(icons.badge("categories",definition.category,icons.Info.CATEGORIES.get(definition.category,"—")))
 	callback = action
 	diagram.visible = definition.has("shape")
 	diagram_caption.visible = diagram.visible

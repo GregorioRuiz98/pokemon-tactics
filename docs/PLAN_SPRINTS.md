@@ -551,3 +551,7 @@ Cambio autorizado: sustituir gasto durante el combate por presupuesto al prepara
 ## Corrección0.31.1
 
 [Movimiento durante el sueño](FIX_SLEEP_0.31.1.md): rutas y comandos bloqueados, despertar restituye movimiento, IA termina. Actualización con copia al cargar0.31.0, incluso en combate; no reiniciar campaña. Reglas y recursos anteriores conservados.
+
+## Interfaz0.31.2
+
+[Equipo, tienda e iconos](UI_SYMBOLS_0.31.2.md): se retira Entrenar de Kecleon; compra de EXP en Equipo → Ficha junto a la experiencia. Iconos locales de los18 tipos y categorías de ataque en ranuras, biblioteca, combate y MT. Misma campaña24, precios y guardados; recursos originales con commit, hashes y créditos.

@@ -21,8 +21,9 @@ func using_scene(app: Control) -> bool:
 
 func render(app: Control, parent: VBoxContainer) -> void:
 	cards.clear()
+	if app.shop_tab=="evolution": app.shop_tab = "gear"
 	var navigation: HBoxContainer = HBoxContainer.new(); parent.add_child(navigation)
-	for entry: Array in [["gear","Ofertas"],["evolution","Entrenar"],["team","Equipo"]]:
+	for entry: Array in [["gear","Ofertas"],["team","Equipo"]]:
 		var callback: Callable = app._shop_page.bind(entry[0]) if entry[0]!="team" else app._set_hub_mode.bind("team")
 		var button: Button = app._button(entry[1],callback)
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL; button.theme_type_variation = "TabButton"
@@ -50,9 +51,6 @@ func render(app: Control, parent: VBoxContainer) -> void:
 	if not app.save_warning.is_empty(): body.add_child(app._label(app.save_warning,17,app.GOLD))
 	if not app.message.is_empty(): body.add_child(app._label(app.message,17,app.GOLD))
 	match app.shop_tab:
-		"evolution":
-			body.add_child(app._label("Entrenamiento",18,app.GOLD))
-			preload("res://ui/economy_menu.gd").shop(app,body)
 		"supplies": medicines(app,body)
 		"traits":
 			app._render_mint_shop(body)
@@ -83,6 +81,7 @@ func offers(app: Control, parent: VBoxContainer) -> void:
 		buy.theme_type_variation = "CommandButton"; buy.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		buy.disabled = offer.sold or app.run.money<item.price
 		buy.tooltip_text = Info.details(app.campaign.progression.data.moves[item.move]) if item.kind=="tm" else item.description
+		if item.kind=="tm": preload("res://ui/move_symbols.gd").decorate(buy,app.campaign.progression.data.moves[item.move])
 		buy.accessibility_description = buy.tooltip_text+(" Saldo insuficiente." if not offer.sold and app.run.money<item.price else "")
 		var inspect: Button = app._button("Ficha",inspect_offer.bind(app,index))
 		inspect.theme_type_variation = "ToolButton"; column.add_child(inspect); app.travel_buttons["stock_detail_"+str(index)] = inspect

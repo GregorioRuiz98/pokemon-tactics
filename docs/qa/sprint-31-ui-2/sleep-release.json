@@ -1,0 +1,11 @@
+{
+  "assertions": 15,
+  "campaignEdition": 24,
+  "failures": [],
+  "scope": "Explicit sleeping UI fixture restored before natural campaign replay; mouse, keyboard, command rejection, wake, automatic23→24 backup and load.",
+  "screenshots": [
+    "sleep-blocked.png",
+    "awake.png"
+  ],
+  "stateHash": "8600109ae9111c1b97c2a6bdbe34acc11f020d258ec13ddaa580e57a39f8f103"
+}

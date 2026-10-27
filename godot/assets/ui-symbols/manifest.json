@@ -1,0 +1,234 @@
+{
+  "repository": "https://github.com/msikma/pokesprite",
+  "commit": "c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e",
+  "files": [
+    {
+      "source": "misc/types/gen8/normal.png",
+      "target": "types/normal.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/normal.png",
+      "sha256": "b811a612bd1094b727c3a2071562aec3d847b2f4ba114f369e71034dc5189b2c",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/types/gen8/fire.png",
+      "target": "types/fire.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/fire.png",
+      "sha256": "2cb97987e4d961cd3a9478cf12e96c9984496b243b034b07ddd2bd0c3cd8d275",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/types/gen8/water.png",
+      "target": "types/water.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/water.png",
+      "sha256": "aaf6d4ce07b483e6f9b7350c368ade4498e617cf67cf18688a3371aa11d863de",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/types/gen8/electric.png",
+      "target": "types/electric.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/electric.png",
+      "sha256": "6dd7f75a58f93fa0625bd6d43deab27f9efecbd218f7fb656f7c058e89bc1727",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/types/gen8/grass.png",
+      "target": "types/grass.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/grass.png",
+      "sha256": "b1a0047f06979f24e6b019f65bdfa6ad46204c3b041ed2f35c351d3d9f9728cf",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/types/gen8/ice.png",
+      "target": "types/ice.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/ice.png",
+      "sha256": "e25a58a8aeb77ea83e141b3453dd4cbe9344e32c9f8219267dfc9bfa7db20c79",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/types/gen8/fighting.png",
+      "target": "types/fighting.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/fighting.png",
+      "sha256": "08ab0180381f9b4749b8872c13ef648b35a52198f3e2184186beee4f906694bb",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/types/gen8/poison.png",
+      "target": "types/poison.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/poison.png",
+      "sha256": "7a58e1a368b028d96dbfb9084502ec7067d0f2e63976a1da93b5ac51869ab31d",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/types/gen8/ground.png",
+      "target": "types/ground.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/ground.png",
+      "sha256": "02e8853e2015023f5b672e77d56dcd635b0728d1711d4467674ba69a4fc3d081",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/types/gen8/flying.png",
+      "target": "types/flying.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/flying.png",
+      "sha256": "f07e273c4bb87368022cfb306580f0573648c238f9eaa93495222109b70a69e5",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/types/gen8/psychic.png",
+      "target": "types/psychic.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/psychic.png",
+      "sha256": "2b80673ba531df18363a34b913e49eea7a404626f40a8834d9bdd0a118bd90f8",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/types/gen8/bug.png",
+      "target": "types/bug.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/bug.png",
+      "sha256": "3b73c09a08c2cefb994e25acb62944b36b10ea2d1002ba14d13c944a6fe8b1b5",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/types/gen8/rock.png",
+      "target": "types/rock.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/rock.png",
+      "sha256": "3eb77b25c1ab071ea7e6363bf33afc1c5ce35b2c2afd479c2782f0815a58d6bc",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/types/gen8/ghost.png",
+      "target": "types/ghost.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/ghost.png",
+      "sha256": "e26dac7c46c8cab84e5a6ae577c2ce59f352ad1138d53950d0ca2fe6c00e94bd",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/types/gen8/dragon.png",
+      "target": "types/dragon.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/dragon.png",
+      "sha256": "fe72cb00fa70bbef43dffdc6de4ccda03bff98c8975e9107662dc356c55ebce4",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/types/gen8/dark.png",
+      "target": "types/dark.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/dark.png",
+      "sha256": "02df21caa625785b014588623b667996616d97eafc17a28840c413b12b76b198",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/types/gen8/steel.png",
+      "target": "types/steel.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/steel.png",
+      "sha256": "e7a976fb6c4fb0ab13ae46a649a1cd540eb3816798869701d2c6c6099854359f",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/types/gen8/fairy.png",
+      "target": "types/fairy.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/types/gen8/fairy.png",
+      "sha256": "93e0bee4ccdc2e88f68554a334aa47ec5556e5abf8634ab6e18fb30331d36c8f",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "source": "misc/seals/gen8/move-physical.png",
+      "target": "categories/physical.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/seals/gen8/move-physical.png",
+      "sha256": "dc6613b934f6f5d410ad706716c8157b8ec60d690b4e121dad4aae88cdee08a9",
+      "size": [
+        48,
+        32
+      ]
+    },
+    {
+      "source": "misc/seals/gen8/move-special.png",
+      "target": "categories/special.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/seals/gen8/move-special.png",
+      "sha256": "86067dbd879940370e00a2df83cc276a35bfdc4b13619f08ddfff92607d11321",
+      "size": [
+        48,
+        32
+      ]
+    },
+    {
+      "source": "misc/seals/gen8/move-status.png",
+      "target": "categories/status.png",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/misc/seals/gen8/move-status.png",
+      "sha256": "95b035476ca866ef52b91f48e0ba2cdfdf95f566f8bab96618af598c60585c5c",
+      "size": [
+        48,
+        32
+      ]
+    },
+    {
+      "source": "license.md",
+      "target": "source/license.md",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/license.md",
+      "sha256": "91a3d95de780cccfc88b883b8d796a143961b29fc7c5f9e156200215682bca5a"
+    },
+    {
+      "source": "contributors.md",
+      "target": "source/contributors.md",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/contributors.md",
+      "sha256": "ef527cd2352f0b2d19f4764bb80061aabca57a2f5215eb112c0dccc80523baa4"
+    },
+    {
+      "source": "readme.md",
+      "target": "source/readme.md",
+      "url": "https://raw.githubusercontent.com/msikma/pokesprite/c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e/readme.md",
+      "sha256": "a189f27c2088bb056f92d5b8c1d0c255d7ef49530e433b6f7210722053f71832"
+    }
+  ]
+}

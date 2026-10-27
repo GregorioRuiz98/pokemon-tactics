@@ -60,3 +60,4 @@ static func apply(app: Control) -> void:
 			if not app.theme.has_meta(metadata): app.theme.set_meta(metadata,app.theme.get_color(color_name,type))
 			var color: Color = Color.WHITE if app.input_profile.preferences.highContrast else app.theme.get_meta(metadata)
 			if app.theme.get_color(color_name,type)!=color: app.theme.set_color(color_name,type,color)
+	preload("res://ui/move_symbols.gd").apply_contrast(app.input_profile.preferences.highContrast)

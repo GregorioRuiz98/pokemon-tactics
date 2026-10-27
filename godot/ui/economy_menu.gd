@@ -4,7 +4,7 @@ static func needed(app: Control, member: Dictionary) -> int:
 	return app.campaign.progression.member_next_xp(member) if app.run.get("edition",1)>=20 else app.campaign.progression.next_xp(member.level)
 
 static func training(app: Control, parent: VBoxContainer, member: Dictionary, key: String = "train-xp") -> void:
-	parent.add_child(app._label("Entrenamiento · "+app.rules.profiles[int(member.speciesId)].data.name,20,app.GOLD))
+	parent.add_child(app._label("Subir de nivel",20,app.GOLD))
 	var quote: Dictionary = app.campaign.training_quote(app.run,member)
 	if not quote.ok:
 		parent.add_child(app._label(quote.reason,17,app.MUTED))

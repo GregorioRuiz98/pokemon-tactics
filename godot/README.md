@@ -1,4 +1,6 @@
-# Pokémon Tactics — Kanto Windows 0.31.1
+# Pokémon Tactics — Kanto Windows 0.31.2
+
+**0.31.2:** subida de nivel en Equipo → Ficha; tienda sin pestaña Entrenar. Iconos locales de los 18 tipos y las categorías Físico/Especial/Estado en movimientos, combate y MT, con etiquetas y alto contraste. Mismos guardados, precios y reglas. [Entrega y procedencia](../docs/UI_SYMBOLS_0.31.2.md).
 
 **0.31.1:** dormir bloquea movimiento y acción; al despertar vuelven las rutas. [Corrección y pruebas](../docs/FIX_SLEEP_0.31.1.md). Cargar0.31.0 aplica el arreglo con copia, incluso en combate.
 

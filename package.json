@@ -119,7 +119,9 @@
     "godot:qa:power": "node tools/godot/run.mjs qa-power",
     "godot:qa:power:export": "node tools/godot/run.mjs qa-power-export",
     "godot:qa:copy": "node tools/godot/run.mjs qa-copy",
-    "godot:qa:copy:export": "node tools/godot/run.mjs qa-copy-export"
+    "godot:qa:copy:export": "node tools/godot/run.mjs qa-copy-export",
+    "godot:qa:symbols": "node tools/godot/run.mjs qa-symbols",
+    "godot:qa:symbols:export": "node tools/godot/run.mjs qa-symbols-export"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

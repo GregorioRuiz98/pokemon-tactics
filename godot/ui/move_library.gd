@@ -1,5 +1,6 @@
 extends RefCounted
 
+const Symbols = preload("res://ui/move_symbols.gd")
 const Info = preload("res://ui/move_info.gd")
 const Tactics = preload("res://ui/tactical_loadouts.gd")
 
@@ -22,7 +23,10 @@ func render(app: Control, parent: VBoxContainer, member: Dictionary) -> void:
 	parent.add_child(slots)
 	for index: int in 4:
 		var label: String = "%d · %s" % [index+1,app.campaign.progression.data.moves[member.moves[index]].name if index<member.moves.size() else "Vacía"]
-		if app.run.get("edition",0)>=23 and index<member.moves.size(): label += " · %d PP" % app.campaign.progression.data.moves[member.moves[index]].loadoutCost
+		if index<member.moves.size():
+			var definition: Dictionary = app.campaign.progression.data.moves[member.moves[index]]
+			label += "\n"+Symbols.caption(definition)
+			if app.run.get("edition",0)>=23: label += " · %d PP" % definition.loadoutCost
 		var slot: Button = app._button(label,func(): selected_slot = index; app._refresh())
 		# Wrapped buttons have no text-based minimum width: expand both grid columns.
 		slot.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -32,6 +36,11 @@ func render(app: Control, parent: VBoxContainer, member: Dictionary) -> void:
 		slot.toggle_mode = true
 		slot.button_pressed = selected_slot==index
 		slots.add_child(slot)
+		if index<member.moves.size():
+			var definition: Dictionary = app.campaign.progression.data.moves[member.moves[index]]
+			Symbols.decorate(slot,definition)
+			slot.tooltip_text = Info.details(definition)
+			slot.accessibility_description = slot.tooltip_text
 		app.travel_buttons["move_slot_"+str(index)] = slot
 	if app.run.get("edition",0)>=21:
 		var team: Button = app._button("Herramientas del equipo",func():app._review_text("Movimientos del equipo",Tactics.team_summary(app)))
@@ -58,9 +67,13 @@ func render(app: Control, parent: VBoxContainer, member: Dictionary) -> void:
 	filters.add_child(category_choice)
 	var types: OptionButton = OptionButton.new()
 	for text: String in ["Todos los tipos"]+app.TYPE_NAMES.values(): types.add_item(text)
+	for index: int in app.TYPE_NAMES.size():
+		types.set_item_icon(index+1,Symbols.texture("types",app.TYPE_NAMES.keys()[index]))
+		types.get_popup().set_item_icon_max_width(index+1,24)
+	types.add_theme_constant_override("icon_max_width",24)
 	types.select(type_index)
 	types.item_selected.connect(func(index: int): type_index = index; app._refresh())
-	filters.add_child(types)
+	filters.add_child(types); app.travel_buttons.move_types = types
 	var cost: SpinBox = SpinBox.new()
 	cost.min_value = 0
 	cost.max_value = 5
@@ -93,6 +106,7 @@ func render(app: Control, parent: VBoxContainer, member: Dictionary) -> void:
 		button.accessibility_description = button.tooltip_text
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		parent.add_child(button)
+		Symbols.decorate(button,definition)
 		app.travel_buttons["move_"+id] = button
 	parent.add_child(app._label("%d movimientos conocidos." % count,16))
 

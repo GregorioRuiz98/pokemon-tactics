@@ -21,7 +21,9 @@ if VERSION == '0.30.1':
     CONFIG = {'baseline':'8175544ee876251596cdb356d1bb4d20fe42fc1a','report':'FIX_TEXT_0.30.1.md','ui':{'copy':503,'kanto':428},'core':{},'edition':22}
 if VERSION == '0.31.1':
     CONFIG = {'baseline':'e8eb2a8493e1f3e99e8f1f77038821c8fc89f105','report':'FIX_SLEEP_0.31.1.md','ui':{'sleep':15,'power':233},'core':{'sleep':35},'edition':24}
-QA_LABEL = '31-ui-1' if VERSION == '0.31.1' else '30-ui-1' if VERSION == '0.30.1' else str(CHAPTER)
+if VERSION == '0.31.2':
+    CONFIG = {'baseline':'958c720e8e6f2b55b6f1c9921af286c949362798','report':'UI_SYMBOLS_0.31.2.md','ui':{'symbols':270,'sleep':15,'power':233},'core':{},'edition':24}
+QA_LABEL = '31-ui-2' if VERSION == '0.31.2' else '31-ui-1' if VERSION == '0.31.1' else '30-ui-1' if VERSION == '0.30.1' else str(CHAPTER)
 WORK = (ROOT/f'../../work/qa-sprint-{QA_LABEL}').resolve()
 RELEASE = (ROOT/f'../releases/pokemon-tactics-{VERSION}').resolve()
 BUNDLE = RELEASE/'windows'
@@ -87,7 +89,7 @@ def main():
             shutil.copy2(WORK/name, docs/name)
             shutil.copy2(WORK/name, EVIDENCE/name)
     verification = {'version': VERSION, 'baseline': CONFIG['baseline'], 'publishedFilesUnchanged': protected, 'campaignEdition': CONFIG['edition'], 'errors': 0, 'warnings': 65, 'newWarnings': 0, 'coreChecks': core, 'uiChecksPerBuild': counts, 'sourceAndExeStateMatch': True, 'publicDeployment': False, 'fullCampaignPlayed': False}
-    if VERSION == '0.31.1':
+    if VERSION in ['0.31.1','0.31.2']:
         verification['sleepCorrection'] = 'Sleeping blocks movement routes and commands; old edition23 loads with backup and mixed replay.'
     for path in [EVIDENCE/'verification.json', docs/f'QA_0.{CHAPTER}.json']:
         path.write_text(json.dumps(verification, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
@@ -108,8 +110,12 @@ def main():
         shutil.copy2(ROOT/'docs/reports/kanto-0.30/mapas.csv',docs/'MAPAS_KANTO.csv')
     if CHAPTER >= 31:
         readme = readme.replace('Los valores de combate/EXP/precios no han cambiado.', 'Se conservan potencia, estadísticas, EXP, precios y recompensas. La disponibilidad de acciones cambia con los PP.')
-    if VERSION == '0.31.1':
+    if VERSION in ['0.31.1','0.31.2']:
         readme += '\nCorrección del sueño: un Pokémon dormido no se mueve ni actúa. Puedes orientar y terminar para que caduque el estado; al despertar recupera movimiento. Al cargar0.31.0 se aplica la corrección automáticamente, con copia y conservando combate/PS/RNG. Rectificar empieza desde ese punto. Nuevos códigos KT31S.\n'
+    if VERSION == '0.31.2':
+        readme = readme.replace('Medicina, Entrenar y Equipo','Medicina, Mentas y habilidades, y Equipo')
+        readme += '\nEquipo → Ficha: completa los EXP restantes del nivel por pokédolares, durante la visita a tienda. Se conserva el precio y el límite de gimnasio. La pestaña Entrenar de la tienda se ha retirado. Iconos locales de los 18 tipos y de movimiento físico, especial y de estado; etiquetas y detalles numéricos accesibles.\n'
+        shutil.copytree(ROOT/'godot/assets/ui-symbols',BUNDLE/'credits-ui-symbols',dirs_exist_ok=True,ignore=shutil.ignore_patterns('*.import'))
     (BUNDLE/'LEEME.txt').write_text(readme, encoding='utf-8')
     archive = RELEASE/f'pokemon-tactics-{VERSION}-windows.zip'
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as package:

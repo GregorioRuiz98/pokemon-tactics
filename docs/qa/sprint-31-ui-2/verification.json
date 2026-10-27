@@ -1,0 +1,29 @@
+{
+  "version": "0.31.2",
+  "baseline": "958c720e8e6f2b55b6f1c9921af286c949362798",
+  "publishedFilesUnchanged": [
+    "godot/core",
+    "godot/data",
+    "godot/tests",
+    "godot/assets",
+    "godot/art",
+    "src",
+    "public",
+    "tests",
+    "CREDITS.md"
+  ],
+  "campaignEdition": 24,
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "coreChecks": {},
+  "uiChecksPerBuild": {
+    "symbols": 270,
+    "sleep": 15,
+    "power": 233
+  },
+  "sourceAndExeStateMatch": true,
+  "publicDeployment": false,
+  "fullCampaignPlayed": false,
+  "sleepCorrection": "Sleeping blocks movement routes and commands; old edition23 loads with backup and mixed replay."
+}

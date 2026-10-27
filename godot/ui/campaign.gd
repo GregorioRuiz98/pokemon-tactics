@@ -13,6 +13,7 @@ var kanto_qa_dir: String = ""
 var copy_qa_dir: String = ""
 var power_qa_dir: String = ""
 var sleep_qa_dir: String = ""
+var symbols_qa_dir: String = ""
 var trainer: RefCounted = preload("res://ui/trainer_session.gd").new()
 var trainer_qa_dir: String = ""
 var kecleon: RefCounted = preload("res://ui/kecleon_shop.gd").new()
@@ -183,6 +184,7 @@ func _boot() -> void:
 		get_tree().change_scene_to_file.call_deferred("res://scenes/laboratory.tscn")
 		return
 	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--symbols-qa-dir="): symbols_qa_dir = argument.trim_prefix("--symbols-qa-dir=")
 		if argument.begins_with("--sleep-qa-dir="): sleep_qa_dir = argument.trim_prefix("--sleep-qa-dir=")
 		if argument.begins_with("--power-qa-dir="): power_qa_dir = argument.trim_prefix("--power-qa-dir=")
 		if argument.begins_with("--copy-qa-dir="): copy_qa_dir = argument.trim_prefix("--copy-qa-dir=")
@@ -228,6 +230,7 @@ func _boot() -> void:
 	if not copy_qa_dir.is_empty(): test_dir = copy_qa_dir
 	if not power_qa_dir.is_empty(): test_dir = power_qa_dir
 	if not sleep_qa_dir.is_empty(): test_dir = sleep_qa_dir
+	if not symbols_qa_dir.is_empty(): test_dir = symbols_qa_dir
 	qa_running = not test_dir.is_empty()
 	if qa_running: DirAccess.make_dir_recursive_absolute(test_dir)
 	store = CampaignStore.new(test_dir.path_join("campaign-save.json") if qa_running else "user://kanto-save.json")
@@ -262,7 +265,8 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
-	if not sleep_qa_dir.is_empty(): _open_title(); call_deferred("_run_sleep_qa")
+	if not symbols_qa_dir.is_empty(): _open_title(); call_deferred("_run_symbols_qa")
+	elif not sleep_qa_dir.is_empty(): _open_title(); call_deferred("_run_sleep_qa")
 	elif not power_qa_dir.is_empty(): _open_title(); call_deferred("_run_power_qa")
 	elif not copy_qa_dir.is_empty(): _open_title(); call_deferred("_run_copy_qa")
 	elif not kanto_qa_dir.is_empty(): _open_title(); call_deferred("_run_kanto_qa")
@@ -481,6 +485,9 @@ func _run_variety_qa() -> void:
 
 func _run_kanto_qa() -> void:
 	await load("res://ui/qa_kanto.gd").new().run(self,kanto_qa_dir)
+
+func _run_symbols_qa() -> void:
+	await load("res://ui/qa_symbols.gd").new().run(self,symbols_qa_dir)
 
 func _run_sleep_qa() -> void:
 	await load("res://ui/qa_sleep.gd").new().run(self,sleep_qa_dir)
@@ -1014,7 +1021,7 @@ func _render_travel() -> void:
 	if phase!=travel_phase:
 		travel_memory = {}; travel_phase = phase
 		hub_mode = "overview"
-		member_view = "items" if phase=="shop" else "profile"
+		member_view = "items" if phase=="shop" and run.get("edition",1)<20 else "profile"
 		if kecleon.available(self): shop_tab = "gear"; kecleon.arrive()
 	elif memory.inside: travel_memory = memory
 	travel_art.configure(_scene_art(),true)
@@ -1301,14 +1308,19 @@ func _render_travel() -> void:
 	var info: Label = _label("%s · %s\nOrigen: %s\nAtaque %d / %d · Defensa %d / %d · Velocidad %d" % [unit.name,_type_names(unit.types),selected.origin,unit.attack,unit.specialAttack,unit.defense,unit.specialDefense,unit.speed],17)
 	info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	profile_row.add_child(info)
+	var identity: VBoxContainer = VBoxContainer.new()
+	identity.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	profile_row.add_child(identity); identity.add_child(info)
+	preload("res://ui/move_symbols.gd").type_badges(identity,unit.types)
 	if _simple_hub():
-		info.text = "%s · Nv. %d\n%d / %d PS · %s" % [unit.name,selected.level,unit.hp,unit.maxHp,_type_names(unit.types)]
+		info.text = "%s · Nv. %d\n%d / %d PS" % [unit.name,selected.level,unit.hp,unit.maxHp]
 		_build_member_navigation(team)
 		var profile: VBoxContainer = _hub_group(team,"profile")
 		profile.add_child(_label("Ataque %d · At. especial %d\nDefensa %d · Def. especial %d\nVelocidad %d" % [unit.attack,unit.specialAttack,unit.defense,unit.specialDefense,unit.speed],17))
 		profile.add_child(_label("EXP %d / %d" % [selected.xp,load("res://ui/economy_menu.gd").needed(self,selected)],17))
-		if run.get("edition",1)>=20: load("res://ui/economy_menu.gd").evolutions(self,profile,selected)
+		if run.get("edition",1)>=20:
+			if run.phase=="shop": load("res://ui/economy_menu.gd").training(self,profile,selected)
+			load("res://ui/economy_menu.gd").evolutions(self,profile,selected)
 		var next_form: Dictionary = campaign.progression.evolution(selected)
 		if not next_form.is_empty(): profile.add_child(_label("%s · Nv. %d" % [rules.profiles[int(next_form.speciesId)].data.name,next_form.level],17,GOLD))
 		profile.add_child(_label("Origen: "+selected.origin,16,MUTED))
@@ -1345,7 +1357,8 @@ func _render_travel() -> void:
 			if modern_shop: button.add_theme_font_size_override("font_size",16); button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			button.disabled = selected.hp <= 0 or selected.hp >= unit.maxHp or run.bag[item] <= 0
 		if run.get("edition",1)>=4:
-			if run.get("edition",1)>=20: load("res://ui/economy_menu.gd").training(self,team,selected)
+			if run.get("edition",1)>=20:
+				if not _simple_hub(): load("res://ui/economy_menu.gd").training(self,team,selected)
 			else:
 				var candy: Button = _travel_button("level-up","Usar Caramelo Raro · +1 nivel",team,{"kind":"level-up","member":selected_member})
 				candy.disabled = selected.hp<=0 or selected.level>=campaign.progression.data.levelCap or run.bag["rare-candy"]<=0

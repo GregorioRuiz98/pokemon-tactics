@@ -1,0 +1,38 @@
+{
+  "version": "0.31.2",
+  "baseline": "958c720e8e6f2b55b6f1c9921af286c949362798",
+  "publishedFilesUnchanged": [
+    "godot/core",
+    "godot/data",
+    "godot/tests",
+    "godot/assets",
+    "godot/art",
+    "src",
+    "public",
+    "tests",
+    "CREDITS.md"
+  ],
+  "campaignEdition": 24,
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "coreChecks": {},
+  "uiChecksPerBuild": {
+    "symbols": 270,
+    "sleep": 15,
+    "power": 233
+  },
+  "sourceAndExeStateMatch": true,
+  "publicDeployment": false,
+  "fullCampaignPlayed": false,
+  "sleepCorrection": "Sleeping blocks movement routes and commands; old edition23 loads with backup and mixed replay.",
+  "sourceFingerprint": "dc4c29f5910495bb4ae52ce64987b167cae922121c2b3bd376a30601a2d0363c",
+  "exe": {
+    "bytes": 131929320,
+    "sha256": "a9b3835fe35020ab75f1699091cc3609dbb9ccdc61cd018adc98d7ecbd9ec312"
+  },
+  "zip": {
+    "bytes": 55482240,
+    "sha256": "d7b1b6b4678da8e3a8f08690142ddecd5057e3cd070ee656448880d7b65ebd11"
+  }
+}

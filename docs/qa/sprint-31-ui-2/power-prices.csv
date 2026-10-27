@@ -1,0 +1,212 @@
+id,nombre,pp,potencia,forma,alcance
+absorb,"Absorber",2,20,S3,3
+acid,"Ácido",2,40,K2,2
+agility,"Agilidad",3,0,U,0
+air-slash,"Tajo Aéreo",3,75,F3,3
+amnesia,"Amnesia",3,0,U,0
+aqua-jet,"Acua Jet",2,40,DASH,3
+bide,"Venganza",3,0,U,3
+bind,"Atadura",1,15,S1,1
+bite,"Mordisco",2,60,S1,1
+brick-break,"Demolición",2,75,S1,1
+bubble,"Burbuja",2,40,K2,2
+bubble-beam,"Rayo Burbuja",3,65,L3,3
+bug-buzz,"Zumbido",4,90,R1,3
+clear-smog,"Niebla Clara",2,50,C1,3
+confusion,"Confusión",1,50,S3,3
+counter,"Contraataque",3,0,S3,3
+crunch,"Triturar",2,80,S1,1
+defense-curl,"Rizo Defensa",2,0,U,0
+dig,"Excavar",4,80,JUMP,4
+double-edge,"Doble Filo",5,120,DASH,3
+double-kick,"Doble Patada",2,60,S1,1
+double-team,"Doble Equipo",2,0,U,0
+dragon-rage,"Furia Dragón",3,0,S3,3
+earthquake,"Terremoto",4,100,D2,3
+ember,"Ascuas",1,40,S3,3
+encore,"Otra Vez",1,0,S2,2
+explosion,"Explosión",4,250,D2,3
+fake-out,"Sorpresa",1,40,S1,1
+fire-spin,"Giro Fuego",2,35,C1,3
+flamethrower,"Lanzallamas",4,90,L3,3
+flare-blitz,"Envite Ígneo",5,120,DASH,3
+flash-cannon,"Cañón Resplandor",3,80,L3,3
+focus-energy,"Foco Energía",3,0,U,0
+fury-attack,"Ataque Furia",1,30,S1,1
+fury-swipes,"Golpes Furia",1,36,S1,1
+growl,"Gruñido",2,0,K2,2
+growth,"Desarrollo",3,0,U,0
+gust,"Tornado",2,40,L2,2
+harden,"Fortaleza",2,0,U,0
+headbutt,"Golpe Cabeza",2,70,S1,1
+heat-wave,"Onda Ígnea",4,95,W6,2
+hydro-pump,"Hidrobomba",5,110,L3,3
+hyper-fang,"Hipercolmillo",3,80,S1,1
+iron-tail,"Cola Férrea",4,100,F0,3
+leech-life,"Chupavidas",3,80,S1,1
+leech-seed,"Drenadoras",1,0,S2,2
+light-screen,"Pantalla de Luz",3,0,WALL3,3
+mega-drain,"Megaagotar",2,40,S3,3
+mega-punch,"Megapuño",2,80,S1,1
+mirror-move,"Espejo",3,0,S3,3
+moonblast,"Fuerza Lunar",3,95,S3,3
+outrage,"Enfado",5,120,R1,3
+peck,"Picotazo",1,35,S1,1
+petal-dance,"Danza Pétalo",5,120,C0,3
+pin-missile,"Pin Misil",2,50,L3,3
+poison-jab,"Puya Nociva",2,80,S1,1
+poison-powder,"Polvo Veneno",2,0,K2,2
+poison-sting,"Picotazo Veneno",1,15,S2,2
+power-whip,"Latigazo",5,120,F0,3
+protect,"Protección",1,0,U,0
+psybeam,"Psicorrayo",3,65,L3,3
+quick-attack,"Ataque Rápido",2,40,DASH,3
+quiver-dance,"Danza Aleteo",3,0,U,0
+rage,"Furia",1,0,U,0
+razor-leaf,"Hoja Afilada",2,55,K2,2
+razor-wind,"Viento Cortante",3,80,F3,3
+rock-slide,"Avalancha",3,75,F3,3
+rock-throw,"Lanzarrocas",1,50,S3,3
+roost,"Respiro",3,0,U,0
+sand-attack,"Ataque Arena",2,0,K2,2
+scald,"Escaldar",3,80,L2,2
+scratch,"Arañazo",1,40,S1,1
+screech,"Chirrido",2,0,K2,2
+self-destruct,"Autodestrucción",4,200,R1,3
+skull-bash,"Cabezazo",5,130,DASH,3
+sky-attack,"Ataque Aéreo",5,140,JUMP,4
+slam,"Atizar",2,80,S1,1
+slash,"Cuchillada",4,70,F0,3
+sleep-powder,"Somnífero",4,0,K2,2
+smokescreen,"Pantalla de Humo",3,0,C1,3
+solar-beam,"Rayo Solar",5,120,L4,4
+stealth-rock,"Trampa Rocas",3,0,C1,3
+string-shot,"Disparo Demora",3,0,L3,3
+stun-spore,"Paralizador",2,0,K2,2
+sucker-punch,"Golpe Bajo",3,70,DASH,3
+super-fang,"Superdiente",3,0,S1,1
+supersonic,"Supersónico",2,0,L2,2
+swords-dance,"Danza Espada",3,0,U,0
+tackle,"Placaje",1,40,S1,1
+tail-whip,"Agitacola",2,0,K2,2
+take-down,"Derribo",4,90,DASH,3
+thunder,"Trueno",5,110,C1,3
+thunder-punch,"Puño Trueno",2,75,S1,1
+thunder-shock,"Impactrueno",1,40,S3,3
+thunder-wave,"Onda Trueno",1,0,S2,2
+thunderbolt,"Rayo",4,90,F3,3
+toxic,"Tóxico",1,0,S2,2
+twineedle,"Doble Ataque",1,50,S1,1
+vine-whip,"Látigo Cepa",1,45,S2,2
+water-gun,"Pistola Agua",2,40,L2,2
+whirlwind,"Remolino",2,0,K2,2
+wing-attack,"Ataque Ala",3,60,DASH,2
+withdraw,"Refugio",2,0,U,0
+wrap,"Constricción",1,15,S1,1
+acid-armor,"Armadura Ácida",3,0,U,0
+aurora-beam,"Rayo Aurora",3,65,L3,3
+barrage,"Bombardeo",2,30,C1,3
+barrier,"Barrera",3,0,WALL3,3
+blizzard,"Ventisca",5,110,W6,2
+body-slam,"Golpe Cuerpo",3,85,S1,1
+bone-club,"Hueso Palo",2,65,S1,1
+bonemerang,"Huesomerang",4,100,L3,3
+bulk-up,"Corpulencia",3,0,U,0
+calm-mind,"Paz Mental",3,0,U,0
+clamp,"Tenaza",1,35,S1,1
+comet-punch,"Puño Cometa",1,36,S1,1
+confuse-ray,"Rayo Confuso",1,0,S2,2
+constrict,"Restricción",1,10,S1,1
+conversion,"Conversión",1,0,U,0
+crabhammer,"Martillazo",3,100,S1,1
+cut,"Corte",2,50,F0,3
+dark-pulse,"Pulso Umbrío",3,80,R1,3
+dazzling-gleam,"Brillo Mágico",3,80,R1,3
+disable,"Anulación",1,0,S2,2
+dizzy-punch,"Puño Mareo",2,70,S1,1
+double-slap,"Doble Bofetón",1,30,S1,1
+dragon-pulse,"Pulso Dragón",3,85,L3,3
+dragon-tail,"Cola Dragón",2,60,S1,1
+dream-eater,"Comesueños",4,100,S3,3
+drill-peck,"Pico Taladro",3,80,DASH,3
+drill-run,"Taladradora",3,80,DASH,3
+egg-bomb,"Bomba Huevo",4,100,C1,3
+facade,"Fachada",2,70,S1,1
+feint,"Amago",1,30,S1,1
+fire-blast,"Llamarada",5,110,DAI7,3
+fire-punch,"Puño Fuego",2,75,S1,1
+fissure,"Fisura",4,100,L3,3
+flash,"Destello",2,0,R1,3
+fly,"Vuelo",5,90,JUMP,4
+foul-play,"Juego Sucio",3,95,S1,1
+glare,"Deslumbrar",1,0,S2,2
+guillotine,"Guillotina",3,100,S1,1
+haze,"Niebla",2,0,D2,3
+helping-hand,"Refuerzo",2,0,S2A,2
+high-jump-kick,"Patada Salto Alta",5,130,JUMP,2
+horn-attack,"Cornada",2,65,S1,1
+horn-drill,"Perforador",3,100,S1,1
+hyper-beam,"Hiperrayo",5,150,L4,4
+hypnosis,"Hipnosis",3,0,S2,2
+ice-beam,"Rayo Hielo",4,90,L3,3
+ice-punch,"Puño Hielo",2,75,S1,1
+ice-shard,"Esquirla Helada",1,40,S3,3
+jump-kick,"Patada Salto",4,100,JUMP,2
+karate-chop,"Golpe Kárate",1,50,S1,1
+kinesis,"Kinético",1,0,S2,2
+leer,"Malicioso",2,0,K2,2
+lick,"Lengüetazo",2,30,S1,1
+lovely-kiss,"Beso Amoroso",3,0,S2,2
+low-kick,"Patada Baja",1,0,S1,1
+meditate,"Meditación",2,0,U,0
+mega-kick,"Megapatada",4,120,S1,1
+megahorn,"Megacuerno",5,120,DASH,3
+metronome,"Metrónomo",5,0,VARIABLE,3
+mimic,"Mimético",3,0,S2,2
+minimize,"Reducción",3,0,U,0
+mirror-coat,"Manto Espejo",3,0,S3,3
+mist,"Neblina",3,0,C1,3
+nasty-plot,"Maquinación",3,0,U,0
+night-shade,"Tinieblas",1,0,S3,3
+pay-day,"Día de Pago",1,40,S3,3
+play-rough,"Carantoña",3,90,S1,1
+poison-gas,"Gas Venenoso",3,0,C1,3
+pound,"Destructor",1,40,S1,1
+psychic,"Psíquico",4,90,C1,3
+psywave,"Psicoonda",1,0,S3,3
+recover,"Recuperación",3,0,U,0
+reflect,"Reflejo",3,0,WALL3,3
+rest,"Descanso",3,0,U,0
+roar,"Rugido",2,0,K2,2
+rolling-kick,"Patada Giro",3,60,F0,3
+seismic-toss,"Sísmico",2,0,THROW,1
+shadow-ball,"Bola Sombra",2,80,S3,3
+sharpen,"Afilar",2,0,U,0
+shell-smash,"Rompecoraza",3,0,U,0
+sing,"Canto",4,0,R1,3
+sludge,"Residuos",3,65,C1,3
+sludge-bomb,"Bomba Lodo",4,90,C1,3
+smog,"Polución",2,30,C1,3
+soft-boiled,"Ovocuración",4,0,S2A,2
+sonic-boom,"Bomba Sónica",2,0,L3,3
+spike-cannon,"Clavo Cañón",2,40,L3,3
+splash,"Salpicadura",2,0,TP,1
+spore,"Espora",4,0,C0,3
+stomp,"Pisotón",2,65,S1,1
+strength,"Fuerza",2,80,S1,1
+submission,"Sumisión",3,80,THROW,1
+substitute,"Sustituto",3,0,U,0
+superpower,"Fuerza Bruta",4,120,S1,1
+surf,"Surf",4,90,W6,2
+swift,"Meteoros",3,60,K2,2
+taunt,"Mofa",1,0,S2,2
+teleport,"Teletransporte",2,0,TP,3
+thrash,"Saña",5,120,R1,3
+transform,"Transformación",1,0,S2,2
+tri-attack,"Triataque",3,80,T4,2
+u-turn,"Ida y Vuelta",3,70,RETREAT,1
+vice-grip,"Agarre",1,55,S1,1
+waterfall,"Cascada",3,80,DASH,3
+will-o-wisp,"Fuego Fatuo",1,0,S2,2
+x-scissor,"Tijera X",3,80,X5,3
+yawn,"Bostezo",1,0,S2,2

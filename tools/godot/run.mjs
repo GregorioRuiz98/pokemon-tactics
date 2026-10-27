@@ -21,12 +21,12 @@ mkdirSync(isolatedProfile, { recursive: true });
 mkdirSync(isolatedLocal, { recursive: true });
 function run(executable, args, label, cwd = root) {
   if(chapter>=31 && /^(copy|kanto)-(source|release)$/.test(label)) args=[...args,'--compat-kanto'];
-  if(nativeVersion==='0.31.1' && /^power-(source|release)$/.test(label)) args=[...args,'--compat-power'];
+  if(nativeVersion.startsWith('0.31.') && Number(nativeVersion.split('.')[2])>=1 && /^power-(source|release)$/.test(label)) args=[...args,'--compat-power'];
   // Historical UI suites keep their published edition. Current content has qa-kanto.
   if(chapter>=30 && /^(player|shop|trainer)-(source|release)$/.test(label)) args=[...args,'--compat-adventure'];
   const logIndex = args.indexOf('--log-file');
   if (logIndex >= 0) writeFileSync(args[logIndex + 1], '');
-  const result = spawnSync(executable, args, { cwd, env:{...process.env,APPDATA:isolatedProfile,LOCALAPPDATA:isolatedLocal}, encoding: 'utf8', windowsHide: true, timeout: label.startsWith('sleep-') ? 90000 : label==='simulate-balance' ? 1_800_000 : label.startsWith('journey-ui-') || label.startsWith('updates-ui-') || label==='ui-release' || label==='ui-source' || label==='test-journey' ? 900_000 : 300_000, maxBuffer: 12 * 1024 * 1024 });
+  const result = spawnSync(executable, args, { cwd, env:{...process.env,APPDATA:isolatedProfile,LOCALAPPDATA:isolatedLocal}, encoding: 'utf8', windowsHide: true, timeout: (label.startsWith('sleep-') || label.startsWith('symbols-')) ? 90000 : label==='simulate-balance' ? 1_800_000 : label.startsWith('journey-ui-') || label.startsWith('updates-ui-') || label==='ui-release' || label==='ui-source' || label==='test-journey' ? 900_000 : 300_000, maxBuffer: 12 * 1024 * 1024 });
   const log = (result.stdout ?? '') + (result.stderr ?? '') + (logIndex >= 0 && existsSync(args[logIndex + 1]) ? '\n' + readFileSync(args[logIndex + 1], 'utf8') : '');
   writeFileSync(resolve(work, `${label}.log`), log);
   const clean = log.replace(/\x1b\[[0-9;]*m/g, '');
@@ -47,6 +47,9 @@ function verifyCampaign(directory) {
   for(const file of report.screenshots) if(!existsSync(resolve(directory,file))) throw new Error('Missing campaign screenshot.');
 }
 function verify() {
+  const symbols=spawnSync('python',[resolve(root,'tools/godot/import-ui-symbols.py')],{cwd:root,encoding:'utf8',windowsHide:true});
+  if(symbols.status!==0) throw new Error('UI sprite integrity failed: '+symbols.stderr);
+  console.log('Verified 21 original type/category sprites and pinned credits offline.');
   if(chapter>=30) {
     const kanto=spawnSync('python',[resolve(root,'tools/godot/verify-kanto.py')],{cwd:root,encoding:'utf8',windowsHide:true});
     if(kanto.status!==0) throw new Error('Kanto resources failed: '+kanto.stderr);
@@ -106,7 +109,13 @@ if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-expo
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'test-sleep') {
+if(operation === 'qa-symbols' || operation === 'qa-symbols-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'symbols-'+(exported?'release':'source'));
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--symbols-qa-dir='+directory],'symbols-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'symbols-ui-result.json'),'utf8'));
+  if(report.failures.length || report.assertions<50) throw new Error('Visual UI failed.');
+} else if(operation === 'test-sleep') {
   run(binary,['--headless',...common,'--script','res://tests/sleep_fix.gd','--','--save-dir='+work],'sleep-core');
 } else if(operation === 'qa-sleep' || operation === 'qa-sleep-export') {
   const exported=operation.endsWith('export');

@@ -217,3 +217,7 @@ Nuevos módulos power_* y restorative_tiles; edición23/capítulo27/combate20, s
 ## Sueño0.31.1
 
 SleepBattle añade bloqueo puro de rutas/comando dormido; no alterar PowerBattle publicado. SleepRun24 permite transición23 en combate, conserva estado y reinicia solo el historial local de Rectificar con un checkpoint; diario completo intacto. Carga23 actualiza con copia automáticamente; QA histórica power usa --compat-power. KT31S nuevo; sin cambios a otros estados/PP/mapas. Ver ../docs/FIX_SLEEP_0.31.1.md.
+
+## Interfaz0.31.2
+
+Entrenar retirado de Kecleon; subir nivel en Equipo → Ficha junto a EXP, solo en tienda y con la transacción anterior. MoveSymbols cachea texturas/estilos, conserva textos/foco y alto contraste. Originales PokéSprite en assets/ui-symbols con commit, hashes y créditos; importador explícito, sin red en juego. Campaña24/combate21 y guardados intactos. QA symbols actual; sleep y power históricas conservadas. Ver ../docs/UI_SYMBOLS_0.31.2.md.
