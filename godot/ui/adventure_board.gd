@@ -1,6 +1,5 @@
 extends "res://ui/isometric_board.gd"
 
-var threat_cells: Dictionary = {}
 var deployment_drag: int = 0
 signal deployment_dragged(identity: int, point: Dictionary)
 
@@ -30,11 +29,6 @@ func _draw() -> void:
 	super._draw()
 	if state.get("combatEdition",0)<19: return
 	var area: Rect2 = play_area()
-	for key: String in threat_cells:
-		var split: PackedStringArray = key.split(",")
-		var point: Dictionary = {"x":int(split[0]),"y":int(split[1])}
-		if not area.grow(-25).has_point(center(point)): continue
-		_outline(diamond(point),Color("ee8677",.75),1.5)
 	for pair: Array in state.get("arena",{}).get("portals",[]):
 		for point: Dictionary in pair:
 			if area.grow(-25).has_point(center(point)):

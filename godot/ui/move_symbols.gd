@@ -48,6 +48,26 @@ static func decorate(button: Button, definition: Dictionary) -> void:
 			styles[key] = style
 		button.add_theme_stylebox_override(state,styles[key])
 
+static func refresh_command_skin(button: Button) -> void:
+	# The campaign changes the variation after the shared laboratory builds icons.
+	# Rebase its margin overrides on the white field theme, once per new button.
+	if button.has_meta("field_skin"): return
+	button.set_meta("field_skin",true)
+	var symbols: Control = button.get_node_or_null("MoveSymbols")
+	if symbols==null: return
+	symbols.offset_left = 26; symbols.offset_right = 58
+	for state: String in ["normal","hover","pressed","hover_pressed","disabled","focus"]:
+		button.remove_theme_stylebox_override(state)
+		var source: StyleBox = button.get_theme_stylebox(state)
+		var key: String = "field/"+str(source.get_instance_id())
+		if not styles.has(key):
+			var style: StyleBoxFlat = source.duplicate()
+			style.content_margin_left = 70
+			style.set_meta("base_bg",style.get_meta("base_bg",style.bg_color))
+			style.set_meta("base_border",style.get_meta("base_border",style.border_color))
+			styles[key] = style
+		button.add_theme_stylebox_override(state,styles[key])
+
 static func apply_contrast(enabled: bool) -> void:
 	for style: StyleBox in styles.values():
 		if not style is StyleBoxFlat: continue

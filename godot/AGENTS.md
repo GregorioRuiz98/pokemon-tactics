@@ -241,3 +241,7 @@ Marcos y relieve nativos en botones, estados de foco/hover/pulsación y alto con
 ## Calidad táctica0.34 — Kanto completo
 
 El usuario amplía expresamente a todo el juego. TacticsQualityRun/Battle/Store/Challenge y tactics_opening aplican contexto/terreno a58 localizaciones, cinco objetivos de control, preferencias de líderes y memoria antiestancamiento de IA; misma tabla numérica. Campaña27/capítulo31/combate24, actualización entre encuentros con copia y KT34. Consulta de alcance candidata sin RNG, velocidad1/1,5/2×. Certificados locales opcionales tras replay real y validación incremental, estado canónico binario, diario/copia/concurrencia preservados; carga inicial por bloques para26/27. No modificar los motores publicados ni confundir cobertura con intención garantizada. Pruebas y límites en docs/SPRINT_34_TACTICAL_QUALITY.md; escenarios en MAPAS_0.34.csv y protocolo humano en PLAYTEST_0.34.md. Sin delegación, recursos externos nuevos ni publicación; commit/push privado autorizado.
+
+## Interfaz0.34.1 — previa real y habilidades
+
+Menú de habilidades blanco, amarillo solo al pasar el ratón y foco oscuro; márgenes de iconos corregidos. Viaje muestra contexto, objetivo y enemigos reales antes de Entrar, con fichas consultables. Generación sobre copia y caché por estado completo; no altera órdenes/RNG. Se retiran amenazas, atajo y consulta automática. Misma campaña27/capítulo31/combate24. Fuente/EXE y58 lugares comprobados en docs/UI_PRECOMBAT_0.34.1.md; pruebas humanas externas pendientes. Sin publicación pública ni recursos nuevos.

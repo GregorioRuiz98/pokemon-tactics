@@ -1,0 +1,17 @@
+{
+  "assertions": 46,
+  "campaignEdition": 27,
+  "failures": [],
+  "motifs": 11,
+  "scope": "Natural opening/save; separate synthetic140-member PC, large legal MT library and12-unit rendering fixtures. No human/external hardware claim.",
+  "screenshots": [
+    "full-library-100.png",
+    "full-library-1024-150.png",
+    "full-pc-1024-150.png",
+    "crowded-battle-12.png",
+    "attack-jaws.png",
+    "attack-stones.png",
+    "attack-powder.png"
+  ],
+  "stateHash": "b401540d39c94c689ef999826bcb372fc4d8573b7263dcabb1f6c005ba8a1720"
+}

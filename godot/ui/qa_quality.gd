@@ -33,13 +33,10 @@ func run(app: Control, directory: String) -> void:
 	app.run = natural; app.state = app.run.battle; app.transactions = journal
 	app._prepare_campaign_assets(); app._refresh(); await layout(app)
 	await click(app,app.adventure.start_button)
-	app.tactical_lens.refresh(app)
-	while app.tactical_lens.job!=null:
-		app.tactical_lens.tick(app); await settle(app)
 	var before: Dictionary = app.run.duplicate(true)
 	var route: Dictionary = app.board.available.values()[0]
 	app._hover_tile(route.path[-1])
-	check(app.hint.text.contains("alcance") or app.hint.text.contains("Alcance"),"Movement destination exposes potential enemy coverage")
+	check(not app.hint.text.contains("Alcance potencial"),"Movement does not expose removed threats")
 	check(Ledger.equivalent(before,app.run),"Tactical lens consumes no state or RNG")
 	app._open_presentation(); await layout(app)
 	check(app.presentation_dialog.widgets.has("battleSpeed"),"Combat speed exposed in options")

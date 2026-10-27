@@ -28,7 +28,9 @@ if VERSION == '0.31.2':
     CONFIG = {'baseline':'958c720e8e6f2b55b6f1c9921af286c949362798','report':'UI_SYMBOLS_0.31.2.md','ui':{'symbols':270,'sleep':15,'power':233},'core':{},'edition':24}
 if VERSION == '0.33.1':
     CONFIG = {'baseline':'745552d96c424fbe8a5b0d4c8dbb652ae94d1744','report':'UI_BUTTONS_BRIEFING_0.33.1.md','ui':{'briefing':300,'review':46,'symbols':270},'core':{},'edition':26}
-QA_LABEL = '33-ui-1' if VERSION == '0.33.1' else '31-ui-2' if VERSION == '0.31.2' else '31-ui-1' if VERSION == '0.31.1' else '30-ui-1' if VERSION == '0.30.1' else str(CHAPTER)
+if VERSION == '0.34.1':
+    CONFIG = {'baseline':'5dc4001fa2fb27afbdc350e61ff48dca6c6f8e50','report':'UI_PRECOMBAT_0.34.1.md','ui':{'briefing':1800,'review':46,'symbols':270},'core':{},'edition':27}
+QA_LABEL = '34-ui-1' if VERSION == '0.34.1' else '33-ui-1' if VERSION == '0.33.1' else '31-ui-2' if VERSION == '0.31.2' else '31-ui-1' if VERSION == '0.31.1' else '30-ui-1' if VERSION == '0.30.1' else str(CHAPTER)
 WORK = (ROOT/f'../../work/qa-sprint-{QA_LABEL}').resolve()
 RELEASE = (ROOT/f'../releases/pokemon-tactics-{VERSION}').resolve()
 BUNDLE = RELEASE/'windows'
@@ -116,7 +118,7 @@ def main():
         for source, target in [('REGLAS_ACTUALES.md','REGLAS_ACTUALES.md'),('PLAYTEST_WINDOWS.md','PLAYTEST_WINDOWS.md'),('PLAYTEST_WINDOWS.md','GUIA_DE_PRUEBA.md'),('SPRINT_33_REVIEW.md','SPRINT_33_REVIEW.md'),('SPRINT_32_CLIMATE.md','SPRINT_32_CLIMATE.md')]:
             shutil.copy2(ROOT/'docs'/source,docs/target)
         shutil.copy2(ROOT/'tools/godot/check-pc.cmd',BUNDLE/'Comprobar-equipo.cmd')
-    if CHAPTER == 34:
+    if VERSION == '0.34.0':
         campaign = read(WORK/'natural-quality-07/campaign-review.json')
         assert not campaign['failures'] and campaign['phase']=='ending' and len(campaign['cleared'])==58
         verification.update({'fullCampaignPlayed':True,'fullCampaignMode':'Automated legal-command campaign','humanPlaytest':False,'externalHardwareTest':False,'campaignOrders':campaign['orders'],'campaignLocations':58})

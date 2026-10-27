@@ -1,6 +1,6 @@
 # Reglas actuales — campaña Windows
 
-Referencia vigente desde 0.34.0. Sustituye las descripciones antiguas de PT,
+Referencia vigente desde 0.34.1. Sustituye las descripciones antiguas de PT,
 caramelos, piedras consumibles, roles y finales excluyentes. Los informes de
 sprints anteriores describen sus propias versiones y se conservan como historial.
 
@@ -88,8 +88,9 @@ o reproducción automática no equivale a una sesión humana externa.
 
 Los58 lugares tienen contexto y revisión de terreno. Cinco encuentros Rocket/
 instalaciones permiten controlar mecanismos o derrotar a todos los rivales.
-Preparación muestra el objetivo y el equipo real. La consulta de una casilla
-indica cobertura rival potencial, sin prometer una intención o impacto.
+Antes de entrar, el viaje muestra contexto, objetivo y equipo rival real, con
+niveles, tipos, habilidad y movimientos. Cada ficha permite consultar sus estadísticas.
+El despliegue conserva la consulta rival. Se han retirado las amenazas y su atajo.
 Opciones permite velocidad1×/1,5×/2×. La duración de lectura es independiente.
 Las campañas26/27 certificadas cargan sin repetir su historial ya validado;
 si falta la certificación, se reconstruye completo con progreso. Detalles

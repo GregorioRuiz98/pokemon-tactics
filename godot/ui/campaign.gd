@@ -20,7 +20,6 @@ var portable_smoke_path: String = ""
 var review_qa_dir: String = ""
 var briefing_qa_dir: String = ""
 var encounter_preview: RefCounted = preload("res://ui/encounter_preview.gd").new()
-var tactical_lens: RefCounted = preload("res://ui/tactical_lens.gd").new()
 var quality_qa_dir: String = ""
 var climate_qa_dir: String = ""
 var trainer: RefCounted = preload("res://ui/trainer_session.gd").new()
@@ -834,7 +833,6 @@ func _refresh() -> void:
 	if fighting and run.get("edition",0)>=25: preload("res://ui/climate_hud.gd").refresh(self)
 	if state.get("combatEdition",0)>=20: preload("res://ui/power_copy.gd").refresh_battle(self)
 	encounter_preview.refresh(self)
-	tactical_lens.refresh(self)
 	if adventure.enabled(self) and run.phase!="battle" and not travel_buttons.has("share_journey"):
 		var share: Button = _button(input_profile.shortcut("Reto","share"),func():adventure.export_card(self))
 		share.theme_type_variation = "ToolButton"
@@ -877,22 +875,22 @@ func _layout_battle_hud() -> void:
 	var camera_height: float = 3*maxf(44,theme.default_font.get_height(roundi(16*factor))+20)+4
 	var menu_overhead: float = 2*theme.default_font.get_height(roundi(18*factor))+72
 	var ability_height: float = action_buttons.size()*(2*theme.default_font.get_height(roundi(16*factor))+20)+maxi(0,action_buttons.size()-1)*6
-	var threat_height: float = maxf(44,theme.default_font.get_height(roundi(18*factor))+20)+12 if run.get("edition",0)>=21 else 0.0
-	actions_scroll.custom_minimum_size.y = minf(ability_height,maxf(120,size.y-122-camera_height-12-menu_overhead-18-threat_height)) if action_page else 0.0
+	actions_scroll.custom_minimum_size.y = minf(ability_height,maxf(120,size.y-122-camera_height-12-menu_overhead-18)) if action_page else 0.0
 	var menu_paper: StyleBoxFlat = command_panel.get_theme_stylebox("panel")
 	if not menu_paper.has_meta("field_menu"):
 		menu_paper = GameSkin.panel(Color("7c9696"))
-		menu_paper.bg_color = GameSkin.PAPER
+		menu_paper.bg_color = Color.WHITE
 		menu_paper.set_meta("field_menu",true)
 		command_panel.add_theme_stylebox_override("panel",menu_paper)
 	var high_contrast: bool = input_profile.preferences.highContrast
-	var paper_color: Color = Color.BLACK if high_contrast else GameSkin.PAPER
+	var paper_color: Color = Color.BLACK if high_contrast else Color.WHITE
 	if menu_paper.bg_color!=paper_color: menu_paper.bg_color = paper_color
 	var heading_color: Color = Color.WHITE if high_contrast else GameSkin.INK
 	if command_heading.get_theme_color("font_color")!=heading_color: command_heading.add_theme_color_override("font_color",heading_color)
 	command_heading.set_meta("base_color",GameSkin.INK)
 	for button: Button in [buttons.actions,buttons.undo,buttons.finish,buttons.cancel]+action_buttons.values():
 		if button.theme_type_variation!="FieldCommandButton": button.theme_type_variation = "FieldCommandButton"
+		preload("res://ui/move_symbols.gd").refresh_command_skin(button)
 	var actor_width: float = 330 if narrow else 380
 	var target_width: float = 390
 	var actor_panel: Control = actor_portrait.get_parent().get_parent().get_parent()
@@ -938,9 +936,6 @@ func _hover_tile(point: Dictionary) -> bool:
 	if not point.is_empty() and state.get("combatEdition",0)>=11 and not _modal_open(): hint.text += "\nAltura %d · rueda: zoom · botón central: cámara." % rules.Terrain.height_at(state,point)
 	adventure.hover(self,point)
 	if not point.is_empty() and preload("res://core/restorative_tiles.gd").contains(state,point): hint.text += "\nManantial: cura estados al terminar aquí; no recupera PS."
-	if not point.is_empty():
-		var reading: String = tactical_lens.describe(self,point)
-		if not reading.is_empty(): hint.text += "\n"+reading
 	return true
 
 func _select_tile(point: Dictionary) -> void:
@@ -1065,6 +1060,9 @@ func _simplify_hub() -> void:
 	travel_buttons.hub_team.button_pressed = managing
 	hub_parts.shop.visible = not managing
 	hub_parts.team.visible = managing or run.phase!="shop"
+	if hub_parts.has("rivals"):
+		hub_parts.rivals.visible = not managing
+		hub_parts.team_body.visible = managing
 	for key: String in ["details","roster_tabs","roster_manage"]:
 		if hub_parts.has(key): hub_parts[key].visible = managing
 	for key: String in ["profile","items","moves","traits"]:
@@ -1247,6 +1245,7 @@ func _render_travel() -> void:
 	narrative.add_child(text)
 	match run.phase:
 		"map":
+			encounter_preview.render_travel(self,narrative,location)
 			_travel_button("enter",("Visitar " if location.get("kind","")=="story" else "Entrar en ") + location.name,footer if _simple_hub() else narrative,{"kind":"enter"})
 			text.text += "\n\nVisita narrativa: abre caminos y tienda, sin captura ni curación." if location.get("kind","")=="story" else "\n\nUn combate por ubicación. Al ganar: captura local, tienda y siguiente tramo. Los PS no se restauran entre encuentros."
 		"capture":
@@ -1372,6 +1371,7 @@ func _render_travel() -> void:
 		team.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		team.add_theme_constant_override("separation",12)
 		detail_scroll.add_child(team)
+	encounter_preview.mount_travel(self,right,team_row)
 	var selected: Dictionary = campaign.target(run,selected_member)
 	if selected.is_empty(): return
 	var unit: Dictionary = rules.member_unit(selected)
@@ -1831,7 +1831,6 @@ func _render_inventory(parent: VBoxContainer, member: Dictionary) -> void:
 
 func _process(delta: float) -> void:
 	if title_loading: return
-	if not qa_running: tactical_lens.tick(self)
 	if not qa_running: trainer.tick(self,delta)
 	if practice.active: return
 	if not qa_running: adventure.tick(self,delta)

@@ -26,13 +26,9 @@ func run(app: Control, directory: String) -> void:
 	check(app.state.units[0].x==9 and app.state.units[0].y==12,"Default formation restored for 24 map")
 	app.board.grab_focus()
 	await key(app,KEY_T)
-	for frame: int in 2000:
-		if app.adventure.threat_job==null: break
-		app.adventure.tick(app,.016)
-		await app.get_tree().process_frame
-	check(not app.board.threat_cells.is_empty(),"Keyboard threat toggle calculates coverage")
-	check(app.run.battle.rng==before.battle.rng,"Threat overlay preserves combat RNG")
-	await capture(app,directory,"preparation-threats")
+	check(not Profile.ACTIONS.has("threats"),"Threat shortcut is removed")
+	check(app.run.battle.rng==before.battle.rng,"Unused T key preserves combat RNG")
+	await capture(app,directory,"preparation-no-threats")
 	await key(app,KEY_B)
 	check(not app.state.deployment and not app.adventure.deploy_panel.visible,"Keyboard begins battle")
 	for index: int in 180:
@@ -139,23 +135,16 @@ func run(app: Control, directory: String) -> void:
 		check(app.state.arena.title!="Encuentro de ruta","Themed gym "+location.id)
 		await capture(app,directory,location.id)
 		arena_count += 1
-	app.adventure.scope = 2; app.adventure.request_threat(app)
 	var slices: int = 0; var total_ms: float = 0; var max_slice_ms: float = 0
 	before = app.run.duplicate(true)
-	for frame: int in 10000:
-		if app.adventure.threat_job==null: break
-		var started: int = Time.get_ticks_usec()
-		app.adventure.tick(app,.016)
-		var elapsed_ms: float = (Time.get_ticks_usec()-started)/1000.0
-		total_ms += elapsed_ms; max_slice_ms = maxf(max_slice_ms,elapsed_ms); slices += 1
-		await app.get_tree().process_frame
-	check(app.adventure.threat_job==null and not app.board.threat_cells.is_empty(),"All-enemy threat overlay completes for twelve-unit gym")
-	check(Store.equivalent(before,app.run),"Full gym coverage preserves all state and RNG")
+	app.board.grab_focus(); await key(app,KEY_T)
+	check(not Profile.ACTIONS.has("threats"),"Full gym has no threat overlay control")
+	check(Store.equivalent(before,app.run),"Unused threat key preserves full gym state and RNG")
 	var draw_samples: Array[float] = []
 	app.board.set_meta("adventure_draw_samples",draw_samples)
 	for frame: int in 120: await app.get_tree().process_frame
 	app.board.remove_meta("adventure_draw_samples"); draw_samples.sort()
-	await capture(app,directory,"all-threats")
+	await capture(app,directory,"gym-no-threats")
 	var performance: Dictionary = {"slices":slices,"queryCpuMs":total_ms,"maxSliceMs":max_slice_ms,"drawSamples":draw_samples.size(),"medianBoardDrawMs":draw_samples[int(draw_samples.size()*.5)] if not draw_samples.is_empty() else 0.0}
 	var report: Dictionary = {"assertions":assertions,"failures":failures,"screenshots":screenshots,"naturalStateHash":natural_hash,"journalHash":journal_hash,"gyms":arena_count,"edition":21,"combatEdition":19,"syntheticGymFixtures":true,"fullCampaignPlayed":false,"performance":performance}
 	FileAccess.open(directory.path_join("adventure-ui-result.json"),FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))

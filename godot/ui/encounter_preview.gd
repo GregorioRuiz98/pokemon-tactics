@@ -15,6 +15,12 @@ var cards: Array[Button] = []
 var signature: String = ""
 var selected: Dictionary = {}
 var return_focus: Button
+var travel_signature: String = ""
+var travel_state: Dictionary = {}
+var travel_cards: Array[Button] = []
+var travel_roster: VBoxContainer
+var travel_context: Label
+var travel_objective: Label
 
 func setup(app: Control) -> void:
 	panel = app._panel()
@@ -55,7 +61,7 @@ func refresh(app: Control) -> void:
 			app.actor_portrait.get_parent().get_parent().get_parent().show()
 			app.hint.get_parent().show()
 			app.board.extra_bottom = 60 if Settings.font_factor(app)>1.2 else -24
-		if dialog.visible: dialog.hide()
+		if dialog.visible and (app.title_visible or app.run.get("phase","")!="map"): dialog.hide()
 		return
 	app.actor_portrait.get_parent().get_parent().get_parent().hide()
 	app.hint.get_parent().hide(); app.target_panel.hide()
@@ -94,8 +100,78 @@ func refresh(app: Control) -> void:
 		row.add_child(card); cards.append(card)
 	Settings.apply_fonts(app,panel)
 
-func inspect(app: Control, unit: Dictionary, source: Button) -> void:
-	# Read the already generated encounter. Never rebuild enemies or draw RNG.
+func render_travel(app: Control, parent: VBoxContainer, location: Dictionary) -> void:
+	travel_cards.clear()
+	travel_roster = null; travel_context = null; travel_objective = null
+	# The original level-free prototype keeps its own legacy destination screen.
+	if app.run.get("edition",1)<2: return
+	if location.get("kind","")=="story":
+		travel_state = {}; travel_signature = ""
+		var visit: Label = app._label(location.get("story","")+"\nVisita sin combate. Al terminar podrás acceder a la tienda.",17)
+		visit.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		parent.add_child(visit)
+		return
+	# Use the exact encounter generator on a copy; never accept an order or save it.
+	# Cache by the complete input, including seed, party and revision, across redraws.
+	var identity: String = JSON.stringify(app.run,"",true,true)
+	if identity!=travel_signature:
+		travel_state = app.rules.encounter(app.run.duplicate(true),location)
+		travel_signature = identity
+	var context: Dictionary = travel_state.get("briefing",{})
+	var line: String = str(context.get("line",location.get("story","")))
+	var speaker: String = str(context.get("speaker",""))
+	travel_context = app._label((speaker+": " if not speaker.is_empty() else "")+line,18)
+	travel_context.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	parent.add_child(travel_context)
+	var plan: String = str(context.get("plan",travel_state.get("arena",{}).get("description","")))
+	travel_objective = app._label("OBJETIVO · "+preload("res://ui/concise_copy.gd").objective(travel_state)+("\n"+plan if not plan.is_empty() else ""),17)
+	travel_objective.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	parent.add_child(travel_objective)
+	var enemies: Array = travel_state.get("units",[]).filter(func(unit: Dictionary): return unit.team=="enemy")
+	travel_roster = VBoxContainer.new()
+	travel_roster.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	travel_roster.add_theme_constant_override("separation",12)
+	parent.add_child(travel_roster)
+	travel_roster.add_child(app._label("EQUIPO RIVAL · %d"%enemies.size(),20,app.GOLD))
+	var tip: Label = app._label("Prepara tu equipo antes de entrar. Consulta cada ficha para ver más detalles; después elegirás las casillas de despliegue. Los PS se conservan entre encuentros.",16)
+	tip.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	travel_roster.add_child(tip)
+	for unit: Dictionary in enemies:
+		var types: PackedStringArray = []
+		for kind: String in unit.types: types.append(Info.TYPES.get(kind,kind))
+		var moves: PackedStringArray = [app.rules.progression.BASIC.name]
+		for move: String in unit.get("moves",[]):
+			moves.append(app.rules.catalog.moves.get(move,{}).get("name",move))
+		var label: String = "%s · Nv. %d · %s\nPS %d · %s\n%s"%[unit.name,unit.level," / ".join(types),unit.maxHp,unit.get("abilityName","")," · ".join(moves)]
+		if unit.get("dormant",false): label += "\nRefuerzo durante el combate"
+		var card: Button = app._button(label,func(): pass)
+		card.name = "Rival"+str(int(unit.id))
+		card.theme_type_variation = "ToolButton"
+		card.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		card.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		card.custom_minimum_size.y = 110
+		card.icon = app.faces.get(int(unit.speciesId)); card.expand_icon = true
+		card.add_theme_constant_override("icon_max_width",64)
+		card.tooltip_text = "Ver estadísticas, habilidad y movimientos de "+unit.name
+		card.accessibility_description = label+". "+card.tooltip_text
+		card.pressed.connect(func(): inspect(app,unit,card,int(travel_state.get("combatEdition",0))))
+		travel_roster.add_child(card); travel_cards.append(card)
+
+func mount_travel(app: Control, panel_host: PanelContainer, team_body: Control) -> void:
+	if app.run.get("phase","")!="map" or travel_roster==null or not app._simple_hub(): return
+	var rivals: ScrollContainer = ScrollContainer.new()
+	rivals.set_meta("scroll_id","rivals")
+	rivals.follow_focus = true
+	rivals.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	panel_host.add_child(rivals)
+	travel_roster.reparent(rivals)
+	app.hub_parts.rivals = rivals
+	app.hub_parts.team_body = team_body
+
+func inspect(app: Control, unit: Dictionary, source: Button, combat_edition: int = -1) -> void:
+	# Read the generated encounter snapshot. No orders, resources or RNG are changed.
+	if combat_edition<0: combat_edition = int(app.state.get("combatEdition",0))
 	selected = unit.duplicate(true); return_focus = source
 	app._clear(details)
 	dialog.title = "%s · Nv. %d"%[unit.name,unit.level]
@@ -117,7 +193,7 @@ func inspect(app: Control, unit: Dictionary, source: Button) -> void:
 	for identity: String in moves:
 		var definition: Dictionary = app.rules.progression.BASIC.duplicate(true) if identity=="basic" else app.rules.catalog.moves.get(identity,{})
 		if definition.is_empty(): continue
-		if identity=="basic" and app.state.get("combatEdition",0)>=20:
+		if identity=="basic" and combat_edition>=20:
 			definition.loadoutCost = 0
 			definition.description = "Golpe neutro. Sin tipo, STAB, debilidades ni resistencias. Consume la acción."
 		var box: PanelContainer = app._panel(); details.add_child(box)

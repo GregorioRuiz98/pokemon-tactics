@@ -1,20 +1,12 @@
 extends RefCounted
 
-const Threat = preload("res://core/threat_query.gd")
 const Challenge = preload("res://core/tactics_quality_challenge.gd")
 const Card = preload("res://ui/journey_card.gd")
 var deploy_panel: PanelContainer
 var deploy_label: Label
 var start_button: Button
 var auto_button: Button
-var threat_button: Button
 var selected: int = 0
-var scope: int = 0
-var hovered_enemy: int = 0
-var threat_job: RefCounted
-var threat_cache: Dictionary = {}
-var last_revision: int = -1
-var last_state: Dictionary = {}
 var toast: PanelContainer
 var toast_image: TextureRect
 var toast_text: Label
@@ -41,12 +33,6 @@ func setup(app: Control) -> void:
 	start_button = app._button("Comenzar · B",func():app._event({"kind":"start-battle","at":app.run.revision}))
 	start_button.theme_type_variation = "PrimaryButton"
 	body.add_child(start_button)
-	threat_button = app._button("Amenazas · T",func():cycle_threat(app),36)
-	threat_button.theme_type_variation = "ToolButton"
-	# Share the existing camera stack; do not extend the crowded top toolbar.
-	stack.add_child(threat_button)
-	stack.move_child(threat_button,1)
-	threat_button.tooltip_text = "No / rival bajo el cursor / todos. Alcance geométrico con desplazamiento: no es una intención ni una garantía de impacto."
 	toast = app._panel()
 	toast.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	app.add_child(toast)
@@ -64,7 +50,7 @@ func setup(app: Control) -> void:
 	toast_text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	toast_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	row.add_child(toast_text)
-	toast.hide(); deploy_panel.hide(); threat_button.hide()
+	toast.hide(); deploy_panel.hide()
 	app._apply_preferences.call_deferred()
 	app.board.deployment_dragged.connect(func(identity,point):
 		if enabled(app) and not app._modal_open(): app._event({"kind":"deploy","member":identity,"destination":point,"at":app.run.revision}))
@@ -73,18 +59,9 @@ func refresh(app: Control) -> void:
 	if deploy_panel==null: return
 	var active: bool = enabled(app) and not app.title_visible and app.run.phase=="battle"
 	deploy_panel.visible = active and app.state.get("deployment",false)
-	threat_button.visible = active
 	if not active:
-		app.board.threat_cells = {}; threat_job = null; threat_cache.clear(); last_revision = -1
-		last_state = {}
 		if app.title_visible or not enabled(app): toast.hide(); toast_remaining = 0
 		return
-	if app.run.revision!=last_revision or not is_same(last_state,app.state):
-		last_revision = app.run.revision
-		last_state = app.state
-		threat_cache.clear(); threat_job = null; app.board.threat_cells = {}
-		request_threat(app)
-	threat_button.text = "Amenazas: %s · %s" % [["No","Rival","Todas"][scope],app.input_profile.label("threats")]
 	if deploy_panel.visible:
 		app.command_panel.hide()
 		deploy_panel.custom_minimum_size.x = app.command_panel.custom_minimum_size.x
@@ -119,50 +96,18 @@ func select(app: Control, point: Dictionary) -> bool:
 
 func hover(app: Control, point: Dictionary) -> void:
 	if not enabled(app) or app.state.is_empty() or point.is_empty(): return
-	var unit: Dictionary = app.rules._at(app.state,point)
-	if not unit.is_empty() and unit.team=="enemy" and hovered_enemy!=int(unit.id):
-		hovered_enemy = int(unit.id)
-		if scope==1: request_threat(app)
-	if scope>0:
-		var count: int = app.board.threat_cells.get(app.rules.Movement.key(point),[]).size()
-		app.hint.text += "\n"+("Calculando cobertura…" if threat_job!=null else "Alcance potencial: %d rival(es). El estado y la visión pueden cambiar el ataque real." % count)
 	if app.state.get("deployment",false): app.hint.text = "Elige un aliado y una casilla verde; también puedes arrastrarlo. "+app.input_profile.shortcut("Comenzar","deploy_start")+"."
 
-func cycle_threat(app: Control) -> void:
-	scope = (scope+1)%3
-	request_threat(app); refresh(app)
-
-func request_threat(app: Control) -> void:
-	app.board.threat_cells = {}; threat_job = null
-	if scope==0 or not enabled(app) or app.state.is_empty(): return
-	if scope==1 and not app.rules.living(app.state).any(func(u):return u.team=="enemy" and int(u.id)==hovered_enemy): hovered_enemy = 0
-	if scope==1 and hovered_enemy==0:
-		for unit: Dictionary in app.state.units:
-			if unit.team=="enemy" and unit.hp>0: hovered_enemy = int(unit.id); break
-	var identity: int = hovered_enemy if scope==1 else 0
-	if threat_cache.has(identity): app.board.threat_cells = threat_cache[identity]; return
-	threat_job = Threat.new(); threat_job.start(app.rules,app.state,identity)
-
-func tick(app: Control, delta: float) -> void:
+func tick(_app: Control, delta: float) -> void:
 	if toast_remaining>0:
 		toast_remaining -= delta
 		if toast_remaining<=0: toast.hide()
-	if threat_job==null or app._modal_open(): return
-	threat_job.advance()
-	app.board.threat_cells = threat_job.cells
-	if threat_job.complete:
-		threat_cache[hovered_enemy if scope==1 else 0] = threat_job.cells
-		threat_job = null
-		app.hover_context.clear()
-		app._hover_tile({"x":app.board.cursor.x,"y":app.board.cursor.y})
-	app.board.queue_redraw()
 
 func input(app: Control, event: InputEventKey) -> bool:
 	if not event.pressed or event.echo or app._modal_open() or not enabled(app): return false
 	if toast_remaining>0 and app.input_profile.matches(event,"cancel"): toast.hide(); toast_remaining = 0; return true
 	if app.input_profile.matches(event,"share") and app.run.phase!="battle": export_card(app); return true
 	if app.run.phase!="battle": return false
-	if app.input_profile.matches(event,"threats"): cycle_threat(app); return true
 	if app.state.get("deployment",false) and app.input_profile.matches(event,"deploy_start"):
 		app._event({"kind":"start-battle","at":app.run.revision}); return true
 	return false

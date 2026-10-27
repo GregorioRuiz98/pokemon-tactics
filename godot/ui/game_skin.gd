@@ -44,6 +44,9 @@ static func install(skin: Theme) -> void:
 				box.bg_color = Color("263b43")
 				box.border_color = Color("4a5f65")
 				box.shadow_size = 0
+			if field:
+				box.bg_color = Color("fff0a6") if state in ["hover","hover_pressed"] else Color.WHITE
+				box.border_color = AMBER if state in ["hover","hover_pressed"] else Color("aab6bc")
 			box.set_corner_radius_all(4)
 			box.corner_radius_top_left = 9
 			box.corner_radius_bottom_right = 9
@@ -54,7 +57,7 @@ static func install(skin: Theme) -> void:
 			if state=="focus":
 				box.draw_center = false
 				box.shadow_size = 0
-				box.border_color = AMBER
+				box.border_color = INK if field else AMBER
 				box.set_border_width_all(2)
 				skin.set_stylebox(state,kind,box)
 			else: skin.set_stylebox(state,kind,box)
@@ -62,7 +65,7 @@ static func install(skin: Theme) -> void:
 		skin.set_color("font_color",kind,normal)
 		skin.set_color("font_focus_color",kind,normal)
 		for color_name: String in ["font_hover_color","font_pressed_color","font_hover_pressed_color"]: skin.set_color(color_name,kind,INK)
-		skin.set_color("font_disabled_color",kind,Color("a0b1b7"))
+		skin.set_color("font_disabled_color",kind,Color("697882") if field else Color("a0b1b7"))
 		skin.set_constant("h_separation",kind,10)
 	skin.set_stylebox("panel","PopupMenu",panel())
 	skin.set_stylebox("panel","AcceptDialog",panel())

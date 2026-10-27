@@ -26,7 +26,6 @@ const ACTIONS: Dictionary = {
 	"inspect":["Inspeccionar unidad","Combate",KEY_I],"result":["Último resultado","Combate",KEY_L],
 	"practice":["Aprender / salir de práctica","General",KEY_F7],"glossary":["Glosario","General",KEY_F4],
 	"load":["Recuperar guardado","General",KEY_F8],
-	"threats":["Mostrar amenazas","Combate",KEY_T],
 	"deploy_start":["Confirmar despliegue","Combate",KEY_B],
 	"share":["Compartir aventura","General",KEY_F9]
 }
