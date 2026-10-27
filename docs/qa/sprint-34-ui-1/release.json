@@ -25,13 +25,20 @@
   "sourceAndExeStateMatch": true,
   "publicDeployment": false,
   "fullCampaignPlayed": false,
-  "sourceFingerprint": "29e05fd00a05ec1e388dac2920bbbed09250dd24ec69f3ce2b334418bdc8948b",
+  "playerDocumentation": {
+    "ok": true,
+    "documents": 12,
+    "localLinks": 10,
+    "errors": [],
+    "scope": "Player documentation presence and local links only; no executable launch or external URL check."
+  },
+  "sourceFingerprint": "1063b807efd1165cc787434a4ef089fa9df18827fcf21809d2f2de5db04d3b64",
   "exe": {
     "bytes": 132168400,
     "sha256": "f63fbcd5c706f303efc338c027ee18ea19a17683288311cbca11f520bd375b39"
   },
   "zip": {
-    "bytes": 55650790,
-    "sha256": "5c6dd348c39e7be375a07057a9b9461f9257d5bb1cdb1e3c75e0d430464e4a27"
+    "bytes": 55663320,
+    "sha256": "e1ac039b8a5b6caf6680032406d984d8ab9b3edf96036d3dfccd844547c4049a"
   }
 }

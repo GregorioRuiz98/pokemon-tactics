@@ -40,3 +40,5 @@ DPI reales distintos y sesiones humanas externas siguen pendientes.
 
 Proyecto de fans. Créditos y procedencia disponibles desde el menú.
 Los informes de balance anteriores son históricos, no las reglas actuales.
+
+Documentación revisada el 27 de octubre de 2026; mismo ejecutable 0.34.1.

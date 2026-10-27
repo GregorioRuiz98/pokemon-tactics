@@ -135,9 +135,8 @@ def main():
         shutil.copy2(ROOT/'docs'/'SPRINT_33_REVIEW.md',docs/'SPRINT_33_REVIEW.md')
     if VERSION in ['0.31.1','0.31.2']:
         verification['sleepCorrection'] = 'Sleeping blocks movement routes and commands; old edition23 loads with backup and mixed replay.'
-    for path in [EVIDENCE/'verification.json', docs/f'QA_0.{CHAPTER}.json']:
-        path.write_text(json.dumps(verification, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
-    readme = (ROOT/'../releases/pokemon-tactics-0.26.0/windows/LEEME.txt').read_text(encoding='utf-8')
+    readme_source = ROOT/'docs/LEEME_WINDOWS.txt' if CHAPTER >= 33 else ROOT/'../releases/pokemon-tactics-0.26.0/windows/LEEME.txt'
+    readme = readme_source.read_text(encoding='utf-8')
     readme += '\nPerfil de entrenador: nombre, retrato, Pokédex, historial y logros se conservan entre aventuras. Los títulos y marcos son cosméticos.\n'
     if CHAPTER >= 28:
         readme += '\nTienda Kecleon: tres ofertas, ficha antes de comprar, renovación con precio creciente y accesos a Medicina, Entrenar y Equipo. Movimiento reducido desactiva sus animaciones.\n'
@@ -175,8 +174,19 @@ def main():
         for name in ['REGLAS_ACTUALES.md','PLAYTEST_WINDOWS.md','SPRINT_32_CLIMATE.md']:
             shutil.copy2(ROOT/'docs'/name,docs/name)
         shutil.copy2(ROOT/'tools/godot/check-pc.cmd',BUNDLE/'Comprobar-equipo.cmd')
+        shutil.copy2(ROOT/'docs'/CONFIG['report'],docs/CONFIG['report'])
+        shutil.copy2(ROOT/'docs/PLAYTEST_WINDOWS.md',docs/'GUIA_DE_PRUEBA.md')
         readme = (ROOT/'docs/LEEME_WINDOWS.txt').read_text(encoding='utf-8')
     (BUNDLE/'LEEME.txt').write_text(readme, encoding='utf-8')
+    if VERSION == '0.34.1':
+        for name in ['SPRINT_34_TACTICAL_QUALITY.md','MAPAS_0.34.csv','PLAYTEST_0.34.md']:
+            shutil.copy2(ROOT/'docs'/name,docs/name)
+        shutil.copy2(ROOT/'docs/MAPAS_0.34.csv',docs/'MAPAS_KANTO.csv')
+        check = subprocess.run(['node',str(ROOT/'tools/check-repository.mjs'),'--bundle',str(BUNDLE)],capture_output=True,text=True,encoding='utf-8')
+        assert check.returncode == 0, check.stdout + check.stderr
+        verification['playerDocumentation'] = json.loads(check.stdout)
+    for path in [EVIDENCE/'verification.json', docs/f'QA_0.{CHAPTER}.json']:
+        path.write_text(json.dumps(verification, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     archive = RELEASE/f'pokemon-tactics-{VERSION}-windows.zip'
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as package:
         for path in sorted(BUNDLE.rglob('*')):

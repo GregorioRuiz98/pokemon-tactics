@@ -11,3 +11,21 @@ godot/art/history/
 .env
 .env.*
 !.env.example
+
+# Local releases, logs and player data; not source delivery.
+*.exe
+*.pck
+*.zip
+*.log
+*.tmp
+*.bak
+*.verified
+*.verification-key
+kanto-save*.json*
+laboratory-save*.json*
+trainer-profile.json*
+controls.json*
+*.pem
+*.pfx
+*.p12
+*.key

@@ -3,7 +3,7 @@
   "version": "0.12.0",
   "private": true,
   "type": "module",
-  "description": "Roguelike tÃ¡ctico PokÃ©mon con experiencia y evoluciones",
+  "description": "Prototipo web histórico; campaña Windows offline en godot/",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
@@ -135,7 +135,9 @@
     "godot:test:quality": "node tools/godot/run.mjs test-quality",
     "godot:simulate:quality": "node tools/godot/run.mjs simulate-quality",
     "godot:qa:quality": "node tools/godot/run.mjs qa-quality",
-    "godot:qa:quality:export": "node tools/godot/run.mjs qa-quality-export"
+    "godot:qa:quality:export": "node tools/godot/run.mjs qa-quality-export",
+    "check:repo": "node tools/check-repository.mjs",
+    "test:repo-check": "node --test tools/check-repository.test.mjs"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

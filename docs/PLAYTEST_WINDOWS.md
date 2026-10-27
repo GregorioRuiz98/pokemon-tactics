@@ -1,15 +1,17 @@
-# Probar Pokémon Tactics en Windows — 0.33.0
+# Probar Pokémon Tactics en Windows — 0.34.1
 
-[Reglas actuales](REGLAS_ACTUALES.md) · [Informe de la entrega](SPRINT_33_REVIEW.md).
+[Reglas actuales](REGLAS_ACTUALES.md) · [Cambios 0.34.1](UI_PRECOMBAT_0.34.1.md).
 Este documento describe la campaña Windows actual. Los informes por versión son historial.
 
 ## Arranque y controles
 
 Extrae el ZIP completo y abre windows/PokemonTactics.exe. El juego lleva sus recursos y motor integrados: no requiere instalar Godot, Node, servidor ni iniciar sesión. La entrega no consulta la red al jugar. La prueba en un segundo ordenador físico sigue pendiente hasta recibir un resultado externo.
 
-Oak permite elegir inicial; la semilla se genera sola. Clic o flechas/Enter seleccionan casillas. A abre técnicas; R rectifica solo movimiento antes de actuar; F orienta y termina. Escape cancela, Tab recorre controles y F6 cambia de panel. F2 abre controles configurables. Rueda o +/− cambia zoom; C centra la unidad; P y flechas/arrastre desplazan la cámara. Las etiquetas reflejan las teclas reasignadas.
+Oak permite elegir inicial; la semilla se genera sola. Clic o flechas/Enter seleccionan casillas. A abre técnicas; R rectifica solo movimiento antes de actuar; F orienta y termina. Escape cancela, Tab recorre controles y F 6 cambia de panel. F 2 abre controles configurables. Rueda o +/− cambia zoom; C centra la unidad; P y flechas/arrastre desplazan la cámara. Las etiquetas reflejan las teclas reasignadas.
 
-Las opciones permiten ampliar texto, alto contraste, movimiento reducido y ajustar sonido. Comprueba primero 1280×720; el juego también tiene recorridos comprobados a 1024×768 y con texto 150 %. Esto no sustituye comprobar DPI físico 125/150/200 % en otro equipo o lectores de pantalla.
+Viaje muestra contexto, objetivo y rivales antes de Entrar. Clic o Tab/Enter abre fichas; Escape devuelve el foco. Equipo/PC prepara aliados y Viaje recupera la lista rival. Durante el despliegue, B comienza.
+
+Las opciones permiten velocidad 1×/1,5×/2×, ampliar texto, alto contraste, movimiento reducido y ajustar sonido. Comprueba primero 1280×720; el juego también tiene recorridos comprobados a 1024×768 y con texto 150 %. Esto no sustituye comprobar DPI físico 125/150/200 % en otro equipo o lectores de pantalla.
 
 ## Partida y recuperación
 

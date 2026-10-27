@@ -24,5 +24,12 @@
   },
   "sourceAndExeStateMatch": true,
   "publicDeployment": false,
-  "fullCampaignPlayed": false
+  "fullCampaignPlayed": false,
+  "playerDocumentation": {
+    "ok": true,
+    "documents": 12,
+    "localLinks": 10,
+    "errors": [],
+    "scope": "Player documentation presence and local links only; no executable launch or external URL check."
+  }
 }

@@ -1,43 +1,30 @@
-# Publicación preparada; despliegue aplazado
+# Preparar y entregar Windows
 
-El usuario ha decidido preparar la versión y publicar después. No se ha contratado alojamiento, comprado dominio, publicado una URL ni cambiado la visibilidad privada del repositorio. Falta elegir proveedor, dominio/presupuesto y contacto público del creador. HTTPS y funcionamiento en una URL pública siguen pendientes de esa decisión.
+La plataforma actual es un ejecutable offline, sin servidor web. Esta guía prepara una entrega; **no autoriza publicarla**, crear release pública ni cambiar visibilidad. Pendientes y evidencia en [Estado](PLAN_SPRINTS.md).
 
-## Compilación estática
+## Preparar el artefacto
 
-```sh
-npm ci
-npm test
-npm run verify:assets
-npm run build
-npm run release:prepare
-npm run verify:build
-npm run preview
-```
+1. Revisar cambios y versión de `godot/project.godot`. Conservar motores, guardados, recursos y avisos. Configurar Godot 4.7.2 y plantillas según [Desarrollo](../godot/README.md).
+2. Ejecutar `npm run check:repo`, `npm run test:repo-check` y `npm run godot:verify`. Pruebas según lo cambiado; solo documentación no obliga a reconstruir el juego.
+3. Para cambios jugables: `npm run godot:export` y pruebas sobre el EXE nuevo. Las de una compilación anterior no validan otra nueva.
+4. Conservar lint/validación en el directorio QA de la entrega. El empaquetador comprueba errores, avisos de referencia, edición, evidencia fuente/EXE, coincidencia de estado y fecha posterior al EXE.
+5. Ejecutar `npm run godot:package`: comprueba también los enlaces de la documentación distribuida y produce `windows/`, ZIP y `SHA256SUMS.txt` en `../releases/pokemon-tactics-VERSION/`, fuera de Git. Los contratos/mínimos están en `tools/godot/package-finishing.py`; una versión nueva debe definir el suyo.
+6. Extraer en carpeta limpia y comprobar arranque, recursos, Créditos y guardado/recuperación. Probar también otro PC físico con el [protocolo](PLAYTEST_WINDOWS.md). La integridad del ZIP no acredita jugabilidad.
 
-Node 24 en desarrollo; el servidor de destino solo necesita servir archivos estáticos. La carpeta `dist` contiene juego, catálogo, sprites, sonido, fuente, créditos, licencias y páginas legal/privacidad. No requiere backend, base de datos, API keys o variables secretas. `release-manifest.json` registra versión, commit, estado del árbol, inventario y SHA-256 de los archivos.
+Para 0.34.1 se exigen briefing/review/symbols fuente/EXE, lint y validación. El SDK de la skill usado para estos informes no se incluye en el repositorio ni lo necesita el jugador. Para repetirlo se necesita ese SDK, o adaptar explícitamente el registro a una comprobación equivalente del motor; no presentar como reproducido lo que no se ha ejecutado.
 
-Se entrega un ZIP de la versión preparada y otro de la 0.11.0 como reversión. Descomprimir y subir **el contenido** a la carpeta web elegida, con `index.html` en su raíz. No subir `node_modules`, repositorio, herramientas ni claves. Mantener las licencias y créditos del paquete. No funciona abriendo `index.html` por `file://`: usar servidor HTTP/HTTPS.
+## Qué compartir
 
-`base: './'` permite una raíz o subcarpeta, por ejemplo `/juego/`. Las vistas usan parámetros de consulta, sin rutas de servidor adicionales. No hace falta una regla SPA que reescriba los recursos inexistentes hacia HTML.
+El ZIP completo conserva EXE, documentación, créditos, licencias y procedencia. No eliminar avisos ni incluir `node_modules`, cachés, carpeta de trabajo, perfiles QA, certificados locales o guardados personales.
 
-## Configuración del alojamiento
+Conservar SHA-256 del EXE/ZIP, commit y cambios. Una revisión documental puede actualizar el ZIP y su checksum manteniendo el EXE idéntico; identificarla como tal, no como otra build jugable probada.
 
-- Habilitar HTTPS con el dominio definitivo y servir tipos MIME correctos para JS, CSS, JSON, PNG, WAV, fuentes y WebM si se publica material del portfolio.
-- Evitar caché larga para `index.html`, `release.json`, `release-manifest.json`, `data/*`, créditos y textos legales. Las referencias de sprites no llevan hash en su nombre; tampoco deben permanecer inmutables entre versiones.
-- Los archivos de `assets/` que Vite nombra con hash pueden usar caché prolongada; no extender esa regla automáticamente a los sprites con rutas estables.
-- Conservar una carpeta o ZIP de cada compilación. Sustituir la versión completa de forma atómica o cambiar el directorio publicado para evitar mezclar catálogo y sprites de entregas distintas.
-- Completar contacto y proveedor real en `legal.html`/`privacy.html` antes de publicar. Si se incorpora analítica, cuentas, pagos o servicios, revisar esos textos y la implementación.
+## Publicación y reversión
 
-## Comprobación antes y después de publicar
+Resolver [Estado](PLAN_SPRINTS.md) y [Licencias](LICENCIAS.md), definir contacto/canal y recibir autorización del creador. No se ha anunciado URL de descarga.
 
-En navegador limpio: abrir menú, empezar, comprar/reclutar, combatir y recargar. Verificar sprites, sonidos con volumen, teclado, móvil y textos legales. La comprobación automatizada completa puede apuntar a una URL con `TACTICS_URL` y `npm run test:browser:release`; juega en contextos nuevos y no toca la partida del navegador del creador. Validar ambos finales y revisar consola/peticiones fallidas.
+Publicar el binario y abrir el código son decisiones distintas; el repo puede seguir privado. No aplicar automáticamente una licencia global al contenido Pokémon ni incorporar monetización, analítica o servicios.
 
-La compilación preparada se ha comprobado localmente en raíz y subcarpeta. No se presenta como una comprobación de HTTPS, DNS o un proveedor público. Edge/Chromium es el navegador comprobado; Firefox/Safari y pruebas con jugadores quedan pendientes.
+Conservar el paquete anterior y copia de la carpeta de partidas. Actualización de reglas explícita y con copia. No sobrescribir un guardado reciente con un EXE antiguo; conservar original y usar versión compatible. [Recuperación](PLAYTEST_WINDOWS.md).
 
-## Guardados y reversión
-
-La partida y volumen viven en localStorage del origen. `localhost:5173`, `127.0.0.1:4173` y un dominio público tienen datos independientes. No se sincronizan ni se transfieren automáticamente.
-
-Esquema 3, edición 14 de campaña. Las migraciones de esquemas 1/2 conservan copia local; las partidas previas continúan sus reglas. Las versiones 0.11.0 y 0.12.0 comparten formato y reglas, por lo que se puede restaurar la compilación 0.11.0 sin reiniciar sus partidas. Para una versión futura incompatible, no degradar el formato de guardado automáticamente: preservar/exportar los datos y documentar la migración.
-
-Para revertir, volver a servir el contenido completo del ZIP 0.11.0, invalidar caché de HTML/datos/sprites y comprobar una partida conservada. El repositorio también mantiene `codex/sprint-11`. El ZIP anterior se compiló desde el commit `8843aaf455793645f9ff0d244d18b8b5d177440e`; SHA-256 del archivo: `7D1695033DF523AE83DF63F031356C2A514D926173DACBB8AE6B2A9089DA62ED`.
+El [despliegue web 0.12.0](history/DEPLOY_WEB_2026-10-27.md) es histórico.

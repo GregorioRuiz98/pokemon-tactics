@@ -84,14 +84,14 @@ La publicación pública sigue aplazada. Véase [prueba Windows](PLAYTEST_WINDOW
 para arranque, controles, recuperación y pruebas en otro equipo. Una simulación
 o reproducción automática no equivale a una sesión humana externa.
 
-## Escenarios y lectura táctica0.34
+## Escenarios y lectura táctica 0.34
 
-Los58 lugares tienen contexto y revisión de terreno. Cinco encuentros Rocket/
+Los 58 lugares tienen contexto y revisión de terreno. Cinco encuentros Rocket/
 instalaciones permiten controlar mecanismos o derrotar a todos los rivales.
 Antes de entrar, el viaje muestra contexto, objetivo y equipo rival real, con
 niveles, tipos, habilidad y movimientos. Cada ficha permite consultar sus estadísticas.
 El despliegue conserva la consulta rival. Se han retirado las amenazas y su atajo.
-Opciones permite velocidad1×/1,5×/2×. La duración de lectura es independiente.
-Las campañas26/27 certificadas cargan sin repetir su historial ya validado;
+Opciones permite velocidad 1×/1,5×/2×. La duración de lectura es independiente.
+Las campañas 26/27 certificadas cargan sin repetir su historial ya validado;
 si falta la certificación, se reconstruye completo con progreso. Detalles
-y compatibilidad en SPRINT_34_TACTICAL_QUALITY.md.
+y compatibilidad en la [revisión táctica 0.34](SPRINT_34_TACTICAL_QUALITY.md).

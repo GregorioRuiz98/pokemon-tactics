@@ -1,53 +1,32 @@
-# Dominio del combate — sprint 3
+# Arquitectura actual
 
-POO solicitada el 14 de octubre de 2026. TypeScript, sin dependencias nuevas.
+Mapa de la campaña Windows. Las reglas están en [Reglas actuales](REGLAS_ACTUALES.md); comprobaciones y pendientes en [Estado](PLAN_SPRINTS.md).
 
-`Pokemon` es la clase base de `Bulbasaur`, `Charmander`, `Squirtle`, `Pikachu`, `Butterfree` y `Geodude`. Comparte creación de unidades, lectura de estadísticas, presupuesto de movimiento y búsqueda de acciones. Cada especialización define su rol y sus tres acciones. `pokemonFor` es el registro central de perfiles, independiente de Phaser.
+| Necesidad | Ubicación | Observación |
+| --- | --- | --- |
+| Entrada | `godot/scenes/campaign.tscn`, `godot/ui/campaign.gd` | Menús, viaje y coordinación; guarda antes del feedback. |
+| Motor vigente | `godot/core/tactics_quality_run.gd`, `tactics_quality_battle.gd` | Campaña 27/capítulo 31/combate 24; extiende motores publicados. |
+| Guardados | `godot/core/tactics_quality_store.gd`, `kanto_store.gd` y stores anteriores | Replay, estados canónicos, copias y conflictos. |
+| Mapas/contexto | `godot/core/tactics_opening.gd`, `godot/data/tactics-opening.json` |58 localizaciones,16/24 casillas; [catálogo](MAPAS_0.34.csv). |
+| Previa/estilo | `godot/ui/encounter_preview.gd`, `game_skin.gd`, `move_symbols.gd` | Consulta sin cambiar estado/RNG. |
+| Perfil/logros | `godot/core/trainer_profile.gd`, `trainer_store.gd`, `godot/ui/trainer_session.gd` | Independientes del diario de campaña. |
+| Recursos | `godot/data/`, `godot/assets/`, `godot/art/`, `godot/licenses/` | Locales, con hashes/autores/condiciones. |
+| Pruebas | `godot/tests/`, `godot/ui/qa_*.gd`, `tools/godot/` | Perfiles aislados, suites actuales e históricas. |
+| Evidencia | `docs/qa/`, `docs/reports/` | Capturas y diarios históricos consumidos por pruebas. |
+| Web | `src/`, `public/`, `tests/` |0.12.0 independiente; [guía](WEB_LEGACY.md). |
 
-`TacticalAction` define el contrato de previsión. `DamageAction`, `StatusAction` y `GuardAction` lo implementan; `DrainAction` hereda de `DamageAction` y añade recuperación a partir del daño real. El combate llama al mismo contrato para prever y resolver órdenes del jugador y de la IA. No selecciona efectos mediante nombres de especies o habilidades.
+## Estado, comportamiento y versiones
 
-```mermaid
-classDiagram
-  Pokemon <|-- Bulbasaur
-  Pokemon <|-- Charmander
-  Pokemon <|-- Squirtle
-  Pokemon <|-- Pikachu
-  Pokemon <|-- Butterfree
-  Pokemon <|-- Geodude
-  Pokemon o-- TacticalAction : acciones
-  TacticalAction <|-- DamageAction
-  TacticalAction <|-- StatusAction
-  TacticalAction <|-- GuardAction
-  DamageAction <|-- DrainAction
-  DamageAction <|-- AreaDamageAction
-  DamageAction <|-- PushAction
-  StatusAction <|-- AreaStatusAction
-```
+Estado serializable y órdenes separados de la representación. Acciones compuestas y reglas compartidas entre jugador, IA y previsión; tipos/evoluciones son datos. Consultas, animaciones y sonidos no consumen el azar de la partida.
 
-Los tipos son datos de cada unidad. Un Pokémon de tipos Planta/Veneno conserva ambos; no hereda de clases de tipo. Las evoluciones futuras se modelarán como relaciones entre especies y cambios de perfil, sin asumir que una evolución es una subclase de su preevolución. Este sprint no incorpora evolución ni niveles.
+La UI acepta una orden, persiste el resultado y después presenta feedback. La revisión impide callbacks obsoletos. Los motores antiguos se eligen por edición del guardado: no son código muerto que se pueda borrar por no aparecer en una importación directa.
 
-`Combatant`, `Battle` y `Run` conservan valores serializables: posiciones, PS, PT, estados, cola y semilla. Las instancias con comportamiento permanecen en el registro de dominio. Cada orden valida el estado actual y devuelve una copia; inspeccionar, prever y elegir órdenes de IA no cambia el estado ni consume aleatoriedad. El sprint 5 incorpora persistencia local versionada.
+Actualización explícita entre encuentros y con copia; combates en curso conservan sus reglas. La validación certificada acelera lecturas comprobadas sin eliminar el diario; sin certificado se reproduce completo. Los auxiliares no son una cuenta ni protección frente a edición deliberada del propio ordenador.
 
-La orquestación de rondas sigue en `src/rules/battle.ts`, el movimiento en `src/rules/movement.ts` y la representación en `src/game`. El HUD usa las previsiones del dominio; no calcula otra fórmula de daño.
+## Distribución
 
-Sprint 4: las acciones comparten contratos de casillas afectadas, empuje y terreno generado. `AreaDamageAction` configura si deja ascuas; el área no implica fuego para futuras habilidades. La orientación y la línea de visión se calculan en reglas, y el perfil de movimiento aporta costes y terrenos legales al adaptador de EasyStar. `Battle.fields` conserva solo posiciones, tipo y ronda de caducidad. Jugador e IA consultan la misma previsión por afectado.
+El exportador incrusta recursos en el EXE. El paquete añade documentación y avisos; el jugador no necesita código, Node, Python ni Godot. `GODOT_BIN`, plantillas y herramientas son requisitos de desarrollo.
 
-Para añadir una especie: importar sus datos y recursos con procedencia, definir su perfil heredado con acciones existentes o una nueva implementación del contrato, registrarlo y comprobar su catálogo, órdenes y presentación. La restricción a las seis especies actuales sigue activa hasta el sprint de ampliación correspondiente.
+ZIP fuera del repo; sin perfiles QA ni guardados personales. [Guía de entrega](DEPLOY.md) e [inventario de licencias](LICENCIAS.md).
 
-Sprint 5 separa `id` de unidad y `speciesId`. La primera identifica posición, turno, PS y miembro de la partida; la segunda selecciona el perfil de POO, las estadísticas y las texturas compartidas. Dos Geodude de bandos diferentes poseen sprites independientes y comparten la hoja original. El ensayo anterior conserva sus IDs y resultados. Evolucionar podrá cambiar especie sin reemplazar la identidad individual.
-
-`run.ts` genera equipo y grafo con un PRNG separado del estado del combate. La semilla de cada sala deriva de semilla de partida e ID de nodo; inspección, rutas y guardado no consumen tiradas. Entrar solo acepta salas conectadas; completar solo acepta resultados terminales y registra una vez los PS y las bajas. Los perdidos se conservan en el roster con 0 PS y se excluyen del siguiente despliegue.
-
-`RunStore` persiste un sobre con esquema y versión. Valida catálogo, ruta reproducible, historial, PS, mapa y estado del combate antes de entregarlos al DOM o a Phaser. Compara el guardado leído con el actual antes de escribir o descartar, para evitar sobrescribir otra pestaña. No es un sistema contra trampas. El host guarda cada orden aceptada antes de animarla y controla montaje/desmontaje del combate; salir invalida la IA y los callbacks pendientes. Quota o almacenamiento bloqueado permite jugar en memoria con un aviso y reintento.
-
-Sprint 6: `Item` se especializa en `HealingItem` y `HeldItem`; Restos, Chaleco Asalto y Botas Gruesas implementan recuperación, defensa especial efectiva, restricción de apoyo y protección de ascuas. Se guardan IDs y cantidades, nunca instancias. Defensa base permanece intacta; previsión y resolución leen el mismo efecto equipado. Los recursos públicos aportan nombres/IDs; precios y adaptación táctica pertenecen al prototipo.
-
-`RunEvent` registra entradas, cierres, compras, curación, equipamiento, reclutas y resultados. `performRunEvent` aplica una copia; `replayRun` usa las mismas transiciones para reconstruir economía y miembros al validar el esquema 2. Las órdenes dentro del combate conservan su snapshot y RNG; los resultados guardan un recibo por miembro. Una recompensa solo se concede al cerrar una victoria pendiente. Reproducción de recibos sirve para integridad, sin afirmar verificación contra trampas de cada combate histórico.
-
-`departed` conserva bajas y liberados, mientras `roster` contiene hasta seis vivos. Recuperar equipo ocurre antes de archivarlos; el siguiente ID no se reutiliza. Las seis posiciones aliadas de despliegue son libres en los tres mapas. Los módulos `legacy-*` mantienen generación/validación de versión 1 para actualizar sin restaurar PS ni sortear de nuevo una pelea. No modificar su contrato al ampliar la versión actual; revisar migración cuando cambien valores usados por el diario.
-
-## Campaña completa (sprints 7–11)
-
-Run conserva edición de reglas, XP, IDs individuales y diario de operaciones. replayRun reconstruye inventario, economía, ruta y progresión; Battle conserva tiradas/cola y contribuciones. Las migraciones 1/2 usan los contratos legacy y *-v2 congelados; la edición 6 permite terminar rutas previas sin alterar sus mecánicas. Las ediciones 7–13 conservan el contenido correspondiente; 14 incorpora el ajuste inicial de campaña. No modificar costes, recompensas o generación retrospectivamente: crear nueva edición o migración.
-
-Pokemon.actionsFor selecciona el repertorio aplicable a la unidad sin escribir clases en el estado. atLevel calcula estadísticas efectivas, y máximo/current HP se separan al progresar. Tabla de EVOLUTIONS por IDs, sin herencia por tipo/etapa. ZONES declara orden/mapas/composiciones; hazards contiene el daño de sectores compartido por UI e IA, dormido en ronda 1. La carga de sprites de cada combate se limita a las especies desplegadas.
+[Arquitectura web anterior](history/ARCHITECTURE_WEB_2026-10-27.md), conservada para interpretar sus pruebas.

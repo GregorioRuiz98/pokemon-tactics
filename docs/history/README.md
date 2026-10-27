@@ -1,0 +1,119 @@
+# Historial y decisiones anteriores
+
+Archivo anterior a la limpieza del27 de octubre de2026. Copias literales: sus enlaces relativos se interpretaban desde la ubicación original. No aplicar instrucciones históricas. Guías actuales en el [índice](../README.md).
+
+## Copias conservadas
+
+- [AGENTS.md anterior](AGENTS_ROOT_2026-10-27.md).
+- [godot/AGENTS.md anterior](AGENTS_GODOT_2026-10-27.md).
+- [PRODUCT.md anterior](PRODUCT_2026-10-27.md).
+- [docs/PLAN_SPRINTS.md anterior](PLAN_SPRINTS_2026-10-27.md).
+- [docs/ARCHITECTURE.md anterior](ARCHITECTURE_WEB_2026-10-27.md).
+- [docs/DEPLOY.md anterior](DEPLOY_WEB_2026-10-27.md).
+- [README.md anterior](README_2026-10-27.md).
+- [godot/README.md anterior](GODOT_README_2026-10-27.md).
+- [docs/PORTFOLIO.md anterior](PORTFOLIO_WEB_2026-10-27.md).
+
+## Corrección documental —27 de octubre de2026
+
+AGENTS, PRODUCT y PLAN dejan de acumular requisitos viejos y pasan a instrucciones, mapa y estado separados. README centrado en Windows0.34.1; web0.12.0 identificada como histórica. Se conservan motores, datos, recursos, pruebas, capturas y diarios de compatibilidad. No se reescribe Git.
+
+Se ratifican las retiradas: amenazas/T, roles rígidos, PT por uso, consumibles evolutivos y finales excluyentes. Reemplazos en [Estado](../PLAN_SPRINTS.md).
+
+## Informes por versión
+
+- [FIX_MOVES_0.23.1](../FIX_MOVES_0.23.1.md)
+- [FIX_SLEEP_0.31.1](../FIX_SLEEP_0.31.1.md)
+- [FIX_TEXT_0.30.1](../FIX_TEXT_0.30.1.md)
+- [PERFORMANCE_0.24.1](../PERFORMANCE_0.24.1.md)
+- [SPRINT_0](../SPRINT_0.md)
+- [SPRINT_1](../SPRINT_1.md)
+- [SPRINT_10A](../SPRINT_10A.md)
+- [SPRINT_10B](../SPRINT_10B.md)
+- [SPRINT_10C](../SPRINT_10C.md)
+- [SPRINT_10D](../SPRINT_10D.md)
+- [SPRINT_11](../SPRINT_11.md)
+- [SPRINT_12](../SPRINT_12.md)
+- [SPRINT_13](../SPRINT_13.md)
+- [SPRINT_13_CONTEXT_MENU](../SPRINT_13_CONTEXT_MENU.md)
+- [SPRINT_13_UI](../SPRINT_13_UI.md)
+- [SPRINT_14](../SPRINT_14.md)
+- [SPRINT_14_GROWTH](../SPRINT_14_GROWTH.md)
+- [SPRINT_14_GYM_CAPS](../SPRINT_14_GYM_CAPS.md)
+- [SPRINT_14_LETSGO](../SPRINT_14_LETSGO.md)
+- [SPRINT_14_LEVEL_HP](../SPRINT_14_LEVEL_HP.md)
+- [SPRINT_14_PROGRESSION](../SPRINT_14_PROGRESSION.md)
+- [SPRINT_14_REVIVE](../SPRINT_14_REVIVE.md)
+- [SPRINT_14_SHOP](../SPRINT_14_SHOP.md)
+- [SPRINT_14_TACTICS](../SPRINT_14_TACTICS.md)
+- [SPRINT_14_TRAITS](../SPRINT_14_TRAITS.md)
+- [SPRINT_15](../SPRINT_15.md)
+- [SPRINT_15_VIEW](../SPRINT_15_VIEW.md)
+- [SPRINT_16](../SPRINT_16.md)
+- [SPRINT_17](../SPRINT_17.md)
+- [SPRINT_18](../SPRINT_18.md)
+- [SPRINT_19](../SPRINT_19.md)
+- [SPRINT_2](../SPRINT_2.md)
+- [SPRINT_20](../SPRINT_20.md)
+- [SPRINT_21](../SPRINT_21.md)
+- [SPRINT_22](../SPRINT_22.md)
+- [SPRINT_22_ACCESSIBILITY_COMPLETE](../SPRINT_22_ACCESSIBILITY_COMPLETE.md)
+- [SPRINT_22_ART](../SPRINT_22_ART.md)
+- [SPRINT_22_ATTACK_EFFECTS](../SPRINT_22_ATTACK_EFFECTS.md)
+- [SPRINT_22_CONTEXT](../SPRINT_22_CONTEXT.md)
+- [SPRINT_22_CONTROLS](../SPRINT_22_CONTROLS.md)
+- [SPRINT_22_GAME_UI](../SPRINT_22_GAME_UI.md)
+- [SPRINT_22_GENERATED_ART](../SPRINT_22_GENERATED_ART.md)
+- [SPRINT_22_HUB](../SPRINT_22_HUB.md)
+- [SPRINT_22_INSPECTION](../SPRINT_22_INSPECTION.md)
+- [SPRINT_22_LEARNING](../SPRINT_22_LEARNING.md)
+- [SPRINT_22_PERFORMANCE](../SPRINT_22_PERFORMANCE.md)
+- [SPRINT_22_PREFERENCES](../SPRINT_22_PREFERENCES.md)
+- [SPRINT_22_QUANTITIES](../SPRINT_22_QUANTITIES.md)
+- [SPRINT_22_ROSTER_TOOLS](../SPRINT_22_ROSTER_TOOLS.md)
+- [SPRINT_22_SCREEN_READER](../SPRINT_22_SCREEN_READER.md)
+- [SPRINT_22_SEEDS](../SPRINT_22_SEEDS.md)
+- [SPRINT_22_UI](../SPRINT_22_UI.md)
+- [SPRINT_23_SPATIAL](../SPRINT_23_SPATIAL.md)
+- [SPRINT_24_ECONOMY](../SPRINT_24_ECONOMY.md)
+- [SPRINT_25_TACTICAL](../SPRINT_25_TACTICAL.md)
+- [SPRINT_26_PLAYER](../SPRINT_26_PLAYER.md)
+- [SPRINT_27_TRAINER](../SPRINT_27_TRAINER.md)
+- [SPRINT_28_KECLEON](../SPRINT_28_KECLEON.md)
+- [SPRINT_29_VARIETY](../SPRINT_29_VARIETY.md)
+- [SPRINT_2_HUD](../SPRINT_2_HUD.md)
+- [SPRINT_3](../SPRINT_3.md)
+- [SPRINT_30_KANTO](../SPRINT_30_KANTO.md)
+- [SPRINT_31_POWER](../SPRINT_31_POWER.md)
+- [SPRINT_32_CLIMATE](../SPRINT_32_CLIMATE.md)
+- [SPRINT_33_REVIEW](../SPRINT_33_REVIEW.md)
+- [SPRINT_34_TACTICAL_QUALITY](../SPRINT_34_TACTICAL_QUALITY.md)
+- [SPRINT_4](../SPRINT_4.md)
+- [SPRINT_5](../SPRINT_5.md)
+- [SPRINT_6](../SPRINT_6.md)
+- [SPRINT_7](../SPRINT_7.md)
+- [SPRINT_8](../SPRINT_8.md)
+- [SPRINT_9](../SPRINT_9.md)
+- [UI_BUTTONS_BRIEFING_0.33.1](../UI_BUTTONS_BRIEFING_0.33.1.md)
+- [UI_PRECOMBAT_0.34.1](../UI_PRECOMBAT_0.34.1.md)
+- [UI_SYMBOLS_0.31.2](../UI_SYMBOLS_0.31.2.md)
+
+## Diseños y decisiones anteriores
+
+- [BALANCE](../BALANCE.md)
+- [DECISIONS](../DECISIONS.md)
+- [DESIGN](../DESIGN.md)
+- [DESIGN_CAMPAIGN](../DESIGN_CAMPAIGN.md)
+- [DESIGN_KANTO_FULL](../DESIGN_KANTO_FULL.md)
+- [DESIGN_LEVELS_ROLES](../DESIGN_LEVELS_ROLES.md)
+- [DESIGN_MAPAS_KANTO](../DESIGN_MAPAS_KANTO.md)
+- [DESIGN_POKEMON_KANTO_IDENTITY](../DESIGN_POKEMON_KANTO_IDENTITY.md)
+- [DESIGN_SPRINT_1](../DESIGN_SPRINT_1.md)
+- [DESIGN_SPRINT_2](../DESIGN_SPRINT_2.md)
+- [DESIGN_SPRINT_3](../DESIGN_SPRINT_3.md)
+- [DESIGN_SPRINT_4](../DESIGN_SPRINT_4.md)
+- [DESIGN_SPRINT_5](../DESIGN_SPRINT_5.md)
+- [DESIGN_SPRINT_6](../DESIGN_SPRINT_6.md)
+- [DIRECCION_ARTISTICA](../DIRECCION_ARTISTICA.md)
+- [PLAYTEST](../PLAYTEST.md)
+- [PROMPTS_ARTE_FINAL](../PROMPTS_ARTE_FINAL.md)

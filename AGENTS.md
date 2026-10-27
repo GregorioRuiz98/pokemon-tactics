@@ -1,210 +1,29 @@
-# Pokémon Tactics
-
-- Responder en español. Leer docs/PLAN_SPRINTS.md y el último informe antes de continuar.
-- Nueva dirección del 15 de octubre en PRODUCT.md: campaña larga de Rojo original, un inicial de Oak, mapas grandes, captura local tras combate y tienda con evolución/entrenamiento; Liga y rival antes de los desafíos legendarios. Objetivo futuro: ejecutable Windows offline. Diferenciar requisitos confirmados de propuestas pendientes.
-- El usuario indicó «pues empieza» el 15 de octubre: **autoriza el sprint 13 de base Godot**, no ejecutar automáticamente toda la campaña 14–22. Laboratorio nativo 0.13.2 en godot/, Godot 4.7.2 estándar y plantillas Windows oficiales verificadas; sin complementos nuevos. Consultar godot/AGENTS.md y docs/SPRINT_13.md antes de continuar.
-- Encargo del 15 de octubre: completar todos los sprints pendientes con entregas separadas. No delegación automática. El usuario ha decidido **preparar versión y publicar después**; no desplegar, cambiar visibilidad ni comprar dominio.
-- Versión 0.12.0, rama codex/sprint-12. Sprints 0–10D y 11 completos técnicamente; 12 preparado para publicar. Pruebas humanas y despliegue público pendientes por decisión del usuario. Guía en docs/DEPLOY.md; paquetes en outputs/releases fuera del repositorio.
-- Las reglas siguientes describen la versión web 0.12.0; no sustituyen el objetivo futuro de PRODUCT.md. El sprint 13 conserva src/, public/, parámetros y guardados web; package.json añade scripts Godot, manteniendo la versión web. El informe de balance está en docs/reports/balance-2026-10-15/INFORME.md; sus propuestas no se aplican automáticamente.
-- Scripts reales en package.json, Node 24. Dominio POO en src/domain, reglas puras en src/rules, catálogo en src/data, representación en src/game. No convertir tipos o evoluciones en jerarquías de herencia.
-- Battle/Combatant/Run serializables; solo datos. RNG no se consume al inspeccionar/previsualizar/animar. Cola fija por ronda, una activación por vivo; movimiento y acción en ambos órdenes.
-- Aliados atravesables, destinos ocupados inválidos; enemigos bloquean. Orientación cardinal final con confirmación/cancelación. Precisión frontal/lateral/trasera; áreas incluyen aliados. Reutilizar reglas compartidas con IA.
-- Estados/PT se restablecen por combate; PS, XP, equipo y bajas persisten. Hasta seis vivos, tres iniciales dentro de INITIAL_SPECIES. IDs monotónicos distintos de speciesId. Muertos no reviven; equipo vuelve a la bolsa al morir o ser sustituido.
-- Un equipable por miembro; consumibles/evolución fuera de combate. Evolucionar/subir nivel conserva PS actuales. XP por victoria/contribución, cinco niveles. EVOLUTIONS es una tabla de datos; familias seleccionadas, no toda Kanto.
-- Legendarios/míticos solo enemigos. Tres aves juntas o Mew/Mewtwo; destinos excluyentes. Ocho zonas temáticas, dos mapas por zona y dos arenas. ZONES declara orden y composiciones; peligros etiquetados, daño desde ronda 2.
-- Guardado esquema 3 y edición de reglas persistida. replayRun reconstruye transacciones. No cambiar generación/economía o contratos de una edición ya publicada sin migración o nueva edición. Módulos legacy y *-v2 congelados para migrar esquemas 1/2 con copia. Conservar RNG/cola de peleas en curso, detectar conflictos de pestañas y preservar guardados inválidos hasta descarte.
-- Ediciones 6–13 mantienen recorridos/reglas anteriores. Edición 14 ajusta campaña tras completar mecánicas: PS efectivos ×2, curación 40/100, victoria 150, objetos evolutivos por avance y Pirotecnia en Charmander. La instantánea combat-v0.4.json protege el ensayo clásico; no regenerarla para ocultar cambios. Ver docs/BALANCE.md.
-- UI: HUD táctico dentro del juego, órdenes/previsión centrales, fichas laterales; tablero superior cuadrado. No tapar casillas. Mantener teclado/Escape/foco y movimiento reducido. Reutilizar docs/DESIGN_CAMPAIGN.md y PRODUCT.md.
-- Recursos locales de repositorios públicos con commit/hash/licencia/autores. No modificar hojas originales SpriteCollab. Importadores explícitos; ninguna consulta a PokéAPI/SpriteCollab al jugar. Preservar WAV al reimportar sprites. Prototipos training/camp limitados a sus seis unidades originales.
-- Guardar cada orden aceptada antes de animar; invalidar callbacks/turnos IA al salir. Cargar en combate solo especies desplegadas. Sonido y volumen no afectan al PRNG.
-- Verificar con scripts pertinentes, revisar diff y registrar evidencia real. No declarar probados navegadores/personas no comprobados. No hay linter ni cobertura; Phaser avisa de tamaño. Prueba de release completa ambos destinos desde nueva partida mediante UI.
-
-## Cierre y GitHub
-
-- Autorización persistente para commit/push al terminar cada sprint; no pedirla de nuevo. Repositorio privado: https://github.com/GregorioRuiz98/pokemon-tactics.
-- Revisar status y conservar cambios ajenos. Ramas codex/sprint-N, sin force push. No incluir cachés, node_modules, dist, credenciales o ZIP de publicación en Git.
-- Actualizar informe, plan, versión y créditos con hechos. Verificar SHA remoto después del push; conservar la rama predeterminada salvo indicación expresa del usuario para cambiarla. La revisión automática del sprint 13 rechazó cambiar esa configuración sin dicha autorización; no reintentar por otra vía. Subir código no publica la web ni cambia visibilidad.
-- Usar GIT_CONFIG_GLOBAL=NUL y GIT_CONFIG_NOSYSTEM=1 por el entorno local. Preferir credential.helper=manager por comando. Nunca imprimir ni persistir tokens.
-
-- Revisión de interfaz nativa del 16 de octubre, 0.13.1: HUD inferior compacto y órdenes directas; confirmación solo por riesgo a aliados. Ver docs/SPRINT_13_UI.md. La web y el contrato de guardado/reglas nativo 0.13.0 siguen conservados.
-
-
-- Revisión 0.13.2 confirmada por el usuario: menú flotante a la derecha al empezar turnos aliados; movimiento directo sin botón Mover; retratos de diálogo PMD de CHUNSOFT. Rectificar solo el movimiento mientras no se haya realizado ninguna acción ni terminado el turno; atacar antes de moverse también lo bloquea. No deshacer ataques, recursos o RNG. Isometría y alturas quedan para otro sprint. Ver docs/SPRINT_13_CONTEXT_MENU.md; sustituye la composición inferior de 0.13.1.
-
-
-- Sprint 14 autorizado el 16 de octubre con «ponte con el siguiente sprint»: muestra nativa 0.14.0 Paleta–Brock, no ejecución de 15–22. Entrada campaña, laboratorio separado. Ver godot/AGENTS.md e informe docs/SPRINT_14.md.
-- Decisiones confirmadas para esta prueba: Brock da medalla, dinero y captura de la última zona salvaje; Caramelo Raro evoluciona una etapa sin nivel; entrenamiento +5 a una estadística con dos compras totales por Pokémon. Precios provisionales. No curar al evolucionar/entrenar PS.
-- Campaña Kanto tiene archivo/contrato propios (kanto-save.json, kanto/1); conservar edición o migrar si cambian generación/economía. Duplicados permitidos en la muestra; PC y progresión completa pendientes. Isometría/alturas y cámara se evalúan en 15. Paridad web/laboratorio intacta; no presentar las simulaciones de campaña como balance humano.
-
-
-- Revisión posterior 0.14.1 en codex/sprint-14-progression: usuario autoriza niveles/estadísticas, dos roles por línea, señales de fallo y nuevas propuestas tácticas. Confirma cuatro movimientos preparados + básico neutro obligatorio sin tipo/STAB, y nivel mínimo + Caramelo por evolución (no da niveles). Sustituye entrenamiento pagado en nuevas partidas. Ver docs/SPRINT_14_PROGRESSION.md y docs/DESIGN_LEVELS_ROLES.md.
-- Edición2 implementada mediante progression_run/battle/pokemon/actions.gd, heredando los módulos existentes. No alterar sus reglas futuras sin nueva edición/migración. kanto/1 se reconstruye con KantoRun original y se etiqueta Clásica0.14; iniciar nueva para niveles, preservando copia. Web y laboratorio intactos; presentación compartida puede mostrar recibos de fallo sin consumir RNG.
-- Catálogo26/51 movimientos, graveler/golem reutilizados, dos PNG Kenney CC0 y tres WAV nuevos con jsfxr existente; verificar los manifiestos nuevos. Aprendizaje/alcance/PT y algunos efectos son adaptados, no afirmar copia exacta del cartucho. Pasivas/críticos/clima y propuestas tácticas no se han implementado por documentarlas.
-
-
-- Revisión vigente0.14.2, codex/sprint-14-shop: usuario pide insignia de líder por mayor nivel y tres ofertas MT/equipables con rerolls crecientes. Brock ahora da Onix14 en edición3; rutas sin cambios. Garra Metal ya está al9; MT Demolición80 garantizada primer stock de Charmander. No se retocan fórmulas/estadísticas.
-- shop_run/battle.gd heredan edición2; no modificar progression_* para cambiar sus resultados. kanto_store selecciona1/2/3. Nueva campaña para reglas3, con copia; UI etiqueta partidas clásicas. stock/rerolls/shopRandom persistidos; nunca RNG al inspeccionar. Un equipable; devolución a bolsa al cambiar/quitar o cerrar combate con bajas. Ver docs/SPRINT_14_SHOP.md.
-- Seis MT de un uso con compatibilidad por máquina (unión de juegos), cuatro equipables y retroceso real de Vidaesfera. Pruebas godot:test:shop y QA de fuente/.exe; importador import-shop.py/manifiesto shop-provenance. Balance humano sigue pendiente; no presentar cobertura como garantía de victoria. No iniciar sprint15 automáticamente.
-
-
-- Revisión vigente0.14.3, codex/sprint-14-growth: usuario cambia Caramelo a +1 nivel barato y evolución automática por umbral, tanto por EXP como por Caramelo. Confirma Pikachu20/Graveler36 adaptados. Beedrill aprende Demolición y Butterfree Megaagotar al evolucionar al10; Pikachu Cola Férrea al7. Precio provisional25 ₽.
-- Nuevos growth.gd/growth_run.gd y data/growth.json, edición4; no alterar motores/datos1/2/3. Uso solo en tienda, conserva EXP parcial/PS/equipo, no revive, cap100. Sin botón/orden evolve en4. Biblioteca respeta4+básico, movimientos aprendidos sin reemplazo forzado. kanto_store elige1/2/3/4; Nueva campaña con copia para reglas nuevas. Ver docs/SPRINT_14_GROWTH.md y godot:test:growth. No afirmar balance cerrado ni iniciar15.
-
-- Revisión0.14.4, codex/sprint-14-letsgo: fuente Atkinson Hyperlegible e indicadores reales de estado/etapas sobre sprites y en ambas fichas. Usuario confirma unir ambas ediciones de Let’s Go y usar sus repertorios sin las tres excepciones anteriores; no añadir movimientos exclusivos de iniciales especiales. Edición5 en letsgo_study/actions/battle/run, datos/provenance nuevos; no alterar motores/datos1–4. kanto_store selecciona1–5.
-- Catálogo32/12 líneas/104 movimientos, siete MT LGPE y compatibilidad exclusiva del grupo19. Enemigos/capturas terrestres de zonas actuales con niveles LGPE; normales equiprobables y Bulbasaur especial1% son probabilidades tácticas provisionales, no porcentajes originales. Oddish/Bellsprout21; Gloom/Weepinbell con Piedra Hoja80; Pikachu20/Golem36 confirmados conservados. Efectos/PT/alcance adaptados descritos en habilidades e informe; no afirmar réplica del cartucho ni balance resuelto.
-- Ver docs/SPRINT_14_LETSGO.md y godot:test:letsgo. Nueva campaña para tablas nuevas; presentación mejora también guardados clásicos. Fuente OFL y seis sprites/retratos originales con créditos/hashes. Sin plugins/dependencias nuevos ni red al jugar. No iniciar15 ni publicar; commit/push privado al cerrar autorizado.
-
-- Revisión0.14.5 en codex/sprint-14-tactics, edición6: usuario pide precisión sin penalización direccional, daño85–100% dividido frente/mitad baja, costado/alta, espalda/máximo y+1 etapa crítica. Críticos×1,5 y tabla moderna; daño fijo excluido. Confirma estadísticas temporales3 activaciones igual que estados. Parálisis solo mitad de movimiento, sin reducir iniciativa ni perder acción. Mostrar+1/+2/−1/−2 sobre sprites y fichas.
-- tactics_study/actions/battle/run y data/tactics.json; motores/datos1–5 congelados. Nuevos prototipos: Cuchillada/Hipercolmillo críticos garantizados3PT; Ataque Rápido/Acua Jet/Golpe Bajo/Ataque Ala se acercan gastando movimiento; Golpe Cabeza/Portazo empujan1; Foco Energía+2 crítico3PT. Mejoras2/3/4PT según etapas/atributos, límite±2 y5PT conservados. No cambia potencia general/niveles/EXP/economía/pool.
-- Nueva campaña para6, copia/continuación clásica1–5 y RNG preservados. Ver docs/SPRINT_14_TACTICS.md, godot:test:tactics y test:tactics:journey, QA fuente/ejecutable. Previsión/IA sin RNG, acercamiento no rectificable tras actuar, empujes bloqueados sin daño de choque. No iniciar15 ni publicar. Balance de prototipos requiere prueba humana.
-
-- Revisión0.14.6: vitality_study/run heredan reglas6; edición7 recupera exactamente el aumento positivo de PS máximos al subir por EXP o Caramelo, incluida evolución automática. Mantener PS que faltaban, sin curar por EXP sin nivel ni revivir bajas; piedra sola no cura. Reglas1–6 congeladas, replay selecciona1–7. UI muestra +N PS en recibo. godot:test:level-hp y QA campaña fuente/ejecutable; ver docs/SPRINT_14_LEVEL_HP.md. No inicia15 ni publica.
-
-- Revisión0.14.7: gym_study/run, edición8. Tope por insignia del próximo líder pendiente (Brock/Onix14). EXP sobrante no se acumula; Caramelo al cap bloqueado sin gasto. Victoria de líder usa el cap del siguiente si existe; muestra acaba en Brock y conserva14. PS crecen como7. Reglas/datos1–7 congelados, replay1–8. godot:test:gym-caps, regresión7/6 y QA fuente/ejecutable. Ver docs/SPRINT_14_GYM_CAPS.md. No iniciar15 ni publicar.
-
-- Revisión0.14.8: revive_run hereda8, edición9. Usuario autoriza Revivir, sustituyendo bajas definitivas de campañas nuevas:150 ₽, compra/uso solo tienda, objetivo HP0, recupera50% máximo (floor/mínimo1), consume1. No modifica nivel/EXP/movimientos/ID ni recupera equipable de la bolsa. Pociones normales después. Derrota de todo el equipo sigue terminando campaña, aunque queden Revivir. Reglas/datos1–8 congelados; replay1–9. Ver docs/SPRINT_14_REVIVE.md y godot:test:revive. No iniciar15 ni publicar.
-
-- Revisión0.14.9, edición10, traits_study/actions/battle/run.25 naturalezas,21 mentas100 ₽, Cápsula150 ₽ entre habilidades normales,13 pasivas activas de15 normales en32 especies. Clorofila/Fuga señaladas pendientes de clima/huida; sin ocultas/Parche. IV15/EV0 conservados. Rasgos con PRNG por semilla/ID separado de combate/tienda/rutas, persistidos y sin reroll al evolucionar. Menta conserva naturaleza original; slot normal se conserva al evolucionar. Traits.json/provenance e importador explícito7 CSV PokéAPI fijados. Reglas/datos1–9 congelados; replay1–10. Ver docs/SPRINT_14_TRAITS.md. No iniciar15 ni publicar.
-
-- Sprint15 autorizado:0.15.0, edición11 en scale_run/battle/maps y terrain_movement. Comparar16/24 desde primera pantalla de mapa, elección persistida por diario. Isometría/cámara/zoom/minimapa solo11; anteriores conservan vista/reglas. Alturas0–2: salto terrestre1, subida+1, voladores sin coste vertical; alcance/visión/empuje/acercamiento compartidos con IA. Vigía último del bosque fuera de cola hasta proximidad6/daño/ronda3; incorporación al construir próxima ronda. Objetivo sigue eliminar, sin historia/PC adicionales ni reajuste general. Reglas/datos1–10 congelados, replay1–11. Ver docs/SPRINT_15.md; contraste humano pendiente. No iniciar16 ni publicar.
-
-- Revisión0.15.1 de vista, codex/sprint-15-view: presentación solamente, misma edición11/guardados. Proyección80×48/LIFT12, paredes solo expuestas, apoyo y hit-test alfa de sprites originales; cámara inicial del combate, seguimiento solo al salir del margen, manual respetado. Botones Combate/Unidad/Mapa, G/H, minimapa isométrico. No modificar motores/datos ni pedir Nueva campaña al usuario0.15.0. Ver docs/SPRINT_15_VIEW.md; no iniciar16 ni publicar.
-
-
-- Sprint16 autorizado el19 de octubre:0.16.0/edición12, roster_run hereda11 sin alterar sus reglas. Usuario confirma PC ilimitado/seis plazas (incluidos debilitados), cambios gratuitos fuera del combate sin curación y derrota aunque haya reservas vivas. Captura sobrante al PC; deposit/withdraw/swap conservan miembro completo y equipable, siempre al menos un activo en pie. Reservas no se despliegan ni reciben EXP; objetos/movimientos respetan restricciones anteriores. Stock considera todos los poseídos. PC paginado en UI solo mapa/tienda/complete; consulta bloqueada para cambios en capture/defeat. Replay1–12, anteriores sin migrar; Nueva campaña preserva copia. Ver docs/SPRINT_16.md, test:roster y qa:roster fuente/.exe. No ampliar Kanto ni rebalancear ni iniciar17 automáticamente. Reutiliza recursos locales y hashes; sin dependencias/activos nuevos.
-
-
-- Encargo19 de octubre «continua con todo»: autoriza17–22 con commits/push separados; publicación pública sigue aplazada. Sprint17 nativo0.17.0/edición13 añade18 encuentros hastaSurge, snapshot journey-17, catálogo151/211 movimientos y transición explícita desde12 con copia/diario. JourneyRun/Store y ExpandedStudy/Battle/Actions/Maps; no modificar sus resultados publicados sin edición/gating. Repertorios/encuentros LGPE unidos, entrenadores/historia Rojo; MO narrativas y desvíos con requisitos. Curativos nuevos200/todos PS120/200 ₽, piedras/Cable80; equipos y PS conservados.49/78 habilidades activas, pendientes señaladas; efectos complejos descritos como adaptaciones. Nuevos recursos originales, autores/hashes en expedition-provenance; rootCREDITS congelado. Ver DESIGN_KANTO_FULL y SPR17; continuar18–22 autorizado en este encargo. No delegación automática ni despliegue público.
-
-- Sprint18 cerrado0.18.0/edición14:28 encuentros hastaErika/Fuji, hitos Scope/Flauta/Agua Fresca y cola desplazable. Snapshot18 conserva17; transición13→14 explícita con copia. Fuente/.exe6200 aserciones idénticas y recorrido5140, sin fallos. Ver docs/SPRINT_18.md. Continúan19–22 autorizados; sin despliegue público.
-
-- Sprint19 cerrado0.19.0/edición15: Fucsia, Azafrán y sur de Kanto; snapshot19, transición y diario preservados. Recorrido11613 y UI fuente/.exe12544 sin fallos. Ver docs/SPRINT_19.md. Continuar hasta22 autorizado; sin despliegue público.
-
-- Sprint20 cerrado0.20.0/edición16: Liga y rival; snapshot20, transición y diario preservados. Recorrido12273 y UI fuente/.exe4009 sin fallos. Ver docs/SPRINT_20.md. Continuar hasta22 autorizado; sin despliegue público.
-
-- Sprint21 cerrado0.21.0/edición17: Finales legendarios; snapshot21, transición y diario preservados. Recorrido10729 y UI fuente/.exe895 sin fallos. Ver docs/SPRINT_21.md. Continuar hasta22 autorizado; sin despliegue público.
-
-- Sprint 22: entrega técnica 0.22.0/edición 18, combate 17/snapshot 21 conservados. Actualización de finales, guardado 16 MB/futuras ediciones y paleta 24 comprobados. 29 simulaciones sin errores, derrotas incluidas; sin rebalanceo general. Fuente/.exe 898 aves 16 y 510 origen 24 iguales; paquete offline y guía. Pruebas humanas/publicación pendientes;49/78 habilidades activas, terreno provisional. Encargo 17–22 entregado técnicamente; ver docs/SPRINT_22.md. No iniciar nuevos cambios de balance ni publicar por haber documentado propuestas.
-
-- Revisión UI0.22.1, rama codex/sprint-22-ui: Inicio nativo (sin autoload/escena adicional), pausa al volver, Continuar frío/caliente y cancelación de Oak preservada. Tienda por categorías/continuar fijo, retratos/barras de PS, fichas y tema revisados. Mismo motor18/combate17; estado completo de ambos finales idéntico0.22.0. UI fuente/.exe58, aves898 y origen510; regresión PC540/escala980,65 advertencias antiguas/0nuevas. QA aislada en work/qa-sprint-22-ui; paquete0.22.1. Sin plugins/activos nuevos ni publicación. Ver docs/SPRINT_22_UI.md.
-
-- Controles0.22.2: prompt01 de la auditoría aplicado; input_profile/controls_dialog/focus_memory/dialog_input y QA nueva. F2 configura, F6/Mayús+F6 alterna paneles; teclas de seguridad conservadas, preferencias controls.json independientes y nunca en diario. Foco/scroll por ID, captura/cancelación/conflictos y antirrepetición. Campaña18/combate17 y módulos publicados intactos. QA aislada work/qa-sprint-22-controls, scripts test:controls/qa:input/qa:input:export; ver docs/SPRINT_22_CONTROLS.md. No presentar como completados los prompts02–09 ni el soporte de lectores de pantalla. Sin activos/plugins nuevos o publicación.
-
-- Turno contextual0.22.3: prompt02 aplicado sobre controles0.22.2. Elegir habilidad nunca ejecuta; Q/E selecciona objetivos legales, Enter/clic acepta; modos Rápido/Seguro persistentes con confirmación de aliados/autocoste letal. F/flechas/Enter orientan; R conserva límites. Cámara cruceta/Alt+flechas/P y umbral de arrastre; hover respeta teclado. Campaña18/combate17 y reglas/datos congelados. Ver docs/SPRINT_22_CONTEXT.md, QAcontext nativa aislada; siguiente prompt03, no encadenar03–09 ni publicar.
-
-- Encargo20 de octubre «hazlo todo»: autoriza completar prompts03–09 de accesibilidad con entregas/commits separados. Sustituye el límite anterior de no encadenar. Publicación y pruebas humanas siguen pendientes; sin delegación automática. Inspección0.22.4 entregada; continuar04–09.
-
-
-## Cierre de mejoras0.22.10
-
-El encargo «hazlo todo» del20 de octubre completa técnicamente prompts03–09 con commits separados en codex/accessibility-complete. Ver docs/SPRINT_22_ACCESSIBILITY_COMPLETE.md (desde godot: ../docs/). Inspección, preferencias, cantidades, PC/biblioteca, práctica y acceso textual; motor18/17 y datos/snapshots intactos.09 prepara kit humano sin participantes; lector audible/usuario y DPI físicos pendientes. No delegación automática, publicación ni balance nuevos.
-
-
-## Rendimiento0.22.11
-
-Solicitud21 de octubre: corregir ralentizaciones. UI/representación solamente; campaña18/combate17, core/data/snapshots y guardados conservados. Tema con escrituras condicionales, previsión por contexto del cursor, semántica agrupada y terreno/minimapa con órdenes de dibujo conservadas. Invalidar geometría por mapa/cámara/HUD y marcas por cursor/alcance; preservar paredes y orden del pintor. QA específica de rendimiento y regresiones nativas, perfiles aislados; ver docs/SPRINT_22_PERFORMANCE.md. No delegación automática, publicación o balance nuevos.
-
-
-## Semillas0.22.12
-
-Solicitud21 de octubre: aventuras nuevas con semillas variables para variar capturas. El sorteo publicado ya usa semilla; se sustituye el valor inicial fijo de UI por generación local independiente, campo editable, Generar otra y Copiar en Oak, y copia desde Menú. Vacío genera semilla nueva; continuar/cancelar Oak preserva estado y azar. Misma semilla y decisiones reproducen; tablas/duplicados/insignias conservados. QA específica64 sondeos y dos combates naturales, perfiles aislados; ver docs/SPRINT_22_SEEDS.md. Core/data/snapshots congelados; sin delegación automática o publicación.
-
-
-## Interfaz de juego0.22.13
-
-Solicitud21 de octubre: integrar mejor la interfaz y mejorar los botones. Tema nativo compartido con variantes para órdenes, herramientas, pestañas y avance; cursor sin procesamiento continuo, menú claro y franja inferior compartida con PS/PT. Mantener controles reales, alto contraste y escalas100/125/150; reservar tablero sin solapamientos y conservar las cachés de rendimiento. Campaña18/combate17, core/data/snapshots y recursos originales congelados. Ver docs/SPRINT_22_GAME_UI.md. Sin delegación automática, publicación ni balance nuevos.
-
-
-## Hub y tienda 0.22.14
-
-Solicitud del 22 de octubre: reducir explicaciones y confusión. UI para edición 12+ con Comprar / Equipo y bolsa, cuatro categorías (Medicina, Evolución, MT y equipo, Rasgos), detalles por Ficha/Objetos/Movimientos/Rasgos y cantidades con contexto explícito. Bolsa con acciones para objetos poseídos; progreso y EXP en Resumen, avance fijo y ayuda conservada. F6, foco, escalas 100/125/150 y contraste; versiones anteriores conservan controles. Misma campaña 18/combate 17, core/data/snapshots y recursos congelados. Ver docs/SPRINT_22_HUB.md. Sin delegación automática, publicación o cambios de balance.
-
-
-## Dirección visual 0.22.15
-
-Solicitud del 22 de octubre: dirección profesional con arte nuevo provisional, sin generar imágenes. Cuaderno de Kanto, 45 slots/42 requeridos y 3 de promoción opcional, manifiesto en art/, registro con caché, escenas/terrenos/obstáculos/efectos/iconos conectados. Prompts completos y contratos; instalador verifica PNG/CRC/alfa/máscara 5:3 y conserva copia. Metadatos/icono Windows de versión 15. Publicación y arte final pendientes; no declarar ilustraciones terminadas. Campaña 18/combate 17, core/data/snapshots y recursos de terceros congelados; sin delegación automática o servicios nuevos. Ver docs/SPRINT_22_ART.md, docs/PROMPTS_ARTE_FINAL.md.
-
-
-## Arte generado 0.22.16
-
-Solicitud del 22 de octubre: producir e insertar las imágenes. 42 recursos del juego generados con image_gen e integrados; 3 promocionales opcionales pendientes. Procedencia/prompts/hashes en godot/art/generated-provenance.json (art/ desde Godot), dimensiones y alfa validados. Misma campaña18/combate17, reglas/datos/snapshots y sprites originales conservados. Ver docs/SPRINT_22_GENERATED_ART.md (../docs/ desde Godot). Publicación pública sigue aplazada.
-
-
-## Animaciones y sonidos 0.22.17
-
-Encargo del 23 de octubre: secuencias de ataque de hasta 0,64 s, variantes de los 18 tipos y 26 sonidos con jsfxr existente. Solo presentación; campañas 18/17, core/data/snapshots y balance congelados. Cancela al navegar, sin callbacks que modifiquen el juego; movimiento reducido, silencio y volumen conservados. Procedencia en godot/assets/combat/manifest.json (assets/ desde Godot); QA específica attack-effects en desarrollo/EXE y comparación de estados. Ver docs/SPRINT_22_ATTACK_EFFECTS.md (../docs/ desde Godot). Sin publicación pública ni delegación.
-
-
-## Movimientos espaciales 0.23.0
-
-Auditoría aprobada aplicada al catálogo actual: campaña19/combate18 en nuevos spatial_*.gd y data/spatial.json. No modificar reglas/datos/fixtures publicados para cambiar ediciones anteriores. La actualización es explícita entre encuentros, con copia y replay por edición; un combate pendiente conserva su motor. Fuente de decisiones y límites: docs/SPRINT_23_SPATIAL.md; tabla aplicada en docs/reports/moves-2026-10-24/aplicacion-0.23.csv.
-
-Formas y zonas comparten geometría/visión/alturas con IA y previsión; aliados pueden recibir áreas. Aim de suelo canónico incluye x/y/axis/throwFacing; target se conserva para validación antigua. Cursor/VFX/audio sin PRNG. No rectificar consecuencias de zona ni tiradas. Pantallas2 rondas completas, controles nuevos1 activación, sueño de áreas1; daño/PT provisionales, sin afirmar balance cerrado.40 muestras WAV de PokeDot fijadas y acreditadas, incluida Hiperrayo; no atribuir licencia del código al audio. Sin red al jugar. Sin delegación automática ni publicación; commit/push privado autorizado.
-
-
-## Corrección visual 0.23.1
-
-Ranuras de Equipo → Movimientos: GridContainer y botones expanden ambas columnas; no alterar reglas por un fallo de presentación. Campaña19/combate18 y guardados conservados. QA específica qa_moves, texto 100/125/150 y tres resoluciones, desarrollo/EXE, ratón/teclado y cancelación sin órdenes. Ver docs/FIX_MOVES_0.23.1.md. Sin delegación ni publicación pública; commit/push privado autorizado.
-
-
-## Progresión y gimnasios 0.24.0
-
-Encargo del24 de octubre: nueva campaña20/combate18 en economy_study/battle/run/store, economy.json y journey-24.json. Preservar motores/datos/tests publicados anteriores; transición explícita19→20 fuera de combate, conserva niveles/PS, proporción de barra EXP y reembolsa25/80 ₽ por consumibles retirados. Curvas PokéAPI por especie; train-xp cobra1 ₽ por EXP restante, cotización validada y cap. Sin Caramelos/piedras/cables utilizables; evoluciones normales automáticas, antiguas de objeto/intercambio gratis y voluntarias por umbrales adaptados desde Ficha, ramas de Eevee elegibles. Reroll previo a captura común60/120/180…, distinta especie si hay alternativas, mismo nivel/ID; insignias fijas. Líderes4–6, encuentros/recompensas reajustados. Sin delegación ni publicación pública; commit/push privado autorizado. Ver docs/SPRINT_24_ECONOMY.md. No declarar balance cerrado ni campaña20 completa: muestras naturales alcanzan hasta3 medallas y contienen derrotas; los ocho sondeos de gimnasios son sintéticos.
-
-
-- 25 de octubre: usuario autoriza todas las mejoras propuestas. Entrega0.25.0/campaña21/combate19, ver godot/AGENTS.md y docs/SPRINT_25_TACTICAL.md. Módulos históricos conservados, actualización explícita entre encuentros y nuevo despliegue/objetivos/recuperación/IA/retos locales. Simulaciones no sustituyen balance humano. Sin delegación ni publicación pública.
-
-
-- Sprint26 autorizado con «empieza a implementar»: 0.26.0, presentación para jugadores, no ejecutar automáticamente27–29. Semillas opcionales en Oak, información compartida de potencia/precisión/área y ayuda según edición. Campaña21/combate19 y módulos publicados intactos. Ver docs/SPRINT_26_PLAYER.md; QA y ejecutable aislados; commit/push privado autorizado. Perfil/logros y tienda Kecleon pendientes.
-
-
-- 26 de octubre: «implementa todo» autoriza completar sprints27–29 en entregas separadas, con comprobaciones, ejecutable y commit/push privado por sprint; sustituye el límite anterior de no continuar automáticamente. Sin delegación ni publicación pública. Sprint27: perfil local fuera del estado de campaña, IDs/outbox en metadatos del sobre, recuperación explícita y logros cosméticos. Ver docs/SPRINT_27_TRAINER.md.
-
-## Tienda Kecleon 0.28.0
-
-Mostrador integrado con tres ofertas, compras directas y fichas, accesos a entrenamiento/equipo/medicina/rasgos. Recursos originales SpriteCollab de Kecleon solo como vendedor; hashes, commit y créditos en assets/merchant. Respetar movimiento reducido y guardar órdenes antes de feedback; UI/animaciones sin RNG. Campaña21/combate19 intacta. Ver docs/SPRINT_28_KECLEON.md (../docs desde Godot). Autorización vigente para continuar29, sin delegación ni publicación pública.
-
-## Herramientas tácticas 0.29.0
-
-Sprint29 implementado: propuestas de rol basadas exclusivamente en movimientos aprendidos, filtros tácticos, herramientas del equipo, aprendizaje futuro y aportación de MT. Consultas en ui/tactical_loadouts.gd; usar la orden loadout existente con revisión, guardado antes de feedback. Campaña21/combate19, repertorios/datos/reglas publicados y códigosKT25 intactos; no crear migración por cambios de presentación. Ver docs/SPRINT_29_VARIETY.md (../docs desde Godot), auditorías CSV y QA aislada. Sprints26–29 cerrados técnicamente; balance humano/campaña completa y publicación pública pendientes. Sin delegación.
-
-## Dirección posterior a0.29 —26 de octubre
-
-El usuario considera correcto el balance actual: preservar parámetros y retirar el rebalanceo general de la siguiente fase. Abandonar los dos roles por línea; desarrollar identidad mediante Pokédex, usos competitivos y movimientos reconocibles. Mapas de Kanto más reconocibles, alturas con propósito y obstáculos específicos (árboles en Bosque Verde). Diseño: docs/DESIGN_POKEMON_KANTO_IDENTITY.md (../docs desde Godot). Mantener LGPE como base salvo excepciones explícitas, cuatro técnicas + básico y guardados históricos. Roles antiguos pueden conservarse como datos de replay sin mostrarse como clases. No confundir planes con implementación: solicitud actual de diseño; no iniciar automáticamente sprints30–34 ni cambiar el ejecutable. Geometría nueva requiere compatibilidad y revisión de dificultad aunque las cifras se conserven.
-
-
-## Kanto0.30 — implementación autorizada
-
-El26 de octubre el usuario autoriza implementar mapas, identidad y finales consecutivos. Sustituye el límite anterior de solo diseñar/no iniciar30–34. Entrega0.30.0: campaña22/capítulo26, motor numérico de combate19 conservado. Nuevos kanto_journey, landscape_battle, kanto_landscape y kanto_campaign_store; no modificar motores/datos publicados para alterar sus resultados. Actualización explícita12–21→22 entre encuentros con copia/diario mixto. Guardados en combate conservan su mapa. Finales: Liga/rival → aves → tienda → Mew/Mewtwo; victorias anteriores no se borran ni se inventan. KT30 nuevo; KT25 abre21. Sin roles en UI; cuatro técnicas+básico, filtros/MT conservados.58 localizaciones/116 diseños, Safari narrativo, arte local cacheado y sin red. Ver docs/SPRINT_30_KANTO.md. Balance numérico aceptado; geometría puede cambiar dificultad. No afirmar campaña completa humana por galerías o fixtures de jefes. Publicación pública y delegación no autorizadas; commit/push privado al cerrar sí.
-
-- Revisión0.30.1 de textos: presentación actual más breve, sin explicaciones básicas de Pokémon. Conservar cifras, efectos/duraciones, objetivos, costes, consecuencias y errores/guardados; reglas propias y controles en ayuda opcional. Misma campaña22/combate19; motores/datos/recursos/tests publicados congelados. QA copy503 y regresión Kanto428 por fuente/EXE, evidencia sprint-30-ui-1. Ver docs/FIX_TEXT_0.30.1.md. Publicación pública aplazada.
-
-- Entrega0.31.0: usuario cambia PT por PP al equipar; descarta4–8 por restrictivo y no fija precios por sus ejemplos. power_points/study/battle/run/store/challenge, campaña23/capítulo27/combate20. Capacidad10 al5, +1 cada5 niveles, máximo20; técnicas1–5PP, cuatro ranuras y básico. Sin gasto ni contador de recuperación al actuar. Atributos/Foco Energía hasta fin de combate, límite±2; estados temporales. Dos manantiales accesibles por mapa, ambos bandos, curan estados/confusión al terminar antes del daño de estado, sin PS ni quitar atributos. Presión señalada sin efecto. Motores/datos/tests/recursos publicados congelados, actualización12–22→23 voluntaria con copia, conserva conocimientos; retirar equipados que excedan PP en orden de ranuras. KT31. QA power y regresión copy; ver docs/SPRINT_31_POWER.md. No afirmar balance humano ni campaña completa. Commit/push privado autorizado; no publicación pública.
-
-- Corrección0.31.1: sueño bloquea desplazamiento voluntario y acciones; IA termina, rutas vuelven al despertar. sleep_battle/run/store/challenge, campaña24/capítulo28/combate21. Reglas publicadas23 intactas; cargar0.31.0 añade transición24 con copia incluso en combate, conserva unidades/mapa/cola/RNG. Rectificar parte del punto de corrección, diario completo conservado. No cambiar otros estados/PP/cifras. QA sleep35+15 y regresión power233 fuente/EXE. Evidencia sprint-31-ui-1; ver docs/FIX_SLEEP_0.31.1.md.
-
-- Interfaz0.31.2: tienda Kecleon sin Entrenar; compra de EXP en Equipo → Ficha durante tienda, con presupuesto/caps/reglas intactos. Iconos originales PokéSprite en assets/ui-symbols, importación explícita/hash y crédito visible. No confundir licencia MIT del código con derechos de los sprites. Misma campaña24/combate21; QA symbols actual, sleep y power histórica con --compat-power. Ver docs/UI_SYMBOLS_0.31.2.md.
-
-
-## Climas y habilidades 0.32.0
-
-27 de octubre: usuario autoriza aplicar climas y habilidades pendientes. Campaña25/capítulo29/combate22 en nuevos climate_*.gd, data/climate.json y pruebas nuevas. No sobrescribir motores/datos/tests/recursos publicados. Tres climas y MT de80 ₽/2 PP, aprendizaje climático al15 para familias compatibles, auras visibles,30 habilidades pendientes con efecto y Piel Seca completada. Sexo151 especies por hash separado, mentas ↑/↓ antes de comprar. Actualización12–24→25 voluntaria entre encuentros, copia y diario mixto; KT32. Preservar sueño, rectificar solo movimiento, PP al equipar y guardado antes del feedback. Las consultas no consumen RNG. Fuentes cacheadas/hash, sin servicios nuevos, delegación ni publicación pública; commit/push privado autorizado. Ver docs/SPRINT_32_CLIMATE.md (../docs desde Godot).
-
-
-## Revisión0.33 —27 de octubre
-
-El usuario concreta «resto de cambios»: recorrido completo de Kanto, revisión de PP/IA/habilidades, presentación/menús grandes, documentación vigente y preparación de pruebas externas. Se conserva el balance numérico. ReviewBattle/Run/Store/Challenge añaden edición26/capítulo30/combate23; módulos y datos publicados intactos, actualización entre encuentros con copia y diario mixto. La IA puntúa solo etapas realmente aplicables y distingue cambios sobre el usuario. No se añaden costes por uso, enfriamientos ni topes de curación/turnos. Guía actual en docs/REGLAS_ACTUALES.md (../docs desde Godot); informes antiguos son historial. Variantes visuales y etiquetas sin RNG. Campaña natural de58 nodos/7.838 órdenes con jugador automático y reproducción nativa; no confundirla con una sesión humana externa. Carpeta limpia/PATH sin Godot en el mismo PC no acredita otro equipo físico. Otros ordenadores, DPI reales, lectores y personas externas pendientes; no contactar ni publicar automáticamente. Commit/push privado autorizado. Ver docs/SPRINT_33_REVIEW.md (../docs desde Godot) y evidencias sprint-33.
-
-
-## Interfaz0.33.1 — botones y equipo rival
-
-Marcos y relieve nativos en botones, estados de foco/hover/pulsación y alto contraste. EncounterPreview muestra las unidades enemigas reales durante despliegue, con fichas de estadísticas/habilidad/movimientos; no regenera encuentros ni consume RNG. Inicio directo conservado, Escape devuelve foco, panel adaptable y barra de cámara recupera tamaño. Misma edición26/capítulo30/combate23; balance y módulos publicados intactos. Pruebas briefing/review/symbols fuente y EXE, fixtures visuales de58 encuentros (no otro recorrido humano). Informe docs/UI_BUTTONS_BRIEFING_0.33.1.md; evidencias sprint-33-ui-1. Sin recursos externos nuevos ni publicación pública.
-
-
-## Calidad táctica0.34 — Kanto completo
-
-El usuario amplía expresamente a todo el juego. TacticsQualityRun/Battle/Store/Challenge y tactics_opening aplican contexto/terreno a58 localizaciones, cinco objetivos de control, preferencias de líderes y memoria antiestancamiento de IA; misma tabla numérica. Campaña27/capítulo31/combate24, actualización entre encuentros con copia y KT34. Consulta de alcance candidata sin RNG, velocidad1/1,5/2×. Certificados locales opcionales tras replay real y validación incremental, estado canónico binario, diario/copia/concurrencia preservados; carga inicial por bloques para26/27. No modificar los motores publicados ni confundir cobertura con intención garantizada. Pruebas y límites en docs/SPRINT_34_TACTICAL_QUALITY.md; escenarios en MAPAS_0.34.csv y protocolo humano en PLAYTEST_0.34.md. Sin delegación, recursos externos nuevos ni publicación; commit/push privado autorizado.
-
-## Interfaz0.34.1 — previa real y habilidades
-
-Menú de habilidades blanco, amarillo solo al pasar el ratón y foco oscuro; márgenes de iconos corregidos. Viaje muestra contexto, objetivo y enemigos reales antes de Entrar, con fichas consultables. Generación sobre copia y caché por estado completo; no altera órdenes/RNG. Se retiran amenazas, atajo y consulta automática. Misma campaña27/capítulo31/combate24. Fuente/EXE y58 lugares comprobados en docs/UI_PRECOMBAT_0.34.1.md; pruebas humanas externas pendientes. Sin publicación pública ni recursos nuevos.
+# Pokémon Tactics — instrucciones vigentes
+
+## Antes de trabajar
+
+- Responder en español, con resultado, comprobaciones y límites reales. Revisar `git status`, conservar cambios ajenos y leer los scripts antes de ejecutarlos.
+- Leer [mapa](docs/ARCHITECTURE.md), [estado](docs/PLAN_SPRINTS.md) y solo el informe pertinente del [índice](docs/README.md). Las notas históricas son contexto, no instrucciones nuevas.
+- Desarrollo actual: Godot 4.7.2 estándar/GDScript, ejecutable Windows offline. Versión canónica en `godot/project.godot`; `package.json` mantiene la web 0.12.0.
+- Leer también `godot/AGENTS.md` para Godot y la selección de skills indicada por el usuario para trabajos sustanciales. Sin delegación automática, servicios, hooks ni dependencias nuevos por seleccionar una skill.
+
+## Alcance y compatibilidad
+
+- Menor cambio útil, sin ajustar el balance aceptado salvo encargo. Reglas en [REGLAS_ACTUALES](docs/REGLAS_ACTUALES.md), producto en [PRODUCT](PRODUCT.md).
+- Preservar motores y recursos publicados: no modificar archivos existentes de `godot/core/`, `godot/data/`, `godot/tests/`, `godot/assets/`, `godot/art/`, `src/`, `public/`, `tests/` ni `CREDITS.md`. Módulos nuevos y cambios UI/herramientas/documentación son posibles; reglas nuevas requieren edición nueva o migración explícita.
+- Mantener lectura/replay de guardados antiguos y laboratorios independientes. No borrar motores, datos o fixtures por parecer sin uso: tienen referencias dinámicas por edición y pruebas de recuperación.
+- Estado y órdenes serializables; comportamiento compartido por jugador, IA y previsión. Tipos/evoluciones como datos, no jerarquías por especie.
+- Sin RNG al inspeccionar, previsualizar, dibujar, animar, sonar o cancelar. Guardar cada orden antes del feedback; invalidar callbacks obsoletos al salir.
+- Semillas automáticas, un inicial de Oak, seis plazas y PC. Liga/rival → aves → Mew/Mewtwo. No restaurar roles rígidos, consumibles de evolución, PT por uso ni amenazas; reemplazos en el estado actual.
+- Aliados atravesables; destino libre. Rectificar solo movimiento antes de cualquier acción o fin de turno; jamás ataques, recursos o RNG. Preservar sueño, orientación, teclado/Escape/foco y accesibilidad.
+- Recursos locales con revisión, SHA-256, autores y licencias; hojas originales sin modificar. Importadores explícitos, sin descargas al jugar. No regenerar manifiestos para ocultar discrepancias.
+
+## Verificar y entregar
+
+- Pruebas pertinentes al cambio. Documentación/higiene: `npm run check:repo` y `npm run test:repo-check`; integridad: `npm run godot:verify`. Para juego, consultar los scripts nativos y probar fuente/EXE cuando corresponda.
+- Revisar diff y registrar evidencia ejecutada. No presentar fixtures/simulaciones como sesiones humanas ni una carpeta limpia como otro PC. Distinguir los 65 avisos previos de Godot de nuevas incidencias.
+- Paquetes, perfiles, cachés, claves y guardados personales fuera de Git. Verificar las rutas antes de cualquier limpieza recursiva.
+- Commit/push de entregas autorizado a la rama `codex/` vigente del repositorio privado `GregorioRuiz98/pokemon-tactics`; verificar SHA remoto. Usar `GIT_CONFIG_GLOBAL=NUL`, `GIT_CONFIG_NOSYSTEM=1`, `credential.helper=manager` por comando. No imprimir tokens.
+- **Publicación pendiente.** No cambiar visibilidad, rama predeterminada, crear release pública, comprar dominio, contactar jugadores ni desplegar sin autorización específica.
+
+[Instrucciones acumuladas hasta 0.34.1](docs/history/AGENTS_ROOT_2026-10-27.md), conservadas como historial; no sustituyen estas instrucciones.

@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "version": "0.34.1",
+  "indexedFiles": 4312,
+  "maintainedDocuments": 16,
+  "localLinks": 221,
+  "documentedCommands": 31,
+  "errors": [],
+  "scope": "Local indexed-path hygiene, maintained links, script entry points and version consistency. No network, secret-content/history scan, campaign replay or external hardware test."
+}
