@@ -1,0 +1,142 @@
+[
+  {
+    "location": "ss-anne",
+    "recoveriesByTechniqueAndTarget": [
+      {
+        "move": "rest",
+        "target": 14.0,
+        "uses": 1
+      }
+    ]
+  },
+  {
+    "location": "surge",
+    "recoveriesByTechniqueAndTarget": [
+      {
+        "move": "rest",
+        "target": 14.0,
+        "uses": 1
+      }
+    ]
+  },
+  {
+    "location": "diglett-cave",
+    "recoveriesByTechniqueAndTarget": [
+      {
+        "move": "rest",
+        "target": 14.0,
+        "uses": 1
+      }
+    ]
+  },
+  {
+    "location": "route-10",
+    "recoveriesByTechniqueAndTarget": [
+      {
+        "move": "rest",
+        "target": 14.0,
+        "uses": 1
+      }
+    ]
+  },
+  {
+    "location": "route-8",
+    "recoveriesByTechniqueAndTarget": [
+      {
+        "move": "rest",
+        "target": 14.0,
+        "uses": 1
+      }
+    ]
+  },
+  {
+    "location": "route-7",
+    "recoveriesByTechniqueAndTarget": [
+      {
+        "move": "rest",
+        "target": 14.0,
+        "uses": 1
+      }
+    ]
+  },
+  {
+    "location": "erika",
+    "recoveriesByTechniqueAndTarget": [
+      {
+        "move": "roost",
+        "target": 23,
+        "uses": 15
+      }
+    ]
+  },
+  {
+    "location": "sabrina",
+    "recoveriesByTechniqueAndTarget": [
+      {
+        "move": "recover",
+        "target": 10395,
+        "uses": 2
+      },
+      {
+        "move": "recover",
+        "target": 10394,
+        "uses": 3
+      }
+    ]
+  },
+  {
+    "location": "route-20",
+    "recoveriesByTechniqueAndTarget": [
+      {
+        "move": "recover",
+        "target": 40,
+        "uses": 2
+      }
+    ]
+  },
+  {
+    "location": "route-21",
+    "recoveriesByTechniqueAndTarget": [
+      {
+        "move": "recover",
+        "target": 40,
+        "uses": 1
+      }
+    ]
+  },
+  {
+    "location": "pokemon-mansion",
+    "recoveriesByTechniqueAndTarget": [
+      {
+        "move": "recover",
+        "target": 40,
+        "uses": 2
+      }
+    ]
+  },
+  {
+    "location": "blaine",
+    "recoveriesByTechniqueAndTarget": [
+      {
+        "move": "recover",
+        "target": 40,
+        "uses": 1
+      }
+    ]
+  },
+  {
+    "location": "legendary-birds",
+    "recoveriesByTechniqueAndTarget": [
+      {
+        "move": "roost",
+        "target": 10561,
+        "uses": 16
+      },
+      {
+        "move": "roost",
+        "target": 10560,
+        "uses": 4
+      }
+    ]
+  }
+]

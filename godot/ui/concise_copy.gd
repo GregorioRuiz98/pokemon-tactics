@@ -25,7 +25,7 @@ static func tactical_rules(edition: int) -> String:
 	var text: String = "TURNOS\nMovimiento + acción, en cualquier orden. Puedes atravesar aliados, pero no ocupar su casilla.\nRectificar: solo el movimiento, antes de actuar o terminar.\nCuatro movimientos + básico neutro de 0 PT. Las áreas pueden alcanzar aliados."
 	if edition>=6: text += "\n\nPOSICIÓN Y ESTADOS\nFrente: mitad baja del daño. Costado: mitad alta. Espalda: máximo y +1 etapa crítica. La posición no cambia la precisión.\nEstados y atributos temporales. Parálisis: mitad de movimiento."
 	text += "\n\nAVENTURA\nLos PS persisten. Medicina fuera de combate; el PC no cura. Perder un combate termina la aventura, incluso con reservas."
-	if edition>=20: text += "\nEntrenar compra la EXP pendiente del nivel. Evoluciones de piedra/intercambio: elección gratuita al nivel mínimo indicado."
+	if edition>=20: text += "\nEquipo → Ficha permite completar la EXP del nivel durante la tienda. Evoluciones de piedra/intercambio: elección gratuita al nivel mínimo indicado."
 	if edition>=8: text += "\nEl próximo gimnasio fija el nivel máximo; la EXP sobrante no se acumula."
 	if edition>=22: text += "\n\nTERRENO\nObstáculos sólidos: bloquean paso y visión. Subir un nivel de altura cuesta +1 movimiento; saltos mayores requieren rodear o volar."
 	if edition>=23:
@@ -33,4 +33,6 @@ static func tactical_rules(edition: int) -> String:
 		text = text.replace("Estados y atributos temporales.","Estados temporales; atributos durante el combate.")
 		text += "\nManantial: cura estados y confusión al terminar el turno; ambos bandos, sin curar PS."
 	if edition>=24: text += "\nSueño: no puedes moverte ni actuar; termina el turno para despertar cuando expire."
+	if edition>=25:
+		text += "\nClima y duración en la cabecera. Presión: −1 movimiento al comenzar dentro de su aura; mínimo1."
 	return text

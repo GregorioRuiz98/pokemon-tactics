@@ -27,7 +27,7 @@ function run(executable, args, label, cwd = root) {
   if(chapter>=30 && /^(player|shop|trainer)-(source|release)$/.test(label)) args=[...args,'--compat-adventure'];
   const logIndex = args.indexOf('--log-file');
   if (logIndex >= 0) writeFileSync(args[logIndex + 1], '');
-  const result = spawnSync(executable, args, { cwd, env:{...process.env,APPDATA:isolatedProfile,LOCALAPPDATA:isolatedLocal}, encoding: 'utf8', windowsHide: true, timeout: (label.startsWith('sleep-') || label.startsWith('symbols-')) ? 90000 : label==='simulate-balance' ? 1_800_000 : label.startsWith('journey-ui-') || label.startsWith('updates-ui-') || label==='ui-release' || label==='ui-source' || label==='test-journey' ? 900_000 : 300_000, maxBuffer: 12 * 1024 * 1024 });
+  const result = spawnSync(executable, args, { cwd, env:{...process.env,APPDATA:isolatedProfile,LOCALAPPDATA:isolatedLocal}, encoding: 'utf8', windowsHide: true, timeout: label.startsWith('playthrough-') ? 3_600_000 : (label.startsWith('sleep-') || label.startsWith('symbols-')) ? 90000 : label==='simulate-balance' ? 1_800_000 : label.startsWith('journey-ui-') || label.startsWith('updates-ui-') || label==='ui-release' || label==='ui-source' || label==='test-journey' ? 900_000 : 300_000, maxBuffer: 12 * 1024 * 1024 });
   const log = (result.stdout ?? '') + (result.stderr ?? '') + (logIndex >= 0 && existsSync(args[logIndex + 1]) ? '\n' + readFileSync(args[logIndex + 1], 'utf8') : '');
   writeFileSync(resolve(work, `${label}.log`), log);
   const clean = log.replace(/\x1b\[[0-9;]*m/g, '');
@@ -112,7 +112,23 @@ if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-expo
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'test-climate') {
+if(operation === 'qa-playthrough' || operation === 'qa-playthrough-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'playthrough-'+(exported?'release':'source'));
+  const journal=existsSync(resolve(work,'natural-coverage/campaign-journal.json'))?resolve(work,'natural-coverage/campaign-journal.json'):resolve(root,'docs/qa/sprint-33/campaign-journal.json');
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--playthrough-qa-dir='+directory,'--review-journal='+journal],'playthrough-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'playthrough-ui-result.json'),'utf8'));
+  if(report.failures.length || report.visited.length!==58 || report.medals!==8) throw new Error('Full campaign UI failed.');
+} else if(operation === 'test-review') {
+  run(binary,['--headless',...common,'--quit-after','60','--script','res://tests/review_rules.gd','--','--save-dir='+work],'review-core');
+  cpSync(resolve(work,'climate-result.json'),resolve(work,'review-result.json'));
+} else if(operation === 'qa-review' || operation === 'qa-review-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'review-'+(exported?'release':'source'));
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--review-qa-dir='+directory],'review-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'review-ui-result.json'),'utf8'));
+  if(report.failures.length || report.assertions<40) throw new Error('Review UI failed.');
+} else if(operation === 'test-climate') {
   run(binary,['--headless',...common,'--quit-after','60','--script','res://tests/climate.gd','--','--save-dir='+work],'climate-core');
 } else if(operation === 'qa-climate' || operation === 'qa-climate-export') {
   const exported=operation.endsWith('export');

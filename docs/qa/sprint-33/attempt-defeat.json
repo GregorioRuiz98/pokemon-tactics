@@ -1,0 +1,185 @@
+{
+  "cleared": [
+    "route-1",
+    "route-2",
+    "forest",
+    "brock",
+    "route-3",
+    "mt-moon",
+    "route-4",
+    "cerulean-rival"
+  ],
+  "edition": 25,
+  "encounters": [
+    {
+      "cap": 14,
+      "endMoney": 300,
+      "entryLevels": [
+        5
+      ],
+      "entryMoney": 120,
+      "location": "route-1",
+      "orders": 20,
+      "reward": 19,
+      "rounds": 5,
+      "seconds": 0.209,
+      "startedMs": 7402,
+      "startedOrder": 0
+    },
+    {
+      "cap": 14,
+      "endMoney": 388,
+      "entryLevels": [
+        6,
+        6
+      ],
+      "entryMoney": 148,
+      "location": "route-2",
+      "orders": 49,
+      "reward": 19,
+      "rounds": 7,
+      "seconds": 0.68,
+      "startedMs": 17269,
+      "startedOrder": 27
+    },
+    {
+      "cap": 14,
+      "endMoney": 653,
+      "entryLevels": [
+        8,
+        7,
+        7
+      ],
+      "entryMoney": 348,
+      "location": "forest",
+      "orders": 82,
+      "reward": 10,
+      "rounds": 8,
+      "seconds": 1.352,
+      "startedMs": 17970,
+      "startedOrder": 82
+    },
+    {
+      "cap": 14,
+      "endMoney": 801,
+      "entryLevels": [
+        10,
+        8,
+        9,
+        9
+      ],
+      "entryMoney": 121,
+      "location": "brock",
+      "orders": 96,
+      "reward": 95,
+      "rounds": 8,
+      "seconds": 1.867,
+      "startedMs": 19352,
+      "startedOrder": 178
+    },
+    {
+      "cap": 21,
+      "endMoney": 579,
+      "entryLevels": [
+        12,
+        11,
+        11,
+        9,
+        14
+      ],
+      "entryMoney": 179,
+      "location": "route-3",
+      "orders": 84,
+      "reward": 27,
+      "rounds": 7,
+      "seconds": 1.891,
+      "startedMs": 31602,
+      "startedOrder": 283
+    },
+    {
+      "cap": 21,
+      "endMoney": 670,
+      "entryLevels": [
+        13,
+        12,
+        11,
+        9,
+        14,
+        11
+      ],
+      "entryMoney": 210,
+      "location": "mt-moon",
+      "orders": 271,
+      "reward": 113,
+      "rounds": 21,
+      "seconds": 7.132,
+      "startedMs": 33529,
+      "startedOrder": 380
+    },
+    {
+      "cap": 21,
+      "endMoney": 835,
+      "entryLevels": [
+        14,
+        11,
+        12,
+        9,
+        15,
+        12
+      ],
+      "entryMoney": 410,
+      "location": "route-4",
+      "orders": 114,
+      "reward": 129,
+      "rounds": 9,
+      "seconds": 2.046,
+      "startedMs": 40707,
+      "startedOrder": 665
+    },
+    {
+      "cap": 21,
+      "endMoney": 586,
+      "entryLevels": [
+        15,
+        14,
+        14,
+        9,
+        15,
+        13
+      ],
+      "entryMoney": 151,
+      "location": "cerulean-rival",
+      "orders": 217,
+      "reward": 56,
+      "rounds": 16,
+      "seconds": 5.42,
+      "startedMs": 42796,
+      "startedOrder": 789
+    },
+    {
+      "cap": 21,
+      "entryLevels": [
+        13,
+        15,
+        14,
+        9,
+        16,
+        14
+      ],
+      "entryMoney": 336,
+      "location": "route-24",
+      "startedMs": 48261,
+      "startedOrder": 1016
+    }
+  ],
+  "failures": [],
+  "medals": [
+    "Medalla Roca"
+  ],
+  "orders": 1197,
+  "phase": "defeat",
+  "scope": "Natural legal-command campaign; automated player, not a human or external hardware test.",
+  "seconds": 59.046,
+  "seed": "release-33-kanto",
+  "starter": 1
+}

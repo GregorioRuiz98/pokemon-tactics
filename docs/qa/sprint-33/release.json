@@ -1,0 +1,46 @@
+{
+  "version": "0.33.0",
+  "baseline": "51994283bd98575d56677cbb5703538dee292621",
+  "publishedFilesUnchanged": [
+    "godot/core",
+    "godot/data",
+    "godot/tests",
+    "godot/assets",
+    "godot/art",
+    "src",
+    "public",
+    "tests",
+    "CREDITS.md"
+  ],
+  "campaignEdition": 26,
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "coreChecks": {
+    "review": 505
+  },
+  "uiChecksPerBuild": {
+    "review": 46,
+    "climate": 112,
+    "playthrough": 15693,
+    "symbols": 270,
+    "sleep": 15
+  },
+  "sourceAndExeStateMatch": true,
+  "publicDeployment": false,
+  "fullCampaignPlayed": true,
+  "fullCampaignMode": "Automated legal campaign and full native UI replay",
+  "humanPlaytest": false,
+  "externalHardwareTest": false,
+  "campaignOrders": 7838,
+  "campaignLocations": 58,
+  "sourceFingerprint": "5619e43374d4017b1afb468cea2abdf12dc17cc032ffb8a1d3b4ecc48a6607dd",
+  "exe": {
+    "bytes": 132056072,
+    "sha256": "babf62e00ee3182a75c17efff11226a4be43ea32e7b7b88dc4fe0ab4ab23e590"
+  },
+  "zip": {
+    "bytes": 55602739,
+    "sha256": "3a91b20a4326912f4abc2923ba5847201bbfb384cc7ea8b9d2a36390d58dfa2d"
+  }
+}

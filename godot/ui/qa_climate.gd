@@ -1,6 +1,6 @@
 extends "res://ui/qa_context.gd"
 
-const CurrentStore = preload("res://core/climate_store.gd")
+const CurrentStore = preload("res://core/review_store.gd")
 const Context = preload("res://core/climate_context.gd")
 const Mint = preload("res://ui/mint_info.gd")
 
@@ -15,7 +15,7 @@ func run(app: Control, directory: String) -> void:
 	await click(app,app.title_screen.controls.new)
 	app.journey_seed.text = "power-ui"
 	await click(app,app.travel_buttons.starter4)
-	check(app.run.edition==25,"New game uses weather/ability edition")
+	check(app.run.edition==app.CURRENT_CHAPTER-4,"New game uses weather/ability edition")
 	check(app.run.party[0].has("gender"),"Starter gender persists")
 	for identity: String in app.campaign.progression.traits.abilities:
 		var entry: Dictionary = app.campaign.progression.traits.abilities[identity]
@@ -102,7 +102,7 @@ func run(app: Control, directory: String) -> void:
 	app._refresh(); await layout(app)
 	check(app.travel_buttons.has("upgrade"),"Old campaign offers explicit upgrade")
 	await click(app,app.travel_buttons.upgrade)
-	check(app.run.edition==25 and app.save_warning.is_empty(),"Upgrade preserves and saves team")
+	check(app.run.edition==app.CURRENT_CHAPTER-4 and app.save_warning.is_empty(),"Upgrade preserves and saves team")
 	var upgraded: Dictionary = app.run.duplicate(true)
 	app._load_game(); await layout(app)
 	check(CurrentStore.equivalent(upgraded,app.run),"Mixed upgrade journal reloads")

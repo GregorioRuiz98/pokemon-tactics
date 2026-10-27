@@ -48,6 +48,7 @@ static func describe(definition: Dictionary) -> Dictionary:
 		result.variant = absi(identity.hash())%11
 		var original: Dictionary = SpatialEffects.audio(identity)
 		if not original.is_empty(): result.cue = "original/"+identity; result.audioDuration = float(original.duration)
+	preload("res://ui/attack_variants.gd").decorate(result,definition)
 	return result
 
 func stop() -> void:
@@ -177,6 +178,9 @@ func _glyph(at: Vector2, radius: float, color: Color, element: String, phase: fl
 		draw_circle(at+Vector2(-radius*.2,-radius*.3),radius*.45,Color(1,1,.85,color.a*.65))
 
 func _draw() -> void:
+	if active and profile.has("reviewStyle"):
+		preload("res://ui/attack_variants.gd").draw(self)
+		return
 	if active and profile.has("weather"):
 		preload("res://ui/climate_effect.gd").draw(self)
 		return

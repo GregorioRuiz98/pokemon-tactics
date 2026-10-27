@@ -1,0 +1,12 @@
+{
+  "locations": 58,
+  "orders": 7838,
+  "medals": 8,
+  "failures": [],
+  "medianRounds": 6.0,
+  "maxRounds": 34,
+  "completeAutomated": true,
+  "humanPlaytest": false,
+  "otherPhysicalComputer": false,
+  "legalPrefixReplayed": true
+}

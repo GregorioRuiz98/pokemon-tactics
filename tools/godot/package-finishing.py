@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 VERSION = re.search(r'config/version="([^"]+)"', (ROOT/'godot/project.godot').read_text(encoding='utf-8'))[1]
 CHAPTER = int(VERSION.split('.')[1])
 CONFIG = {
+    33: {'baseline':'51994283bd98575d56677cbb5703538dee292621','report':'SPRINT_33_REVIEW.md','ui':{'review':46,'climate':112,'playthrough':15000,'symbols':270,'sleep':15},'core':{'review':505},'edition':26},
     32: {'baseline':'aa18d6fbe039ec8c230db0c8b645a6f892e294db','report':'SPRINT_32_CLIMATE.md','ui':{'climate':112,'symbols':270,'sleep':15},'core':{'climate':487},'edition':25},
     31: {'baseline':'7ae0893684e2f72f65593b00f41c693dfdfd73f3','report':'SPRINT_31_POWER.md','ui':{'power':233,'copy':503},'core':{'power':1602},'edition':23},
     30: {'baseline':'99e74e8c8df880f4a2657bf7084b081c8d2e0de4','report':'SPRINT_30_KANTO.md','ui':{'kanto':428,'player':719},'core':{'kanto':7626,'trainer':120,'adventure':105},'edition':22},
@@ -66,6 +67,8 @@ def main():
         selected = pair[0].get('screenshots', [])[:8]
         if suite == 'kanto':
             selected += [name for name in pair[0].get('screenshots', []) if name in ['legendary-birds.png','legendary-origin.png','blastoise-cannons.png']]
+        if suite == 'playthrough':
+            selected += [name for name in pair[0].get('screenshots', []) if name in ['legendary-birds.png','legendary-origin.png','complete-kanto.png']]
         for name in selected:
             shutil.copy2(WORK/f'{suite}-source'/name, EVIDENCE/f'{suite}-{name}')
     core = {}
@@ -90,6 +93,24 @@ def main():
             shutil.copy2(WORK/name, docs/name)
             shutil.copy2(WORK/name, EVIDENCE/name)
     verification = {'version': VERSION, 'baseline': CONFIG['baseline'], 'publishedFilesUnchanged': protected, 'campaignEdition': CONFIG['edition'], 'errors': 0, 'warnings': 65, 'newWarnings': 0, 'coreChecks': core, 'uiChecksPerBuild': counts, 'sourceAndExeStateMatch': True, 'publicDeployment': False, 'fullCampaignPlayed': False}
+    if CHAPTER == 33:
+        campaign = read(WORK/'campaign-summary.json')
+        assert campaign['completeAutomated'] and campaign['locations'] == 58 and not campaign['failures']
+        verification.update({'fullCampaignPlayed':True,'fullCampaignMode':'Automated legal campaign and full native UI replay','humanPlaytest':False,'externalHardwareTest':False,'campaignOrders':campaign['orders'],'campaignLocations':58})
+        for name in ['campaign-summary.json','campaign-encounters.csv','recovery-observations.json','clean-startup.json']:
+            shutil.copy2(WORK/name,EVIDENCE/name)
+            shutil.copy2(WORK/name,docs/name)
+        for folder, label in [('baseline-02','attempt-defeat'),('natural-tactical','attempt-stall'),('natural-coverage','campaign-complete')]:
+            shutil.copy2(WORK/folder/'campaign-review.json',EVIDENCE/f'{label}.json')
+        journal = read(WORK/'natural-coverage/campaign-journal.json')
+        journal['expectedState'] = json.loads(read(WORK/'natural-coverage/natural-save.json')['payload'])['state']
+        (EVIDENCE/'campaign-journal.json').write_text(json.dumps(journal,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
+        startup = read(WORK/'clean-startup.json')
+        assert startup['titleVisible'] and startup['godotNotOnPath'] and startup['exeSha256'] == digest(EXE)
+        assert startup['diagnosticHelperPassed'] and not startup['externalHardwareTest']
+        for source, target in [('REGLAS_ACTUALES.md','REGLAS_ACTUALES.md'),('PLAYTEST_WINDOWS.md','PLAYTEST_WINDOWS.md'),('PLAYTEST_WINDOWS.md','GUIA_DE_PRUEBA.md'),('SPRINT_33_REVIEW.md','SPRINT_33_REVIEW.md'),('SPRINT_32_CLIMATE.md','SPRINT_32_CLIMATE.md')]:
+            shutil.copy2(ROOT/'docs'/source,docs/target)
+        shutil.copy2(ROOT/'tools/godot/check-pc.cmd',BUNDLE/'Comprobar-equipo.cmd')
     if VERSION in ['0.31.1','0.31.2']:
         verification['sleepCorrection'] = 'Sleeping blocks movement routes and commands; old edition23 loads with backup and mixed replay.'
     for path in [EVIDENCE/'verification.json', docs/f'QA_0.{CHAPTER}.json']:
@@ -117,7 +138,7 @@ def main():
         readme = readme.replace('Medicina, Entrenar y Equipo','Medicina, Mentas y habilidades, y Equipo')
         readme += '\nEquipo → Ficha: completa los EXP restantes del nivel por pokédolares, durante la visita a tienda. Se conserva el precio y el límite de gimnasio. La pestaña Entrenar de la tienda se ha retirado. Iconos locales de los 18 tipos y de movimiento físico, especial y de estado; etiquetas y detalles numéricos accesibles.\n'
         shutil.copytree(ROOT/'godot/assets/ui-symbols',BUNDLE/'credits-ui-symbols',dirs_exist_ok=True,ignore=shutil.ignore_patterns('*.import'))
-    if CHAPTER == 32:
+    if CHAPTER >= 32:
         readme = readme.replace('Medicina, Entrenar y Equipo','Medicina, Mentas y habilidades, y Equipo')
         readme = readme.replace('Presión no tiene efecto en esta edición. Códigos nuevos KT31.', 'Presión reduce el movimiento enemigo en su aura. Códigos nuevos KT32.')
         readme += '\nClimas: sol, lluvia y arena; tres técnicas y MT de80 pokédolares/2 PP de equipamiento. Las treinta habilidades pendientes tienen efecto táctico y las mentas muestran los atributos que suben y bajan. Actualiza voluntariamente entre encuentros, con copia; los combates antiguos conservan su motor. Detalles en Documentacion/CAMBIOS_0.32.md.\nEquipo → Ficha permite comprar EXP en tienda; no hay pestaña Entrenar.\n'
@@ -128,6 +149,8 @@ def main():
         for identity, move in read(ROOT/'godot/data/climate.json')['moves'].items():
             prices += f'{identity},"{move["name"]}",2,0,U,0\n'
         for path in [docs/'PP_MOVIMIENTOS.csv',EVIDENCE/'power-prices.csv']: path.write_text(prices,encoding='utf-8')
+    if CHAPTER == 33:
+        readme = (ROOT/'docs/LEEME_WINDOWS.txt').read_text(encoding='utf-8')
     (BUNDLE/'LEEME.txt').write_text(readme, encoding='utf-8')
     archive = RELEASE/f'pokemon-tactics-{VERSION}-windows.zip'
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as package:

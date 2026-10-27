@@ -1,10 +1,13 @@
 # Pokémon Tactics
 
+> **Estado actual 0.33:** [Reglas vigentes](docs/REGLAS_ACTUALES.md). Este archivo conserva el registro cronológico; las decisiones posteriores sustituyen las anteriores. Revisión técnica de campaña y entrega completada; pruebas humanas externas y publicación pública pendientes.
+
+
 <!-- impeccable:product-schema 1 -->
 
 ## Platform
 
-Entregas actuales: campaña web local 0.12.0 y laboratorio táctico Windows offline 0.13.0 en godot/. Godot 4.7.2 estándar y plantillas oficiales verificados. El ejecutable contiene un ensayo 3v3, recursos y guardado propios; la campaña larga de Kanto aún es el objetivo futuro.
+Entregas: campaña Windows offline 0.33.0 en godot/ y campaña web histórica 0.12.0. Godot 4.7.2 estándar; campaña de Kanto, Liga y desafíos legendarios consecutivos. No se requiere editor ni servidor para jugar.
 
 **15 de octubre de 2026:** primero se documentaron los inputs sin iniciar Godot. Después el usuario indicó «pues empieza», autorizando el sprint 13 de base técnica. Esta indicación no inicia automáticamente los sprints 14–22 ni resuelve las propuestas pendientes. La publicación continúa aplazada.
 
@@ -14,7 +17,7 @@ Fans de Pokémon y RPG tácticos. El creador prueba el loop en local y después 
 
 ## Product Purpose
 
-RPG táctico contra la máquina que recorre la historia de Pokémon Rojo original, con capturas locales aleatorias y bajas definitivas. Campaña larga con guardado entre sesiones, un inicial elegido de Oak y equipos de hasta seis Pokémon desplegados. Prioridades expresadas: diversión, identidad Pokémon, calidad de portfolio y posibilidad de difusión; no se promete viralidad.
+RPG táctico contra la máquina que recorre la historia de Pokémon Rojo original, con capturas locales aleatorias y derrota definitiva de la campaña. Los debilitados individuales pueden recuperarse con Revivir en tienda. Campaña larga con guardado entre sesiones, un inicial elegido de Oak y equipos de hasta seis Pokémon desplegados. Prioridades expresadas: diversión, identidad Pokémon, calidad de portfolio y posibilidad de difusión; no se promete viralidad.
 
 ## Operating Context
 
@@ -259,3 +262,8 @@ El usuario autoriza implementar la dirección documentada y sustituye los finale
 ## Climas y habilidades 0.32.0
 
 27 de octubre: usuario autoriza aplicar climas y habilidades pendientes. Campaña25/capítulo29/combate22 en nuevos climate_*.gd, data/climate.json y pruebas nuevas. No sobrescribir motores/datos/tests/recursos publicados. Tres climas y MT de80 ₽/2 PP, aprendizaje climático al15 para familias compatibles, auras visibles,30 habilidades pendientes con efecto y Piel Seca completada. Sexo151 especies por hash separado, mentas ↑/↓ antes de comprar. Actualización12–24→25 voluntaria entre encuentros, copia y diario mixto; KT32. Preservar sueño, rectificar solo movimiento, PP al equipar y guardado antes del feedback. Las consultas no consumen RNG. Fuentes cacheadas/hash, sin servicios nuevos, delegación ni publicación pública; commit/push privado autorizado. Ver docs/SPRINT_32_CLIMATE.md (../docs desde Godot).
+
+
+## Revisión0.33 —27 de octubre
+
+El usuario concreta «resto de cambios»: recorrido completo de Kanto, revisión de PP/IA/habilidades, presentación/menús grandes, documentación vigente y preparación de pruebas externas. Se conserva el balance numérico. ReviewBattle/Run/Store/Challenge añaden edición26/capítulo30/combate23; módulos y datos publicados intactos, actualización entre encuentros con copia y diario mixto. La IA puntúa solo etapas realmente aplicables y distingue cambios sobre el usuario. No se añaden costes por uso, enfriamientos ni topes de curación/turnos. Guía actual en docs/REGLAS_ACTUALES.md (../docs desde Godot); informes antiguos son historial. Variantes visuales y etiquetas sin RNG. Campaña natural de58 nodos/7.838 órdenes con jugador automático y reproducción nativa; no confundirla con una sesión humana externa. Carpeta limpia/PATH sin Godot en el mismo PC no acredita otro equipo físico. Otros ordenadores, DPI reales, lectores y personas externas pendientes; no contactar ni publicar automáticamente. Commit/push privado autorizado. Ver docs/SPRINT_33_REVIEW.md (../docs desde Godot) y evidencias sprint-33.

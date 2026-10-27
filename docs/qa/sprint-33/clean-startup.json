@@ -1,0 +1,25 @@
+{
+  "cpu": "Intel(R) Core(TM) i5-14600KF",
+  "editorHint": false,
+  "engine": "4.7.2-stable (official)",
+  "executable": "PokemonTactics.exe",
+  "frames": 120,
+  "observedFps": 139.874649002053,
+  "os": "Windows",
+  "renderer": "gl_compatibility",
+  "scope": "Local startup/rendering check only; not a complete playtest or proof of another physical computer.",
+  "seconds": 0.857911,
+  "titleVisible": true,
+  "version": "0.33.0",
+  "window": {
+    "height": 900,
+    "width": 1280
+  },
+  "exeSha256": "babf62e00ee3182a75c17efff11226a4be43ea32e7b7b88dc4fe0ab4ab23e590",
+  "externalHardwareTest": false,
+  "cleanDirectory": true,
+  "samePhysicalMachine": true,
+  "godotNotOnPath": true,
+  "onlyGameExeCopied": true,
+  "diagnosticHelperPassed": true
+}

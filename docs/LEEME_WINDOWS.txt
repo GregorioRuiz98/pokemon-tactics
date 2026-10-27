@@ -1,0 +1,34 @@
+POKÉMON TACTICS — KANTO — 0.33.0
+
+Abre PokemonTactics.exe. No requiere instalar Godot, servidor ni cuenta.
+Los recursos están integrados y el juego funciona sin conexión.
+
+Oak: elige inicial y comienza. La semilla se genera automáticamente.
+Tablero: clic o flechas/Enter. A: técnicas. R: rectificar solo movimiento
+antes de actuar. F: orientar y terminar. Escape: cancelar. F2: controles.
+F6: cambiar panel. C: centrar unidad. Rueda o +/-: zoom.
+
+Seis Pokémon y PC. Cuatro técnicas más básico neutro. Los PP se pagan
+al equipar; no se gastan al atacar. No hay límite de cinco curaciones.
+Atributos durante el combate, estados temporales y manantiales sin PS.
+
+Equipo > Ficha: completa la EXP del nivel durante la tienda.
+Sin caramelos, piedras ni cables utilizables. Evolución por nivel y
+evoluciones especiales gratuitas al nivel mínimo de la ficha.
+Revivir recupera la mitad de los PS; perder un combate termina la aventura.
+
+Finales consecutivos: Liga y rival, tres aves juntas, Mew y Mewtwo juntos.
+Sin capturas legendarias. Climas, naturalezas y habilidades en sus fichas.
+
+Continuar recupera la partida. Actualizar reglas se ofrece entre encuentros
+y crea una copia previa. No abras dos instancias sobre el mismo guardado.
+Reglas actuales y recuperación: Documentacion/REGLAS_ACTUALES.md y
+Documentacion/PLAYTEST_WINDOWS.md. Cambios: Documentacion/CAMBIOS_0.33.md.
+
+Comprobar-equipo.cmd ejecuta un arranque con perfil aislado y muestra la
+ruta del informe. No toca tu partida habitual. En esta entrega se ha
+probado una carpeta limpia en el mismo ordenador; otro equipo físico,
+DPI reales distintos y sesiones humanas externas siguen pendientes.
+
+Proyecto de fans. Créditos y procedencia disponibles desde el menú.
+Los informes de balance anteriores son históricos, no las reglas actuales.

@@ -1,55 +1,14 @@
 # Pokémon Tactics
 
-**Windows 0.31.1:** [corregido el desplazamiento durante el sueño](docs/FIX_SLEEP_0.31.1.md). Se aplica al cargar0.31.0, con copia previa y conservando el combate.
+Campaña táctica de Kanto para Windows, gratuita y offline, desarrollada con asistencia de IA para portfolio. Elige un inicial de Oak y recorre Kanto hasta la Liga, las tres aves y Mew/Mewtwo. Publicación pública aplazada.
 
-**Windows 0.31.0:** [PP al equipar y manantiales](docs/SPRINT_31_POWER.md): presupuesto creciente con el nivel, uso sin gasto durante el combate y atributos hasta el final. Actualización voluntaria de guardados, con copia.
+**Entrega actual 0.33.0:** revisión de campaña, decisiones de la IA, presentación y documentación. [Reglas vigentes](docs/REGLAS_ACTUALES.md) · [Jugar y probar en Windows](docs/PLAYTEST_WINDOWS.md) · [Desarrollo y versiones](godot/README.md) · [Informe de revisión](docs/SPRINT_33_REVIEW.md).
 
-**Windows 0.30.1:** [textos simplificados](docs/FIX_TEXT_0.30.1.md): menos explicaciones repetidas; datos, objetivos y costes visibles. Reglas tácticas y controles en la ayuda. Mismos guardados y balance.
+Seis Pokémon y PC; cuatro técnicas más básico, PP al equipar sin gasto durante el combate. EXP por especie, evolución sin consumibles, naturalezas, 78 habilidades normales y climas. Tres ofertas de MT/equipables, medicina y mentas. Los guardados anteriores conservan sus reglas hasta actualizar entre encuentros, con copia.
 
-**Windows 0.30.0:** [Kanto reconocible y desafíos consecutivos](docs/SPRINT_30_KANTO.md):58 lugares con alturas/obstáculos, cuatro movimientos libres sin roles y Liga/rival → aves → Mew/Mewtwo. Ejecutable offline; actualización voluntaria con copia.
-
-**Windows 0.29.0:** semillas automáticas, [perfil e historial de logros](docs/SPRINT_27_TRAINER.md), [tienda Kecleon animada](docs/SPRINT_28_KECLEON.md) y [combinaciones por rol, filtros tácticos y recomendaciones de MT](docs/SPRINT_29_VARIETY.md). Ejecutable offline; guardados y reglas conservados.
-
-**Windows 0.25.0:** [aventura táctica](docs/SPRINT_25_TACTICAL.md): despliegue, amenazas, ocho arenas, objetivos, recuperación de EXP, IA, terreno y tarjetas de reto. Guardados anteriores compatibles; balance provisional.
-
-**Windows 0.24.1:** [mejoras de fluidez](docs/PERFORMANCE_0.24.1.md): planificación del rival entre fotogramas y previsiones de área reutilizadas. Conserva decisiones y guardados.
-
-**Windows 0.24.0:** [progresión, capturas y gimnasios](docs/SPRINT_24_ECONOMY.md). EXP por especie y entrenamiento por los puntos restantes; evoluciones sin objetos, reroll local pagado y líderes de4–6 Pokémon. Actualización explícita con copia, reembolso y conservación de niveles/PS. Balance provisional.
-
-**0.23.1:** corregidas las ranuras de Equipo → Movimientos: nombres completos, columnas que ocupan el panel y selección con teclado/ratón. Conserva guardados y reglas. [Comprobaciones](docs/FIX_MOVES_0.23.1.md).
-
-**Windows 0.23.0:** [movimientos espaciales, zonas y sonidos originales](docs/SPRINT_23_SPATIAL.md). [Tabla aplicada para revisión](docs/reports/moves-2026-10-24/aplicacion-0.23.csv). Actualización de aventura desde mapa/tienda; las partidas anteriores conservan sus reglas hasta actualizar.
-Proyecto de fans para portfolio, desarrollado con asistencia de IA. Dos entregas locales: campaña de Kanto Windows 0.31.1 y campaña web 0.12.0. Publicación pendiente de decisión del creador.
-
-**Kanto nativo:** campaña hasta la Liga, seguida de las tres aves y Mew/Mewtwo. Capturas locales, niveles/evolución, movimientos/MT LGPE combinados, naturalezas/habilidades y PC. Ejecutable Windows offline. 151 especies; 49/78 habilidades normales activas. 42 imágenes nuevas integradas; pruebas humanas y publicación pendientes.
-
-[Nueva interfaz e inicio](docs/SPRINT_22_UI.md) · [Guía para jugar en Windows](docs/PLAYTEST_WINDOWS.md) · [Balance: 29 simulaciones y límites](docs/reports/balance-native-0.22/INFORME.md)
-
-[Controles configurables y navegación 0.22.2](docs/SPRINT_22_CONTROLS.md): primer bloque de las mejoras de accesibilidad. F2 configura teclas; F6 cambia de panel; foco conservado en equipo, tienda y PC.
-
-[Turno contextual0.22.3](docs/SPRINT_22_CONTEXT.md): habilidades que se preparan antes de actuar, Q/E para objetivos, orientación con flechas/Enter y cámara por cruceta o teclado.
-
-[Informe de accesibilidad y jugabilidad](docs/reports/beta-accesibilidad-0.22.1/INFORME.md) · [9 prompts para futuras actualizaciones](docs/reports/beta-accesibilidad-0.22.1/PROMPTS_ACTUALIZACIONES.md). Auditoría y propuestas; no cambia las reglas de la entrega.
-
-Las campañas 0.16–0.21 pueden continuar con **Continuar aventura · ampliar Kanto**, con copia y diario conservados. Las anteriores siguen sus reglas. [Sprint 22 e información de pruebas](docs/SPRINT_22.md) · [Cómo jugar](godot/README.md) · [Plan](docs/PLAN_SPRINTS.md).
+Los informes fechados conservan las reglas de cada entrega: no describen automáticamente la versión actual. La campaña web 0.12.0 de abajo es una entrega histórica independiente.
 
 ![Pantalla de inicio](docs/qa/sprint-22-updates-17/source-title-1280.png)
-
-[Mejoras0.22.10](docs/SPRINT_22_ACCESSIBILITY_COMPLETE.md): práctica guiada, lectura ampliada, compras por cantidad, PC y biblioteca con filtros y acceso textual experimental. Ejecutable offline; pruebas humanas y lector de pantalla pendientes.
-
-[Rendimiento0.22.11](docs/SPRINT_22_PERFORMANCE.md): terreno y minimapa conservan su dibujo entre animaciones, las preferencias solo cambian valores distintos y el cursor evita previsiones repetidas. Mismas reglas y guardados.
-
-[Interfaz de juego0.22.13](docs/SPRINT_22_GAME_UI.md): órdenes con cursor, fichas integradas en una franja de combate, medidores de PS/PT y jerarquías visuales para inicio, tienda y PC. Conserva controles, alto contraste y guardados.
-
-[Semillas0.22.12](docs/SPRINT_22_SEEDS.md): cada aventura nueva genera una semilla automáticamente. Puedes escribir, regenerar y copiar la semilla junto a los iniciales; Menú permite copiar la de la campaña actual. Las partidas existentes conservan su azar.
-
-[Hub y tienda simplificados 0.22.14](docs/SPRINT_22_HUB.md): Comprar y Equipo y bolsa separados, cuatro categorías y fichas por pestañas. Resúmenes bajo demanda y avance siempre visible.
-
-[Arte integrado 0.22.16](docs/SPRINT_22_GENERATED_ART.md): 42 imágenes generadas e incorporadas a portada, escenas, tablero, efectos e iconos. [Prompts completos](docs/PROMPTS_ARTE_FINAL.md) y [dirección artística](docs/DIRECCION_ARTISTICA.md). Las 3 piezas promocionales opcionales siguen pendientes.
-
-[Animaciones y sonidos 0.22.17](docs/SPRINT_22_ATTACK_EFFECTS.md): preparación, lanzamiento e impacto, variantes por tipo, 26 sonidos locales y movimiento reducido.
-
-[Auditoría de movimientos](docs/reports/moves-2026-10-24/INFORME.md) · [Tabla editable](docs/reports/moves-2026-10-24/auditoria-movimientos-pokemon.xlsx): 211 movimientos, básico y 15 técnicas históricas evaluados para áreas, zonas y desplazamientos. Propuestas para revisión; no cambia reglas ni balance.
 
 ## Campaña web 0.12.0
 

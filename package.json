@@ -124,7 +124,12 @@
     "godot:qa:symbols:export": "node tools/godot/run.mjs qa-symbols-export",
     "godot:test:climate": "node tools/godot/run.mjs test-climate",
     "godot:qa:climate": "node tools/godot/run.mjs qa-climate",
-    "godot:qa:climate:export": "node tools/godot/run.mjs qa-climate-export"
+    "godot:qa:climate:export": "node tools/godot/run.mjs qa-climate-export",
+    "godot:test:review": "node tools/godot/run.mjs test-review",
+    "godot:qa:review": "node tools/godot/run.mjs qa-review",
+    "godot:qa:review:export": "node tools/godot/run.mjs qa-review-export",
+    "godot:qa:playthrough": "node tools/godot/run.mjs qa-playthrough",
+    "godot:qa:playthrough:export": "node tools/godot/run.mjs qa-playthrough-export"
   },
   "dependencies": {
     "easystarjs": "0.4.4",
