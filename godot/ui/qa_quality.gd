@@ -1,6 +1,6 @@
 extends "res://ui/qa_context.gd"
 
-const Ledger = preload("res://core/tactics_quality_store.gd")
+const Ledger = preload("res://core/collection_store.gd")
 
 func layout(app: Control) -> void:
 	for frame: int in 8: await app.get_tree().process_frame
@@ -16,7 +16,7 @@ func run(app: Control, directory: String) -> void:
 	await click(app,app.travel_buttons.enter); await layout(app)
 	var natural: Dictionary = app.run.duplicate(true)
 	var journal: Array = app.transactions.duplicate(true)
-	check(app.run.edition==27,"Current campaign starts in edition27")
+	check(app.run.edition==28,"Current campaign starts in edition28")
 	check(app.encounter_preview.briefing.visible,"Encounter context appears automatically")
 	await capture(app,directory,"oak-route-1")
 	var coverage: Array = []

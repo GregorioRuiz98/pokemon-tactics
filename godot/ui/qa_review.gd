@@ -1,6 +1,6 @@
 extends "res://ui/qa_context.gd"
 
-const ReviewStore = preload("res://core/tactics_quality_store.gd")
+const ReviewStore = preload("res://core/collection_store.gd")
 const ReviewEffects = preload("res://ui/attack_effect.gd")
 const ReviewVariants = preload("res://ui/attack_variants.gd")
 const ReviewPoints = preload("res://core/power_points.gd")
@@ -16,7 +16,7 @@ func run(app: Control, directory: String) -> void:
 	await click(app,app.title_screen.controls.new)
 	app.journey_seed.text = "release-33-kanto"
 	await click(app,app.travel_buttons.starter1)
-	check(app.run.edition==27,"Current revision creates edition27")
+	check(app.run.edition==28,"Current revision creates edition28")
 	await click(app,app.travel_buttons.enter); await click(app,app.adventure.start_button)
 	for step: int in 200:
 		if app.run.phase!="battle": break

@@ -1,0 +1,15 @@
+{
+  "assertions": 69,
+  "campaignEdition": 21,
+  "failures": [],
+  "profileSchema": 2,
+  "runs": 2,
+  "scope": "Native mouse/keyboard, profile scales, real Route1/capture, reload and new adventure. Medal cosmetics use an explicit isolated fixture.",
+  "screenshots": [
+    "profile-1024-150.png",
+    "profile-1280-150.png",
+    "achievements.png",
+    "achievement-notice.png"
+  ],
+  "stateHash": "6091801d720efb50a387386a8b147929fcc662cb61e8e8b66e11b8f87bd3c6c8"
+}

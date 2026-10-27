@@ -1,8 +1,8 @@
 extends "res://ui/qa_context.gd"
 
-const MetaStore = preload("res://core/profile_campaign_store.gd")
-const TrainerStore = preload("res://core/trainer_store.gd")
-const Trainer = preload("res://core/trainer_profile.gd")
+const MetaStore = preload("res://core/collection_store.gd")
+const TrainerStore = preload("res://core/collection_profile_store.gd")
+const Trainer = preload("res://core/collection_profile.gd")
 
 func run(app: Control, directory: String) -> void:
 	app.get_window().gui_embed_subwindows = true
@@ -72,6 +72,6 @@ func run(app: Control, directory: String) -> void:
 	check(app.trainer.model.data.unlocked.has("first-medal"),"New campaign retains achievements")
 	var reloaded: Dictionary = TrainerStore.new(app.trainer.persistence.file_path).load_profile()
 	check(reloaded.ok and reloaded.data.name=="Ada" and reloaded.data.runs.size()==2,"Cold profile load retains name, achievements and history")
-	var report: Dictionary = {"assertions":assertions,"failures":failures,"screenshots":screenshots,"profileSchema":1,"runs":app.trainer.model.data.runs.size(),"campaignEdition":app.run.edition,"stateHash":JSON.stringify(app.run,"",true,true).sha256_text(),"scope":"Native mouse/keyboard, profile scales, real Route1/capture, reload and new adventure. Medal cosmetics use an explicit isolated fixture."}
+	var report: Dictionary = {"assertions":assertions,"failures":failures,"screenshots":screenshots,"profileSchema":2,"runs":app.trainer.model.data.runs.size(),"campaignEdition":app.run.edition,"stateHash":JSON.stringify(app.run,"",true,true).sha256_text(),"scope":"Native mouse/keyboard, profile scales, real Route1/capture, reload and new adventure. Medal cosmetics use an explicit isolated fixture."}
 	FileAccess.open(directory.path_join("trainer-ui-result.json"),FileAccess.WRITE).store_string(JSON.stringify(report,"  "))
 	print("QA trainer "+JSON.stringify({"assertions":assertions,"failures":failures})); app.get_tree().quit(0 if failures.is_empty() else 1)

@@ -11,7 +11,7 @@ La plataforma actual es un ejecutable offline, sin servidor web. Esta guía prep
 5. Ejecutar `npm run godot:package`: comprueba también los enlaces de la documentación distribuida y produce `windows/`, ZIP y `SHA256SUMS.txt` en `../releases/pokemon-tactics-VERSION/`, fuera de Git. Los contratos/mínimos están en `tools/godot/package-finishing.py`; una versión nueva debe definir el suyo.
 6. Extraer en carpeta limpia y comprobar arranque, recursos, Créditos y guardado/recuperación. Probar también otro PC físico con el [protocolo](PLAYTEST_WINDOWS.md). La integridad del ZIP no acredita jugabilidad.
 
-Para 0.34.1 se exigen briefing/review/symbols fuente/EXE, lint y validación. El SDK de la skill usado para estos informes no se incluye en el repositorio ni lo necesita el jugador. Para repetirlo se necesita ese SDK, o adaptar explícitamente el registro a una comprobación equivalente del motor; no presentar como reproducido lo que no se ha ejecutado.
+Para 0.35.0 se exigen collection (motor), collection/briefing/review fuente/EXE, lint y validación. El SDK de la skill usado para estos informes no se incluye en el repositorio ni lo necesita el jugador. Para repetirlo se necesita ese SDK, o adaptar explícitamente el registro a una comprobación equivalente del motor; no presentar como reproducido lo que no se ha ejecutado.
 
 ## Qué compartir
 

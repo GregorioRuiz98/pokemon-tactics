@@ -1,6 +1,6 @@
 extends RefCounted
 
-const Challenge = preload("res://core/tactics_quality_challenge.gd")
+const Challenge = preload("res://core/collection_challenge.gd")
 const Card = preload("res://ui/journey_card.gd")
 var deploy_panel: PanelContainer
 var deploy_label: Label

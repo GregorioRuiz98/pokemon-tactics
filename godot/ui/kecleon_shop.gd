@@ -44,14 +44,18 @@ func render(app: Control, parent: VBoxContainer) -> void:
 	row.add_child(welcome)
 	welcome.add_child(app._label("KECLEON",27,app.GOLD))
 	greeting_label = app._label(greeting,18); welcome.add_child(greeting_label)
-	var shortcuts: HBoxContainer = HBoxContainer.new(); welcome.add_child(shortcuts)
+	var shortcuts: HFlowContainer = HFlowContainer.new(); welcome.add_child(shortcuts)
 	for entry: Array in [["supplies","Medicina"],["traits","Mentas y habilidades"]]:
 		var button: Button = app._button(entry[1],app._shop_page.bind(entry[0]))
 		button.theme_type_variation = "ToolButton"; shortcuts.add_child(button); app.travel_buttons["shop_"+entry[0]] = button
+	if app.run.get("edition",0)>=28:
+		var recruit: Button = app._button("Reclutamiento",app._shop_page.bind("recruitment")); recruit.theme_type_variation = "ToolButton"
+		shortcuts.add_child(recruit); app.travel_buttons.shop_recruitment = recruit
 	if not app.save_warning.is_empty(): body.add_child(app._label(app.save_warning,17,app.GOLD))
 	if not app.message.is_empty(): body.add_child(app._label(app.message,17,app.GOLD))
 	match app.shop_tab:
 		"supplies": medicines(app,body)
+		"recruitment": preload("res://ui/collection_menu.gd").shop(app,body)
 		"traits":
 			app._render_mint_shop(body)
 			var item: Dictionary = app.campaign.consumables["ability-capsule"]

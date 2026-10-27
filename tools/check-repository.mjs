@@ -8,7 +8,7 @@ export const currentDocs = [
   'docs/README.md', 'docs/ARCHITECTURE.md', 'docs/PLAN_SPRINTS.md',
   'docs/DEPLOY.md', 'docs/WEB_LEGACY.md', 'docs/LICENCIAS.md',
   'docs/PORTFOLIO.md', 'docs/PLAYTEST_WINDOWS.md', 'docs/REGLAS_ACTUALES.md',
-  'docs/history/README.md', 'docs/REPO_CLEANUP_2026-10-27.md',
+  'docs/history/README.md', 'docs/REPO_CLEANUP_2026-10-27.md', 'docs/SPRINT_35_COLLECTION.md',
 ];
 
 export function forbiddenPath(name) {

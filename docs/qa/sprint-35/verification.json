@@ -1,0 +1,44 @@
+{
+  "version": "0.35.0",
+  "baseline": "9d4211076b5e316afef094fb86b5f0a66c387c12",
+  "publishedFilesUnchanged": [
+    "godot/core",
+    "godot/data",
+    "godot/tests",
+    "godot/assets",
+    "godot/art",
+    "src",
+    "public",
+    "tests",
+    "CREDITS.md"
+  ],
+  "campaignEdition": 28,
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "coreChecks": {
+    "collection": 4196
+  },
+  "uiChecksPerBuild": {
+    "collection": 34,
+    "briefing": 1958,
+    "review": 46,
+    "trainer": 69
+  },
+  "sourceAndExeStateMatch": true,
+  "publicDeployment": false,
+  "fullCampaignPlayed": false,
+  "cleanStartup": {
+    "archiveExtracted": true,
+    "titleVisible": true,
+    "godotNotOnPath": true,
+    "externalHardwareTest": false
+  },
+  "playerDocumentation": {
+    "ok": true,
+    "documents": 12,
+    "localLinks": 15,
+    "errors": [],
+    "scope": "Player documentation presence and local links only; no executable launch or external URL check."
+  }
+}

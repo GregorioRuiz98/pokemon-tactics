@@ -1,8 +1,8 @@
 # Pokémon Tactics
 
-Juego de rol táctico para Windows, gratuito y sin conexión, desarrollado para portfolio con asistencia de IA. Elige un inicial de Oak, forma un equipo de hasta seis Pokémon y recorre Kanto por combates en tableros isométricos con alturas.
+Juego de rol táctico para Windows, gratuito y sin conexión, desarrollado para portfolio con asistencia de IA. Elige un inicial de Oak o una primera forma desbloqueada, forma un equipo de hasta seis Pokémon y recorre Kanto por combates en tableros isométricos con alturas.
 
-**Versión Windows: 0.34.1. Estado: validación privada antes del lanzamiento.** No hay una descarga pública anunciada. El prototipo web 0.12.0 es una versión histórica independiente.
+**Versión Windows: 0.35.0. Estado: validación privada antes del lanzamiento.** No hay una descarga pública anunciada. El prototipo web 0.12.0 es una versión histórica independiente.
 
 ## Jugar
 
@@ -28,7 +28,7 @@ Configura `GODOT_BIN` para abrir, probar o exportar desde otro ordenador. [Desar
 
 ## Estado de la entrega
 
-La 0.34.1 conserva las reglas y guardados de 0.34.0. Sus pruebas de interfaz suman 4.548 comprobaciones entre fuente y EXE, con previas de los 58 lugares. La campaña completa 0.34.0 se recorrió mediante órdenes legales automatizadas; esto no equivale a una sesión humana.
+La 0.35.0 añade Pokédex de 151 especies, 19 logros y primeras formas desbloqueables como iniciales de nivel 5. Conserva el combate de 0.34 y ofrece actualizar campañas anteriores entre encuentros. [Cambios y comprobaciones](docs/SPRINT_35_COLLECTION.md). La campaña completa 0.34.0 se recorrió mediante órdenes legales automatizadas; esto no equivale a una sesión humana.
 
 Siguen pendientes jugadores externos y otro ordenador físico. El [estado de lanzamiento](docs/PLAN_SPRINTS.md) distingue lo comprobado de lo pendiente. La [guía de entrega](docs/DEPLOY.md) describe cómo preparar el ZIP sin publicar automáticamente.
 

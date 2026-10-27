@@ -1,6 +1,6 @@
-# Probar Pokémon Tactics en Windows — 0.34.1
+# Probar Pokémon Tactics en Windows — 0.35.0
 
-[Reglas actuales](REGLAS_ACTUALES.md) · [Cambios 0.34.1](UI_PRECOMBAT_0.34.1.md).
+[Reglas actuales](REGLAS_ACTUALES.md) · [Cambios 0.35](SPRINT_35_COLLECTION.md).
 Este documento describe la campaña Windows actual. Los informes por versión son historial.
 
 ## Arranque y controles
@@ -20,6 +20,12 @@ Guarda automáticamente las órdenes y las compras. Continuar restaura equipo, P
 Antes de actualizar reglas se crea una copia con sufijo before-new. La actualización se ofrece entre encuentros; un combate pendiente conserva su motor. Para recuperación manual, cierra el juego, copia toda la carpeta de guardados a otra ubicación, conserva el archivo problemático con otro nombre y restaura una copia válida como kanto-save.json. Si no hay copia válida, no borres el original: adjúntalo con el informe para diagnóstico. Nunca edites PS, dinero ni el diario a mano.
 
 Equipo → Ficha permite completar la EXP del nivel durante la tienda. No hay pestaña Entrenar, caramelos ni piedras utilizables. Los PP limitan equipamiento; las técnicas no gastan puntos al usarse ni tienen cinco usos de curación. Liga/rival, aves y Mew/Mewtwo se recorren consecutivamente.
+
+## Pokédex, logros e iniciales
+
+Abre Perfil desde Inicio o Pokédex y logros desde Oak. Vistos y obtenidos tienen filtros propios. Al obtener una especie se desbloquea la primera forma de su línea en Otros iniciales, al nivel 5. Las capturas del equipo/PC y las evoluciones cuentan; ver enemigos no basta. La colección permanece al cambiar de aventura.
+
+Kecleon → Reclutamiento permite una incorporación por visita, pagando el precio mostrado. Tras cada encuentro legendario elige un único participante. Completar toda la colección requiere varias aventuras. El primer guardado del perfil nuevo conserva el anterior como trainer-profile.json.before-v2.
 
 ## Prueba en otro ordenador
 

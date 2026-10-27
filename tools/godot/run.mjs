@@ -113,7 +113,15 @@ if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-expo
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'test-quality') {
+if(operation === 'test-collection') {
+  run(binary,['--headless',...common,'--script','res://tests/collection.gd','--','--save-dir='+work],'collection-core');
+} else if(operation === 'qa-collection' || operation === 'qa-collection-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'collection-'+(exported?'release':'source'));
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--collection-qa-dir='+directory],'collection-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'collection-ui-result.json'),'utf8'));
+  if(report.failures.length || report.assertions<30) throw new Error('Collection UI failed.');
+} else if(operation === 'test-quality') {
   run(binary,['--headless',...common,'--script','res://tests/quality.gd','--','--save-dir='+work],'quality-core');
 } else if(operation === 'simulate-quality') {
   const directory=resolve(work,'natural-quality-'+(process.env.QUALITY_ATTEMPT??'03'));

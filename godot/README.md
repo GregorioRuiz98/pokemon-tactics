@@ -1,8 +1,8 @@
-# Desarrollo nativo — Windows 0.34.1
+# Desarrollo nativo — Windows 0.35.0
 
 [Reglas](../docs/REGLAS_ACTUALES.md) · [Jugar/recuperar](../docs/PLAYTEST_WINDOWS.md) · [Arquitectura](../docs/ARCHITECTURE.md) · [Estado](../docs/PLAN_SPRINTS.md)
 
-Proyecto `project.godot`, entrada `scenes/campaign.tscn`. El laboratorio conserva `scenes/laboratory.tscn` y su guardado independiente. Campaña 27/capítulo 31/combate 24; versión nativa en `project.godot`, no en la versión web de npm.
+Proyecto `project.godot`, entrada `scenes/campaign.tscn`. El laboratorio conserva `scenes/laboratory.tscn` y su guardado independiente. Campaña 28/capítulo 32/combate 24; versión nativa en `project.godot`, no en la versión web de npm.
 
 ## Requisitos de desarrollo
 
@@ -25,13 +25,15 @@ Los importadores de arte/especies que usan Pillow son tareas separadas; no hacen
 ## Pruebas pertinentes
 
 ```sh
+npm run godot:test:collection
+npm run godot:qa:collection
 npm run godot:test:quality
 npm run godot:qa:briefing
 npm run godot:qa:review
 npm run godot:qa:symbols
 ```
 
-`test:quality` comprueba reglas actuales. Las suites UI prueban controles, vistas y guardados aislados. `qa:quality` añade los 58 escenarios y carga de una partida histórica larga; `simulate:quality` recorre la campaña mediante órdenes legales y puede tardar mucho más. No son requisitos para corregir un enlace documental.
+`test:collection` comprueba colección, iniciales, migración, guardados y legendarios; `test:quality` conserva la comprobación del combate publicado. Las suites UI prueban controles, vistas y guardados aislados. `qa:quality` añade los 58 escenarios y carga de una partida histórica larga; `simulate:quality` recorre la campaña mediante órdenes legales y puede tardar mucho más. No son requisitos para corregir un enlace documental.
 
 Scripts completos en `package.json`; los de entregas antiguas continúan por compatibilidad. No confundir su edición con la actual ni ejecutar todos sin motivo.
 
@@ -39,6 +41,7 @@ Scripts completos en `package.json`; los de entregas antiguas continúan por com
 
 ```sh
 npm run godot:export
+npm run godot:qa:collection:export
 npm run godot:qa:briefing:export
 npm run godot:qa:review:export
 npm run godot:qa:symbols:export
@@ -47,6 +50,6 @@ npm run godot:package
 
 El runner comprueba exactamente Godot 4.7.2 estable. Las herramientas de QA del EXE también comprueban el editor; el jugador que abre el EXE no lo necesita. El empaquetado requiere evidencias fuente/EXE y lint/validación según [Entrega](../docs/DEPLOY.md).
 
-Salidas relativas a raíz: `../releases/pokemon-tactics-0.34.1/`; QA: `../../work/qa-sprint-34-ui-1/`. Partidas reales: `%APPDATA%/PokemonTacticsLab`; no usarlas en ensayos.
+Salidas relativas a raíz: `../releases/pokemon-tactics-0.35.0/`; QA: `../../work/qa-sprint-35/`. Partidas reales: `%APPDATA%/PokemonTacticsLab`; no usarlas en ensayos.
 
 [Notas acumuladas](../docs/history/GODOT_README_2026-10-27.md) · [Web 0.12.0](../docs/WEB_LEGACY.md).

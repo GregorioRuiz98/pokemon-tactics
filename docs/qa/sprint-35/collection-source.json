@@ -1,0 +1,16 @@
+{
+	"assertions": 34,
+	"campaignEdition": 28,
+	"failures": [],
+	"profileSchema": 2,
+	"scope": "Natural first battle, capture, Kecleon recruitment, profile, fresh unlocked starter and saved reload; explicit boss presentation fixture. No human/external hardware claim.",
+	"screenshots": [
+		"recruitment-shop.png",
+		"pokedex-obtained.png",
+		"pokedex-1024-150.png",
+		"achievements-1024-150.png",
+		"unlocked-starter.png",
+		"legendary-selection.png"
+	],
+	"stateHash": "c96ca7eb9caaa843121737305ee5589d51d36f217430181b1c5e55f05820e110"
+}

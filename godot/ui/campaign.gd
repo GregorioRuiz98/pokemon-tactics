@@ -2,12 +2,12 @@ extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
 const Advanced = preload("res://core/roster_run.gd")
-const Journey = preload("res://core/tactics_quality_run.gd")
-const CURRENT_CHAPTER: int = 31
+const Journey = preload("res://core/collection_run.gd")
+const CURRENT_CHAPTER: int = 32
 const Art = preload("res://ui/visual_assets.gd")
 const RosterPanel = preload("res://ui/roster_panel.gd")
 const IsometricBoard = preload("res://ui/review_board.gd")
-const CampaignStore = preload("res://core/tactics_quality_store.gd")
+const CampaignStore = preload("res://core/collection_store.gd")
 const Copy = preload("res://ui/concise_copy.gd")
 var kanto_qa_dir: String = ""
 var copy_qa_dir: String = ""
@@ -19,6 +19,9 @@ var review_journal_path: String = ""
 var portable_smoke_path: String = ""
 var review_qa_dir: String = ""
 var briefing_qa_dir: String = ""
+var collection_qa_dir: String = ""
+var starter_dialog: AcceptDialog
+var starter_browser: VBoxContainer
 var encounter_preview: RefCounted = preload("res://ui/encounter_preview.gd").new()
 var quality_qa_dir: String = ""
 var climate_qa_dir: String = ""
@@ -192,11 +195,15 @@ func _boot() -> void:
 	if not qa_dir.is_empty():
 		get_tree().change_scene_to_file.call_deferred("res://scenes/laboratory.tscn")
 		return
+	# The laboratory boot loads its original thumbnails first; the campaign uses faces.
+	campaign = Journey.new(); rules = campaign.engine
+	for record: Dictionary in rules.data.species: faces[int(record.id)] = load("res://"+record.face)
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--playthrough-qa-dir="): playthrough_qa_dir = argument.trim_prefix("--playthrough-qa-dir=")
 		if argument.begins_with("--review-journal="): review_journal_path = argument.trim_prefix("--review-journal=")
 		if argument.begins_with("--smoke-report="): portable_smoke_path = argument.trim_prefix("--smoke-report=")
 		if argument.begins_with("--review-qa-dir="): review_qa_dir = argument.trim_prefix("--review-qa-dir=")
+		if argument.begins_with("--collection-qa-dir="): collection_qa_dir = argument.trim_prefix("--collection-qa-dir=")
 		if argument.begins_with("--briefing-qa-dir="): briefing_qa_dir = argument.trim_prefix("--briefing-qa-dir=")
 		if argument.begins_with("--quality-qa-dir="): quality_qa_dir = argument.trim_prefix("--quality-qa-dir=")
 		if argument.begins_with("--climate-qa-dir="): climate_qa_dir = argument.trim_prefix("--climate-qa-dir=")
@@ -250,6 +257,7 @@ func _boot() -> void:
 	if not climate_qa_dir.is_empty(): test_dir = climate_qa_dir
 	if not review_qa_dir.is_empty(): test_dir = review_qa_dir
 	if not briefing_qa_dir.is_empty(): test_dir = briefing_qa_dir
+	if not collection_qa_dir.is_empty(): test_dir = collection_qa_dir
 	if not quality_qa_dir.is_empty(): test_dir = quality_qa_dir
 	if not playthrough_qa_dir.is_empty(): test_dir = playthrough_qa_dir
 	if not portable_smoke_path.is_empty(): test_dir = portable_smoke_path.get_base_dir().path_join("diagnostic-profile")
@@ -290,6 +298,7 @@ func _boot() -> void:
 	if not portable_smoke_path.is_empty(): _open_title(); call_deferred("_run_portable_smoke")
 	elif not playthrough_qa_dir.is_empty(): _open_title(); call_deferred("_run_playthrough_qa")
 	elif not quality_qa_dir.is_empty(): _open_title(); call_deferred("_run_quality_qa")
+	elif not collection_qa_dir.is_empty(): _open_title(); call_deferred("_run_collection_qa")
 	elif not briefing_qa_dir.is_empty(): _open_title(); call_deferred("_run_briefing_qa")
 	elif not review_qa_dir.is_empty(): _open_title(); call_deferred("_run_review_qa")
 	elif not climate_qa_dir.is_empty(): _open_title(); call_deferred("_run_climate_qa")
@@ -495,8 +504,8 @@ func _update_seed_hint() -> void:
 	var value: String = journey_seed.text.strip_edges()
 	var text: String = "Una semilla admite hasta 64 caracteres."
 	if value.begins_with("KT") and ":" in value:
-		var challenge: Dictionary = preload("res://core/tactics_quality_challenge.gd").decode(value)
-		text = "Código incompleto o incompatible. Comprueba que lo has pegado entero." if challenge.is_empty() else "Reto con %s · mapa %d×%d. Al comenzar se usará este inicial." % [rules.profiles[int(challenge.starter)].data.name,challenge.mapSize,challenge.mapSize]
+		var challenge: Dictionary = preload("res://core/collection_challenge.gd").decode(value)
+		text = "Código incompleto o incompatible. Comprueba que lo has pegado entero." if challenge.is_empty() else "Reto con %s · mapa %d×%d. Al comenzar se usará este inicial." % [preload("res://core/collection_catalog.gd").record(int(challenge.starter)).name,challenge.mapSize,challenge.mapSize]
 	travel_buttons.seed_hint.text = text
 
 func _run_player_qa() -> void:
@@ -523,6 +532,9 @@ func _run_playthrough_qa() -> void:
 func _run_review_qa() -> void:
 	await load("res://ui/qa_review.gd").new().run(self,review_qa_dir)
 
+func _run_collection_qa() -> void:
+	await load("res://ui/qa_collection.gd").new().run(self,collection_qa_dir)
+
 func _run_briefing_qa() -> void:
 	await load("res://ui/qa_briefing.gd").new().run(self,briefing_qa_dir)
 
@@ -544,15 +556,32 @@ func _run_power_qa() -> void:
 func _run_copy_qa() -> void:
 	await load("res://ui/qa_copy.gd").new().run(self,copy_qa_dir)
 
+func _open_collection() -> void:
+	trainer.open(self)
+	trainer.dialog.change_page("dex")
+
+func _open_starters() -> void:
+	if starter_dialog==null:
+		starter_dialog = AcceptDialog.new(); starter_dialog.title = "Elige tu compañero · Nv. 5"; starter_dialog.ok_button_text = "Volver"
+		add_child(starter_dialog); _watch_dialog(starter_dialog)
+		var scroll: ScrollContainer = ScrollContainer.new(); scroll.custom_minimum_size = Vector2(640,420); scroll.follow_focus = true
+		scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED; starter_dialog.add_child(scroll)
+		starter_browser = preload("res://ui/collection_browser.gd").new(); starter_browser.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		scroll.add_child(starter_browser); starter_browser.setup(self,true,func(species: int):starter_dialog.hide(); _choose_starter(species))
+	starter_browser.query.text = ""; starter_browser.page = 0; starter_browser.render()
+	starter_dialog.popup_centered(Vector2i(720,560)); _apply_preferences(); starter_browser.query.grab_focus.call_deferred()
+
 func _choose_starter(identity: int) -> void:
 	var challenge: Dictionary = {}
 	var requested_seed: String = journey_seed.text.strip_edges()
 	if requested_seed.begins_with("KT") and ":" in requested_seed:
-		challenge = load("res://core/tactics_quality_challenge.gd").decode(requested_seed)
+		challenge = load("res://core/collection_challenge.gd").decode(requested_seed)
 		if challenge.is_empty(): _review_text("Código de reto no válido","Comprueba que has pegado el código completo. Este reto debe ser compatible con la aventura actual. Tu partida guardada se conserva."); return
 		requested_seed = challenge.seed; identity = int(challenge.starter)
 	elif requested_seed.length()>64:
 		_review_text("Semilla demasiado larga","Usa hasta 64 caracteres o pega un código de reto completo. Tu partida guardada se conserva."); return
+	if identity not in trainer.model.starters() or (identity not in [1,4,7] and not trainer.warning.is_empty()):
+		_review_text("Inicial no disponible","Obtén una especie de esta línea y guarda el perfil para desbloquear su primera forma. Tu aventura se conserva."); return
 	if requested_seed.is_empty(): requested_seed = _generate_seed()
 	var preserved: Dictionary = store.preserve_before_new()
 	if not preserved.ok:
@@ -595,6 +624,7 @@ func _menu_selected(identity: int) -> void:
 		_: super._menu_selected(identity)
 
 func _modal_open() -> bool:
+	if starter_dialog!=null and starter_dialog.visible: return true
 	if encounter_preview.dialog!=null and encounter_preview.dialog.visible: return true
 	if trainer.dialog!=null and trainer.dialog.visible: return true
 	if action_review!=null and action_review.visible: return true
@@ -745,6 +775,7 @@ func _upgrade_campaign(target_chapter: int = CURRENT_CHAPTER) -> void:
 	if run.edition>=24: message = "Corrección del sueño aplicada. Progreso y combate conservados; copia anterior guardada."
 	if run.edition>=25: message = "Climas y habilidades activados. Equipo y progreso conservados; copia anterior guardada."
 	if run.edition>=26: message = "Revisión táctica aplicada. Equipo y progreso conservados; copia anterior guardada."
+	if run.edition>=28: message = "Pokédex y reclutamiento actualizados. Equipo y progreso conservados; copia anterior guardada."
 	_save()
 	_refresh()
 
@@ -1140,13 +1171,14 @@ func _render_travel() -> void:
 		guide.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		travel_content.add_child(guide)
 	if run.get("edition",1)>=12 and run.get("edition",1)<CURRENT_CHAPTER-4 and run.get("phase","") in ["map","shop","complete","ending"]:
-		var upgrade: Button = _button("Actualizar revisión táctica" if CURRENT_CHAPTER>=30 else "Actualizar climas y habilidades" if CURRENT_CHAPTER>=29 else "Aplicar corrección de sueño" if run.get("edition",0)==23 else "Actualizar a PP de equipamiento" if CURRENT_CHAPTER>=27 else "Actualizar Kanto · mapas y dos desafíos" if CURRENT_CHAPTER>=26 else "Actualizar versión · conservar final" if run.phase=="ending" else "Actualizar aventura táctica",_upgrade_campaign)
+		var upgrade: Button = _button("Actualizar Pokédex y reclutamiento" if CURRENT_CHAPTER>=32 else "Actualizar revisión táctica" if CURRENT_CHAPTER>=30 else "Actualizar climas y habilidades" if CURRENT_CHAPTER>=29 else "Aplicar corrección de sueño" if run.get("edition",0)==23 else "Actualizar a PP de equipamiento" if CURRENT_CHAPTER>=27 else "Actualizar Kanto · mapas y dos desafíos" if CURRENT_CHAPTER>=26 else "Actualizar versión · conservar final" if run.phase=="ending" else "Actualizar aventura táctica",_upgrade_campaign)
 		upgrade.tooltip_text = "Conserva equipo, nivel, PS y progreso con una copia previa. Los objetos retirados se reembolsan. El combate pendiente conserva sus reglas."
 		if CURRENT_CHAPTER>=25: upgrade.tooltip_text = "Añade mapas propios y encadena las tres aves antes de Mew y Mewtwo. Conserva victorias, equipo, PS y progreso con una copia previa. Los combates pendientes terminan con sus reglas actuales."
 		if CURRENT_CHAPTER>=27: upgrade.tooltip_text = "PP al equipar, usos sin gasto y atributos durante el combate. Conserva movimientos aprendidos; los que excedan el presupuesto se desequipan en orden inverso. Copia previa automática."
 		if run.get("edition",0)==23: upgrade.tooltip_text = "Impide moverse mientras duerme. Conserva combate, mapa, equipo y RNG con copia previa."
 		if CURRENT_CHAPTER>=29: upgrade.tooltip_text = "Añade climas, habilidades y sexo de los Pokémon. Conserva equipo, PS, EXP, dinero y diario; copia previa. Solo entre encuentros."
 		if CURRENT_CHAPTER>=30: upgrade.tooltip_text = "Revisa los 58 escenarios, tácticas rivales y objetivos de control. Conserva equipo, PS, dinero, EXP y diario, con copia previa. Solo entre encuentros."
+		if CURRENT_CHAPTER>=32: upgrade.tooltip_text = "Añade reclutamiento y elección de un legendario por combate. Conserva equipo, PS, EXP, dinero e historial con copia previa. Solo entre encuentros."
 		travel_content.add_child(upgrade)
 		travel_buttons.upgrade = upgrade
 	if not run.is_empty() and run.get("edition",1)>=8 and not _simple_hub():
@@ -1159,6 +1191,11 @@ func _render_travel() -> void:
 		travel_content.add_child(_label("Pueblo Paleta · Laboratorio de Oak",30,GOLD))
 		travel_content.add_child(_label("Tu aventura empieza con un compañero de nivel 5. ¿A quién eliges?",20))
 		_render_seed_options()
+		var collection_row: HBoxContainer = HBoxContainer.new(); travel_content.add_child(collection_row)
+		var unlocked: int = trainer.model.starters().size()-3
+		var unlocked_button: Button = _button("Otros iniciales · %d"%unlocked,_open_starters)
+		unlocked_button.disabled = unlocked==0 or not trainer.warning.is_empty(); collection_row.add_child(unlocked_button); travel_buttons.other_starters = unlocked_button
+		var dex_button: Button = _button("Pokédex y logros",_open_collection); collection_row.add_child(dex_button); travel_buttons.collection = dex_button
 		var choices: HBoxContainer = HBoxContainer.new()
 		choices.add_theme_constant_override("separation",16)
 		choices.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -1236,7 +1273,7 @@ func _render_travel() -> void:
 	if run.get("edition",1)>=13 and run.phase=="complete": heading_text = "Liga y rival superados" if run.get("mainComplete",false) else "Tramo completado"
 	if run.phase=="ending": heading_text = "Final · guardianes de Kanto" if run.finalPath=="birds" else "Final · el origen de Mewtwo"
 	var chapter: Label = _label(heading_text,28,GOLD)
-	if _simple_hub(): _art_banner(narrative,_scene_art())
+	if _simple_hub() and not run.has("legendaryChoices"): _art_banner(narrative,_scene_art())
 	chapter.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	chapter.visible = not (_simple_hub() and run.phase=="shop")
 	narrative.add_child(chapter)
@@ -1249,13 +1286,14 @@ func _render_travel() -> void:
 			_travel_button("enter",("Visitar " if location.get("kind","")=="story" else "Entrar en ") + location.name,footer if _simple_hub() else narrative,{"kind":"enter"})
 			text.text += "\n\nVisita narrativa: abre caminos y tienda, sin captura ni curación." if location.get("kind","")=="story" else "\n\nUn combate por ubicación. Al ganar: captura local, tienda y siguiente tramo. Los PS no se restauran entre encuentros."
 		"capture":
-			var image: TextureRect = _portrait(Vector2(160,160))
+			var image: TextureRect = _portrait(Vector2(64,64) if run.has("legendaryChoices") else Vector2(160,160))
 			image.texture = faces[int(run.reward.speciesId)]
 			narrative.add_child(image)
 			text.text = "%s\nOrigen: %s\n\nLa captura ya está sorteada y guardada. Cargar no cambia el resultado. Se admiten duplicados en esta muestra." % [rules.profiles[int(run.reward.speciesId)].data.name + (" · Nv. %d" % run.reward.level if run.reward.has("level") else ""),run.reward.origin]
 			var capture_text: String = "Dar la bienvenida al equipo"
 			if run.get("edition",1)>=12 and run.party.size()>=6: capture_text = "Enviar al PC · equipo completo"
-			if run.get("edition",1)>=20: load("res://ui/economy_menu.gd").capture(self,narrative)
+			if run.has("legendaryChoices"): preload("res://ui/collection_menu.gd").legendary(self,narrative)
+			elif run.get("edition",1)>=20: load("res://ui/economy_menu.gd").capture(self,narrative)
 			_travel_button("capture",capture_text,footer if _simple_hub() else narrative,{"kind":"capture"})
 		"shop":
 			if run.get("edition",1)>=4:
@@ -1318,7 +1356,7 @@ func _render_travel() -> void:
 			text.text = "Has vencido al Alto Mando y al rival. Elige un único desafío final; las dos rutas son excluyentes y no conceden capturas legendarias."
 			for path: String in ["birds","psychic"]: _travel_button("destiny_"+path,"Articuno, Zapdos y Moltres" if path=="birds" else "Mew y Mewtwo",narrative,{"kind":"destiny","path":path})
 		if run.phase=="ending": text.text = "¡Aventura completada!"
-		if run.get("edition",0)>=22 and run.get("mainComplete",false):
+		if run.get("edition",0)>=22 and run.get("mainComplete",false) and run.phase!="capture":
 			text.text = "Siguiente: Mew y Mewtwo." if "legendary-birds" in run.cleared else "Siguiente: Articuno, Zapdos y Moltres."
 			if run.phase=="ending": text.text = "¡Aventura completada!"
 			text.visible = true

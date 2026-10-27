@@ -1,12 +1,12 @@
 # Reglas actuales — campaña Windows
 
-Referencia vigente desde 0.34.1. Sustituye las descripciones antiguas de PT,
+Referencia vigente desde 0.35.0. Sustituye las descripciones antiguas de PT,
 caramelos, piedras consumibles, roles y finales excluyentes. Los informes de
 sprints anteriores describen sus propias versiones y se conservan como historial.
 
 ## Aventura y equipo
 
-Elige un inicial con Oak; la semilla se genera automáticamente. Campaña de Kanto
+Elige un inicial con Oak o una primera forma desbloqueada; la semilla se genera automáticamente. Campaña de Kanto
 con guardado local, rutas principales y desvíos. Seis plazas de equipo y PC sin
 límite; los cambios fuera del combate son gratis y no curan. Una derrota termina
 la campaña aunque haya reservas. Los debilitados pueden recuperarse en tienda
@@ -14,7 +14,13 @@ con Revivir, por 150 ₽ y a la mitad de sus PS máximos.
 
 Después de cada victoria común hay una captura de su zona y tienda. Puedes
 renovar la captura pendiente pagando un precio creciente. Los gimnasios dan
-medalla, dinero y su Pokémon insignia. No se reclutan legendarios.
+medalla, dinero y su Pokémon insignia. Tras las aves eliges una de las tres; tras Mew/Mewtwo eliges uno de los dos. Solo una incorporación por combate, sin renovación.
+
+Kecleon ofrece también tres Pokémon de la colección global no legendaria; puedes
+reclutar uno por visita. Nivel: media del equipo, mínimo 5 y hasta el límite de
+gimnasio; las formas evolucionadas solo aparecen desde su umbral. Precio:
+200 + 10 × nivel. Ofertas estables por semilla y lugar; cargar no las cambia.
+El equipo completo envía el recluta al PC. No sustituye las capturas locales.
 
 El cierre es **Liga y rival → Articuno, Zapdos y Moltres juntos → tienda → Mew y
 Mewtwo juntos**. Los dos encuentros legendarios son consecutivos.
@@ -92,6 +98,23 @@ Antes de entrar, el viaje muestra contexto, objetivo y equipo rival real, con
 niveles, tipos, habilidad y movimientos. Cada ficha permite consultar sus estadísticas.
 El despliegue conserva la consulta rival. Se han retirado las amenazas y su atajo.
 Opciones permite velocidad 1×/1,5×/2×. La duración de lectura es independiente.
-Las campañas 26/27 certificadas cargan sin repetir su historial ya validado;
+Las campañas 26/27/28 certificadas cargan sin repetir su historial ya validado;
 si falta la certificación, se reconstruye completo con progreso. Detalles
 y compatibilidad en la [revisión táctica 0.34](SPRINT_34_TACTICAL_QUALITY.md).
+
+## Pokédex y progreso del perfil
+
+La Pokédex reúne las 151 especies, con búsqueda, páginas y filtros de vistos,
+obtenidos y pendientes. Ver un rival no desbloquea su línea. Obtener una especie
+por captura, reclutamiento o evolución registra esa forma y habilita la primera
+forma de su línea como inicial de nivel 5 en próximas aventuras, sin heredar EXP,
+objetos ni mejoras. Los tres iniciales de Oak están siempre disponibles.
+
+Perfil → Logros contiene 19 objetivos; los nueve nuevos cubren reclutamiento,
+iniciales y colección. No añaden estadísticas. Nombre, historial, Pokédex y logros
+se conservan al iniciar otra aventura. El perfil anterior se migra con copia
+`.before-v2`; los Pokémon ya registrados se consideran obtenidos.
+
+Las campañas anteriores conservan sus reglas hasta actualizarse entre encuentros.
+No se inventan capturas de jefes que ya se habían vencido antes de actualizar.
+Detalles en [Colección 0.35](SPRINT_35_COLLECTION.md).

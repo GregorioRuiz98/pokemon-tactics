@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 VERSION = re.search(r'config/version="([^"]+)"', (ROOT/'godot/project.godot').read_text(encoding='utf-8'))[1]
 CHAPTER = int(VERSION.split('.')[1])
 CONFIG = {
+    35: {'baseline':'9d4211076b5e316afef094fb86b5f0a66c387c12','report':'SPRINT_35_COLLECTION.md','ui':{'collection':34,'briefing':1958,'review':46,'trainer':69},'core':{'collection':4196},'edition':28},
     34: {'baseline':'071a21553bcc2b6c28b046c3199f53c5ec87f77f','report':'SPRINT_34_TACTICAL_QUALITY.md','ui':{'quality':204,'briefing':398,'review':46},'core':{'quality':6939},'edition':27},
     33: {'baseline':'51994283bd98575d56677cbb5703538dee292621','report':'SPRINT_33_REVIEW.md','ui':{'review':46,'climate':112,'playthrough':15000,'symbols':270,'sleep':15},'core':{'review':505},'edition':26},
     32: {'baseline':'aa18d6fbe039ec8c230db0c8b645a6f892e294db','report':'SPRINT_32_CLIMATE.md','ui':{'climate':112,'symbols':270,'sleep':15},'core':{'climate':487},'edition':25},
@@ -100,6 +101,11 @@ def main():
             shutil.copy2(WORK/name, docs/name)
             shutil.copy2(WORK/name, EVIDENCE/name)
     verification = {'version': VERSION, 'baseline': CONFIG['baseline'], 'publishedFilesUnchanged': protected, 'campaignEdition': CONFIG['edition'], 'errors': 0, 'warnings': 65, 'newWarnings': 0, 'coreChecks': core, 'uiChecksPerBuild': counts, 'sourceAndExeStateMatch': True, 'publicDeployment': False, 'fullCampaignPlayed': False}
+    if CHAPTER == 35 and (WORK/'clean-startup.json').is_file():
+        startup = read(WORK/'clean-startup.json')
+        assert startup['titleVisible'] and startup['godotNotOnPath'] and startup['archiveExtracted'] and startup['exeSha256'] == digest(EXE)
+        verification['cleanStartup'] = {'archiveExtracted':True,'titleVisible':True,'godotNotOnPath':True,'externalHardwareTest':False}
+        shutil.copy2(WORK/'clean-startup.json',EVIDENCE/'clean-startup.json')
     if VERSION == '0.33.0':
         campaign = read(WORK/'campaign-summary.json')
         assert campaign['completeAutomated'] and campaign['locations'] == 58 and not campaign['failures']
@@ -178,7 +184,7 @@ def main():
         shutil.copy2(ROOT/'docs/PLAYTEST_WINDOWS.md',docs/'GUIA_DE_PRUEBA.md')
         readme = (ROOT/'docs/LEEME_WINDOWS.txt').read_text(encoding='utf-8')
     (BUNDLE/'LEEME.txt').write_text(readme, encoding='utf-8')
-    if VERSION == '0.34.1':
+    if CHAPTER>=35 or VERSION == '0.34.1':
         for name in ['SPRINT_34_TACTICAL_QUALITY.md','MAPAS_0.34.csv','PLAYTEST_0.34.md']:
             shutil.copy2(ROOT/'docs'/name,docs/name)
         shutil.copy2(ROOT/'docs/MAPAS_0.34.csv',docs/'MAPAS_KANTO.csv')

@@ -5,11 +5,11 @@ Mapa de la campaña Windows. Las reglas están en [Reglas actuales](REGLAS_ACTUA
 | Necesidad | Ubicación | Observación |
 | --- | --- | --- |
 | Entrada | `godot/scenes/campaign.tscn`, `godot/ui/campaign.gd` | Menús, viaje y coordinación; guarda antes del feedback. |
-| Motor vigente | `godot/core/tactics_quality_run.gd`, `tactics_quality_battle.gd` | Campaña 27/capítulo 31/combate 24; extiende motores publicados. |
-| Guardados | `godot/core/tactics_quality_store.gd`, `kanto_store.gd` y stores anteriores | Replay, estados canónicos, copias y conflictos. |
+| Motor vigente | `godot/core/collection_run.gd`, `tactics_quality_battle.gd` | Campaña 28/capítulo 32/combate 24; extiende motores publicados. |
+| Guardados | `godot/core/collection_store.gd`, `tactics_quality_store.gd` y stores anteriores | Replay, estados canónicos, copias y conflictos. |
 | Mapas/contexto | `godot/core/tactics_opening.gd`, `godot/data/tactics-opening.json` |58 localizaciones,16/24 casillas; [catálogo](MAPAS_0.34.csv). |
 | Previa/estilo | `godot/ui/encounter_preview.gd`, `game_skin.gd`, `move_symbols.gd` | Consulta sin cambiar estado/RNG. |
-| Perfil/logros | `godot/core/trainer_profile.gd`, `trainer_store.gd`, `godot/ui/trainer_session.gd` | Independientes del diario de campaña. |
+| Perfil/logros | `godot/core/collection_profile.gd`, `collection_profile_store.gd`, `godot/ui/trainer_session.gd` | Independientes del diario de campaña. |
 | Recursos | `godot/data/`, `godot/assets/`, `godot/art/`, `godot/licenses/` | Locales, con hashes/autores/condiciones. |
 | Pruebas | `godot/tests/`, `godot/ui/qa_*.gd`, `tools/godot/` | Perfiles aislados, suites actuales e históricas. |
 | Evidencia | `docs/qa/`, `docs/reports/` | Capturas y diarios históricos consumidos por pruebas. |
@@ -30,3 +30,5 @@ El exportador incrusta recursos en el EXE. El paquete añade documentación y av
 ZIP fuera del repo; sin perfiles QA ni guardados personales. [Guía de entrega](DEPLOY.md) e [inventario de licencias](LICENCIAS.md).
 
 [Arquitectura web anterior](history/ARCHITECTURE_WEB_2026-10-27.md), conservada para interpretar sus pruebas.
+
+Colección 0.35: `collection_catalog.gd` unifica familias/umbrales publicados sin cambiarlos. El perfil v2 conserva obtenidos (`dex`) y vistos (`seen`), normaliza los identificadores JSON y deriva iniciales por línea. `collection_store.gd` añade eventos recuperables a la bandeja existente; el diario de campaña continúa siendo la fuente del replay. Las consultas de Pokédex y ofertas no consumen RNG.

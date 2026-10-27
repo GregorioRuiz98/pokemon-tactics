@@ -1,7 +1,7 @@
 extends RefCounted
 
-const Model = preload("res://core/trainer_profile.gd")
-const Store = preload("res://core/trainer_store.gd")
+const Model = preload("res://core/collection_profile.gd")
+const Store = preload("res://core/collection_profile_store.gd")
 var model: RefCounted
 var persistence: RefCounted
 var dialog: AcceptDialog
@@ -17,7 +17,7 @@ func setup(app: Control, path: String) -> void:
 	var loaded: Dictionary = persistence.load_profile()
 	model = Model.new(loaded.data)
 	warning = loaded.warning
-	if loaded.ok and loaded.data.is_empty(): persist()
+	if loaded.ok and (loaded.data.is_empty() or loaded.data.get("version")==1): persist()
 	notice = app._panel(); notice.mouse_filter = Control.MOUSE_FILTER_IGNORE; notice.z_index = 100
 	app.add_child(notice)
 	var row: HBoxContainer = HBoxContainer.new(); row.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -42,7 +42,7 @@ func begin_new(app: Control) -> void:
 	if not supported(app): return
 	var old: String = app.store.campaign_id
 	if old.is_empty() and FileAccess.file_exists(app.store.file_path):
-		var reader: RefCounted = load("res://core/kanto_campaign_store.gd").new(app.store.file_path)
+		var reader: RefCounted = load("res://core/collection_store.gd").new(app.store.file_path)
 		var loaded: Dictionary = reader.load_campaign(app.campaign)
 		if loaded.ok: old = reader.campaign_id
 	model.abandon(old)

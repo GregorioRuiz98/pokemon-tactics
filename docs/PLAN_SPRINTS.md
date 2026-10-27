@@ -1,6 +1,6 @@
 # Estado y próximos pasos
 
-Actualizado el 27 de octubre de 2026. Versión jugable **0.34.1**, entrega privada Windows. El [plan acumulado](history/PLAN_SPRINTS_2026-10-27.md) y los informes por sprint son historial, no una lista de trabajo pendiente.
+Actualizado el 27 de octubre de 2026. Versión jugable **0.35.0**, entrega privada Windows. El [plan acumulado](history/PLAN_SPRINTS_2026-10-27.md) y los informes por sprint son historial, no una lista de trabajo pendiente.
 
 ## Comprobado
 
@@ -9,8 +9,9 @@ Actualizado el 27 de octubre de 2026. Versión jugable **0.34.1**, entrega priva
 |0.34.0 — campaña | [Verificación](qa/sprint-34/verification.json), [informe](SPRINT_34_TACTICAL_QUALITY.md) |58 lugares,57 combates,8 medallas y 7.861 órdenes legales automatizadas; Liga → aves → Mew/Mewtwo. |
 |0.34.1 — interfaz | [Verificación](qa/sprint-34-ui-1/verification.json), [cambios](UI_PRECOMBAT_0.34.1.md) |1.958 comprobaciones de previa,46 de regresión y 270 de iconos por build; fuente y EXE coinciden:4.548 en total. |
 | Validación 0.34.1 | [Registro](qa/sprint-34-ui-1/release.json) | Sin errores ni avisos nuevos;65 avisos heredados. No acredita otro PC ni sesión humana. |
+|0.35.0 — colección | [Verificación](qa/sprint-35/verification.json), [cambios](SPRINT_35_COLLECTION.md), [paquete](qa/sprint-35/release.json) |4.196 comprobaciones del motor y2.107 de interfaz por build:8.410 entre motor, fuente y EXE. Pokédex151,19 logros,79 primeras formas e iniciales Nv.5. Sin errores ni avisos nuevos. |
 
-Se conserva el balance aceptado. Los intentos fallidos y límites del jugador automático constan en los informes. La limpieza documental no modifica el ejecutable ni sus reglas.
+Se conserva el balance aceptado. Los intentos fallidos y límites del jugador automático constan en los informes. La 0.35 añade colección y reclutamiento; conserva el motor de combate y los datos publicados.
 
 ## Antes de una primera beta pública
 
@@ -33,7 +34,11 @@ No se fija un objetivo de FPS, duración o éxito de los tres iniciales sin medi
 | Roles rígidos | Repertorios por especie y cuatro técnicas preparadas. |
 | PT al atacar | PP al equipar y básico gratuito. |
 | Caramelos/piedras/cables y pestaña Entrenar | EXP restante desde Equipo → Ficha y evolución por nivel/elección gratuita al umbral. |
-| Tres iniciales aleatorios y finales excluyentes | Un inicial de Oak; Liga/rival → aves → Mew/Mewtwo. |
+| Tres iniciales aleatorios y finales excluyentes | Un inicial de Oak o primera forma obtenida de nivel 5; Liga/rival → aves → Mew/Mewtwo. |
 | Servidor obligatorio | Ejecutable offline y perfil local. |
 
 No reintroducir estas funciones por leer una descripción antigua. [Reglas](REGLAS_ACTUALES.md) · [Arquitectura](ARCHITECTURE.md) · [Índice](README.md).
+
+## Colección 0.35
+
+Pokédex completa, 19 logros, reclutamiento global no legendario en Kecleon, una elección por combate legendario e iniciales desbloqueados. Migración de perfil v1 con copia y campaña 28 con actualización voluntaria. [Implementación y evidencia](SPRINT_35_COLLECTION.md).

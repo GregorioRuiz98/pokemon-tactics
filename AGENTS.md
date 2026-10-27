@@ -14,7 +14,7 @@
 - Mantener lectura/replay de guardados antiguos y laboratorios independientes. No borrar motores, datos o fixtures por parecer sin uso: tienen referencias dinámicas por edición y pruebas de recuperación.
 - Estado y órdenes serializables; comportamiento compartido por jugador, IA y previsión. Tipos/evoluciones como datos, no jerarquías por especie.
 - Sin RNG al inspeccionar, previsualizar, dibujar, animar, sonar o cancelar. Guardar cada orden antes del feedback; invalidar callbacks obsoletos al salir.
-- Semillas automáticas, un inicial de Oak, seis plazas y PC. Liga/rival → aves → Mew/Mewtwo. No restaurar roles rígidos, consumibles de evolución, PT por uso ni amenazas; reemplazos en el estado actual.
+- Semillas automáticas, un inicial de Oak o primera forma desbloqueada al nivel 5, seis plazas y PC. Liga/rival → aves → Mew/Mewtwo; un recluta por combate legendario. No restaurar roles rígidos, consumibles de evolución, PT por uso ni amenazas; reemplazos en el estado actual.
 - Aliados atravesables; destino libre. Rectificar solo movimiento antes de cualquier acción o fin de turno; jamás ataques, recursos o RNG. Preservar sueño, orientación, teclado/Escape/foco y accesibilidad.
 - Recursos locales con revisión, SHA-256, autores y licencias; hojas originales sin modificar. Importadores explícitos, sin descargas al jugar. No regenerar manifiestos para ocultar discrepancias.
 

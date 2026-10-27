@@ -1,4 +1,4 @@
-POKÉMON TACTICS — KANTO — 0.34.1
+POKÉMON TACTICS — KANTO — 0.35.0
 
 Abre PokemonTactics.exe. No requiere instalar Godot, servidor ni cuenta.
 Los recursos están integrados y el juego funciona sin conexión.
@@ -24,7 +24,7 @@ evoluciones especiales gratuitas al nivel mínimo de la ficha.
 Revivir recupera la mitad de los PS; perder un combate termina la aventura.
 
 Finales consecutivos: Liga y rival, tres aves juntas, Mew y Mewtwo juntos.
-Sin capturas legendarias. Climas, naturalezas y habilidades en sus fichas.
+Elige un legendario por combate final. Climas, naturalezas y habilidades en sus fichas.
 
 Continuar recupera la partida. La primera comprobación de un historial antiguo
 puede tardar; muestra progreso. Las cargas posteriores aprovechan su validación
@@ -41,4 +41,9 @@ DPI reales distintos y sesiones humanas externas siguen pendientes.
 Proyecto de fans. Créditos y procedencia disponibles desde el menú.
 Los informes de balance anteriores son históricos, no las reglas actuales.
 
-Documentación revisada el 27 de octubre de 2026; mismo ejecutable 0.34.1.
+Versión 0.35.0: colección e iniciales desbloqueables; combate sin cambios numéricos.
+
+Pokédex y logros: Perfil desde Inicio u Oak. Obtener una especie desbloquea
+la primera forma de su línea como inicial de nivel 5 para futuras aventuras.
+Verla no basta. Kecleon > Reclutamiento ofrece tres candidatos; uno por visita.
+Perfil, colección y 19 logros permanecen entre aventuras.

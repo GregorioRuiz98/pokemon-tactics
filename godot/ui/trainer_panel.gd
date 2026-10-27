@@ -1,11 +1,14 @@
 extends AcceptDialog
 
+const Catalog = preload("res://core/collection_catalog.gd")
+
 var app: Control
 var session: RefCounted
 var body: VBoxContainer
 var page: String = "card"
 var controls: Dictionary = {}
 var feedback: String = ""
+var dex_browser: VBoxContainer
 
 func setup(owner_app: Control, trainer: RefCounted) -> void:
 	app = owner_app; session = trainer; theme = app.theme
@@ -31,15 +34,15 @@ func render() -> void:
 		button.button_pressed = entry[0]==page; button.theme_type_variation = "TabButton"
 		tabs.add_child(button); controls[entry[0]] = button
 	var frame_color: Color = {"amber":app.GOLD,"leaf":Color("8bcc9d"),"champion":Color("d1acfa")}.get(model.data.frame,app.GOLD)
-	var card: PanelContainer = app._panel()
+	var card: PanelContainer = app._panel(); card.visible = page=="card"
 	card.add_theme_stylebox_override("panel",preload("res://ui/game_skin.gd").panel(frame_color)); body.add_child(card)
 	var row: HBoxContainer = HBoxContainer.new(); row.add_theme_constant_override("separation",16); card.add_child(row)
 	var image: TextureRect = app._portrait(Vector2(72,72)); image.texture = app.faces.get(int(model.data.portrait)); row.add_child(image)
 	var heading: Label = app._label(model.data.name+"\n"+model.data.title,23,frame_color)
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL; row.add_child(heading)
-	body.add_child(app._label("%d / 10 logros · %d / 151 Pokémon registrados" % [model.data.unlocked.size(),model.data.dex.size()],18))
+	body.add_child(app._label("%d / %d logros · %d obtenidos · %d vistos / 151" % [model.data.unlocked.size(),model.ACHIEVEMENTS.size(),model.data.dex.size(),model.data.seen.size()],18))
 	var totals: Dictionary = model.summary()
-	body.add_child(app._label("Aventuras: %d · Victorias: %d · Récord de medallas: %d" % [totals.runs,totals.wins,totals.bestMedals],17,app.MUTED))
+	if page=="card": body.add_child(app._label("Aventuras: %d · Victorias: %d · Récord de medallas: %d" % [totals.runs,totals.wins,totals.bestMedals],17,app.MUTED))
 	if not session.warning.is_empty():
 		body.add_child(app._label(session.warning,17,app.GOLD))
 		var recover: Button = app._button("Recuperar copia" if not session.persistence.recovery.is_empty() else "Conservar archivo y crear perfil",request_recovery)
@@ -53,8 +56,7 @@ func render() -> void:
 				body.add_child(app._label(("✓ " if unlocked else "○ ")+model.ACHIEVEMENTS[key][0],20,frame_color if unlocked else app.MUTED))
 				body.add_child(app._label(model.ACHIEVEMENTS[key][1],17))
 		"dex":
-			if model.data.dex.is_empty(): body.add_child(app._label("Tu primer compañero iniciará esta colección.",18))
-			for species_id: int in model.data.dex: body.add_child(app._label("#%03d · %s" % [species_id,app.rules.profiles[species_id].data.name],19))
+			dex_browser = preload("res://ui/collection_browser.gd").new(); body.add_child(dex_browser); dex_browser.setup(app)
 		"history": render_history()
 	app._apply_preferences()
 	call_deferred("focus_tab")
@@ -72,7 +74,7 @@ func render_card() -> void:
 	for species_id: int in model.data.dex:
 		if species_id not in choices: choices.append(species_id)
 	for species_id: int in choices:
-		portrait.add_item(app.rules.profiles[species_id].data.name,species_id)
+		portrait.add_item(Catalog.record(species_id).name,species_id)
 		if species_id==int(model.data.portrait): portrait.select(portrait.item_count-1)
 	body.add_child(app._label("Retrato",17)); body.add_child(portrait); controls.portrait = portrait
 	for entry: Array in [["title","Título",model.titles(),model.data.title],["frame","Marco",model.frames(),model.data.frame]]:
@@ -101,7 +103,7 @@ func render_history() -> void:
 	entries.sort_custom(func(a,b):return int(a.started)>int(b.started))
 	if entries.is_empty(): body.add_child(app._label("Aún no has comenzado una aventura.",18))
 	for entry: Dictionary in entries:
-		body.add_child(app._label("%s · %s" % [app.rules.profiles[int(entry.starter)].data.name,{"active":"En curso","completed":"Completada","defeated":"Derrota","abandoned":"Abandonada"}[entry.status]],20,app.GOLD))
+		body.add_child(app._label("%s · %s" % [Catalog.record(int(entry.starter)).name,{"active":"En curso","completed":"Completada","defeated":"Derrota","abandoned":"Abandonada"}[entry.status]],20,app.GOLD))
 		body.add_child(app._label("Medallas: %d · Victorias: %d / %d combates · Bajas: %d\nSemilla: %s" % [entry.medals,entry.wins,entry.battles,entry.kos,entry.seed],17))
 		if entry.get("partialHistory",false): body.add_child(app._label("Aventura anterior al perfil: algunos eventos no se registraron.",16,app.MUTED))
 

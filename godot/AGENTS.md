@@ -3,7 +3,7 @@
 Aplican las [instrucciones raíz](../AGENTS.md). Leer [desarrollo](README.md), [arquitectura](../docs/ARCHITECTURE.md) y [estado](../docs/PLAN_SPRINTS.md).
 
 - Godot 4.7.2 estándar/GDScript, Windows x 86_64 offline. Entrada `scenes/campaign.tscn`; laboratorio separado `scenes/laboratory.tscn`. Sin plugins obligatorios.
-- Versión canónica en `project.godot`.0.34.1 usa campaña 27/capítulo 31/combate 24. Un cambio documental no exige cambiar reglas ni repetir toda la campaña.
+- Versión canónica en `project.godot`.0.35.0 usa campaña 28/capítulo 32/combate 24. Un cambio documental no exige cambiar reglas ni repetir toda la campaña.
 - No sobrescribir motores, datos, pruebas ni recursos publicados. El motor actual extiende revisiones previas y las despacha por edición; no son código muerto. Reglas distintas requieren nueva edición/migración.
 - QA en perfiles aislados, nunca en `%APPDATA%/PokemonTacticsLab` real. Partida, laboratorio y perfil separados. Preservar diario, checksum, copia, concurrencia y originales inválidos/futuros. No convertir combates antiguos silenciosamente.
 - Guardar órdenes aceptadas antes de animar; sin azar en consultas, sonidos o UI. La previa genera sobre una copia y reutiliza la instantánea, sin guardar ni alterar la aventura.

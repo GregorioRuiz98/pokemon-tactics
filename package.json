@@ -137,7 +137,10 @@
     "godot:qa:quality": "node tools/godot/run.mjs qa-quality",
     "godot:qa:quality:export": "node tools/godot/run.mjs qa-quality-export",
     "check:repo": "node tools/check-repository.mjs",
-    "test:repo-check": "node --test tools/check-repository.test.mjs"
+    "test:repo-check": "node --test tools/check-repository.test.mjs",
+    "godot:test:collection": "node tools/godot/run.mjs test-collection",
+    "godot:qa:collection": "node tools/godot/run.mjs qa-collection",
+    "godot:qa:collection:export": "node tools/godot/run.mjs qa-collection-export"
   },
   "dependencies": {
     "easystarjs": "0.4.4",
