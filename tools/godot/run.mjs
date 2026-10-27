@@ -23,6 +23,7 @@ function run(executable, args, label, cwd = root) {
   if(chapter>=31 && /^(copy|kanto)-(source|release)$/.test(label)) args=[...args,'--compat-kanto'];
   if((chapter>=32 || (nativeVersion.startsWith('0.31.') && Number(nativeVersion.split('.')[2])>=1)) && /^power-(source|release)$/.test(label)) args=[...args,'--compat-power'];
   if(chapter>=32 && /^(sleep|symbols)-(source|release)$/.test(label)) args=[...args,'--compat-sleep'];
+  if(chapter>=34 && /^playthrough-(source|release)$/.test(label)) args=[...args,'--compat-review'];
   // Historical UI suites keep their published edition. Current content has qa-kanto.
   if(chapter>=30 && /^(player|shop|trainer)-(source|release)$/.test(label)) args=[...args,'--compat-adventure'];
   const logIndex = args.indexOf('--log-file');
@@ -112,7 +113,18 @@ if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-expo
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'qa-playthrough' || operation === 'qa-playthrough-export') {
+if(operation === 'test-quality') {
+  run(binary,['--headless',...common,'--script','res://tests/quality.gd','--','--save-dir='+work],'quality-core');
+} else if(operation === 'simulate-quality') {
+  const directory=resolve(work,'natural-quality-'+(process.env.QUALITY_ATTEMPT??'03'));
+  run(binary,['--headless',...common,'--script','res://tests/quality_campaign.gd','--','--save-dir='+directory,...(existsSync(resolve(work,'quality-prefix.json'))?['--prefix='+resolve(work,'quality-prefix.json')]:[])],'playthrough-quality-core');
+} else if(operation === 'qa-quality' || operation === 'qa-quality-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'quality-'+(exported?'release':'source'));
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--quality-qa-dir='+directory,'--load-journal='+resolve(root,'docs/qa/sprint-33/campaign-journal.json')],'quality-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'quality-ui-result.json'),'utf8'));
+  if(report.failures.length || report.assertions<180 || report.encounters.length!==58) throw new Error('Full campaign quality UI failed.');
+} else if(operation === 'qa-playthrough' || operation === 'qa-playthrough-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'playthrough-'+(exported?'release':'source'));
   const journal=existsSync(resolve(work,'natural-coverage/campaign-journal.json'))?resolve(work,'natural-coverage/campaign-journal.json'):resolve(root,'docs/qa/sprint-33/campaign-journal.json');

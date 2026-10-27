@@ -2,12 +2,12 @@ extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
 const Advanced = preload("res://core/roster_run.gd")
-const Journey = preload("res://core/review_run.gd")
-const CURRENT_CHAPTER: int = 30
+const Journey = preload("res://core/tactics_quality_run.gd")
+const CURRENT_CHAPTER: int = 31
 const Art = preload("res://ui/visual_assets.gd")
 const RosterPanel = preload("res://ui/roster_panel.gd")
 const IsometricBoard = preload("res://ui/review_board.gd")
-const CampaignStore = preload("res://core/review_store.gd")
+const CampaignStore = preload("res://core/tactics_quality_store.gd")
 const Copy = preload("res://ui/concise_copy.gd")
 var kanto_qa_dir: String = ""
 var copy_qa_dir: String = ""
@@ -20,6 +20,8 @@ var portable_smoke_path: String = ""
 var review_qa_dir: String = ""
 var briefing_qa_dir: String = ""
 var encounter_preview: RefCounted = preload("res://ui/encounter_preview.gd").new()
+var tactical_lens: RefCounted = preload("res://ui/tactical_lens.gd").new()
+var quality_qa_dir: String = ""
 var climate_qa_dir: String = ""
 var trainer: RefCounted = preload("res://ui/trainer_session.gd").new()
 var trainer_qa_dir: String = ""
@@ -197,6 +199,7 @@ func _boot() -> void:
 		if argument.begins_with("--smoke-report="): portable_smoke_path = argument.trim_prefix("--smoke-report=")
 		if argument.begins_with("--review-qa-dir="): review_qa_dir = argument.trim_prefix("--review-qa-dir=")
 		if argument.begins_with("--briefing-qa-dir="): briefing_qa_dir = argument.trim_prefix("--briefing-qa-dir=")
+		if argument.begins_with("--quality-qa-dir="): quality_qa_dir = argument.trim_prefix("--quality-qa-dir=")
 		if argument.begins_with("--climate-qa-dir="): climate_qa_dir = argument.trim_prefix("--climate-qa-dir=")
 		if argument.begins_with("--symbols-qa-dir="): symbols_qa_dir = argument.trim_prefix("--symbols-qa-dir=")
 		if argument.begins_with("--sleep-qa-dir="): sleep_qa_dir = argument.trim_prefix("--sleep-qa-dir=")
@@ -248,6 +251,7 @@ func _boot() -> void:
 	if not climate_qa_dir.is_empty(): test_dir = climate_qa_dir
 	if not review_qa_dir.is_empty(): test_dir = review_qa_dir
 	if not briefing_qa_dir.is_empty(): test_dir = briefing_qa_dir
+	if not quality_qa_dir.is_empty(): test_dir = quality_qa_dir
 	if not playthrough_qa_dir.is_empty(): test_dir = playthrough_qa_dir
 	if not portable_smoke_path.is_empty(): test_dir = portable_smoke_path.get_base_dir().path_join("diagnostic-profile")
 	qa_running = not test_dir.is_empty()
@@ -286,6 +290,7 @@ func _boot() -> void:
 	title_screen.hide()
 	if not portable_smoke_path.is_empty(): _open_title(); call_deferred("_run_portable_smoke")
 	elif not playthrough_qa_dir.is_empty(): _open_title(); call_deferred("_run_playthrough_qa")
+	elif not quality_qa_dir.is_empty(): _open_title(); call_deferred("_run_quality_qa")
 	elif not briefing_qa_dir.is_empty(): _open_title(); call_deferred("_run_briefing_qa")
 	elif not review_qa_dir.is_empty(): _open_title(); call_deferred("_run_review_qa")
 	elif not climate_qa_dir.is_empty(): _open_title(); call_deferred("_run_climate_qa")
@@ -378,7 +383,7 @@ func _resume_title() -> void:
 		title_screen.controls["continue"].disabled = true
 		await get_tree().process_frame
 		await RenderingServer.frame_post_draw
-		_load_game()
+		await _load_game_async()
 	else:
 		title_visible = false
 		_refresh()
@@ -491,7 +496,7 @@ func _update_seed_hint() -> void:
 	var value: String = journey_seed.text.strip_edges()
 	var text: String = "Una semilla admite hasta 64 caracteres."
 	if value.begins_with("KT") and ":" in value:
-		var challenge: Dictionary = preload("res://core/review_challenge.gd").decode(value)
+		var challenge: Dictionary = preload("res://core/tactics_quality_challenge.gd").decode(value)
 		text = "Código incompleto o incompatible. Comprueba que lo has pegado entero." if challenge.is_empty() else "Reto con %s · mapa %d×%d. Al comenzar se usará este inicial." % [rules.profiles[int(challenge.starter)].data.name,challenge.mapSize,challenge.mapSize]
 	travel_buttons.seed_hint.text = text
 
@@ -522,6 +527,9 @@ func _run_review_qa() -> void:
 func _run_briefing_qa() -> void:
 	await load("res://ui/qa_briefing.gd").new().run(self,briefing_qa_dir)
 
+func _run_quality_qa() -> void:
+	await load("res://ui/qa_quality.gd").new().run(self,quality_qa_dir)
+
 func _run_climate_qa() -> void:
 	await load("res://ui/qa_climate.gd").new().run(self,climate_qa_dir)
 
@@ -541,7 +549,7 @@ func _choose_starter(identity: int) -> void:
 	var challenge: Dictionary = {}
 	var requested_seed: String = journey_seed.text.strip_edges()
 	if requested_seed.begins_with("KT") and ":" in requested_seed:
-		challenge = load("res://core/review_challenge.gd").decode(requested_seed)
+		challenge = load("res://core/tactics_quality_challenge.gd").decode(requested_seed)
 		if challenge.is_empty(): _review_text("Código de reto no válido","Comprueba que has pegado el código completo. Este reto debe ser compatible con la aventura actual. Tu partida guardada se conserva."); return
 		requested_seed = challenge.seed; identity = int(challenge.starter)
 	elif requested_seed.length()>64:
@@ -556,7 +564,7 @@ func _choose_starter(identity: int) -> void:
 	journey_seed.text = new_seed
 	campaign = Advanced.new() if campaign_qa_dir.is_empty() else load("res://core/traits_run.gd").new()
 	if not scale_qa_dir.is_empty(): campaign = load("res://core/scale_run.gd").new()
-	if campaign_qa_dir.is_empty() and scale_qa_dir.is_empty() and roster_qa_dir.is_empty(): campaign = Journey.new(int(challenge.edition)+4 if not challenge.is_empty() else 24 if "--compat-economy" in OS.get_cmdline_user_args() else 25 if "--compat-adventure" in OS.get_cmdline_user_args() else 26 if "--compat-kanto" in OS.get_cmdline_user_args() else 27 if "--compat-power" in OS.get_cmdline_user_args() else 28 if "--compat-sleep" in OS.get_cmdline_user_args() else CURRENT_CHAPTER)
+	if campaign_qa_dir.is_empty() and scale_qa_dir.is_empty() and roster_qa_dir.is_empty(): campaign = Journey.new(int(challenge.edition)+4 if not challenge.is_empty() else 24 if "--compat-economy" in OS.get_cmdline_user_args() else 25 if "--compat-adventure" in OS.get_cmdline_user_args() else 26 if "--compat-kanto" in OS.get_cmdline_user_args() else 27 if "--compat-power" in OS.get_cmdline_user_args() else 28 if "--compat-sleep" in OS.get_cmdline_user_args() else 30 if "--compat-review" in OS.get_cmdline_user_args() else CURRENT_CHAPTER)
 	rules = campaign.engine
 	run = campaign.create(new_seed,identity)
 	trainer.begin_new(self)
@@ -599,6 +607,7 @@ func _player_turn() -> bool:
 
 func _save() -> void:
 	if run.is_empty(): return
+	if store.has_method("prime"): store.prime(campaign)
 	var result: Dictionary = store.save(run,transactions,"kanto-14")
 	save_warning = "" if result.ok else result.reason
 	if result.ok: trainer.sync(self)
@@ -607,6 +616,15 @@ func _load_game() -> void:
 	if practice.active: hint.text = "Sal de la práctica para recuperar tu aventura."; return
 	var started: int = Time.get_ticks_msec()
 	var result: Dictionary = store.load_campaign(campaign)
+	_accept_loaded(result,started)
+
+func _load_game_async() -> void:
+	var started: int = Time.get_ticks_msec()
+	var result: Dictionary = await store.load_campaign_async(campaign,get_tree(),func(done: int,total: int):
+		title_screen.caption.text = "Recuperando aventura · %d %%"%int(100.0*done/maxi(1,total)))
+	_accept_loaded(result,started)
+
+func _accept_loaded(result: Dictionary, started: int) -> void:
 	last_load_msec = Time.get_ticks_msec()-started
 	title_loading = false
 	if not result.ok:
@@ -816,6 +834,7 @@ func _refresh() -> void:
 	if fighting and run.get("edition",0)>=25: preload("res://ui/climate_hud.gd").refresh(self)
 	if state.get("combatEdition",0)>=20: preload("res://ui/power_copy.gd").refresh_battle(self)
 	encounter_preview.refresh(self)
+	tactical_lens.refresh(self)
 	if adventure.enabled(self) and run.phase!="battle" and not travel_buttons.has("share_journey"):
 		var share: Button = _button(input_profile.shortcut("Reto","share"),func():adventure.export_card(self))
 		share.theme_type_variation = "ToolButton"
@@ -919,6 +938,9 @@ func _hover_tile(point: Dictionary) -> bool:
 	if not point.is_empty() and state.get("combatEdition",0)>=11 and not _modal_open(): hint.text += "\nAltura %d · rueda: zoom · botón central: cámara." % rules.Terrain.height_at(state,point)
 	adventure.hover(self,point)
 	if not point.is_empty() and preload("res://core/restorative_tiles.gd").contains(state,point): hint.text += "\nManantial: cura estados al terminar aquí; no recupera PS."
+	if not point.is_empty():
+		var reading: String = tactical_lens.describe(self,point)
+		if not reading.is_empty(): hint.text += "\n"+reading
 	return true
 
 func _select_tile(point: Dictionary) -> void:
@@ -1126,7 +1148,7 @@ func _render_travel() -> void:
 		if CURRENT_CHAPTER>=27: upgrade.tooltip_text = "PP al equipar, usos sin gasto y atributos durante el combate. Conserva movimientos aprendidos; los que excedan el presupuesto se desequipan en orden inverso. Copia previa automática."
 		if run.get("edition",0)==23: upgrade.tooltip_text = "Impide moverse mientras duerme. Conserva combate, mapa, equipo y RNG con copia previa."
 		if CURRENT_CHAPTER>=29: upgrade.tooltip_text = "Añade climas, habilidades y sexo de los Pokémon. Conserva equipo, PS, EXP, dinero y diario; copia previa. Solo entre encuentros."
-		if CURRENT_CHAPTER>=30: upgrade.tooltip_text = "Corrige decisiones repetitivas de la IA. Conserva balance, equipo, PS, dinero, EXP y diario, con copia previa. Solo entre encuentros."
+		if CURRENT_CHAPTER>=30: upgrade.tooltip_text = "Revisa los 58 escenarios, tácticas rivales y objetivos de control. Conserva equipo, PS, dinero, EXP y diario, con copia previa. Solo entre encuentros."
 		travel_content.add_child(upgrade)
 		travel_buttons.upgrade = upgrade
 	if not run.is_empty() and run.get("edition",1)>=8 and not _simple_hub():
@@ -1808,6 +1830,8 @@ func _render_inventory(parent: VBoxContainer, member: Dictionary) -> void:
 		button.tooltip_text = (preload("res://ui/move_info.gd").details(campaign.progression.data.moves[item.move]) if teach else item.description) + (" Ya aprendido o incompatible." if teach and not available else "")
 
 func _process(delta: float) -> void:
+	if title_loading: return
+	if not qa_running: tactical_lens.tick(self)
 	if not qa_running: trainer.tick(self,delta)
 	if practice.active: return
 	if not qa_running: adventure.tick(self,delta)

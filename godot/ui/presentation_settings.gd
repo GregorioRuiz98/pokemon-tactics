@@ -42,6 +42,7 @@ static func apply(app: Control) -> void:
 		if app.muted: app.sound.stop()
 	if app.combat_sound!=null: app.combat_sound.set_volume(float(app.input_profile.preferences.volume),app.muted or app.qa_running)
 	if app.combat_feedback!=null: app.combat_feedback.duration = float(app.input_profile.preferences.resultSeconds)
+	if app.combat_feedback!=null and app.combat_feedback.attack_effect!=null: app.combat_feedback.attack_effect.playback_speed = float(app.input_profile.preferences.get("battleSpeed",100))/100.0
 	var factor: float = font_factor(app)
 	var default_size: int = roundi(18*factor)
 	if app.theme.default_font_size!=default_size: app.theme.default_font_size = default_size

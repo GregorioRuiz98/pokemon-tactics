@@ -1,0 +1,776 @@
+{
+  "cleared": [
+    "route-1",
+    "route-2",
+    "forest",
+    "brock",
+    "route-3",
+    "mt-moon",
+    "route-4",
+    "cerulean-rival",
+    "route-24",
+    "route-25",
+    "misty",
+    "route-5",
+    "route-6",
+    "ss-anne",
+    "surge",
+    "route-11",
+    "diglett-cave",
+    "route-22",
+    "route-9",
+    "route-10",
+    "rock-tunnel",
+    "route-8",
+    "route-7",
+    "erika",
+    "rocket-hideout",
+    "tower-rival",
+    "pokemon-tower",
+    "fuji-rescue",
+    "route-12",
+    "route-13",
+    "route-14",
+    "route-15",
+    "route-16",
+    "route-17",
+    "route-18",
+    "safari"
+  ],
+  "edition": 27,
+  "encounters": [
+    {
+      "cap": 14,
+      "endMoney": 300,
+      "entryLevels": [
+        5
+      ],
+      "entryMoney": 120,
+      "location": "route-1",
+      "orders": 24,
+      "reward": 19,
+      "rounds": 5,
+      "seconds": 10.644,
+      "startedMs": 10760,
+      "startedOrder": 0
+    },
+    {
+      "cap": 14,
+      "endMoney": 388,
+      "entryLevels": [
+        6,
+        6
+      ],
+      "entryMoney": 148,
+      "location": "route-2",
+      "orders": 69,
+      "reward": 19,
+      "rounds": 9,
+      "seconds": 1.042,
+      "startedMs": 21421,
+      "startedOrder": 31
+    },
+    {
+      "cap": 14,
+      "endMoney": 613,
+      "entryLevels": [
+        8,
+        7,
+        7
+      ],
+      "entryMoney": 308,
+      "location": "forest",
+      "orders": 75,
+      "reward": 10,
+      "rounds": 7,
+      "seconds": 1.175,
+      "startedMs": 22494,
+      "startedOrder": 108
+    },
+    {
+      "cap": 14,
+      "endMoney": 861,
+      "entryLevels": [
+        10,
+        8,
+        9,
+        9
+      ],
+      "entryMoney": 181,
+      "location": "brock",
+      "orders": 107,
+      "reward": 95,
+      "rounds": 7,
+      "seconds": 2.173,
+      "startedMs": 23707,
+      "startedOrder": 197
+    },
+    {
+      "cap": 21,
+      "endMoney": 559,
+      "entryLevels": [
+        12,
+        11,
+        11,
+        10,
+        14
+      ],
+      "entryMoney": 159,
+      "location": "route-3",
+      "orders": 74,
+      "reward": 27,
+      "rounds": 4,
+      "seconds": 2.054,
+      "startedMs": 37138,
+      "startedOrder": 318
+    },
+    {
+      "cap": 21,
+      "endMoney": 591,
+      "entryLevels": [
+        13,
+        12,
+        12,
+        11,
+        14,
+        11
+      ],
+      "entryMoney": 131,
+      "location": "mt-moon",
+      "orders": 176,
+      "reward": 113,
+      "rounds": 8,
+      "seconds": 6.313,
+      "startedMs": 39251,
+      "startedOrder": 407
+    },
+    {
+      "cap": 21,
+      "endMoney": 602,
+      "entryLevels": [
+        14,
+        13,
+        13,
+        13,
+        15,
+        13
+      ],
+      "entryMoney": 177,
+      "location": "route-4",
+      "orders": 88,
+      "reward": 129,
+      "rounds": 5,
+      "seconds": 2.58,
+      "startedMs": 45616,
+      "startedOrder": 599
+    },
+    {
+      "cap": 21,
+      "endMoney": 674,
+      "entryLevels": [
+        15,
+        14,
+        14,
+        14,
+        15,
+        14
+      ],
+      "entryMoney": 239,
+      "location": "cerulean-rival",
+      "orders": 108,
+      "reward": 56,
+      "rounds": 5,
+      "seconds": 4.355,
+      "startedMs": 48267,
+      "startedOrder": 701
+    },
+    {
+      "cap": 21,
+      "endMoney": 629,
+      "entryLevels": [
+        16,
+        14,
+        14,
+        14,
+        16,
+        14
+      ],
+      "entryMoney": 184,
+      "location": "route-24",
+      "orders": 117,
+      "reward": 16,
+      "rounds": 6,
+      "seconds": 5.156,
+      "startedMs": 52678,
+      "startedOrder": 825
+    },
+    {
+      "cap": 21,
+      "endMoney": 694,
+      "entryLevels": [
+        17,
+        15,
+        15,
+        15,
+        17,
+        15
+      ],
+      "entryMoney": 239,
+      "location": "route-25",
+      "orders": 95,
+      "reward": 48,
+      "rounds": 5,
+      "seconds": 3.493,
+      "startedMs": 57886,
+      "startedOrder": 956
+    },
+    {
+      "cap": 21,
+      "endMoney": 958,
+      "entryLevels": [
+        19,
+        17,
+        17,
+        17,
+        18,
+        17
+      ],
+      "entryMoney": 188,
+      "location": "misty",
+      "orders": 140,
+      "reward": 121,
+      "rounds": 7,
+      "seconds": 5.054,
+      "startedMs": 61474,
+      "startedOrder": 1066
+    },
+    {
+      "cap": 24,
+      "endMoney": 720,
+      "entryLevels": [
+        20,
+        19,
+        21,
+        18,
+        19,
+        18
+      ],
+      "entryMoney": 235,
+      "location": "route-5",
+      "orders": 94,
+      "reward": 19,
+      "rounds": 5,
+      "seconds": 3.738,
+      "startedMs": 81108,
+      "startedOrder": 1220
+    },
+    {
+      "cap": 24,
+      "endMoney": 760,
+      "entryLevels": [
+        20,
+        20,
+        21,
+        19,
+        20,
+        19
+      ],
+      "entryMoney": 270,
+      "location": "route-6",
+      "orders": 142,
+      "reward": 39,
+      "rounds": 7,
+      "seconds": 4.617,
+      "startedMs": 84915,
+      "startedOrder": 1331
+    },
+    {
+      "cap": 24,
+      "endMoney": 615,
+      "entryLevels": [
+        21,
+        20,
+        21,
+        20,
+        20,
+        20
+      ],
+      "entryMoney": 120,
+      "location": "ss-anne",
+      "orders": 101,
+      "reward": 16,
+      "rounds": 5,
+      "seconds": 4.186,
+      "startedMs": 89601,
+      "startedOrder": 1491
+    },
+    {
+      "cap": 24,
+      "endMoney": 885,
+      "entryLevels": [
+        21,
+        20,
+        21,
+        20,
+        21,
+        20
+      ],
+      "entryMoney": 35,
+      "location": "surge",
+      "orders": 155,
+      "reward": 26,
+      "rounds": 7,
+      "seconds": 5.955,
+      "startedMs": 93993,
+      "startedOrder": 1610
+    },
+    {
+      "cap": 29,
+      "endMoney": 727,
+      "entryLevels": [
+        23,
+        24,
+        23,
+        22,
+        23,
+        22
+      ],
+      "entryMoney": 207,
+      "location": "route-11",
+      "orders": 100,
+      "reward": 117,
+      "rounds": 5,
+      "seconds": 3.871,
+      "startedMs": 115598,
+      "startedOrder": 1786
+    },
+    {
+      "cap": 29,
+      "endMoney": 768,
+      "entryLevels": [
+        24,
+        24,
+        23,
+        22,
+        23,
+        23
+      ],
+      "entryMoney": 295,
+      "location": "diglett-cave",
+      "orders": 66,
+      "reward": 50,
+      "rounds": 4,
+      "seconds": 1.893,
+      "startedMs": 119607,
+      "startedOrder": 1906
+    },
+    {
+      "cap": 29,
+      "endMoney": 698,
+      "entryLevels": [
+        24,
+        24,
+        23,
+        24,
+        23,
+        23
+      ],
+      "entryMoney": 378,
+      "location": "route-22",
+      "orders": 35,
+      "reward": 61,
+      "rounds": 2,
+      "seconds": 1.167,
+      "startedMs": 121592,
+      "startedOrder": 1989
+    },
+    {
+      "cap": 29,
+      "endMoney": 1233,
+      "entryLevels": [
+        24,
+        24,
+        23,
+        24,
+        23,
+        23
+      ],
+      "entryMoney": 658,
+      "location": "route-9",
+      "orders": 106,
+      "reward": 20,
+      "rounds": 4,
+      "seconds": 4.492,
+      "startedMs": 122812,
+      "startedOrder": 2028
+    },
+    {
+      "cap": 29,
+      "endMoney": 983,
+      "entryLevels": [
+        25,
+        25,
+        24,
+        24,
+        23,
+        24
+      ],
+      "entryMoney": 403,
+      "location": "route-10",
+      "orders": 141,
+      "reward": 129,
+      "rounds": 6,
+      "seconds": 7.342,
+      "startedMs": 127392,
+      "startedOrder": 2150
+    },
+    {
+      "cap": 29,
+      "endMoney": 725,
+      "entryLevels": [
+        25,
+        25,
+        24,
+        24,
+        24,
+        25
+      ],
+      "entryMoney": 140,
+      "location": "rock-tunnel",
+      "orders": 114,
+      "reward": 104,
+      "rounds": 6,
+      "seconds": 4.366,
+      "startedMs": 134877,
+      "startedOrder": 2308
+    },
+    {
+      "cap": 29,
+      "endMoney": 780,
+      "entryLevels": [
+        26,
+        26,
+        24,
+        24,
+        24,
+        25
+      ],
+      "entryMoney": 240,
+      "location": "route-8",
+      "orders": 138,
+      "reward": 17,
+      "rounds": 7,
+      "seconds": 6.364,
+      "startedMs": 139329,
+      "startedOrder": 2433
+    },
+    {
+      "cap": 29,
+      "endMoney": 575,
+      "entryLevels": [
+        26,
+        26,
+        25,
+        25,
+        25,
+        26
+      ],
+      "entryMoney": 30,
+      "location": "route-7",
+      "orders": 122,
+      "reward": 20,
+      "rounds": 6,
+      "seconds": 5.142,
+      "startedMs": 145803,
+      "startedOrder": 2589
+    },
+    {
+      "cap": 29,
+      "endMoney": 1048,
+      "entryLevels": [
+        26,
+        26,
+        25,
+        23,
+        25,
+        24
+      ],
+      "entryMoney": 148,
+      "location": "erika",
+      "orders": 167,
+      "reward": 45,
+      "rounds": 8,
+      "seconds": 10.044,
+      "startedMs": 151313,
+      "startedOrder": 2727
+    },
+    {
+      "cap": 43,
+      "endMoney": 658,
+      "entryLevels": [
+        27,
+        27,
+        27,
+        25,
+        27,
+        29
+      ],
+      "entryMoney": 138,
+      "location": "rocket-hideout",
+      "orders": 73,
+      "reward": 59,
+      "rounds": 4,
+      "seconds": 2.322,
+      "startedMs": 185076,
+      "startedOrder": 2924
+    },
+    {
+      "cap": 43,
+      "endMoney": 975,
+      "entryLevels": [
+        29,
+        28,
+        28,
+        28,
+        28,
+        30
+      ],
+      "entryMoney": 345,
+      "location": "tower-rival",
+      "orders": 124,
+      "reward": 92,
+      "rounds": 6,
+      "seconds": 7.859,
+      "startedMs": 187563,
+      "startedOrder": 3008
+    },
+    {
+      "cap": 43,
+      "endMoney": 781,
+      "entryLevels": [
+        30,
+        30,
+        30,
+        28,
+        29,
+        31
+      ],
+      "entryMoney": 141,
+      "location": "pokemon-tower",
+      "orders": 145,
+      "reward": 92,
+      "rounds": 6,
+      "seconds": 7.26,
+      "startedMs": 195549,
+      "startedOrder": 3147
+    },
+    {
+      "cap": 43,
+      "endMoney": 753,
+      "entryLevels": [
+        31,
+        30,
+        31,
+        30,
+        28,
+        32
+      ],
+      "entryMoney": 153,
+      "location": "fuji-rescue",
+      "orders": 71,
+      "reward": 92,
+      "rounds": 3,
+      "seconds": 3.331,
+      "startedMs": 203277,
+      "startedOrder": 3307
+    },
+    {
+      "cap": 43,
+      "endMoney": 983,
+      "entryLevels": [
+        32,
+        31,
+        32,
+        30,
+        30,
+        33
+      ],
+      "entryMoney": 373,
+      "location": "route-12",
+      "orders": 111,
+      "reward": 44,
+      "rounds": 5,
+      "seconds": 4.738,
+      "startedMs": 206726,
+      "startedOrder": 3392
+    },
+    {
+      "cap": 43,
+      "endMoney": 1049,
+      "entryLevels": [
+        33,
+        32,
+        33,
+        32,
+        32,
+        34
+      ],
+      "entryMoney": 379,
+      "location": "route-13",
+      "orders": 126,
+      "reward": 99,
+      "rounds": 6,
+      "seconds": 6.901,
+      "startedMs": 211626,
+      "startedOrder": 3522
+    },
+    {
+      "cap": 43,
+      "endMoney": 1339,
+      "entryLevels": [
+        34,
+        33,
+        34,
+        34,
+        33,
+        35
+      ],
+      "entryMoney": 659,
+      "location": "route-14",
+      "orders": 130,
+      "reward": 70,
+      "rounds": 6,
+      "seconds": 7.378,
+      "startedMs": 218693,
+      "startedOrder": 3665
+    },
+    {
+      "cap": 43,
+      "endMoney": 1619,
+      "entryLevels": [
+        35,
+        35,
+        35,
+        35,
+        34,
+        36
+      ],
+      "entryMoney": 929,
+      "location": "route-15",
+      "orders": 196,
+      "reward": 16,
+      "rounds": 9,
+      "seconds": 10.652,
+      "startedMs": 226358,
+      "startedOrder": 3816
+    },
+    {
+      "cap": 43,
+      "endMoney": 1649,
+      "entryLevels": [
+        36,
+        36,
+        36,
+        36,
+        35,
+        37
+      ],
+      "entryMoney": 1039,
+      "location": "route-16",
+      "orders": 74,
+      "reward": 17,
+      "rounds": 3,
+      "seconds": 4.926,
+      "startedMs": 237208,
+      "startedOrder": 4032
+    },
+    {
+      "cap": 43,
+      "endMoney": 1869,
+      "entryLevels": [
+        38,
+        37,
+        37,
+        37,
+        37,
+        38
+      ],
+      "entryMoney": 1199,
+      "location": "route-17",
+      "orders": 112,
+      "reward": 16,
+      "rounds": 5,
+      "seconds": 7.667,
+      "startedMs": 242320,
+      "startedOrder": 4122
+    },
+    {
+      "cap": 43,
+      "endMoney": 1889,
+      "entryLevels": [
+        39,
+        39,
+        39,
+        39,
+        39,
+        40
+      ],
+      "entryMoney": 1209,
+      "location": "route-18",
+      "orders": 118,
+      "reward": 16,
+      "rounds": 6,
+      "seconds": 7.482,
+      "startedMs": 250183,
+      "startedOrder": 4253
+    },
+    {
+      "cap": 43,
+      "endMoney": 1159,
+      "entryLevels": [
+        41,
+        40,
+        40,
+        40,
+        40,
+        41
+      ],
+      "entryMoney": 1159,
+      "location": "safari",
+      "orders": 1,
+      "reward": 0,
+      "rounds": 6,
+      "seconds": 0.006,
+      "startedMs": 257855,
+      "startedOrder": 4387
+    },
+    {
+      "cap": 43,
+      "entryLevels": [
+        41,
+        40,
+        40,
+        40,
+        40,
+        41
+      ],
+      "entryMoney": 1159,
+      "location": "koga",
+      "startedMs": 257988,
+      "startedOrder": 4389
+    }
+  ],
+  "failures": [],
+  "medals": [
+    "Medalla Roca",
+    "Medalla Cascada",
+    "Medalla Trueno",
+    "Medalla Arcoíris"
+  ],
+  "orders": 4669,
+  "phase": "defeat",
+  "scope": "Natural legal-command campaign; automated player, not a human or external hardware test.",
+  "seconds": 308.309,
+  "seed": "release-33-kanto",
+  "starter": 1
+}

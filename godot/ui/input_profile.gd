@@ -3,7 +3,7 @@ extends RefCounted
 # Adapted from the installed Godot skill's input_remap/settings templates.
 # Preferences belong to the player, never to a deterministic campaign journal.
 const PREFIX: String = "tactics_"
-const DEFAULT_PREFERENCES: Dictionary = {"textScale":100,"highContrast":false,"muted":false,"reducedMotion":false,"followCamera":true,"volume":70,"resultSeconds":3,"tutorialHints":true,"accessibleMode":false}
+const DEFAULT_PREFERENCES: Dictionary = {"textScale":100,"highContrast":false,"muted":false,"reducedMotion":false,"followCamera":true,"volume":70,"resultSeconds":3,"battleSpeed":100,"tutorialHints":true,"accessibleMode":false}
 var preferences: Dictionary = DEFAULT_PREFERENCES.duplicate(true)
 const ACTIONS: Dictionary = {
 	"accept":["Aceptar","Navegación",KEY_ENTER],"cancel":["Volver / cancelar","Navegación",KEY_ESCAPE],
@@ -216,6 +216,7 @@ static func preference_valid(field: String, value: Variant) -> bool:
 	if DEFAULT_PREFERENCES[field] is bool: return value is bool
 	if not (value is int or value is float) or value!=int(value): return false
 	if field=="textScale": return int(value) in [100,125,150]
+	if field=="battleSpeed": return int(value) in [100,150,200]
 	return value>=1 and value<=10 if field=="resultSeconds" else value>=0 and value<=100
 
 func set_preference(field: String, value: Variant) -> bool:

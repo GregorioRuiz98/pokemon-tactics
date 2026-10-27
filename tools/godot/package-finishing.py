@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 VERSION = re.search(r'config/version="([^"]+)"', (ROOT/'godot/project.godot').read_text(encoding='utf-8'))[1]
 CHAPTER = int(VERSION.split('.')[1])
 CONFIG = {
+    34: {'baseline':'071a21553bcc2b6c28b046c3199f53c5ec87f77f','report':'SPRINT_34_TACTICAL_QUALITY.md','ui':{'quality':204,'briefing':398,'review':46},'core':{'quality':6939},'edition':27},
     33: {'baseline':'51994283bd98575d56677cbb5703538dee292621','report':'SPRINT_33_REVIEW.md','ui':{'review':46,'climate':112,'playthrough':15000,'symbols':270,'sleep':15},'core':{'review':505},'edition':26},
     32: {'baseline':'aa18d6fbe039ec8c230db0c8b645a6f892e294db','report':'SPRINT_32_CLIMATE.md','ui':{'climate':112,'symbols':270,'sleep':15},'core':{'climate':487},'edition':25},
     31: {'baseline':'7ae0893684e2f72f65593b00f41c693dfdfd73f3','report':'SPRINT_31_POWER.md','ui':{'power':233,'copy':503},'core':{'power':1602},'edition':23},
@@ -67,6 +68,8 @@ def main():
             assert pair[0]['mapCatalogHash'] == digest(ROOT/'godot/data/kanto-landscapes.json')
         counts[suite] = pair[0]['assertions']
         selected = pair[0].get('screenshots', [])[:8]
+        if suite == 'quality':
+            selected += [name for name in pair[0].get('screenshots', []) if name in ['sabrina.png','blaine.png','giovanni-gym.png','champion.png','legendary-birds.png','legendary-origin.png']]
         if suite == 'kanto':
             selected += [name for name in pair[0].get('screenshots', []) if name in ['legendary-birds.png','legendary-origin.png','blastoise-cannons.png']]
         if suite == 'playthrough':
@@ -113,6 +116,21 @@ def main():
         for source, target in [('REGLAS_ACTUALES.md','REGLAS_ACTUALES.md'),('PLAYTEST_WINDOWS.md','PLAYTEST_WINDOWS.md'),('PLAYTEST_WINDOWS.md','GUIA_DE_PRUEBA.md'),('SPRINT_33_REVIEW.md','SPRINT_33_REVIEW.md'),('SPRINT_32_CLIMATE.md','SPRINT_32_CLIMATE.md')]:
             shutil.copy2(ROOT/'docs'/source,docs/target)
         shutil.copy2(ROOT/'tools/godot/check-pc.cmd',BUNDLE/'Comprobar-equipo.cmd')
+    if CHAPTER == 34:
+        campaign = read(WORK/'natural-quality-07/campaign-review.json')
+        assert not campaign['failures'] and campaign['phase']=='ending' and len(campaign['cleared'])==58
+        verification.update({'fullCampaignPlayed':True,'fullCampaignMode':'Automated legal-command campaign','humanPlaytest':False,'externalHardwareTest':False,'campaignOrders':campaign['orders'],'campaignLocations':58})
+        shutil.copy2(WORK/'attempt-01-koga'/'campaign-review.json',EVIDENCE/'attempt-01-koga.json')
+        for name in ['campaign-review.json','campaign-journal.json']:
+            shutil.copy2(WORK/'natural-quality-07'/name,EVIDENCE/name)
+        journal = read(WORK/'natural-quality-07/campaign-journal.json')
+        journal['expectedState'] = json.loads(read(WORK/'natural-quality-07/natural-save.json')['payload'])['state']
+        journal['encounters'] = campaign['encounters']
+        (EVIDENCE/'campaign-journal.json').write_text(json.dumps(journal,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
+        shutil.copy2(WORK/'natural-quality-05/campaign-review.json',EVIDENCE/'attempt-05-birds.json')
+        for name in ['MAPAS_0.34.csv','PLAYTEST_0.34.md']:
+            shutil.copy2(ROOT/'docs'/name,docs/name)
+        shutil.copy2(ROOT/'docs'/'SPRINT_33_REVIEW.md',docs/'SPRINT_33_REVIEW.md')
     if VERSION in ['0.31.1','0.31.2']:
         verification['sleepCorrection'] = 'Sleeping blocks movement routes and commands; old edition23 loads with backup and mixed replay.'
     for path in [EVIDENCE/'verification.json', docs/f'QA_0.{CHAPTER}.json']:
@@ -151,7 +169,7 @@ def main():
         for identity, move in read(ROOT/'godot/data/climate.json')['moves'].items():
             prices += f'{identity},"{move["name"]}",2,0,U,0\n'
         for path in [docs/'PP_MOVIMIENTOS.csv',EVIDENCE/'power-prices.csv']: path.write_text(prices,encoding='utf-8')
-    if CHAPTER == 33:
+    if CHAPTER >= 33:
         for name in ['REGLAS_ACTUALES.md','PLAYTEST_WINDOWS.md','SPRINT_32_CLIMATE.md']:
             shutil.copy2(ROOT/'docs'/name,docs/name)
         shutil.copy2(ROOT/'tools/godot/check-pc.cmd',BUNDLE/'Comprobar-equipo.cmd')

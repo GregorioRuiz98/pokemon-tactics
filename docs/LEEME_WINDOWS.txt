@@ -1,4 +1,4 @@
-POKÉMON TACTICS — KANTO — 0.33.1
+POKÉMON TACTICS — KANTO — 0.34.0
 
 Abre PokemonTactics.exe. No requiere instalar Godot, servidor ni cuenta.
 Los recursos están integrados y el juego funciona sin conexión.
@@ -7,6 +7,8 @@ Oak: elige inicial y comienza. La semilla se genera automáticamente.
 Tablero: clic o flechas/Enter. A: técnicas. R: rectificar solo movimiento
 antes de actuar. F: orientar y terminar. Escape: cancelar. F2: controles.
 F6: cambiar panel. C: centrar unidad. Rueda o +/-: zoom.
+
+Opciones: velocidad de combate 1x, 1,5x o 2x.
 
 Antes de empezar cada combate, consulta el equipo rival en las tarjetas
 inferiores. Clic o Tab/Enter abre su ficha; Escape vuelve. B: comenzar.
@@ -23,10 +25,12 @@ Revivir recupera la mitad de los PS; perder un combate termina la aventura.
 Finales consecutivos: Liga y rival, tres aves juntas, Mew y Mewtwo juntos.
 Sin capturas legendarias. Climas, naturalezas y habilidades en sus fichas.
 
-Continuar recupera la partida. Actualizar reglas se ofrece entre encuentros
+Continuar recupera la partida. La primera comprobación de un historial antiguo
+puede tardar; muestra progreso. Las cargas posteriores aprovechan su validación
+local. Copiar solo el guardado a otro PC provoca una comprobación completa. Actualizar reglas se ofrece entre encuentros
 y crea una copia previa. No abras dos instancias sobre el mismo guardado.
 Reglas actuales y recuperación: Documentacion/REGLAS_ACTUALES.md y
-Documentacion/PLAYTEST_WINDOWS.md. Cambios: Documentacion/CAMBIOS_0.33.md.
+Documentacion/PLAYTEST_WINDOWS.md. Cambios: Documentacion/CAMBIOS_0.34.md.
 
 Comprobar-equipo.cmd ejecuta un arranque con perfil aislado y muestra la
 ruta del informe. No toca tu partida habitual. En esta entrega se ha

@@ -5,6 +5,7 @@ const Info = preload("res://ui/move_info.gd")
 const Settings = preload("res://ui/presentation_settings.gd")
 var panel: PanelContainer
 var heading: Label
+var briefing: Label
 var row: HBoxContainer
 var scroll: ScrollContainer
 var dialog: AcceptDialog
@@ -24,6 +25,8 @@ func setup(app: Control) -> void:
 	panel.add_child(body)
 	heading = app._label("RIVALES",18)
 	body.add_child(heading)
+	briefing = app._label("",15)
+	body.add_child(briefing)
 	scroll = ScrollContainer.new()
 	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -51,6 +54,7 @@ func refresh(app: Control) -> void:
 		if was_visible:
 			app.actor_portrait.get_parent().get_parent().get_parent().show()
 			app.hint.get_parent().show()
+			app.board.extra_bottom = 60 if Settings.font_factor(app)>1.2 else -24
 		if dialog.visible: dialog.hide()
 		return
 	app.actor_portrait.get_parent().get_parent().get_parent().hide()
@@ -58,12 +62,20 @@ func refresh(app: Control) -> void:
 	var enemies: Array = app.state.units.filter(func(unit: Dictionary): return unit.team=="enemy")
 	var factor: float = Settings.font_factor(app)
 	panel.offset_left = 18; panel.offset_right = -app.board.reserved_right-8 if factor>1.2 else -18; panel.offset_bottom = -14
-	panel.offset_top = -280 if factor>1.2 else -196
-	var next: String = JSON.stringify([enemies,factor,app.input_profile.preferences.highContrast])
+	var context: Dictionary = app.state.get("briefing",{})
+	panel.offset_top = (-320 if factor>1.2 else -224) if not context.is_empty() else (-280 if factor>1.2 else -196)
+	if not context.is_empty(): app.board.extra_bottom = 100 if factor>1.2 else 4
+	var next: String = JSON.stringify([enemies,factor,app.input_profile.preferences.highContrast,context,app.state.get("mission",{})])
 	if next==signature: return
 	signature = next
 	app._clear(row); cards.clear()
-	heading.text = "EQUIPO RIVAL · %d"%enemies.size()
+	var mission: Dictionary = app.state.get("mission",{})
+	var objective: String = "Controla los mecanismos o derrota al rival" if mission.get("kind")=="secure" else "Protege a Fuji" if mission.get("kind")=="protect" else "Alcanza la salida o derrota al rival" if mission.get("kind")=="escape" else "Derrota al equipo rival"
+	heading.text = "RIVALES · %d · %s"%[enemies.size(),objective]
+	heading.tooltip_text = str(context.get("plan",""))
+	briefing.visible = not context.is_empty()
+	briefing.text = "%s: %s"%[context.get("speaker",""),context.get("line","")]
+	briefing.tooltip_text = str(context.get("plan",""))
 	for unit: Dictionary in enemies:
 		var types: PackedStringArray = []
 		for kind: String in unit.types: types.append(Info.TYPES.get(kind,kind))

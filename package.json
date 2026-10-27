@@ -131,7 +131,11 @@
     "godot:qa:playthrough": "node tools/godot/run.mjs qa-playthrough",
     "godot:qa:playthrough:export": "node tools/godot/run.mjs qa-playthrough-export",
     "godot:qa:briefing": "node tools/godot/run.mjs qa-briefing",
-    "godot:qa:briefing:export": "node tools/godot/run.mjs qa-briefing-export"
+    "godot:qa:briefing:export": "node tools/godot/run.mjs qa-briefing-export",
+    "godot:test:quality": "node tools/godot/run.mjs test-quality",
+    "godot:simulate:quality": "node tools/godot/run.mjs simulate-quality",
+    "godot:qa:quality": "node tools/godot/run.mjs qa-quality",
+    "godot:qa:quality:export": "node tools/godot/run.mjs qa-quality-export"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

@@ -1,6 +1,6 @@
 # Reglas actuales — campaña Windows
 
-Referencia vigente desde 0.33.0. Sustituye las descripciones antiguas de PT,
+Referencia vigente desde 0.34.0. Sustituye las descripciones antiguas de PT,
 caramelos, piedras consumibles, roles y finales excluyentes. Los informes de
 sprints anteriores describen sus propias versiones y se conservan como historial.
 
@@ -83,3 +83,14 @@ No hay servidor, cuentas obligatorias ni conexión al jugar.
 La publicación pública sigue aplazada. Véase [prueba Windows](PLAYTEST_WINDOWS.md)
 para arranque, controles, recuperación y pruebas en otro equipo. Una simulación
 o reproducción automática no equivale a una sesión humana externa.
+
+## Escenarios y lectura táctica0.34
+
+Los58 lugares tienen contexto y revisión de terreno. Cinco encuentros Rocket/
+instalaciones permiten controlar mecanismos o derrotar a todos los rivales.
+Preparación muestra el objetivo y el equipo real. La consulta de una casilla
+indica cobertura rival potencial, sin prometer una intención o impacto.
+Opciones permite velocidad1×/1,5×/2×. La duración de lectura es independiente.
+Las campañas26/27 certificadas cargan sin repetir su historial ya validado;
+si falta la certificación, se reconstruye completo con progreso. Detalles
+y compatibilidad en SPRINT_34_TACTICAL_QUALITY.md.

@@ -1,4 +1,5 @@
 extends Control
+var playback_speed: float = 1.0
 
 signal cue_requested(identity: String)
 signal cancelled
@@ -121,7 +122,7 @@ func advance(delta: float) -> void:
 	board.queue_redraw()
 
 func _process(delta: float) -> void:
-	advance(delta)
+	advance(delta*playback_speed)
 
 func offset_for(unit: Dictionary) -> Vector2:
 	if not active or board.reduced_motion: return Vector2.ZERO

@@ -536,7 +536,7 @@ func _process(delta):
 	if combat_feedback.attack_effect.active: return
 	var actor = Rules.active(state)
 	if actor.team == "enemy":
-		ai_clock += delta
+		ai_clock += delta*float(input_profile.preferences.get("battleSpeed",100))/100.0
 		if SpatialInput.enabled(self):
 			if turn_planner.phase=="idle": turn_planner.start(rules,state)
 			turn_planner.advance()

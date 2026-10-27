@@ -2,7 +2,7 @@
 
 Campaña táctica de Kanto para Windows, gratuita y offline, desarrollada con asistencia de IA para portfolio. Elige un inicial de Oak y recorre Kanto hasta la Liga, las tres aves y Mew/Mewtwo. Publicación pública aplazada.
 
-**Entrega actual 0.33.0:** revisión de campaña, decisiones de la IA, presentación y documentación. [Reglas vigentes](docs/REGLAS_ACTUALES.md) · [Jugar y probar en Windows](docs/PLAYTEST_WINDOWS.md) · [Desarrollo y versiones](godot/README.md) · [Informe de revisión](docs/SPRINT_33_REVIEW.md).
+**Entrega actual 0.34.0:** revisión de los58 escenarios, objetivos Rocket, tácticas de líderes, lectura de amenazas y carga validada rápida. [Reglas vigentes](docs/REGLAS_ACTUALES.md) · [Jugar y probar en Windows](docs/PLAYTEST_WINDOWS.md) · [Desarrollo y versiones](godot/README.md) · [Informe de revisión](docs/SPRINT_34_TACTICAL_QUALITY.md).
 
 Seis Pokémon y PC; cuatro técnicas más básico, PP al equipar sin gasto durante el combate. EXP por especie, evolución sin consumibles, naturalezas, 78 habilidades normales y climas. Tres ofertas de MT/equipables, medicina y mentas. Los guardados anteriores conservan sus reglas hasta actualizar entre encuentros, con copia.
 

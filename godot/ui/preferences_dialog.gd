@@ -25,6 +25,11 @@ func setup(owner_app: Control) -> void:
 	scale_choice.item_selected.connect(func(_index: int): change("textScale",scale_choice.get_selected_id()))
 	column.add_child(scale_choice)
 	widgets.textScale = scale_choice
+	var speed_choice: OptionButton = OptionButton.new()
+	for value: int in [100,150,200]: speed_choice.add_item("Velocidad de combate · %s×"%str(value/100.0),value)
+	speed_choice.select([100,150,200].find(int(app.input_profile.preferences.get("battleSpeed",100))))
+	speed_choice.item_selected.connect(func(_index: int): change("battleSpeed",speed_choice.get_selected_id()))
+	column.add_child(speed_choice); widgets.battleSpeed = speed_choice
 	for entry: Array in [["highContrast","Alto contraste"],["muted","Silenciar sonidos"],["reducedMotion","Movimiento reducido"],["followCamera","Seguir la unidad activa con la cámara"],["tutorialHints","Ayudas de aventura"],["accessibleMode","Texto de casilla y avisos accesibles (prototipo)"]]:
 		var field: String = entry[0]
 		var toggle: CheckButton = CheckButton.new()

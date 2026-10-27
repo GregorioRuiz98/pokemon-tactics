@@ -1,0 +1,59 @@
+﻿zona,titulo,personaje,contexto,terreno,plan_rival,objetivo,obstaculos_propuestos,alturas_propuestas
+route-1,Camino de Paleta,Oak,"Antes de avanzar, busca un camino de vuelta para tu compañero.",Camino central despejado; loma y hierba en los flancos.,wild,defeat,0,6
+route-2,La entrada al bosque,Explorador,El sendero se divide antes de llegar al Bosque Verde.,Dos accesos rodean la arboleda central; el oriental alcanza una loma.,wild,defeat,6,6
+forest,Los claros del Bosque Verde,Cazabichos,Cada claro tiene su salida. Fíjate antes de separar al equipo.,Los árboles cortan la visión. El paso central y el sendero norte conectan los claros.,wild,defeat,13,6
+brock,Las terrazas de Brock,Brock,Mi equipo aguanta firme. Tendrás que encontrar por dónde abrirte paso.,Dos accesos a la terraza. Geodude cubre el centro; los fósiles apoyan a Onix desde los lados.,formation,defeat,9,12
+route-3,Terrazas de la Ruta 3,Montañero,Las rocas dejan dos caminos hacia el otro lado.,"Sendero al pie de las montañas, salientes y acceso oriental a Monte Moon.",wild,defeat,2,9
+mt-moon,Cámaras de Monte Moon,Equipo Rocket,¡Los fósiles de esta cueva serán nuestros!,"Galerías de roca, cámara de fósiles y pasos alrededor de grandes columnas. Controla los dos mecanismos o derrota a todos los rivales.",wild,secure,2,9
+route-4,Salida de Monte Moon,Exploradora,Celeste está cerca. No pierdas de vista los desniveles.,La boca de la cueva queda arriba; el camino desciende hacia Celeste.,wild,defeat,2,9
+cerulean-rival,Plaza de Ciudad Celeste,Rival,A ver qué has aprendido desde que saliste de Paleta.,"Plaza de piedra, canal lateral y jardines ante el Puente Pepita.",trainer,defeat,2,9
+route-24,Puente Pepita,Entrenador del puente,En el Puente Pepita hay poco espacio para rodear al rival.,Puente ancho sobre el canal y una orilla de tierra conectada por ambos extremos.,wild,defeat,2,9
+route-25,Camino de Bill,Bill,La casa está al otro lado. Busca huecos entre los árboles.,"Laberinto suave de setos, costa y la casa de Bill al fondo.",wild,defeat,2,9
+misty,Gimnasio de Ciudad Celeste,Misty,¡Mi equipo no se quedará quieto esperando tus ataques!,"Dos piscinas separadas por pasarelas, acceso terrestre continuo y plataforma de Misty.",mobile,defeat,2,9
+route-5,Cuesta de la guardería,Excursionista,Las lomas protegen el camino al paso subterráneo.,"Camino descendente, cercado de la guardería y entrada al paso subterráneo.",wild,defeat,2,9
+route-6,Estanque de la Ruta 6,Campista,Los claros se conectan por los dos lados del estanque.,"Salida del túnel, estanque lateral y aproximación abierta a Ciudad Carmín.",wild,defeat,2,9
+ss-anne,Cubierta del S. S. Anne,Rival,En esta cubierta no puedes esconder a todo tu equipo.,"Cubierta de madera con camarotes, barandillas y escaleras a la toldilla.",trainer,defeat,2,9
+surge,Gimnasio de Ciudad Carmín,Lt. Surge,Un solo hueco en tu formación me basta.,"Hileras de papeleras, máquinas eléctricas y pasos abiertos entre ellas.",focus,defeat,3,9
+route-11,Pradera de Carmín,Entrenador,La hierba alta cubre los accesos al camino.,"Pradera ancha, árboles dispersos y entrada a la Cueva Diglett.",wild,defeat,2,9
+diglett-cave,Túnel de Diglett,Excavador,"El túnel se estrecha, pero hay pequeños apartaderos.",Un corredor de tierra comunica dos bocas; la cámara central permite rodear al rival.,wild,defeat,2,9
+route-22,Camino hacia la Liga,Rival,Este camino también lleva a la Liga. Todavía nos falta mucho.,Pradera con estanque y puerta de la Liga; el mismo terreno se revisita ante el rival.,wild,defeat,2,9
+route-9,Recodos de la Ruta 9,Montañera,La cornisa se alcanza desde ambos extremos.,Zigzag de roca entre terrazas y pasos laterales a distinta altura.,wild,defeat,2,9
+route-10,Ribera del Túnel Roca,Explorador,La central queda apartada del sendero principal.,"Río lateral, postes del tendido eléctrico y entrada de cueva en la ladera.",wild,defeat,2,9
+rock-tunnel,Galerías del Túnel Roca,Montañero,Las rocas ocultan el camino; vigila las salidas de cada sala.,Cavernas profundas con pilares y rampas visibles; la oscuridad no cambia precisión.,wild,defeat,2,9
+route-8,Setos de Lavanda,Entrenadora,Lavanda queda atrás. Ahora toca cruzar estas lomas.,"Hierba cercada, paso subterráneo y senda hacia Azulona.",wild,defeat,2,9
+route-7,Entrada a Azulona,Vecino de Azulona,Las calles laterales permiten rodear los obstáculos.,Tramo urbano corto con parterres y acceso al paso subterráneo.,wild,defeat,2,9
+erika,Jardín de Erika,Erika,Mi jardín favorece a quien sabe conservar su posición.,Senderos entre parterres y grandes árboles del gimnasio de Azulona.,control,defeat,4,9
+rocket-hideout,Almacén Rocket,Giovanni,No llegarás a mis planes sin cruzarte con mi equipo.,"Cajas, servidores y dos terminales operativos; acaba una activación sobre cada terminal. Controla los dos mecanismos o derrota a todos los rivales.",trainer,secure,2,9
+tower-rival,Vestíbulo de la Torre Pokémon,Rival,"Este lugar impone, pero quiero ver cómo combates aquí.","Primer piso amplio, lápidas a los lados y encuentro con el rival ante la escalera.",trainer,defeat,2,9
+pokemon-tower,Cámara de Marowak,Espíritu de Marowak,Un espíritu guarda el paso entre las lápidas.,Anillo de lápidas en torno a una plataforma ceremonial conectada por dos accesos.,wild,defeat,2,9
+fuji-rescue,Último piso de la Torre,Fuji,Los Rocket controlan la salida. No dejes que se acerquen.,Fuji espera en un claro de lápidas; conserva sus cuatro puntos de protección hasta la ronda 4.,trainer,protect,2,9
+route-12,Pasarela de los pescadores,Pescador,Las pasarelas son estrechas; las plataformas dejan espacio para cambiar de lado.,Pasarelas de madera junto al agua y una orilla seca para rodear el encuentro.,wild,defeat,2,9
+route-13,Cercados de la costa,Observador,Las vallas separan la hierba en varios corredores.,Vallas y setos dibujan pasos conectados; la zona central conserva espacio para desplegarse.,wild,defeat,2,9
+route-14,Corredor de hierba alta,Entrenadora,Un desvío largo puede darte una entrada mejor al claro.,Pradera longitudinal con arboleda oriental y una senda despejada.,wild,defeat,2,9
+route-15,Terrazas de Fucsia,Guarda de Fucsia,La última explanada antes de la ciudad tiene varios accesos.,"Dos caminos paralelos, superior e inferior, unidos por pendientes transitables.",wild,defeat,2,9
+route-16,Entrada al Camino de Bicis,Ciclista,La entrada al carril tiene espacio para abrir la formación.,"Límite urbano, caseta del acceso y carretera que comienza a descender.",wild,defeat,2,9
+route-17,Camino de Bicis,Ciclista,Domina un lateral antes de bajar por el centro.,Carretera ancha en terrazas descendentes con arcenes; no hay deslizamiento automático.,wild,defeat,2,9
+route-18,Salida del Camino de Bicis,Observador,"El carril termina, pero la hierba ofrece otra forma de acercarse.","Carretera llana, pequeños parterres y acceso occidental a Ciudad Fucsia.",wild,defeat,2,9
+safari,Entrada de la Zona Safari,Guarda Safari,Cruza los claros sin perder de vista las salidas entre árboles.,"Visita narrativa: entrada, estanque y arboleda. No añade otro combate ni captura.",wild,defeat,2,9
+koga,Dojo de Koga,Koga,El veneno es solo una parte de mi estrategia. Mira dónde pisas.,"Paneles del dojo visibles, pasillos de rodeo y las zonas de humo y veneno ya conocidas.",control,defeat,3,9
+silph-rival,Pasillos de Silph,Rival,Los transportadores cambian por completo cómo llegas al enemigo.,"Oficinas con escritorios, servidores y un corredor ancho ante el rival.",trainer,defeat,2,9
+silph-giovanni,Sala de juntas de Silph,Giovanni,Silph tiene demasiadas puertas. Mi equipo vigila las que importan.,"Despacho de la presidencia, alfombra central y plataforma de Giovanni. Controla los dos mecanismos o derrota a todos los rivales.",trainer,secure,2,9
+sabrina,Cámaras de Sabrina,Sabrina,Tu posición puede ser más frágil de lo que parece.,Salas conectadas por transportadores emparejados; la salida ocupada impide el transporte.,flank,defeat,2,9
+route-19,Playa de Fucsia,Nadadora,La arena firme une las entradas al agua.,"Franja de arena, agua a ambos lados y rocas que separan calas conectadas.",wild,defeat,2,9
+route-20,Islotes del sur,Nadador,Las islas dividen el frente. Decide dónde reunir al equipo.,Islas rocosas y pasos de piedra mantienen una ruta terrestre continua entre orillas.,wild,defeat,2,9
+seafoam,Cámaras de las Islas Espuma,Exploradora,Las plataformas de hielo rodean el paso hacia Canela.,"Cueva de hielo con agua, cristales y terrazas transitables; el hielo no desliza.",wild,defeat,2,9
+route-21,Costa de Pueblo Paleta,Pescador,Hay más de una entrada a la costa de Paleta.,"Costa cálida con arena, pequeñas islas y vista hacia Paleta.",wild,defeat,2,9
+pokemon-mansion,Mansión Pokémon,Investigador,La llave está dentro. Los mecanismos controlan los accesos.,"Laboratorio abandonado, estatuas, escritorios y restos de una galería superior. Controla los dos mecanismos o derrota a todos los rivales.",wild,secure,2,9
+blaine,Laboratorio de Blaine,Blaine,¡Un buen ataque necesita también una buena posición!,"Salas tecnológicas del gimnasio, monitores y fuego residual claramente señalado.",ranged,defeat,3,9
+giovanni-gym,Gimnasio de Ciudad Verde,Giovanni,Esta vez tendrás que atravesar toda mi formación.,"Suelo geométrico, estatuas y plataformas de roca; las trampas conservan su señalización.",formation,defeat,4,9
+power-plant,Central de Energía,Técnico,Los generadores separan las líneas de tiro.,Turbinas averiadas y pasillos técnicos. Zapdos espera junto a las otras aves al final. Controla los dos mecanismos o derrota a todos los rivales.,wild,secure,2,9
+league-rival,Regreso a la Ruta 22,Rival,La Liga está ahí delante. Demuéstrame que estás preparado.,"La misma pradera y puerta de la Liga, ahora con el equipo final del rival.",trainer,defeat,2,9
+route-23,Puertas de las ocho medallas,Guarda de la Liga,Ocho medallas abren el paso; las alturas ponen a prueba la formación.,Puertas de piedra escalonadas y ascenso a la Calle Victoria.,wild,defeat,2,9
+victory-road,Ascenso de Calle Victoria,Entrenadora veterana,En Calle Victoria cada paso elevado tiene otro acceso.,Cámaras y terrazas con varios accesos; todas las casillas de salida están conectadas.,wild,escape,2,9
+lorelei,Cámara de Lorelei,Lorelei,Espero que hayas aprendido a mantener unido al equipo.,"Piscinas laterales, columnas heladas y plataforma formal del Alto Mando.",control,defeat,2,9
+bruno,Dojo de Bruno,Bruno,¡Rompe mi formación si puedes!,"Sala de entrenamiento de piedra, grandes rocas y ascenso central al Alto Mando.",formation,defeat,2,9
+agatha,Cámara de Agatha,Agatha,Un equipo fuerte también debe saber responder a los estados.,Lápidas monumentales alrededor de un espacio abierto de combate.,control,defeat,2,9
+lance,Cámara de Lance,Lance,Has llegado lejos. Ahora demuestra cómo controlas el campo.,Entrada curva entre pilares y una arena amplia con plataforma del maestro dragón.,mobile,defeat,2,9
+champion,Sala del Campeón,Rival campeón,Solo quedamos tú y yo. ¡Este será nuestro mejor combate!,"Sala ceremonial simétrica, emblema central y columnas fuera de las líneas principales.",focus,defeat,2,9
+legendary-birds,Santuario de las tres aves,Santuario de los tres cielos,"Hielo, tormenta y fuego dominan tres frentes del santuario.","Tres sectores de hielo, electricidad y fuego unidos por rampas y un claro central. Primera prueba legendaria.",ranged,defeat,2,9
+legendary-origin,Caverna del origen,Cueva Celeste,Dos presencias aguardan entre las terrazas de cristal.,"Anillo de agua, cristales y pasos de roca; Mew y Mewtwo aguardan después de las tres aves.",flank,defeat,2,9

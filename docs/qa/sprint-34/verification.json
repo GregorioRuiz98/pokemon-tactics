@@ -1,0 +1,35 @@
+{
+  "version": "0.34.0",
+  "baseline": "071a21553bcc2b6c28b046c3199f53c5ec87f77f",
+  "publishedFilesUnchanged": [
+    "godot/core",
+    "godot/data",
+    "godot/tests",
+    "godot/assets",
+    "godot/art",
+    "src",
+    "public",
+    "tests",
+    "CREDITS.md"
+  ],
+  "campaignEdition": 27,
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "coreChecks": {
+    "quality": 6939
+  },
+  "uiChecksPerBuild": {
+    "quality": 204,
+    "briefing": 398,
+    "review": 46
+  },
+  "sourceAndExeStateMatch": true,
+  "publicDeployment": false,
+  "fullCampaignPlayed": true,
+  "fullCampaignMode": "Automated legal-command campaign",
+  "humanPlaytest": false,
+  "externalHardwareTest": false,
+  "campaignOrders": 7861,
+  "campaignLocations": 58
+}

@@ -1,6 +1,8 @@
-# Pokémon Tactics — Kanto Windows 0.33.0
+# Pokémon Tactics — Kanto Windows 0.34.0
 
-**Referencia actual:** [reglas vigentes](../docs/REGLAS_ACTUALES.md), [pruebas y recuperación Windows](../docs/PLAYTEST_WINDOWS.md), [revisión0.33](../docs/SPRINT_33_REVIEW.md). Las notas por versión siguientes son historial.
+**Referencia actual:** [reglas vigentes](../docs/REGLAS_ACTUALES.md), [pruebas y recuperación Windows](../docs/PLAYTEST_WINDOWS.md), [revisión0.34](../docs/SPRINT_34_TACTICAL_QUALITY.md). Las notas por versión siguientes son historial.
+
+**0.34.0:**58 escenarios revisados en16/24 casillas, cinco alternativas de control, contexto previo y tácticas de líderes. Consulta potencial de casillas, velocidad de combate configurable y carga con validación incremental/certificado local. Campaña27 y actualización con copia. [Escenarios](../docs/MAPAS_0.34.csv) · [Prueba humana](../docs/PLAYTEST_0.34.md).
 
 **0.32.0:** climas de sol/lluvia/arena, treinta habilidades pendientes aplicadas, sexo persistente y mentas con atributos ↑/↓ antes de comprar. Tres técnicas climáticas y MT; auras y previsión integradas. Actualización voluntaria entre combates con copia. [Cambios y comprobaciones](../docs/SPRINT_32_CLIMATE.md).
 
@@ -39,7 +41,7 @@ Cada aventura recibe una semilla nueva. Puedes editarla o generar otra con Oak y
 
 Abre PokemonTactics.exe; no necesitas editor, Node, cuenta ni servidor. Elige un inicial de Oak en una campaña nueva. Las partidas anteriores ofrecen **Actualizar revisión táctica** entre encuentros, con copia previa. Conserva equipo, PS, movimientos, rasgos, bolsa, dinero y diario. Un combate pendiente conserva sus reglas hasta finalizar. Ediciones anteriores siguen siendo legibles y no se convierten automáticamente. Consulta la guía Windows para recuperar una copia de la partida.
 
-Guardado local: `%APPDATA%/PokemonTacticsLab/kanto-save.json`. Cada orden aceptada se guarda antes de presentarse. Diario con checksum, copia y detección de otra instancia. Esquema kanto-journey, edición19 y transición explícita entre motores; hasta50000 órdenes/16 MB. No borres un guardado para actualizar. Laboratorio y versión web conservan archivos y reglas independientes.
+Guardado local: `%APPDATA%/PokemonTacticsLab/kanto-save.json`. Cada orden aceptada se guarda antes de presentarse. Diario con checksum, copia y detección de otra instancia. Esquema kanto-journey, edición27 y transición explícita entre motores; hasta50000 órdenes/16 MB. No borres un guardado para actualizar. Laboratorio y versión web conservan archivos y reglas independientes.
 
 ## Reglas vigentes
 
@@ -55,7 +57,7 @@ Isometría16/24, alturas0–2, subida+1 y salto terrestre1; voladores ignoran de
 
 Godot4.7.2 estándar. Recursos existentes, sin plugins nuevos. Importadores explícitos import-expedition.py y build-expedition.py; no regenerar manifiestos congelados para ocultar discrepancias. Pillow existente se localiza con PYTHONPATH=../../work/balance-python solo al importar. Los builds/juego no lo necesitan.
 
-Scripts de la raíz para esta entrega: `godot:verify`, `godot:test:review`, `godot:qa:review`, `godot:qa:playthrough` y sus variantes `:export`, además de `godot:export` y `godot:package`. QA usa archivos aislados, controles/eventos de tablero y comparación con el dominio; no sustituye valoración humana de diversión/balance. El diario reproducible y los resultados están en docs/qa/sprint-33; el informe explica los intentos fallidos y los límites de las pruebas. Paquetes fuera de Git en outputs/releases/pokemon-tactics-0.33.0. Publicación pública aplazada.
+Scripts de la raíz para esta entrega: `godot:verify`, `godot:test:quality`, `godot:qa:quality`, `godot:simulate:quality`, `godot:qa:briefing`, `godot:qa:review` y sus variantes `:export`, además de `godot:export` y `godot:package`. QA usa archivos aislados, controles/eventos de tablero y comparación con el dominio; no sustituye valoración humana de diversión/balance. El diario reproducible y los resultados están en docs/qa/sprint-34; el informe explica los intentos fallidos y los límites de las pruebas. Paquetes fuera de Git en outputs/releases/pokemon-tactics-0.34.0. Publicación pública aplazada.
 
 Prueba manual: [guía Windows](../docs/PLAYTEST_WINDOWS.md). Balance y propuestas: [informe de29 simulaciones](../docs/reports/balance-native-0.22/INFORME.md). No se cambian parámetros para favorecer los ensayos.
 

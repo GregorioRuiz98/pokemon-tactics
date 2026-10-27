@@ -1,0 +1,4250 @@
+{
+  "route-1": {
+    "title": "Camino de Paleta",
+    "speaker": "Oak",
+    "line": "Antes de avanzar, busca un camino de vuelta para tu compañero.",
+    "plan": "Camino central despejado; loma y hierba en los flancos.",
+    "walls": [],
+    "rough": [
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        11,
+        8
+      ],
+      [
+        12,
+        8
+      ],
+      [
+        11,
+        9
+      ],
+      [
+        12,
+        9
+      ]
+    ],
+    "high": [
+      [
+        10,
+        7
+      ],
+      [
+        11,
+        7
+      ],
+      [
+        12,
+        7
+      ],
+      [
+        10,
+        8
+      ],
+      [
+        11,
+        8
+      ],
+      [
+        12,
+        8
+      ]
+    ],
+    "spawns": [
+      [
+        9,
+        5
+      ],
+      [
+        10,
+        5
+      ],
+      [
+        11,
+        4
+      ],
+      [
+        11,
+        6
+      ],
+      [
+        12,
+        4
+      ],
+      [
+        12,
+        6
+      ]
+    ],
+    "mode": "authored",
+    "style": "wild"
+  },
+  "route-2": {
+    "title": "La entrada al bosque",
+    "speaker": "Explorador",
+    "line": "El sendero se divide antes de llegar al Bosque Verde.",
+    "plan": "Dos accesos rodean la arboleda central; el oriental alcanza una loma.",
+    "walls": [
+      [
+        7,
+        4
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        7,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        8,
+        7
+      ]
+    ],
+    "rough": [
+      [
+        5,
+        3
+      ],
+      [
+        6,
+        3
+      ],
+      [
+        9,
+        8
+      ],
+      [
+        10,
+        8
+      ],
+      [
+        11,
+        8
+      ]
+    ],
+    "high": [
+      [
+        10,
+        4
+      ],
+      [
+        11,
+        4
+      ],
+      [
+        12,
+        4
+      ],
+      [
+        10,
+        5
+      ],
+      [
+        11,
+        5
+      ],
+      [
+        12,
+        5
+      ]
+    ],
+    "spawns": [
+      [
+        10,
+        5
+      ],
+      [
+        11,
+        6
+      ],
+      [
+        9,
+        3
+      ],
+      [
+        12,
+        6
+      ],
+      [
+        10,
+        3
+      ],
+      [
+        12,
+        3
+      ]
+    ],
+    "mode": "authored",
+    "style": "wild"
+  },
+  "forest": {
+    "title": "Los claros del Bosque Verde",
+    "speaker": "Cazabichos",
+    "line": "Cada claro tiene su salida. Fíjate antes de separar al equipo.",
+    "plan": "Los árboles cortan la visión. El paso central y el sendero norte conectan los claros.",
+    "walls": [
+      [
+        6,
+        3
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        7
+      ],
+      [
+        9,
+        7
+      ],
+      [
+        10,
+        7
+      ],
+      [
+        8,
+        3
+      ],
+      [
+        9,
+        3
+      ],
+      [
+        10,
+        3
+      ],
+      [
+        11,
+        9
+      ],
+      [
+        12,
+        9
+      ]
+    ],
+    "rough": [
+      [
+        7,
+        5
+      ],
+      [
+        8,
+        5
+      ],
+      [
+        9,
+        5
+      ],
+      [
+        10,
+        5
+      ],
+      [
+        9,
+        8
+      ],
+      [
+        10,
+        8
+      ]
+    ],
+    "high": [
+      [
+        10,
+        4
+      ],
+      [
+        11,
+        4
+      ],
+      [
+        12,
+        4
+      ],
+      [
+        10,
+        5
+      ],
+      [
+        11,
+        5
+      ],
+      [
+        12,
+        5
+      ]
+    ],
+    "spawns": [
+      [
+        9,
+        5
+      ],
+      [
+        11,
+        5
+      ],
+      [
+        9,
+        2
+      ],
+      [
+        11,
+        8
+      ],
+      [
+        12,
+        6
+      ],
+      [
+        10,
+        9
+      ]
+    ],
+    "mode": "authored",
+    "style": "wild"
+  },
+  "brock": {
+    "title": "Las terrazas de Brock",
+    "speaker": "Brock",
+    "line": "Mi equipo aguanta firme. Tendrás que encontrar por dónde abrirte paso.",
+    "plan": "Dos accesos a la terraza. Geodude cubre el centro; los fósiles apoyan a Onix desde los lados.",
+    "walls": [
+      [
+        7,
+        4
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        7,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        9,
+        4
+      ],
+      [
+        10,
+        8
+      ],
+      [
+        11,
+        8
+      ],
+      [
+        12,
+        8
+      ]
+    ],
+    "rough": [
+      [
+        6,
+        5
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        9,
+        7
+      ],
+      [
+        10,
+        7
+      ]
+    ],
+    "high": [
+      [
+        9,
+        3
+      ],
+      [
+        10,
+        3
+      ],
+      [
+        11,
+        3
+      ],
+      [
+        12,
+        3
+      ],
+      [
+        9,
+        5
+      ],
+      [
+        10,
+        5
+      ],
+      [
+        11,
+        5
+      ],
+      [
+        12,
+        5
+      ],
+      [
+        9,
+        6
+      ],
+      [
+        10,
+        6
+      ],
+      [
+        11,
+        6
+      ],
+      [
+        12,
+        6
+      ]
+    ],
+    "spawns": [
+      [
+        8,
+        6
+      ],
+      [
+        10,
+        3
+      ],
+      [
+        11,
+        6
+      ],
+      [
+        12,
+        5
+      ],
+      [
+        10,
+        6
+      ],
+      [
+        12,
+        3
+      ]
+    ],
+    "mode": "authored",
+    "style": "formation"
+  },
+  "route-3": {
+    "mode": "refine",
+    "title": "Terrazas de la Ruta 3",
+    "speaker": "Montañero",
+    "line": "Las rocas dejan dos caminos hacia el otro lado.",
+    "plan": "Sendero al pie de las montañas, salientes y acceso oriental a Monte Moon.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ]
+    ],
+    "prop": "pillar",
+    "style": "wild",
+    "reviewed": true
+  },
+  "mt-moon": {
+    "mode": "refine",
+    "title": "Cámaras de Monte Moon",
+    "speaker": "Equipo Rocket",
+    "line": "¡Los fósiles de esta cueva serán nuestros!",
+    "plan": "Galerías de roca, cámara de fósiles y pasos alrededor de grandes columnas. Controla los dos mecanismos o derrota a todos los rivales.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        11,
+        7,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ],
+      [
+        11,
+        8,
+        1
+      ]
+    ],
+    "prop": "rock",
+    "style": "wild",
+    "objective": {
+      "kind": "secure",
+      "points": [
+        [
+          11,
+          3
+        ],
+        [
+          12,
+          7
+        ]
+      ]
+    },
+    "reviewed": true
+  },
+  "route-4": {
+    "mode": "refine",
+    "title": "Salida de Monte Moon",
+    "speaker": "Exploradora",
+    "line": "Celeste está cerca. No pierdas de vista los desniveles.",
+    "plan": "La boca de la cueva queda arriba; el camino desciende hacia Celeste.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        4,
+        1
+      ],
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ]
+    ],
+    "prop": "pillar",
+    "style": "wild",
+    "reviewed": true
+  },
+  "cerulean-rival": {
+    "mode": "refine",
+    "title": "Plaza de Ciudad Celeste",
+    "speaker": "Rival",
+    "line": "A ver qué has aprendido desde que saliste de Paleta.",
+    "plan": "Plaza de piedra, canal lateral y jardines ante el Puente Pepita.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        11,
+        7,
+        1
+      ]
+    ],
+    "prop": "pillar",
+    "style": "trainer",
+    "reviewed": true
+  },
+  "route-24": {
+    "mode": "refine",
+    "title": "Puente Pepita",
+    "speaker": "Entrenador del puente",
+    "line": "En el Puente Pepita hay poco espacio para rodear al rival.",
+    "plan": "Puente ancho sobre el canal y una orilla de tierra conectada por ambos extremos.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        8,
+        8,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ]
+    ],
+    "prop": "pillar",
+    "style": "wild",
+    "reviewed": true
+  },
+  "route-25": {
+    "mode": "refine",
+    "title": "Camino de Bill",
+    "speaker": "Bill",
+    "line": "La casa está al otro lado. Busca huecos entre los árboles.",
+    "plan": "Laberinto suave de setos, costa y la casa de Bill al fondo.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        11,
+        4,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ]
+    ],
+    "prop": "bush",
+    "style": "wild",
+    "reviewed": true
+  },
+  "misty": {
+    "mode": "refine",
+    "title": "Gimnasio de Ciudad Celeste",
+    "speaker": "Misty",
+    "line": "¡Mi equipo no se quedará quieto esperando tus ataques!",
+    "plan": "Dos piscinas separadas por pasarelas, acceso terrestre continuo y plataforma de Misty.",
+    "walls": [
+      [
+        7,
+        5
+      ],
+      [
+        8,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ]
+    ],
+    "prop": "rock",
+    "style": "mobile",
+    "reviewed": true
+  },
+  "route-5": {
+    "mode": "refine",
+    "title": "Cuesta de la guardería",
+    "speaker": "Excursionista",
+    "line": "Las lomas protegen el camino al paso subterráneo.",
+    "plan": "Camino descendente, cercado de la guardería y entrada al paso subterráneo.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        11,
+        7,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ],
+      [
+        11,
+        8,
+        1
+      ]
+    ],
+    "prop": "bush",
+    "style": "wild",
+    "reviewed": true
+  },
+  "route-6": {
+    "mode": "refine",
+    "title": "Estanque de la Ruta 6",
+    "speaker": "Campista",
+    "line": "Los claros se conectan por los dos lados del estanque.",
+    "plan": "Salida del túnel, estanque lateral y aproximación abierta a Ciudad Carmín.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        4,
+        1
+      ],
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ]
+    ],
+    "prop": "bush",
+    "style": "wild",
+    "reviewed": true
+  },
+  "ss-anne": {
+    "mode": "refine",
+    "title": "Cubierta del S. S. Anne",
+    "speaker": "Rival",
+    "line": "En esta cubierta no puedes esconder a todo tu equipo.",
+    "plan": "Cubierta de madera con camarotes, barandillas y escaleras a la toldilla.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        11,
+        7,
+        1
+      ]
+    ],
+    "prop": "desk",
+    "style": "trainer",
+    "reviewed": true
+  },
+  "surge": {
+    "mode": "refine",
+    "title": "Gimnasio de Ciudad Carmín",
+    "speaker": "Lt. Surge",
+    "line": "Un solo hueco en tu formación me basta.",
+    "plan": "Hileras de papeleras, máquinas eléctricas y pasos abiertos entre ellas.",
+    "walls": [
+      [
+        7,
+        4
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        10,
+        8
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        8,
+        8,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ]
+    ],
+    "prop": "server",
+    "style": "focus",
+    "reviewed": true
+  },
+  "route-11": {
+    "mode": "refine",
+    "title": "Pradera de Carmín",
+    "speaker": "Entrenador",
+    "line": "La hierba alta cubre los accesos al camino.",
+    "plan": "Pradera ancha, árboles dispersos y entrada a la Cueva Diglett.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        11,
+        4,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ]
+    ],
+    "prop": "bush",
+    "style": "wild",
+    "reviewed": true
+  },
+  "diglett-cave": {
+    "mode": "refine",
+    "title": "Túnel de Diglett",
+    "speaker": "Excavador",
+    "line": "El túnel se estrecha, pero hay pequeños apartaderos.",
+    "plan": "Un corredor de tierra comunica dos bocas; la cámara central permite rodear al rival.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ]
+    ],
+    "prop": "rock",
+    "style": "wild",
+    "reviewed": true
+  },
+  "route-22": {
+    "mode": "refine",
+    "title": "Camino hacia la Liga",
+    "speaker": "Rival",
+    "line": "Este camino también lleva a la Liga. Todavía nos falta mucho.",
+    "plan": "Pradera con estanque y puerta de la Liga; el mismo terreno se revisita ante el rival.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        11,
+        7,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ],
+      [
+        11,
+        8,
+        1
+      ]
+    ],
+    "prop": "bush",
+    "style": "wild",
+    "reviewed": true
+  },
+  "route-9": {
+    "mode": "refine",
+    "title": "Recodos de la Ruta 9",
+    "speaker": "Montañera",
+    "line": "La cornisa se alcanza desde ambos extremos.",
+    "plan": "Zigzag de roca entre terrazas y pasos laterales a distinta altura.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        4,
+        1
+      ],
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ]
+    ],
+    "prop": "pillar",
+    "style": "wild",
+    "reviewed": true
+  },
+  "route-10": {
+    "mode": "refine",
+    "title": "Ribera del Túnel Roca",
+    "speaker": "Explorador",
+    "line": "La central queda apartada del sendero principal.",
+    "plan": "Río lateral, postes del tendido eléctrico y entrada de cueva en la ladera.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        11,
+        7,
+        1
+      ]
+    ],
+    "prop": "bush",
+    "style": "wild",
+    "reviewed": true
+  },
+  "rock-tunnel": {
+    "mode": "refine",
+    "title": "Galerías del Túnel Roca",
+    "speaker": "Montañero",
+    "line": "Las rocas ocultan el camino; vigila las salidas de cada sala.",
+    "plan": "Cavernas profundas con pilares y rampas visibles; la oscuridad no cambia precisión.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        2
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        8,
+        8,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ]
+    ],
+    "prop": "rock",
+    "style": "wild",
+    "reviewed": true
+  },
+  "route-8": {
+    "mode": "refine",
+    "title": "Setos de Lavanda",
+    "speaker": "Entrenadora",
+    "line": "Lavanda queda atrás. Ahora toca cruzar estas lomas.",
+    "plan": "Hierba cercada, paso subterráneo y senda hacia Azulona.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        11,
+        4,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        2
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ]
+    ],
+    "prop": "bush",
+    "style": "wild",
+    "reviewed": true
+  },
+  "route-7": {
+    "mode": "refine",
+    "title": "Entrada a Azulona",
+    "speaker": "Vecino de Azulona",
+    "line": "Las calles laterales permiten rodear los obstáculos.",
+    "plan": "Tramo urbano corto con parterres y acceso al paso subterráneo.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        2
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ]
+    ],
+    "prop": "pillar",
+    "style": "wild",
+    "reviewed": true
+  },
+  "erika": {
+    "mode": "refine",
+    "title": "Jardín de Erika",
+    "speaker": "Erika",
+    "line": "Mi jardín favorece a quien sabe conservar su posición.",
+    "plan": "Senderos entre parterres y grandes árboles del gimnasio de Azulona.",
+    "walls": [
+      [
+        7,
+        3
+      ],
+      [
+        7,
+        4
+      ],
+      [
+        10,
+        8
+      ],
+      [
+        11,
+        8
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        2
+      ],
+      [
+        11,
+        7,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ],
+      [
+        11,
+        8,
+        1
+      ]
+    ],
+    "prop": "oak",
+    "style": "control",
+    "reviewed": true
+  },
+  "rocket-hideout": {
+    "mode": "refine",
+    "title": "Almacén Rocket",
+    "speaker": "Giovanni",
+    "line": "No llegarás a mis planes sin cruzarte con mi equipo.",
+    "plan": "Cajas, servidores y dos terminales operativos; acaba una activación sobre cada terminal. Controla los dos mecanismos o derrota a todos los rivales.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        4,
+        1
+      ],
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        2
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ]
+    ],
+    "prop": "server",
+    "style": "trainer",
+    "objective": {
+      "kind": "secure",
+      "points": [
+        [
+          11,
+          3
+        ],
+        [
+          12,
+          7
+        ]
+      ]
+    },
+    "reviewed": true
+  },
+  "tower-rival": {
+    "mode": "refine",
+    "title": "Vestíbulo de la Torre Pokémon",
+    "speaker": "Rival",
+    "line": "Este lugar impone, pero quiero ver cómo combates aquí.",
+    "plan": "Primer piso amplio, lápidas a los lados y encuentro con el rival ante la escalera.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        2
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        11,
+        7,
+        1
+      ]
+    ],
+    "prop": "tomb",
+    "style": "trainer",
+    "reviewed": true
+  },
+  "pokemon-tower": {
+    "mode": "refine",
+    "title": "Cámara de Marowak",
+    "speaker": "Espíritu de Marowak",
+    "line": "Un espíritu guarda el paso entre las lápidas.",
+    "plan": "Anillo de lápidas en torno a una plataforma ceremonial conectada por dos accesos.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        2
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        8,
+        8,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ]
+    ],
+    "prop": "tomb",
+    "style": "wild",
+    "reviewed": true
+  },
+  "fuji-rescue": {
+    "mode": "refine",
+    "title": "Último piso de la Torre",
+    "speaker": "Fuji",
+    "line": "Los Rocket controlan la salida. No dejes que se acerquen.",
+    "plan": "Fuji espera en un claro de lápidas; conserva sus cuatro puntos de protección hasta la ronda 4.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        11,
+        4,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        2
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ]
+    ],
+    "prop": "tomb",
+    "style": "trainer",
+    "reviewed": true
+  },
+  "route-12": {
+    "mode": "refine",
+    "title": "Pasarela de los pescadores",
+    "speaker": "Pescador",
+    "line": "Las pasarelas son estrechas; las plataformas dejan espacio para cambiar de lado.",
+    "plan": "Pasarelas de madera junto al agua y una orilla seca para rodear el encuentro.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        2
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ]
+    ],
+    "prop": "pillar",
+    "style": "wild",
+    "reviewed": true
+  },
+  "route-13": {
+    "mode": "refine",
+    "title": "Cercados de la costa",
+    "speaker": "Observador",
+    "line": "Las vallas separan la hierba en varios corredores.",
+    "plan": "Vallas y setos dibujan pasos conectados; la zona central conserva espacio para desplegarse.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        2
+      ],
+      [
+        11,
+        7,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ],
+      [
+        11,
+        8,
+        1
+      ]
+    ],
+    "prop": "bush",
+    "style": "wild",
+    "reviewed": true
+  },
+  "route-14": {
+    "mode": "refine",
+    "title": "Corredor de hierba alta",
+    "speaker": "Entrenadora",
+    "line": "Un desvío largo puede darte una entrada mejor al claro.",
+    "plan": "Pradera longitudinal con arboleda oriental y una senda despejada.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        4,
+        1
+      ],
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        2
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ]
+    ],
+    "prop": "bush",
+    "style": "wild",
+    "reviewed": true
+  },
+  "route-15": {
+    "mode": "refine",
+    "title": "Terrazas de Fucsia",
+    "speaker": "Guarda de Fucsia",
+    "line": "La última explanada antes de la ciudad tiene varios accesos.",
+    "plan": "Dos caminos paralelos, superior e inferior, unidos por pendientes transitables.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        2
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        11,
+        7,
+        1
+      ]
+    ],
+    "prop": "bush",
+    "style": "wild",
+    "reviewed": true
+  },
+  "route-16": {
+    "mode": "refine",
+    "title": "Entrada al Camino de Bicis",
+    "speaker": "Ciclista",
+    "line": "La entrada al carril tiene espacio para abrir la formación.",
+    "plan": "Límite urbano, caseta del acceso y carretera que comienza a descender.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        2
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        8,
+        8,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ]
+    ],
+    "prop": "pillar",
+    "style": "wild",
+    "reviewed": true
+  },
+  "route-17": {
+    "mode": "refine",
+    "title": "Camino de Bicis",
+    "speaker": "Ciclista",
+    "line": "Domina un lateral antes de bajar por el centro.",
+    "plan": "Carretera ancha en terrazas descendentes con arcenes; no hay deslizamiento automático.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        11,
+        4,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        2
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ]
+    ],
+    "prop": "pillar",
+    "style": "wild",
+    "reviewed": true
+  },
+  "route-18": {
+    "mode": "refine",
+    "title": "Salida del Camino de Bicis",
+    "speaker": "Observador",
+    "line": "El carril termina, pero la hierba ofrece otra forma de acercarse.",
+    "plan": "Carretera llana, pequeños parterres y acceso occidental a Ciudad Fucsia.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        2
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ]
+    ],
+    "prop": "bush",
+    "style": "wild",
+    "reviewed": true
+  },
+  "safari": {
+    "mode": "refine",
+    "title": "Entrada de la Zona Safari",
+    "speaker": "Guarda Safari",
+    "line": "Cruza los claros sin perder de vista las salidas entre árboles.",
+    "plan": "Visita narrativa: entrada, estanque y arboleda. No añade otro combate ni captura.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        2
+      ],
+      [
+        11,
+        7,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ],
+      [
+        11,
+        8,
+        1
+      ]
+    ],
+    "prop": "oak",
+    "style": "wild",
+    "reviewed": true
+  },
+  "koga": {
+    "mode": "refine",
+    "title": "Dojo de Koga",
+    "speaker": "Koga",
+    "line": "El veneno es solo una parte de mi estrategia. Mira dónde pisas.",
+    "plan": "Paneles del dojo visibles, pasillos de rodeo y las zonas de humo y veneno ya conocidas.",
+    "walls": [
+      [
+        7,
+        4
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        10,
+        8
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        4,
+        1
+      ],
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        2
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ]
+    ],
+    "prop": "desk",
+    "style": "control",
+    "reviewed": true
+  },
+  "silph-rival": {
+    "mode": "refine",
+    "title": "Pasillos de Silph",
+    "speaker": "Rival",
+    "line": "Los transportadores cambian por completo cómo llegas al enemigo.",
+    "plan": "Oficinas con escritorios, servidores y un corredor ancho ante el rival.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        2
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        11,
+        7,
+        1
+      ]
+    ],
+    "prop": "server",
+    "style": "trainer",
+    "reviewed": true
+  },
+  "silph-giovanni": {
+    "mode": "refine",
+    "title": "Sala de juntas de Silph",
+    "speaker": "Giovanni",
+    "line": "Silph tiene demasiadas puertas. Mi equipo vigila las que importan.",
+    "plan": "Despacho de la presidencia, alfombra central y plataforma de Giovanni. Controla los dos mecanismos o derrota a todos los rivales.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        2
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        8,
+        8,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ]
+    ],
+    "prop": "server",
+    "style": "trainer",
+    "objective": {
+      "kind": "secure",
+      "points": [
+        [
+          11,
+          3
+        ],
+        [
+          12,
+          7
+        ]
+      ]
+    },
+    "reviewed": true
+  },
+  "sabrina": {
+    "mode": "refine",
+    "title": "Cámaras de Sabrina",
+    "speaker": "Sabrina",
+    "line": "Tu posición puede ser más frágil de lo que parece.",
+    "plan": "Salas conectadas por transportadores emparejados; la salida ocupada impide el transporte.",
+    "walls": [
+      [
+        7,
+        5
+      ],
+      [
+        10,
+        7
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        11,
+        4,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        2
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ]
+    ],
+    "prop": "statue",
+    "style": "flank",
+    "reviewed": true
+  },
+  "route-19": {
+    "mode": "refine",
+    "title": "Playa de Fucsia",
+    "speaker": "Nadadora",
+    "line": "La arena firme une las entradas al agua.",
+    "plan": "Franja de arena, agua a ambos lados y rocas que separan calas conectadas.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        2
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ]
+    ],
+    "prop": "rock",
+    "style": "wild",
+    "reviewed": true
+  },
+  "route-20": {
+    "mode": "refine",
+    "title": "Islotes del sur",
+    "speaker": "Nadador",
+    "line": "Las islas dividen el frente. Decide dónde reunir al equipo.",
+    "plan": "Islas rocosas y pasos de piedra mantienen una ruta terrestre continua entre orillas.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        2
+      ],
+      [
+        11,
+        7,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ],
+      [
+        11,
+        8,
+        1
+      ]
+    ],
+    "prop": "rock",
+    "style": "wild",
+    "reviewed": true
+  },
+  "seafoam": {
+    "mode": "refine",
+    "title": "Cámaras de las Islas Espuma",
+    "speaker": "Exploradora",
+    "line": "Las plataformas de hielo rodean el paso hacia Canela.",
+    "plan": "Cueva de hielo con agua, cristales y terrazas transitables; el hielo no desliza.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        4,
+        1
+      ],
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        2
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ]
+    ],
+    "prop": "crystal",
+    "style": "wild",
+    "reviewed": true
+  },
+  "route-21": {
+    "mode": "refine",
+    "title": "Costa de Pueblo Paleta",
+    "speaker": "Pescador",
+    "line": "Hay más de una entrada a la costa de Paleta.",
+    "plan": "Costa cálida con arena, pequeñas islas y vista hacia Paleta.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        2
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        11,
+        7,
+        1
+      ]
+    ],
+    "prop": "rock",
+    "style": "wild",
+    "reviewed": true
+  },
+  "pokemon-mansion": {
+    "mode": "refine",
+    "title": "Mansión Pokémon",
+    "speaker": "Investigador",
+    "line": "La llave está dentro. Los mecanismos controlan los accesos.",
+    "plan": "Laboratorio abandonado, estatuas, escritorios y restos de una galería superior. Controla los dos mecanismos o derrota a todos los rivales.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        2
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        8,
+        8,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ]
+    ],
+    "prop": "pillar",
+    "style": "wild",
+    "objective": {
+      "kind": "secure",
+      "points": [
+        [
+          11,
+          3
+        ],
+        [
+          12,
+          7
+        ]
+      ]
+    },
+    "reviewed": true
+  },
+  "blaine": {
+    "mode": "refine",
+    "title": "Laboratorio de Blaine",
+    "speaker": "Blaine",
+    "line": "¡Un buen ataque necesita también una buena posición!",
+    "plan": "Salas tecnológicas del gimnasio, monitores y fuego residual claramente señalado.",
+    "walls": [
+      [
+        7,
+        4
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        10,
+        8
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        11,
+        4,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        2
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ]
+    ],
+    "prop": "server",
+    "style": "ranged",
+    "reviewed": true
+  },
+  "giovanni-gym": {
+    "mode": "refine",
+    "title": "Gimnasio de Ciudad Verde",
+    "speaker": "Giovanni",
+    "line": "Esta vez tendrás que atravesar toda mi formación.",
+    "plan": "Suelo geométrico, estatuas y plataformas de roca; las trampas conservan su señalización.",
+    "walls": [
+      [
+        7,
+        4
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        10,
+        8
+      ],
+      [
+        11,
+        8
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        2
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ]
+    ],
+    "prop": "pillar",
+    "style": "formation",
+    "reviewed": true
+  },
+  "power-plant": {
+    "mode": "refine",
+    "title": "Central de Energía",
+    "speaker": "Técnico",
+    "line": "Los generadores separan las líneas de tiro.",
+    "plan": "Turbinas averiadas y pasillos técnicos. Zapdos espera junto a las otras aves al final. Controla los dos mecanismos o derrota a todos los rivales.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        2
+      ],
+      [
+        11,
+        7,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ],
+      [
+        11,
+        8,
+        1
+      ]
+    ],
+    "prop": "server",
+    "style": "wild",
+    "objective": {
+      "kind": "secure",
+      "points": [
+        [
+          11,
+          3
+        ],
+        [
+          12,
+          7
+        ]
+      ]
+    },
+    "reviewed": true
+  },
+  "league-rival": {
+    "mode": "refine",
+    "title": "Regreso a la Ruta 22",
+    "speaker": "Rival",
+    "line": "La Liga está ahí delante. Demuéstrame que estás preparado.",
+    "plan": "La misma pradera y puerta de la Liga, ahora con el equipo final del rival.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        4,
+        1
+      ],
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        2
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ]
+    ],
+    "prop": "bush",
+    "style": "trainer",
+    "reviewed": true
+  },
+  "route-23": {
+    "mode": "refine",
+    "title": "Puertas de las ocho medallas",
+    "speaker": "Guarda de la Liga",
+    "line": "Ocho medallas abren el paso; las alturas ponen a prueba la formación.",
+    "plan": "Puertas de piedra escalonadas y ascenso a la Calle Victoria.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        2
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        11,
+        7,
+        1
+      ]
+    ],
+    "prop": "pillar",
+    "style": "wild",
+    "reviewed": true
+  },
+  "victory-road": {
+    "mode": "refine",
+    "title": "Ascenso de Calle Victoria",
+    "speaker": "Entrenadora veterana",
+    "line": "En Calle Victoria cada paso elevado tiene otro acceso.",
+    "plan": "Cámaras y terrazas con varios accesos; todas las casillas de salida están conectadas.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        2
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        8,
+        8,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ]
+    ],
+    "prop": "rock",
+    "style": "wild",
+    "reviewed": true
+  },
+  "lorelei": {
+    "mode": "refine",
+    "title": "Cámara de Lorelei",
+    "speaker": "Lorelei",
+    "line": "Espero que hayas aprendido a mantener unido al equipo.",
+    "plan": "Piscinas laterales, columnas heladas y plataforma formal del Alto Mando.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        11,
+        4,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        2
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ]
+    ],
+    "prop": "crystal",
+    "style": "control",
+    "reviewed": true
+  },
+  "bruno": {
+    "mode": "refine",
+    "title": "Dojo de Bruno",
+    "speaker": "Bruno",
+    "line": "¡Rompe mi formación si puedes!",
+    "plan": "Sala de entrenamiento de piedra, grandes rocas y ascenso central al Alto Mando.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        2
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ]
+    ],
+    "prop": "pillar",
+    "style": "formation",
+    "reviewed": true
+  },
+  "agatha": {
+    "mode": "refine",
+    "title": "Cámara de Agatha",
+    "speaker": "Agatha",
+    "line": "Un equipo fuerte también debe saber responder a los estados.",
+    "plan": "Lápidas monumentales alrededor de un espacio abierto de combate.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        2
+      ],
+      [
+        11,
+        7,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ],
+      [
+        11,
+        8,
+        1
+      ]
+    ],
+    "prop": "tomb",
+    "style": "control",
+    "reviewed": true
+  },
+  "lance": {
+    "mode": "refine",
+    "title": "Cámara de Lance",
+    "speaker": "Lance",
+    "line": "Has llegado lejos. Ahora demuestra cómo controlas el campo.",
+    "plan": "Entrada curva entre pilares y una arena amplia con plataforma del maestro dragón.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        4,
+        1
+      ],
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        8,
+        5,
+        1
+      ],
+      [
+        9,
+        5,
+        2
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ]
+    ],
+    "prop": "pillar",
+    "style": "mobile",
+    "reviewed": true
+  },
+  "champion": {
+    "mode": "refine",
+    "title": "Sala del Campeón",
+    "speaker": "Rival campeón",
+    "line": "Solo quedamos tú y yo. ¡Este será nuestro mejor combate!",
+    "plan": "Sala ceremonial simétrica, emblema central y columnas fuera de las líneas principales.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        1
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        2
+      ],
+      [
+        11,
+        6,
+        1
+      ],
+      [
+        9,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        11,
+        7,
+        1
+      ]
+    ],
+    "prop": "pillar",
+    "style": "focus",
+    "reviewed": true
+  },
+  "legendary-birds": {
+    "mode": "refine",
+    "title": "Santuario de las tres aves",
+    "speaker": "Santuario de los tres cielos",
+    "line": "Hielo, tormenta y fuego dominan tres frentes del santuario.",
+    "plan": "Tres sectores de hielo, electricidad y fuego unidos por rampas y un claro central. Primera prueba legendaria.",
+    "walls": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        8,
+        6,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        8,
+        7,
+        1
+      ],
+      [
+        9,
+        7,
+        2
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        8,
+        8,
+        1
+      ],
+      [
+        9,
+        8,
+        1
+      ],
+      [
+        10,
+        8,
+        1
+      ]
+    ],
+    "prop": "pillar",
+    "style": "ranged",
+    "reviewed": true
+  },
+  "legendary-origin": {
+    "mode": "refine",
+    "title": "Caverna del origen",
+    "speaker": "Cueva Celeste",
+    "line": "Dos presencias aguardan entre las terrazas de cristal.",
+    "plan": "Anillo de agua, cristales y pasos de roca; Mew y Mewtwo aguardan después de las tres aves.",
+    "walls": [
+      [
+        10,
+        9
+      ],
+      [
+        11,
+        9
+      ]
+    ],
+    "rough": [],
+    "high": [
+      [
+        9,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        11,
+        4,
+        1
+      ],
+      [
+        9,
+        5,
+        1
+      ],
+      [
+        10,
+        5,
+        2
+      ],
+      [
+        11,
+        5,
+        1
+      ],
+      [
+        9,
+        6,
+        1
+      ],
+      [
+        10,
+        6,
+        1
+      ],
+      [
+        11,
+        6,
+        1
+      ]
+    ],
+    "prop": "crystal",
+    "style": "flank",
+    "reviewed": true
+  }
+}

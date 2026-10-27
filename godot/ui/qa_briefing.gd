@@ -1,6 +1,6 @@
 extends "res://ui/qa_context.gd"
 
-const ReviewStore = preload("res://core/review_store.gd")
+const ReviewStore = preload("res://core/tactics_quality_store.gd")
 
 func layout(app: Control) -> void:
 	for frame: int in 8: await app.get_tree().process_frame
