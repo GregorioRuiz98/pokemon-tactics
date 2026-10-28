@@ -1,0 +1,63 @@
+{
+  "lane": "legacy-controls",
+  "started": "2026-10-28T16:08:43.228409+00:00",
+  "finished": "2026-10-28T16:11:26.693280+00:00",
+  "sourceCommit": "cdd48cf0d8922a7ef4a98b524577a0c8e98b416f",
+  "exeSha256": "219487561592e460c9488a669f02ef986432475f024d89b08c8afa50d4726767",
+  "scope": "Offline automatic QA. Legacy suites retain published editions. No human or external-PC claim.",
+  "operations": [
+    {
+      "operation": "legacy-release",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 19.579,
+      "scope": "Historical metadata control in a separate process",
+      "historicalFixtureSha256": "7e86c9fb4cafa07cff016f7276e14c35177f3ae49a2fdd83aadb4650c4594564",
+      "diagnostics": [
+        {
+          "checks": 22,
+          "failures": []
+        }
+      ],
+      "report": {
+        "checks": 22,
+        "failures": []
+      }
+    },
+    {
+      "operation": "legacy-expedition",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 1.766,
+      "scope": "Historical metadata control in a separate process",
+      "diagnostics": [
+        {
+          "checks": 1292,
+          "failures": []
+        }
+      ],
+      "report": {
+        "checks": 1292,
+        "failures": []
+      }
+    },
+    {
+      "operation": "legacy-journey",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 141.969,
+      "scope": "Historical metadata control in a separate process",
+      "historicalFixtureSha256": "4c5ecdc3b02ded3938a2274324ec8afe300e4952c31a2226a13d753cb80ea0b3",
+      "diagnostics": [
+        {
+          "checks": 10729,
+          "failures": []
+        }
+      ],
+      "report": {
+        "checks": 10729,
+        "failures": []
+      }
+    }
+  ]
+}

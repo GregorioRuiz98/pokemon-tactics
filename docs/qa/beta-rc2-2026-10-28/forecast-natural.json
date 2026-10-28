@@ -1,0 +1,53 @@
+{
+  "edition": 29,
+  "scope": "New current-edition synthetic robustness probes; no production changes.",
+  "cases": [
+    {
+      "case": "legacy-forecast",
+      "exitCode": 1,
+      "report": {
+        "case": "legacy-forecast",
+        "checks": 12,
+        "edition": 29,
+        "failures": [
+          "Valid forecast renders without mutation 12",
+          "Valid forecast renders without mutation 18"
+        ],
+        "samples": [
+          {
+            "edition": 12,
+            "forecastNonempty": false,
+            "legalOrdersBeforePreview": 1,
+            "planHasDefinition": false
+          },
+          {
+            "edition": 18,
+            "forecastNonempty": false,
+            "legalOrdersBeforePreview": 1,
+            "planHasDefinition": false
+          },
+          {
+            "edition": 19,
+            "forecastNonempty": true,
+            "legalOrdersBeforePreview": 0,
+            "planHasDefinition": true
+          },
+          {
+            "edition": 29,
+            "forecastNonempty": true,
+            "legalOrdersBeforePreview": 0,
+            "planHasDefinition": true
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [
+        "SCRIPT ERROR: Invalid access to property or key 'definition' on a base object of type 'Dictionary'.",
+        "SCRIPT ERROR: Invalid access to property or key 'definition' on a base object of type 'Dictionary'."
+      ],
+      "ok": false,
+      "seconds": 27.969,
+      "directory": "forecast-final-1793206065290126800\\legacy-forecast"
+    }
+  ]
+}

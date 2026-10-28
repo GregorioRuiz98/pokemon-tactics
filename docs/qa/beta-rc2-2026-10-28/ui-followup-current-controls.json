@@ -1,0 +1,62 @@
+{
+  "lane": "ui-followup",
+  "started": "2026-10-28T16:47:53.002823+00:00",
+  "finished": "2026-10-28T16:49:00.894297+00:00",
+  "sourceCommit": "cdd48cf0d8922a7ef4a98b524577a0c8e98b416f",
+  "exeSha256": "219487561592e460c9488a669f02ef986432475f024d89b08c8afa50d4726767",
+  "scope": "Offline automatic QA. Legacy suites retain published editions. No human or external-PC claim.",
+  "operations": [
+    {
+      "operation": "edge-portrait",
+      "ok": false,
+      "exitCode": 1,
+      "seconds": 29.094,
+      "scope": "Additional source UI probe; shipped EXE cannot execute external scripts",
+      "diagnostics": [
+        "INPUT_CHECK_FAILED: Arrow keys reach last portrait",
+        {
+          "assertions": 5,
+          "failures": [
+            "Arrow keys reach last portrait"
+          ]
+        }
+      ],
+      "report": {
+        "assertions": 5,
+        "failures": [
+          "Arrow keys reach last portrait"
+        ],
+        "scope": "Additional source UI probe with an isolated full-profile fixture.",
+        "details": {
+          "choices": 151,
+          "endKeyReachesLast": false,
+          "focused": true,
+          "keyboardOpen": true,
+          "mouseOpen": true
+        }
+      }
+    },
+    {
+      "operation": "edge-shop",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 38.672,
+      "scope": "Additional source UI probe; shipped EXE cannot execute external scripts",
+      "diagnostics": [
+        {
+          "assertions": 46,
+          "failures": []
+        }
+      ],
+      "report": {
+        "assertions": 46,
+        "failures": [],
+        "scope": "Additional source UI probe with an isolated full-profile fixture.",
+        "details": {
+          "revision": 30,
+          "scope": "Natural current shop; purchases only when affordable; no forced money or obsolete training service."
+        }
+      }
+    }
+  ]
+}

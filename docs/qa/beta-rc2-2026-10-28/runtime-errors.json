@@ -1,0 +1,40 @@
+{
+  "BETA-02": [
+    "SCRIPT ERROR: Invalid operands 'Array' and 'String' in operator '=='.",
+    "   at: _step (res://core/closing_store.gd:23)",
+    "       [0] _step (res://core/closing_store.gd:23)",
+    "       [1] load_campaign_async (res://core/tactics_quality_store.gd:123)",
+    "       [2] _load_game_async (res://ui/campaign.gd:700)",
+    "       [3] _resume_title (res://ui/campaign.gd:416)",
+    "SCRIPT ERROR: Invalid access to property or key 'ok' on a base object of type 'Dictionary'.",
+    "   at: load_campaign_async (res://core/tactics_quality_store.gd:124)",
+    "       [0] load_campaign_async (res://core/tactics_quality_store.gd:124)",
+    "       [1] _load_game_async (res://ui/campaign.gd:700)",
+    "       [2] _resume_title (res://ui/campaign.gd:416)",
+    "SCRIPT ERROR: Invalid access to property or key 'ok' on a base object of type 'Dictionary'.",
+    "   at: _accept_loaded (res://ui/campaign.gd:708)",
+    "       [0] _accept_loaded (res://ui/campaign.gd:708)",
+    "       [1] _load_game_async (res://ui/campaign.gd:702)",
+    "       [2] _resume_title (res://ui/campaign.gd:416)",
+    "INPUT_CHECK_FAILED: New adventure remains accessible after rejected save",
+    "INPUT_CHECK_FAILED: Rejected save explains the failure to the player"
+  ],
+  "BETA-03": [
+    "INPUT_CHECK_FAILED: Portrait chooser opens with full collection",
+    "INPUT_CHECK_FAILED: Keyboard can select the last of151 portraits",
+    "ERROR: Attempting to make child window exclusive, but the parent window already has another exclusive child. This window: /root/Campaign/@ConfirmationDialog@1091, parent window: /root, current exclusive child window: /root/Campaign/@AcceptDialog@339",
+    "       [0] review (res://ui/action_review.gd:55)",
+    "       [1] _review_text (res://ui/campaign.gd:1587)",
+    "       [2] select_species (res://ui/collection_browser.gd:80)",
+    "       [3] click (res://ui/qa_input.gd:54)",
+    "       [4] settle (res://ui/qa_input.gd:14)"
+  ],
+  "BETA-04": [
+    "SCRIPT ERROR: Invalid access to property or key 'definition' on a base object of type 'Dictionary'.",
+    "   at: forecast (res://ui/tactical_info.gd:19)",
+    "       [0] forecast (res://ui/tactical_info.gd:19)",
+    "SCRIPT ERROR: Invalid access to property or key 'definition' on a base object of type 'Dictionary'.",
+    "   at: forecast (res://ui/tactical_info.gd:19)",
+    "       [0] forecast (res://ui/tactical_info.gd:19)"
+  ]
+}

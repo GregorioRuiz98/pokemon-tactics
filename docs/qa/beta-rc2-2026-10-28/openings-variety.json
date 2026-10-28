@@ -1,0 +1,215 @@
+{
+  "edition": 29,
+  "scope": "New current-edition synthetic robustness probes; no production changes.",
+  "cases": [
+    {
+      "case": "openings",
+      "exitCode": 0,
+      "report": {
+        "case": "openings",
+        "checks": 2997,
+        "edition": 29,
+        "failures": [],
+        "samples": [
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rewardSpecies": 16,
+            "rounds": 6,
+            "seed": "beta-opening-1-0",
+            "starter": 1
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rewardSpecies": 69,
+            "rounds": 6,
+            "seed": "beta-opening-1-1",
+            "starter": 1
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rewardSpecies": 43,
+            "rounds": 6,
+            "seed": "beta-opening-1-2",
+            "starter": 1
+          },
+          {
+            "orders": 15,
+            "phase": "capture",
+            "rewardSpecies": 19,
+            "rounds": 4,
+            "seed": "beta-opening-1-3",
+            "starter": 1
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rewardSpecies": 16,
+            "rounds": 6,
+            "seed": "beta-opening-1-4",
+            "starter": 1
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rewardSpecies": 43,
+            "rounds": 6,
+            "seed": "beta-opening-1-5",
+            "starter": 1
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rewardSpecies": 16,
+            "rounds": 6,
+            "seed": "beta-opening-1-6",
+            "starter": 1
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rewardSpecies": 69,
+            "rounds": 6,
+            "seed": "beta-opening-1-7",
+            "starter": 1
+          },
+          {
+            "orders": 31,
+            "phase": "capture",
+            "rewardSpecies": 43,
+            "rounds": 8,
+            "seed": "beta-opening-4-0",
+            "starter": 4
+          },
+          {
+            "orders": 31,
+            "phase": "capture",
+            "rewardSpecies": 69,
+            "rounds": 8,
+            "seed": "beta-opening-4-1",
+            "starter": 4
+          },
+          {
+            "orders": 31,
+            "phase": "capture",
+            "rewardSpecies": 43,
+            "rounds": 8,
+            "seed": "beta-opening-4-2",
+            "starter": 4
+          },
+          {
+            "orders": 27,
+            "phase": "capture",
+            "rewardSpecies": 43,
+            "rounds": 7,
+            "seed": "beta-opening-4-3",
+            "starter": 4
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rewardSpecies": 69,
+            "rounds": 6,
+            "seed": "beta-opening-4-4",
+            "starter": 4
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rewardSpecies": 16,
+            "rounds": 6,
+            "seed": "beta-opening-4-5",
+            "starter": 4
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rewardSpecies": 43,
+            "rounds": 6,
+            "seed": "beta-opening-4-6",
+            "starter": 4
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rewardSpecies": 43,
+            "rounds": 6,
+            "seed": "beta-opening-4-7",
+            "starter": 4
+          },
+          {
+            "orders": 19,
+            "phase": "capture",
+            "rewardSpecies": 19,
+            "rounds": 5,
+            "seed": "beta-opening-7-0",
+            "starter": 7
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rewardSpecies": 69,
+            "rounds": 6,
+            "seed": "beta-opening-7-1",
+            "starter": 7
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rewardSpecies": 43,
+            "rounds": 6,
+            "seed": "beta-opening-7-2",
+            "starter": 7
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rewardSpecies": 19,
+            "rounds": 6,
+            "seed": "beta-opening-7-3",
+            "starter": 7
+          },
+          {
+            "orders": 27,
+            "phase": "capture",
+            "rewardSpecies": 43,
+            "rounds": 7,
+            "seed": "beta-opening-7-4",
+            "starter": 7
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rewardSpecies": 43,
+            "rounds": 6,
+            "seed": "beta-opening-7-5",
+            "starter": 7
+          },
+          {
+            "orders": 31,
+            "phase": "capture",
+            "rewardSpecies": 19,
+            "rounds": 8,
+            "seed": "beta-opening-7-6",
+            "starter": 7
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rewardSpecies": 16,
+            "rounds": 6,
+            "seed": "beta-opening-7-7",
+            "starter": 7
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": true,
+      "seconds": 18.703,
+      "directory": "capture-variety-1793206492767812100\\openings"
+    }
+  ]
+}

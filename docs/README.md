@@ -6,6 +6,7 @@ Campaña Windows 1.0.0-rc.2 como referencia. Las notas por sprint/diseños anter
 | --- | --- |
 | Jugar, controles o recuperación | [Prueba Windows](PLAYTEST_WINDOWS.md), [LEEME](LEEME_WINDOWS.txt) |
 | Candidata1.0 y beta | [Cambios](RELEASE_1_0_RC2.md), [protocolo](BETA_1_0.md), [plantilla](PLANTILLA_BETA.md) |
+| Resultado de la auditoría beta | [RC2: pruebas e incidencias](BETA_RC2_2026-10-28.md) |
 | Colección e iniciales 0.35 | [Cambios](SPRINT_35_COLLECTION.md) |
 | Reglas actuales | [Reglas](REGLAS_ACTUALES.md) |
 | Pendientes antes de publicar | [Estado](PLAN_SPRINTS.md) |

@@ -1,0 +1,35 @@
+{
+  "edition": 29,
+  "scope": "New current-edition synthetic robustness probes; no production changes.",
+  "cases": [
+    {
+      "case": "legacy-forecast",
+      "exitCode": 0,
+      "report": {
+        "case": "legacy-forecast",
+        "checks": 6,
+        "edition": 29,
+        "failures": [],
+        "samples": [
+          {
+            "edition": 19,
+            "forecastNonempty": true,
+            "legalOrdersBeforePreview": 0,
+            "planHasDefinition": true
+          },
+          {
+            "edition": 29,
+            "forecastNonempty": true,
+            "legalOrdersBeforePreview": 0,
+            "planHasDefinition": true
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": true,
+      "seconds": 26.391,
+      "directory": "forecast-1793205393043206000\\legacy-forecast"
+    }
+  ]
+}

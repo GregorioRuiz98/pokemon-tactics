@@ -1,0 +1,317 @@
+{
+  "date": "2026-10-28",
+  "version": "1.0.0-rc.2",
+  "integrity": {
+    "sourceCommit": "cdd48cf0d8922a7ef4a98b524577a0c8e98b416f",
+    "sourceFingerprint": "b2ad3ff2f2bab8d2ac7da9d6cbe493cd61082c5b34d935ac98b345a78ad88174",
+    "baselineSourceFingerprint": "b2ad3ff2f2bab8d2ac7da9d6cbe493cd61082c5b34d935ac98b345a78ad88174",
+    "nativeSourceUnchanged": true,
+    "artifacts": {
+      "exe": {
+        "bytes": 132258984,
+        "sha256": "219487561592e460c9488a669f02ef986432475f024d89b08c8afa50d4726767",
+        "matchesBaseline": true
+      },
+      "zip": {
+        "bytes": 55947492,
+        "sha256": "efc4634276972c72c646a12b28a6a2cf8bce93a19f11cbc28c7f9d38a9493f3c",
+        "matchesBaseline": true
+      }
+    },
+    "standaloneRepoCommit": "cc2bee69f732f96038853855cad2079695d4f5a9",
+    "standaloneRepoClean": true
+  },
+  "humanPlaytest": false,
+  "externalHardwareTest": false,
+  "publicDeployment": false,
+  "audibleAudioTest": false,
+  "verdict": "Changes required before release; see BETA-01..04. No production changes in this audit.",
+  "lanes": {
+    "campaign": {
+      "operations": 2,
+      "passed": 2,
+      "failed": []
+    },
+    "core": {
+      "operations": 37,
+      "passed": 34,
+      "failed": [
+        "test-release",
+        "test-expedition",
+        "test-journey"
+      ]
+    },
+    "legacy-controls-with-fixtures": {
+      "operations": 3,
+      "passed": 3,
+      "failed": []
+    },
+    "ui-edges": {
+      "operations": 2,
+      "passed": 0,
+      "failed": [
+        "edge-profile",
+        "edge-corrupt-load"
+      ]
+    },
+    "ui-followup": {
+      "operations": 4,
+      "passed": 2,
+      "failed": [
+        "edge-portrait",
+        "edge-shop"
+      ]
+    },
+    "ui-followup-current-controls": {
+      "operations": 2,
+      "passed": 1,
+      "failed": [
+        "edge-portrait"
+      ]
+    },
+    "ui-followup-native-input": {
+      "operations": 1,
+      "passed": 1,
+      "failed": []
+    },
+    "interface": {
+      "operations": 26,
+      "passed": 18,
+      "failed": [
+        "qa-seeds-export",
+        "qa-seeds",
+        "qa-semantic-export",
+        "qa-semantic",
+        "qa-input-export",
+        "qa-input",
+        "qa-shop-export",
+        "qa-shop"
+      ]
+    }
+  },
+  "sourceExePairs": [
+    {
+      "suite": "closing-playthrough",
+      "checksPerBuild": 15750,
+      "compared": {
+        "assertions": true,
+        "stateHash": true,
+        "nextStateHash": true,
+        "campaignEdition": true,
+        "visited": true,
+        "orders": true
+      },
+      "bothPassed": true
+    },
+    {
+      "suite": "attack-effects",
+      "checksPerBuild": 252,
+      "compared": {
+        "assertions": true
+      },
+      "bothPassed": true
+    },
+    {
+      "suite": "briefing",
+      "checksPerBuild": 1958,
+      "compared": {
+        "assertions": true,
+        "stateHash": true,
+        "campaignEdition": true
+      },
+      "bothPassed": true
+    },
+    {
+      "suite": "closing-performance",
+      "checksPerBuild": 231,
+      "compared": {
+        "assertions": true,
+        "equivalence": true
+      },
+      "bothPassed": true
+    },
+    {
+      "suite": "closing-usability",
+      "checksPerBuild": 32,
+      "compared": {
+        "assertions": true,
+        "stateHash": true,
+        "campaignEdition": true
+      },
+      "bothPassed": true
+    },
+    {
+      "suite": "collection",
+      "checksPerBuild": 34,
+      "compared": {
+        "assertions": true,
+        "stateHash": true,
+        "campaignEdition": true,
+        "profileSchema": true
+      },
+      "bothPassed": true
+    },
+    {
+      "suite": "input",
+      "checksPerBuild": 46,
+      "compared": {
+        "assertions": true
+      },
+      "bothPassed": false
+    },
+    {
+      "suite": "profile",
+      "checksPerBuild": 158,
+      "compared": {
+        "assertions": true,
+        "campaignEdition": true,
+        "profileSchema": true
+      },
+      "bothPassed": true
+    },
+    {
+      "suite": "quality",
+      "checksPerBuild": 204,
+      "compared": {
+        "assertions": true,
+        "stateHash": true,
+        "campaignEdition": true
+      },
+      "bothPassed": true
+    },
+    {
+      "suite": "review",
+      "checksPerBuild": 46,
+      "compared": {
+        "assertions": true,
+        "stateHash": true,
+        "campaignEdition": true
+      },
+      "bothPassed": true
+    },
+    {
+      "suite": "seeds",
+      "checksPerBuild": 916,
+      "compared": {
+        "assertions": true
+      },
+      "bothPassed": false
+    },
+    {
+      "suite": "semantic",
+      "checksPerBuild": 8,
+      "compared": {
+        "assertions": true
+      },
+      "bothPassed": false
+    },
+    {
+      "suite": "trainer",
+      "checksPerBuild": 69,
+      "compared": {
+        "assertions": true,
+        "stateHash": true,
+        "campaignEdition": true,
+        "profileSchema": true
+      },
+      "bothPassed": true
+    }
+  ],
+  "probes": {
+    "initial": {
+      "cases": 16,
+      "failed": [
+        "migrations",
+        "openings",
+        "save-kind-array"
+      ]
+    },
+    "rerun": {
+      "cases": 3,
+      "failed": [
+        "legacy-load"
+      ]
+    },
+    "note": "Initial openings/deadline failures came from the harness; corrected rerun retained separately. Runtime errors count even if reject/preserve checks pass."
+  },
+  "validation": {
+    "ok": true,
+    "counts": {
+      "total": 65,
+      "errors": 0,
+      "parse_errors": 0,
+      "warnings": 65,
+      "info": 0
+    },
+    "identicalBaselineDiagnostics": true,
+    "newDiagnostics": 0,
+    "lint": {
+      "total": 0,
+      "errors": 0,
+      "warnings": 0,
+      "parse_errors": 0
+    },
+    "assetsVerified": true,
+    "packageContractTests": 5,
+    "repository": {
+      "ok": true,
+      "maintainedDocuments": 25,
+      "localLinks": 290,
+      "repositoryContractTests": 7
+    }
+  },
+  "cleanStartup": true,
+  "scope": "Offline automatic source/EXE QA on one physical Windows PC. Additional external GDScript probes are source only. No personal saves or verification keys included. Counts contain repeated assertions, not unique player journeys.",
+  "screenshots": [
+    "brock.png",
+    "completed-current-kanto.png",
+    "current-shop.png",
+    "legendary-origin.png",
+    "malformed-continue.png",
+    "portrait-input.png",
+    "profile-1024-150.png",
+    "current-shop.png"
+  ],
+  "completeInterfaceMatrix": true,
+  "actualCaptureVariety": {
+    "ok": true,
+    "checks": 2997,
+    "species": [
+      16,
+      19,
+      43,
+      69
+    ]
+  },
+  "harnessSha256": {
+    "tools/godot/beta-audit.py": "86401362042c2f4f099c8b342f7c2c268a32712df09436859721371ab4ae4e82",
+    "tools/godot/beta-legacy-expedition.gd": "5909f8a7aee6d948c65da2710ac0f2ed09ca46c515111b2b06d31fcc4f5767f3",
+    "tools/godot/beta-legacy-journey.gd": "540acfb78e9d456dafedda833fe86afbe4c6efc5178cdd0d0fd1843a4dd75449",
+    "tools/godot/beta-legacy-release.gd": "c27ebe558fd12f3b535389024e9ca82d54fbe1b125be209dbd7ee58805790509",
+    "tools/godot/beta-probes.gd": "a4861516afd02f81256584b04e8e762cd4e3dbfb37baece3aa11de6684c5751a",
+    "tools/godot/beta-probes.py": "5ce51a7c610135d7b127e4cd6aa7cba8d8d269bae9a5aa04a9d7faaa50759c28",
+    "tools/godot/beta-ui.gd": "9463088e50c97a09e8009a70797e8f6bdf1d156552ac5f33de925d23d9f4a0b2"
+  },
+  "findings": [
+    {
+      "id": "BETA-01",
+      "priority": "high",
+      "scope": "Source current reader rejects valid editions13..18"
+    },
+    {
+      "id": "BETA-02",
+      "priority": "medium",
+      "scope": "Source Continue recovery after malformed kind array"
+    },
+    {
+      "id": "BETA-03",
+      "priority": "medium",
+      "scope": "Source nested exclusive windows in Dex"
+    },
+    {
+      "id": "BETA-04",
+      "priority": "medium",
+      "scope": "Source forecast of legal legacy plans12/18"
+    }
+  ]
+}

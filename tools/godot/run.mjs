@@ -10,7 +10,7 @@ const project = resolve(root, 'godot');
 const nativeVersion = readFileSync(resolve(project, 'project.godot'),'utf8').match(/config\/version="([^"]+)"/)[1];
 const chapter = Number(readFileSync(resolve(project, 'project.godot'),'utf8').match(/config\/qa_stage=(\d+)/)?.[1] ?? nativeVersion.split('.')[1]);
 const qaLabel = chapter>=23 && Number(nativeVersion.split('.')[2])>0 ? `${chapter}-ui-${nativeVersion.split('.')[2]}` : chapter===22 && Number(nativeVersion.split('.')[2])>=4 ? '22-updates-'+nativeVersion.split('.')[2] : nativeVersion === '0.22.3' ? '22-context' : nativeVersion === '0.22.2' ? '22-controls' : nativeVersion === '0.22.1' ? '22-ui' : String(chapter);
-const work = resolve(root, `../../work/qa-sprint-${qaLabel}`);
+const work = process.env.GODOT_QA_DIR ? resolve(process.env.GODOT_QA_DIR) : resolve(root, `../../work/qa-sprint-${qaLabel}`);
 const output = resolve(root, `../releases/pokemon-tactics-${nativeVersion}/windows`);
 const operation = process.argv[2] ?? 'test';
 const binary = process.env.GODOT_BIN ?? resolve(root, '../../work/godot-4.7.2/Godot_v4.7.2-stable_win64_console.exe');

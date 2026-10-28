@@ -1,0 +1,13 @@
+{
+  "assertions": 916,
+  "failures": [
+    "Generate another changes only the unstarted seed",
+    "Copy exposes the normalized manual seed",
+    "Seed controls fit the window",
+    "Seed controls fit the window",
+    "Campaign menu copies the persisted seed without changing state or PRNG",
+    "Natural first encounter reaches its saved capture",
+    "Same seed and orders reproduce the natural captured Pokemon"
+  ],
+  "scope": "64 isolated local-table probes plus two actual Route 1 battles; generated seed values and clipboard contents are not logged"
+}

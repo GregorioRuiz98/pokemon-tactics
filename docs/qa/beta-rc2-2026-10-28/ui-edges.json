@@ -1,0 +1,98 @@
+{
+  "lane": "ui-edges",
+  "started": "2026-10-28T16:10:31.509064+00:00",
+  "finished": "2026-10-28T16:11:48.636882+00:00",
+  "sourceCommit": "cdd48cf0d8922a7ef4a98b524577a0c8e98b416f",
+  "exeSha256": "219487561592e460c9488a669f02ef986432475f024d89b08c8afa50d4726767",
+  "scope": "Offline automatic QA. Legacy suites retain published editions. No human or external-PC claim.",
+  "operations": [
+    {
+      "operation": "edge-profile",
+      "ok": false,
+      "exitCode": 1,
+      "seconds": 48.438,
+      "scope": "Additional source UI probe; shipped EXE cannot execute external scripts",
+      "diagnostics": [
+        "INPUT_CHECK_FAILED: Portrait chooser opens with full collection",
+        "INPUT_CHECK_FAILED: Keyboard can select the last of151 portraits",
+        "ERROR: Attempting to make child window exclusive, but the parent window already has another exclusive child. This window: /root/Campaign/@ConfirmationDialog@1091, parent window: /root, current exclusive child window: /root/Campaign/@AcceptDialog@339",
+        {
+          "assertions": 47,
+          "failures": [
+            "Portrait chooser opens with full collection",
+            "Keyboard can select the last of151 portraits"
+          ]
+        }
+      ],
+      "report": {
+        "assertions": 47,
+        "failures": [
+          "Portrait chooser opens with full collection",
+          "Keyboard can select the last of151 portraits"
+        ],
+        "scope": "Additional live UI edge cases with a full synthetic profile; no real achievements or human playtest claimed.",
+        "sizes": [
+          {
+            "dialog": [
+              820,
+              660
+            ],
+            "window": [
+              1920,
+              1080
+            ]
+          },
+          {
+            "dialog": [
+              820,
+              656
+            ],
+            "window": [
+              1024,
+              720
+            ]
+          },
+          {
+            "dialog": [
+              820,
+              660
+            ],
+            "window": [
+              1280,
+              900
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "operation": "edge-corrupt-load",
+      "ok": false,
+      "exitCode": 1,
+      "seconds": 28.562,
+      "scope": "Additional source UI probe; shipped EXE cannot execute external scripts",
+      "diagnostics": [
+        "SCRIPT ERROR: Invalid operands 'Array' and 'String' in operator '=='.",
+        "SCRIPT ERROR: Invalid access to property or key 'ok' on a base object of type 'Dictionary'.",
+        "SCRIPT ERROR: Invalid access to property or key 'ok' on a base object of type 'Dictionary'.",
+        "INPUT_CHECK_FAILED: New adventure remains accessible after rejected save",
+        "INPUT_CHECK_FAILED: Rejected save explains the failure to the player",
+        {
+          "assertions": 8,
+          "failures": [
+            "New adventure remains accessible after rejected save",
+            "Rejected save explains the failure to the player"
+          ]
+        }
+      ],
+      "report": {
+        "assertions": 8,
+        "failures": [
+          "New adventure remains accessible after rejected save",
+          "Rejected save explains the failure to the player"
+        ],
+        "scope": "Malformed checksum-valid fixture with kind array, exercised using real Continue. No spontaneous save corruption claimed."
+      }
+    }
+  ]
+}

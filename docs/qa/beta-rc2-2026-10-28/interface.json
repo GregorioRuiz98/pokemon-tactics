@@ -1,0 +1,326 @@
+{
+  "lane": "interface",
+  "started": "2026-10-28T16:11:48.754098+00:00",
+  "finished": "2026-10-28T16:43:12.545152+00:00",
+  "sourceCommit": "cdd48cf0d8922a7ef4a98b524577a0c8e98b416f",
+  "exeSha256": "219487561592e460c9488a669f02ef986432475f024d89b08c8afa50d4726767",
+  "scope": "Offline automatic QA. Legacy suites retain published editions. No human or external-PC claim.",
+  "operations": [
+    {
+      "operation": "qa-briefing-export",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 107.813,
+      "diagnostics": [
+        {
+          "assertions": 1958,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "qa-briefing",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 69.531,
+      "diagnostics": [
+        {
+          "assertions": 1958,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "qa-quality-export",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 135.312,
+      "diagnostics": [
+        {
+          "assertions": 204,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "qa-quality",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 98.735,
+      "diagnostics": [
+        {
+          "assertions": 204,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "qa-profile-export",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 183.11,
+      "diagnostics": [
+        {
+          "assertions": 158,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "qa-profile",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 136.125,
+      "diagnostics": [
+        {
+          "assertions": 158,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "qa-collection-export",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 48.844,
+      "diagnostics": [
+        {
+          "assertions": 34,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "qa-collection",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 33.547,
+      "diagnostics": [
+        {
+          "assertions": 34,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "qa-closing-usability-export",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 59.531,
+      "diagnostics": [
+        {
+          "assertions": 32,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "qa-closing-usability",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 57.594,
+      "diagnostics": [
+        {
+          "assertions": 32,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "qa-review-export",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 80.687,
+      "diagnostics": [
+        {
+          "assertions": 46,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "qa-review",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 85.891,
+      "diagnostics": [
+        {
+          "assertions": 46,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "qa-seeds-export",
+      "ok": false,
+      "exitCode": 1,
+      "seconds": 50.016,
+      "diagnostics": [
+        {
+          "assertions": 916,
+          "failures": [
+            "Generate another changes only the unstarted seed",
+            "Copy exposes the normalized manual seed",
+            "Seed controls fit the window",
+            "Seed controls fit the window",
+            "Campaign menu copies the persisted seed without changing state or PRNG",
+            "Natural first encounter reaches its saved capture",
+            "Same seed and orders reproduce the natural captured Pokemon"
+          ],
+          "scope": "64 isolated local-table probes plus two actual Route 1 battles; generated seed values and clipboard contents are not logged"
+        },
+        "ERROR: Unable to open clipboard.",
+        "  if (result.error || result.status !== 0 || /(?:SCRIPT ERROR:|Parse Error|^ERROR:)/m.test(clean)) throw new Error(`${label} failed; see ${resolve(work, `${label}.log`)}${result.error ? ': ' + result.error.message : ''}`);",
+        "Error: seeds-release failed; see C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\work\\beta-rc2-2026-10-28\\interface\\seeds-release.log"
+      ]
+    },
+    {
+      "operation": "qa-seeds",
+      "ok": false,
+      "exitCode": 1,
+      "seconds": 33.531,
+      "diagnostics": [
+        {
+          "assertions": 916,
+          "failures": [
+            "Generate another changes only the unstarted seed",
+            "Copy exposes the normalized manual seed",
+            "Seed controls fit the window",
+            "Seed controls fit the window",
+            "Campaign menu copies the persisted seed without changing state or PRNG",
+            "Natural first encounter reaches its saved capture",
+            "Same seed and orders reproduce the natural captured Pokemon"
+          ],
+          "scope": "64 isolated local-table probes plus two actual Route 1 battles; generated seed values and clipboard contents are not logged"
+        },
+        "ERROR: Unable to open clipboard.",
+        "  if (result.error || result.status !== 0 || /(?:SCRIPT ERROR:|Parse Error|^ERROR:)/m.test(clean)) throw new Error(`${label} failed; see ${resolve(work, `${label}.log`)}${result.error ? ': ' + result.error.message : ''}`);",
+        "Error: seeds-source failed; see C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\work\\beta-rc2-2026-10-28\\interface\\seeds-source.log"
+      ]
+    },
+    {
+      "operation": "qa-attack-effects-export",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 31.531,
+      "diagnostics": []
+    },
+    {
+      "operation": "qa-attack-effects",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 42.265,
+      "diagnostics": []
+    },
+    {
+      "operation": "qa-semantic-export",
+      "ok": false,
+      "exitCode": 1,
+      "seconds": 26.453,
+      "diagnostics": [
+        "  if (result.error || result.status !== 0 || /(?:SCRIPT ERROR:|Parse Error|^ERROR:)/m.test(clean)) throw new Error(`${label} failed; see ${resolve(work, `${label}.log`)}${result.error ? ': ' + result.error.message : ''}`);",
+        "Error: semantic-release failed; see C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\work\\beta-rc2-2026-10-28\\interface\\semantic-release.log"
+      ]
+    },
+    {
+      "operation": "qa-semantic",
+      "ok": false,
+      "exitCode": 1,
+      "seconds": 37.047,
+      "diagnostics": [
+        "SCRIPT ERROR: Invalid access to property or key 'definition' on a base object of type 'Dictionary'.",
+        "  if (result.error || result.status !== 0 || /(?:SCRIPT ERROR:|Parse Error|^ERROR:)/m.test(clean)) throw new Error(`${label} failed; see ${resolve(work, `${label}.log`)}${result.error ? ': ' + result.error.message : ''}`);",
+        "Error: semantic-source failed; see C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\work\\beta-rc2-2026-10-28\\interface\\semantic-source.log"
+      ]
+    },
+    {
+      "operation": "qa-input-export",
+      "ok": false,
+      "exitCode": 1,
+      "seconds": 41.234,
+      "diagnostics": [
+        "  if (result.error || result.status !== 0 || /(?:SCRIPT ERROR:|Parse Error|^ERROR:)/m.test(clean)) throw new Error(`${label} failed; see ${resolve(work, `${label}.log`)}${result.error ? ': ' + result.error.message : ''}`);",
+        "Error: input-ui-release failed; see C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\work\\beta-rc2-2026-10-28\\interface\\input-ui-release.log"
+      ]
+    },
+    {
+      "operation": "qa-input",
+      "ok": false,
+      "exitCode": 1,
+      "seconds": 45.469,
+      "diagnostics": [
+        "  if (result.error || result.status !== 0 || /(?:SCRIPT ERROR:|Parse Error|^ERROR:)/m.test(clean)) throw new Error(`${label} failed; see ${resolve(work, `${label}.log`)}${result.error ? ': ' + result.error.message : ''}`);",
+        "Error: input-ui-source failed; see C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\work\\beta-rc2-2026-10-28\\interface\\input-ui-source.log"
+      ]
+    },
+    {
+      "operation": "qa-trainer-export",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 39.485,
+      "diagnostics": [
+        {
+          "assertions": 69,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "qa-trainer",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 27.875,
+      "diagnostics": [
+        {
+          "assertions": 69,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "qa-shop-export",
+      "ok": false,
+      "exitCode": 1,
+      "seconds": 34.64,
+      "diagnostics": [
+        "  if (result.error || result.status !== 0 || /(?:SCRIPT ERROR:|Parse Error|^ERROR:)/m.test(clean)) throw new Error(`${label} failed; see ${resolve(work, `${label}.log`)}${result.error ? ': ' + result.error.message : ''}`);",
+        "Error: shop-release failed; see C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\work\\beta-rc2-2026-10-28\\interface\\shop-release.log"
+      ]
+    },
+    {
+      "operation": "qa-shop",
+      "ok": false,
+      "exitCode": 1,
+      "seconds": 300.141,
+      "diagnostics": [
+        "SCRIPT ERROR: Invalid access to property or key 'shop_evolution' on a base object of type 'Dictionary'.",
+        "  if (result.error || result.status !== 0 || /(?:SCRIPT ERROR:|Parse Error|^ERROR:)/m.test(clean)) throw new Error(`${label} failed; see ${resolve(work, `${label}.log`)}${result.error ? ': ' + result.error.message : ''}`);",
+        "Error: shop-source failed; see C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\work\\beta-rc2-2026-10-28\\interface\\shop-source.log: spawnSync C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\work\\godot-4.7.2\\Godot_v4.7.2-stable_win64_console.exe ETIMEDOUT"
+      ]
+    },
+    {
+      "operation": "qa-closing-performance-export",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 45.734,
+      "diagnostics": [
+        {
+          "assertions": 231,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "qa-closing-performance",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 31.375,
+      "diagnostics": [
+        {
+          "assertions": 231,
+          "failures": []
+        }
+      ]
+    }
+  ]
+}

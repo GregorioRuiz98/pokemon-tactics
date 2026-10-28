@@ -13,6 +13,7 @@ export const currentDocs = [
   'docs/BETA_1_0.md', 'docs/PLANTILLA_BETA.md',
   'docs/SPRINT_38_RC.md',
   'docs/RELEASE_1_0_RC2.md',
+  'docs/BETA_RC2_2026-10-28.md',
 ];
 
 export function windowsVersion(version) {

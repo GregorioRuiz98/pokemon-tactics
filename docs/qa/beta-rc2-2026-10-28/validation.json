@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "counts": {
+    "total": 65,
+    "errors": 0,
+    "parse_errors": 0,
+    "warnings": 65,
+    "info": 0
+  },
+  "identicalBaselineDiagnostics": true,
+  "newDiagnostics": 0,
+  "lint": {
+    "total": 0,
+    "errors": 0,
+    "warnings": 0,
+    "parse_errors": 0
+  },
+  "assetsVerified": true,
+  "packageContractTests": 5
+}

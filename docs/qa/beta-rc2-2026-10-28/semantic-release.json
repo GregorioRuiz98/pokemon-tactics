@@ -1,0 +1,7 @@
+{
+  "assertions": 8,
+  "failures": [
+    "Title exposes native button name"
+  ],
+  "scope": "Native synthetic events and explicitly synthetic interaction fixtures; isolated saves"
+}

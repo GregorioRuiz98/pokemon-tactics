@@ -1,0 +1,18 @@
+{
+  "assertions": 46,
+  "failures": [
+    "Copy seed is reachable backwards from starter",
+    "Generate another seed participates in keyboard navigation",
+    "Seed is reachable backwards from starter",
+    "Typing shortcut letters and digits edits text without gameplay orders",
+    "Tab from seed reaches Generate another",
+    "Tab from Generate another reaches Copy",
+    "Selecting a member retains its identity",
+    "Orientation panel shortcut only focuses visible directions",
+    "Ability menu focuses first available action",
+    "Mouse menu also establishes keyboard focus",
+    "New ability key works",
+    "Engine-only preparation reaches shop"
+  ],
+  "scope": "Native synthetic viewport keys and pointer; shop prepared by pure engine; no human saves"
+}

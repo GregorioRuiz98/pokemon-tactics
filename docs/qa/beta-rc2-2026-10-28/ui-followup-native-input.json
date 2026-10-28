@@ -1,0 +1,35 @@
+{
+  "lane": "ui-followup",
+  "started": "2026-10-28T16:49:55.044137+00:00",
+  "finished": "2026-10-28T16:50:24.184948+00:00",
+  "sourceCommit": "cdd48cf0d8922a7ef4a98b524577a0c8e98b416f",
+  "exeSha256": "219487561592e460c9488a669f02ef986432475f024d89b08c8afa50d4726767",
+  "scope": "Offline automatic QA. Legacy suites retain published editions. No human or external-PC claim.",
+  "operations": [
+    {
+      "operation": "edge-portrait",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 29.016,
+      "scope": "Additional source UI probe; shipped EXE cannot execute external scripts",
+      "diagnostics": [
+        {
+          "assertions": 5,
+          "failures": []
+        }
+      ],
+      "report": {
+        "assertions": 5,
+        "failures": [],
+        "scope": "Additional source UI probe with an isolated full-profile fixture.",
+        "details": {
+          "choices": 151,
+          "endKeyReachesLast": false,
+          "focused": true,
+          "keyboardOpen": true,
+          "mouseOpen": true
+        }
+      }
+    }
+  ]
+}

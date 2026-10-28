@@ -1,0 +1,475 @@
+{
+  "lane": "core",
+  "started": "2026-10-28T15:35:29.985564+00:00",
+  "finished": "2026-10-28T16:01:32.686921+00:00",
+  "sourceCommit": "cdd48cf0d8922a7ef4a98b524577a0c8e98b416f",
+  "exeSha256": "219487561592e460c9488a669f02ef986432475f024d89b08c8afa50d4726767",
+  "scope": "Offline automatic QA. Legacy suites retain published editions. No human or external-PC claim.",
+  "operations": [
+    {
+      "operation": "test-closing",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 37.297,
+      "diagnostics": [
+        {
+          "checks": 36,
+          "failures": [],
+          "edition": 29
+        }
+      ]
+    },
+    {
+      "operation": "test-collection",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 54.344,
+      "diagnostics": [
+        {
+          "checks": 4196,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-quality",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 75.672,
+      "diagnostics": []
+    },
+    {
+      "operation": "test-review",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 82.75,
+      "diagnostics": [
+        {
+          "checks": 505,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-climate",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 36.734,
+      "diagnostics": [
+        {
+          "checks": 487,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-power",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 50.625,
+      "diagnostics": [
+        {
+          "checks": 1602,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-sleep",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 27.25,
+      "diagnostics": [
+        {
+          "checks": 35,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-kanto",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 125.031,
+      "diagnostics": [
+        {
+          "checks": 7626,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-variety",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 24.89,
+      "diagnostics": [
+        {
+          "checks": 7428,
+          "failures": [],
+          "campaignEdition": 21
+        }
+      ]
+    },
+    {
+      "operation": "test-trainer",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 18.829,
+      "diagnostics": [
+        {
+          "checks": 120,
+          "failures": [],
+          "campaignEdition": 21,
+          "profileSchema": 1,
+          "scope": "Natural Route1, separate persistence/outbox, duplicate/recovery/concurrent/legacy cases; cosmetics and retroactivity fixtures."
+        }
+      ]
+    },
+    {
+      "operation": "test-controls",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 18.781,
+      "diagnostics": [
+        {
+          "assertions": 2,
+          "failures": []
+        },
+        {
+          "assertions": 20,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-spatial",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 6.657,
+      "diagnostics": [
+        {
+          "checks": 557,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-economy",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 8.562,
+      "diagnostics": [
+        {
+          "checks": 964,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-adventure",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 24.687,
+      "diagnostics": [
+        {
+          "checks": 105,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-shop-batch",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 1.234,
+      "diagnostics": [
+        {
+          "assertions": 44,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-revive",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 19.907,
+      "diagnostics": [
+        {
+          "checks": 310,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-gym-caps",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 20.11,
+      "diagnostics": [
+        {
+          "checks": 167,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-level-hp",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 19.75,
+      "diagnostics": [
+        {
+          "checks": 5446,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-growth",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 41.797,
+      "diagnostics": [
+        {
+          "checks": 1194,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-letsgo",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 19.062,
+      "diagnostics": [
+        {
+          "assertions": 4301,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-tactics",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 20.016,
+      "diagnostics": [
+        {
+          "assertions": 1364,
+          "failures": [],
+          "edition": 6
+        }
+      ]
+    },
+    {
+      "operation": "test-traits",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 24.578,
+      "diagnostics": [
+        {
+          "checks": 5292,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-expedition-abilities",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 19.234,
+      "diagnostics": [
+        {
+          "checks": 16,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-progression",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 45.719,
+      "diagnostics": [
+        {
+          "checks": 1165,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-shop",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 49.735,
+      "diagnostics": [
+        {
+          "checks": 1118,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-roster",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 25.875,
+      "diagnostics": [
+        {
+          "checks": 418,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-scale",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 28.313,
+      "diagnostics": [
+        {
+          "checks": 1713,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-campaign-edges",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 18.813,
+      "diagnostics": [
+        {
+          "checks": 20,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-release",
+      "ok": false,
+      "exitCode": 1,
+      "seconds": 19.546,
+      "diagnostics": [
+        {
+          "checks": 19,
+          "failures": [
+            "Second instance loads current file",
+            "Battle replay exact after atomic replacement",
+            "Installed version bounds known editions",
+            "Delivered ending21 loads"
+          ]
+        },
+        "  if (result.error || result.status !== 0 || /(?:SCRIPT ERROR:|Parse Error|^ERROR:)/m.test(clean)) throw new Error(`${label} failed; see ${resolve(work, `${label}.log`)}${result.error ? ': ' + result.error.message : ''}`);",
+        "Error: test-release failed; see C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\work\\beta-rc2-2026-10-28\\core\\test-release.log"
+      ]
+    },
+    {
+      "operation": "test-finale",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 19.125,
+      "diagnostics": [
+        {
+          "checks": 45,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-expedition",
+      "ok": false,
+      "exitCode": 1,
+      "seconds": 19.265,
+      "diagnostics": [
+        {
+          "checks": 1292,
+          "failures": [
+            "Expanded history replays"
+          ]
+        },
+        "  if (result.error || result.status !== 0 || /(?:SCRIPT ERROR:|Parse Error|^ERROR:)/m.test(clean)) throw new Error(`${label} failed; see ${resolve(work, `${label}.log`)}${result.error ? ': ' + result.error.message : ''}`);",
+        "Error: expedition-core failed; see C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\work\\beta-rc2-2026-10-28\\core\\expedition-core.log"
+      ]
+    },
+    {
+      "operation": "test-campaign",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 162.266,
+      "diagnostics": [
+        {
+          "checks": 3406,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-letsgo-journey",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 111.141,
+      "diagnostics": [
+        {
+          "checks": 5351,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-tactics-journey",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 91.875,
+      "diagnostics": [
+        {
+          "checks": 3734,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-traits-journey",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 68.156,
+      "diagnostics": [
+        {
+          "checks": 1894,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "operation": "test-journey",
+      "ok": false,
+      "exitCode": 1,
+      "seconds": 98.109,
+      "diagnostics": [
+        {
+          "checks": 10036,
+          "failures": [
+            "Full expanded campaign replays",
+            "Previous delivered campaign exists for continuity test"
+          ]
+        },
+        "  if (result.error || result.status !== 0 || /(?:SCRIPT ERROR:|Parse Error|^ERROR:)/m.test(clean)) throw new Error(`${label} failed; see ${resolve(work, `${label}.log`)}${result.error ? ': ' + result.error.message : ''}`);",
+        "Error: test-journey failed; see C:\\Users\\tirion\\Documents\\Codex\\2026-10-13\\qui\\work\\beta-rc2-2026-10-28\\core\\test-journey.log"
+      ]
+    },
+    {
+      "operation": "test",
+      "ok": true,
+      "exitCode": 0,
+      "seconds": 26.547,
+      "diagnostics": [
+        {
+          "checks": 503579,
+          "failures": []
+        }
+      ]
+    }
+  ]
+}

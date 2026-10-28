@@ -1,0 +1,458 @@
+{
+  "edition": 29,
+  "scope": "New current-edition synthetic robustness probes; no production changes.",
+  "cases": [
+    {
+      "case": "openings",
+      "exitCode": 0,
+      "report": {
+        "case": "openings",
+        "checks": 2972,
+        "edition": 29,
+        "failures": [],
+        "samples": [
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rounds": 6,
+            "seed": "beta-opening-1-0",
+            "starter": 1
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rounds": 6,
+            "seed": "beta-opening-1-1",
+            "starter": 1
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rounds": 6,
+            "seed": "beta-opening-1-2",
+            "starter": 1
+          },
+          {
+            "orders": 15,
+            "phase": "capture",
+            "rounds": 4,
+            "seed": "beta-opening-1-3",
+            "starter": 1
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rounds": 6,
+            "seed": "beta-opening-1-4",
+            "starter": 1
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rounds": 6,
+            "seed": "beta-opening-1-5",
+            "starter": 1
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rounds": 6,
+            "seed": "beta-opening-1-6",
+            "starter": 1
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rounds": 6,
+            "seed": "beta-opening-1-7",
+            "starter": 1
+          },
+          {
+            "orders": 31,
+            "phase": "capture",
+            "rounds": 8,
+            "seed": "beta-opening-4-0",
+            "starter": 4
+          },
+          {
+            "orders": 31,
+            "phase": "capture",
+            "rounds": 8,
+            "seed": "beta-opening-4-1",
+            "starter": 4
+          },
+          {
+            "orders": 31,
+            "phase": "capture",
+            "rounds": 8,
+            "seed": "beta-opening-4-2",
+            "starter": 4
+          },
+          {
+            "orders": 27,
+            "phase": "capture",
+            "rounds": 7,
+            "seed": "beta-opening-4-3",
+            "starter": 4
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rounds": 6,
+            "seed": "beta-opening-4-4",
+            "starter": 4
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rounds": 6,
+            "seed": "beta-opening-4-5",
+            "starter": 4
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rounds": 6,
+            "seed": "beta-opening-4-6",
+            "starter": 4
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rounds": 6,
+            "seed": "beta-opening-4-7",
+            "starter": 4
+          },
+          {
+            "orders": 19,
+            "phase": "capture",
+            "rounds": 5,
+            "seed": "beta-opening-7-0",
+            "starter": 7
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rounds": 6,
+            "seed": "beta-opening-7-1",
+            "starter": 7
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rounds": 6,
+            "seed": "beta-opening-7-2",
+            "starter": 7
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rounds": 6,
+            "seed": "beta-opening-7-3",
+            "starter": 7
+          },
+          {
+            "orders": 27,
+            "phase": "capture",
+            "rounds": 7,
+            "seed": "beta-opening-7-4",
+            "starter": 7
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rounds": 6,
+            "seed": "beta-opening-7-5",
+            "starter": 7
+          },
+          {
+            "orders": 31,
+            "phase": "capture",
+            "rounds": 8,
+            "seed": "beta-opening-7-6",
+            "starter": 7
+          },
+          {
+            "orders": 23,
+            "phase": "capture",
+            "rounds": 6,
+            "seed": "beta-opening-7-7",
+            "starter": 7
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": true,
+      "seconds": 19.234,
+      "directory": "rerun-1793202967468327600\\openings"
+    },
+    {
+      "case": "legacy-load",
+      "exitCode": 1,
+      "report": {
+        "case": "legacy-load",
+        "checks": 54,
+        "edition": 29,
+        "failures": [
+          "Current reader loads legacy 13",
+          "Current reader loads legacy 14",
+          "Current reader loads legacy 15",
+          "Current reader loads legacy 16",
+          "Current reader loads legacy 17",
+          "Current reader loads legacy 18"
+        ],
+        "samples": [
+          {
+            "edition": 12,
+            "loaded": true,
+            "reason": ""
+          },
+          {
+            "edition": 13,
+            "loaded": false,
+            "reason": "Esta campaña requiere contenido de una versión posterior. Se conserva el archivo."
+          },
+          {
+            "edition": 14,
+            "loaded": false,
+            "reason": "Esta campaña requiere contenido de una versión posterior. Se conserva el archivo."
+          },
+          {
+            "edition": 15,
+            "loaded": false,
+            "reason": "Esta campaña requiere contenido de una versión posterior. Se conserva el archivo."
+          },
+          {
+            "edition": 16,
+            "loaded": false,
+            "reason": "Esta campaña requiere contenido de una versión posterior. Se conserva el archivo."
+          },
+          {
+            "edition": 17,
+            "loaded": false,
+            "reason": "Esta campaña requiere contenido de una versión posterior. Se conserva el archivo."
+          },
+          {
+            "edition": 18,
+            "loaded": false,
+            "reason": "Esta campaña requiere contenido de una versión posterior. Se conserva el archivo."
+          },
+          {
+            "edition": 19,
+            "loaded": true,
+            "reason": ""
+          },
+          {
+            "edition": 20,
+            "loaded": true,
+            "reason": ""
+          },
+          {
+            "edition": 21,
+            "loaded": true,
+            "reason": ""
+          },
+          {
+            "edition": 22,
+            "loaded": true,
+            "reason": ""
+          },
+          {
+            "edition": 23,
+            "loaded": true,
+            "reason": ""
+          },
+          {
+            "edition": 24,
+            "loaded": true,
+            "reason": ""
+          },
+          {
+            "edition": 25,
+            "loaded": true,
+            "reason": ""
+          },
+          {
+            "edition": 26,
+            "loaded": true,
+            "reason": ""
+          },
+          {
+            "edition": 27,
+            "loaded": true,
+            "reason": ""
+          },
+          {
+            "edition": 28,
+            "loaded": true,
+            "reason": ""
+          },
+          {
+            "edition": 29,
+            "loaded": true,
+            "reason": ""
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": false,
+      "seconds": 94.313,
+      "directory": "rerun-1793202967468327600\\legacy-load"
+    },
+    {
+      "case": "migrations",
+      "exitCode": 0,
+      "report": {
+        "case": "migrations",
+        "checks": 85,
+        "edition": 29,
+        "failures": [],
+        "samples": [
+          {
+            "coldLoadMs": 72910,
+            "fromEdition": 12,
+            "loaded": true,
+            "toEdition": 29,
+            "totalMs": 146264,
+            "upgradeMs": 73344
+          },
+          {
+            "coldLoadMs": 73973,
+            "fromEdition": 13,
+            "loaded": true,
+            "toEdition": 29,
+            "totalMs": 149445,
+            "upgradeMs": 75464
+          },
+          {
+            "coldLoadMs": 72747,
+            "fromEdition": 14,
+            "loaded": true,
+            "toEdition": 29,
+            "totalMs": 147682,
+            "upgradeMs": 74927
+          },
+          {
+            "coldLoadMs": 72589,
+            "fromEdition": 15,
+            "loaded": true,
+            "toEdition": 29,
+            "totalMs": 146783,
+            "upgradeMs": 74185
+          },
+          {
+            "coldLoadMs": 71128,
+            "fromEdition": 16,
+            "loaded": true,
+            "toEdition": 29,
+            "totalMs": 144341,
+            "upgradeMs": 73203
+          },
+          {
+            "coldLoadMs": 73071,
+            "fromEdition": 17,
+            "loaded": true,
+            "toEdition": 29,
+            "totalMs": 146689,
+            "upgradeMs": 73610
+          },
+          {
+            "coldLoadMs": 72182,
+            "fromEdition": 18,
+            "loaded": true,
+            "toEdition": 29,
+            "totalMs": 145846,
+            "upgradeMs": 73655
+          },
+          {
+            "coldLoadMs": 73245,
+            "fromEdition": 19,
+            "loaded": true,
+            "toEdition": 29,
+            "totalMs": 148553,
+            "upgradeMs": 75299
+          },
+          {
+            "coldLoadMs": 70453,
+            "fromEdition": 20,
+            "loaded": true,
+            "toEdition": 29,
+            "totalMs": 143543,
+            "upgradeMs": 73081
+          },
+          {
+            "coldLoadMs": 66437,
+            "fromEdition": 21,
+            "loaded": true,
+            "toEdition": 29,
+            "totalMs": 136549,
+            "upgradeMs": 70103
+          },
+          {
+            "coldLoadMs": 61170,
+            "fromEdition": 22,
+            "loaded": true,
+            "toEdition": 29,
+            "totalMs": 128728,
+            "upgradeMs": 67549
+          },
+          {
+            "coldLoadMs": 54845,
+            "fromEdition": 23,
+            "loaded": true,
+            "toEdition": 29,
+            "totalMs": 115699,
+            "upgradeMs": 60844
+          },
+          {
+            "coldLoadMs": 46835,
+            "fromEdition": 24,
+            "loaded": true,
+            "toEdition": 29,
+            "totalMs": 101335,
+            "upgradeMs": 54491
+          },
+          {
+            "coldLoadMs": 37554,
+            "fromEdition": 25,
+            "loaded": true,
+            "toEdition": 29,
+            "totalMs": 84546,
+            "upgradeMs": 46982
+          },
+          {
+            "coldLoadMs": 25938,
+            "fromEdition": 26,
+            "loaded": true,
+            "toEdition": 29,
+            "totalMs": 63073,
+            "upgradeMs": 37125
+          },
+          {
+            "coldLoadMs": 13060,
+            "fromEdition": 27,
+            "loaded": true,
+            "toEdition": 29,
+            "totalMs": 39138,
+            "upgradeMs": 26070
+          },
+          {
+            "coldLoadMs": 10,
+            "fromEdition": 28,
+            "loaded": true,
+            "toEdition": 29,
+            "totalMs": 13041,
+            "upgradeMs": 13021
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": true,
+      "seconds": 2013.937,
+      "directory": "rerun-1793202967468327600\\migrations"
+    }
+  ]
+}

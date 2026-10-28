@@ -13,7 +13,8 @@ ROOT = Path(__file__).resolve().parents[2]
 project = (ROOT/'godot/project.godot').read_text(encoding='utf-8')
 version = re.search(r'config/version="([^"]+)"',project)[1]
 stage = re.search(r'config/qa_stage=(\d+)',project)[1]
-work = (ROOT/f'../../work/qa-sprint-{stage}').resolve()
+work = Path(os.environ.get('GODOT_QA_DIR',str(ROOT/f'../../work/qa-sprint-{stage}'))).resolve()
+work.mkdir(parents=True,exist_ok=True)
 archive = (ROOT/f'../releases/pokemon-tactics-{version}/pokemon-tactics-{version}-windows.zip').resolve()
 target = work/f'clean-extract-{time.time_ns()}'
 target.mkdir(parents=True)

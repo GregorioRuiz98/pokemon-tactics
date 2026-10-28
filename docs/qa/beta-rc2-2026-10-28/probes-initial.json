@@ -1,0 +1,533 @@
+{
+  "edition": 29,
+  "scope": "New current-edition synthetic robustness probes; no production changes.",
+  "cases": [
+    {
+      "case": "matrix",
+      "exitCode": 0,
+      "report": {
+        "case": "matrix",
+        "checks": 1027,
+        "edition": 29,
+        "failures": [],
+        "samples": [
+          {
+            "distinctRng": 128,
+            "starters": [
+              1,
+              4,
+              7,
+              25,
+              133,
+              144,
+              150,
+              151
+            ],
+            "starts": 128
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": true,
+      "seconds": 29.187
+    },
+    {
+      "case": "profiles",
+      "exitCode": 0,
+      "report": {
+        "case": "profiles",
+        "checks": 9,
+        "edition": 29,
+        "failures": [],
+        "samples": [],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": true,
+      "seconds": 11.828
+    },
+    {
+      "case": "migrations",
+      "ok": false,
+      "error": "Probe timeout",
+      "seconds": 300.016
+    },
+    {
+      "case": "openings",
+      "exitCode": 1,
+      "report": {
+        "case": "openings",
+        "checks": 96,
+        "edition": 29,
+        "failures": [
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits",
+          "Opening AI order is legal",
+          "Opening terminates without artificial state edits"
+        ],
+        "samples": [
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-1-0",
+            "starter": 1
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-1-1",
+            "starter": 1
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-1-2",
+            "starter": 1
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-1-3",
+            "starter": 1
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-1-4",
+            "starter": 1
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-1-5",
+            "starter": 1
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-1-6",
+            "starter": 1
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-1-7",
+            "starter": 1
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-4-0",
+            "starter": 4
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-4-1",
+            "starter": 4
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-4-2",
+            "starter": 4
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-4-3",
+            "starter": 4
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-4-4",
+            "starter": 4
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-4-5",
+            "starter": 4
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-4-6",
+            "starter": 4
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-4-7",
+            "starter": 4
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-7-0",
+            "starter": 7
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-7-1",
+            "starter": 7
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-7-2",
+            "starter": 7
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-7-3",
+            "starter": 7
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-7-4",
+            "starter": 7
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-7-5",
+            "starter": 7
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-7-6",
+            "starter": 7
+          },
+          {
+            "orders": 0,
+            "phase": "battle",
+            "rounds": 1,
+            "seed": "beta-opening-7-7",
+            "starter": 7
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": false,
+      "seconds": 14.687
+    },
+    {
+      "case": "save-truncated",
+      "exitCode": 0,
+      "report": {
+        "case": "save-truncated",
+        "checks": 3,
+        "edition": 29,
+        "failures": [],
+        "samples": [
+          {
+            "preserved": true,
+            "result": "Campaña incompleta o alterada. Se conserva el archivo."
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": true,
+      "seconds": 11.797
+    },
+    {
+      "case": "save-checksum",
+      "exitCode": 0,
+      "report": {
+        "case": "save-checksum",
+        "checks": 3,
+        "edition": 29,
+        "failures": [],
+        "samples": [
+          {
+            "preserved": true,
+            "result": "Campaña incompleta o alterada. Se conserva el archivo."
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": true,
+      "seconds": 11.688
+    },
+    {
+      "case": "save-array",
+      "exitCode": 0,
+      "report": {
+        "case": "save-array",
+        "checks": 3,
+        "edition": 29,
+        "failures": [],
+        "samples": [
+          {
+            "preserved": true,
+            "result": "Contenido no válido. Se conserva el archivo."
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": true,
+      "seconds": 11.312
+    },
+    {
+      "case": "save-future",
+      "exitCode": 0,
+      "report": {
+        "case": "save-future",
+        "checks": 3,
+        "edition": 29,
+        "failures": [],
+        "samples": [
+          {
+            "preserved": true,
+            "result": "Esta campaña necesita otra versión. Se conserva el archivo."
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": true,
+      "seconds": 11.688
+    },
+    {
+      "case": "save-seed-long",
+      "exitCode": 0,
+      "report": {
+        "case": "save-seed-long",
+        "checks": 3,
+        "edition": 29,
+        "failures": [],
+        "samples": [
+          {
+            "preserved": true,
+            "result": "Formato incompatible. Se conserva el archivo."
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": true,
+      "seconds": 11.547
+    },
+    {
+      "case": "save-state-array",
+      "exitCode": 0,
+      "report": {
+        "case": "save-state-array",
+        "checks": 3,
+        "edition": 29,
+        "failures": [],
+        "samples": [
+          {
+            "preserved": true,
+            "result": "Formato incompatible. Se conserva el archivo."
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": true,
+      "seconds": 11.5
+    },
+    {
+      "case": "save-command-null",
+      "exitCode": 0,
+      "report": {
+        "case": "save-command-null",
+        "checks": 3,
+        "edition": 29,
+        "failures": [],
+        "samples": [
+          {
+            "preserved": true,
+            "result": "Historial no válido. Se conserva el archivo."
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": true,
+      "seconds": 11.468
+    },
+    {
+      "case": "save-command-array",
+      "exitCode": 0,
+      "report": {
+        "case": "save-command-array",
+        "checks": 3,
+        "edition": 29,
+        "failures": [],
+        "samples": [
+          {
+            "preserved": true,
+            "result": "Historial no válido. Se conserva el archivo."
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": true,
+      "seconds": 11.578
+    },
+    {
+      "case": "save-kind-array",
+      "exitCode": 0,
+      "report": {
+        "case": "save-kind-array",
+        "checks": 3,
+        "edition": 29,
+        "failures": [],
+        "samples": [
+          {
+            "preserved": true,
+            "result": ""
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [
+        "SCRIPT ERROR: Invalid operands 'Array' and 'String' in operator '=='.",
+        "SCRIPT ERROR: Invalid access to property or key 'ok' on a base object of type 'Dictionary'."
+      ],
+      "ok": false,
+      "seconds": 11.438
+    },
+    {
+      "case": "save-order-null",
+      "exitCode": 0,
+      "report": {
+        "case": "save-order-null",
+        "checks": 3,
+        "edition": 29,
+        "failures": [],
+        "samples": [
+          {
+            "preserved": true,
+            "result": "Confirma el despliegue antes de actuar."
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": true,
+      "seconds": 11.797
+    },
+    {
+      "case": "save-money-edit",
+      "exitCode": 0,
+      "report": {
+        "case": "save-money-edit",
+        "checks": 3,
+        "edition": 29,
+        "failures": [],
+        "samples": [
+          {
+            "preserved": true,
+            "result": "La campaña no coincide con su historial. Se conserva el archivo."
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": true,
+      "seconds": 11.469
+    },
+    {
+      "case": "save-size",
+      "exitCode": 0,
+      "report": {
+        "case": "save-size",
+        "checks": 3,
+        "edition": 29,
+        "failures": [],
+        "samples": [
+          {
+            "preserved": true,
+            "result": "No se puede leer la campaña. Se conserva el archivo."
+          }
+        ],
+        "scope": "Isolated current-engine edge probes. Explicit synthetic fixtures are not natural campaign victories."
+      },
+      "runtimeErrors": [],
+      "ok": true,
+      "seconds": 12.453
+    }
+  ]
+}
