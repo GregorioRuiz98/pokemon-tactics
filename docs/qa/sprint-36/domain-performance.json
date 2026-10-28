@@ -1,0 +1,7 @@
+{
+	"maxMs": 176.185,
+	"medianMs": 3.996,
+	"orders": 7865,
+	"p95Ms": 10.565,
+	"scope": "Synchronous domain command timings, not FPS or human thinking time."
+}

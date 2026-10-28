@@ -1,0 +1,1208 @@
+{
+	"achievements": [
+		"first-recruit",
+		"clean-gym",
+		"first-medal",
+		"dex-10",
+		"clear-smoke",
+		"dex-25",
+		"fuji-perfect",
+		"champion",
+		"birds",
+		"legend-recruit"
+	],
+	"captures": [
+		19,
+		19,
+		10,
+		95,
+		27,
+		113,
+		129,
+		56,
+		16,
+		48,
+		121,
+		19,
+		39,
+		16,
+		26,
+		117,
+		50,
+		61,
+		20,
+		129,
+		104,
+		17,
+		20,
+		45,
+		59,
+		92,
+		92,
+		92,
+		44,
+		99,
+		70,
+		16,
+		17,
+		16,
+		16,
+		110,
+		39,
+		63,
+		65,
+		121,
+		130,
+		73,
+		129,
+		20,
+		59,
+		112,
+		81,
+		129,
+		103,
+		42,
+		95,
+		111,
+		42,
+		111,
+		41,
+		145
+	],
+	"checks": 15747,
+	"cleared": [
+		"route-1",
+		"route-2",
+		"forest",
+		"brock",
+		"route-3",
+		"mt-moon",
+		"route-4",
+		"cerulean-rival",
+		"route-24",
+		"route-25",
+		"misty",
+		"route-5",
+		"route-6",
+		"ss-anne",
+		"surge",
+		"route-11",
+		"diglett-cave",
+		"route-22",
+		"route-9",
+		"route-10",
+		"rock-tunnel",
+		"route-8",
+		"route-7",
+		"erika",
+		"rocket-hideout",
+		"tower-rival",
+		"pokemon-tower",
+		"fuji-rescue",
+		"route-12",
+		"route-13",
+		"route-14",
+		"route-15",
+		"route-16",
+		"route-17",
+		"route-18",
+		"safari",
+		"koga",
+		"silph-rival",
+		"silph-giovanni",
+		"sabrina",
+		"route-19",
+		"route-20",
+		"seafoam",
+		"route-21",
+		"pokemon-mansion",
+		"blaine",
+		"giovanni-gym",
+		"power-plant",
+		"league-rival",
+		"route-23",
+		"victory-road",
+		"lorelei",
+		"bruno",
+		"agatha",
+		"lance",
+		"champion",
+		"legendary-birds"
+	],
+	"edition": 28,
+	"encounters": [
+		{
+			"cap": 14,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				5
+			],
+			"location": "route-1",
+			"money": 120,
+			"orders": 23,
+			"rounds": 5,
+			"startedOrder": 1
+		},
+		{
+			"cap": 14,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				6,
+				6
+			],
+			"location": "route-2",
+			"money": 148,
+			"orders": 68,
+			"rounds": 9,
+			"startedOrder": 32
+		},
+		{
+			"cap": 14,
+			"fainted": 1,
+			"kind": "battle",
+			"levels": [
+				8,
+				7,
+				7
+			],
+			"location": "forest",
+			"money": 308,
+			"orders": 74,
+			"rounds": 7,
+			"startedOrder": 109
+		},
+		{
+			"cap": 14,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				10,
+				8,
+				9,
+				9
+			],
+			"location": "brock",
+			"money": 181,
+			"orders": 106,
+			"rounds": 7,
+			"startedOrder": 198
+		},
+		{
+			"cap": 21,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				12,
+				11,
+				11,
+				10,
+				14
+			],
+			"location": "route-3",
+			"money": 159,
+			"orders": 73,
+			"rounds": 4,
+			"startedOrder": 319
+		},
+		{
+			"cap": 21,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				13,
+				12,
+				12,
+				11,
+				14,
+				11
+			],
+			"location": "mt-moon",
+			"money": 131,
+			"orders": 175,
+			"rounds": 8,
+			"startedOrder": 408
+		},
+		{
+			"cap": 21,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				14,
+				13,
+				13,
+				13,
+				15,
+				13
+			],
+			"location": "route-4",
+			"money": 177,
+			"orders": 87,
+			"rounds": 5,
+			"startedOrder": 600
+		},
+		{
+			"cap": 21,
+			"fainted": 1,
+			"kind": "battle",
+			"levels": [
+				15,
+				14,
+				14,
+				14,
+				15,
+				14
+			],
+			"location": "cerulean-rival",
+			"money": 239,
+			"orders": 107,
+			"rounds": 5,
+			"startedOrder": 702
+		},
+		{
+			"cap": 21,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				16,
+				14,
+				14,
+				14,
+				16,
+				14
+			],
+			"location": "route-24",
+			"money": 184,
+			"orders": 116,
+			"rounds": 6,
+			"startedOrder": 826
+		},
+		{
+			"cap": 21,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				17,
+				15,
+				15,
+				15,
+				17,
+				15
+			],
+			"location": "route-25",
+			"money": 239,
+			"orders": 94,
+			"rounds": 5,
+			"startedOrder": 957
+		},
+		{
+			"cap": 21,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				19,
+				17,
+				17,
+				17,
+				18,
+				17
+			],
+			"location": "misty",
+			"money": 188,
+			"orders": 139,
+			"rounds": 7,
+			"startedOrder": 1067
+		},
+		{
+			"cap": 24,
+			"fainted": 1,
+			"kind": "battle",
+			"levels": [
+				20,
+				19,
+				21,
+				18,
+				19,
+				18
+			],
+			"location": "route-5",
+			"money": 235,
+			"orders": 93,
+			"rounds": 5,
+			"startedOrder": 1221
+		},
+		{
+			"cap": 24,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				20,
+				20,
+				21,
+				19,
+				20,
+				19
+			],
+			"location": "route-6",
+			"money": 270,
+			"orders": 141,
+			"rounds": 7,
+			"startedOrder": 1332
+		},
+		{
+			"cap": 24,
+			"fainted": 1,
+			"kind": "battle",
+			"levels": [
+				21,
+				20,
+				21,
+				20,
+				20,
+				20
+			],
+			"location": "ss-anne",
+			"money": 120,
+			"orders": 100,
+			"rounds": 5,
+			"startedOrder": 1492
+		},
+		{
+			"cap": 24,
+			"fainted": 1,
+			"kind": "battle",
+			"levels": [
+				21,
+				20,
+				21,
+				20,
+				21,
+				20
+			],
+			"location": "surge",
+			"money": 35,
+			"orders": 154,
+			"rounds": 7,
+			"startedOrder": 1611
+		},
+		{
+			"cap": 29,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				23,
+				24,
+				23,
+				22,
+				23,
+				22
+			],
+			"location": "route-11",
+			"money": 207,
+			"orders": 99,
+			"rounds": 5,
+			"startedOrder": 1787
+		},
+		{
+			"cap": 29,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				24,
+				24,
+				23,
+				22,
+				23,
+				23
+			],
+			"location": "diglett-cave",
+			"money": 295,
+			"orders": 65,
+			"rounds": 4,
+			"startedOrder": 1907
+		},
+		{
+			"cap": 29,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				24,
+				24,
+				23,
+				24,
+				23,
+				23
+			],
+			"location": "route-22",
+			"money": 378,
+			"orders": 34,
+			"rounds": 2,
+			"startedOrder": 1990
+		},
+		{
+			"cap": 29,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				24,
+				24,
+				23,
+				24,
+				23,
+				23
+			],
+			"location": "route-9",
+			"money": 658,
+			"orders": 105,
+			"rounds": 4,
+			"startedOrder": 2029
+		},
+		{
+			"cap": 29,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				25,
+				25,
+				24,
+				24,
+				23,
+				24
+			],
+			"location": "route-10",
+			"money": 403,
+			"orders": 140,
+			"rounds": 6,
+			"startedOrder": 2151
+		},
+		{
+			"cap": 29,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				25,
+				25,
+				24,
+				24,
+				24,
+				25
+			],
+			"location": "rock-tunnel",
+			"money": 140,
+			"orders": 113,
+			"rounds": 6,
+			"startedOrder": 2309
+		},
+		{
+			"cap": 29,
+			"fainted": 2,
+			"kind": "battle",
+			"levels": [
+				26,
+				26,
+				24,
+				24,
+				24,
+				25
+			],
+			"location": "route-8",
+			"money": 240,
+			"orders": 137,
+			"rounds": 7,
+			"startedOrder": 2434
+		},
+		{
+			"cap": 29,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				26,
+				26,
+				25,
+				25,
+				25,
+				26
+			],
+			"location": "route-7",
+			"money": 30,
+			"orders": 121,
+			"rounds": 6,
+			"startedOrder": 2590
+		},
+		{
+			"cap": 29,
+			"fainted": 1,
+			"kind": "battle",
+			"levels": [
+				26,
+				26,
+				25,
+				23,
+				25,
+				24
+			],
+			"location": "erika",
+			"money": 148,
+			"orders": 166,
+			"rounds": 8,
+			"startedOrder": 2728
+		},
+		{
+			"cap": 43,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				27,
+				27,
+				27,
+				25,
+				27,
+				29
+			],
+			"location": "rocket-hideout",
+			"money": 138,
+			"orders": 72,
+			"rounds": 4,
+			"startedOrder": 2925
+		},
+		{
+			"cap": 43,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				29,
+				28,
+				28,
+				28,
+				28,
+				30
+			],
+			"location": "tower-rival",
+			"money": 345,
+			"orders": 123,
+			"rounds": 6,
+			"startedOrder": 3009
+		},
+		{
+			"cap": 43,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				30,
+				30,
+				30,
+				28,
+				29,
+				31
+			],
+			"location": "pokemon-tower",
+			"money": 141,
+			"orders": 144,
+			"rounds": 6,
+			"startedOrder": 3148
+		},
+		{
+			"cap": 43,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				31,
+				30,
+				31,
+				30,
+				28,
+				32
+			],
+			"location": "fuji-rescue",
+			"money": 153,
+			"orders": 70,
+			"rounds": 3,
+			"startedOrder": 3308
+		},
+		{
+			"cap": 43,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				32,
+				31,
+				32,
+				30,
+				30,
+				33
+			],
+			"location": "route-12",
+			"money": 373,
+			"orders": 110,
+			"rounds": 5,
+			"startedOrder": 3393
+		},
+		{
+			"cap": 43,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				33,
+				32,
+				33,
+				32,
+				32,
+				34
+			],
+			"location": "route-13",
+			"money": 379,
+			"orders": 125,
+			"rounds": 6,
+			"startedOrder": 3523
+		},
+		{
+			"cap": 43,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				34,
+				33,
+				34,
+				34,
+				33,
+				35
+			],
+			"location": "route-14",
+			"money": 659,
+			"orders": 129,
+			"rounds": 6,
+			"startedOrder": 3666
+		},
+		{
+			"cap": 43,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				35,
+				35,
+				35,
+				35,
+				34,
+				36
+			],
+			"location": "route-15",
+			"money": 929,
+			"orders": 195,
+			"rounds": 9,
+			"startedOrder": 3817
+		},
+		{
+			"cap": 43,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				36,
+				36,
+				36,
+				36,
+				35,
+				37
+			],
+			"location": "route-16",
+			"money": 1039,
+			"orders": 73,
+			"rounds": 3,
+			"startedOrder": 4033
+		},
+		{
+			"cap": 43,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				38,
+				37,
+				37,
+				37,
+				37,
+				38
+			],
+			"location": "route-17",
+			"money": 1199,
+			"orders": 111,
+			"rounds": 5,
+			"startedOrder": 4123
+		},
+		{
+			"cap": 43,
+			"fainted": 1,
+			"kind": "battle",
+			"levels": [
+				39,
+				39,
+				39,
+				39,
+				39,
+				40
+			],
+			"location": "route-18",
+			"money": 1209,
+			"orders": 117,
+			"rounds": 6,
+			"startedOrder": 4254
+		},
+		{
+			"cap": 43,
+			"fainted": 0,
+			"kind": "story",
+			"levels": [
+				41,
+				41,
+				40,
+				40,
+				41,
+				41
+			],
+			"location": "safari",
+			"money": 375,
+			"orders": 0,
+			"rounds": 6,
+			"startedOrder": 4390
+		},
+		{
+			"cap": 43,
+			"fainted": 1,
+			"kind": "battle",
+			"levels": [
+				41,
+				41,
+				40,
+				40,
+				25,
+				31
+			],
+			"location": "koga",
+			"money": 85,
+			"orders": 221,
+			"rounds": 10,
+			"startedOrder": 4402
+		},
+		{
+			"cap": 43,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				43,
+				43,
+				43,
+				43,
+				41,
+				43
+			],
+			"location": "silph-rival",
+			"money": 425,
+			"orders": 112,
+			"rounds": 5,
+			"startedOrder": 4638
+		},
+		{
+			"cap": 43,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				43,
+				43,
+				41,
+				43,
+				42,
+				37
+			],
+			"location": "silph-giovanni",
+			"money": 485,
+			"orders": 113,
+			"rounds": 5,
+			"startedOrder": 4765
+		},
+		{
+			"cap": 43,
+			"fainted": 2,
+			"kind": "battle",
+			"levels": [
+				34,
+				43,
+				31,
+				43,
+				33,
+				43
+			],
+			"location": "sabrina",
+			"money": 159,
+			"orders": 178,
+			"rounds": 8,
+			"startedOrder": 4901
+		},
+		{
+			"cap": 47,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				43,
+				43,
+				43,
+				43,
+				43,
+				43
+			],
+			"location": "route-19",
+			"money": 704,
+			"orders": 87,
+			"rounds": 4,
+			"startedOrder": 5098
+		},
+		{
+			"cap": 47,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				43,
+				43,
+				43,
+				43,
+				43,
+				43
+			],
+			"location": "route-20",
+			"money": 1344,
+			"orders": 109,
+			"rounds": 5,
+			"startedOrder": 5194
+		},
+		{
+			"cap": 47,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				44,
+				43,
+				44,
+				44,
+				44,
+				44
+			],
+			"location": "seafoam",
+			"money": 1649,
+			"orders": 97,
+			"rounds": 4,
+			"startedOrder": 5318
+		},
+		{
+			"cap": 47,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				44,
+				43,
+				44,
+				44,
+				44,
+				44
+			],
+			"location": "route-21",
+			"money": 2019,
+			"orders": 134,
+			"rounds": 6,
+			"startedOrder": 5431
+		},
+		{
+			"cap": 47,
+			"fainted": 1,
+			"kind": "battle",
+			"levels": [
+				45,
+				44,
+				45,
+				45,
+				45,
+				45
+			],
+			"location": "pokemon-mansion",
+			"money": 1062,
+			"orders": 144,
+			"rounds": 7,
+			"startedOrder": 5583
+		},
+		{
+			"cap": 47,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				31,
+				44,
+				38,
+				45,
+				42,
+				42
+			],
+			"location": "blaine",
+			"money": 642,
+			"orders": 132,
+			"rounds": 5,
+			"startedOrder": 5749
+		},
+		{
+			"cap": 50,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				45,
+				45,
+				41,
+				47,
+				45,
+				43
+			],
+			"location": "giovanni-gym",
+			"money": 497,
+			"orders": 117,
+			"rounds": 5,
+			"startedOrder": 5905
+		},
+		{
+			"cap": 65,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				48,
+				48,
+				47,
+				50,
+				48,
+				50
+			],
+			"location": "power-plant",
+			"money": 927,
+			"orders": 118,
+			"rounds": 5,
+			"startedOrder": 6043
+		},
+		{
+			"cap": 65,
+			"fainted": 1,
+			"kind": "battle",
+			"levels": [
+				49,
+				49,
+				48,
+				51,
+				49,
+				50
+			],
+			"location": "league-rival",
+			"money": 1347,
+			"orders": 139,
+			"rounds": 6,
+			"startedOrder": 6174
+		},
+		{
+			"cap": 65,
+			"fainted": 1,
+			"kind": "battle",
+			"levels": [
+				53,
+				52,
+				52,
+				54,
+				53,
+				52
+			],
+			"location": "route-23",
+			"money": 1007,
+			"orders": 133,
+			"rounds": 6,
+			"startedOrder": 6333
+		},
+		{
+			"cap": 65,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				54,
+				53,
+				52,
+				55,
+				54,
+				53
+			],
+			"location": "victory-road",
+			"money": 957,
+			"orders": 160,
+			"rounds": 7,
+			"startedOrder": 6492
+		},
+		{
+			"cap": 65,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				55,
+				53,
+				53,
+				56,
+				55,
+				46
+			],
+			"location": "lorelei",
+			"money": 1467,
+			"orders": 159,
+			"rounds": 7,
+			"startedOrder": 6666
+		},
+		{
+			"cap": 65,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				57,
+				47,
+				54,
+				46,
+				57,
+				51
+			],
+			"location": "bruno",
+			"money": 952,
+			"orders": 116,
+			"rounds": 6,
+			"startedOrder": 6845
+		},
+		{
+			"cap": 65,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				55,
+				54,
+				56,
+				54,
+				56,
+				54
+			],
+			"location": "agatha",
+			"money": 266,
+			"orders": 121,
+			"rounds": 5,
+			"startedOrder": 6979
+		},
+		{
+			"cap": 65,
+			"fainted": 0,
+			"kind": "battle",
+			"levels": [
+				57,
+				56,
+				58,
+				55,
+				57,
+				51
+			],
+			"location": "lance",
+			"money": 618,
+			"orders": 114,
+			"rounds": 5,
+			"startedOrder": 7117
+		},
+		{
+			"cap": 65,
+			"fainted": 1,
+			"kind": "battle",
+			"levels": [
+				59,
+				58,
+				60,
+				59,
+				59,
+				59
+			],
+			"location": "champion",
+			"money": 788,
+			"orders": 176,
+			"rounds": 7,
+			"startedOrder": 7248
+		},
+		{
+			"cap": 75,
+			"fainted": 1,
+			"kind": "battle",
+			"levels": [
+				56,
+				58,
+				63,
+				57,
+				62,
+				60
+			],
+			"location": "legendary-birds",
+			"money": 1248,
+			"orders": 264,
+			"rounds": 15,
+			"startedOrder": 7442
+		}
+	],
+	"failures": [
+		"Accepted order 7723: train-xp No tienes suficientes pokédolares.",
+		"Complete current Kanto and both finals",
+		"Current boss choices and shop recruitment exercised",
+		"PC and legendary achievements retained"
+	],
+	"medals": [
+		"Medalla Roca",
+		"Medalla Cascada",
+		"Medalla Trueno",
+		"Medalla Arcoíris",
+		"Medalla Alma",
+		"Medalla Pantano",
+		"Medalla Volcán",
+		"Medalla Tierra"
+	],
+	"obtained": 46,
+	"orders": 7723,
+	"phase": "shop",
+	"recruits": [
+		114
+	],
+	"scope": "New current-edition campaign from Oak, using a previously successful legal strategy as scripted input, plus current shop/legend rewards. All orders are executed again; no old state injected. Automated, not human/external hardware testing.",
+	"seconds": 154.752,
+	"seed": "release-33-kanto",
+	"seen": 119,
+	"starter": 1,
+	"unlockedStarters": [
+		1,
+		4,
+		7,
+		10,
+		16,
+		19,
+		25,
+		27,
+		39,
+		41,
+		43,
+		48,
+		50,
+		56,
+		58,
+		60,
+		63,
+		69,
+		72,
+		81,
+		92,
+		95,
+		98,
+		102,
+		104,
+		109,
+		111,
+		113,
+		114,
+		116,
+		120,
+		129,
+		145
+	]
+}

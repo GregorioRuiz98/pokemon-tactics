@@ -1,0 +1,16 @@
+{
+  "stage": 36,
+  "campaignEdition": 29,
+  "checks": 16072,
+  "completeAutomated": true,
+  "orders": 7865,
+  "battles": 57,
+  "locations": 58,
+  "medals": 8,
+  "maxRounds": 15,
+  "failures": [],
+  "humanPlaytest": false,
+  "externalHardwareTest": false,
+  "combatNumericalChanges": false,
+  "strategy": "Previously successful legal inputs, re-executed from a new current-edition Oak state; current final captures inserted. Recruitment is verified on a separate affordable save branch."
+}
