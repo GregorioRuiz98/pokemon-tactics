@@ -1,6 +1,6 @@
-# Probar Pokémon Tactics en Windows — 1.0.0-rc.1
+# Probar Pokémon Tactics en Windows — 1.0.0-rc.2
 
-[Reglas actuales](REGLAS_ACTUALES.md) · [Cambios de la candidata](RELEASE_1_0_RC1.md).
+[Reglas actuales](REGLAS_ACTUALES.md) · [Cambios de la candidata](RELEASE_1_0_RC2.md).
 Este documento describe la campaña Windows actual. Los informes por versión son historial.
 
 ## Arranque y controles
@@ -23,7 +23,7 @@ Equipo → Ficha permite completar la EXP del nivel durante la tienda. No hay pe
 
 ## Pokédex, logros e iniciales
 
-Abre Perfil desde Inicio o Pokédex y logros desde Oak. Vistos y obtenidos tienen filtros propios. Al obtener una especie se desbloquea la primera forma de su línea en Otros iniciales, al nivel 5. Las capturas del equipo/PC y las evoluciones cuentan; ver enemigos no basta. La colección permanece al cambiar de aventura.
+Abre Entrenador desde Inicio o Pokédex y logros desde Oak. Vistos y obtenidos tienen filtros propios. Al obtener una especie se desbloquea la primera forma de su línea en Otros iniciales, al nivel 5. Las capturas del equipo/PC y las evoluciones cuentan; ver enemigos no basta. La colección permanece al cambiar de aventura.
 
 Kecleon → Reclutamiento permite una incorporación por visita, pagando el precio mostrado. Tras cada encuentro legendario elige un único participante. Completar toda la colección requiere varias aventuras. El primer guardado del perfil nuevo conserva el anterior como trainer-profile.json.before-v2.
 

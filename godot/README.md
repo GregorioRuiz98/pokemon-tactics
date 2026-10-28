@@ -1,4 +1,4 @@
-# Desarrollo nativo — Windows 1.0.0-rc.1
+# Desarrollo nativo — Windows 1.0.0-rc.2
 
 [Reglas](../docs/REGLAS_ACTUALES.md) · [Jugar/recuperar](../docs/PLAYTEST_WINDOWS.md) · [Arquitectura](../docs/ARCHITECTURE.md) · [Estado](../docs/PLAN_SPRINTS.md)
 
@@ -55,8 +55,13 @@ npm run godot:package
 
 El runner comprueba exactamente Godot 4.7.2 estable. Las herramientas de QA del EXE también comprueban el editor; el jugador que abre el EXE no lo necesita. El empaquetado requiere evidencias fuente/EXE y lint/validación según [Entrega](../docs/DEPLOY.md).
 
-Salidas relativas a raíz: `../releases/pokemon-tactics-1.0.0-rc.1/`; QA: `../../work/qa-sprint-38/`. Partidas reales: `%APPDATA%/PokemonTacticsLab`; no usarlas en ensayos.
+Salidas relativas a raíz: `../releases/pokemon-tactics-1.0.0-rc.2/`; QA: `../../work/qa-sprint-39/`. Partidas reales: `%APPDATA%/PokemonTacticsLab`; no usarlas en ensayos.
 
 [Notas acumuladas](../docs/history/GODOT_README_2026-10-27.md) · [Web 0.12.0](../docs/WEB_LEGACY.md).
 
-La candidata usa `application/config/qa_stage=38` para separar número de sprint y versión del producto. La versión Windows numérica es1.0.0.1; campaña29/combate24 no cambian. `godot:test:package` comprueba el contrato del empaquetador; `godot:check:candidate` extrae el ZIP y prueba arranque con perfil aislado en el mismo PC. La reproducción completa puede tardar varios minutos y no es una sesión humana.
+La candidata usa `application/config/qa_stage=39` para separar número de sprint y versión del producto. La versión Windows numérica es 1.0.0.2; campaña29/combate24 no cambian. `godot:test:package` comprueba el contrato del empaquetador; `godot:check:candidate` extrae el ZIP y prueba arranque con perfil aislado en el mismo PC. La reproducción completa puede tardar varios minutos y no es una sesión humana.
+
+Para esta revisión de presentación, el paquete RC2 exige las suites de perfil
+(`godot:qa:profile` y `godot:qa:profile:export`), colección, usabilidad de cierre
+y revisión, en fuente y EXE. El recorrido completo de campaña sigue siendo
+evidencia previa de RC1; no se presenta como repetido en RC2.

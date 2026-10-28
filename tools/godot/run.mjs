@@ -113,7 +113,13 @@ if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-expo
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'qa-closing-usability' || operation === 'qa-closing-usability-export') {
+if(operation === 'qa-profile' || operation === 'qa-profile-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'profile-'+(exported?'release':'source'));
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--profile-polish','--trainer-qa-dir='+directory],'profile-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'profile-polish.json'),'utf8'));
+  if(report.failures.length || report.assertions<158) throw new Error('Trainer profile QA failed');
+} else if(operation === 'qa-closing-usability' || operation === 'qa-closing-usability-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'closing-usability-'+(exported?'release':'source'));
   run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--closing-usability-dir='+directory],'closing-usability-'+(exported?'release':'source'),exported?output:root);
@@ -469,7 +475,7 @@ if(operation === 'qa-closing-usability' || operation === 'qa-closing-usability-e
   run(binary, ['--headless', ...common, '--export-release', 'Windows Desktop', resolve(output, 'PokemonTactics.exe')], 'export-windows');
   cpSync(resolve(project, 'licenses'), resolve(output, 'licenses'), { recursive: true });
   cpSync(resolve(project, 'CREDITS.md'), resolve(output, 'CREDITS.md'));
-  if (nativeVersion === '1.0.0-rc.1') {
+  if (/^1\.0\.0-rc\.[12]$/.test(nativeVersion)) {
     cpSync(resolve(root,'docs/LEEME_WINDOWS.txt'),resolve(output,'LEEME.txt'));
     const digest = createHash('sha256').update(readFileSync(resolve(output,'PokemonTactics.exe'))).digest('hex');
     writeFileSync(resolve(output,'SHA256SUMS.txt'),`${digest}  PokemonTactics.exe\n`);

@@ -24,5 +24,17 @@ class EvidenceContract(unittest.TestCase):
             with self.subTest(change=change), self.assertRaises(AssertionError):
                 verify(self.report(),{**self.report(),**change},42)
 
+    def test_profile_identity_contract_is_compared(self):
+        base = {**self.report(),'profileSchema':2}
+        with self.assertRaises(AssertionError):
+            verify(base,{**base,'profileSchema':1},42)
+
+    def test_rc2_requires_its_own_profile_suite(self):
+        if contract['VERSION'] != '1.0.0-rc.2': self.skipTest('Only the RC2 presentation package')
+        self.assertIn('profile',contract['SUITES'])
+        self.assertIn('collection',contract['SUITES'])
+        self.assertNotIn('closing-playthrough',contract['SUITES'])
+        self.assertIn('RELEASE_1_0_RC2.md',contract['PLAYER_DOCS'])
+
 
 if __name__ == '__main__': unittest.main()

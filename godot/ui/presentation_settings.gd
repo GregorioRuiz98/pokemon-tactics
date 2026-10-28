@@ -20,7 +20,8 @@ static func apply_fonts(app: Control, node: Node, factor: float = -1) -> void:
 		if control is Label:
 			var color: Color = Color.WHITE if app.input_profile.preferences.highContrast else control.get_meta("base_color")
 			if control.get_theme_color("font_color")!=color: control.add_theme_color_override("font_color",color)
-			if not control.get_parent() is HBoxContainer:
+			if control.get_meta("single_line",false): control.autowrap_mode = TextServer.AUTOWRAP_OFF
+			elif not control.get_parent() is HBoxContainer:
 				control.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 				control.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		if control is Button:

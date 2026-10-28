@@ -1,0 +1,83 @@
+{
+  "version": "1.0.0-rc.2",
+  "campaignEdition": 29,
+  "sourceAndExeStateMatch": "For the scoped UI suites only; no repeated full campaign.",
+  "uiChecksPerBuild": {
+    "profile": 158,
+    "collection": 34,
+    "closing-usability": 32,
+    "review": 46
+  },
+  "coreChecks": 36,
+  "collectionRegressionChecks": 4196,
+  "campaignChecks": 16036,
+  "campaignOrders": 7865,
+  "campaignLocations": 58,
+  "campaignBattles": 57,
+  "campaignMedals": 8,
+  "campaignMode": "Scripted legal orders through native UI and per-order persistence; no state injection",
+  "sourceCampaignOrigin": "Source run started during0.36 closure; same gameplay code, before RC metadata and EOF whitespace cleanup",
+  "loadTimingNote": "closing-playthrough coldLoadMs is the LAST reload timing, after next-starter creation; it is not the long cold-campaign replay duration. That replay is verified by state/assertions only.",
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "publishedFilesUnchanged": [
+    "godot/core",
+    "godot/data",
+    "godot/tests",
+    "godot/assets",
+    "godot/art",
+    "src",
+    "public",
+    "tests",
+    "CREDITS.md"
+  ],
+  "humanPlaytest": false,
+  "externalHardwareTest": false,
+  "publicDeployment": false,
+  "playerDocumentation": {
+    "ok": true,
+    "documents": 9,
+    "localLinks": 15,
+    "errors": [],
+    "scope": "Player documentation presence and local links only; no executable launch or external URL check."
+  },
+  "scope": "Trainer presentation and player copy only. Core/data/resources unchanged against RC1. Fresh source/EXE profile, collection, usability and review suites.",
+  "fullCampaignRepeated": false,
+  "campaignEvidenceOrigin": "Prior RC1 / sprint36 campaign evidence; not a new RC2 full playthrough.",
+  "sourceFingerprint": "b2ad3ff2f2bab8d2ac7da9d6cbe493cd61082c5b34d935ac98b345a78ad88174",
+  "cleanStartup": {
+    "cpu": "Intel(R) Core(TM) i5-14600KF",
+    "editorHint": false,
+    "engine": "4.7.2-stable (official)",
+    "executable": "PokemonTactics.exe",
+    "frames": 120,
+    "observedFps": 131.81091723922,
+    "os": "Windows",
+    "renderer": "gl_compatibility",
+    "scope": "Exact ZIP extracted to a fresh directory on the same physical PC. Engine embedded, no Godot on PATH. Audio uses Dummy for smoke; human audio and external hardware remain pending.",
+    "seconds": 0.910395,
+    "titleVisible": true,
+    "version": "1.0.0-rc.2",
+    "window": {
+      "height": 900,
+      "width": 1280
+    },
+    "archiveExtracted": true,
+    "isolatedProfile": true,
+    "godotNotOnPath": true,
+    "diagnosticHelperPassed": true,
+    "externalHardwareTest": false,
+    "humanPlaytest": false,
+    "exeSha256": "219487561592e460c9488a669f02ef986432475f024d89b08c8afa50d4726767",
+    "zipSha256": "efc4634276972c72c646a12b28a6a2cf8bce93a19f11cbc28c7f9d38a9493f3c"
+  },
+  "exe": {
+    "bytes": 132258984,
+    "sha256": "219487561592e460c9488a669f02ef986432475f024d89b08c8afa50d4726767"
+  },
+  "zip": {
+    "bytes": 55947492,
+    "sha256": "efc4634276972c72c646a12b28a6a2cf8bce93a19f11cbc28c7f9d38a9493f3c"
+  }
+}

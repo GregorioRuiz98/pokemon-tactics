@@ -1,6 +1,6 @@
 # Estado hacia 1.0
 
-Actualizado el 28 de octubre de 2026. **1.0.0-rc.1**, candidata privada Windows offline. No hay descarga pública anunciada. Los planes acumulados son [historial](history/PLAN_SPRINTS_2026-10-27.md), no funciones pendientes por reintroducir.
+Actualizado el 28 de octubre de 2026. **1.0.0-rc.2**, candidata privada Windows offline. No hay descarga pública anunciada. Los planes acumulados son [historial](history/PLAN_SPRINTS_2026-10-27.md), no funciones pendientes por reintroducir.
 
 ## Cierre del desarrollo
 
@@ -9,6 +9,8 @@ Actualizado el 28 de octubre de 2026. **1.0.0-rc.1**, candidata privada Windows 
 |36 — campaña y estabilidad|[Informe](SPRINT_36_CLOSURE.md), [motor](qa/sprint-36/summary.json), [interfaz](qa/sprint-36/native-source.json)|58 lugares,57 combates,8 medallas y 7.865 órdenes legales. Guardados, replay completo, recompensas, colección e inicial siguiente. Ofertas de Kecleon fijas por visita, edición 29.|
 |37 — respuesta y controles|[Informe](SPRINT_37_USABILITY.md), [medición](qa/sprint-37/performance-after.json), [usabilidad](qa/sprint-37/usability-source.json)|Ficha 77,116 → 10,725 ms y Movimientos 78,291 → 45,253 ms de mediana local;95 casos de IA equivalentes. Teclado, ratón, rectificación, orientación, texto 150% y carga asíncrona.|
 |38 — candidata y beta|[Verificación final](SPRINT_38_RC.md), [Cambios y límites](RELEASE_1_0_RC1.md), [protocolo](BETA_1_0.md), [plantilla](PLANTILLA_BETA.md)|EXE portátil, documentación, créditos/procedencia, contrato de empaquetado y comprobación del ZIP exacto. La evidencia final identifica fuente y EXE.|
+
+|39 — perfil y texto|[Cambios RC2](RELEASE_1_0_RC2.md)|Identidad visible, personalización con vista previa y mensajes más breves. Sin cambios de reglas.|
 
 La campaña automática reutiliza una estrategia legal que funcionó en la edición previa; cada orden se ejecuta de nuevo. No importa el estado antiguo ni inyecta victorias, PS, dinero o Pokémon. El intento con una compra que agotó el presupuesto queda conservado. No se cambia el balance aceptado.
 

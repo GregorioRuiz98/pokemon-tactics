@@ -99,7 +99,7 @@ func refresh() -> void:
 	notice.text = app.save_warning
 	caption.text = "Una aventura táctica por Kanto."
 	if not app.run.is_empty():
-		caption.text = "%s · %s · %d medallas\n%d / %d en pie · %s\nSiguiente: %s" % [app.campaign.locations[int(app.run.stage)].name,{"map":"Mapa","battle":"Combate","shop":"Tienda","capture":"Recompensa","complete":"Recorrido completo","ending":"Final","defeat":"Derrota"}.get(app.run.phase,"Aventura"),app.run.get("medals",[]).size(),app.run.party.filter(func(m):return m.hp>0).size(),app.run.party.size(),("límite Nv. %d" % app.campaign.level_cap(app.run) if app.campaign.has_method("level_cap") else "sin límite por gimnasio"),{"map":"elegir el próximo encuentro","battle":"continuar el combate","shop":"preparar el equipo","capture":"recibir tu Pokémon","ending":"aventura completada"}.get(app.run.phase,"consultar tu equipo")]
+		caption.text = "%s · %s\n%d / 8 medallas · %d / %d en pie" % [app.campaign.locations[int(app.run.stage)].name,{"map":"Próximo encuentro","battle":"Combate","shop":"Tienda","capture":"Recompensa","complete":"Completada","ending":"Completada","defeat":"Derrota"}.get(app.run.phase,"Aventura"),app.run.get("medals",[]).size(),app.run.party.filter(func(m):return m.hp>0).size(),app.run.party.size()]
 	if app.title_loading: return
 	var focus: Button = controls["continue"] if available else controls["new"]
 	var focused: Control = get_viewport().gui_get_focus_owner()

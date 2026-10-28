@@ -12,6 +12,7 @@ export const currentDocs = [
   'docs/SPRINT_36_CLOSURE.md', 'docs/SPRINT_37_USABILITY.md', 'docs/RELEASE_1_0_RC1.md',
   'docs/BETA_1_0.md', 'docs/PLANTILLA_BETA.md',
   'docs/SPRINT_38_RC.md',
+  'docs/RELEASE_1_0_RC2.md',
 ];
 
 export function windowsVersion(version) {

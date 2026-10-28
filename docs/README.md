@@ -1,11 +1,11 @@
 # Documentación
 
-Campaña Windows 1.0.0-rc.1 como referencia. Las notas por sprint/diseños anteriores conservan decisiones de su fecha; no son requisitos para reintroducir funciones retiradas.
+Campaña Windows 1.0.0-rc.2 como referencia. Las notas por sprint/diseños anteriores conservan decisiones de su fecha; no son requisitos para reintroducir funciones retiradas.
 
 | Necesito… | Documento vigente |
 | --- | --- |
 | Jugar, controles o recuperación | [Prueba Windows](PLAYTEST_WINDOWS.md), [LEEME](LEEME_WINDOWS.txt) |
-| Candidata1.0 y beta | [Cambios](RELEASE_1_0_RC1.md), [protocolo](BETA_1_0.md), [plantilla](PLANTILLA_BETA.md) |
+| Candidata1.0 y beta | [Cambios](RELEASE_1_0_RC2.md), [protocolo](BETA_1_0.md), [plantilla](PLANTILLA_BETA.md) |
 | Colección e iniciales 0.35 | [Cambios](SPRINT_35_COLLECTION.md) |
 | Reglas actuales | [Reglas](REGLAS_ACTUALES.md) |
 | Pendientes antes de publicar | [Estado](PLAN_SPRINTS.md) |
@@ -19,7 +19,7 @@ Campaña Windows 1.0.0-rc.1 como referencia. Las notas por sprint/diseños anter
 | Versiones anteriores | [Historial](history/README.md) |
 | Prototipo navegador | [Web histórica](WEB_LEGACY.md) |
 
-Candidata verificada: [entrega y resultados](SPRINT_38_RC.md).
+Revisión actual: [perfil y texto RC2](RELEASE_1_0_RC2.md). Campaña base y entrega previa: [RC1](SPRINT_38_RC.md).
 
 Cierre: [campaña actual](SPRINT_36_CLOSURE.md), [interfaz/rendimiento](SPRINT_37_USABILITY.md).
 

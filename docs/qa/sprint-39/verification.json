@@ -1,0 +1,48 @@
+{
+  "version": "1.0.0-rc.2",
+  "campaignEdition": 29,
+  "sourceAndExeStateMatch": "For the scoped UI suites only; no repeated full campaign.",
+  "uiChecksPerBuild": {
+    "profile": 158,
+    "collection": 34,
+    "closing-usability": 32,
+    "review": 46
+  },
+  "coreChecks": 36,
+  "collectionRegressionChecks": 4196,
+  "campaignChecks": 16036,
+  "campaignOrders": 7865,
+  "campaignLocations": 58,
+  "campaignBattles": 57,
+  "campaignMedals": 8,
+  "campaignMode": "Scripted legal orders through native UI and per-order persistence; no state injection",
+  "sourceCampaignOrigin": "Source run started during0.36 closure; same gameplay code, before RC metadata and EOF whitespace cleanup",
+  "loadTimingNote": "closing-playthrough coldLoadMs is the LAST reload timing, after next-starter creation; it is not the long cold-campaign replay duration. That replay is verified by state/assertions only.",
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "publishedFilesUnchanged": [
+    "godot/core",
+    "godot/data",
+    "godot/tests",
+    "godot/assets",
+    "godot/art",
+    "src",
+    "public",
+    "tests",
+    "CREDITS.md"
+  ],
+  "humanPlaytest": false,
+  "externalHardwareTest": false,
+  "publicDeployment": false,
+  "playerDocumentation": {
+    "ok": true,
+    "documents": 9,
+    "localLinks": 15,
+    "errors": [],
+    "scope": "Player documentation presence and local links only; no executable launch or external URL check."
+  },
+  "scope": "Trainer presentation and player copy only. Core/data/resources unchanged against RC1. Fresh source/EXE profile, collection, usability and review suites.",
+  "fullCampaignRepeated": false,
+  "campaignEvidenceOrigin": "Prior RC1 / sprint36 campaign evidence; not a new RC2 full playthrough."
+}

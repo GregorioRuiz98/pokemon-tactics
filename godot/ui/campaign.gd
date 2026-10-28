@@ -535,7 +535,8 @@ func _run_player_qa() -> void:
 	await load("res://ui/qa_player.gd").new().run(self,player_qa_dir)
 
 func _run_trainer_qa() -> void:
-	await load("res://ui/qa_trainer.gd").new().run(self,trainer_qa_dir)
+	var script: String = "res://ui/qa_profile_polish.gd" if "--profile-polish" in OS.get_cmdline_user_args() else "res://ui/qa_trainer.gd"
+	await load(script).new().run(self,trainer_qa_dir)
 
 func _run_shop_qa() -> void:
 	await load("res://ui/qa_kecleon.gd").new().run(self,shop_qa_dir)
@@ -1216,7 +1217,7 @@ func _render_travel() -> void:
 		status.text = save_warning if not save_warning.is_empty() else message
 		status.visible = not status.text.is_empty()
 	if not _simple_hub() and input_profile.preferences.tutorialHints and phase in ["map","shop","capture"]:
-		var guide: Label = _label({"map":"Siguiente paso: revisa el equipo y entra en el encuentro. Los PS se conservan.","shop":"Objetos fuera de combate: recupera PS, compra niveles hasta el límite y revisa el PC. El PC no cura.","capture":"La recompensa pendiente debe resolverse antes de seguir. Aprender movimientos no los prepara automáticamente."}[phase],17)
+		var guide: Label = _label({"map":"Prepara tu equipo antes de continuar.","shop":"Recupera a tu equipo y prepara el próximo combate.","capture":"Elige a tu nuevo compañero para continuar."}[phase],17)
 		guide.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		travel_content.add_child(guide)
 	if run.get("edition",1)>=12 and run.get("edition",1)<CURRENT_CHAPTER-4 and run.get("phase","") in ["map","shop","complete","ending"]:
@@ -1392,7 +1393,7 @@ func _render_travel() -> void:
 					stone.tooltip_text = "Evoluciona Gloom y Weepinbell. No cura ni sube niveles."
 				_travel_button("continue","Seguir viaje" if run.get("edition",1)>=13 or run.stage < 3 else "Cerrar el tramo",footer,{"kind":"continue"})
 		"complete": text.text = "Has conseguido la Medalla Roca. Conservas tu equipo, dinero y objetos.\n\nHas completado el recorrido disponible en esta aventura. Puedes consultar tu equipo o comenzar una nueva."
-		"defeat": text.text = ("Todo el equipo se ha debilitado. La campaña ha terminado; Revivir solo se puede usar en la tienda, si llegas con algún compañero en pie." if run.get("edition",1)>=9 else "Las bajas son definitivas. Esta campaña ha terminado y queda guardada para consultar el equipo.") + "\n\nPuedes comenzar de nuevo con otro inicial o semilla."
+		"defeat": text.text = "Tu equipo ha caído. La aventura ha terminado.\n\nPuedes consultar tu equipo o empezar una nueva aventura."
 	if run.get("edition",1)>=12:
 		if run.phase in ["map","shop"]: text.text += "\n\nGestiona Equipo y PC a la derecha. Cambiar compañeros es gratis y conserva sus PS; solo los desplegados ganan EXP."
 		elif run.phase=="defeat": text.text += "\nLas reservas del PC tampoco permiten continuar tras perder un combate."

@@ -69,7 +69,11 @@ func sync(app: Control) -> void:
 
 func update_title(app: Control) -> void:
 	if model==null or app.title_screen==null or not app.title_screen.controls.has("trainer"): return
-	app.title_screen.controls.trainer.text = "Perfil · "+model.data.name
+	var button: Button = app.title_screen.controls.trainer
+	button.text = "Entrenador · "+model.data.name
+	button.icon = preload("res://ui/trainer_identity.gd").portrait(app,int(model.data.portrait))
+	button.expand_icon = true; button.add_theme_constant_override("icon_max_width",40)
+	button.tooltip_text = "%s · %d / 151 Pokémon · %d logros" % [model.data.title,model.data.dex.size(),model.data.unlocked.size()]
 	if not warning.is_empty(): app.title_screen.notice.text = (app.save_warning+"\n" if not app.save_warning.is_empty() else "")+warning
 
 func open(app: Control) -> void:
@@ -77,7 +81,7 @@ func open(app: Control) -> void:
 		dialog = preload("res://ui/trainer_panel.gd").new()
 		app.add_child(dialog); dialog.setup(app,self); app._watch_dialog(dialog)
 	dialog.render()
-	dialog.popup_centered(Vector2i(760,600)); app._apply_preferences()
+	dialog.popup_centered(Vector2i(mini(820,app.get_window().size.x-48),mini(660,app.get_window().size.y-64))); app._apply_preferences()
 
 func tick(app: Control, delta: float) -> void:
 	if notice==null: return

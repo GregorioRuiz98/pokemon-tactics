@@ -1,6 +1,6 @@
 # Reglas actuales — campaña Windows
 
-Referencia vigente desde 1.0.0-rc.1. Sustituye las descripciones antiguas de PT,
+Referencia vigente desde 1.0.0-rc.2. Sustituye las descripciones antiguas de PT,
 caramelos, piedras consumibles, roles y finales excluyentes. Los informes de
 sprints anteriores describen sus propias versiones y se conservan como historial.
 
@@ -110,11 +110,11 @@ por captura, reclutamiento o evolución registra esa forma y habilita la primera
 forma de su línea como inicial de nivel 5 en próximas aventuras, sin heredar EXP,
 objetos ni mejoras. Los tres iniciales de Oak están siempre disponibles.
 
-Perfil → Logros contiene 19 objetivos, incluidos reclutamiento,
+Entrenador → Logros contiene 19 objetivos, incluidos reclutamiento,
 iniciales y colección. No añaden estadísticas. Nombre, historial, Pokédex y logros
 se conservan al iniciar otra aventura. El perfil anterior se migra con copia
 `.before-v2`; los Pokémon ya registrados se consideran obtenidos.
 
 Las campañas anteriores conservan sus reglas hasta actualizarse entre encuentros.
 No se inventan capturas de jefes que ya se habían vencido antes de actualizar.
-Detalles en [Cambios de la candidata](RELEASE_1_0_RC1.md).
+Detalles en [Cambios de la candidata](RELEASE_1_0_RC2.md).

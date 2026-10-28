@@ -27,6 +27,15 @@ SUITES = {
     'closing-playthrough': ('closing-playthrough.json',15000),
 }
 PLAYER_DOCS = ['REGLAS_ACTUALES.md','PLAYTEST_WINDOWS.md','BETA_1_0.md','PLANTILLA_BETA.md','RELEASE_1_0_RC1.md']
+if VERSION == '1.0.0-rc.2':
+    BASELINE = '83a117dc8caef61fd58eee3adee06fa76aee7b08'
+    SUITES = {
+        'profile': ('profile-polish.json',158),
+        'collection': ('collection-ui-result.json',34),
+        'closing-usability': ('closing-usability.json',25),
+        'review': ('review-ui-result.json',46),
+    }
+    PLAYER_DOCS.append('RELEASE_1_0_RC2.md')
 
 
 def read(path):
@@ -62,7 +71,7 @@ def archive():
 
 
 def main():
-    assert VERSION == '1.0.0-rc.1' and STAGE == 38 and EXE.is_file()
+    assert (VERSION,STAGE) in [('1.0.0-rc.1',38),('1.0.0-rc.2',39)] and EXE.is_file()
     subprocess.run(['git','diff','--exit-code','--diff-filter=MDR',BASELINE,'--',*PROTECTED],cwd=ROOT,check=True,capture_output=True)
     EVIDENCE.mkdir(parents=True,exist_ok=True)
     counts = {}
@@ -111,6 +120,11 @@ def main():
     check = subprocess.run(['node',str(ROOT/'tools/check-repository.mjs'),'--bundle',str(BUNDLE)],capture_output=True,text=True,encoding='utf-8')
     assert check.returncode==0,check.stdout+check.stderr
     verification = {'version':VERSION,'campaignEdition':29,'sourceAndExeStateMatch':True,'uiChecksPerBuild':counts,'coreChecks':core['checks'],'collectionRegressionChecks':collection['checks'],'campaignChecks':campaign['checks'],'campaignOrders':7865,'campaignLocations':58,'campaignBattles':57,'campaignMedals':8,'campaignMode':'Scripted legal orders through native UI and per-order persistence; no state injection','sourceCampaignOrigin':'Source run started during0.36 closure; same gameplay code, before RC metadata and EOF whitespace cleanup','loadTimingNote':'closing-playthrough coldLoadMs is the LAST reload timing, after next-starter creation; it is not the long cold-campaign replay duration. That replay is verified by state/assertions only.','errors':0,'warnings':65,'newWarnings':0,'publishedFilesUnchanged':PROTECTED,'humanPlaytest':False,'externalHardwareTest':False,'publicDeployment':False,'playerDocumentation':json.loads(check.stdout)}
+    if VERSION == '1.0.0-rc.2':
+        verification['scope'] = 'Trainer presentation and player copy only. Core/data/resources unchanged against RC1. Fresh source/EXE profile, collection, usability and review suites.'
+        verification['fullCampaignRepeated'] = False
+        verification['campaignEvidenceOrigin'] = 'Prior RC1 / sprint36 campaign evidence; not a new RC2 full playthrough.'
+        verification['sourceAndExeStateMatch'] = 'For the scoped UI suites only; no repeated full campaign.'
     (docs/'VERIFICACION.json').write_text(json.dumps(verification,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     (EVIDENCE/'verification.json').write_text(json.dumps(verification,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     (BUNDLE/'SHA256SUMS.txt').write_text(digest(EXE)+'  PokemonTactics.exe\n',encoding='utf-8')
