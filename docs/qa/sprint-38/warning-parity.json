@@ -1,0 +1,9 @@
+{
+  "baseline": "0.35.0",
+  "version": "1.0.0-rc.1",
+  "sameWarningsByFileAndMessage": true,
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "lineNumbersIgnoredBecauseUIEditsShiftThem": true
+}

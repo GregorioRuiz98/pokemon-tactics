@@ -1,0 +1,82 @@
+{
+  "version": "1.0.0-rc.1",
+  "campaignEdition": 29,
+  "sourceAndExeStateMatch": true,
+  "uiChecksPerBuild": {
+    "collection": 34,
+    "briefing": 1958,
+    "review": 46,
+    "closing-usability": 32,
+    "closing-performance": 231,
+    "closing-playthrough": 15750
+  },
+  "coreChecks": 36,
+  "collectionRegressionChecks": 4196,
+  "campaignChecks": 16036,
+  "campaignOrders": 7865,
+  "campaignLocations": 58,
+  "campaignBattles": 57,
+  "campaignMedals": 8,
+  "campaignMode": "Scripted legal orders through native UI and per-order persistence; no state injection",
+  "sourceCampaignOrigin": "Source run started during0.36 closure; same gameplay code, before RC metadata and EOF whitespace cleanup",
+  "loadTimingNote": "closing-playthrough coldLoadMs is the LAST reload timing, after next-starter creation; it is not the long cold-campaign replay duration. That replay is verified by state/assertions only.",
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "publishedFilesUnchanged": [
+    "godot/core",
+    "godot/data",
+    "godot/tests",
+    "godot/assets",
+    "godot/art",
+    "src",
+    "public",
+    "tests",
+    "CREDITS.md"
+  ],
+  "humanPlaytest": false,
+  "externalHardwareTest": false,
+  "publicDeployment": false,
+  "playerDocumentation": {
+    "ok": true,
+    "documents": 8,
+    "localLinks": 13,
+    "errors": [],
+    "scope": "Player documentation presence and local links only; no executable launch or external URL check."
+  },
+  "sourceFingerprint": "55956f07bfc19031bd504b2142ef244d1ca922439f6d4926b3593b70bf395934",
+  "cleanStartup": {
+    "cpu": "Intel(R) Core(TM) i5-14600KF",
+    "editorHint": false,
+    "engine": "4.7.2-stable (official)",
+    "executable": "PokemonTactics.exe",
+    "frames": 120,
+    "observedFps": 135.504874223247,
+    "os": "Windows",
+    "renderer": "gl_compatibility",
+    "scope": "Exact ZIP extracted to a fresh directory on the same physical PC. Engine embedded, no Godot on PATH. Audio uses Dummy for smoke; human audio and external hardware remain pending.",
+    "seconds": 0.885577,
+    "titleVisible": true,
+    "version": "1.0.0-rc.1",
+    "window": {
+      "height": 900,
+      "width": 1280
+    },
+    "archiveExtracted": true,
+    "isolatedProfile": true,
+    "godotNotOnPath": true,
+    "diagnosticHelperPassed": true,
+    "externalHardwareTest": false,
+    "humanPlaytest": false,
+    "exeSha256": "8ed40a83368a0ef5e3c3be6879c8a3c6378b6e0d54c617054b1e8e91ac7a0bac",
+    "zipSha256": "f3f28dfb15c6673059c1c8566fa7b4e587a3b814db68ebaf8ef5c4c499025d41"
+  },
+  "exe": {
+    "bytes": 132247128,
+    "sha256": "8ed40a83368a0ef5e3c3be6879c8a3c6378b6e0d54c617054b1e8e91ac7a0bac"
+  },
+  "zip": {
+    "bytes": 55935359,
+    "sha256": "f3f28dfb15c6673059c1c8566fa7b4e587a3b814db68ebaf8ef5c4c499025d41"
+  }
+}

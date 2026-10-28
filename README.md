@@ -28,7 +28,7 @@ Configura `GODOT_BIN` para abrir, probar o exportar desde otro ordenador. [Desar
 
 ## Estado de la entrega
 
-La candidata incluye Pokédex151,19 logros y primeras formas desbloqueables al nivel5. El cierre verifica la campaña actual con7.865 órdenes legales, recompensas y guardados; fija las ofertas de Kecleon durante cada visita y reduce el trabajo de los menús ocultos. [Cambios y límites](docs/RELEASE_1_0_RC1.md) · [Protocolo beta](docs/BETA_1_0.md).
+La candidata incluye Pokédex151,19 logros y primeras formas desbloqueables al nivel5. El cierre verifica la campaña actual con7.865 órdenes legales, recompensas y guardados; fija las ofertas de Kecleon durante cada visita y reduce el trabajo de los menús ocultos. [Entrega y comprobaciones](docs/SPRINT_38_RC.md) · [Cambios y límites](docs/RELEASE_1_0_RC1.md) · [Protocolo beta](docs/BETA_1_0.md).
 
 Siguen pendientes jugadores externos y otro ordenador físico. El [estado de lanzamiento](docs/PLAN_SPRINTS.md) distingue lo comprobado de lo pendiente. La [guía de entrega](docs/DEPLOY.md) describe cómo preparar el ZIP sin publicar automáticamente.
 

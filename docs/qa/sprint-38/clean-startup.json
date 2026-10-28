@@ -1,0 +1,26 @@
+{
+  "cpu": "Intel(R) Core(TM) i5-14600KF",
+  "editorHint": false,
+  "engine": "4.7.2-stable (official)",
+  "executable": "PokemonTactics.exe",
+  "frames": 120,
+  "observedFps": 135.504874223247,
+  "os": "Windows",
+  "renderer": "gl_compatibility",
+  "scope": "Exact ZIP extracted to a fresh directory on the same physical PC. Engine embedded, no Godot on PATH. Audio uses Dummy for smoke; human audio and external hardware remain pending.",
+  "seconds": 0.885577,
+  "titleVisible": true,
+  "version": "1.0.0-rc.1",
+  "window": {
+    "height": 900,
+    "width": 1280
+  },
+  "archiveExtracted": true,
+  "isolatedProfile": true,
+  "godotNotOnPath": true,
+  "diagnosticHelperPassed": true,
+  "externalHardwareTest": false,
+  "humanPlaytest": false,
+  "exeSha256": "8ed40a83368a0ef5e3c3be6879c8a3c6378b6e0d54c617054b1e8e91ac7a0bac",
+  "zipSha256": "f3f28dfb15c6673059c1c8566fa7b4e587a3b814db68ebaf8ef5c4c499025d41"
+}

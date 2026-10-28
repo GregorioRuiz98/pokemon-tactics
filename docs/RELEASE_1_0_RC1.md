@@ -38,6 +38,10 @@ fuente/EXE, estados equivalentes y pruebas posteriores a la compilación.
 
 ## Pendiente antes de publicar 1.0
 
+El EXE de esta candidata no tiene firma de editor (`NotSigned`). Conserva los
+avisos de Windows y comprueba origen y SHA-256. La entrega no instala
+certificados ni modifica la configuración de seguridad del equipo.
+
 | Pendiente real | Resultado necesario |
 | --- | --- |
 | Otro PC físico | Arranque sin editor y sin conexión, audio, resoluciones/DPI y recuperación con especificaciones. |

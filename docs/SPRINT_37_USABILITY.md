@@ -42,3 +42,8 @@ sin fallos; se conservan capturas de [Movimientos](qa/sprint-37/team-moves-1024-
 y [Rasgos](qa/sprint-37/team-traits-1024-150.png) con texto ampliado y contraste alto.
 La candidata de entrega añade los resultados fuente/EXE y capturas. Siguen
 pendientes DPI físicos distintos, lector audible y sesiones humanas externas.
+
+Las mediciones antes/después anteriores sustentan la comparación. Las pruebas
+finales de equivalencia fuente/EXE se ejecutaron mientras otra instancia
+recorría la campaña: sus tiempos son observaciones bajo esa carga, no una nueva
+comparación aislada ni una estimación del rendimiento mínimo.

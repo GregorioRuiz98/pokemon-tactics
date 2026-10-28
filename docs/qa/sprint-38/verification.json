@@ -1,0 +1,47 @@
+{
+  "version": "1.0.0-rc.1",
+  "campaignEdition": 29,
+  "sourceAndExeStateMatch": true,
+  "uiChecksPerBuild": {
+    "collection": 34,
+    "briefing": 1958,
+    "review": 46,
+    "closing-usability": 32,
+    "closing-performance": 231,
+    "closing-playthrough": 15750
+  },
+  "coreChecks": 36,
+  "collectionRegressionChecks": 4196,
+  "campaignChecks": 16036,
+  "campaignOrders": 7865,
+  "campaignLocations": 58,
+  "campaignBattles": 57,
+  "campaignMedals": 8,
+  "campaignMode": "Scripted legal orders through native UI and per-order persistence; no state injection",
+  "sourceCampaignOrigin": "Source run started during0.36 closure; same gameplay code, before RC metadata and EOF whitespace cleanup",
+  "loadTimingNote": "closing-playthrough coldLoadMs is the LAST reload timing, after next-starter creation; it is not the long cold-campaign replay duration. That replay is verified by state/assertions only.",
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "publishedFilesUnchanged": [
+    "godot/core",
+    "godot/data",
+    "godot/tests",
+    "godot/assets",
+    "godot/art",
+    "src",
+    "public",
+    "tests",
+    "CREDITS.md"
+  ],
+  "humanPlaytest": false,
+  "externalHardwareTest": false,
+  "publicDeployment": false,
+  "playerDocumentation": {
+    "ok": true,
+    "documents": 8,
+    "localLinks": 13,
+    "errors": [],
+    "scope": "Player documentation presence and local links only; no executable launch or external URL check."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0-rc.1",
+  "os": "Windows-11-10.0.26300-SP0",
+  "processorIdentifier": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "logicalCpus": 20,
+  "gpu": "NVIDIA GeForce RTX 4070 Ti SUPER (reported by Godot OpenGL log)",
+  "ramGiB": null,
+  "hardwareInventoryLimit": "CIM inventory unavailable in the sandbox; no RAM or exact CPU brand inferred. Startup report also records Godot processor name.",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "GL Compatibility",
+  "samePhysicalPC": true,
+  "finalParityWhileCampaignQaRunning": true,
+  "beforeAfterEvidence": [
+    "docs/qa/sprint-37/performance-before.json",
+    "docs/qa/sprint-37/performance-after.json"
+  ],
+  "universalFpsClaim": false,
+  "executableAuthenticode": "NotSigned",
+  "cpuReportedByGodot": "Intel(R) Core(TM) i5-14600KF"
+}

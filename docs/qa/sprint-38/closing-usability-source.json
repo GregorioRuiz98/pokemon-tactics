@@ -1,0 +1,11 @@
+{
+	"assertions": 32,
+	"campaignEdition": 29,
+	"failures": [],
+	"scope": "Real keyboard/mouse movement, rectification, facing, opening victory, shop/team training, persistent quotes and1024x720/150percent. Empty-stock case is an explicit unsaved presentation fixture. No human/external hardware claim.",
+	"screenshots": [
+		"team-traits-1024-150.png",
+		"team-moves-1024-150.png"
+	],
+	"stateHash": "408001b3add7b4b387c53a678cfc038a8f37c15540cc40dec84707687ce70ac2"
+}

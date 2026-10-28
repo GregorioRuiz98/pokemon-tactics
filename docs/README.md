@@ -19,6 +19,8 @@ Campaña Windows 1.0.0-rc.1 como referencia. Las notas por sprint/diseños anter
 | Versiones anteriores | [Historial](history/README.md) |
 | Prototipo navegador | [Web histórica](WEB_LEGACY.md) |
 
+Candidata verificada: [entrega y resultados](SPRINT_38_RC.md).
+
 Cierre: [campaña actual](SPRINT_36_CLOSURE.md), [interfaz/rendimiento](SPRINT_37_USABILITY.md).
 
 Evidencia histórica: [campaña 0.34.0](qa/sprint-34/verification.json), [interfaz 0.34.1](qa/sprint-34-ui-1/verification.json), [colección 0.35](qa/sprint-35/verification.json). Las pruebas automáticas no equivalen a una nueva campaña humana.

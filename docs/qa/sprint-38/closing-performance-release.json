@@ -1,0 +1,842 @@
+{
+  "assertions": 231,
+  "engine": "4.7.2-stable (official)",
+  "failures": [],
+  "measurements": {
+    "ai-plan-current-12": {
+      "iterations": 5,
+      "medianMs": 44.652,
+      "p95Ms": 47.93,
+      "totalMs": 224.258
+    },
+    "area-hover-current-12": {
+      "iterations": 50,
+      "medianMs": 0.139,
+      "p95Ms": 0.164,
+      "totalMs": 7.239
+    },
+    "area-select-current-12": {
+      "iterations": 10,
+      "medianMs": 82.984,
+      "p95Ms": 91.957,
+      "totalMs": 815.674
+    },
+    "drawCurrent": {
+      "count": 41,
+      "medianMs": 2.089,
+      "p95Ms": 3.209
+    },
+    "equivalence": {
+      "cases": 95,
+      "decisionsHash": "6cd1361d8cc015f4e722b4370a1ed49871c4948ec4f9a8b85b1515a254bc3324",
+      "journalHash": "5dae1851e42dd20532ea403e68c89865db48bdd99df2e87f1e03e973f52b84cb",
+      "naturalStateHash": "f72bfff1da03e6653f004c2d7b63625254b58b62caf967797520900689806d38"
+    },
+    "framesCurrent": {
+      "count": 120,
+      "medianMs": 16.657,
+      "p95Ms": 20.688
+    },
+    "pick-current-24": {
+      "iterations": 200,
+      "medianMs": 0.006,
+      "p95Ms": 0.007,
+      "totalMs": 1.263
+    },
+    "planner": {
+      "cases": 95,
+      "samples": [
+        {
+          "case": "3.0/normal",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 6.736,
+          "originalMs": 44.108,
+          "scheduledMs": 44.615,
+          "slices": 11
+        },
+        {
+          "case": "3.0/moved",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 6.607,
+          "originalMs": 43.895,
+          "scheduledMs": 45.715,
+          "slices": 11
+        },
+        {
+          "case": "3.0/acted",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.557,
+          "originalMs": 4.954,
+          "scheduledMs": 4.557,
+          "slices": 1
+        },
+        {
+          "case": "3.0/flinch",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.606,
+          "originalMs": 4.723,
+          "scheduledMs": 4.606,
+          "slices": 1
+        },
+        {
+          "case": "6.0/normal",
+          "dangerEvaluations": 35,
+          "maxSliceMs": 6.727,
+          "originalMs": 27.368,
+          "scheduledMs": 28.189,
+          "slices": 7
+        },
+        {
+          "case": "6.0/moved",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.747,
+          "originalMs": 6.34,
+          "scheduledMs": 5.722,
+          "slices": 2
+        },
+        {
+          "case": "6.0/acted",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.639,
+          "originalMs": 4.742,
+          "scheduledMs": 4.639,
+          "slices": 1
+        },
+        {
+          "case": "6.0/flinch",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 5.048,
+          "originalMs": 4.649,
+          "scheduledMs": 5.048,
+          "slices": 1
+        },
+        {
+          "case": "9.0/normal",
+          "dangerEvaluations": 35,
+          "maxSliceMs": 7.044,
+          "originalMs": 28.094,
+          "scheduledMs": 28.295,
+          "slices": 8
+        },
+        {
+          "case": "9.0/moved",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.687,
+          "originalMs": 5.745,
+          "scheduledMs": 5.71,
+          "slices": 2
+        },
+        {
+          "case": "9.0/acted",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.674,
+          "originalMs": 4.904,
+          "scheduledMs": 4.674,
+          "slices": 1
+        },
+        {
+          "case": "9.0/flinch",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.78,
+          "originalMs": 4.798,
+          "scheduledMs": 4.78,
+          "slices": 1
+        },
+        {
+          "case": "26.0/normal",
+          "dangerEvaluations": 55,
+          "maxSliceMs": 10.424,
+          "originalMs": 62.768,
+          "scheduledMs": 59.858,
+          "slices": 15
+        },
+        {
+          "case": "26.0/moved",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 6.552,
+          "originalMs": 36.129,
+          "scheduledMs": 34.071,
+          "slices": 9
+        },
+        {
+          "case": "26.0/acted",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.429,
+          "originalMs": 4.555,
+          "scheduledMs": 4.429,
+          "slices": 1
+        },
+        {
+          "case": "26.0/flinch",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 5.174,
+          "originalMs": 4.914,
+          "scheduledMs": 5.174,
+          "slices": 1
+        },
+        {
+          "case": "65.0/normal",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 5.829,
+          "originalMs": 42.684,
+          "scheduledMs": 46.996,
+          "slices": 12
+        },
+        {
+          "case": "65.0/moved",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 5.038,
+          "originalMs": 46.714,
+          "scheduledMs": 47.775,
+          "slices": 13
+        },
+        {
+          "case": "65.0/acted",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 7.165,
+          "originalMs": 4.899,
+          "scheduledMs": 7.165,
+          "slices": 1
+        },
+        {
+          "case": "65.0/flinch",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.671,
+          "originalMs": 7.202,
+          "scheduledMs": 4.671,
+          "slices": 1
+        },
+        {
+          "case": "68.0/normal",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.918,
+          "originalMs": 18.628,
+          "scheduledMs": 16.646,
+          "slices": 5
+        },
+        {
+          "case": "68.0/moved",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 5.29,
+          "originalMs": 16.006,
+          "scheduledMs": 15.285,
+          "slices": 5
+        },
+        {
+          "case": "68.0/acted",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 6.817,
+          "originalMs": 4.745,
+          "scheduledMs": 6.817,
+          "slices": 1
+        },
+        {
+          "case": "68.0/flinch",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.775,
+          "originalMs": 4.689,
+          "scheduledMs": 4.775,
+          "slices": 1
+        },
+        {
+          "case": "73.0/normal",
+          "dangerEvaluations": 34,
+          "maxSliceMs": 6.332,
+          "originalMs": 42.355,
+          "scheduledMs": 43.323,
+          "slices": 11
+        },
+        {
+          "case": "73.0/moved",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.81,
+          "originalMs": 9.912,
+          "scheduledMs": 8.578,
+          "slices": 3
+        },
+        {
+          "case": "73.0/acted",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 5.484,
+          "originalMs": 4.807,
+          "scheduledMs": 5.484,
+          "slices": 1
+        },
+        {
+          "case": "73.0/flinch",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.814,
+          "originalMs": 5.09,
+          "scheduledMs": 4.814,
+          "slices": 1
+        },
+        {
+          "case": "42.0/normal",
+          "dangerEvaluations": 33,
+          "maxSliceMs": 6.206,
+          "originalMs": 27.899,
+          "scheduledMs": 28.053,
+          "slices": 7
+        },
+        {
+          "case": "42.0/moved",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 7.213,
+          "originalMs": 5.515,
+          "scheduledMs": 7.873,
+          "slices": 2
+        },
+        {
+          "case": "42.0/acted",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.52,
+          "originalMs": 5.378,
+          "scheduledMs": 4.52,
+          "slices": 1
+        },
+        {
+          "case": "42.0/flinch",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.637,
+          "originalMs": 4.659,
+          "scheduledMs": 4.637,
+          "slices": 1
+        },
+        {
+          "case": "49.0/normal",
+          "dangerEvaluations": 32,
+          "maxSliceMs": 6.266,
+          "originalMs": 21.042,
+          "scheduledMs": 20.1,
+          "slices": 5
+        },
+        {
+          "case": "49.0/moved",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.663,
+          "originalMs": 5.963,
+          "scheduledMs": 5.668,
+          "slices": 2
+        },
+        {
+          "case": "49.0/acted",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.885,
+          "originalMs": 5.522,
+          "scheduledMs": 4.885,
+          "slices": 1
+        },
+        {
+          "case": "49.0/flinch",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.614,
+          "originalMs": 4.988,
+          "scheduledMs": 4.614,
+          "slices": 1
+        },
+        {
+          "case": "89.0/normal",
+          "dangerEvaluations": 32,
+          "maxSliceMs": 6.561,
+          "originalMs": 34.281,
+          "scheduledMs": 32.834,
+          "slices": 9
+        },
+        {
+          "case": "89.0/moved",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.663,
+          "originalMs": 15.317,
+          "scheduledMs": 12.753,
+          "slices": 4
+        },
+        {
+          "case": "89.0/acted",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.477,
+          "originalMs": 5.707,
+          "scheduledMs": 4.477,
+          "slices": 1
+        },
+        {
+          "case": "89.0/flinch",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.551,
+          "originalMs": 4.767,
+          "scheduledMs": 4.551,
+          "slices": 1
+        },
+        {
+          "case": "109.0/normal",
+          "dangerEvaluations": 33,
+          "maxSliceMs": 6.055,
+          "originalMs": 20.279,
+          "scheduledMs": 20.451,
+          "slices": 6
+        },
+        {
+          "case": "109.0/moved",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.552,
+          "originalMs": 5.943,
+          "scheduledMs": 5.698,
+          "slices": 2
+        },
+        {
+          "case": "109.0/acted",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.543,
+          "originalMs": 4.776,
+          "scheduledMs": 4.543,
+          "slices": 1
+        },
+        {
+          "case": "109.0/flinch",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.648,
+          "originalMs": 4.709,
+          "scheduledMs": 4.648,
+          "slices": 1
+        },
+        {
+          "case": "110.0/normal",
+          "dangerEvaluations": 35,
+          "maxSliceMs": 6.795,
+          "originalMs": 24.488,
+          "scheduledMs": 21.032,
+          "slices": 6
+        },
+        {
+          "case": "110.0/moved",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.738,
+          "originalMs": 6.004,
+          "scheduledMs": 5.863,
+          "slices": 2
+        },
+        {
+          "case": "110.0/acted",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.607,
+          "originalMs": 4.979,
+          "scheduledMs": 4.607,
+          "slices": 1
+        },
+        {
+          "case": "110.0/flinch",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 5.566,
+          "originalMs": 5.265,
+          "scheduledMs": 5.566,
+          "slices": 1
+        },
+        {
+          "case": "zones/1/smokescreen",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 6.03,
+          "originalMs": 126.264,
+          "scheduledMs": 113.381,
+          "slices": 29
+        },
+        {
+          "case": "zones/2/smokescreen",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 7.091,
+          "originalMs": 115.002,
+          "scheduledMs": 123.076,
+          "slices": 32
+        },
+        {
+          "case": "zones/3/smokescreen",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 6.405,
+          "originalMs": 148.094,
+          "scheduledMs": 121.836,
+          "slices": 32
+        },
+        {
+          "case": "zones/4/smokescreen",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 5.858,
+          "originalMs": 117.404,
+          "scheduledMs": 115.06,
+          "slices": 30
+        },
+        {
+          "case": "zones/5/smokescreen",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 6.32,
+          "originalMs": 106.551,
+          "scheduledMs": 105.548,
+          "slices": 26
+        },
+        {
+          "case": "zones/6/smokescreen",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 6.312,
+          "originalMs": 96.285,
+          "scheduledMs": 94.36,
+          "slices": 27
+        },
+        {
+          "case": "zones/10360/smokescreen",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 6.252,
+          "originalMs": 139.958,
+          "scheduledMs": 136.437,
+          "slices": 37
+        },
+        {
+          "case": "zones/10361/smokescreen",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 6.858,
+          "originalMs": 111.587,
+          "scheduledMs": 116.677,
+          "slices": 31
+        },
+        {
+          "case": "zones/10362/smokescreen",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 6.765,
+          "originalMs": 91.98,
+          "scheduledMs": 89.535,
+          "slices": 23
+        },
+        {
+          "case": "zones/10363/smokescreen",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 9.681,
+          "originalMs": 104.895,
+          "scheduledMs": 114.965,
+          "slices": 28
+        },
+        {
+          "case": "zones/10364/smokescreen",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 5.936,
+          "originalMs": 83.368,
+          "scheduledMs": 77.812,
+          "slices": 22
+        },
+        {
+          "case": "zones/10365/smokescreen",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 7.26,
+          "originalMs": 72.957,
+          "scheduledMs": 83.734,
+          "slices": 22
+        },
+        {
+          "case": "zones/1/explosion",
+          "dangerEvaluations": 27,
+          "maxSliceMs": 8.153,
+          "originalMs": 161.118,
+          "scheduledMs": 165.032,
+          "slices": 33
+        },
+        {
+          "case": "zones/2/explosion",
+          "dangerEvaluations": 25,
+          "maxSliceMs": 8.517,
+          "originalMs": 180.418,
+          "scheduledMs": 172.867,
+          "slices": 37
+        },
+        {
+          "case": "zones/3/explosion",
+          "dangerEvaluations": 25,
+          "maxSliceMs": 9.069,
+          "originalMs": 154.908,
+          "scheduledMs": 147.686,
+          "slices": 33
+        },
+        {
+          "case": "zones/4/explosion",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 7.295,
+          "originalMs": 136.101,
+          "scheduledMs": 141.001,
+          "slices": 30
+        },
+        {
+          "case": "zones/5/explosion",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 7.406,
+          "originalMs": 120.437,
+          "scheduledMs": 125.635,
+          "slices": 26
+        },
+        {
+          "case": "zones/6/explosion",
+          "dangerEvaluations": 18,
+          "maxSliceMs": 8.136,
+          "originalMs": 132.056,
+          "scheduledMs": 126.433,
+          "slices": 28
+        },
+        {
+          "case": "zones/10360/explosion",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 9.242,
+          "originalMs": 287.718,
+          "scheduledMs": 275.608,
+          "slices": 38
+        },
+        {
+          "case": "zones/10361/explosion",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 6.024,
+          "originalMs": 133.11,
+          "scheduledMs": 133.492,
+          "slices": 30
+        },
+        {
+          "case": "zones/10362/explosion",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 6.815,
+          "originalMs": 86.209,
+          "scheduledMs": 82.129,
+          "slices": 20
+        },
+        {
+          "case": "zones/10363/explosion",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 7.161,
+          "originalMs": 163.016,
+          "scheduledMs": 162.038,
+          "slices": 28
+        },
+        {
+          "case": "zones/10364/explosion",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 4.856,
+          "originalMs": 66.976,
+          "scheduledMs": 64.764,
+          "slices": 18
+        },
+        {
+          "case": "zones/10365/explosion",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 5.991,
+          "originalMs": 79.386,
+          "scheduledMs": 74.386,
+          "slices": 20
+        },
+        {
+          "case": "natural/0",
+          "dangerEvaluations": 39,
+          "maxSliceMs": 6.341,
+          "originalMs": 13.513,
+          "scheduledMs": 13.34,
+          "slices": 4
+        },
+        {
+          "case": "natural/1",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 3.463,
+          "originalMs": 7.736,
+          "scheduledMs": 7.228,
+          "slices": 3
+        },
+        {
+          "case": "natural/2",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 0.784,
+          "originalMs": 0.854,
+          "scheduledMs": 0.784,
+          "slices": 1
+        },
+        {
+          "case": "natural/3",
+          "dangerEvaluations": 39,
+          "maxSliceMs": 6.757,
+          "originalMs": 12.347,
+          "scheduledMs": 13.721,
+          "slices": 4
+        },
+        {
+          "case": "natural/4",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 2.088,
+          "originalMs": 2.369,
+          "scheduledMs": 2.088,
+          "slices": 1
+        },
+        {
+          "case": "natural/5",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 0.814,
+          "originalMs": 0.881,
+          "scheduledMs": 0.814,
+          "slices": 1
+        },
+        {
+          "case": "natural/6",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 3.336,
+          "originalMs": 10.433,
+          "scheduledMs": 9.261,
+          "slices": 3
+        },
+        {
+          "case": "natural/7",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 0.808,
+          "originalMs": 0.907,
+          "scheduledMs": 0.808,
+          "slices": 1
+        },
+        {
+          "case": "natural/8",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 2.265,
+          "originalMs": 2.476,
+          "scheduledMs": 2.265,
+          "slices": 1
+        },
+        {
+          "case": "natural/9",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 0.835,
+          "originalMs": 0.88,
+          "scheduledMs": 0.835,
+          "slices": 1
+        },
+        {
+          "case": "natural/10",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 3.401,
+          "originalMs": 10.286,
+          "scheduledMs": 9.695,
+          "slices": 4
+        },
+        {
+          "case": "natural/11",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 0.819,
+          "originalMs": 0.904,
+          "scheduledMs": 0.819,
+          "slices": 1
+        },
+        {
+          "case": "natural/12",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 2.194,
+          "originalMs": 2.288,
+          "scheduledMs": 2.194,
+          "slices": 1
+        },
+        {
+          "case": "natural/13",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 0.812,
+          "originalMs": 0.877,
+          "scheduledMs": 0.812,
+          "slices": 1
+        },
+        {
+          "case": "natural/14",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 3.278,
+          "originalMs": 9.423,
+          "scheduledMs": 9.474,
+          "slices": 3
+        },
+        {
+          "case": "natural/15",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 0.809,
+          "originalMs": 0.883,
+          "scheduledMs": 0.809,
+          "slices": 1
+        },
+        {
+          "case": "natural/16",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 2.152,
+          "originalMs": 2.23,
+          "scheduledMs": 2.152,
+          "slices": 1
+        },
+        {
+          "case": "natural/17",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 0.895,
+          "originalMs": 0.978,
+          "scheduledMs": 0.895,
+          "slices": 1
+        },
+        {
+          "case": "natural/18",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 3.47,
+          "originalMs": 9.978,
+          "scheduledMs": 9.533,
+          "slices": 3
+        },
+        {
+          "case": "natural/19",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 0.819,
+          "originalMs": 0.885,
+          "scheduledMs": 0.819,
+          "slices": 1
+        },
+        {
+          "case": "natural/20",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 2.192,
+          "originalMs": 3.703,
+          "scheduledMs": 2.192,
+          "slices": 1
+        },
+        {
+          "case": "natural/21",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 0.862,
+          "originalMs": 0.909,
+          "scheduledMs": 0.862,
+          "slices": 1
+        },
+        {
+          "case": "natural/22",
+          "dangerEvaluations": 0,
+          "maxSliceMs": 3.533,
+          "originalMs": 10.516,
+          "scheduledMs": 10.269,
+          "slices": 3
+        }
+      ]
+    },
+    "refresh-current-12": {
+      "iterations": 15,
+      "medianMs": 24.081,
+      "p95Ms": 26.815,
+      "totalMs": 361.439
+    },
+    "save-current-12": {
+      "iterations": 8,
+      "medianMs": 16.109,
+      "p95Ms": 19.955,
+      "totalMs": 131.444
+    },
+    "team-moves-large-library": {
+      "iterations": 12,
+      "medianMs": 70.153,
+      "p95Ms": 74.208,
+      "totalMs": 834.288
+    },
+    "team-profile-large-library": {
+      "iterations": 12,
+      "medianMs": 15.738,
+      "p95Ms": 19.556,
+      "totalMs": 195.876
+    }
+  },
+  "renderer": "gl_compatibility",
+  "scope": "Current edition29, explicit 12-unit/24x24 and full-library fixtures; real first-battle planner trace. Local timings, not universal FPS or another computer.",
+  "screenshots": [
+    "current-12-units.png",
+    "team-moves-current.png"
+  ]
+}

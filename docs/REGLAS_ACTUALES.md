@@ -98,9 +98,9 @@ Antes de entrar, el viaje muestra contexto, objetivo y equipo rival real, con
 niveles, tipos, habilidad y movimientos. Cada ficha permite consultar sus estadísticas.
 El despliegue conserva la consulta rival. Se han retirado las amenazas y su atajo.
 Opciones permite velocidad 1×/1,5×/2×. La duración de lectura es independiente.
-Las campañas 26/27/28 certificadas cargan sin repetir su historial ya validado;
+Las campañas 26/27/28/29 certificadas cargan sin repetir su historial ya validado;
 si falta la certificación, se reconstruye completo con progreso. Detalles
-y compatibilidad en la [revisión táctica 0.34](SPRINT_34_TACTICAL_QUALITY.md).
+y recuperación en la [prueba Windows](PLAYTEST_WINDOWS.md).
 
 ## Pokédex y progreso del perfil
 
@@ -110,11 +110,11 @@ por captura, reclutamiento o evolución registra esa forma y habilita la primera
 forma de su línea como inicial de nivel 5 en próximas aventuras, sin heredar EXP,
 objetos ni mejoras. Los tres iniciales de Oak están siempre disponibles.
 
-Perfil → Logros contiene 19 objetivos; los nueve nuevos cubren reclutamiento,
+Perfil → Logros contiene 19 objetivos, incluidos reclutamiento,
 iniciales y colección. No añaden estadísticas. Nombre, historial, Pokédex y logros
 se conservan al iniciar otra aventura. El perfil anterior se migra con copia
 `.before-v2`; los Pokémon ya registrados se consideran obtenidos.
 
 Las campañas anteriores conservan sus reglas hasta actualizarse entre encuentros.
 No se inventan capturas de jefes que ya se habían vencido antes de actualizar.
-Detalles en [Colección 0.35](SPRINT_35_COLLECTION.md).
+Detalles en [Cambios de la candidata](RELEASE_1_0_RC1.md).
