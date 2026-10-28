@@ -7,14 +7,14 @@ ni se inyectan dinero, PS, unidades o victorias. No es una sesión humana.
 
 ## Resultado
 
-Las ediciones28 y29 completan los 58 lugares, 57 combates y ocho medallas, con
+Las ediciones 28 y 29 completan los 58 lugares, 57 combates y ocho medallas, con
 7.865 órdenes en la edición actual. Incluye elección de Zapdos tras las aves y
 Mewtwo tras el segundo desafío. Ningún encuentro supera las 15 rondas en esta
 estrategia. Esto no demuestra la duración o dificultad de todas las semillas.
 
 Se comprueban checkpoints, reconstrucción completa del diario sin certificado,
 perfil cargado por separado, recuperación de la colección desde los eventos de
-la campaña y un nuevo inicial legendario de nivel5. El reclutamiento de tienda se
+la campaña y un nuevo inicial legendario de nivel 5. El reclutamiento de tienda se
 verifica mediante una rama legal y guardada del primer mostrador, sin alterar el
 presupuesto de la estrategia principal.
 
@@ -24,12 +24,12 @@ jugador automático, sin presentarlo como un fallo del motor o ajustar el balanc
 
 ## Corrección de Kecleon
 
-En la edición28, cambiar el equipo o subir niveles recalculaba candidatos, nivel
-y precio dentro de una misma visita. La edición29 conserva las ofertas generadas
+En la edición 28, cambiar el equipo o subir niveles recalculaba candidatos, nivel
+y precio dentro de una misma visita. La edición 29 conserva las ofertas generadas
 al llegar al mostrador. Entrenar, gestionar el PC o abrir menús no las renueva.
 Se mantiene la fórmula de precio y nivel, y una compra por lugar.
 
-La corrección tiene nueva edición de campaña:29/capítulo33, combate24 sin cambios
+La corrección tiene nueva edición de campaña:29/capítulo 33, combate 24 sin cambios
 numéricos. Las campañas anteriores conservan su comportamiento hasta actualizar
 entre encuentros con copia. Los códigos KT36 identifican las nuevas reglas; los
 anteriores siguen siendo legibles.
@@ -39,6 +39,12 @@ anteriores siguen siendo legibles.
 [Resumen](qa/sprint-36/summary.json), [recorrido actual](qa/sprint-36/campaign-29.json),
 [reglas](qa/sprint-36/rules.json), [intento con presupuesto agotado](qa/sprint-36/attempt-01-budget.json).
 El diario íntegro es un fixture reproducible para las pruebas de interfaz.
+
+La [reproducción nativa fuente](qa/sprint-36/native-source.json) completa las
+7.865 órdenes con 15.750 comprobaciones, sin fallos. Su campo histórico
+`coldLoadMs` corresponde a la última carga del nuevo inicial, no a la duración
+de la reconstrucción de la campaña larga. Esta última se verifica por estado
+y comprobaciones; no se usa ese campo para atribuirle una latencia.
 
 Se conservan pendientes las sesiones humanas, otro PC físico y la decisión de
 distribución pública. Los siguientes bloques verifican interfaz/rendimiento y

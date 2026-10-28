@@ -60,7 +60,7 @@ func render() -> void:
 		button.disabled = page+offset<0 or page+offset>=pages; button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		nav.add_child(button); controls["previous" if offset<0 else "next"] = button
 		if offset<0: nav.add_child(app._label("%d / %d · %d especies"%[page+1,pages,matches.size()],16))
-	app._apply_preferences.call_deferred()
+	app._queue_preferences()
 
 func turn_page(offset: int) -> void:
 	page += offset; render()

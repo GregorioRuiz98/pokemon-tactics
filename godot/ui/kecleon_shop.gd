@@ -64,7 +64,7 @@ func render(app: Control, parent: VBoxContainer) -> void:
 		_: offers(app,body)
 	var proceed: Button = app._travel_button("continue","Seguir viaje",parent,{"kind":"continue"})
 	proceed.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	app._apply_preferences.call_deferred()
+	app._queue_preferences()
 
 func offers(app: Control, parent: VBoxContainer) -> void:
 	var heading: HBoxContainer = HBoxContainer.new(); parent.add_child(heading)
@@ -100,7 +100,7 @@ func offers(app: Control, parent: VBoxContainer) -> void:
 	select(app,clampi(selected,0,app.run.stock.size()-1))
 
 func select(app: Control, index: int) -> void:
-	if not using_scene(app) or app.shop_tab!="gear" or index>=app.run.stock.size(): return
+	if not using_scene(app) or app.shop_tab!="gear" or index<0 or index>=app.run.stock.size(): return
 	selected = index
 	var item: Dictionary = app.campaign.shop_data.items[app.run.stock[index].item]
 	if is_instance_valid(detail):

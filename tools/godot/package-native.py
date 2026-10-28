@@ -3,6 +3,9 @@ import hashlib,json,os,pathlib,re,shutil,zipfile
 import runpy
 ROOT=pathlib.Path(__file__).resolve().parents[2]
 version=re.search(r'config/version="([^"]+)"',(ROOT/'godot/project.godot').read_text(encoding='utf-8'))[1]
+if version == '1.0.0-rc.1':
+    runpy.run_path(str(ROOT/'tools/godot/package-candidate.py'),run_name='__main__')
+    raise SystemExit(0)
 if version in ['0.27.0','0.28.0','0.29.0','0.30.0','0.30.1','0.31.0','0.31.1','0.31.2','0.32.0','0.33.0','0.33.1','0.34.0','0.34.1','0.35.0']:
     runpy.run_path(str(ROOT/'tools/godot/package-finishing.py'),run_name='__main__')
     raise SystemExit(0)

@@ -9,7 +9,17 @@ export const currentDocs = [
   'docs/DEPLOY.md', 'docs/WEB_LEGACY.md', 'docs/LICENCIAS.md',
   'docs/PORTFOLIO.md', 'docs/PLAYTEST_WINDOWS.md', 'docs/REGLAS_ACTUALES.md',
   'docs/history/README.md', 'docs/REPO_CLEANUP_2026-10-27.md', 'docs/SPRINT_35_COLLECTION.md',
+  'docs/SPRINT_36_CLOSURE.md', 'docs/SPRINT_37_USABILITY.md', 'docs/RELEASE_1_0_RC1.md',
+  'docs/BETA_1_0.md', 'docs/PLANTILLA_BETA.md',
 ];
+
+export function windowsVersion(version) {
+  const match = /^(\d+)\.(\d+)\.(\d+)(?:-rc\.(\d+))?$/.exec(version);
+  if (!match) throw new Error('Unsupported native version: ' + version);
+  const parts = [match[1], match[2], match[3], match[4] ?? '0'].map(Number);
+  if (parts.some(value => value > 65535)) throw new Error('Windows version component exceeds 65535');
+  return parts.join('.');
+}
 
 export function forbiddenPath(name) {
   const path = name.replaceAll('\\', '/');
@@ -98,7 +108,7 @@ export function audit(root) {
   if (!version) errors.push('Missing native version');
   else {
     const presets = readFileSync(resolve(root, 'godot/export_presets.cfg'), 'utf8');
-    for (const fragment of [`pokemon-tactics-${version}/windows`, `file_version="${version}.0"`, `product_version="${version}.0"`]) if (!presets.includes(fragment)) errors.push(`Export version differs: ${fragment}`);
+    for (const fragment of [`pokemon-tactics-${version}/windows`, `file_version="${windowsVersion(version)}"`, `product_version="${windowsVersion(version)}"`]) if (!presets.includes(fragment)) errors.push(`Export version differs: ${fragment}`);
     for (const doc of ['README.md', 'godot/README.md', 'docs/PLAYTEST_WINDOWS.md', 'docs/REGLAS_ACTUALES.md', 'docs/LEEME_WINDOWS.txt']) if (!readFileSync(resolve(root, doc), 'utf8').includes(version)) errors.push(`${doc}: missing current native version ${version}`);
   }
   return { ok: errors.length === 0, version, indexedFiles: files.length, maintainedDocuments: currentDocs.length, localLinks: links, documentedCommands: commands, errors, scope: 'Local indexed-path hygiene, maintained links, script entry points and version consistency. No network, secret-content/history scan, campaign replay or external hardware test.' };

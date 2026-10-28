@@ -1,6 +1,6 @@
 extends "res://ui/qa_context.gd"
 
-const ReviewStore = preload("res://core/collection_store.gd")
+const ReviewStore = preload("res://core/closing_store.gd")
 const ReviewEffects = preload("res://ui/attack_effect.gd")
 const ReviewVariants = preload("res://ui/attack_variants.gd")
 const ReviewPoints = preload("res://core/power_points.gd")
@@ -16,7 +16,7 @@ func run(app: Control, directory: String) -> void:
 	await click(app,app.title_screen.controls.new)
 	app.journey_seed.text = "release-33-kanto"
 	await click(app,app.travel_buttons.starter1)
-	check(app.run.edition==28,"Current revision creates edition28")
+	check(app.run.edition==app.CURRENT_CHAPTER-4,"Current revision creates current edition")
 	await click(app,app.travel_buttons.enter); await click(app,app.adventure.start_button)
 	for step: int in 200:
 		if app.run.phase!="battle": break
@@ -27,7 +27,7 @@ func run(app: Control, directory: String) -> void:
 	var natural: Dictionary = app.run.duplicate(true)
 	var original_transactions: Array = app.transactions.duplicate(true)
 	var original_store: RefCounted = app.store
-	app._load_game(); await layout(app)
+	await app._load_game(); await layout(app)
 	check(ReviewStore.equivalent(app.run,natural),"Natural current journal reloads exactly")
 	# Explicit menu-stress fixture; never saved as part of the natural campaign.
 	app.run = natural.duplicate(true); app.run.party = []; app.run.reserve = []
@@ -97,7 +97,7 @@ func run(app: Control, directory: String) -> void:
 	check(ReviewEffects.describe(app.rules.catalog.moves["hyper-beam"]).cue=="original/hyper-beam","Hyper Beam original audio retained")
 	check(ReviewStore.equivalent(app.run,before),"Labels and all animations consume no state or RNG")
 	app.run = natural; app.state = {}; app.transactions = original_transactions; app.store = original_store
-	app.selected_member = 1; app.roster_tab = "team"; app._refresh(); app._load_game(); await layout(app)
+	app.selected_member = 1; app.roster_tab = "team"; app._refresh(); await app._load_game(); await layout(app)
 	check(ReviewStore.equivalent(app.run,natural),"Stress fixtures never replace natural save")
 	var report: Dictionary = {"assertions":assertions,"failures":failures,"screenshots":screenshots,"campaignEdition":app.run.edition,"stateHash":JSON.stringify(app.run,"",true,true).sha256_text(),"motifs":reviewed,"scope":"Natural opening/save; separate synthetic140-member PC, large legal MT library and12-unit rendering fixtures. No human/external hardware claim."}
 	FileAccess.open(directory.path_join("review-ui-result.json"),FileAccess.WRITE).store_string(JSON.stringify(report,"  "))

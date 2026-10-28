@@ -6,7 +6,7 @@ Pasó de prototipo web a campaña offline de 58 lugares,151 especies, ocho gimna
 
 ## Evidencia y límites
 
-Campaña 0.34.0 completada mediante 7.861 órdenes legales automatizadas, con intentos fallidos conservados. Interfaz 0.34.1:4.548 comprobaciones fuente/EXE, con previas de los 58 lugares. [Estado/resultados](PLAN_SPRINTS.md).
+Candidata1.0: campaña actual completada mediante7.865 órdenes legales automatizadas, con intentos fallidos conservados. Equipo → Ficha pasa de77,116 a10,725ms de mediana en el ensayo local; Movimientos de78,291 a45,253ms. [Medición y límites](SPRINT_37_USABILITY.md). Interfaz 0.34.1:4.548 comprobaciones fuente/EXE, con previas de los 58 lugares. [Estado/resultados](PLAN_SPRINTS.md).
 
 Sin métricas públicas de usuarios, retención o viralidad. Jugadores externos y otro PC físico pendientes. El balance aceptado por el creador no equivale a validación pública.
 

@@ -1,6 +1,6 @@
 # Reglas actuales — campaña Windows
 
-Referencia vigente desde 0.35.0. Sustituye las descripciones antiguas de PT,
+Referencia vigente desde 1.0.0-rc.1. Sustituye las descripciones antiguas de PT,
 caramelos, piedras consumibles, roles y finales excluyentes. Los informes de
 sprints anteriores describen sus propias versiones y se conservan como historial.
 
@@ -19,7 +19,7 @@ medalla, dinero y su Pokémon insignia. Tras las aves eliges una de las tres; tr
 Kecleon ofrece también tres Pokémon de la colección global no legendaria; puedes
 reclutar uno por visita. Nivel: media del equipo, mínimo 5 y hasta el límite de
 gimnasio; las formas evolucionadas solo aparecen desde su umbral. Precio:
-200 + 10 × nivel. Ofertas estables por semilla y lugar; cargar no las cambia.
+200 + 10 × nivel. Las ofertas se fijan al llegar a la tienda; entrenar, cambiar equipo o cargar no las cambia.
 El equipo completo envía el recluta al PC. No sustituye las capturas locales.
 
 El cierre es **Liga y rival → Articuno, Zapdos y Moltres juntos → tienda → Mew y
@@ -66,7 +66,7 @@ sin restaurar PS ni quitar etapas. Medicina fuera del combate.
 
 151 especies de Kanto, repertorios LGPE combinados sin ataques exclusivos de los
 iniciales especiales. Tres MT climáticas añaden la excepción documentada en
-[Climas y habilidades](SPRINT_32_CLIMATE.md). Las 78 habilidades normales tienen
+las fichas de Climas y habilidades. Las 78 habilidades normales tienen
 efecto aplicable; algunas son adaptaciones tácticas, explicadas en su ficha.
 Presión: aura 2, −1 movimiento al comenzar, mínimo 1 y sin acumulación.
 

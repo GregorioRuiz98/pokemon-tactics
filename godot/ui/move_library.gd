@@ -80,7 +80,7 @@ func render(app: Control, parent: VBoxContainer, member: Dictionary) -> void:
 	cost.value = max_cost
 	cost.prefix = "PP: " if app.run.get("edition",0)>=23 else "PT: "
 	cost.custom_minimum_size.x = 160
-	cost.tooltip_text = "Coste máximo para filtrar movimientos. No consume PT."
+	cost.tooltip_text = "PP máximos al equipar. Filtrar no consume puntos." if app.run.get("edition",0)>=23 else "Coste máximo para filtrar movimientos. No consume PT."
 	cost.accessibility_name = "Coste máximo al equipar, en PP" if app.run.get("edition",0)>=23 else "Coste máximo de movimiento, en PT"
 	if app.run.get("edition",0)>=23: cost.tooltip_text = "Filtrar por PP necesarios al equipar."
 	cost.value_changed.connect(func(value: float): max_cost = int(value); app._refresh())

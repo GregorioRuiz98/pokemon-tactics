@@ -8,7 +8,7 @@ import { gunzipSync } from 'node:zlib';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const project = resolve(root, 'godot');
 const nativeVersion = readFileSync(resolve(project, 'project.godot'),'utf8').match(/config\/version="([^"]+)"/)[1];
-const chapter = Number(nativeVersion.split('.')[1]);
+const chapter = Number(readFileSync(resolve(project, 'project.godot'),'utf8').match(/config\/qa_stage=(\d+)/)?.[1] ?? nativeVersion.split('.')[1]);
 const qaLabel = chapter>=23 && Number(nativeVersion.split('.')[2])>0 ? `${chapter}-ui-${nativeVersion.split('.')[2]}` : chapter===22 && Number(nativeVersion.split('.')[2])>=4 ? '22-updates-'+nativeVersion.split('.')[2] : nativeVersion === '0.22.3' ? '22-context' : nativeVersion === '0.22.2' ? '22-controls' : nativeVersion === '0.22.1' ? '22-ui' : String(chapter);
 const work = resolve(root, `../../work/qa-sprint-${qaLabel}`);
 const output = resolve(root, `../releases/pokemon-tactics-${nativeVersion}/windows`);
@@ -28,7 +28,7 @@ function run(executable, args, label, cwd = root) {
   if(chapter>=30 && /^(player|shop|trainer)-(source|release)$/.test(label)) args=[...args,'--compat-adventure'];
   const logIndex = args.indexOf('--log-file');
   if (logIndex >= 0) writeFileSync(args[logIndex + 1], '');
-  const result = spawnSync(executable, args, { cwd, env:{...process.env,APPDATA:isolatedProfile,LOCALAPPDATA:isolatedLocal}, encoding: 'utf8', windowsHide: true, timeout: label.startsWith('playthrough-') ? 3_600_000 : (label.startsWith('sleep-') || label.startsWith('symbols-')) ? 90000 : label==='simulate-balance' ? 1_800_000 : label.startsWith('journey-ui-') || label.startsWith('updates-ui-') || label==='ui-release' || label==='ui-source' || label==='test-journey' ? 900_000 : 300_000, maxBuffer: 12 * 1024 * 1024 });
+  const result = spawnSync(executable, args, { cwd, env:{...process.env,APPDATA:isolatedProfile,LOCALAPPDATA:isolatedLocal}, encoding: 'utf8', windowsHide: true, timeout: label.includes('playthrough') ? 3_600_000 : (label.startsWith('sleep-') || label.startsWith('symbols-')) ? 90000 : label==='simulate-balance' ? 1_800_000 : label.startsWith('journey-ui-') || label.startsWith('updates-ui-') || label==='ui-release' || label==='ui-source' || label==='test-journey' ? 900_000 : 300_000, maxBuffer: 12 * 1024 * 1024 });
   const log = (result.stdout ?? '') + (result.stderr ?? '') + (logIndex >= 0 && existsSync(args[logIndex + 1]) ? '\n' + readFileSync(args[logIndex + 1], 'utf8') : '');
   writeFileSync(resolve(work, `${label}.log`), log);
   const clean = log.replace(/\x1b\[[0-9;]*m/g, '');
@@ -113,7 +113,31 @@ if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-expo
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'test-collection') {
+if(operation === 'qa-closing-usability' || operation === 'qa-closing-usability-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'closing-usability-'+(exported?'release':'source'));
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--closing-usability-dir='+directory],'closing-usability-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'closing-usability.json'),'utf8'));
+  if(report.failures.length || report.assertions<25) throw new Error('Current usability QA failed');
+} else if(operation === 'qa-closing-playthrough' || operation === 'qa-closing-playthrough-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'closing-playthrough-'+(exported?'release':'source'));
+  const journal=process.env.CLOSING_JOURNAL??resolve(root,'docs/qa/sprint-36/closing-journal.json');
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--closing-playthrough-dir='+directory,'--review-journal='+journal],'closing-playthrough-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'closing-playthrough.json'),'utf8'));
+  if(report.failures.length || report.visited.length!==58 || report.orders<7800) throw new Error('Current complete native campaign failed');
+} else if(operation === 'test-closing') {
+  run(binary,['--headless',...common,'--script','res://tests/closing_rules.gd','--','--save-dir='+resolve(work,'closing-rules')],'closing-rules');
+} else if(operation === 'simulate-closing') {
+  const directory=resolve(work,'full-current-'+(process.env.CLOSING_ATTEMPT??'01'));
+  run(binary,['--headless',...common,'--script','res://tests/closing_campaign.gd','--','--save-dir='+directory,'--strategy='+resolve(root,'docs/qa/sprint-34/campaign-journal.json')],'playthrough-closing-core');
+} else if(operation === 'qa-closing-performance' || operation === 'qa-closing-performance-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'closing-performance-'+(exported?'release':'source'));
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--performance-final','--performance-qa-dir='+directory],'closing-performance-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'closing-performance.json'),'utf8'));
+  if(report.failures.length || report.assertions<200) throw new Error('Current-edition performance QA failed');
+} else if(operation === 'test-collection') {
   run(binary,['--headless',...common,'--script','res://tests/collection.gd','--','--save-dir='+work],'collection-core');
 } else if(operation === 'qa-collection' || operation === 'qa-collection-export') {
   const exported=operation.endsWith('export');
@@ -445,6 +469,13 @@ if(operation === 'test-collection') {
   run(binary, ['--headless', ...common, '--export-release', 'Windows Desktop', resolve(output, 'PokemonTactics.exe')], 'export-windows');
   cpSync(resolve(project, 'licenses'), resolve(output, 'licenses'), { recursive: true });
   cpSync(resolve(project, 'CREDITS.md'), resolve(output, 'CREDITS.md'));
+  if (nativeVersion === '1.0.0-rc.1') {
+    cpSync(resolve(root,'docs/LEEME_WINDOWS.txt'),resolve(output,'LEEME.txt'));
+    const digest = createHash('sha256').update(readFileSync(resolve(output,'PokemonTactics.exe'))).digest('hex');
+    writeFileSync(resolve(output,'SHA256SUMS.txt'),`${digest}  PokemonTactics.exe\n`);
+    console.log(`Private RC executable: ${resolve(output,'PokemonTactics.exe')}\nSHA256: ${digest}`);
+    process.exit(0);
+  }
   if (chapter >= 22) {
     cpSync(resolve(root, 'docs/PLAYTEST_WINDOWS.md'), resolve(output, 'GUIA_DE_PRUEBA.md'));
     const report = readFileSync(resolve(root, 'docs/reports/balance-native-0.22/INFORME.md'), 'utf8')

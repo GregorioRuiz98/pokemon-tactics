@@ -1,6 +1,6 @@
 extends "res://ui/qa_context.gd"
 
-const Ledger = preload("res://core/collection_store.gd")
+const Ledger = preload("res://core/closing_store.gd")
 
 func layout(app: Control) -> void:
 	for frame: int in 8: await app.get_tree().process_frame
@@ -16,7 +16,7 @@ func run(app: Control, directory: String) -> void:
 	await click(app,app.travel_buttons.enter); await layout(app)
 	var natural: Dictionary = app.run.duplicate(true)
 	var journal: Array = app.transactions.duplicate(true)
-	check(app.run.edition==28,"Current campaign starts in edition28")
+	check(app.run.edition==app.CURRENT_CHAPTER-4,"Current campaign starts in current edition")
 	check(app.encounter_preview.briefing.visible,"Encounter context appears automatically")
 	await capture(app,directory,"oak-route-1")
 	var coverage: Array = []
@@ -45,7 +45,7 @@ func run(app: Control, directory: String) -> void:
 	check(Profile.new(app.input_profile.path).preferences.battleSpeed==200,"Combat speed persists")
 	await capture(app,directory,"combat-options")
 	await key(app,KEY_ESCAPE,app.presentation_dialog)
-	app._load_game(); await layout(app)
+	await app._load_game(); await layout(app)
 	check(app.store.last_load.cached,"Real UI save is certified for fast load")
 	check(app.last_load_msec<2000,"Opening certified reload under two seconds")
 	var timing: Dictionary = await long_save(app,directory)

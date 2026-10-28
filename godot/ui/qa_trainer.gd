@@ -1,6 +1,6 @@
 extends "res://ui/qa_context.gd"
 
-const MetaStore = preload("res://core/collection_store.gd")
+const MetaStore = preload("res://core/closing_store.gd")
 const TrainerStore = preload("res://core/collection_profile_store.gd")
 const Trainer = preload("res://core/collection_profile.gd")
 
@@ -47,7 +47,7 @@ func run(app: Control, directory: String) -> void:
 	var identity: String = app.store.campaign_id
 	check(app.trainer.model.data.runs[identity].wins==1,"Natural victory recorded")
 	before = app.run.duplicate(true)
-	app._load_game(); await settle(app)
+	await app._load_game(); await settle(app)
 	check(Store.equivalent(before,app.run) and app.trainer.model.data.runs[identity].wins==1,"Reload and replay never double progress")
 	app._show_oak(); app._open_title(); await settle(app)
 	check(app.trainer.model.data.runs[identity].status=="active","Closing Oak or title does not abandon campaign")

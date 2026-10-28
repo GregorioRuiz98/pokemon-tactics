@@ -3,7 +3,13 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, writeFileSync, unlinkSync, rmdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
-import { forbiddenPath, localLinks, resolveLink, inspectDocument, auditBundle } from './check-repository.mjs';
+import { forbiddenPath, localLinks, resolveLink, inspectDocument, auditBundle, windowsVersion } from './check-repository.mjs';
+
+test('Windows version remains numeric for stable and release candidates', () => {
+  assert.equal(windowsVersion('0.36.0'), '0.36.0.0');
+  assert.equal(windowsVersion('1.0.0-rc.1'), '1.0.0.1');
+  for (const value of ['1.0', '1.0.0-beta', '1.0.0-rc.x', '1.0.0-rc.65536']) assert.throws(() => windowsVersion(value));
+});
 
 test('local builds, profiles and secrets are rejected without rejecting pinned fixtures', () => {
   for (const name of ['godot/.godot/imported/foo', 'work/result.json', 'tools/cache/a', '.env', '.env.local', 'godot/export_credentials.cfg', 'windows/game.exe', 'bundle.zip', 'save.json.verification-key', 'trainer-profile.json', 'kanto-save.json', 'trainer-profile.json.damaged-123', 'kanto-save.json.before-new-123', 'private.pem']) assert.ok(forbiddenPath(name), name);

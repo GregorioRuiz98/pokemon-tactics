@@ -1,44 +1,40 @@
-# Estado y próximos pasos
+# Estado hacia 1.0
 
-Actualizado el 27 de octubre de 2026. Versión jugable **0.35.0**, entrega privada Windows. El [plan acumulado](history/PLAN_SPRINTS_2026-10-27.md) y los informes por sprint son historial, no una lista de trabajo pendiente.
+Actualizado el 28 de octubre de 2026. **1.0.0-rc.1**, candidata privada Windows offline. No hay descarga pública anunciada. Los planes acumulados son [historial](history/PLAN_SPRINTS_2026-10-27.md), no funciones pendientes por reintroducir.
 
-## Comprobado
+## Cierre del desarrollo
 
-| Entrega | Evidencia | Alcance real |
+| Sprint | Trabajo y evidencia | Alcance real |
 | --- | --- | --- |
-|0.34.0 — campaña | [Verificación](qa/sprint-34/verification.json), [informe](SPRINT_34_TACTICAL_QUALITY.md) |58 lugares,57 combates,8 medallas y 7.861 órdenes legales automatizadas; Liga → aves → Mew/Mewtwo. |
-|0.34.1 — interfaz | [Verificación](qa/sprint-34-ui-1/verification.json), [cambios](UI_PRECOMBAT_0.34.1.md) |1.958 comprobaciones de previa,46 de regresión y 270 de iconos por build; fuente y EXE coinciden:4.548 en total. |
-| Validación 0.34.1 | [Registro](qa/sprint-34-ui-1/release.json) | Sin errores ni avisos nuevos;65 avisos heredados. No acredita otro PC ni sesión humana. |
-|0.35.0 — colección | [Verificación](qa/sprint-35/verification.json), [cambios](SPRINT_35_COLLECTION.md), [paquete](qa/sprint-35/release.json) |4.196 comprobaciones del motor y2.107 de interfaz por build:8.410 entre motor, fuente y EXE. Pokédex151,19 logros,79 primeras formas e iniciales Nv.5. Sin errores ni avisos nuevos. |
+|36 — campaña y estabilidad|[Informe](SPRINT_36_CLOSURE.md), [motor](qa/sprint-36/summary.json), [interfaz](qa/sprint-36/native-source.json)|58 lugares,57 combates,8 medallas y 7.865 órdenes legales. Guardados, replay completo, recompensas, colección e inicial siguiente. Ofertas de Kecleon fijas por visita, edición 29.|
+|37 — respuesta y controles|[Informe](SPRINT_37_USABILITY.md), [medición](qa/sprint-37/performance-after.json), [usabilidad](qa/sprint-37/usability-source.json)|Ficha 77,116 → 10,725 ms y Movimientos 78,291 → 45,253 ms de mediana local;95 casos de IA equivalentes. Teclado, ratón, rectificación, orientación, texto 150% y carga asíncrona.|
+|38 — candidata y beta|[Cambios y límites](RELEASE_1_0_RC1.md), [protocolo](BETA_1_0.md), [plantilla](PLANTILLA_BETA.md)|EXE portátil, documentación, créditos/procedencia, contrato de empaquetado y comprobación del ZIP exacto. La evidencia final identifica fuente y EXE.|
 
-Se conserva el balance aceptado. Los intentos fallidos y límites del jugador automático constan en los informes. La 0.35 añade colección y reclutamiento; conserva el motor de combate y los datos publicados.
+La campaña automática reutiliza una estrategia legal que funcionó en la edición previa; cada orden se ejecuta de nuevo. No importa el estado antiguo ni inyecta victorias, PS, dinero o Pokémon. El intento con una compra que agotó el presupuesto queda conservado. No se cambia el balance aceptado.
 
-## Antes de una primera beta pública
+Validación:0 errores y 0 avisos nuevos;65 avisos heredados. Las suites históricas mantienen su edición. [Colección 0.35](SPRINT_35_COLLECTION.md) sigue documentando 151 especies,19 logros y 79 primeras formas; la candidata conserva sus reglas salvo las ofertas estables.
+
+## Pendiente que requiere evidencia externa o decisión del creador
 
 | Pendiente | Criterio de cierre |
 | --- | --- |
-| Otro ordenador físico | Arranque sin Godot/sin conexión, sonido, guardado/recuperación, resoluciones y DPI reales. Resultado fechado y especificaciones. |
-| Jugadores externos | Comprender menús, preparación y objetivos sin acompañamiento; probar principio/mitad/final y registrar bloqueos. [Protocolo](PLAYTEST_0.34.md). |
-| Procedencia/permisos | Resolver alcance de distribución de sprites/retratos, muestras originales de sonido y demás contenido. [Inventario](LICENCIAS.md). Hashes/créditos no acreditan permiso sobre la IP. |
-| Canal y contacto | Elegir dónde ofrecer el ZIP y contacto del creador. No inventar correos ni reutilizar los de otros proyectos. Publicar el juego no exige abrir el repo. |
-| Artefacto definitivo | Verificaciones pertinentes, avisos conservados, ZIP/SHA-256 comprobados y versión/commit anotados. [Procedimiento](DEPLOY.md). |
-| Autorización final | El creador indica cuándo y dónde publicar. No se ha publicado ni cambiado visibilidad. |
+|Otro ordenador físico|Arranque sin Godot/sin conexión, audio, guardado/recuperación, resoluciones y DPI reales. Fecha y especificaciones.|
+|Jugadores externos|Comprender preparación y menús sin acompañamiento; registrar principio, mitad y final, bloqueos y ritmo. [Beta](BETA_1_0.md).|
+|Procedencia/permisos|Resolver alcance de distribución de recursos Pokémon y terceros. [Inventario](LICENCIAS.md). Los hashes no acreditan autorización.|
+|Canal y contacto|Elegir dónde ofrecer el ZIP y cómo recibir incidencias. No se ha contactado automáticamente con nadie.|
+|Autorización de publicación|El creador decide cuándo y dónde publicar. Repo privado, sin cambios de visibilidad ni release pública.|
 
-No se fija un objetivo de FPS, duración o éxito de los tres iniciales sin medirlo. Las pruebas son una base para la beta, no evidencia de recepción pública, viralidad o accesibilidad con lector audible.
+La carpeta limpia se prueba en el mismo ordenador: no es otro PC. No hay evidencia de lector audible, duración universal, éxito de todos los iniciales, retención ni viralidad. La candidata no se declara 1.0 pública solo por superar scripts.
 
-## Retirado deliberadamente
+## Reglas que sustituyen diseños antiguos
 
-| Antes | Ahora |
-| --- | --- |
-| Amenazas/T y cobertura rival automática | Fichas de rivales y terreno, sin promesa de intención enemiga. |
-| Roles rígidos | Repertorios por especie y cuatro técnicas preparadas. |
-| PT al atacar | PP al equipar y básico gratuito. |
-| Caramelos/piedras/cables y pestaña Entrenar | EXP restante desde Equipo → Ficha y evolución por nivel/elección gratuita al umbral. |
-| Tres iniciales aleatorios y finales excluyentes | Un inicial de Oak o primera forma obtenida de nivel 5; Liga/rival → aves → Mew/Mewtwo. |
-| Servidor obligatorio | Ejecutable offline y perfil local. |
+|Antes|Ahora|
+|---|---|
+|Amenazas/T|Fichas de rivales y terreno.|
+|Roles rígidos|Repertorios por especie y cuatro técnicas preparadas.|
+|PT al atacar|PP al equipar y básico gratuito.|
+|Caramelos/piedras/cables y Entrenar|EXP restante desde Equipo → Ficha; evolución por nivel o elección gratuita al umbral.|
+|Tres iniciales aleatorios y finales excluyentes|Un inicial de Oak o primera forma obtenida Nv.5; Liga/rival → aves → Mew/Mewtwo.|
+|Servidor obligatorio|Ejecutable offline y perfil local.|
 
-No reintroducir estas funciones por leer una descripción antigua. [Reglas](REGLAS_ACTUALES.md) · [Arquitectura](ARCHITECTURE.md) · [Índice](README.md).
-
-## Colección 0.35
-
-Pokédex completa, 19 logros, reclutamiento global no legendario en Kecleon, una elección por combate legendario e iniciales desbloqueados. Migración de perfil v1 con copia y campaña 28 con actualización voluntaria. [Implementación y evidencia](SPRINT_35_COLLECTION.md).
+[Reglas](REGLAS_ACTUALES.md) · [Arquitectura](ARCHITECTURE.md) · [Entrega](DEPLOY.md).

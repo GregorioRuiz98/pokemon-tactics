@@ -1,6 +1,6 @@
 extends RefCounted
 
-const Challenge = preload("res://core/collection_challenge.gd")
+const Challenge = preload("res://core/closing_challenge.gd")
 const Card = preload("res://ui/journey_card.gd")
 var deploy_panel: PanelContainer
 var deploy_label: Label
@@ -51,7 +51,7 @@ func setup(app: Control) -> void:
 	toast_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	row.add_child(toast_text)
 	toast.hide(); deploy_panel.hide()
-	app._apply_preferences.call_deferred()
+	app._queue_preferences()
 	app.board.deployment_dragged.connect(func(identity,point):
 		if enabled(app) and not app._modal_open(): app._event({"kind":"deploy","member":identity,"destination":point,"at":app.run.revision}))
 

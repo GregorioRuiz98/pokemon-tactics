@@ -1,6 +1,6 @@
 extends "res://ui/qa_context.gd"
 
-const CollectionStore = preload("res://core/collection_store.gd")
+const CollectionStore = preload("res://core/closing_store.gd")
 const Collection = preload("res://core/collection_catalog.gd")
 
 func layout(app: Control) -> void:
@@ -17,7 +17,7 @@ func run(app: Control, directory: String) -> void:
 	check(app.travel_buttons.other_starters.disabled,"New profile has only Oak starters")
 	app.journey_seed.text = "release-33-kanto"
 	await click(app,app.travel_buttons.starter1)
-	check(app.run.edition==28 and app.trainer.model.data.version==2,"Current campaign and profile versions")
+	check(app.run.edition==app.CURRENT_CHAPTER-4 and app.trainer.model.data.version==2,"Current campaign and profile versions")
 	await click(app,app.travel_buttons.enter); await click(app,app.adventure.start_button)
 	for step: int in 220:
 		if app.run.phase!="battle": break
@@ -43,7 +43,7 @@ func run(app: Control, directory: String) -> void:
 	var natural: Dictionary = app.run.duplicate(true)
 	DirAccess.remove_absolute(app.store.file_path+".verified")
 	app.store = CollectionStore.new(app.store.file_path)
-	app._load_game(); await layout(app)
+	await app._load_game(); await layout(app)
 	check(CollectionStore.equivalent(app.run,natural),"Recruitment journal reloads exactly")
 	check(not app.store.last_load.cached,"Recruitment reload reconstructs real JSON journal")
 	check(app.save_warning.is_empty() and app.trainer.warning.is_empty(),"Campaign and profile saved without warning")
@@ -78,7 +78,7 @@ func run(app: Control, directory: String) -> void:
 	check(app.run.starter==base and app.run.party.size()==1 and app.run.party[0].level==5,"Selected unlocked starter starts fresh at5")
 	check(app.trainer.model.data.unlocked.has("new-starter"),"New starter achievement")
 	var saved: Dictionary = app.run.duplicate(true)
-	app._load_game(); await layout(app)
+	await app._load_game(); await layout(app)
 	check(CollectionStore.equivalent(app.run,saved),"New starter survives real saved replay")
 	var reloaded: RefCounted = app.trainer.Store.new(app.trainer.persistence.file_path)
 	var recovered_profile: RefCounted = app.trainer.Model.new(reloaded.load_profile().data)
@@ -89,7 +89,7 @@ func run(app: Control, directory: String) -> void:
 	app._prepare_campaign_assets(); app._refresh(); await layout(app)
 	check(app.travel_buttons.has("legend_144") and app.travel_buttons.has("legend_145") and app.travel_buttons.has("legend_146") and not app.travel_buttons.has("reroll_capture"),"Boss screen exposes three choices without paid reroll")
 	await capture(app,directory,"legendary-selection")
-	app.run = saved; app._load_game(); await layout(app)
+	app.run = saved; await app._load_game(); await layout(app)
 	check(CollectionStore.equivalent(app.run,saved),"Boss presentation fixture never replaces save")
 	finish(app,directory)
 

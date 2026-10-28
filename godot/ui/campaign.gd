@@ -2,12 +2,12 @@ extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
 const Advanced = preload("res://core/roster_run.gd")
-const Journey = preload("res://core/collection_run.gd")
-const CURRENT_CHAPTER: int = 32
+const Journey = preload("res://core/closing_run.gd")
+const CURRENT_CHAPTER: int = 33
 const Art = preload("res://ui/visual_assets.gd")
 const RosterPanel = preload("res://ui/roster_panel.gd")
 const IsometricBoard = preload("res://ui/review_board.gd")
-const CampaignStore = preload("res://core/collection_store.gd")
+const CampaignStore = preload("res://core/closing_store.gd")
 const Copy = preload("res://ui/concise_copy.gd")
 var kanto_qa_dir: String = ""
 var copy_qa_dir: String = ""
@@ -20,6 +20,11 @@ var portable_smoke_path: String = ""
 var review_qa_dir: String = ""
 var briefing_qa_dir: String = ""
 var collection_qa_dir: String = ""
+var closing_playthrough_dir: String = ""
+var closing_usability_dir: String = ""
+var loading_overlay: CenterContainer
+var loading_caption: Label
+var loading_progress: ProgressBar
 var starter_dialog: AcceptDialog
 var starter_browser: VBoxContainer
 var encounter_preview: RefCounted = preload("res://ui/encounter_preview.gd").new()
@@ -92,6 +97,16 @@ var seeds_qa_dir: String = ""
 var attack_qa_dir: String = ""
 var travel_memory: Dictionary = {}
 var travel_phase: String = ""
+var preferences_queued: bool = false
+
+func _queue_preferences() -> void:
+	if preferences_queued: return
+	preferences_queued = true
+	_flush_preferences.call_deferred()
+
+func _flush_preferences() -> void:
+	preferences_queued = false
+	_apply_preferences()
 
 func _make_theme() -> void:
 	super._make_theme()
@@ -203,6 +218,8 @@ func _boot() -> void:
 		if argument.begins_with("--review-journal="): review_journal_path = argument.trim_prefix("--review-journal=")
 		if argument.begins_with("--smoke-report="): portable_smoke_path = argument.trim_prefix("--smoke-report=")
 		if argument.begins_with("--review-qa-dir="): review_qa_dir = argument.trim_prefix("--review-qa-dir=")
+		if argument.begins_with("--closing-usability-dir="): closing_usability_dir = argument.trim_prefix("--closing-usability-dir=")
+		if argument.begins_with("--closing-playthrough-dir="): closing_playthrough_dir = argument.trim_prefix("--closing-playthrough-dir=")
 		if argument.begins_with("--collection-qa-dir="): collection_qa_dir = argument.trim_prefix("--collection-qa-dir=")
 		if argument.begins_with("--briefing-qa-dir="): briefing_qa_dir = argument.trim_prefix("--briefing-qa-dir=")
 		if argument.begins_with("--quality-qa-dir="): quality_qa_dir = argument.trim_prefix("--quality-qa-dir=")
@@ -257,6 +274,8 @@ func _boot() -> void:
 	if not climate_qa_dir.is_empty(): test_dir = climate_qa_dir
 	if not review_qa_dir.is_empty(): test_dir = review_qa_dir
 	if not briefing_qa_dir.is_empty(): test_dir = briefing_qa_dir
+	if not closing_usability_dir.is_empty(): test_dir = closing_usability_dir
+	if not closing_playthrough_dir.is_empty(): test_dir = closing_playthrough_dir
 	if not collection_qa_dir.is_empty(): test_dir = collection_qa_dir
 	if not quality_qa_dir.is_empty(): test_dir = quality_qa_dir
 	if not playthrough_qa_dir.is_empty(): test_dir = playthrough_qa_dir
@@ -298,6 +317,8 @@ func _boot() -> void:
 	if not portable_smoke_path.is_empty(): _open_title(); call_deferred("_run_portable_smoke")
 	elif not playthrough_qa_dir.is_empty(): _open_title(); call_deferred("_run_playthrough_qa")
 	elif not quality_qa_dir.is_empty(): _open_title(); call_deferred("_run_quality_qa")
+	elif not closing_usability_dir.is_empty(): _open_title(); call_deferred("_run_closing_usability")
+	elif not closing_playthrough_dir.is_empty(): _open_title(); call_deferred("_run_closing_playthrough")
 	elif not collection_qa_dir.is_empty(): _open_title(); call_deferred("_run_collection_qa")
 	elif not briefing_qa_dir.is_empty(): _open_title(); call_deferred("_run_briefing_qa")
 	elif not review_qa_dir.is_empty(): _open_title(); call_deferred("_run_review_qa")
@@ -344,7 +365,7 @@ func _run_moves_qa() -> void:
 	await load("res://ui/qa_moves.gd").new().run(self,moves_qa_dir)
 
 func _run_performance_qa() -> void:
-	var script: String = "res://ui/qa_fluency.gd" if "--performance-current" in OS.get_cmdline_user_args() else "res://ui/qa_performance.gd"
+	var script: String = "res://ui/qa_closing_performance.gd" if "--performance-final" in OS.get_cmdline_user_args() else "res://ui/qa_fluency.gd" if "--performance-current" in OS.get_cmdline_user_args() else "res://ui/qa_performance.gd"
 	await load(script).new().run(self,performance_qa_dir)
 
 func _run_seeds_qa() -> void:
@@ -370,6 +391,7 @@ func _copy_seed() -> void:
 	if travel_buttons.has("copy_seed"): travel_buttons.copy_seed.text = "Copiada"
 
 func _open_title() -> void:
+	if title_loading: return
 	if practice.active: practice.leave(self); return
 	if not oak_return.is_empty():
 		run = oak_return.run
@@ -413,6 +435,7 @@ func _input(event: InputEvent) -> void:
 	super._input(event)
 
 func _unhandled_key_input(event: InputEvent) -> void:
+	if title_loading: get_viewport().set_input_as_handled(); return
 	if event is InputEventKey and adventure.input(self,event): get_viewport().set_input_as_handled(); return
 	if event is InputEventKey and event.pressed and not event.echo:
 		if input_profile.matches(event,"practice") and not super._modal_open() and not campaign_confirm.visible:
@@ -504,7 +527,7 @@ func _update_seed_hint() -> void:
 	var value: String = journey_seed.text.strip_edges()
 	var text: String = "Una semilla admite hasta 64 caracteres."
 	if value.begins_with("KT") and ":" in value:
-		var challenge: Dictionary = preload("res://core/collection_challenge.gd").decode(value)
+		var challenge: Dictionary = preload("res://core/closing_challenge.gd").decode(value)
 		text = "Código incompleto o incompatible. Comprueba que lo has pegado entero." if challenge.is_empty() else "Reto con %s · mapa %d×%d. Al comenzar se usará este inicial." % [preload("res://core/collection_catalog.gd").record(int(challenge.starter)).name,challenge.mapSize,challenge.mapSize]
 	travel_buttons.seed_hint.text = text
 
@@ -531,6 +554,12 @@ func _run_playthrough_qa() -> void:
 
 func _run_review_qa() -> void:
 	await load("res://ui/qa_review.gd").new().run(self,review_qa_dir)
+
+func _run_closing_usability() -> void:
+	await load("res://ui/qa_closing_usability.gd").new().run(self,closing_usability_dir)
+
+func _run_closing_playthrough() -> void:
+	await load("res://ui/qa_closing_playthrough.gd").new().run(self,closing_playthrough_dir)
 
 func _run_collection_qa() -> void:
 	await load("res://ui/qa_collection.gd").new().run(self,collection_qa_dir)
@@ -575,7 +604,7 @@ func _choose_starter(identity: int) -> void:
 	var challenge: Dictionary = {}
 	var requested_seed: String = journey_seed.text.strip_edges()
 	if requested_seed.begins_with("KT") and ":" in requested_seed:
-		challenge = load("res://core/collection_challenge.gd").decode(requested_seed)
+		challenge = load("res://core/closing_challenge.gd").decode(requested_seed)
 		if challenge.is_empty(): _review_text("Código de reto no válido","Comprueba que has pegado el código completo. Este reto debe ser compatible con la aventura actual. Tu partida guardada se conserva."); return
 		requested_seed = challenge.seed; identity = int(challenge.starter)
 	elif requested_seed.length()>64:
@@ -612,6 +641,7 @@ func _choose_starter(identity: int) -> void:
 	_refresh()
 
 func _menu_selected(identity: int) -> void:
+	if title_loading: return
 	if practice.active and identity in [0,1,7]: hint.text = practice.instruction(self); return
 	match identity:
 		0: campaign_confirm.popup_centered()
@@ -624,6 +654,7 @@ func _menu_selected(identity: int) -> void:
 		_: super._menu_selected(identity)
 
 func _modal_open() -> bool:
+	if title_loading: return true
 	if starter_dialog!=null and starter_dialog.visible: return true
 	if encounter_preview.dialog!=null and encounter_preview.dialog.visible: return true
 	if trainer.dialog!=null and trainer.dialog.visible: return true
@@ -642,10 +673,26 @@ func _save() -> void:
 	if result.ok: trainer.sync(self)
 
 func _load_game() -> void:
+	if title_loading: return
 	if practice.active: hint.text = "Sal de la práctica para recuperar tu aventura."; return
+	title_loading = true
 	var started: int = Time.get_ticks_msec()
-	var result: Dictionary = store.load_campaign(campaign)
+	_loading_status(0,1)
+	var result: Dictionary = await store.load_campaign_async(campaign,get_tree(),_loading_status)
 	_accept_loaded(result,started)
+
+func _loading_status(done: int, total: int) -> void:
+	if loading_overlay==null:
+		loading_overlay = CenterContainer.new(); add_child(loading_overlay)
+		loading_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT); loading_overlay.z_index = 120
+		var panel: PanelContainer = _panel(); loading_overlay.add_child(panel)
+		var column: VBoxContainer = VBoxContainer.new(); column.custom_minimum_size.x = 380; panel.add_child(column)
+		loading_caption = _label("Recuperando aventura…",22,GOLD); column.add_child(loading_caption)
+		loading_progress = ProgressBar.new(); loading_progress.custom_minimum_size.y = 24; column.add_child(loading_progress)
+		_queue_preferences()
+	loading_overlay.show()
+	loading_progress.value = 100.0*done/maxi(1,total)
+	loading_caption.text = "Recuperando aventura · %d %%"%int(loading_progress.value)
 
 func _load_game_async() -> void:
 	var started: int = Time.get_ticks_msec()
@@ -656,6 +703,7 @@ func _load_game_async() -> void:
 func _accept_loaded(result: Dictionary, started: int) -> void:
 	last_load_msec = Time.get_ticks_msec()-started
 	title_loading = false
+	if loading_overlay!=null: loading_overlay.hide()
 	if not result.ok:
 		save_warning = result.reason
 		_refresh()
@@ -776,6 +824,7 @@ func _upgrade_campaign(target_chapter: int = CURRENT_CHAPTER) -> void:
 	if run.edition>=25: message = "Climas y habilidades activados. Equipo y progreso conservados; copia anterior guardada."
 	if run.edition>=26: message = "Revisión táctica aplicada. Equipo y progreso conservados; copia anterior guardada."
 	if run.edition>=28: message = "Pokédex y reclutamiento actualizados. Equipo y progreso conservados; copia anterior guardada."
+	if run.edition>=29: message = "Ofertas de reclutamiento actualizadas. Equipo y progreso conservados; copia anterior guardada."
 	_save()
 	_refresh()
 
@@ -1084,7 +1133,7 @@ func _hub_group(parent: VBoxContainer, key: String) -> VBoxContainer:
 	return group
 
 func _simplify_hub() -> void:
-	if kecleon.using_scene(self): _apply_preferences.call_deferred(); return
+	if kecleon.using_scene(self): _queue_preferences(); return
 	if not _simple_hub(): return
 	var managing: bool = hub_mode=="team"
 	travel_buttons.hub_overview.button_pressed = not managing
@@ -1116,7 +1165,7 @@ func _simplify_hub() -> void:
 		hub_parts.items.add_child(hub_parts.empty_bag)
 	if travel_buttons.has("use_batch"): travel_buttons.use_batch.visible = owned
 	if travel_buttons.has("batch"): travel_buttons.batch.visible = shop_tab in (["supplies"] if run.get("edition",1)>=20 else ["supplies","evolution"])
-	_apply_preferences.call_deferred()
+	_queue_preferences()
 
 func _render_travel() -> void:
 	var phase: String = run.get("phase","oak")
@@ -1171,7 +1220,7 @@ func _render_travel() -> void:
 		guide.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		travel_content.add_child(guide)
 	if run.get("edition",1)>=12 and run.get("edition",1)<CURRENT_CHAPTER-4 and run.get("phase","") in ["map","shop","complete","ending"]:
-		var upgrade: Button = _button("Actualizar Pokédex y reclutamiento" if CURRENT_CHAPTER>=32 else "Actualizar revisión táctica" if CURRENT_CHAPTER>=30 else "Actualizar climas y habilidades" if CURRENT_CHAPTER>=29 else "Aplicar corrección de sueño" if run.get("edition",0)==23 else "Actualizar a PP de equipamiento" if CURRENT_CHAPTER>=27 else "Actualizar Kanto · mapas y dos desafíos" if CURRENT_CHAPTER>=26 else "Actualizar versión · conservar final" if run.phase=="ending" else "Actualizar aventura táctica",_upgrade_campaign)
+		var upgrade: Button = _button("Actualizar aventura" if CURRENT_CHAPTER>=33 else "Actualizar Pokédex y reclutamiento" if CURRENT_CHAPTER>=32 else "Actualizar revisión táctica" if CURRENT_CHAPTER>=30 else "Actualizar climas y habilidades" if CURRENT_CHAPTER>=29 else "Aplicar corrección de sueño" if run.get("edition",0)==23 else "Actualizar a PP de equipamiento" if CURRENT_CHAPTER>=27 else "Actualizar Kanto · mapas y dos desafíos" if CURRENT_CHAPTER>=26 else "Actualizar versión · conservar final" if run.phase=="ending" else "Actualizar aventura táctica",_upgrade_campaign)
 		upgrade.tooltip_text = "Conserva equipo, nivel, PS y progreso con una copia previa. Los objetos retirados se reembolsan. El combate pendiente conserva sus reglas."
 		if CURRENT_CHAPTER>=25: upgrade.tooltip_text = "Añade mapas propios y encadena las tres aves antes de Mew y Mewtwo. Conserva victorias, equipo, PS y progreso con una copia previa. Los combates pendientes terminan con sus reglas actuales."
 		if CURRENT_CHAPTER>=27: upgrade.tooltip_text = "PP al equipar, usos sin gasto y atributos durante el combate. Conserva movimientos aprendidos; los que excedan el presupuesto se desequipan en orden inverso. Copia previa automática."
@@ -1179,6 +1228,7 @@ func _render_travel() -> void:
 		if CURRENT_CHAPTER>=29: upgrade.tooltip_text = "Añade climas, habilidades y sexo de los Pokémon. Conserva equipo, PS, EXP, dinero y diario; copia previa. Solo entre encuentros."
 		if CURRENT_CHAPTER>=30: upgrade.tooltip_text = "Revisa los 58 escenarios, tácticas rivales y objetivos de control. Conserva equipo, PS, dinero, EXP y diario, con copia previa. Solo entre encuentros."
 		if CURRENT_CHAPTER>=32: upgrade.tooltip_text = "Añade reclutamiento y elección de un legendario por combate. Conserva equipo, PS, EXP, dinero e historial con copia previa. Solo entre encuentros."
+		if CURRENT_CHAPTER>=33: upgrade.tooltip_text = "Fija las ofertas de reclutamiento al llegar a la tienda. Conserva equipo, PS, EXP, dinero e historial con copia previa."
 		travel_content.add_child(upgrade)
 		travel_buttons.upgrade = upgrade
 	if not run.is_empty() and run.get("edition",1)>=8 and not _simple_hub():
@@ -1220,7 +1270,7 @@ func _render_travel() -> void:
 			button.theme_type_variation = "PrimaryButton"
 			content.add_child(button)
 			travel_buttons["starter" + str(id)] = button
-		_apply_preferences.call_deferred()
+		_queue_preferences()
 		return
 	var progress: HBoxContainer = HBoxContainer.new()
 	if run.get("edition",1)>=11 and run.phase=="map" and run.cleared.is_empty() and not _simple_hub():
@@ -1296,48 +1346,51 @@ func _render_travel() -> void:
 			elif run.get("edition",1)>=20: load("res://ui/economy_menu.gd").capture(self,narrative)
 			_travel_button("capture",capture_text,footer if _simple_hub() else narrative,{"kind":"capture"})
 		"shop":
-			if run.get("edition",1)>=4:
-				var batch: Button = _button("Comprar varias…",_open_batch)
-				batch.theme_type_variation = "ToolButton"
-				narrative.add_child(batch)
-				travel_buttons.batch = batch
-			text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos Raros: %d\n\nUn Caramelo evoluciona una etapa sin requisito de nivel. No cura. Entrenar añade +5; máximo dos compras por Pokémon.\n\nSelecciona un miembro a la derecha para usar objetos o entrenar." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
-			if run.get("edition",1) >= 2:
-				text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos Raros: %d\n\nLas estadísticas crecen al subir de nivel. La EXP se gana con victorias.\n\nEvolución: nivel requerido + un Caramelo Raro. No cura ni da niveles. Preparar movimientos es gratis." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
-			if run.get("edition",1) >= 3:
-				text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos: %d\nNivel mínimo + Caramelo para evolucionar; no cura.\nCompra MT/equipo y úsalo con un miembro a la derecha." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
-				if run.get("edition",1)>=4: text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos: %d\nCaramelo: +1 nivel. Evolución automática al alcanzar el nivel.\nCompra y usa objetos con un miembro a la derecha." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
-				if run.get("edition",1)>=7: text.text += "\nAl subir de nivel recuperas tantos PS como aumenten tus PS máximos."
-				if run.get("edition",1)>=9: text.text += "\nRevivir: %d en bolsa · 150 ₽ · recupera al debilitado con el 50 %% de sus PS." % run.bag.revive
-				shop_sections = _shop_panels(narrative)
-				_render_stock(shop_sections.gear)
-			var consumables: Dictionary = campaign.consumables if run.get("edition",1)>=4 else Campaign.ITEMS
-			var shop_parent: Node = shop_sections.get("supplies",narrative) if run.get("edition",1)>=3 else narrative
-			if run.get("edition",1)>=12:
-				text.text = "Prepara al equipo antes de seguir. Compra aquí y usa los objetos desde la ficha del Pokémon."
-				var stock_grid: GridContainer = GridContainer.new()
-				stock_grid.columns = 3 if _simple_hub() and load("res://ui/presentation_settings.gd").font_factor(self)<=1.25 else 2
-				stock_grid.add_theme_constant_override("h_separation",8)
-				stock_grid.add_theme_constant_override("v_separation",8)
-				shop_parent.add_child(stock_grid)
-				shop_parent = stock_grid
-			if run.get("edition",1)>=20: load("res://ui/economy_menu.gd").shop(self,shop_sections.evolution)
-			for item: String in consumables:
-				var destination: Node = shop_sections.traits if item=="ability-capsule" and run.get("edition",1)>=12 else shop_parent
-				if _simple_hub() and (item=="rare-candy" or (run.get("edition",1)>=13 and campaign.evolution_items.has(item))): destination = shop_sections.evolution
-				var label: String = "%s\n%d ₽ · tienes %d" % [consumables[item].name,consumables[item].price,run.bag.get(item,0)] if run.get("edition",1)>=12 else "Comprar %s · %d ₽" % [consumables[item].name,consumables[item].price]
-				var button: Button = _travel_button("buy_"+item,label,destination,{"kind":"buy","item":item})
-				if _simple_hub(): _item_picture(button,item)
-				button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-				if run.get("edition",1)>=12: button.add_theme_font_size_override("font_size",16)
-				button.disabled = run.money < consumables[item].price
-				if item=="revive": button.tooltip_text = "Recupera a un Pokémon debilitado con el 50 % de sus PS máximos. Solo en la tienda; consume una unidad de la bolsa."
-			if run.get("edition",1)>=10: _render_mint_shop(shop_sections.get("traits",narrative))
-			if run.get("edition",1)>=5 and run.get("edition",1)<13:
-				var stone: Button = _travel_button("buy_leaf-stone","Comprar Piedra Hoja · 80 ₽",shop_sections.evolution if _simple_hub() else narrative,{"kind":"buy-stone"})
-				stone.disabled = run.money<80
-				stone.tooltip_text = "Evoluciona Gloom y Weepinbell. No cura ni sube niveles."
-			_travel_button("continue","Seguir viaje" if run.get("edition",1)>=13 or run.stage < 3 else "Cerrar el tramo",footer,{"kind":"continue"})
+			if run.get("edition",0)>=28 and _simple_hub() and hub_mode=="team":
+				_travel_button("continue","Seguir viaje",footer,{"kind":"continue"})
+			else:
+				if run.get("edition",1)>=4:
+					var batch: Button = _button("Comprar varias…",_open_batch)
+					batch.theme_type_variation = "ToolButton"
+					narrative.add_child(batch)
+					travel_buttons.batch = batch
+				text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos Raros: %d\n\nUn Caramelo evoluciona una etapa sin requisito de nivel. No cura. Entrenar añade +5; máximo dos compras por Pokémon.\n\nSelecciona un miembro a la derecha para usar objetos o entrenar." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
+				if run.get("edition",1) >= 2:
+					text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos Raros: %d\n\nLas estadísticas crecen al subir de nivel. La EXP se gana con victorias.\n\nEvolución: nivel requerido + un Caramelo Raro. No cura ni da niveles. Preparar movimientos es gratis." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
+				if run.get("edition",1) >= 3:
+					text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos: %d\nNivel mínimo + Caramelo para evolucionar; no cura.\nCompra MT/equipo y úsalo con un miembro a la derecha." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
+					if run.get("edition",1)>=4: text.text = "Dinero: %d ₽\nPociones: %d · Superpociones: %d · Caramelos: %d\nCaramelo: +1 nivel. Evolución automática al alcanzar el nivel.\nCompra y usa objetos con un miembro a la derecha." % [run.money,run.bag.potion,run.bag["super-potion"],run.bag["rare-candy"]]
+					if run.get("edition",1)>=7: text.text += "\nAl subir de nivel recuperas tantos PS como aumenten tus PS máximos."
+					if run.get("edition",1)>=9: text.text += "\nRevivir: %d en bolsa · 150 ₽ · recupera al debilitado con el 50 %% de sus PS." % run.bag.revive
+					shop_sections = _shop_panels(narrative)
+					_render_stock(shop_sections.gear)
+				var consumables: Dictionary = campaign.consumables if run.get("edition",1)>=4 else Campaign.ITEMS
+				var shop_parent: Node = shop_sections.get("supplies",narrative) if run.get("edition",1)>=3 else narrative
+				if run.get("edition",1)>=12:
+					text.text = "Prepara al equipo antes de seguir. Compra aquí y usa los objetos desde la ficha del Pokémon."
+					var stock_grid: GridContainer = GridContainer.new()
+					stock_grid.columns = 3 if _simple_hub() and load("res://ui/presentation_settings.gd").font_factor(self)<=1.25 else 2
+					stock_grid.add_theme_constant_override("h_separation",8)
+					stock_grid.add_theme_constant_override("v_separation",8)
+					shop_parent.add_child(stock_grid)
+					shop_parent = stock_grid
+				if run.get("edition",1)>=20: load("res://ui/economy_menu.gd").shop(self,shop_sections.evolution)
+				for item: String in consumables:
+					var destination: Node = shop_sections.traits if item=="ability-capsule" and run.get("edition",1)>=12 else shop_parent
+					if _simple_hub() and (item=="rare-candy" or (run.get("edition",1)>=13 and campaign.evolution_items.has(item))): destination = shop_sections.evolution
+					var label: String = "%s\n%d ₽ · tienes %d" % [consumables[item].name,consumables[item].price,run.bag.get(item,0)] if run.get("edition",1)>=12 else "Comprar %s · %d ₽" % [consumables[item].name,consumables[item].price]
+					var button: Button = _travel_button("buy_"+item,label,destination,{"kind":"buy","item":item})
+					if _simple_hub(): _item_picture(button,item)
+					button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+					if run.get("edition",1)>=12: button.add_theme_font_size_override("font_size",16)
+					button.disabled = run.money < consumables[item].price
+					if item=="revive": button.tooltip_text = "Recupera a un Pokémon debilitado con el 50 % de sus PS máximos. Solo en la tienda; consume una unidad de la bolsa."
+				if run.get("edition",1)>=10: _render_mint_shop(shop_sections.get("traits",narrative))
+				if run.get("edition",1)>=5 and run.get("edition",1)<13:
+					var stone: Button = _travel_button("buy_leaf-stone","Comprar Piedra Hoja · 80 ₽",shop_sections.evolution if _simple_hub() else narrative,{"kind":"buy-stone"})
+					stone.disabled = run.money<80
+					stone.tooltip_text = "Evoluciona Gloom y Weepinbell. No cura ni sube niveles."
+				_travel_button("continue","Seguir viaje" if run.get("edition",1)>=13 or run.stage < 3 else "Cerrar el tramo",footer,{"kind":"continue"})
 		"complete": text.text = "Has conseguido la Medalla Roca. Conservas tu equipo, dinero y objetos.\n\nHas completado el recorrido disponible en esta aventura. Puedes consultar tu equipo o comenzar una nueva."
 		"defeat": text.text = ("Todo el equipo se ha debilitado. La campaña ha terminado; Revivir solo se puede usar en la tienda, si llegas con algún compañero en pie." if run.get("edition",1)>=9 else "Las bajas son definitivas. Esta campaña ha terminado y queda guardada para consultar el equipo.") + "\n\nPuedes comenzar de nuevo con otro inicial o semilla."
 	if run.get("edition",1)>=12:
@@ -1686,6 +1739,7 @@ func _render_mint_shop(parent: VBoxContainer) -> void:
 	buy.tooltip_text = preload("res://ui/mint_info.gd").details(study,selected_mint)+"\nUn uso."
 
 func _render_traits(parent: VBoxContainer, member: Dictionary) -> void:
+	if run.get("edition",0)>=28 and _simple_hub() and member_view!="traits": return
 	var study: RefCounted = campaign.progression
 	var identity: String = study.ability(member)
 	var nature: Label = _label(study.nature_text(member),17,GOLD)
@@ -1754,6 +1808,7 @@ func _progress_summary() -> String:
 	return "\n".join(lines)
 
 func _render_moves(parent: VBoxContainer, member: Dictionary) -> void:
+	if run.get("edition",0)>=28 and _simple_hub() and member_view!="moves": return
 	var study: RefCounted = campaign.progression
 	var at_cap: bool = run.get("edition",1)>=8 and member.level>=campaign.level_cap(run)
 	var experience: Label = _label("Nv. %d · Límite alcanzado · EXP detenida" % member.level if at_cap else "Nv. %d · EXP %d / %d" % [member.level,member.xp,load("res://ui/economy_menu.gd").needed(self,member)],20,GOLD)
@@ -1851,6 +1906,7 @@ func _render_stock(parent: VBoxContainer) -> void:
 			travel_buttons["stock_detail_"+str(i)] = detail
 
 func _render_inventory(parent: VBoxContainer, member: Dictionary) -> void:
+	if run.get("edition",0)>=28 and _simple_hub() and member_view!="items": return
 	var held: Variant = member.get("heldItem")
 	parent.add_child(_label("Objeto: " + (campaign.shop_data.items[held].name if held != null else "ninguno") + " · 1 / Pokémon",18,GOLD))
 	var allowed: bool = member.hp>0 and run.phase in ["map","shop","complete"]
@@ -1891,7 +1947,7 @@ func _inspect() -> void:
 	if tactical_reader.visible: practice.observe(self,"inspect")
 
 func _glossary() -> void:
-	_review_text("Reglas tácticas",preload("res://ui/player_copy.gd").glossary(int(run.get("edition",21))))
+	_review_text("Reglas tácticas",preload("res://ui/player_copy.gd").glossary(int(run.get("edition",CURRENT_CHAPTER-4))))
 
 func _travel_command(command: Dictionary) -> void:
 	if command.kind=="destiny":

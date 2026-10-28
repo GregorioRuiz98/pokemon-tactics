@@ -140,7 +140,17 @@
     "test:repo-check": "node --test tools/check-repository.test.mjs",
     "godot:test:collection": "node tools/godot/run.mjs test-collection",
     "godot:qa:collection": "node tools/godot/run.mjs qa-collection",
-    "godot:qa:collection:export": "node tools/godot/run.mjs qa-collection-export"
+    "godot:qa:collection:export": "node tools/godot/run.mjs qa-collection-export",
+    "godot:test:closing": "node tools/godot/run.mjs test-closing",
+    "godot:simulate:closing": "node tools/godot/run.mjs simulate-closing",
+    "godot:qa:closing-performance": "node tools/godot/run.mjs qa-closing-performance",
+    "godot:qa:closing-performance:export": "node tools/godot/run.mjs qa-closing-performance-export",
+    "godot:qa:closing-playthrough": "node tools/godot/run.mjs qa-closing-playthrough",
+    "godot:qa:closing-playthrough:export": "node tools/godot/run.mjs qa-closing-playthrough-export",
+    "godot:qa:closing-usability": "node tools/godot/run.mjs qa-closing-usability",
+    "godot:qa:closing-usability:export": "node tools/godot/run.mjs qa-closing-usability-export",
+    "godot:test:package": "python tools/godot/test-package-candidate.py",
+    "godot:check:candidate": "python tools/godot/check-candidate-startup.py"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

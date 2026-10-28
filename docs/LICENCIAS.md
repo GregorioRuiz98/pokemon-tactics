@@ -19,8 +19,10 @@ Organiza avisos existentes; no concede licencia nueva ni acredita autorización 
 
 No consta en este inventario una autorización de los titulares de Pokémon para la entrega. Debe resolverse el alcance de distribución, especialmente de muestras originales de sonido y sprites/retratos, antes de presentarla como autorizada. Ser gratuito o incluir aviso de fans no es una autorización registrada en el repositorio.
 
-Fuentes oficiales consultadas el 27 de octubre de 2026: [Soporte Pokémon sobre uso de imágenes y materiales](https://support.pokemon.com/hc/en-us/articles/360000634094-Can-I-use-Pok%C3%A9mon-images-or-materials) indica que no revisa solicitudes de uso de su propiedad intelectual y pide no asociarla a proyectos. No es una autorización para este juego. [Creative Commons BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/deed.es) exige atribución y uso no comercial, y advierte que pueden necesitarse otros permisos.
+Fuentes oficiales revisadas el 28 de octubre de 2026: [Soporte Pokémon sobre uso de imágenes y materiales](https://support.pokemon.com/hc/en-us/articles/360000634094-Can-I-use-Pok%C3%A9mon-images-or-materials) indica que no revisa solicitudes de uso de su propiedad intelectual y pide no asociarla a proyectos. No es una autorización para este juego. [Creative Commons BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/deed.es) exige atribución y uso no comercial, y advierte que pueden necesitarse otros permisos.
 
 Tampoco hay licencia global elegida por el autor para abrir su código. No añadir MIT u otra licencia a todo el repo sin separar código propio y contenido de terceros, y sin decisión del creador. Es distinto de preparar un ZIP privado de pruebas.
 
 [Pendientes de lanzamiento](PLAN_SPRINTS.md): revisión de permisos y contacto público. Los manifiestos identifican recursos; no reemplazan esa revisión. No se modifican avisos para aparentar condiciones más permisivas.
+
+La candidata conserva licencias, créditos y manifiestos originales en `Procedencia/`, además de los recursos integrados en el ejecutable. La revisión de integridad no modifica estos avisos ni completa los permisos pendientes. No se ha enviado ninguna consulta a titulares ni agregado una licencia global.

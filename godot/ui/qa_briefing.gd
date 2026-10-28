@@ -1,6 +1,6 @@
 extends "res://ui/qa_context.gd"
 
-const ReviewStore = preload("res://core/collection_store.gd")
+const ReviewStore = preload("res://core/closing_store.gd")
 
 func layout(app: Control) -> void:
 	for frame: int in 8: await app.get_tree().process_frame
@@ -54,7 +54,7 @@ func run(app: Control, directory: String) -> void:
 	check(preview.dialog.visible,"Keyboard activates the same card")
 	await key(app,KEY_ESCAPE,preview.dialog)
 	check(ReviewStore.equivalent(app.run,natural),"Inspecting rivals consumes neither RNG nor transactions")
-	app._load_game(); await layout(app)
+	await app._load_game(); await layout(app)
 	check(ReviewStore.equivalent(app.run,natural) and preview.panel.visible,"Reload preserves real opponents and prebattle preview")
 	app.board.grab_focus(); await key(app,KEY_B); await layout(app)
 	check(not app.state.deployment and not preview.panel.visible,"Start shortcut removes preview and begins battle")
@@ -154,7 +154,7 @@ func run(app: Control, directory: String) -> void:
 	check(app.hub_parts.rivals.visible,"Returning to journey restores opponents without an extra modal")
 	check(app.camera_bar.size.y<65,"Toolbar shrinks after restoring normal text size")
 	await capture(app,directory,"preview-restored")
-	app._load_game(); await layout(app)
+	await app._load_game(); await layout(app)
 	check(ReviewStore.equivalent(app.run,saved_after_start),"Synthetic encounter inspections never overwrite saved campaign")
 	var report: Dictionary = {"assertions":assertions,"failures":failures,"screenshots":screenshots,"campaignEdition":app.run.edition,"stateHash":JSON.stringify(app.run,"",true,true).sha256_text(),"encounters":covered,"precombatEncounters":precombat,"scope":"Native pointer/keyboard, map preview before entry, natural save/reload, white command styles, removed threats, presentation fixtures for all encounters; no human or external hardware claim."}
 	FileAccess.open(directory.path_join("briefing-ui-result.json"),FileAccess.WRITE).store_string(JSON.stringify(report,"  "))

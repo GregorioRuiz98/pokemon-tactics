@@ -35,4 +35,5 @@ static func tactical_rules(edition: int) -> String:
 	if edition>=24: text += "\nSueño: no puedes moverte ni actuar; termina el turno para despertar cuando expire."
 	if edition>=25:
 		text += "\nClima y duración en la cabecera. Presión: −1 movimiento al comenzar dentro de su aura; mínimo1."
+	if edition>=28: text += "\n\nCOMPAÑEROS\nObtener una especie desbloquea su primera forma como inicial de nivel5. Tras cada combate legendario, elige un único compañero."
 	return text

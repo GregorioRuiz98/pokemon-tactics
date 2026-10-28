@@ -5,8 +5,8 @@ Mapa de la campaña Windows. Las reglas están en [Reglas actuales](REGLAS_ACTUA
 | Necesidad | Ubicación | Observación |
 | --- | --- | --- |
 | Entrada | `godot/scenes/campaign.tscn`, `godot/ui/campaign.gd` | Menús, viaje y coordinación; guarda antes del feedback. |
-| Motor vigente | `godot/core/collection_run.gd`, `tactics_quality_battle.gd` | Campaña 28/capítulo 32/combate 24; extiende motores publicados. |
-| Guardados | `godot/core/collection_store.gd`, `tactics_quality_store.gd` y stores anteriores | Replay, estados canónicos, copias y conflictos. |
+| Motor vigente | `godot/core/closing_run.gd`, `tactics_quality_battle.gd` | Campaña 29/capítulo 33/combate 24; extiende motores publicados. |
+| Guardados | `godot/core/closing_store.gd`, `collection_store.gd` y stores anteriores | Replay, estados canónicos, copias y conflictos. |
 | Mapas/contexto | `godot/core/tactics_opening.gd`, `godot/data/tactics-opening.json` |58 localizaciones,16/24 casillas; [catálogo](MAPAS_0.34.csv). |
 | Previa/estilo | `godot/ui/encounter_preview.gd`, `game_skin.gd`, `move_symbols.gd` | Consulta sin cambiar estado/RNG. |
 | Perfil/logros | `godot/core/collection_profile.gd`, `collection_profile_store.gd`, `godot/ui/trainer_session.gd` | Independientes del diario de campaña. |
@@ -32,3 +32,5 @@ ZIP fuera del repo; sin perfiles QA ni guardados personales. [Guía de entrega](
 [Arquitectura web anterior](history/ARCHITECTURE_WEB_2026-10-27.md), conservada para interpretar sus pruebas.
 
 Colección 0.35: `collection_catalog.gd` unifica familias/umbrales publicados sin cambiarlos. El perfil v2 conserva obtenidos (`dex`) y vistos (`seen`), normaliza los identificadores JSON y deriva iniciales por línea. `collection_store.gd` añade eventos recuperables a la bandeja existente; el diario de campaña continúa siendo la fuente del replay. Las consultas de Pokédex y ofertas no consumen RNG.
+
+Cierre1.0: `closing_run.gd` congela las ofertas de cada mostrador en el estado; `closing_store.gd` conserva replay y actualización explícita hasta edición29. Códigos KT36. La UI construye solo la pestaña visible y agrupa preferencias; el lector asíncrono bloquea órdenes durante la reconstrucción. La etapa QA38 es independiente de la versión1.0.0-rc.1.

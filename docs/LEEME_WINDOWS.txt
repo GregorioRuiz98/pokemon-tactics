@@ -1,4 +1,4 @@
-POKÉMON TACTICS — KANTO — 0.35.0
+POKÉMON TACTICS — KANTO — 1.0.0-rc.1
 
 Abre PokemonTactics.exe. No requiere instalar Godot, servidor ni cuenta.
 Los recursos están integrados y el juego funciona sin conexión.
@@ -31,7 +31,7 @@ puede tardar; muestra progreso. Las cargas posteriores aprovechan su validación
 local. Copiar solo el guardado a otro PC provoca una comprobación completa. Actualizar reglas se ofrece entre encuentros
 y crea una copia previa. No abras dos instancias sobre el mismo guardado.
 Reglas actuales y recuperación: Documentacion/REGLAS_ACTUALES.md y
-Documentacion/PLAYTEST_WINDOWS.md. Cambios: Documentacion/CAMBIOS_0.34.md.
+Documentacion/PLAYTEST_WINDOWS.md. Cambios: Documentacion/RELEASE_1_0_RC1.md.
 
 Comprobar-equipo.cmd ejecuta un arranque con perfil aislado y muestra la
 ruta del informe. No toca tu partida habitual. En esta entrega se ha
@@ -41,7 +41,9 @@ DPI reales distintos y sesiones humanas externas siguen pendientes.
 Proyecto de fans. Créditos y procedencia disponibles desde el menú.
 Los informes de balance anteriores son históricos, no las reglas actuales.
 
-Versión 0.35.0: colección e iniciales desbloqueables; combate sin cambios numéricos.
+Candidata privada 1.0.0-rc.1: colección e iniciales desbloqueables; ofertas fijas
+durante cada visita, menús más rápidos y progreso al reconstruir guardados.
+Beta e incidencias: Documentacion/BETA_1_0.md y PLANTILLA_BETA.md.
 
 Pokédex y logros: Perfil desde Inicio u Oak. Obtener una especie desbloquea
 la primera forma de su línea como inicial de nivel 5 para futuras aventuras.
