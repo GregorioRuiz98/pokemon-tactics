@@ -1,0 +1,1169 @@
+{
+  "checks": 5613,
+  "edition": 30,
+  "failures": [],
+  "gallery": [
+    {
+      "hash": "cfee6077deae99c03435e4d99e24d8a5a07d0f111de2dbc445b4909f6a9e6175",
+      "id": "route-1",
+      "mapSize": 16,
+      "props": 7,
+      "reachable": 249,
+      "repairs": 0,
+      "shelves": 50,
+      "tiers": 3
+    },
+    {
+      "hash": "e56ae606fcbea2dc286cdf51be7ba03ba99368ecccb9e926cfcb29583f3fdea6",
+      "id": "route-2",
+      "mapSize": 16,
+      "props": 7,
+      "reachable": 249,
+      "repairs": 0,
+      "shelves": 101,
+      "tiers": 4
+    },
+    {
+      "hash": "d736d776ebbc329d89985638f92d2358b86f7e46df9a287f8b23724f9d48f6c1",
+      "id": "forest",
+      "mapSize": 16,
+      "props": 21,
+      "reachable": 235,
+      "repairs": 0,
+      "shelves": 59,
+      "tiers": 3
+    },
+    {
+      "hash": "e9dce0f9b2d3f2ef12a506803557e30a34716a83f958293475af80551cd396c3",
+      "id": "brock",
+      "mapSize": 16,
+      "props": 8,
+      "reachable": 248,
+      "repairs": 0,
+      "shelves": 93,
+      "tiers": 4
+    },
+    {
+      "hash": "ecf1224991b372c610259d882593e53607409ffd05018d9809e3846e64218c54",
+      "id": "route-3",
+      "mapSize": 16,
+      "props": 7,
+      "reachable": 249,
+      "repairs": 0,
+      "shelves": 101,
+      "tiers": 4
+    },
+    {
+      "hash": "22de6a05d240322f53d735554133b1cdb22b33f78dbc050fa588480324bcf2d2",
+      "id": "mt-moon",
+      "mapSize": 16,
+      "props": 6,
+      "reachable": 250,
+      "repairs": 0,
+      "shelves": 130,
+      "tiers": 4
+    },
+    {
+      "hash": "4776ae5ce9f3c6772a6486f3e5f48ca2e448f4841ab6a2ec176411a8fc91dc18",
+      "id": "route-4",
+      "mapSize": 16,
+      "props": 8,
+      "reachable": 248,
+      "repairs": 0,
+      "shelves": 134,
+      "tiers": 4
+    },
+    {
+      "hash": "94464c3d1b33efbab2b9d8ffa20e6c93f14dcd2b8f1532a595cc92c8133ddfe7",
+      "id": "cerulean-rival",
+      "mapSize": 16,
+      "props": 7,
+      "reachable": 249,
+      "repairs": 0,
+      "shelves": 50,
+      "tiers": 3
+    },
+    {
+      "hash": "03e1a03f8cfc7567ef50af1a07e3ecb7fb6d9b760e6c2677c2fea98a21631c31",
+      "id": "route-24",
+      "mapSize": 16,
+      "props": 10,
+      "reachable": 198,
+      "repairs": 0,
+      "shelves": 61,
+      "tiers": 3
+    },
+    {
+      "hash": "16e897bf07803270358116eb69695b869e516239c011f20aec4d4fd2d2bc4428",
+      "id": "route-25",
+      "mapSize": 16,
+      "props": 23,
+      "reachable": 233,
+      "repairs": 0,
+      "shelves": 42,
+      "tiers": 4
+    },
+    {
+      "hash": "253433685dd15a6c74df140d2c2deee6d83ff3cba771ee51f5648eef9c40fd72",
+      "id": "misty",
+      "mapSize": 16,
+      "props": 11,
+      "reachable": 229,
+      "repairs": 0,
+      "shelves": 87,
+      "tiers": 3
+    },
+    {
+      "hash": "05b15d59d597ce03865744c93d0ab759d2042b95a65343e6e0f8c68855b14cda",
+      "id": "route-5",
+      "mapSize": 16,
+      "props": 6,
+      "reachable": 250,
+      "repairs": 0,
+      "shelves": 134,
+      "tiers": 4
+    },
+    {
+      "hash": "31323c4144c50b610ac38cbd92b05b2ce1aca2e53208b964181523320390a8dd",
+      "id": "route-6",
+      "mapSize": 16,
+      "props": 11,
+      "reachable": 230,
+      "repairs": 0,
+      "shelves": 88,
+      "tiers": 3
+    },
+    {
+      "hash": "d23b0454231d7aefdaf3c274f3cd910cfccac6bc1cb474f937a6b59afb5e2fe7",
+      "id": "ss-anne",
+      "mapSize": 16,
+      "props": 15,
+      "reachable": 241,
+      "repairs": 0,
+      "shelves": 89,
+      "tiers": 3
+    },
+    {
+      "hash": "9f13208d18d1a2da8e1306444c93f579619d718c5e46c3dc5093615736527801",
+      "id": "surge",
+      "mapSize": 16,
+      "props": 14,
+      "reachable": 242,
+      "repairs": 0,
+      "shelves": 89,
+      "tiers": 3
+    },
+    {
+      "hash": "7f8ae23f4032834d2afd8cd24b25e5692ee7e7bbe5d3aa6211bfe3789fb07986",
+      "id": "route-11",
+      "mapSize": 16,
+      "props": 8,
+      "reachable": 248,
+      "repairs": 0,
+      "shelves": 50,
+      "tiers": 3
+    },
+    {
+      "hash": "3f0d9989f4920b4e55b068127b9edf3ac1906a72b6ec396a23881042d37817a5",
+      "id": "diglett-cave",
+      "mapSize": 16,
+      "props": 7,
+      "reachable": 249,
+      "repairs": 0,
+      "shelves": 130,
+      "tiers": 4
+    },
+    {
+      "hash": "77191d99265194b3c2cf42e02c2dbb925bfd781f6efc156e0b02f0a745cc9fbe",
+      "id": "route-22",
+      "mapSize": 16,
+      "props": 6,
+      "reachable": 250,
+      "repairs": 0,
+      "shelves": 101,
+      "tiers": 4
+    },
+    {
+      "hash": "713f63680973c74b02b1c6a6d2f2c95a6e0b13f0fe3c39613e90ce7366194be3",
+      "id": "route-9",
+      "mapSize": 16,
+      "props": 8,
+      "reachable": 248,
+      "repairs": 0,
+      "shelves": 102,
+      "tiers": 4
+    },
+    {
+      "hash": "5f7f93dc15fa64b802e2f2cd11b8a064306c05dade52a7c3c5e7138b37734b3b",
+      "id": "route-10",
+      "mapSize": 16,
+      "props": 11,
+      "reachable": 230,
+      "repairs": 0,
+      "shelves": 88,
+      "tiers": 3
+    },
+    {
+      "hash": "4cd7af1a4b471c9ecc653379eb8f4338bbbb641e9e78d4726dd86b970e0abb47",
+      "id": "rock-tunnel",
+      "mapSize": 16,
+      "props": 6,
+      "reachable": 250,
+      "repairs": 0,
+      "shelves": 130,
+      "tiers": 4
+    },
+    {
+      "hash": "e26688cb4e073d29fd9c82e4fb5144fd7e5d1d500d28811050a77431ff716302",
+      "id": "route-8",
+      "mapSize": 16,
+      "props": 23,
+      "reachable": 233,
+      "repairs": 0,
+      "shelves": 42,
+      "tiers": 4
+    },
+    {
+      "hash": "cbff84fba90ab32f0917268b4ffc94ae782c19941f950d95664f387ac112a676",
+      "id": "route-7",
+      "mapSize": 16,
+      "props": 7,
+      "reachable": 249,
+      "repairs": 0,
+      "shelves": 50,
+      "tiers": 3
+    },
+    {
+      "hash": "6d56a173ecbde3c2b08297fc414bacbe68476b629478d4c4240059e29efa04ee",
+      "id": "erika",
+      "mapSize": 16,
+      "props": 21,
+      "reachable": 235,
+      "repairs": 0,
+      "shelves": 42,
+      "tiers": 4
+    },
+    {
+      "hash": "9eee470596fc19483a238d73f8e71c12dbfb2420fbe838731cf867f54995ee87",
+      "id": "rocket-hideout",
+      "mapSize": 16,
+      "props": 16,
+      "reachable": 240,
+      "repairs": 0,
+      "shelves": 89,
+      "tiers": 3
+    },
+    {
+      "hash": "3606b12cce1d04c023cb169a62ac7941d04d5d54ab281721beb678ba2a35c1d6",
+      "id": "tower-rival",
+      "mapSize": 16,
+      "props": 16,
+      "reachable": 240,
+      "repairs": 0,
+      "shelves": 76,
+      "tiers": 4
+    },
+    {
+      "hash": "7d9f09ef688cd17a314875bfc109a60724dc8f1a8b63611dd974c59e30a78818",
+      "id": "pokemon-tower",
+      "mapSize": 16,
+      "props": 15,
+      "reachable": 241,
+      "repairs": 0,
+      "shelves": 76,
+      "tiers": 4
+    },
+    {
+      "hash": "0520b6f96be3ebd7d305d25bed834ba68a4d86daac00cfb1aae052259f4494c9",
+      "id": "fuji-rescue",
+      "mapSize": 16,
+      "props": 16,
+      "reachable": 240,
+      "repairs": 0,
+      "shelves": 76,
+      "tiers": 4
+    },
+    {
+      "hash": "2a01c6cc1990b665e8a65dbd5b5fd772304bb2e4bf5094ee1c60c728ab742ed5",
+      "id": "route-12",
+      "mapSize": 16,
+      "props": 9,
+      "reachable": 199,
+      "repairs": 0,
+      "shelves": 61,
+      "tiers": 3
+    },
+    {
+      "hash": "898a6ff9eae26442f98de3311cdea7e438b37ad0cbe507af5e8df6669b83a066",
+      "id": "route-13",
+      "mapSize": 16,
+      "props": 11,
+      "reachable": 217,
+      "repairs": 0,
+      "shelves": 78,
+      "tiers": 3
+    },
+    {
+      "hash": "162edaa7ae9806c2680b632ec4aafb83e68bfca123b342106b5cf1de9408a208",
+      "id": "route-14",
+      "mapSize": 16,
+      "props": 23,
+      "reachable": 233,
+      "repairs": 0,
+      "shelves": 59,
+      "tiers": 3
+    },
+    {
+      "hash": "b23a21f9ff15574372198600f65dbdd40213f4769996ed409277dfbaedea6793",
+      "id": "route-15",
+      "mapSize": 16,
+      "props": 7,
+      "reachable": 249,
+      "repairs": 0,
+      "shelves": 101,
+      "tiers": 4
+    },
+    {
+      "hash": "0451e22ce44e6c48b1421483e2d296a47bf636ee01940944b2eb80470b439fb6",
+      "id": "route-16",
+      "mapSize": 16,
+      "props": 6,
+      "reachable": 250,
+      "repairs": 0,
+      "shelves": 50,
+      "tiers": 3
+    },
+    {
+      "hash": "544d2879f4f915f5055376758fbb67a27e5ba0de3fe4a4ff34794bc2eb4e3b5f",
+      "id": "route-17",
+      "mapSize": 16,
+      "props": 8,
+      "reachable": 248,
+      "repairs": 0,
+      "shelves": 134,
+      "tiers": 4
+    },
+    {
+      "hash": "038d8ee05d87aea8dd70ab7d7317f924d2ef2d2d00334b13d6c1020988b3a7f6",
+      "id": "route-18",
+      "mapSize": 16,
+      "props": 7,
+      "reachable": 249,
+      "repairs": 0,
+      "shelves": 50,
+      "tiers": 3
+    },
+    {
+      "hash": "6872d703d402127ccf81c499fcd6eec49070f4bf6d89c4f724ea26c04b3e4a9c",
+      "id": "safari",
+      "mapSize": 16,
+      "props": 11,
+      "reachable": 230,
+      "repairs": 0,
+      "shelves": 88,
+      "tiers": 3
+    },
+    {
+      "hash": "becfd8cfb19634b4a115086e014db478f5dde9736ffb07302d9c1e02dd08d938",
+      "id": "koga",
+      "mapSize": 16,
+      "props": 16,
+      "reachable": 240,
+      "repairs": 0,
+      "shelves": 89,
+      "tiers": 3
+    },
+    {
+      "hash": "b2cf4417ed705d8350723e9b2d18bf4fd3c951c5d5b6588b0164ec07776b7f94",
+      "id": "silph-rival",
+      "mapSize": 16,
+      "props": 15,
+      "reachable": 241,
+      "repairs": 0,
+      "shelves": 89,
+      "tiers": 3
+    },
+    {
+      "hash": "bd9f0c6f97af357e905c96ee3a268a9748d84faf3b54b5e793101798e29ef945",
+      "id": "silph-giovanni",
+      "mapSize": 16,
+      "props": 14,
+      "reachable": 242,
+      "repairs": 0,
+      "shelves": 89,
+      "tiers": 3
+    },
+    {
+      "hash": "b42f286e58e5543a2cd73dad929e9ba5f5c140ed91506639e534d70d20e98a6a",
+      "id": "sabrina",
+      "mapSize": 16,
+      "props": 8,
+      "reachable": 248,
+      "repairs": 0,
+      "shelves": 89,
+      "tiers": 3
+    },
+    {
+      "hash": "2f0fb076c4a9e654e0306b0d1ba8f32899dde598f17846a74ea16a4abe5c037c",
+      "id": "route-19",
+      "mapSize": 16,
+      "props": 12,
+      "reachable": 216,
+      "repairs": 0,
+      "shelves": 78,
+      "tiers": 3
+    },
+    {
+      "hash": "ad4e8db73af3067e96f6895d15283122bc9d7ee39c4bb14c4547546a5987b956",
+      "id": "route-20",
+      "mapSize": 16,
+      "props": 10,
+      "reachable": 198,
+      "repairs": 0,
+      "shelves": 61,
+      "tiers": 3
+    },
+    {
+      "hash": "0a44aeec02595f2fa5838f16a341a516a78c651aa679e21e205578200c058495",
+      "id": "seafoam",
+      "mapSize": 16,
+      "props": 10,
+      "reachable": 230,
+      "repairs": 0,
+      "shelves": 87,
+      "tiers": 3
+    },
+    {
+      "hash": "c0f3a534594865dd48a13af15456b4377790c210d941657f40bce3e7be988147",
+      "id": "route-21",
+      "mapSize": 16,
+      "props": 12,
+      "reachable": 216,
+      "repairs": 0,
+      "shelves": 78,
+      "tiers": 3
+    },
+    {
+      "hash": "f1b5fd1e9bbba9d108ff40675cfca92f60254c559b32e2e5ea127fc4666581b5",
+      "id": "pokemon-mansion",
+      "mapSize": 16,
+      "props": 14,
+      "reachable": 242,
+      "repairs": 0,
+      "shelves": 46,
+      "tiers": 4
+    },
+    {
+      "hash": "c26f9cffd26e435b677d75fbc432d543dbc47188be772f782fc50196d87c19cf",
+      "id": "blaine",
+      "mapSize": 16,
+      "props": 8,
+      "reachable": 248,
+      "repairs": 0,
+      "shelves": 26,
+      "tiers": 4
+    },
+    {
+      "hash": "e1308b6a33983147533d453b649a79314ed4663df43c137a70e508bc8f423ee1",
+      "id": "giovanni-gym",
+      "mapSize": 16,
+      "props": 7,
+      "reachable": 249,
+      "repairs": 0,
+      "shelves": 93,
+      "tiers": 4
+    },
+    {
+      "hash": "dde1728ce00cb1cf95c1db71fe04713372e8f9314705718a8d52ebe8efd68400",
+      "id": "power-plant",
+      "mapSize": 16,
+      "props": 14,
+      "reachable": 242,
+      "repairs": 0,
+      "shelves": 89,
+      "tiers": 3
+    },
+    {
+      "hash": "dfbdc06e34dd4031f91affd59416af3c0604bf7db6e18dfd0dc6e29b48aaf239",
+      "id": "league-rival",
+      "mapSize": 16,
+      "props": 8,
+      "reachable": 248,
+      "repairs": 0,
+      "shelves": 101,
+      "tiers": 4
+    },
+    {
+      "hash": "babdc45c4151237206a9cf15df3cc87496b4e13a93e2293780d7cfe9a4c9e12d",
+      "id": "route-23",
+      "mapSize": 16,
+      "props": 8,
+      "reachable": 248,
+      "repairs": 0,
+      "shelves": 93,
+      "tiers": 4
+    },
+    {
+      "hash": "66af9da3c100a0617b3e6119c0257560e693620c470924081d976d3644c6252a",
+      "id": "victory-road",
+      "mapSize": 16,
+      "props": 6,
+      "reachable": 250,
+      "repairs": 0,
+      "shelves": 102,
+      "tiers": 4
+    },
+    {
+      "hash": "899b2d1605d1887e0a44e66f9d831c3c90e11fc741497e42bcc95b7979b2a06a",
+      "id": "lorelei",
+      "mapSize": 16,
+      "props": 10,
+      "reachable": 230,
+      "repairs": 0,
+      "shelves": 87,
+      "tiers": 3
+    },
+    {
+      "hash": "0fc55b5a89338f79c0f6925f2e067cd987991f8c1c3a5d1dfe1054a892b74346",
+      "id": "bruno",
+      "mapSize": 16,
+      "props": 16,
+      "reachable": 240,
+      "repairs": 0,
+      "shelves": 89,
+      "tiers": 3
+    },
+    {
+      "hash": "884776255eb033bdbed8feb8cc9e87d74dcf3bcfcf44cafebfb69aa3bb0ba2aa",
+      "id": "agatha",
+      "mapSize": 16,
+      "props": 15,
+      "reachable": 241,
+      "repairs": 0,
+      "shelves": 76,
+      "tiers": 4
+    },
+    {
+      "hash": "2ebe2ded34c3a167f470c89efa9949446b21e7044851886e73712a5b723ad568",
+      "id": "lance",
+      "mapSize": 16,
+      "props": 8,
+      "reachable": 248,
+      "repairs": 0,
+      "shelves": 89,
+      "tiers": 3
+    },
+    {
+      "hash": "403d6836b848d556e79b3f081cc3abe9e23512f29d8a92c0bb9d1e66a460c757",
+      "id": "champion",
+      "mapSize": 16,
+      "props": 8,
+      "reachable": 248,
+      "repairs": 0,
+      "shelves": 93,
+      "tiers": 4
+    },
+    {
+      "hash": "45fe8a969e05567ecd0ba7ce98885bf01358a592971c3ba598076272d537af58",
+      "id": "legendary-birds",
+      "mapSize": 16,
+      "props": 4,
+      "reachable": 252,
+      "repairs": 0,
+      "shelves": 102,
+      "tiers": 4
+    },
+    {
+      "hash": "43b0b62ef0642584141f9e5c706d50207662c8d2e5e58ee20fc02814aa2a9e0d",
+      "id": "legendary-origin",
+      "mapSize": 16,
+      "props": 8,
+      "reachable": 243,
+      "repairs": 0,
+      "shelves": 126,
+      "tiers": 4
+    },
+    {
+      "hash": "52af42028172f77a4da3577393ad0542f3031f515512298c9e9437025fb0a8ed",
+      "id": "route-1",
+      "mapSize": 24,
+      "props": 7,
+      "reachable": 569,
+      "repairs": 0,
+      "shelves": 90,
+      "tiers": 3
+    },
+    {
+      "hash": "6bb2995b2581510c2dd3dbb4d8ab428d1ebb1b6f27684f89ba4a49d8a49c78ba",
+      "id": "route-2",
+      "mapSize": 24,
+      "props": 7,
+      "reachable": 569,
+      "repairs": 0,
+      "shelves": 285,
+      "tiers": 4
+    },
+    {
+      "hash": "55191c392e7c77f08cb2afbd57a382960be0c3e35270cb7bbaf9fd4bd04ec930",
+      "id": "forest",
+      "mapSize": 24,
+      "props": 21,
+      "reachable": 555,
+      "repairs": 0,
+      "shelves": 99,
+      "tiers": 3
+    },
+    {
+      "hash": "0ed47005c8044d959593c675b6b8d2e268917f05702293c0348ea68ed263ebfb",
+      "id": "brock",
+      "mapSize": 24,
+      "props": 8,
+      "reachable": 568,
+      "repairs": 0,
+      "shelves": 277,
+      "tiers": 4
+    },
+    {
+      "hash": "a10485221723a18dc1173aecec02aff70183538d804ab0c2610ada6503a4f509",
+      "id": "route-3",
+      "mapSize": 24,
+      "props": 7,
+      "reachable": 569,
+      "repairs": 0,
+      "shelves": 285,
+      "tiers": 4
+    },
+    {
+      "hash": "84aef936e73ff41bb5262ab1516746661304d0c28dc184dc21e07bf6e6a3f863",
+      "id": "mt-moon",
+      "mapSize": 24,
+      "props": 6,
+      "reachable": 570,
+      "repairs": 0,
+      "shelves": 434,
+      "tiers": 4
+    },
+    {
+      "hash": "3b2605e0625a75d695bfadf7e57334f6d61a72aeed63f4f212d0985d078e6a3e",
+      "id": "route-4",
+      "mapSize": 24,
+      "props": 8,
+      "reachable": 568,
+      "repairs": 0,
+      "shelves": 334,
+      "tiers": 4
+    },
+    {
+      "hash": "3de889ab3259c919a64792cad7d5c9451ea10e65368ba97573c77c1f2e56c8a5",
+      "id": "cerulean-rival",
+      "mapSize": 24,
+      "props": 7,
+      "reachable": 569,
+      "repairs": 0,
+      "shelves": 90,
+      "tiers": 3
+    },
+    {
+      "hash": "fd6e72cdf32c26f9cd91d166136817f0385b4aa832526a7a2a65799e1d95200c",
+      "id": "route-24",
+      "mapSize": 24,
+      "props": 10,
+      "reachable": 518,
+      "repairs": 0,
+      "shelves": 217,
+      "tiers": 3
+    },
+    {
+      "hash": "15ff8a065174e375498b6bb1f651f8040a6ed153556665b1ccf12430c14fa9f2",
+      "id": "route-25",
+      "mapSize": 24,
+      "props": 23,
+      "reachable": 553,
+      "repairs": 0,
+      "shelves": 82,
+      "tiers": 4
+    },
+    {
+      "hash": "6411ff2f75080632b115c7fdb4ced3ce07e674d0a47e152e288f1d436ed727f5",
+      "id": "misty",
+      "mapSize": 24,
+      "props": 11,
+      "reachable": 549,
+      "repairs": 0,
+      "shelves": 243,
+      "tiers": 3
+    },
+    {
+      "hash": "0bfaeae9d8cda086b5e0f77766e6b9cc3d9cfded8143484c0cf825c8ef23dbce",
+      "id": "route-5",
+      "mapSize": 24,
+      "props": 6,
+      "reachable": 570,
+      "repairs": 0,
+      "shelves": 334,
+      "tiers": 4
+    },
+    {
+      "hash": "8a37bae1ccb590752a41467d74219e287c47436056e27f0901833d789154a5fc",
+      "id": "route-6",
+      "mapSize": 24,
+      "props": 11,
+      "reachable": 550,
+      "repairs": 0,
+      "shelves": 244,
+      "tiers": 3
+    },
+    {
+      "hash": "e7bf5a53810cb8db56d378ee81b31af35e752fbc8bb15fe74da5c1872f788a65",
+      "id": "ss-anne",
+      "mapSize": 24,
+      "props": 15,
+      "reachable": 561,
+      "repairs": 0,
+      "shelves": 237,
+      "tiers": 3
+    },
+    {
+      "hash": "669747c5b698c4c66d3680b21d32a74ca387362e1a3d376dc8b18f2ba7502964",
+      "id": "surge",
+      "mapSize": 24,
+      "props": 14,
+      "reachable": 562,
+      "repairs": 0,
+      "shelves": 237,
+      "tiers": 3
+    },
+    {
+      "hash": "0ab3718b3c955754a566806f02facc98dc066e61056a5a54e5992c5ac45f20ad",
+      "id": "route-11",
+      "mapSize": 24,
+      "props": 8,
+      "reachable": 568,
+      "repairs": 0,
+      "shelves": 90,
+      "tiers": 3
+    },
+    {
+      "hash": "e8b790fecd1945bc25885dc4e7eb75987c270384a26a11f535c28d019d05d6d4",
+      "id": "diglett-cave",
+      "mapSize": 24,
+      "props": 7,
+      "reachable": 569,
+      "repairs": 0,
+      "shelves": 434,
+      "tiers": 4
+    },
+    {
+      "hash": "45cde88d0b652b2c6ad327f229d274e48959be001ad5c7d8f5ee43a8ad85a333",
+      "id": "route-22",
+      "mapSize": 24,
+      "props": 6,
+      "reachable": 570,
+      "repairs": 0,
+      "shelves": 285,
+      "tiers": 4
+    },
+    {
+      "hash": "e787c2c42bfda91b1732b8dc4ed9354f8bf1780fded156039fa48ede4a7b4ac5",
+      "id": "route-9",
+      "mapSize": 24,
+      "props": 8,
+      "reachable": 568,
+      "repairs": 0,
+      "shelves": 286,
+      "tiers": 4
+    },
+    {
+      "hash": "7d48c592cf579bfe1d1f7a34b99e7daa799f2d22e808bbb34307311a093f7437",
+      "id": "route-10",
+      "mapSize": 24,
+      "props": 11,
+      "reachable": 550,
+      "repairs": 0,
+      "shelves": 244,
+      "tiers": 3
+    },
+    {
+      "hash": "5e3b92bc7a16dd966053e3a56e98cc2a93c6960618eef43b41a2ee6e1cd6c5c7",
+      "id": "rock-tunnel",
+      "mapSize": 24,
+      "props": 6,
+      "reachable": 570,
+      "repairs": 0,
+      "shelves": 434,
+      "tiers": 4
+    },
+    {
+      "hash": "0c268c53acdadedb57b48d07ab1ae021cdd368c60c85a6b1a4939a192aa46078",
+      "id": "route-8",
+      "mapSize": 24,
+      "props": 23,
+      "reachable": 553,
+      "repairs": 0,
+      "shelves": 82,
+      "tiers": 4
+    },
+    {
+      "hash": "055ec913c0a678fa582d1001e9ba6b512a9e434ce08987d17dfaa32848e63b17",
+      "id": "route-7",
+      "mapSize": 24,
+      "props": 7,
+      "reachable": 569,
+      "repairs": 0,
+      "shelves": 90,
+      "tiers": 3
+    },
+    {
+      "hash": "45c67cd4caca65dd242fe8d01ba8988ffea3381fea6335a59bd0b88634e4eac3",
+      "id": "erika",
+      "mapSize": 24,
+      "props": 21,
+      "reachable": 555,
+      "repairs": 0,
+      "shelves": 82,
+      "tiers": 4
+    },
+    {
+      "hash": "85eacabe53192515c3c8cd7cd5e69877cfea9935aab5d696917b848122bc2e6b",
+      "id": "rocket-hideout",
+      "mapSize": 24,
+      "props": 16,
+      "reachable": 560,
+      "repairs": 0,
+      "shelves": 237,
+      "tiers": 3
+    },
+    {
+      "hash": "bdcbcc1c48ab03fc69fd23c69484990be4ad1cb46c97c1424b86c70f13c055d1",
+      "id": "tower-rival",
+      "mapSize": 24,
+      "props": 16,
+      "reachable": 560,
+      "repairs": 0,
+      "shelves": 224,
+      "tiers": 4
+    },
+    {
+      "hash": "c4793690af03b2f39a3572ff7aeda721ea076f7e2078d6b8b05a280aee913273",
+      "id": "pokemon-tower",
+      "mapSize": 24,
+      "props": 15,
+      "reachable": 561,
+      "repairs": 0,
+      "shelves": 224,
+      "tiers": 4
+    },
+    {
+      "hash": "ff5c36c466e4a40398816a27f98f5b3e84feff1eb655db75a12633d918157bf8",
+      "id": "fuji-rescue",
+      "mapSize": 24,
+      "props": 16,
+      "reachable": 560,
+      "repairs": 0,
+      "shelves": 224,
+      "tiers": 4
+    },
+    {
+      "hash": "3e34f013b02a321e0043bf2c34f46bf04f3bd172c349beaf32aa91a6ed230a72",
+      "id": "route-12",
+      "mapSize": 24,
+      "props": 9,
+      "reachable": 519,
+      "repairs": 0,
+      "shelves": 217,
+      "tiers": 3
+    },
+    {
+      "hash": "069a7064600088d103283c07796718fbe439eec35597b64117d0f97690de5f23",
+      "id": "route-13",
+      "mapSize": 24,
+      "props": 11,
+      "reachable": 537,
+      "repairs": 0,
+      "shelves": 234,
+      "tiers": 3
+    },
+    {
+      "hash": "ac02eb84cca3b958d8256d1adcf7b08dcc606694b8c067b68129a9c3896916e2",
+      "id": "route-14",
+      "mapSize": 24,
+      "props": 23,
+      "reachable": 553,
+      "repairs": 0,
+      "shelves": 99,
+      "tiers": 3
+    },
+    {
+      "hash": "47d33dbb4c5bb2ef1ce63f710c8758394f442a02f5ddaa70835395bb5404dd7f",
+      "id": "route-15",
+      "mapSize": 24,
+      "props": 7,
+      "reachable": 569,
+      "repairs": 0,
+      "shelves": 285,
+      "tiers": 4
+    },
+    {
+      "hash": "3f8a64d9eb4c2f5ca2f78e0119c187ccb2edde464916f68ff49ec33c851f5b11",
+      "id": "route-16",
+      "mapSize": 24,
+      "props": 6,
+      "reachable": 570,
+      "repairs": 0,
+      "shelves": 90,
+      "tiers": 3
+    },
+    {
+      "hash": "8b9da5e2ae74e0098be6ecb0004104962b1a03733e2e1bb4a9186dea9cf86f66",
+      "id": "route-17",
+      "mapSize": 24,
+      "props": 8,
+      "reachable": 568,
+      "repairs": 0,
+      "shelves": 334,
+      "tiers": 4
+    },
+    {
+      "hash": "e70617d1c29554696d492b4160c9f7dfb617dc96eead8db1148d888c06fb0a83",
+      "id": "route-18",
+      "mapSize": 24,
+      "props": 7,
+      "reachable": 569,
+      "repairs": 0,
+      "shelves": 90,
+      "tiers": 3
+    },
+    {
+      "hash": "216fdc9d365f98fa056224c1a151a5c0f94a69e256c91c9788fde27e48dcd8f6",
+      "id": "safari",
+      "mapSize": 24,
+      "props": 11,
+      "reachable": 550,
+      "repairs": 0,
+      "shelves": 244,
+      "tiers": 3
+    },
+    {
+      "hash": "bcf7aa89680f280ad191c76c45682047bb12e6b8910ed508148d6bde1c5b0f57",
+      "id": "koga",
+      "mapSize": 24,
+      "props": 16,
+      "reachable": 560,
+      "repairs": 0,
+      "shelves": 237,
+      "tiers": 3
+    },
+    {
+      "hash": "3237f65e3a0a80afda14b2a2a69d42d0dcebb1b6a333625b8ef10eaae7ccd186",
+      "id": "silph-rival",
+      "mapSize": 24,
+      "props": 15,
+      "reachable": 561,
+      "repairs": 0,
+      "shelves": 237,
+      "tiers": 3
+    },
+    {
+      "hash": "a0cc1f3fc6772401be1e4d7379d8a146daadf42b2cf378b91f00ded007c61044",
+      "id": "silph-giovanni",
+      "mapSize": 24,
+      "props": 14,
+      "reachable": 562,
+      "repairs": 0,
+      "shelves": 237,
+      "tiers": 3
+    },
+    {
+      "hash": "ab3a50f983284f04662725a63400d8e6f4d40d58634f9afbe8603cfa9fe0e4b0",
+      "id": "sabrina",
+      "mapSize": 24,
+      "props": 8,
+      "reachable": 568,
+      "repairs": 0,
+      "shelves": 237,
+      "tiers": 3
+    },
+    {
+      "hash": "d83b1f1a6a49d86e26cfc61b352dd42a53d11bf117f5a7637c8d52746d765701",
+      "id": "route-19",
+      "mapSize": 24,
+      "props": 12,
+      "reachable": 536,
+      "repairs": 0,
+      "shelves": 234,
+      "tiers": 3
+    },
+    {
+      "hash": "d4e7b671b59d11ec2e0ac3cc19edef1ba2f26cdf43141cda17357ea01adc116a",
+      "id": "route-20",
+      "mapSize": 24,
+      "props": 10,
+      "reachable": 518,
+      "repairs": 0,
+      "shelves": 217,
+      "tiers": 3
+    },
+    {
+      "hash": "bc695ab7644091e651cab96c791b0a655f1c1bb54129846cf9887a60c10936bb",
+      "id": "seafoam",
+      "mapSize": 24,
+      "props": 10,
+      "reachable": 550,
+      "repairs": 0,
+      "shelves": 243,
+      "tiers": 3
+    },
+    {
+      "hash": "89c72ab2701c82a25ed48e15328f00c82b360ca6279bc0b1b90ee10b17523a59",
+      "id": "route-21",
+      "mapSize": 24,
+      "props": 12,
+      "reachable": 536,
+      "repairs": 0,
+      "shelves": 234,
+      "tiers": 3
+    },
+    {
+      "hash": "580bd1cf1b48a16c9582b12b445a698011752feeca073d3e5543d08716bb880d",
+      "id": "pokemon-mansion",
+      "mapSize": 24,
+      "props": 14,
+      "reachable": 562,
+      "repairs": 0,
+      "shelves": 86,
+      "tiers": 4
+    },
+    {
+      "hash": "a643d28a99d0c6c34400c79d235ffdda07291bd8515bcd7014c643df16746d83",
+      "id": "blaine",
+      "mapSize": 24,
+      "props": 8,
+      "reachable": 568,
+      "repairs": 0,
+      "shelves": 66,
+      "tiers": 4
+    },
+    {
+      "hash": "a0bc62aa2f0675f08d57aefbdcbc5a4c2fd55e2f6a6e493a126a4b8e5674c564",
+      "id": "giovanni-gym",
+      "mapSize": 24,
+      "props": 7,
+      "reachable": 569,
+      "repairs": 0,
+      "shelves": 277,
+      "tiers": 4
+    },
+    {
+      "hash": "8f359ee0622421dd937f6224dd765a322dccdffee6542133655647eacb8299f7",
+      "id": "power-plant",
+      "mapSize": 24,
+      "props": 14,
+      "reachable": 562,
+      "repairs": 0,
+      "shelves": 237,
+      "tiers": 3
+    },
+    {
+      "hash": "dfce1b69a6c512ef95e275316f57b1001d1a26cba572c58c9a45cb128fed2e27",
+      "id": "league-rival",
+      "mapSize": 24,
+      "props": 8,
+      "reachable": 568,
+      "repairs": 0,
+      "shelves": 285,
+      "tiers": 4
+    },
+    {
+      "hash": "8045a34a72815a4c3665c082be6fe49aef793f4c14877f94c9eebffbb8aa6318",
+      "id": "route-23",
+      "mapSize": 24,
+      "props": 8,
+      "reachable": 568,
+      "repairs": 0,
+      "shelves": 277,
+      "tiers": 4
+    },
+    {
+      "hash": "2c66deba0e64d0b6d4a6cad84705889b384b1abc9cc166798817583429c69fcb",
+      "id": "victory-road",
+      "mapSize": 24,
+      "props": 6,
+      "reachable": 570,
+      "repairs": 0,
+      "shelves": 286,
+      "tiers": 4
+    },
+    {
+      "hash": "90a3f399dd04fc0a031d9c9e73ded678f66045909f5bbe467b6c5fdfa742887a",
+      "id": "lorelei",
+      "mapSize": 24,
+      "props": 10,
+      "reachable": 550,
+      "repairs": 0,
+      "shelves": 243,
+      "tiers": 3
+    },
+    {
+      "hash": "b6f4c8f2dac11821aba930ffd9d525e420bc8df194648e960ecade17023ecf05",
+      "id": "bruno",
+      "mapSize": 24,
+      "props": 16,
+      "reachable": 560,
+      "repairs": 0,
+      "shelves": 237,
+      "tiers": 3
+    },
+    {
+      "hash": "a27cd7e65d5b90f2f14cd61d7463e6d0bfca778e60ec55d5743db684e760331b",
+      "id": "agatha",
+      "mapSize": 24,
+      "props": 15,
+      "reachable": 561,
+      "repairs": 0,
+      "shelves": 224,
+      "tiers": 4
+    },
+    {
+      "hash": "81cb650c4a9cf0e8160493e32312a794a180f3bd6f5987a68a022db12f2dbe00",
+      "id": "lance",
+      "mapSize": 24,
+      "props": 8,
+      "reachable": 568,
+      "repairs": 0,
+      "shelves": 237,
+      "tiers": 3
+    },
+    {
+      "hash": "40df0d49355a23eaf89eac804b47bb0fa73db6488732c6cb95bc6ef9bf9abcac",
+      "id": "champion",
+      "mapSize": 24,
+      "props": 8,
+      "reachable": 568,
+      "repairs": 0,
+      "shelves": 277,
+      "tiers": 4
+    },
+    {
+      "hash": "5f02f03103593631dbba89b2eb513cba1dfd9eca8d8570c90e32659ed4d316ac",
+      "id": "legendary-birds",
+      "mapSize": 24,
+      "props": 4,
+      "reachable": 572,
+      "repairs": 0,
+      "shelves": 258,
+      "tiers": 4
+    },
+    {
+      "hash": "cbfc9e63263db8755ced29bf322b9484c4075d54d737cf6bfe13f98005d485e8",
+      "id": "legendary-origin",
+      "mapSize": 24,
+      "props": 8,
+      "reachable": 563,
+      "repairs": 0,
+      "shelves": 430,
+      "tiers": 4
+    }
+  ],
+  "mapCatalogHash": "90a254e0510f45f50133b9ff30a828c8e975880d72f55f421851a355c1f30313",
+  "scope": "Synthetic terrain/AI fixtures for all58 locations at16/24; cold replay compatibility; not a natural campaign or human playtest."
+}

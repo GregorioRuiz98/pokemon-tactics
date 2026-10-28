@@ -3,8 +3,8 @@ config_version=5
 
 [application]
 config/name="Pokémon Tactics — Kanto"
-config/version="1.0.0-rc.2"
-config/qa_stage=39
+config/version="1.0.0-rc.3"
+config/qa_stage=40
 config/icon="res://art/app_icon.png"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="PokemonTacticsLab"

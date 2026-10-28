@@ -1,0 +1,11 @@
+{
+  "cached": false,
+  "edition": 30.0,
+  "failures": [],
+  "orders": 10277,
+  "payloadChecksum": "a53b7b43669188d7df5f5d175316040d637a020063d96f23ade8a4919d346baa",
+  "phase": "ending",
+  "scope": "Full legal journal replay from a fresh path without certificate/key; original save preserved. Not a new played campaign.",
+  "seconds": 73.344,
+  "stateHash": "27aa70566dda5e02617b9f576f4e5462c76117b20a3102425c1dfba80db777a8"
+}

@@ -1,8 +1,8 @@
-# Desarrollo nativo — Windows 1.0.0-rc.2
+# Desarrollo nativo — Windows 1.0.0-rc.3
 
 [Reglas](../docs/REGLAS_ACTUALES.md) · [Jugar/recuperar](../docs/PLAYTEST_WINDOWS.md) · [Arquitectura](../docs/ARCHITECTURE.md) · [Estado](../docs/PLAN_SPRINTS.md)
 
-Proyecto `project.godot`, entrada `scenes/campaign.tscn`. El laboratorio conserva `scenes/laboratory.tscn` y su guardado independiente. Campaña 29/capítulo 33/combate 24; versión nativa en `project.godot`, no en la versión web de npm.
+Proyecto `project.godot`, entrada `scenes/campaign.tscn`. El laboratorio conserva `scenes/laboratory.tscn` y su guardado independiente. Campaña 30/capítulo 34/combate 25; versión nativa en `project.godot`, no en la versión web de npm.
 
 ## Requisitos de desarrollo
 
@@ -25,15 +25,12 @@ Los importadores de arte/especies que usan Pillow son tareas separadas; no hacen
 ## Pruebas pertinentes
 
 ```sh
-npm run godot:test:closing
-npm run godot:test:collection
-npm run godot:qa:collection
-npm run godot:test:quality
-npm run godot:qa:briefing
-npm run godot:qa:review
-npm run godot:qa:closing-usability
-npm run godot:qa:closing-performance
-npm run godot:qa:closing-playthrough
+npm run godot:verify:relief
+npm run godot:test:relief
+npm run godot:test:relief:compat
+npm run godot:simulate:relief
+npm run godot:test:relief:replay
+npm run godot:qa:relief
 ```
 
 `test:collection` comprueba colección, iniciales, migración, guardados y legendarios; `test:quality` conserva la comprobación del combate publicado. Las suites UI prueban controles, vistas y guardados aislados. `qa:quality` añade los 58 escenarios y carga de una partida histórica larga; `simulate:quality` recorre la campaña mediante órdenes legales y puede tardar mucho más. No son requisitos para corregir un enlace documental.
@@ -44,24 +41,24 @@ Scripts completos en `package.json`; los de entregas antiguas continúan por com
 
 ```sh
 npm run godot:export
-npm run godot:qa:collection:export
-npm run godot:qa:briefing:export
-npm run godot:qa:review:export
-npm run godot:qa:closing-usability:export
-npm run godot:qa:closing-performance:export
-npm run godot:qa:closing-playthrough:export
+npm run godot:qa:relief:export
 npm run godot:package
+npm run godot:check:candidate
 ```
 
 El runner comprueba exactamente Godot 4.7.2 estable. Las herramientas de QA del EXE también comprueban el editor; el jugador que abre el EXE no lo necesita. El empaquetado requiere evidencias fuente/EXE y lint/validación según [Entrega](../docs/DEPLOY.md).
 
-Salidas relativas a raíz: `../releases/pokemon-tactics-1.0.0-rc.2/`; QA: `../../work/qa-sprint-39/`. Partidas reales: `%APPDATA%/PokemonTacticsLab`; no usarlas en ensayos.
+Salidas relativas a raíz: `../releases/pokemon-tactics-1.0.0-rc.3/`; QA: `../../work/qa-sprint-40/`. Partidas reales: `%APPDATA%/PokemonTacticsLab`; no usarlas en ensayos.
 
 [Notas acumuladas](../docs/history/GODOT_README_2026-10-27.md) · [Web 0.12.0](../docs/WEB_LEGACY.md).
 
-La candidata usa `application/config/qa_stage=39` para separar número de sprint y versión del producto. La versión Windows numérica es 1.0.0.2; campaña29/combate24 no cambian. `godot:test:package` comprueba el contrato del empaquetador; `godot:check:candidate` extrae el ZIP y prueba arranque con perfil aislado en el mismo PC. La reproducción completa puede tardar varios minutos y no es una sesión humana.
+La candidata usa `application/config/qa_stage=40` para separar número de sprint y versión del producto. La versión Windows numérica es 1.0.0.3; campaña30/combate25 añade mapas sin sobrescribir los motores publicados. `godot:test:package` comprueba el contrato del empaquetador; `godot:check:candidate` extrae el ZIP y prueba arranque con perfil aislado en el mismo PC. La reproducción completa puede tardar varios minutos y no es una sesión humana.
 
-Para esta revisión de presentación, el paquete RC2 exige las suites de perfil
+Historial: para la revisión de presentación RC2 se exigieron las suites de perfil
 (`godot:qa:profile` y `godot:qa:profile:export`), colección, usabilidad de cierre
 y revisión, en fuente y EXE. El recorrido completo de campaña sigue siendo
 evidencia previa de RC1; no se presenta como repetido en RC2.
+
+## Relieve RC3
+
+`npm run godot:verify:relief` verifica dos aproximaciones y accesos por tierra en los58 diseños. `npm run godot:test:relief` comprueba116 escenarios, IA y compatibilidad. `npm run godot:simulate:relief` recorre Kanto con órdenes legales; `npm run godot:qa:relief` y `npm run godot:qa:relief:export` comparan apertura natural y116 vistas de prueba. El empaquetador RC3 es `tools/godot/package-relief.py`; exige esta evidencia y la campaña final del catálogo exacto, no reutiliza resultados RC2. [Detalle](../docs/SPRINT_40_RELIEF.md).

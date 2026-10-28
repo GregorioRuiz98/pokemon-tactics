@@ -1,0 +1,470 @@
+{
+  "ok": true,
+  "layouts": [
+    {
+      "id": "route-1",
+      "landmark": "La loma de Paleta",
+      "form": "meadow",
+      "groundReachable": 249,
+      "obstacles": 7,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-2",
+      "landmark": "La puerta del bosque",
+      "form": "ridge",
+      "groundReachable": 249,
+      "obstacles": 7,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "forest",
+      "landmark": "El roble de los tres claros",
+      "form": "groves",
+      "groundReachable": 235,
+      "obstacles": 21,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "brock",
+      "landmark": "El estrado de Onix",
+      "form": "quarry",
+      "groundReachable": 248,
+      "obstacles": 8,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-3",
+      "landmark": "El espolón de Monte Moon",
+      "form": "ridge",
+      "groundReachable": 249,
+      "obstacles": 7,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "mt-moon",
+      "landmark": "La excavación de fósiles",
+      "form": "excavation",
+      "groundReachable": 250,
+      "obstacles": 6,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-4",
+      "landmark": "La salida sobre Celeste",
+      "form": "descent",
+      "groundReachable": 248,
+      "obstacles": 8,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "cerulean-rival",
+      "landmark": "La fuente de Celeste",
+      "form": "plaza",
+      "groundReachable": 249,
+      "obstacles": 7,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-24",
+      "landmark": "El Puente Pepita",
+      "form": "bridge",
+      "groundReachable": 198,
+      "obstacles": 10,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-25",
+      "landmark": "El jardín de Bill",
+      "form": "garden",
+      "groundReachable": 233,
+      "obstacles": 23,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "misty",
+      "landmark": "La piscina de las tres pasarelas",
+      "form": "pools",
+      "groundReachable": 229,
+      "obstacles": 11,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-5",
+      "landmark": "La cuesta de la guardería",
+      "form": "descent",
+      "groundReachable": 250,
+      "obstacles": 6,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-6",
+      "landmark": "Las dos orillas del estanque",
+      "form": "wetland",
+      "groundReachable": 230,
+      "obstacles": 11,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "ss-anne",
+      "landmark": "La toldilla del S. S. Anne",
+      "form": "deck",
+      "groundReachable": 241,
+      "obstacles": 15,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "surge",
+      "landmark": "El generador de Carmín",
+      "form": "factory",
+      "groundReachable": 242,
+      "obstacles": 14,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-11",
+      "landmark": "La pradera de las tres franjas",
+      "form": "meadow",
+      "groundReachable": 248,
+      "obstacles": 8,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "diglett-cave",
+      "landmark": "Las bocas del túnel",
+      "form": "gorge",
+      "groundReachable": 249,
+      "obstacles": 7,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-22",
+      "landmark": "El mirador de la Liga",
+      "form": "ridge",
+      "groundReachable": 250,
+      "obstacles": 6,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-9",
+      "landmark": "Los recodos de la montaña",
+      "form": "switchback",
+      "groundReachable": 248,
+      "obstacles": 8,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-10",
+      "landmark": "La ribera del Túnel Roca",
+      "form": "wetland",
+      "groundReachable": 230,
+      "obstacles": 11,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "rock-tunnel",
+      "landmark": "El pozo del Túnel Roca",
+      "form": "gorge",
+      "groundReachable": 250,
+      "obstacles": 6,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-8",
+      "landmark": "Los setos de Lavanda",
+      "form": "garden",
+      "groundReachable": 233,
+      "obstacles": 23,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-7",
+      "landmark": "Las puertas de Azulona",
+      "form": "plaza",
+      "groundReachable": 249,
+      "obstacles": 7,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "erika",
+      "landmark": "El jardín escalonado de Erika",
+      "form": "garden",
+      "groundReachable": 235,
+      "obstacles": 21,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "rocket-hideout",
+      "landmark": "Los almacenes de Giovanni",
+      "form": "factory",
+      "groundReachable": 240,
+      "obstacles": 16,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "tower-rival",
+      "landmark": "El vestíbulo de las lápidas",
+      "form": "tower",
+      "groundReachable": 240,
+      "obstacles": 16,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "pokemon-tower",
+      "landmark": "El santuario de Marowak",
+      "form": "tower",
+      "groundReachable": 241,
+      "obstacles": 15,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "fuji-rescue",
+      "landmark": "La escalinata de Fuji",
+      "form": "tower",
+      "groundReachable": 240,
+      "obstacles": 16,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-12",
+      "landmark": "Las pasarelas de los pescadores",
+      "form": "bridge",
+      "groundReachable": 199,
+      "obstacles": 9,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-13",
+      "landmark": "Los cercados del acantilado",
+      "form": "coast",
+      "groundReachable": 217,
+      "obstacles": 11,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-14",
+      "landmark": "El corredor de hierba alta",
+      "form": "groves",
+      "groundReachable": 233,
+      "obstacles": 23,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-15",
+      "landmark": "Los bancales de Fucsia",
+      "form": "terraces",
+      "groundReachable": 249,
+      "obstacles": 7,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-16",
+      "landmark": "La cuesta del Camino de Bicis",
+      "form": "road",
+      "groundReachable": 250,
+      "obstacles": 6,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-17",
+      "landmark": "El descenso del Camino de Bicis",
+      "form": "descent",
+      "groundReachable": 248,
+      "obstacles": 8,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-18",
+      "landmark": "El rellano de Fucsia",
+      "form": "road",
+      "groundReachable": 249,
+      "obstacles": 7,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "safari",
+      "landmark": "Las lagunas de la Zona Safari",
+      "form": "wetland",
+      "groundReachable": 230,
+      "obstacles": 11,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "koga",
+      "landmark": "El patio elevado de Koga",
+      "form": "dojo",
+      "groundReachable": 240,
+      "obstacles": 16,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "silph-rival",
+      "landmark": "Las pasarelas de Silph",
+      "form": "office",
+      "groundReachable": 241,
+      "obstacles": 15,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "silph-giovanni",
+      "landmark": "La sala de juntas",
+      "form": "office",
+      "groundReachable": 242,
+      "obstacles": 14,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "sabrina",
+      "landmark": "Los atrios de Sabrina",
+      "form": "psychic",
+      "groundReachable": 248,
+      "obstacles": 8,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-19",
+      "landmark": "Las dunas de Fucsia",
+      "form": "coast",
+      "groundReachable": 216,
+      "obstacles": 12,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-20",
+      "landmark": "El archipiélago del sur",
+      "form": "islands",
+      "groundReachable": 198,
+      "obstacles": 10,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "seafoam",
+      "landmark": "Las galerías de hielo",
+      "form": "ice",
+      "groundReachable": 230,
+      "obstacles": 10,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-21",
+      "landmark": "La costa de Paleta",
+      "form": "coast",
+      "groundReachable": 216,
+      "obstacles": 12,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "pokemon-mansion",
+      "landmark": "Las escaleras de la mansión",
+      "form": "ruins",
+      "groundReachable": 242,
+      "obstacles": 14,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "blaine",
+      "landmark": "La caldera del laboratorio",
+      "form": "volcano",
+      "groundReachable": 248,
+      "obstacles": 8,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "giovanni-gym",
+      "landmark": "El anfiteatro de Giovanni",
+      "form": "quarry",
+      "groundReachable": 249,
+      "obstacles": 7,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "power-plant",
+      "landmark": "El patio de turbinas",
+      "form": "factory",
+      "groundReachable": 242,
+      "obstacles": 14,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "league-rival",
+      "landmark": "El último mirador de Kanto",
+      "form": "ridge",
+      "groundReachable": 248,
+      "obstacles": 8,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "route-23",
+      "landmark": "Las ocho puertas de la Liga",
+      "form": "gates",
+      "groundReachable": 248,
+      "obstacles": 8,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "victory-road",
+      "landmark": "El ascenso de Calle Victoria",
+      "form": "switchback",
+      "groundReachable": 250,
+      "obstacles": 6,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "lorelei",
+      "landmark": "El anfiteatro helado",
+      "form": "ice",
+      "groundReachable": 230,
+      "obstacles": 10,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "bruno",
+      "landmark": "Las terrazas del dojo",
+      "form": "dojo",
+      "groundReachable": 240,
+      "obstacles": 16,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "agatha",
+      "landmark": "El círculo de las lápidas",
+      "form": "tower",
+      "groundReachable": 241,
+      "obstacles": 15,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "lance",
+      "landmark": "Las alas de la cámara dragón",
+      "form": "dragon",
+      "groundReachable": 248,
+      "obstacles": 8,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "champion",
+      "landmark": "La escalinata del Campeón",
+      "form": "throne",
+      "groundReachable": 248,
+      "obstacles": 8,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "legendary-birds",
+      "landmark": "Los tres santuarios",
+      "form": "sanctuary",
+      "groundReachable": 252,
+      "obstacles": 4,
+      "twoGroundApproaches": true
+    },
+    {
+      "id": "legendary-origin",
+      "landmark": "La sima del origen",
+      "form": "crater",
+      "groundReachable": 243,
+      "obstacles": 8,
+      "twoGroundApproaches": true
+    }
+  ],
+  "sha256": "90a254e0510f45f50133b9ff30a828c8e975880d72f55f421851a355c1f30313"
+}

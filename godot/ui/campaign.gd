@@ -2,12 +2,12 @@ extends "res://ui/laboratory.gd"
 
 const Campaign = preload("res://core/kanto_run.gd")
 const Advanced = preload("res://core/roster_run.gd")
-const Journey = preload("res://core/closing_run.gd")
-const CURRENT_CHAPTER: int = 33
+const Journey = preload("res://core/relief_run.gd")
+const CURRENT_CHAPTER: int = 34
 const Art = preload("res://ui/visual_assets.gd")
 const RosterPanel = preload("res://ui/roster_panel.gd")
-const IsometricBoard = preload("res://ui/review_board.gd")
-const CampaignStore = preload("res://core/closing_store.gd")
+const IsometricBoard = preload("res://ui/relief_board.gd")
+const CampaignStore = preload("res://core/relief_store.gd")
 const Copy = preload("res://ui/concise_copy.gd")
 var kanto_qa_dir: String = ""
 var copy_qa_dir: String = ""
@@ -28,6 +28,7 @@ var loading_progress: ProgressBar
 var starter_dialog: AcceptDialog
 var starter_browser: VBoxContainer
 var encounter_preview: RefCounted = preload("res://ui/encounter_preview.gd").new()
+var relief_qa_dir: String = ""
 var quality_qa_dir: String = ""
 var climate_qa_dir: String = ""
 var trainer: RefCounted = preload("res://ui/trainer_session.gd").new()
@@ -222,6 +223,7 @@ func _boot() -> void:
 		if argument.begins_with("--closing-playthrough-dir="): closing_playthrough_dir = argument.trim_prefix("--closing-playthrough-dir=")
 		if argument.begins_with("--collection-qa-dir="): collection_qa_dir = argument.trim_prefix("--collection-qa-dir=")
 		if argument.begins_with("--briefing-qa-dir="): briefing_qa_dir = argument.trim_prefix("--briefing-qa-dir=")
+		if argument.begins_with("--relief-qa-dir="): relief_qa_dir = argument.trim_prefix("--relief-qa-dir=")
 		if argument.begins_with("--quality-qa-dir="): quality_qa_dir = argument.trim_prefix("--quality-qa-dir=")
 		if argument.begins_with("--climate-qa-dir="): climate_qa_dir = argument.trim_prefix("--climate-qa-dir=")
 		if argument.begins_with("--symbols-qa-dir="): symbols_qa_dir = argument.trim_prefix("--symbols-qa-dir=")
@@ -278,6 +280,7 @@ func _boot() -> void:
 	if not closing_playthrough_dir.is_empty(): test_dir = closing_playthrough_dir
 	if not collection_qa_dir.is_empty(): test_dir = collection_qa_dir
 	if not quality_qa_dir.is_empty(): test_dir = quality_qa_dir
+	if not relief_qa_dir.is_empty(): test_dir = relief_qa_dir
 	if not playthrough_qa_dir.is_empty(): test_dir = playthrough_qa_dir
 	if not portable_smoke_path.is_empty(): test_dir = portable_smoke_path.get_base_dir().path_join("diagnostic-profile")
 	qa_running = not test_dir.is_empty()
@@ -314,6 +317,7 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
+	if not relief_qa_dir.is_empty(): _open_title(); call_deferred("_run_relief_qa"); return
 	if not portable_smoke_path.is_empty(): _open_title(); call_deferred("_run_portable_smoke")
 	elif not playthrough_qa_dir.is_empty(): _open_title(); call_deferred("_run_playthrough_qa")
 	elif not quality_qa_dir.is_empty(): _open_title(); call_deferred("_run_quality_qa")
@@ -527,7 +531,7 @@ func _update_seed_hint() -> void:
 	var value: String = journey_seed.text.strip_edges()
 	var text: String = "Una semilla admite hasta 64 caracteres."
 	if value.begins_with("KT") and ":" in value:
-		var challenge: Dictionary = preload("res://core/closing_challenge.gd").decode(value)
+		var challenge: Dictionary = preload("res://core/relief_challenge.gd").decode(value)
 		text = "Código incompleto o incompatible. Comprueba que lo has pegado entero." if challenge.is_empty() else "Reto con %s · mapa %d×%d. Al comenzar se usará este inicial." % [preload("res://core/collection_catalog.gd").record(int(challenge.starter)).name,challenge.mapSize,challenge.mapSize]
 	travel_buttons.seed_hint.text = text
 
@@ -605,7 +609,7 @@ func _choose_starter(identity: int) -> void:
 	var challenge: Dictionary = {}
 	var requested_seed: String = journey_seed.text.strip_edges()
 	if requested_seed.begins_with("KT") and ":" in requested_seed:
-		challenge = load("res://core/closing_challenge.gd").decode(requested_seed)
+		challenge = load("res://core/relief_challenge.gd").decode(requested_seed)
 		if challenge.is_empty(): _review_text("Código de reto no válido","Comprueba que has pegado el código completo. Este reto debe ser compatible con la aventura actual. Tu partida guardada se conserva."); return
 		requested_seed = challenge.seed; identity = int(challenge.starter)
 	elif requested_seed.length()>64:
@@ -826,6 +830,7 @@ func _upgrade_campaign(target_chapter: int = CURRENT_CHAPTER) -> void:
 	if run.edition>=26: message = "Revisión táctica aplicada. Equipo y progreso conservados; copia anterior guardada."
 	if run.edition>=28: message = "Pokédex y reclutamiento actualizados. Equipo y progreso conservados; copia anterior guardada."
 	if run.edition>=29: message = "Ofertas de reclutamiento actualizadas. Equipo y progreso conservados; copia anterior guardada."
+	if run.edition>=30: message = "Mapas y relieve actualizados. Equipo y progreso conservados; copia anterior guardada."
 	_save()
 	_refresh()
 
@@ -1230,6 +1235,7 @@ func _render_travel() -> void:
 		if CURRENT_CHAPTER>=30: upgrade.tooltip_text = "Revisa los 58 escenarios, tácticas rivales y objetivos de control. Conserva equipo, PS, dinero, EXP y diario, con copia previa. Solo entre encuentros."
 		if CURRENT_CHAPTER>=32: upgrade.tooltip_text = "Añade reclutamiento y elección de un legendario por combate. Conserva equipo, PS, EXP, dinero e historial con copia previa. Solo entre encuentros."
 		if CURRENT_CHAPTER>=33: upgrade.tooltip_text = "Fija las ofertas de reclutamiento al llegar a la tienda. Conserva equipo, PS, EXP, dinero e historial con copia previa."
+		if CURRENT_CHAPTER>=34: upgrade.tooltip_text = "Añade terrazas, accesos y escenarios propios a todo Kanto. Conserva equipo, PS, EXP, dinero e historial, con copia previa. Solo entre encuentros."
 		travel_content.add_child(upgrade)
 		travel_buttons.upgrade = upgrade
 	if not run.is_empty() and run.get("edition",1)>=8 and not _simple_hub():
@@ -1955,3 +1961,6 @@ func _travel_command(command: Dictionary) -> void:
 		_review_dialog()
 		action_review.review("Elegir desafío legendario", "Esta elección fija el final alternativo de esta campaña: %s. El otro desafío quedará fuera de esta aventura. Los legendarios no son reclutables.\nPuedes cancelar para conservar ambas posibilidades." % ("las tres aves" if command.path=="birds" else "Mew y Mewtwo"),func(): _event(command))
 	else: _event(command)
+
+func _run_relief_qa() -> void:
+	await load("res://ui/qa_relief.gd").new().run(self,relief_qa_dir)

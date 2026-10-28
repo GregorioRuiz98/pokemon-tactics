@@ -1,0 +1,5 @@
+{
+  "checks": 15,
+  "failures": [],
+  "scope": "RC2 reader/forecast regressions and old-edition upgrade replay; no modal or public-release claim."
+}

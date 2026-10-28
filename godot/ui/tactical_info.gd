@@ -16,7 +16,7 @@ static func unit_text(app: Control, unit: Dictionary) -> String:
 static func forecast(unit: Dictionary, plan: Dictionary) -> String:
 	if not plan.ok: return unit.name+"\nNo disponible: "+plan.reason
 	var text: String = "%s → %s\nCoste: %d PT · precisión %d %%" % [plan.name,unit.name,plan.cost,plan.accuracy]
-	if plan.definition.has("loadoutCost"): text = text.replace("Coste: %d PT · " % plan.cost,"")
+	if plan.get("definition",{}).has("loadoutCost"): text = text.replace("Coste: %d PT · " % plan.cost,"")
 	text += "\nDaño normal: %d–%d PS" % [plan.get("damageMin",plan.damage),plan.get("damageMax",plan.damage)]
 	if plan.heal: text += "\nCuración: %d PS" % plan.heal
 	if plan.get("criticalChance",0)>0: text += "\nCrítico: %.2f %% · %d–%d PS" % [100*plan.criticalChance,plan.criticalMin,plan.criticalMax]

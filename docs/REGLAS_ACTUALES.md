@@ -1,6 +1,6 @@
 # Reglas actuales — campaña Windows
 
-Referencia vigente desde 1.0.0-rc.2. Sustituye las descripciones antiguas de PT,
+Referencia vigente desde 1.0.0-rc.3. Sustituye las descripciones antiguas de PT,
 caramelos, piedras consumibles, roles y finales excluyentes. Los informes de
 sprints anteriores describen sus propias versiones y se conservan como historial.
 
@@ -98,7 +98,7 @@ Antes de entrar, el viaje muestra contexto, objetivo y equipo rival real, con
 niveles, tipos, habilidad y movimientos. Cada ficha permite consultar sus estadísticas.
 El despliegue conserva la consulta rival. Se han retirado las amenazas y su atajo.
 Opciones permite velocidad 1×/1,5×/2×. La duración de lectura es independiente.
-Las campañas 26/27/28/29 certificadas cargan sin repetir su historial ya validado;
+Las campañas 26/27/28/29/30 certificadas cargan sin repetir su historial ya validado;
 si falta la certificación, se reconstruye completo con progreso. Detalles
 y recuperación en la [prueba Windows](PLAYTEST_WINDOWS.md).
 
@@ -117,4 +117,10 @@ se conservan al iniciar otra aventura. El perfil anterior se migra con copia
 
 Las campañas anteriores conservan sus reglas hasta actualizarse entre encuentros.
 No se inventan capturas de jefes que ya se habían vencido antes de actualizar.
-Detalles en [Cambios de la candidata](RELEASE_1_0_RC2.md).
+Detalles en [Cambios de la candidata](RELEASE_1_0_RC3.md).
+
+## Relieve de Kanto · edición 30
+
+Los58 escenarios tienen cotas conectadas, obstáculos y senderos propios. Los accesos elevados usan las reglas ya existentes: un salto de más de una cota bloquea el paso terrestre; subir una cota cuesta más movimiento. Altura y obstáculos intervienen en la visión. Los aliados siguen siendo atravesables y el destino debe estar libre. Hay dos aproximaciones por tierra al frente rival; volar no es obligatorio.
+
+H muestra cotas; las escaleras señalan accesos y las copas se atenúan al ocultar unidades o cursor. No hay pisos transitables superpuestos. Los equipos y valores de los movimientos conservan el balance anterior. La geometría nueva se adopta en aventuras nuevas o al actualizar voluntariamente entre encuentros. [Escenarios](MAPAS_RELIEVE.md).

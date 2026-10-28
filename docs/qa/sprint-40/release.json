@@ -1,0 +1,62 @@
+{
+  "version": "1.0.0-rc.3",
+  "campaignEdition": 30,
+  "combatEdition": 25,
+  "uiChecksPerBuild": 1809,
+  "coreChecks": 5613,
+  "compatibilityChecks": 15,
+  "layouts": 116,
+  "campaignLocations": 58,
+  "campaignMedals": 8,
+  "campaignOrders": 10277,
+  "sourceAndExeUIStateMatch": true,
+  "fullCampaignInExe": false,
+  "campaignBattles": 57,
+  "fullCampaignColdReplay": {
+    "cached": false,
+    "orders": 10277,
+    "stateHash": "27aa70566dda5e02617b9f576f4e5462c76117b20a3102425c1dfba80db777a8"
+  },
+  "mapCatalogHash": "90a254e0510f45f50133b9ff30a828c8e975880d72f55f421851a355c1f30313",
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "scope": "Natural legal-command headless campaign, per-order native opening and116 source/EXE rendering fixtures. No injected campaign victories.",
+  "humanPlaytest": false,
+  "externalHardwareTest": false,
+  "publicDeployment": false,
+  "exe": {
+    "bytes": 132407328,
+    "sha256": "7188169a0def8ccdb64fa11c70dd3dd51813e39eb7d2775ed70df72c5b8d9f77"
+  },
+  "zip": {
+    "bytes": 55991231,
+    "sha256": "3debd95af92f907fab81e97523228ba5f2997564e26f57e29b32dec52c11d3a4"
+  },
+  "cleanStartup": {
+    "cpu": "Intel(R) Core(TM) i5-14600KF",
+    "editorHint": false,
+    "engine": "4.7.2-stable (official)",
+    "executable": "PokemonTactics.exe",
+    "frames": 120,
+    "observedFps": 131.801651694365,
+    "os": "Windows",
+    "renderer": "gl_compatibility",
+    "scope": "Exact ZIP extracted to a fresh directory on the same physical PC. Engine embedded, no Godot on PATH. Audio uses Dummy for smoke; human audio and external hardware remain pending.",
+    "seconds": 0.910459,
+    "titleVisible": true,
+    "version": "1.0.0-rc.3",
+    "window": {
+      "height": 900,
+      "width": 1280
+    },
+    "archiveExtracted": true,
+    "isolatedProfile": true,
+    "godotNotOnPath": true,
+    "diagnosticHelperPassed": true,
+    "externalHardwareTest": false,
+    "humanPlaytest": false,
+    "exeSha256": "7188169a0def8ccdb64fa11c70dd3dd51813e39eb7d2775ed70df72c5b8d9f77",
+    "zipSha256": "3debd95af92f907fab81e97523228ba5f2997564e26f57e29b32dec52c11d3a4"
+  }
+}

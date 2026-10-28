@@ -28,7 +28,7 @@ function run(executable, args, label, cwd = root) {
   if(chapter>=30 && /^(player|shop|trainer)-(source|release)$/.test(label)) args=[...args,'--compat-adventure'];
   const logIndex = args.indexOf('--log-file');
   if (logIndex >= 0) writeFileSync(args[logIndex + 1], '');
-  const result = spawnSync(executable, args, { cwd, env:{...process.env,APPDATA:isolatedProfile,LOCALAPPDATA:isolatedLocal}, encoding: 'utf8', windowsHide: true, timeout: label.includes('playthrough') ? 3_600_000 : (label.startsWith('sleep-') || label.startsWith('symbols-')) ? 90000 : label==='simulate-balance' ? 1_800_000 : label.startsWith('journey-ui-') || label.startsWith('updates-ui-') || label==='ui-release' || label==='ui-source' || label==='test-journey' ? 900_000 : 300_000, maxBuffer: 12 * 1024 * 1024 });
+  const result = spawnSync(executable, args, { cwd, env:{...process.env,APPDATA:isolatedProfile,LOCALAPPDATA:isolatedLocal}, encoding: 'utf8', windowsHide: true, timeout: label.startsWith('relief-') ? 900_000 : label.includes('playthrough') ? 3_600_000 : (label.startsWith('sleep-') || label.startsWith('symbols-')) ? 90000 : label==='simulate-balance' ? 1_800_000 : label.startsWith('journey-ui-') || label.startsWith('updates-ui-') || label==='ui-release' || label==='ui-source' || label==='test-journey' ? 900_000 : 300_000, maxBuffer: 12 * 1024 * 1024 });
   const log = (result.stdout ?? '') + (result.stderr ?? '') + (logIndex >= 0 && existsSync(args[logIndex + 1]) ? '\n' + readFileSync(args[logIndex + 1], 'utf8') : '');
   writeFileSync(resolve(work, `${label}.log`), log);
   const clean = log.replace(/\x1b\[[0-9;]*m/g, '');
@@ -49,6 +49,11 @@ function verifyCampaign(directory) {
   for(const file of report.screenshots) if(!existsSync(resolve(directory,file))) throw new Error('Missing campaign screenshot.');
 }
 function verify() {
+  if(existsSync(resolve(project,"data/relief-maps.json"))) {
+    const relief=spawnSync("python",[resolve(root,"tools/godot/verify-relief.py")],{cwd:root,encoding:"utf8",windowsHide:true});
+    if(relief.status!==0) throw new Error("Relief geometry failed: "+relief.stderr);
+    console.log("Verified58 relief layouts, landmarks and two ground approaches without changing published catalogues.");
+  }
   const climate=JSON.parse(readFileSync(resolve(project,'data/climate-provenance.json'),'utf8'));
   for(const entry of climate.files) if(createHash('sha256').update(readFileSync(resolve(project,entry.target))).digest('hex')!==entry.sha256) throw new Error('Climate data changed without review');
   const symbols=spawnSync('python',[resolve(root,'tools/godot/import-ui-symbols.py')],{cwd:root,encoding:'utf8',windowsHide:true});
@@ -113,7 +118,21 @@ if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-expo
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'qa-profile' || operation === 'qa-profile-export') {
+if(operation === 'replay-relief') {
+  run(binary,['--headless',...common,'--script','res://tests/relief_replay.gd','--','--save-dir='+resolve(work,'natural-relief-final')],'playthrough-relief-cold');
+} else if(operation === 'test-relief-compat') {
+  run(binary,['--headless',...common,'--script','res://tests/relief_compat.gd','--','--save-dir='+resolve(work,'relief-compat')],'relief-compat');
+} else if(operation === 'test-relief') {
+  run(binary,['--headless',...common,'--script','res://tests/relief_rules.gd','--','--save-dir='+resolve(work,'relief-rules')],'relief-rules');
+} else if(operation === 'simulate-relief') {
+  run(binary,['--headless',...common,'--script','res://tests/relief_campaign.gd','--','--save-dir='+resolve(work,'natural-relief-final')],'playthrough-relief');
+} else if(operation === 'qa-relief' || operation === 'qa-relief-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'relief-'+(exported?'release':'source'));
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--relief-qa-dir='+directory],'relief-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'relief-ui.json'),'utf8'));
+  if(report.failures.length || report.gallery.length!==116) throw new Error('Relief UI failed');
+} else if(operation === 'qa-profile' || operation === 'qa-profile-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'profile-'+(exported?'release':'source'));
   run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--profile-polish','--trainer-qa-dir='+directory],'profile-'+(exported?'release':'source'),exported?output:root);

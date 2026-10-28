@@ -124,8 +124,14 @@ func play_area() -> Rect2:
 func cell_size() -> float:
 	return TILE.x*zoom if isometric() else super.cell_size()
 
+func elevation_lift() -> float:
+	return LIFT
+
+func cliff_color(_point: Dictionary, edge: int) -> Color:
+	return Color("62654d").darkened(0.18 if edge==1 else 0.04)
+
 func projection(point: Dictionary) -> Vector2:
-	return Vector2((point.x-point.y)*TILE.x*0.5,(point.x+point.y)*TILE.y*0.5-Terrain.height_at(state,point)*LIFT)
+	return Vector2((point.x-point.y)*TILE.x*0.5,(point.x+point.y)*TILE.y*0.5-Terrain.height_at(state,point)*elevation_lift())
 
 func center(point: Dictionary) -> Vector2:
 	if not isometric(): return super.center(point)
@@ -156,7 +162,7 @@ func frame_combat() -> void:
 func fit_map() -> void:
 	if not isometric(): return
 	zoom = clampf(minf(play_area().size.x/(dimensions().x*TILE.x),play_area().size.y/(dimensions().y*TILE.y+64)),0.3,1.7)
-	anchor = Vector2(0,(dimensions().x-1)*TILE.y*0.5-LIFT)
+	anchor = Vector2(0,(dimensions().x-1)*TILE.y*0.5-elevation_lift())
 	manual_camera = true
 	queue_redraw()
 
@@ -340,8 +346,8 @@ func _draw_tile(point: Dictionary, canvas: CanvasItem) -> void:
 		if depth==0: continue
 		var a: Vector2 = polygon[edge]
 		var b: Vector2 = polygon[(edge+1)%4]
-		var drop: Vector2 = Vector2(0,depth*LIFT*zoom)
-		canvas.draw_colored_polygon(PackedVector2Array([a,b,b+drop,a+drop]),Color("62654d").darkened(0.18 if edge==1 else 0.04))
+		var drop: Vector2 = Vector2(0,depth*elevation_lift()*zoom)
+		canvas.draw_colored_polygon(PackedVector2Array([a,b,b+drop,a+drop]),cliff_color(point,edge))
 		canvas.draw_line(a,b,Color("d3c79d"),maxf(1,zoom))
 		# Light tread lines identify traversable single-height edges.
 		if depth==1:
