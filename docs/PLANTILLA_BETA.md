@@ -1,5 +1,7 @@
 # Registro de prueba
 
+Para incidencias concretas también puedes usar Inicio o Menú · F1 → Errores y sugerencias y guardar el .txt. [Instrucciones](FEEDBACK.md).
+
 - Alias voluntario / fecha:
 - Versión y SHA-256 del ZIP:
 - Windows / CPU / GPU / RAM:

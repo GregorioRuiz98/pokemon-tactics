@@ -1,6 +1,6 @@
-# Probar Pokémon Tactics en Windows — 1.0.0-rc.4
+# Probar Pokémon Tactics en Windows — 1.0.0-rc.5
 
-[Reglas actuales](REGLAS_ACTUALES.md) · [Cambios de la candidata](RELEASE_1_0_RC4.md).
+[Reglas actuales](REGLAS_ACTUALES.md) · [Cambios de la candidata](RELEASE_1_0_RC5.md).
 Este documento describe la campaña Windows actual. Los informes por versión son historial.
 
 ## Arranque y controles
@@ -53,3 +53,7 @@ Pide a cada participante que anote qué intentaba hacer, qué esperaba y qué oc
 - Captura, informe de arranque y copia del guardado (si procede):
 
 Una reproducción automática, una escena sintética y una sesión humana externa son evidencias distintas. El informe de esta entrega identifica cuál se ha ejecutado y cuál queda pendiente.
+
+## Enviar errores o sugerencias
+
+Desde Inicio o Menú · F1 → Errores y sugerencias. Revisa y copia el informe, guarda un .txt o prepara un correo en tu aplicación. Nada se envía automáticamente. [Guía](FEEDBACK.md).

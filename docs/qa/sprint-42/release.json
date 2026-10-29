@@ -1,0 +1,59 @@
+{
+  "version": "1.0.0-rc.5",
+  "campaignEdition": 30,
+  "combatEdition": 25,
+  "uiChecksPerBuild": {
+    "feedback": 73,
+    "dex": 72
+  },
+  "sourceAndExeStateMatch": true,
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "mailClientOpened": false,
+  "emailSent": false,
+  "humanPlaytest": false,
+  "externalHardwareTest": false,
+  "publicDeployment": false,
+  "previousFullCampaign": {
+    "version": "1.0.0-rc.4",
+    "orders": 10277,
+    "stateHash": "27aa70566dda5e02617b9f576f4e5462c76117b20a3102425c1dfba80db777a8",
+    "status": "Historical RC4 evidence; gameplay files unchanged; not replayed in RC5."
+  },
+  "scope": "Feedback form and Pokédex modal regression exercised in source and final EXE. Clipboard, UTF-8 export, URI encoding/fallback, keyboard/mouse/Escape/focus and small window with150% text. No email sent.",
+  "exe": {
+    "bytes": 132431256,
+    "sha256": "5ac4dfb656a0d4085f888000f075acdd3ad79b34dfce6d3fec78e3715019fd1a"
+  },
+  "zip": {
+    "bytes": 56004900,
+    "sha256": "fbbe127708cc0021375593e130bd30f3527a7efad3b849eb15b575e53088110a"
+  },
+  "cleanStartup": {
+    "cpu": "Intel(R) Core(TM) i5-14600KF",
+    "editorHint": false,
+    "engine": "4.7.2-stable (official)",
+    "executable": "PokemonTactics.exe",
+    "frames": 120,
+    "observedFps": 136.359917456797,
+    "os": "Windows",
+    "renderer": "gl_compatibility",
+    "scope": "Exact ZIP extracted to a fresh directory on the same physical PC. Engine embedded, no Godot on PATH. Audio uses Dummy for smoke; human audio and external hardware remain pending.",
+    "seconds": 0.880024,
+    "titleVisible": true,
+    "version": "1.0.0-rc.5",
+    "window": {
+      "height": 900,
+      "width": 1280
+    },
+    "archiveExtracted": true,
+    "isolatedProfile": true,
+    "godotNotOnPath": true,
+    "diagnosticHelperPassed": true,
+    "externalHardwareTest": false,
+    "humanPlaytest": false,
+    "exeSha256": "5ac4dfb656a0d4085f888000f075acdd3ad79b34dfce6d3fec78e3715019fd1a",
+    "zipSha256": "fbbe127708cc0021375593e130bd30f3527a7efad3b849eb15b575e53088110a"
+  }
+}

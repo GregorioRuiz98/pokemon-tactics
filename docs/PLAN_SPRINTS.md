@@ -1,6 +1,6 @@
 # Estado hacia 1.0
 
-Actualizado el 29 de octubre de 2026. **1.0.0-rc.4**, candidata privada Windows offline. No hay descarga pública anunciada. Los planes acumulados son [historial](history/PLAN_SPRINTS_2026-10-27.md), no funciones pendientes por reintroducir.
+Actualizado el 29 de octubre de 2026. **1.0.0-rc.5**, candidata privada Windows offline. No hay descarga pública anunciada. Los planes acumulados son [historial](history/PLAN_SPRINTS_2026-10-27.md), no funciones pendientes por reintroducir.
 
 ## Cierre del desarrollo
 
@@ -12,6 +12,7 @@ Actualizado el 29 de octubre de 2026. **1.0.0-rc.4**, candidata privada Windows 
 |39 — perfil y texto|[Cambios RC2](RELEASE_1_0_RC2.md)|Identidad visible, personalización con vista previa y mensajes más breves. Sin cambios de reglas.|
 |40 — relieve e identidad de Kanto|[Informe](SPRINT_40_RELIEF.md), [58 mapas](MAPAS_RELIEVE.md), [RC3](RELEASE_1_0_RC3.md)|Terrazas conectadas, dos aproximaciones por tierra, senderos, escaleras y obstáculos temáticos. Edición30, sin cambios numéricos del balance.|
 |41 — correcciones y entrega|[Informe](SPRINT_41_STABILITY.md), [RC4](RELEASE_1_0_RC4.md)|Ficha de Pokédex anidada;72 comprobaciones de diálogo y20.574 de campaña por build, fuente/EXE.10.277 órdenes,58 lugares,8 medallas, replay completo y próximo inicial.|
+|42 — informes de jugadores|[RC5](RELEASE_1_0_RC5.md), [uso](FEEDBACK.md)|Formulario integrado; vista previa, contexto opcional, copia/.txt y borrador de correo. Sin servidor ni envío automático.|
 
 
 El cierre RC1 reutilizó una estrategia legal que funcionó en la edición previa; cada orden se ejecuta de nuevo. No importa el estado antiguo ni inyecta victorias, PS, dinero o Pokémon. El intento con una compra que agotó el presupuesto queda conservado. No se cambia el balance aceptado.
@@ -27,7 +28,7 @@ La [auditoría beta del 28 de octubre](BETA_RC2_2026-10-28.md) repite la campañ
 |Otro ordenador físico|Arranque sin Godot/sin conexión, audio, guardado/recuperación, resoluciones y DPI reales. Fecha y especificaciones.|
 |Jugadores externos|Comprender preparación y menús sin acompañamiento; registrar principio, mitad y final, bloqueos y ritmo. [Beta](BETA_1_0.md).|
 |Procedencia/permisos|Resolver alcance de distribución de recursos Pokémon y terceros. [Inventario](LICENCIAS.md). Los hashes no acreditan autorización.|
-|Canal y contacto|Elegir dónde ofrecer el ZIP y cómo recibir incidencias. No se ha contactado automáticamente con nadie.|
+|Canal de distribución|Elegir dónde ofrecer el ZIP. La recepción de incidencias está integrada mediante correo y exportación de informes; no se ha contactado automáticamente con nadie.|
 |Autorización de publicación|El creador decide cuándo y dónde publicar. Repo privado, sin cambios de visibilidad ni release pública.|
 
 La carpeta limpia se prueba en el mismo ordenador: no es otro PC. No hay evidencia de lector audible, duración universal, éxito de todos los iniciales, retención ni viralidad. La candidata no se declara 1.0 pública solo por superar scripts.

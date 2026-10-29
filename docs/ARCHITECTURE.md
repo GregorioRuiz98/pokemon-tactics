@@ -36,3 +36,5 @@ Colección 0.35: `collection_catalog.gd` unifica familias/umbrales publicados si
 Cierre1.0: `closing_run.gd` congela las ofertas de cada mostrador en el estado; `closing_store.gd` conserva replay y actualización explícita hasta edición29. Códigos KT36. La UI construye solo la pestaña visible y agrupa preferencias; el lector asíncrono bloquea órdenes durante la reconstrucción. La etapa QA38 es independiente de la versión1.0.0-rc.1.
 
 Relieve RC3: `relief_run.gd` proyecta las órdenes sobre la revisión anterior y restaura edición30. `relief_store.gd` despacha guardados hasta30 y mantiene el replay mixto. KT40 identifica las semillas nuevas; KT36 y anteriores conservan sus reglas. `relief_board.gd` extiende la presentación sin modificar los mapas guardados. La altura lógica no depende de su proyección visual.
+
+Informes RC5: `ui/player_feedback.gd` conserva un borrador solo durante la sesión y captura contexto sin órdenes ni RNG. Copia, exporta UTF-8 o construye un `mailto:`; el sistema operativo abre el borrador y el jugador realiza el envío. `FileDialog` depende del diálogo de feedback para respetar modalidad y foco. No hay red ni telemetría.

@@ -1,11 +1,12 @@
 # Documentación
 
-Campaña Windows 1.0.0-rc.2 como referencia. Las notas por sprint/diseños anteriores conservan decisiones de su fecha; no son requisitos para reintroducir funciones retiradas.
+Campaña Windows 1.0.0-rc.5 como referencia. Las notas por sprint/diseños anteriores conservan decisiones de su fecha; no son requisitos para reintroducir funciones retiradas.
 
 | Necesito… | Documento vigente |
 | --- | --- |
 | Jugar, controles o recuperación | [Prueba Windows](PLAYTEST_WINDOWS.md), [LEEME](LEEME_WINDOWS.txt) |
-| Candidata1.0 y beta | [Cambios](RELEASE_1_0_RC4.md), [protocolo](BETA_1_0.md), [plantilla](PLANTILLA_BETA.md) |
+| Candidata1.0 y beta | [Cambios](RELEASE_1_0_RC5.md), [protocolo](BETA_1_0.md), [plantilla](PLANTILLA_BETA.md) |
+| Enviar errores o sugerencias | [Formulario e informes](FEEDBACK.md) |
 | Resultado de la auditoría beta | [RC2: pruebas e incidencias](BETA_RC2_2026-10-28.md) |
 | Colección e iniciales 0.35 | [Cambios](SPRINT_35_COLLECTION.md) |
 | Reglas actuales | [Reglas](REGLAS_ACTUALES.md) |

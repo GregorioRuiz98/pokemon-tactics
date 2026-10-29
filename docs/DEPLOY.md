@@ -34,3 +34,5 @@ La versión del producto y la etapa QA se separan:1.0.0-rc.1 / etapa38, Windows1
 RC3 usa etapa40, campaña30 y Windows1.0.0.3. Requiere geometría58, reglas116, galería fuente/EXE116 y campaña natural del catálogo nuevo, además de lint, validación y comprobación del ZIP. El paquete distingue la simulación completa del motor de la apertura natural en UI; no afirma una campaña humana ni otro PC.
 
 RC4 usa etapa41 y Windows1.0.0.4; conserva campaña30. `package-stability.py` exige regresión de Pokédex y campaña íntegra en fuente y EXE, resultados posteriores al EXE, estados coincidentes y lectura completa del diario sin certificado. No sustituye pruebas humanas ni otro PC.
+
+RC5 usa etapa42 y Windows1.0.0.5, sin cambiar reglas. `package-feedback.py` exige pruebas de informes y Pokédex en fuente/EXE, validación y ZIP extraído. La campaña deRC4 figura como antecedente, sin afirmarla repetida. [Feedback](FEEDBACK.md).

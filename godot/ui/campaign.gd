@@ -30,6 +30,8 @@ var starter_browser: VBoxContainer
 var encounter_preview: RefCounted = preload("res://ui/encounter_preview.gd").new()
 var relief_qa_dir: String = ""
 var dex_qa_dir: String = ""
+var feedback_qa_dir: String = ""
+var player_feedback: AcceptDialog
 var candidate_journey_dir: String = ""
 var quality_qa_dir: String = ""
 var climate_qa_dir: String = ""
@@ -226,6 +228,7 @@ func _boot() -> void:
 		if argument.begins_with("--collection-qa-dir="): collection_qa_dir = argument.trim_prefix("--collection-qa-dir=")
 		if argument.begins_with("--briefing-qa-dir="): briefing_qa_dir = argument.trim_prefix("--briefing-qa-dir=")
 		if argument.begins_with("--dex-qa-dir="): dex_qa_dir = argument.trim_prefix("--dex-qa-dir=")
+		if argument.begins_with("--feedback-qa-dir="): feedback_qa_dir = argument.trim_prefix("--feedback-qa-dir=")
 		if argument.begins_with("--candidate-journey-dir="): candidate_journey_dir = argument.trim_prefix("--candidate-journey-dir=")
 		if argument.begins_with("--relief-qa-dir="): relief_qa_dir = argument.trim_prefix("--relief-qa-dir=")
 		if argument.begins_with("--quality-qa-dir="): quality_qa_dir = argument.trim_prefix("--quality-qa-dir=")
@@ -286,6 +289,7 @@ func _boot() -> void:
 	if not quality_qa_dir.is_empty(): test_dir = quality_qa_dir
 	if not relief_qa_dir.is_empty(): test_dir = relief_qa_dir
 	if not dex_qa_dir.is_empty(): test_dir = dex_qa_dir
+	if not feedback_qa_dir.is_empty(): test_dir = feedback_qa_dir
 	if not candidate_journey_dir.is_empty(): test_dir = candidate_journey_dir
 	if not playthrough_qa_dir.is_empty(): test_dir = playthrough_qa_dir
 	if not portable_smoke_path.is_empty(): test_dir = portable_smoke_path.get_base_dir().path_join("diagnostic-profile")
@@ -301,6 +305,7 @@ func _boot() -> void:
 	menu.get_popup().add_item("Reglas tácticas",14)
 	menu.get_popup().add_item("Copiar semilla",15)
 	menu.get_popup().add_item("Perfil de entrenador",16)
+	menu.get_popup().add_item("Errores y sugerencias",17)
 	if "--developer" not in OS.get_cmdline_user_args(): menu.get_popup().remove_item(menu.get_popup().get_item_index(7))
 	travel_art = load("res://ui/artwork_slot.gd").new()
 	add_child(travel_art)
@@ -323,6 +328,7 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
+	if not feedback_qa_dir.is_empty(): _open_title(); call_deferred("_run_feedback_qa"); return
 	if not dex_qa_dir.is_empty(): _open_title(); call_deferred("_run_dex_qa"); return
 	if not candidate_journey_dir.is_empty(): _open_title(); call_deferred("_run_candidate_journey"); return
 	if not relief_qa_dir.is_empty(): _open_title(); call_deferred("_run_relief_qa"); return
@@ -664,10 +670,12 @@ func _menu_selected(identity: int) -> void:
 		14: _glossary()
 		15: _copy_seed()
 		16: trainer.open(self)
+		17: _open_feedback()
 		_: super._menu_selected(identity)
 
 func _modal_open() -> bool:
 	if title_loading: return true
+	if player_feedback!=null and player_feedback.visible: return true
 	if starter_dialog!=null and starter_dialog.visible: return true
 	if encounter_preview.dialog!=null and encounter_preview.dialog.visible: return true
 	if trainer.dialog!=null and trainer.dialog.visible: return true
@@ -1972,6 +1980,18 @@ func _travel_command(command: Dictionary) -> void:
 
 func _run_relief_qa() -> void:
 	await load("res://ui/qa_relief.gd").new().run(self,relief_qa_dir)
+
+func _open_feedback() -> void:
+	if title_loading: return
+	if player_feedback==null:
+		player_feedback = preload("res://ui/player_feedback.gd").new()
+		add_child(player_feedback)
+		player_feedback.setup(self)
+		_watch_dialog(player_feedback)
+	player_feedback.open()
+
+func _run_feedback_qa() -> void:
+	await load("res://ui/qa_player_feedback.gd").new().run(self,feedback_qa_dir)
 
 func _run_dex_qa() -> void:
 	await load("res://ui/qa_dex_dialog.gd").new().run(self,dex_qa_dir)

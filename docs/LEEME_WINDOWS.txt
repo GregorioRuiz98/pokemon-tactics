@@ -1,4 +1,4 @@
-POKÉMON TACTICS — KANTO — 1.0.0-rc.4
+POKÉMON TACTICS — KANTO — 1.0.0-rc.5
 
 Abre PokemonTactics.exe. No requiere instalar Godot, servidor ni cuenta.
 Los recursos están integrados y el juego funciona sin conexión.
@@ -31,7 +31,7 @@ puede tardar; muestra progreso. Las cargas posteriores aprovechan su validación
 local. Copiar solo el guardado a otro PC provoca una comprobación completa. Actualizar reglas se ofrece entre encuentros
 y crea una copia previa. No abras dos instancias sobre el mismo guardado.
 Reglas actuales y recuperación: Documentacion/REGLAS_ACTUALES.md y
-Documentacion/PLAYTEST_WINDOWS.md. Cambios: Documentacion/RELEASE_1_0_RC4.md.
+Documentacion/PLAYTEST_WINDOWS.md. Cambios: Documentacion/RELEASE_1_0_RC5.md.
 
 Comprobar-equipo.cmd ejecuta un arranque con perfil aislado y muestra la
 ruta del informe. No toca tu partida habitual. En esta entrega se ha
@@ -41,11 +41,17 @@ DPI reales distintos y sesiones humanas externas siguen pendientes.
 Proyecto de fans. Créditos y procedencia disponibles desde el menú.
 Los informes de balance anteriores son históricos, no las reglas actuales.
 
-Candidata privada 1.0.0-rc.4: perfil de entrenador más claro, retratos corregidos
-y textos más breves. Conserva las reglas, la colección y los guardados.
+Candidata privada 1.0.0-rc.5: informes de errores y sugerencias integrados.
+Conserva las reglas, la colección y los guardados.
 Beta e incidencias: Documentacion/BETA_1_0.md y PLANTILLA_BETA.md.
 
 Pokédex y logros: Entrenador desde Inicio u Oak. Obtener una especie desbloquea
 la primera forma de su línea como inicial de nivel 5 para futuras aventuras.
 Verla no basta. Kecleon > Reclutamiento ofrece tres candidatos; uno por visita.
 Perfil, colección y 19 logros permanecen entre aventuras.
+
+Errores y sugerencias: desde Inicio o Menú > Errores y sugerencias.
+Escribe y revisa el informe; puedes copiarlo, guardarlo como .txt o
+preparar un correo. El envío lo haces desde tu aplicación de correo.
+Sin correo configurado, guarda el .txt. No se envía nada automáticamente.
+Instrucciones: Documentacion/FEEDBACK.md.

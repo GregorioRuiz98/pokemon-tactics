@@ -81,7 +81,7 @@ func setup(owner_app: Control) -> void:
 	version.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	version.clip_text = true
 	footer.add_child(version)
-	for entry: Array in [["lab","Laboratorio táctico",func(): app._menu_selected(7)],["quit","Salir",func(): app.get_tree().quit()]]:
+	for entry: Array in [["feedback","Errores y sugerencias",app._open_feedback],["lab","Laboratorio táctico",func(): app._menu_selected(7)],["quit","Salir",func(): app.get_tree().quit()]]:
 		if entry[0]=="lab" and "--developer" not in OS.get_cmdline_user_args(): continue
 		var button: Button = app._button(entry[1],entry[2])
 		button.theme_type_variation = "ToolButton"

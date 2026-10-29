@@ -1,4 +1,4 @@
-# Desarrollo nativo — Windows 1.0.0-rc.4
+# Desarrollo nativo — Windows 1.0.0-rc.5
 
 [Reglas](../docs/REGLAS_ACTUALES.md) · [Jugar/recuperar](../docs/PLAYTEST_WINDOWS.md) · [Arquitectura](../docs/ARCHITECTURE.md) · [Estado](../docs/PLAN_SPRINTS.md)
 
@@ -48,11 +48,11 @@ npm run godot:check:candidate
 
 El runner comprueba exactamente Godot 4.7.2 estable. Las herramientas de QA del EXE también comprueban el editor; el jugador que abre el EXE no lo necesita. El empaquetado requiere evidencias fuente/EXE y lint/validación según [Entrega](../docs/DEPLOY.md).
 
-Salidas relativas a raíz: `../releases/pokemon-tactics-1.0.0-rc.4/`; QA: `../../work/qa-sprint-41/`. Partidas reales: `%APPDATA%/PokemonTacticsLab`; no usarlas en ensayos.
+Salidas relativas a raíz: `../releases/pokemon-tactics-1.0.0-rc.5/`; QA: `../../work/qa-sprint-42/`. Partidas reales: `%APPDATA%/PokemonTacticsLab`; no usarlas en ensayos.
 
 [Notas acumuladas](../docs/history/GODOT_README_2026-10-27.md) · [Web 0.12.0](../docs/WEB_LEGACY.md).
 
-La candidata usa `application/config/qa_stage=41` para separar número de sprint y versión del producto. La versión Windows numérica es 1.0.0.4; campaña30/combate25 añade mapas sin sobrescribir los motores publicados. `godot:test:package` comprueba el contrato del empaquetador; `godot:check:candidate` extrae el ZIP y prueba arranque con perfil aislado en el mismo PC. La reproducción completa puede tardar varios minutos y no es una sesión humana.
+La candidata usa `application/config/qa_stage=42` para separar número de sprint y versión del producto. La versión Windows numérica es 1.0.0.5; campaña30/combate25 añade mapas sin sobrescribir los motores publicados. `godot:test:package` comprueba el contrato del empaquetador; `godot:check:candidate` extrae el ZIP y prueba arranque con perfil aislado en el mismo PC. La reproducción completa puede tardar varios minutos y no es una sesión humana.
 
 Historial: para la revisión de presentación RC2 se exigieron las suites de perfil
 (`godot:qa:profile` y `godot:qa:profile:export`), colección, usabilidad de cierre
@@ -66,3 +66,7 @@ evidencia previa de RC1; no se presenta como repetido en RC2.
 ## Correcciones RC4
 
 `npm run godot:qa:dex` y `npm run godot:qa:dex:export` comprueban ficha anidada, teclado/ratón, foco, búsqueda y texto150%. `npm run godot:prepare:candidate:journey` prepara el diario legal de la simulación previa; si no existe, genera uno con `npm run godot:simulate:relief`. `npm run godot:qa:candidate:journey` y `npm run godot:qa:candidate:journey:export` ejecutan las10.277 órdenes desde la interfaz y verifican guardados, perfil y próximo inicial. El empaquetador RC4 es `tools/godot/package-stability.py`; las reglas continúan en edición30.
+
+## Informes RC5
+
+`npm run godot:qa:feedback` y `npm run godot:qa:feedback:export` verifican el formulario en perfiles aislados: Inicio y combate natural, teclado/ratón, Escape/foco, texto150%, copia, UTF-8 y URI de correo. No abren ni envían correo. En Windows la comprobación real del portapapeles necesita una sesión interactiva con acceso al escritorio. `tools/godot/package-feedback.py` exige estas pruebas y la regresión de Pokédex en ambas compilaciones. La campaña completa deRC4 se conserva como evidencia histórica de reglas sin cambios. [Uso](../docs/FEEDBACK.md).

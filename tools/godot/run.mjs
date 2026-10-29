@@ -118,7 +118,13 @@ if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-expo
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'qa-dex-dialog' || operation === 'qa-dex-dialog-export') {
+if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'feedback-'+(exported?'release':'source'));
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--feedback-qa-dir='+directory],'feedback-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'player-feedback.json'),'utf8'));
+  if(report.failures.length || report.assertions<60) throw new Error('Player feedback regression failed');
+} else if(operation === 'qa-dex-dialog' || operation === 'qa-dex-dialog-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'dex-'+(exported?'release':'source'));
   run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--dex-qa-dir='+directory],'dex-'+(exported?'release':'source'),exported?output:root);
@@ -511,7 +517,7 @@ if(operation === 'qa-dex-dialog' || operation === 'qa-dex-dialog-export') {
   run(binary, ['--headless', ...common, '--export-release', 'Windows Desktop', resolve(output, 'PokemonTactics.exe')], 'export-windows');
   cpSync(resolve(project, 'licenses'), resolve(output, 'licenses'), { recursive: true });
   cpSync(resolve(project, 'CREDITS.md'), resolve(output, 'CREDITS.md'));
-  if (/^1\.0\.0-rc\.[12]$/.test(nativeVersion)) {
+  if (/^1\.0\.0-rc\.\d+$/.test(nativeVersion)) {
     cpSync(resolve(root,'docs/LEEME_WINDOWS.txt'),resolve(output,'LEEME.txt'));
     const digest = createHash('sha256').update(readFileSync(resolve(output,'PokemonTactics.exe'))).digest('hex');
     writeFileSync(resolve(output,'SHA256SUMS.txt'),`${digest}  PokemonTactics.exe\n`);

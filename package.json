@@ -164,7 +164,9 @@
     "godot:qa:dex:export": "node tools/godot/run.mjs qa-dex-dialog-export",
     "godot:qa:candidate:journey": "node tools/godot/run.mjs qa-candidate-journey",
     "godot:qa:candidate:journey:export": "node tools/godot/run.mjs qa-candidate-journey-export",
-    "godot:prepare:candidate:journey": "python tools/godot/prepare-candidate-journey.py"
+    "godot:prepare:candidate:journey": "python tools/godot/prepare-candidate-journey.py",
+    "godot:qa:feedback": "node tools/godot/run.mjs qa-player-feedback",
+    "godot:qa:feedback:export": "node tools/godot/run.mjs qa-player-feedback-export"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

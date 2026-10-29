@@ -56,4 +56,4 @@ altos reproducibles, reconstruir si cambia el juego y repetir las pruebas
 afectadas sobre ese EXE. Verificar documentación, créditos, integridad y alcance
 de distribución. El creador decide canal, contacto y fecha de publicación.
 
-[Estado de entrega](RELEASE_1_0_RC4.md) · [Reglas](REGLAS_ACTUALES.md).
+[Estado de entrega](RELEASE_1_0_RC5.md) · [Reglas](REGLAS_ACTUALES.md).
