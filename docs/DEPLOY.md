@@ -36,3 +36,5 @@ RC3 usa etapa40, campaña30 y Windows1.0.0.3. Requiere geometría58, reglas116, 
 RC4 usa etapa41 y Windows1.0.0.4; conserva campaña30. `package-stability.py` exige regresión de Pokédex y campaña íntegra en fuente y EXE, resultados posteriores al EXE, estados coincidentes y lectura completa del diario sin certificado. No sustituye pruebas humanas ni otro PC.
 
 RC5 usa etapa42 y Windows1.0.0.5, sin cambiar reglas. `package-feedback.py` exige pruebas de informes y Pokédex en fuente/EXE, validación y ZIP extraído. La campaña deRC4 figura como antecedente, sin afirmarla repetida. [Feedback](FEEDBACK.md).
+
+RC6 usa etapa43 y Windows1.0.0.6. El nombre es Pokémon: Tactical Chronicles — Kanto. `config/artifact_slug` y `config/executable_name` en `godot/project.godot` definen ZIP/EXE; la carpeta de usuario conserva su nombre por compatibilidad. [Cambios](RELEASE_1_0_RC6.md).

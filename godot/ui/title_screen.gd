@@ -6,6 +6,8 @@ var controls: Dictionary = {}
 var notice: Label
 var caption: Label
 var app: Control
+var logo: Label
+var region: Label
 
 func setup(owner_app: Control) -> void:
 	app = owner_app
@@ -23,7 +25,7 @@ func setup(owner_app: Control) -> void:
 	var column: VBoxContainer = VBoxContainer.new()
 	column.add_theme_constant_override("separation",12)
 	margin.add_child(column)
-	column.add_child(app._label("KANTO  /  UNA AVENTURA TÁCTICA",16,app.GOLD))
+	column.add_child(app._label("RPG TÁCTICO POR TURNOS",16,app.GOLD))
 	var center: HBoxContainer = HBoxContainer.new()
 	center.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	column.add_child(center)
@@ -40,12 +42,14 @@ func setup(owner_app: Control) -> void:
 	left_scroll.add_child(left)
 	left.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	left.add_child(app._label("POKÉMON",52,Color("f4e4bd")))
-	var title: Label = app._label("TACTICS",72,app.GOLD)
-	title.add_theme_constant_override("line_spacing",0)
-	title.add_theme_color_override("font_shadow_color",Color("592f29"))
-	title.add_theme_constant_override("shadow_offset_x",3)
-	title.add_theme_constant_override("shadow_offset_y",3)
-	left.add_child(title)
+	logo = app._label("TACTICAL CHRONICLES",48,app.GOLD)
+	logo.add_theme_constant_override("line_spacing",0)
+	logo.add_theme_color_override("font_shadow_color",Color("592f29"))
+	logo.add_theme_constant_override("shadow_offset_x",3)
+	logo.add_theme_constant_override("shadow_offset_y",3)
+	left.add_child(logo)
+	region = app._label("— KANTO —",26,Color("f4e4bd"))
+	left.add_child(region)
 	caption = app._label("Una aventura táctica por Kanto.",19,Color("b9ccd0"))
 	left.add_child(caption)
 	var space: Control = Control.new()

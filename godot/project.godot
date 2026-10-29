@@ -2,9 +2,11 @@
 config_version=5
 
 [application]
-config/name="Pokémon Tactics — Kanto"
-config/version="1.0.0-rc.5"
-config/qa_stage=42
+config/name="Pokémon: Tactical Chronicles — Kanto"
+config/version="1.0.0-rc.6"
+config/qa_stage=43
+config/artifact_slug="tactical-chronicles-kanto"
+config/executable_name="TacticalChroniclesKanto.exe"
 config/icon="res://art/app_icon.png"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="PokemonTacticsLab"

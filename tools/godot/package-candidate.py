@@ -12,9 +12,13 @@ PROJECT = (ROOT/'godot/project.godot').read_text(encoding='utf-8')
 VERSION = re.search(r'config/version="([^"]+)"', PROJECT)[1]
 STAGE = int(re.search(r'config/qa_stage=(\d+)', PROJECT)[1])
 WORK = (ROOT/f'../../work/qa-sprint-{STAGE}').resolve()
-RELEASE = (ROOT/f'../releases/pokemon-tactics-{VERSION}').resolve()
+SLUG = re.search(r'config/artifact_slug="([^"]+)"',PROJECT)
+SLUG = SLUG[1] if SLUG else 'pokemon-tactics'
+EXECUTABLE = re.search(r'config/executable_name="([^"]+)"',PROJECT)
+EXECUTABLE = EXECUTABLE[1] if EXECUTABLE else 'PokemonTactics.exe'
+RELEASE = (ROOT/f'../releases/{SLUG}-{VERSION}').resolve()
 BUNDLE = RELEASE/'windows'
-EXE = BUNDLE/'PokemonTactics.exe'
+EXE = BUNDLE/EXECUTABLE
 EVIDENCE = ROOT/f'docs/qa/sprint-{STAGE}'
 BASELINE = 'c960674a10e22c15ab52dd98a94247a38e66ee9b'
 PROTECTED = ['godot/core','godot/data','godot/tests','godot/assets','godot/art','src','public','tests','CREDITS.md']
@@ -49,7 +53,7 @@ def digest(path):
 def verify_pair(source, release, minimum):
     for report in [source, release]:
         assert not report['failures'] and report['assertions'] >= minimum
-    for key in ['assertions','stateHash','nextStateHash','naturalStateHash','journalHash','campaignEdition','profileSchema','mapCatalogHash','gallery','visited','orders']:
+    for key in ['assertions','stateHash','nextStateHash','naturalStateHash','journalHash','campaignEdition','profileSchema','mapCatalogHash','gallery','visited','orders','branding']:
         if key in source:
             assert source[key] == release[key], key
     if 'measurements' in source:
@@ -57,7 +61,7 @@ def verify_pair(source, release, minimum):
 
 
 def archive():
-    target = RELEASE/f'pokemon-tactics-{VERSION}-windows.zip'
+    target = RELEASE/f'{SLUG}-{VERSION}-windows.zip'
     with zipfile.ZipFile(target,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as package:
         for path in sorted(BUNDLE.rglob('*')):
             if path.is_file():

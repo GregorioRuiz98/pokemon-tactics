@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { existsSync, readFileSync, mkdirSync, writeFileSync, cpSync, readdirSync, renameSync } from 'node:fs';
+import { existsSync, readFileSync, mkdirSync, writeFileSync, cpSync, readdirSync, renameSync, statSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
@@ -11,7 +11,10 @@ const nativeVersion = readFileSync(resolve(project, 'project.godot'),'utf8').mat
 const chapter = Number(readFileSync(resolve(project, 'project.godot'),'utf8').match(/config\/qa_stage=(\d+)/)?.[1] ?? nativeVersion.split('.')[1]);
 const qaLabel = chapter>=23 && Number(nativeVersion.split('.')[2])>0 ? `${chapter}-ui-${nativeVersion.split('.')[2]}` : chapter===22 && Number(nativeVersion.split('.')[2])>=4 ? '22-updates-'+nativeVersion.split('.')[2] : nativeVersion === '0.22.3' ? '22-context' : nativeVersion === '0.22.2' ? '22-controls' : nativeVersion === '0.22.1' ? '22-ui' : String(chapter);
 const work = process.env.GODOT_QA_DIR ? resolve(process.env.GODOT_QA_DIR) : resolve(root, `../../work/qa-sprint-${qaLabel}`);
-const output = resolve(root, `../releases/pokemon-tactics-${nativeVersion}/windows`);
+const projectText = readFileSync(resolve(project,'project.godot'),'utf8');
+const artifactSlug = projectText.match(/config\/artifact_slug="([^"]+)"/)?.[1] ?? 'pokemon-tactics';
+const executableName = projectText.match(/config\/executable_name="([^"]+)"/)?.[1] ?? 'PokemonTactics.exe';
+const output = resolve(root, `../releases/${artifactSlug}-${nativeVersion}/windows`);
 const operation = process.argv[2] ?? 'test';
 const binary = process.env.GODOT_BIN ?? resolve(root, '../../work/godot-4.7.2/Godot_v4.7.2-stable_win64_console.exe');
 mkdirSync(work, { recursive: true });
@@ -121,13 +124,22 @@ const common = ['--path', project, '--log-file', resolve(work, `engine-${operati
 if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'feedback-'+(exported?'release':'source'));
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--feedback-qa-dir='+directory],'feedback-'+(exported?'release':'source'),exported?output:root);
+  if (nativeVersion==='1.0.0-rc.6') {
+    const legacy=process.env.BRANDING_LEGACY_DIR??resolve(root,'../../work/qa-sprint-42/feedback-source');
+    const saves=readdirSync(legacy).filter(name=>/^feedback-natural-.*\.json$/.test(name)).sort((a,b)=>statSync(resolve(legacy,b)).mtimeMs-statSync(resolve(legacy,a)).mtimeMs);
+    if(!saves.length) throw new Error('RC6 needs an isolated RC5 feedback fixture; set BRANDING_LEGACY_DIR or run the RC5 EXE feedback QA first.');
+    mkdirSync(directory,{recursive:true});
+    cpSync(resolve(legacy,saves[0]),resolve(directory,'campaign-save.json'));
+    cpSync(resolve(legacy,'trainer-profile.json'),resolve(directory,'trainer-profile.json'));
+    cpSync(resolve(root,'docs/qa/sprint-42/feedback-source.json'),resolve(directory,'legacy-evidence.json'));
+  }
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--feedback-qa-dir='+directory],'feedback-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'player-feedback.json'),'utf8'));
   if(report.failures.length || report.assertions<60) throw new Error('Player feedback regression failed');
 } else if(operation === 'qa-dex-dialog' || operation === 'qa-dex-dialog-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'dex-'+(exported?'release':'source'));
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--dex-qa-dir='+directory],'dex-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--dex-qa-dir='+directory],'dex-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'dex-dialog.json'),'utf8'));
   if(report.failures.length || report.assertions<60) throw new Error('Pokédex dialog regression failed');
 } else if(operation === 'qa-candidate-journey' || operation === 'qa-candidate-journey-export') {
@@ -138,7 +150,7 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
     const prepared=spawnSync('python',[resolve(root,'tools/godot/prepare-candidate-journey.py')],{cwd:root,encoding:'utf8',windowsHide:true});
     if(prepared.status!==0 || !existsSync(journal)) throw new Error('Prepare a legal campaign journal first: '+prepared.stderr);
   }
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--candidate-journey-dir='+directory,'--review-journal='+journal],'playthrough-candidate-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--candidate-journey-dir='+directory,'--review-journal='+journal],'playthrough-candidate-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'candidate-journey.json'),'utf8'));
   if(report.failures.length || report.visited.length!==58 || report.orders!==10277) throw new Error('Full native campaign failed');
 } else if(operation === 'replay-relief') {
@@ -152,26 +164,26 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
 } else if(operation === 'qa-relief' || operation === 'qa-relief-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'relief-'+(exported?'release':'source'));
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--relief-qa-dir='+directory],'relief-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--relief-qa-dir='+directory],'relief-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'relief-ui.json'),'utf8'));
   if(report.failures.length || report.gallery.length!==116) throw new Error('Relief UI failed');
 } else if(operation === 'qa-profile' || operation === 'qa-profile-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'profile-'+(exported?'release':'source'));
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--profile-polish','--trainer-qa-dir='+directory],'profile-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--profile-polish','--trainer-qa-dir='+directory],'profile-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'profile-polish.json'),'utf8'));
   if(report.failures.length || report.assertions<158) throw new Error('Trainer profile QA failed');
 } else if(operation === 'qa-closing-usability' || operation === 'qa-closing-usability-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'closing-usability-'+(exported?'release':'source'));
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--closing-usability-dir='+directory],'closing-usability-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--closing-usability-dir='+directory],'closing-usability-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'closing-usability.json'),'utf8'));
   if(report.failures.length || report.assertions<25) throw new Error('Current usability QA failed');
 } else if(operation === 'qa-closing-playthrough' || operation === 'qa-closing-playthrough-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'closing-playthrough-'+(exported?'release':'source'));
   const journal=process.env.CLOSING_JOURNAL??resolve(root,'docs/qa/sprint-36/closing-journal.json');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--closing-playthrough-dir='+directory,'--review-journal='+journal],'closing-playthrough-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--closing-playthrough-dir='+directory,'--review-journal='+journal],'closing-playthrough-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'closing-playthrough.json'),'utf8'));
   if(report.failures.length || report.visited.length!==58 || report.orders<7800) throw new Error('Current complete native campaign failed');
 } else if(operation === 'test-closing') {
@@ -182,7 +194,7 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
 } else if(operation === 'qa-closing-performance' || operation === 'qa-closing-performance-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'closing-performance-'+(exported?'release':'source'));
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--performance-final','--performance-qa-dir='+directory],'closing-performance-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--performance-final','--performance-qa-dir='+directory],'closing-performance-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'closing-performance.json'),'utf8'));
   if(report.failures.length || report.assertions<200) throw new Error('Current-edition performance QA failed');
 } else if(operation === 'test-collection') {
@@ -190,7 +202,7 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
 } else if(operation === 'qa-collection' || operation === 'qa-collection-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'collection-'+(exported?'release':'source'));
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--collection-qa-dir='+directory],'collection-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--collection-qa-dir='+directory],'collection-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'collection-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<30) throw new Error('Collection UI failed.');
 } else if(operation === 'test-quality') {
@@ -201,14 +213,14 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
 } else if(operation === 'qa-quality' || operation === 'qa-quality-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'quality-'+(exported?'release':'source'));
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--quality-qa-dir='+directory,'--load-journal='+resolve(root,'docs/qa/sprint-33/campaign-journal.json')],'quality-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--quality-qa-dir='+directory,'--load-journal='+resolve(root,'docs/qa/sprint-33/campaign-journal.json')],'quality-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'quality-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<180 || report.encounters.length!==58) throw new Error('Full campaign quality UI failed.');
 } else if(operation === 'qa-playthrough' || operation === 'qa-playthrough-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'playthrough-'+(exported?'release':'source'));
   const journal=existsSync(resolve(work,'natural-coverage/campaign-journal.json'))?resolve(work,'natural-coverage/campaign-journal.json'):resolve(root,'docs/qa/sprint-33/campaign-journal.json');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--playthrough-qa-dir='+directory,'--review-journal='+journal],'playthrough-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--playthrough-qa-dir='+directory,'--review-journal='+journal],'playthrough-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'playthrough-ui-result.json'),'utf8'));
   if(report.failures.length || report.visited.length!==58 || report.medals!==8) throw new Error('Full campaign UI failed.');
 } else if(operation === 'test-review') {
@@ -217,13 +229,13 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
 } else if(operation === 'qa-briefing' || operation === 'qa-briefing-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'briefing-'+(exported?'release':'source'));
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--briefing-qa-dir='+directory],'briefing-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--briefing-qa-dir='+directory],'briefing-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'briefing-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<300 || report.encounters.length!==58) throw new Error('Encounter preview UI failed.');
 } else if(operation === 'qa-review' || operation === 'qa-review-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'review-'+(exported?'release':'source'));
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--review-qa-dir='+directory],'review-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--review-qa-dir='+directory],'review-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'review-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<40) throw new Error('Review UI failed.');
 } else if(operation === 'test-climate') {
@@ -231,13 +243,13 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
 } else if(operation === 'qa-climate' || operation === 'qa-climate-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'climate-'+(exported?'release':'source'));
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--climate-qa-dir='+directory],'climate-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--climate-qa-dir='+directory],'climate-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'climate-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<30) throw new Error('Climate UI failed.');
 } else if(operation === 'qa-symbols' || operation === 'qa-symbols-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'symbols-'+(exported?'release':'source'));
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--symbols-qa-dir='+directory],'symbols-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--symbols-qa-dir='+directory],'symbols-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'symbols-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<50) throw new Error('Visual UI failed.');
 } else if(operation === 'test-sleep') {
@@ -245,7 +257,7 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
 } else if(operation === 'qa-sleep' || operation === 'qa-sleep-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'sleep-'+(exported?'release':'source'));
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--sleep-qa-dir='+directory],'sleep-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--sleep-qa-dir='+directory],'sleep-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'sleep-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<15) throw new Error('Sleep UI failed.');
 } else if(operation === 'test-power') {
@@ -253,13 +265,13 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
 } else if(operation === 'qa-power' || operation === 'qa-power-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'power-'+(exported?'release':'source'));
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--power-qa-dir='+directory],'power-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--power-qa-dir='+directory],'power-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'power-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<20) throw new Error('Power UI failed.');
 } else if(operation === 'qa-copy' || operation === 'qa-copy-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'copy-'+(exported?'release':'source'));
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--copy-qa-dir='+directory],'copy-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--copy-qa-dir='+directory],'copy-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'copy-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<250) throw new Error('Player copy UI failed.');
 } else if(operation === 'test-kanto') {
@@ -268,7 +280,7 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
 } else if(operation === 'qa-kanto' || operation === 'qa-kanto-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,'kanto-'+(exported?'release':'source'));
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--kanto-qa-dir='+directory],'kanto-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--kanto-qa-dir='+directory],'kanto-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'kanto-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<100) throw new Error('Kanto UI failed.');
 } else if(operation === 'test-variety') {
@@ -278,13 +290,13 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
   const exported=operation.endsWith('-export');
   if(!exported) verify();
   const directory=resolve(work,'variety-'+(exported?'release':'source'));
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--variety-qa-dir='+directory],'variety-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--variety-qa-dir='+directory],'variety-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'variety-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<50) throw new Error('Variety UI failed.');
 } else if(operation === 'qa-shop' || operation === 'qa-shop-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,exported?'shop-release':'shop-source');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--shop-qa-dir='+directory],'shop-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--shop-qa-dir='+directory],'shop-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'shop-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<50) throw new Error('Kecleon shop failed');
 } else if(operation === 'test-trainer') {
@@ -292,7 +304,7 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
 } else if(operation === 'qa-trainer' || operation === 'qa-trainer-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,exported?'trainer-release':'trainer-source');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--trainer-qa-dir='+directory],'trainer-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--trainer-qa-dir='+directory],'trainer-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'trainer-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<50) throw new Error('Trainer UI failed');
 } else if(operation === 'simulate-adventure') {
@@ -302,13 +314,13 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
 } else if(operation === 'qa-player' || operation === 'qa-player-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,exported?'player-release':'player-source');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--player-qa-dir='+directory],'player-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--player-qa-dir='+directory],'player-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'player-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<100 || report.naturalPhase!=='shop') throw new Error('Player UI failed');
 } else if(operation === 'qa-adventure' || operation === 'qa-adventure-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,exported?'adventure-release':'adventure-source');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--adventure-qa-dir='+directory],'adventure-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--adventure-qa-dir='+directory],'adventure-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'adventure-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<20) throw new Error('Adventure UI failed');
 } else if(operation === 'test-economy') {
@@ -318,7 +330,7 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
 } else if(operation === 'qa-economy' || operation === 'qa-economy-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,exported?'economy-release':'economy-source');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--compat-economy','--economy-qa-dir='+directory],'economy-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--compat-economy','--economy-qa-dir='+directory],'economy-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'economy-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<40) throw new Error('Economy QA failed');
 } else if(operation === 'test-spatial') {
@@ -326,45 +338,45 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
 } else if(operation === 'qa-moves' || operation === 'qa-moves-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,exported?'moves-release':'moves-source');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--compat-economy','--moves-qa-dir='+directory],'moves-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--compat-economy','--moves-qa-dir='+directory],'moves-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'moves-ui-result.json'),'utf8'));
   if(report.failures.length || report.layouts.length!==56) throw new Error('Equipped move UI regression failed');
 } else if(operation === 'qa-spatial' || operation === 'qa-spatial-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,exported?'spatial-release':'spatial-source');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--compat-economy','--spatial-qa-dir='+directory],'spatial-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--compat-economy','--spatial-qa-dir='+directory],'spatial-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'spatial-ui-result.json'),'utf8'));
   if(report.failures.length || report.originalSounds!==40 || !report.naturalCampaignReplay) throw new Error('Spatial QA failed');
 } else if (operation === 'qa-attack-effects' || operation === 'qa-attack-effects-export') {
   const exported=operation.endsWith('export');
   if(!exported) verify();
   const directory=resolve(work,exported?'attack-effects-release':'attack-effects-source');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--attack-qa-dir='+directory],'attack-effects-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--attack-qa-dir='+directory],'attack-effects-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'attack-effects-result.json'),'utf8'));
   if(report.failures.length || report.sounds!==26 || report.types!==18) throw new Error('Attack presentation QA failed');
 } else if (operation === 'qa-seeds' || operation === 'qa-seeds-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,exported?'seeds-release':'seeds-source');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--seeds-qa-dir='+directory],'seeds-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--seeds-qa-dir='+directory],'seeds-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'seeds-ui-result.json'),'utf8'));
   if(report.failures.length || report.seedProbes!==64 || report.distinctCaptureTraces<2 || report.naturalCaptures.length!==2) throw new Error('Seed regression failed');
 } else if (operation === 'qa-fluency' || operation === 'qa-fluency-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,exported?'fluency-release':'fluency-source');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--performance-current','--performance-qa-dir='+directory],'fluency-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--performance-current','--performance-qa-dir='+directory],'fluency-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'performance-result.json'),'utf8'));
   if(report.failures.length || report.assertions<100 || report.measurements.planner.cases<50) throw new Error('Current performance and AI equivalence QA failed');
 } else if (operation === 'qa-performance' || operation === 'qa-performance-export') {
   const exported=operation.endsWith('export');
   const directory=resolve(work,exported?'performance-release':'performance-source');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--performance-qa-dir='+directory],'performance-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--performance-qa-dir='+directory],'performance-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'performance-result.json'),'utf8'));
   if(report.failures.length || report.assertions<18) throw new Error('Performance regression failed');
 } else if (operation === 'qa-semantic' || operation === 'qa-semantic-export') {
   const exported=operation.endsWith('export');
   if(!exported) verify();
   const directory=resolve(work,exported?'semantic-release':'semantic-source');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--accessibility','always','--position','-10000,-10000','--audio-driver','Dummy','--','--updates-scope=semantic','--updates-qa-dir='+directory],'semantic-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--accessibility','always','--position','-10000,-10000','--audio-driver','Dummy','--','--updates-scope=semantic','--updates-qa-dir='+directory],'semantic-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'updates-ui-result.json'),'utf8'));
   if(report.failures.length) throw new Error('Semantic prototype failed');
 } else if (operation === 'test-shop-batch') {
@@ -376,7 +388,7 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
   const exported=operation.endsWith('export');
   if(!exported) verify();
   const directory=resolve(work,exported?'updates-release':'updates-source');
-  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--updates-qa-dir='+directory],'updates-ui-'+(exported?'release':'source'),exported?output:root);
+  run(exported?resolve(output,executableName):binary,[...(exported?[]:common),'--position','-10000,-10000','--audio-driver','Dummy','--','--updates-qa-dir='+directory],'updates-ui-'+(exported?'release':'source'),exported?output:root);
   const report=JSON.parse(readFileSync(resolve(directory,'updates-ui-result.json'),'utf8'));
   if(report.failures.length) throw new Error('Updates UI failed');
 } else if (operation === 'qa-context' || operation === 'qa-context-export') {
@@ -384,7 +396,7 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
   if (!exported) verify();
   const directory = resolve(work,exported ? 'context-release' : 'context-source');
   const args = [...(exported ? [] : common),'--position','-10000,-10000','--audio-driver','Dummy','--','--context-qa-dir='+directory];
-  run(exported ? resolve(output,'PokemonTactics.exe') : binary,args,'context-ui-'+(exported?'release':'source'),exported ? output : root);
+  run(exported ? resolve(output,executableName) : binary,args,'context-ui-'+(exported?'release':'source'),exported ? output : root);
   const report = JSON.parse(readFileSync(resolve(directory,'context-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<40) throw new Error('Context UI failed.');
 } else if (operation === 'qa-input' || operation === 'qa-input-export') {
@@ -392,7 +404,7 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
   if (!exported) verify();
   const directory = resolve(work,exported ? 'input-release' : 'input-source');
   const args = [...(exported ? [] : common),'--position','-10000,-10000','--audio-driver','Dummy','--','--input-qa-dir='+directory];
-  run(exported ? resolve(output,'PokemonTactics.exe') : binary,args,'input-ui-'+(exported?'release':'source'),exported ? output : root);
+  run(exported ? resolve(output,executableName) : binary,args,'input-ui-'+(exported?'release':'source'),exported ? output : root);
   const report = JSON.parse(readFileSync(resolve(directory,'input-ui-result.json'),'utf8'));
   if(report.failures.length || report.assertions<44) throw new Error('Input UI failed.');
 } else if (operation === 'test-release' || operation === 'simulate-balance') {
@@ -414,7 +426,7 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
   if (!exported) verify();
   const directory = resolve(work, exported ? 'interface-release' : 'interface-source');
   const args = [...(exported ? [] : common),'--position','-10000,-10000','--audio-driver','Dummy','--','--interface-qa-dir='+directory];
-  run(exported ? resolve(output,'PokemonTactics.exe') : binary,args,'interface-ui-'+(exported?'release':'source'),exported ? output : root);
+  run(exported ? resolve(output,executableName) : binary,args,'interface-ui-'+(exported?'release':'source'),exported ? output : root);
   const report = JSON.parse(readFileSync(resolve(directory,'interface-ui-result.json'),'utf8'));
   if (report.failures.length || !report.battlePaused || !report.savePreserved) throw new Error('Interface regression failed.');
 } else if (operation === 'test-expedition') {
@@ -427,7 +439,7 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
   const directory = resolve(work,(psychic ? 'journey-psychic-' : 'journey-')+(exported ? 'release' : 'source'));
   if (psychic && qaLabel!=='22') cpSync(resolve(root,'../../work/qa-sprint-22/balance-champion-24.json'),resolve(work,'balance-champion-24.json'));
   const args = [...(exported ? [] : common),'--position','-10000,-10000','--audio-driver','Dummy','--','--journey-qa-dir='+directory,...(psychic ? ['--journey-final=psychic'] : [])];
-  run(exported ? resolve(output,'PokemonTactics.exe') : binary,args,'journey-ui-'+(psychic?'psychic-':'')+(exported?'release':'source'),exported ? output : root);
+  run(exported ? resolve(output,executableName) : binary,args,'journey-ui-'+(psychic?'psychic-':'')+(exported?'release':'source'),exported ? output : root);
   const report = JSON.parse(readFileSync(resolve(directory,'journey-ui-result.json'),'utf8'));
   if(report.failures.length || report.phase==='defeat' || !report.cleared.length) throw new Error('Journey UI failed.');
 } else if (operation === 'test-roster') {
@@ -438,7 +450,7 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
   if (!exported) verify();
   const directory = resolve(work,exported ? 'roster-release' : 'roster-source');
   const args = [...(exported ? [] : common),'--position','-10000,-10000','--audio-driver','Dummy','--','--roster-qa-dir='+directory];
-  run(exported ? resolve(output,'PokemonTactics.exe') : binary,args,'roster-ui-'+(exported?'release':'source'),exported ? output : root);
+  run(exported ? resolve(output,executableName) : binary,args,'roster-ui-'+(exported?'release':'source'),exported ? output : root);
   const report = JSON.parse(readFileSync(resolve(directory,'roster-ui-result.json'),'utf8'));
   if(report.failures.length || !report.pcUsed || !report.overflowChecked) throw new Error('Roster UI failed.');
 } else if (operation === 'test-scale') {
@@ -449,7 +461,7 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
   if (!exported) verify();
   const directory = resolve(work,exported ? 'scale-release' : 'scale-source');
   const args = [...(exported ? [] : common),'--position','-10000,-10000','--audio-driver','Dummy','--','--scale-qa-dir='+directory];
-  run(exported ? resolve(output,'PokemonTactics.exe') : binary,args,'scale-ui-'+(exported?'release':'source'),exported ? output : root);
+  run(exported ? resolve(output,executableName) : binary,args,'scale-ui-'+(exported?'release':'source'),exported ? output : root);
   const report = JSON.parse(readFileSync(resolve(directory,'scale-ui-result.json'),'utf8'));
   if(report.failures.length || report.completed.length!==2) throw new Error('Scale UI failed.');
 } else if (operation === 'test-traits-journey') {
@@ -502,7 +514,7 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
   run(binary, [...common, '--position', '-10000,-10000', '--audio-driver', 'Dummy', '--', '--campaign-qa-dir=' + resolve(work, 'campaign-source')], 'campaign-source');
   verifyCampaign(resolve(work,'campaign-source'));
 } else if (operation === 'qa-campaign-export') {
-  run(resolve(output, 'PokemonTactics.exe'), ['--position','-10000,-10000','--audio-driver','Dummy','--log-file',resolve(work,'engine-campaign-release.log'),'--','--campaign-qa-dir='+resolve(work,'campaign-release')], 'campaign-release', output);
+  run(resolve(output, executableName), ['--position','-10000,-10000','--audio-driver','Dummy','--log-file',resolve(work,'engine-campaign-release.log'),'--','--campaign-qa-dir='+resolve(work,'campaign-release')], 'campaign-release', output);
   verifyCampaign(resolve(work,'campaign-release'));
 } else if (operation === 'qa') {
   verify();
@@ -514,14 +526,14 @@ if(operation === 'qa-player-feedback' || operation === 'qa-player-feedback-expor
 } else if (operation === 'export') {
   verify();
   mkdirSync(output, { recursive: true });
-  run(binary, ['--headless', ...common, '--export-release', 'Windows Desktop', resolve(output, 'PokemonTactics.exe')], 'export-windows');
+  run(binary, ['--headless', ...common, '--export-release', 'Windows Desktop', resolve(output, executableName)], 'export-windows');
   cpSync(resolve(project, 'licenses'), resolve(output, 'licenses'), { recursive: true });
   cpSync(resolve(project, 'CREDITS.md'), resolve(output, 'CREDITS.md'));
   if (/^1\.0\.0-rc\.\d+$/.test(nativeVersion)) {
     cpSync(resolve(root,'docs/LEEME_WINDOWS.txt'),resolve(output,'LEEME.txt'));
-    const digest = createHash('sha256').update(readFileSync(resolve(output,'PokemonTactics.exe'))).digest('hex');
-    writeFileSync(resolve(output,'SHA256SUMS.txt'),`${digest}  PokemonTactics.exe\n`);
-    console.log(`Private RC executable: ${resolve(output,'PokemonTactics.exe')}\nSHA256: ${digest}`);
+    const digest = createHash('sha256').update(readFileSync(resolve(output,executableName))).digest('hex');
+    writeFileSync(resolve(output,'SHA256SUMS.txt'),`${digest}  ${executableName}\n`);
+    console.log(`Private RC executable: ${resolve(output,executableName)}\nSHA256: ${digest}`);
     process.exit(0);
   }
   if (chapter >= 22) {
@@ -552,11 +564,11 @@ Dos finales excluyentes tras la Liga: tres aves juntas o Mew/Mewtwo. Legendarios
 Consulta GUIA_DE_PRUEBA.md e INFORME_BALANCE.md para controles, sesiones propuestas y límites de las simulaciones. 49/78 habilidades normales activas; 29 pendientes. Arte del juego integrado; consulta ARTE_INTEGRADO.md. Dificultad y diversión requieren pruebas humanas.
 No hay conexión de red, cuentas ni servicios al jugar. Créditos/licencias acompañan la entrega. Publicación pública aplazada.
 `, 'utf8');
-  const digest = createHash('sha256').update(readFileSync(resolve(output, 'PokemonTactics.exe'))).digest('hex');
-  writeFileSync(resolve(output, 'SHA256SUMS.txt'), `${digest}  PokemonTactics.exe\n`);
-  console.log(`Windows executable: ${resolve(output, 'PokemonTactics.exe')}\nSHA256: ${digest}`);
+  const digest = createHash('sha256').update(readFileSync(resolve(output, executableName))).digest('hex');
+  writeFileSync(resolve(output, 'SHA256SUMS.txt'), `${digest}  ${executableName}\n`);
+  console.log(`Windows executable: ${resolve(output, executableName)}\nSHA256: ${digest}`);
 } else if (operation === 'qa-export') {
-  const release = resolve(output, 'PokemonTactics.exe');
+  const release = resolve(output, executableName);
   if (!existsSync(release)) throw new Error('Run npm run godot:export first.');
   run(release, ['--position', '-10000,-10000', '--audio-driver', 'Dummy', '--log-file', resolve(work, 'engine-release.log'), '--', `--qa-dir=${resolve(work, 'release')}`], 'ui-release', output);
   verifyUi(resolve(work, 'release'));

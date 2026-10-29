@@ -104,7 +104,7 @@ func open() -> void:
 
 func report() -> String:
 	var kind: String = "Error" if category.selected==0 else "Sugerencia"
-	var heading: String = "POKÉMON TACTICS · %s\nVersión: %s\nSistema: %s\nVentana: %d × %d\nTexto: %s%%" % [kind,ProjectSettings.get_setting("application/config/version"),OS.get_name(),app.get_window().size.x,app.get_window().size.y,app.input_profile.preferences.textScale]
+	var heading: String = "%s · %s\nVersión: %s\nSistema: %s\nVentana: %d × %d\nTexto: %s%%" % [ProjectSettings.get_setting("application/config/name"),kind,ProjectSettings.get_setting("application/config/version"),OS.get_name(),app.get_window().size.x,app.get_window().size.y,app.input_profile.preferences.textScale]
 	if include_context.button_pressed: heading += "\n"+context
 	return heading+"\n\nTítulo: "+subject.text.strip_edges()+"\n\nDescripción:\n"+description.text.strip_edges()+"\n"
 
@@ -118,7 +118,7 @@ func copy_report() -> void:
 	status.text = "Informe copiado. Puedes pegarlo en un correo o compartirlo como texto."
 
 func choose_file() -> void:
-	save_dialog.current_file = "pokemon-tactics-informe.txt"
+	save_dialog.current_file = "tactical-chronicles-kanto-informe.txt"
 	save_dialog.popup_centered(Vector2i(700,500))
 	app._apply_preferences()
 
@@ -132,7 +132,7 @@ func save_report(path: String) -> void:
 	status.text = "Informe guardado. Puedes adjuntarlo al correo."
 
 func email_uri() -> String:
-	var label: String = "[Pokémon Tactics · %s] %s: %s" % [ProjectSettings.get_setting("application/config/version"),"Error" if category.selected==0 else "Sugerencia",subject.text.strip_edges().left(80)]
+	var label: String = "[%s · %s] %s: %s" % [ProjectSettings.get_setting("application/config/name"),ProjectSettings.get_setting("application/config/version"),"Error" if category.selected==0 else "Sugerencia",subject.text.strip_edges().left(60)]
 	var body: String = report()
 	var recipient: String = CONTACT.uri_decode()
 	var uri: String = "mailto:"+recipient+"?subject="+label.uri_encode()+"&body="+body.uri_encode()
@@ -148,6 +148,6 @@ func prepare_email() -> void:
 	var result: Error = OS.shell_open(uri)
 	if result!=OK:
 		status.text = "No se pudo abrir el correo. El informe está copiado; puedes guardarlo como .txt."
-	elif not uri.get_slice("&body=",1).uri_decode().begins_with("POKÉMON TACTICS"):
+	elif not uri.get_slice("&body=",1).uri_decode().begins_with(str(ProjectSettings.get_setting("application/config/name"))):
 		status.text = "Informe largo copiado: pégalo en el borrador o adjunta el .txt. Revisa el correo y envíalo desde tu aplicación."
 	else: status.text = "Informe copiado y borrador solicitado. Revisa y envía desde tu aplicación; si no se abre, guarda el .txt."

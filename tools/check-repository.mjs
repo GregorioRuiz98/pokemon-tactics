@@ -17,6 +17,7 @@ export const currentDocs = [
   'docs/RELEASE_1_0_RC3.md', 'docs/SPRINT_40_RELIEF.md', 'docs/MAPAS_RELIEVE.md',
   'docs/RELEASE_1_0_RC4.md', 'docs/SPRINT_41_STABILITY.md',
   'docs/RELEASE_1_0_RC5.md', 'docs/FEEDBACK.md',
+  'docs/RELEASE_1_0_RC6.md',
 ];
 
 export function windowsVersion(version) {
@@ -114,7 +115,9 @@ export function audit(root) {
   if (!version) errors.push('Missing native version');
   else {
     const presets = readFileSync(resolve(root, 'godot/export_presets.cfg'), 'utf8');
-    for (const fragment of [`pokemon-tactics-${version}/windows`, `file_version="${windowsVersion(version)}"`, `product_version="${windowsVersion(version)}"`]) if (!presets.includes(fragment)) errors.push(`Export version differs: ${fragment}`);
+    const slug = project.match(/config\/artifact_slug="([^"]+)"/)?.[1] ?? 'pokemon-tactics';
+    const executable = project.match(/config\/executable_name="([^"]+)"/)?.[1] ?? 'PokemonTactics.exe';
+    for (const fragment of [`${slug}-${version}/windows/${executable}`, `file_version="${windowsVersion(version)}"`, `product_version="${windowsVersion(version)}"`]) if (!presets.includes(fragment)) errors.push(`Export version differs: ${fragment}`);
     for (const doc of ['README.md', 'godot/README.md', 'docs/PLAYTEST_WINDOWS.md', 'docs/REGLAS_ACTUALES.md', 'docs/LEEME_WINDOWS.txt']) if (!readFileSync(resolve(root, doc), 'utf8').includes(version)) errors.push(`${doc}: missing current native version ${version}`);
   }
   return { ok: errors.length === 0, version, indexedFiles: files.length, maintainedDocuments: currentDocs.length, localLinks: links, documentedCommands: commands, errors, scope: 'Local indexed-path hygiene, maintained links, script entry points and version consistency. No network, secret-content/history scan, campaign replay or external hardware test.' };

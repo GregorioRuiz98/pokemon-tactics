@@ -8,7 +8,9 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[2]
 helpers = runpy.run_path(str(ROOT/'tools/godot/package-candidate.py'))
 WORK, BUNDLE, RELEASE, EXE = [helpers[key] for key in ['WORK','BUNDLE','RELEASE','EXE']]
-EVIDENCE = ROOT/'docs/qa/sprint-42'
+VERSION, STAGE, EXECUTABLE = [helpers[key] for key in ['VERSION','STAGE','EXECUTABLE']]
+BRANDED = VERSION=='1.0.0-rc.6'
+EVIDENCE = ROOT/f'docs/qa/sprint-{STAGE}'
 
 
 def read(path):
@@ -16,7 +18,7 @@ def read(path):
 
 
 def main():
-    assert (helpers['VERSION'],helpers['STAGE'])==('1.0.0-rc.5',42) and EXE.is_file()
+    assert (VERSION,STAGE) in [('1.0.0-rc.5',42),('1.0.0-rc.6',43)] and EXE.is_file()
     subprocess.run(['git','diff','--exit-code','--diff-filter=MDR','d8875f32a9cbd732f88b886b85274c1c89be38f4','--',*helpers['PROTECTED']],cwd=ROOT,check=True,capture_output=True)
     EVIDENCE.mkdir(parents=True,exist_ok=True)
     results = {}
@@ -29,13 +31,17 @@ def main():
             (EVIDENCE/f'{suite}-{side}.json').write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
         helpers['verify_pair'](*pair,minimum)
         results[suite] = pair[0]
+    if BRANDED:
+        identity = results['feedback']['branding']
+        assert identity['name']=='Pokémon: Tactical Chronicles — Kanto' and identity['userDirectoryPreserved'] and identity['legacyVersion']=='1.0.0-rc.5'
     validation,lint = read(WORK/'validation.json'),read(WORK/'lint.json')
     assert validation['ok'] and validation['counts']['errors']==0 and validation['counts']['warnings']==65 and lint['ok']
     for name,value in [('validation',validation),('lint',lint)]:
         (EVIDENCE/(name+'.json')).write_text(json.dumps({'ok':value['ok'],'counts':value.get('counts',{})},indent=2)+'\n',encoding='utf-8')
     for name in results['feedback']['screenshots']: shutil.copy2(WORK/'feedback-source'/name,EVIDENCE/name)
     docs = BUNDLE/'Documentacion'; docs.mkdir(exist_ok=True)
-    for name in ['REGLAS_ACTUALES.md','PLAYTEST_WINDOWS.md','BETA_1_0.md','PLANTILLA_BETA.md','RELEASE_1_0_RC5.md','FEEDBACK.md','MAPAS_RELIEVE.md']:
+    notes_name = 'RELEASE_1_0_RC6.md' if BRANDED else 'RELEASE_1_0_RC5.md'
+    for name in ['REGLAS_ACTUALES.md','PLAYTEST_WINDOWS.md','BETA_1_0.md','PLANTILLA_BETA.md',notes_name,'FEEDBACK.md','MAPAS_RELIEVE.md']:
         shutil.copy2(ROOT/'docs'/name,docs/name)
     shutil.copy2(ROOT/'docs/PLAYTEST_WINDOWS.md',docs/'GUIA_DE_PRUEBA.md')
     shutil.copy2(ROOT/'docs/LEEME_WINDOWS.txt',BUNDLE/'LEEME.txt')
@@ -51,11 +57,16 @@ def main():
     previous = read(ROOT/'docs/qa/sprint-41/release.json')
     assert previous['campaignEdition']==30 and previous['fullCampaignInExe'] and previous['campaignOrders']==10277
     verification = {'version':'1.0.0-rc.5','campaignEdition':30,'combatEdition':25,'uiChecksPerBuild':{key:value['assertions'] for key,value in results.items()},'sourceAndExeStateMatch':True,'errors':0,'warnings':65,'newWarnings':0,'mailClientOpened':False,'emailSent':False,'humanPlaytest':False,'externalHardwareTest':False,'publicDeployment':False,'previousFullCampaign':{'version':previous['version'],'orders':previous['campaignOrders'],'stateHash':previous['stateHash'],'status':'Historical RC4 evidence; gameplay files unchanged; not replayed in RC5.'},'scope':'Feedback form and Pokédex modal regression exercised in source and final EXE. Clipboard, UTF-8 export, URI encoding/fallback, keyboard/mouse/Escape/focus and small window with150% text. No email sent.'}
+    verification['version'] = VERSION
+    if BRANDED:
+        verification['branding'] = results['feedback']['branding']
+        verification['previousFullCampaign']['status'] = 'Historical RC4 evidence; gameplay files unchanged; not replayed in RC6.'
+        verification['scope'] = 'Product rename, title layout, RC5 campaign/profile compatibility and feedback/Pokédex regression in source and final EXE. No email sent; no external hardware or new full campaign.'
     (docs/'VERIFICACION.json').write_text(json.dumps(verification,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     # The portable player document points to its own compact verification record.
-    notes = docs/'RELEASE_1_0_RC5.md'
-    notes.write_text(notes.read_text(encoding='utf-8').replace('[RC4](SPRINT_41_STABILITY.md)','RC4').replace('qa/sprint-42/release.json','VERIFICACION.json'),encoding='utf-8')
-    (BUNDLE/'SHA256SUMS.txt').write_text(helpers['digest'](EXE)+'  PokemonTactics.exe\n',encoding='utf-8')
+    notes = docs/notes_name
+    notes.write_text(notes.read_text(encoding='utf-8').replace('[RC4](SPRINT_41_STABILITY.md)','RC4').replace(f'qa/sprint-{STAGE}/release.json','VERIFICACION.json'),encoding='utf-8')
+    (BUNDLE/'SHA256SUMS.txt').write_text(helpers['digest'](EXE)+'  '+EXECUTABLE+'\n',encoding='utf-8')
     subprocess.run(['node','tools/check-repository.mjs','--bundle',str(BUNDLE)],cwd=ROOT,check=True)
     archive = helpers['archive']()
     record = {**verification,'exe':{'bytes':EXE.stat().st_size,'sha256':helpers['digest'](EXE)},'zip':{'bytes':archive.stat().st_size,'sha256':helpers['digest'](archive)}}
@@ -65,7 +76,7 @@ def main():
         assert value['exeSha256']==record['exe']['sha256'] and value['zipSha256']==record['zip']['sha256']
         record['cleanStartup'] = value
     (EVIDENCE/'release.json').write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    (RELEASE/'SHA256SUMS.txt').write_text(record['exe']['sha256']+'  windows/PokemonTactics.exe\n'+record['zip']['sha256']+'  '+archive.name+'\n',encoding='utf-8')
+    (RELEASE/'SHA256SUMS.txt').write_text(record['exe']['sha256']+'  windows/'+EXECUTABLE+'\n'+record['zip']['sha256']+'  '+archive.name+'\n',encoding='utf-8')
     print(json.dumps(record,ensure_ascii=False))
 
 

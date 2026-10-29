@@ -1,12 +1,14 @@
 @echo off
 setlocal
-set "qa_root=%TEMP%\PokemonTactics-check-%RANDOM%-%RANDOM%"
+set "qa_root=%TEMP%\TacticalChroniclesKanto-check-%RANDOM%-%RANDOM%"
 mkdir "%qa_root%"
 set "APPDATA=%qa_root%\Roaming"
 set "LOCALAPPDATA=%qa_root%\Local"
 mkdir "%APPDATA%"
 mkdir "%LOCALAPPDATA%"
-start "" /wait "%~dp0PokemonTactics.exe" -- --smoke-report="%qa_root%\arranque.json"
+set "game_exe=%~dp0TacticalChroniclesKanto.exe"
+if not exist "%game_exe%" set "game_exe=%~dp0PokemonTactics.exe"
+start "" /wait "%game_exe%" -- --smoke-report="%qa_root%\arranque.json"
 set "qa_exit=%errorlevel%"
 echo Informe de arranque: %qa_root%\arranque.json
 echo La prueba usa un perfil aislado y no cambia tu partida habitual.

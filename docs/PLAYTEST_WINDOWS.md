@@ -1,11 +1,11 @@
-# Probar Pokémon Tactics en Windows — 1.0.0-rc.5
+# Probar Pokémon: Tactical Chronicles — Kanto en Windows — 1.0.0-rc.6
 
-[Reglas actuales](REGLAS_ACTUALES.md) · [Cambios de la candidata](RELEASE_1_0_RC5.md).
+[Reglas actuales](REGLAS_ACTUALES.md) · [Cambios de la candidata](RELEASE_1_0_RC6.md).
 Este documento describe la campaña Windows actual. Los informes por versión son historial.
 
 ## Arranque y controles
 
-Extrae el ZIP completo y abre windows/PokemonTactics.exe. El juego lleva sus recursos y motor integrados: no requiere instalar Godot, Node, servidor ni iniciar sesión. La entrega no consulta la red al jugar. La prueba en un segundo ordenador físico sigue pendiente hasta recibir un resultado externo.
+Extrae el ZIP completo y abre windows/TacticalChroniclesKanto.exe. El juego lleva sus recursos y motor integrados: no requiere instalar Godot, Node, servidor ni iniciar sesión. La entrega no consulta la red al jugar. La prueba en un segundo ordenador físico sigue pendiente hasta recibir un resultado externo.
 
 Oak permite elegir inicial; la semilla se genera sola. Clic o flechas/Enter seleccionan casillas. A abre técnicas; R rectifica solo movimiento antes de actuar; F orienta y termina. Escape cancela, Tab recorre controles y F 6 cambia de panel. F 2 abre controles configurables. Rueda o +/− cambia zoom; C centra la unidad; P y flechas/arrastre desplazan la cámara. Las etiquetas reflejan las teclas reasignadas.
 

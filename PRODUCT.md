@@ -1,4 +1,4 @@
-# Pokémon Tactics — producto actual
+# Pokémon: Tactical Chronicles — Kanto — producto actual
 
 Juego táctico para Windows, gratuito y offline, para fans de Pokémon y RPG tácticos. Su propósito es portfolio y diversión; la difusión es una aspiración sin métricas públicas que la acrediten.
 

@@ -38,3 +38,5 @@ Cierre1.0: `closing_run.gd` congela las ofertas de cada mostrador en el estado; 
 Relieve RC3: `relief_run.gd` proyecta las órdenes sobre la revisión anterior y restaura edición30. `relief_store.gd` despacha guardados hasta30 y mantiene el replay mixto. KT40 identifica las semillas nuevas; KT36 y anteriores conservan sus reglas. `relief_board.gd` extiende la presentación sin modificar los mapas guardados. La altura lógica no depende de su proyección visual.
 
 Informes RC5: `ui/player_feedback.gd` conserva un borrador solo durante la sesión y captura contexto sin órdenes ni RNG. Copia, exporta UTF-8 o construye un `mailto:`; el sistema operativo abre el borrador y el jugador realiza el envío. `FileDialog` depende del diálogo de feedback para respetar modalidad y foco. No hay red ni telemetría.
+
+Identidad RC6: título comercial y metadatos de distribución en `project.godot`. Los identificadores de campaña, semilla, repositorio y directorio `PokemonTacticsLab` se conservan. No hay migración de reglas ni perfiles por el cambio de nombre.

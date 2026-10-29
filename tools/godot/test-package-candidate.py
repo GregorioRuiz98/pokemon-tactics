@@ -29,6 +29,13 @@ class EvidenceContract(unittest.TestCase):
         with self.assertRaises(AssertionError):
             verify(base,{**base,'profileSchema':1},42)
 
+    def test_product_identity_and_legacy_compatibility_must_match(self):
+        identity = {'name':'Tactical Chronicles','userDirectoryPreserved':True}
+        base = {**self.report(),'branding':identity}
+        for change in [{'name':'Old product','userDirectoryPreserved':True},{'name':'Tactical Chronicles','userDirectoryPreserved':False}]:
+            with self.subTest(change=change), self.assertRaises(AssertionError):
+                verify(base,{**base,'branding':change},42)
+
     def test_rc2_requires_its_own_profile_suite(self):
         if contract['VERSION'] != '1.0.0-rc.2': self.skipTest('Only the RC2 presentation package')
         self.assertIn('profile',contract['SUITES'])

@@ -1,0 +1,66 @@
+{
+  "version": "1.0.0-rc.6",
+  "campaignEdition": 30,
+  "combatEdition": 25,
+  "uiChecksPerBuild": {
+    "feedback": 102,
+    "dex": 72
+  },
+  "sourceAndExeStateMatch": true,
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "mailClientOpened": false,
+  "emailSent": false,
+  "humanPlaytest": false,
+  "externalHardwareTest": false,
+  "publicDeployment": false,
+  "previousFullCampaign": {
+    "version": "1.0.0-rc.4",
+    "orders": 10277,
+    "stateHash": "27aa70566dda5e02617b9f576f4e5462c76117b20a3102425c1dfba80db777a8",
+    "status": "Historical RC4 evidence; gameplay files unchanged; not replayed in RC6."
+  },
+  "scope": "Product rename, title layout, RC5 campaign/profile compatibility and feedback/Pokédex regression in source and final EXE. No email sent; no external hardware or new full campaign.",
+  "branding": {
+    "legacySaveSha256": "e312ee74fbcd08730a6f4fe89b0fc34bff146f4e6de456e131aca721909f262f",
+    "legacyStateHash": "e30a429fc2376b34c156888ba3a0a306b8b790e4fec18e02fa1395b1d6e6307b",
+    "legacyVersion": "1.0.0-rc.5",
+    "name": "Pokémon: Tactical Chronicles — Kanto",
+    "userDirectoryPreserved": true
+  },
+  "exe": {
+    "bytes": 132434488,
+    "sha256": "d71ee5bcfdc160ea5dfd60e33cdc0937d7a534879211450d99c785ae4e527e6e"
+  },
+  "zip": {
+    "bytes": 56008279,
+    "sha256": "f0d00cb726319134e1885cc16ad12660cb2469b8909304f0ab494cadab5f93fe"
+  },
+  "cleanStartup": {
+    "cpu": "Intel(R) Core(TM) i5-14600KF",
+    "editorHint": false,
+    "engine": "4.7.2-stable (official)",
+    "executable": "TacticalChroniclesKanto.exe",
+    "frames": 120,
+    "observedFps": 132.459541888674,
+    "os": "Windows",
+    "renderer": "gl_compatibility",
+    "scope": "Exact ZIP extracted to a fresh directory on the same physical PC. Engine embedded, no Godot on PATH. Audio uses Dummy for smoke; human audio and external hardware remain pending.",
+    "seconds": 0.905937,
+    "titleVisible": true,
+    "version": "1.0.0-rc.6",
+    "window": {
+      "height": 900,
+      "width": 1280
+    },
+    "archiveExtracted": true,
+    "isolatedProfile": true,
+    "godotNotOnPath": true,
+    "diagnosticHelperPassed": true,
+    "externalHardwareTest": false,
+    "humanPlaytest": false,
+    "exeSha256": "d71ee5bcfdc160ea5dfd60e33cdc0937d7a534879211450d99c785ae4e527e6e",
+    "zipSha256": "f0d00cb726319134e1885cc16ad12660cb2469b8909304f0ab494cadab5f93fe"
+  }
+}

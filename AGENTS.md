@@ -1,4 +1,4 @@
-# Pokémon Tactics — instrucciones vigentes
+# Pokémon: Tactical Chronicles — Kanto — instrucciones vigentes
 
 ## Antes de trabajar
 

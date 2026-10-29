@@ -1,6 +1,6 @@
 # Estado hacia 1.0
 
-Actualizado el 29 de octubre de 2026. **1.0.0-rc.5**, candidata privada Windows offline. No hay descarga pública anunciada. Los planes acumulados son [historial](history/PLAN_SPRINTS_2026-10-27.md), no funciones pendientes por reintroducir.
+Actualizado el 29 de octubre de 2026. **1.0.0-rc.6**, candidata privada Windows offline. No hay descarga pública anunciada. Los planes acumulados son [historial](history/PLAN_SPRINTS_2026-10-27.md), no funciones pendientes por reintroducir.
 
 ## Cierre del desarrollo
 
@@ -13,6 +13,7 @@ Actualizado el 29 de octubre de 2026. **1.0.0-rc.5**, candidata privada Windows 
 |40 — relieve e identidad de Kanto|[Informe](SPRINT_40_RELIEF.md), [58 mapas](MAPAS_RELIEVE.md), [RC3](RELEASE_1_0_RC3.md)|Terrazas conectadas, dos aproximaciones por tierra, senderos, escaleras y obstáculos temáticos. Edición30, sin cambios numéricos del balance.|
 |41 — correcciones y entrega|[Informe](SPRINT_41_STABILITY.md), [RC4](RELEASE_1_0_RC4.md)|Ficha de Pokédex anidada;72 comprobaciones de diálogo y20.574 de campaña por build, fuente/EXE.10.277 órdenes,58 lugares,8 medallas, replay completo y próximo inicial.|
 |42 — informes de jugadores|[RC5](RELEASE_1_0_RC5.md), [uso](FEEDBACK.md)|Formulario integrado; vista previa, contexto opcional, copia/.txt y borrador de correo. Sin servidor ni envío automático.|
+|43 — identidad del juego|[RC6](RELEASE_1_0_RC6.md)|Pokémon: Tactical Chronicles — Kanto. Portada, ejecutable e informes; conserva partidas y perfiles.|
 
 
 El cierre RC1 reutilizó una estrategia legal que funcionó en la edición previa; cada orden se ejecuta de nuevo. No importa el estado antiguo ni inyecta victorias, PS, dinero o Pokémon. El intento con una compra que agotó el presupuesto queda conservado. No se cambia el balance aceptado.

@@ -1,4 +1,4 @@
-# Caso de proyecto — Pokémon Tactics
+# Caso de proyecto — Pokémon: Tactical Chronicles — Kanto
 
 Juego táctico Windows desarrollado por Gregorio Ruiz con asistencia de IA. Para fans de Pokémon y estrategia por turnos. Aportación propia: adaptar reglas, progresión, decisiones de IA, guardado reproducible e interfaz; no se atribuyen personajes, sprites, datos ni audio original de terceros.
 

@@ -1,0 +1,22 @@
+{
+  "assertions": 102,
+  "branding": {
+    "legacySaveSha256": "e312ee74fbcd08730a6f4fe89b0fc34bff146f4e6de456e131aca721909f262f",
+    "legacyStateHash": "e30a429fc2376b34c156888ba3a0a306b8b790e4fec18e02fa1395b1d6e6307b",
+    "legacyVersion": "1.0.0-rc.5",
+    "name": "Pokémon: Tactical Chronicles — Kanto",
+    "userDirectoryPreserved": true
+  },
+  "campaignEdition": 30,
+  "failures": [],
+  "scope": "Automated same-PC source/EXE: RC6 title, commands and RC5 campaign/profile compatibility; feedback in title and natural battle, keyboard/mouse/Escape/focus,1280/100% and1024/150%, Unicode URI and long fallback, clipboard and UTF-8 save. No email client launched, no email sent, no external hardware.",
+  "screenshots": [
+    "title-brand-1280.png",
+    "title-brand-1024.png",
+    "feedback-form-1280.png",
+    "feedback-1280.png",
+    "feedback-form-1024.png",
+    "feedback-1024.png"
+  ],
+  "stateHash": "e30a429fc2376b34c156888ba3a0a306b8b790e4fec18e02fa1395b1d6e6307b"
+}

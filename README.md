@@ -1,12 +1,12 @@
-# Pokémon Tactics
+# Pokémon: Tactical Chronicles — Kanto
 
 Juego de rol táctico para Windows, gratuito y sin conexión, desarrollado para portfolio con asistencia de IA. Elige un inicial de Oak o una primera forma desbloqueada, forma un equipo de hasta seis Pokémon y recorre Kanto por combates en tableros isométricos con alturas.
 
-**Versión Windows: 1.0.0-rc.5. Estado: candidata privada para beta.** No hay una descarga pública anunciada. El prototipo web 0.12.0 es una versión histórica independiente.
+**Versión Windows: 1.0.0-rc.6. Estado: candidata privada para beta.** No hay una descarga pública anunciada. El prototipo web 0.12.0 es una versión histórica independiente.
 
 ## Jugar
 
-Extrae el paquete completo y abre `windows/PokemonTactics.exe`. No necesitas Godot, Node, servidor ni cuenta. La semilla se genera al empezar; partida, perfil y logros se guardan en el ordenador.
+Extrae el paquete completo y abre `windows/TacticalChroniclesKanto.exe`. No necesitas Godot, Node, servidor ni cuenta. La semilla se genera al empezar; partida, perfil y logros se guardan en el ordenador.
 
 La campaña recorre 58 lugares, con ocho gimnasios, Liga y rival. Después se encadenan las tres aves y Mew/Mewtwo. Incluye PC, reclutamiento local, tienda Kecleon, evolución, naturalezas, habilidades y climas. Los PP limitan los movimientos equipados; no se gastan al atacar.
 
@@ -28,9 +28,9 @@ Configura `GODOT_BIN` para abrir, probar o exportar desde otro ordenador. [Desar
 
 ## Estado de la entrega
 
-La RC5 añade informes de errores y sugerencias dentro del juego: vista previa, copia, archivo .txt y borrador de correo. Conserva las correcciones de Pokédex, los 58 mapas y el balance; la campaña completa se verificó en RC4. [Cambios de esta revisión](docs/RELEASE_1_0_RC5.md) · [Enviar feedback](docs/FEEDBACK.md).
+La RC6 adopta el nombre Pokémon: Tactical Chronicles — Kanto en Inicio, el ejecutable y los informes. Abre partidas y perfiles de RC5 sin cambiar sus reglas. Conserva las correcciones de Pokédex, los 58 mapas y el balance; la campaña completa se verificó en RC4. [Cambios de esta revisión](docs/RELEASE_1_0_RC6.md) · [Enviar feedback](docs/FEEDBACK.md).
 
-La candidata incluye Pokédex151,19 logros y primeras formas desbloqueables al nivel5. El cierre anterior verificó la edición29 con7.865 órdenes legales, recompensas y guardados; fija las ofertas de Kecleon durante cada visita y reduce el trabajo de los menús ocultos. [Entrega y comprobaciones](docs/SPRINT_38_RC.md) · [Cambios y límites](docs/RELEASE_1_0_RC5.md) · [Protocolo beta](docs/BETA_1_0.md).
+La candidata incluye Pokédex151,19 logros y primeras formas desbloqueables al nivel5. El cierre anterior verificó la edición29 con7.865 órdenes legales, recompensas y guardados; fija las ofertas de Kecleon durante cada visita y reduce el trabajo de los menús ocultos. [Entrega y comprobaciones](docs/SPRINT_38_RC.md) · [Cambios y límites](docs/RELEASE_1_0_RC6.md) · [Protocolo beta](docs/BETA_1_0.md).
 
 Siguen pendientes jugadores externos y otro ordenador físico. El [estado de lanzamiento](docs/PLAN_SPRINTS.md) distingue lo comprobado de lo pendiente. La [guía de entrega](docs/DEPLOY.md) describe cómo preparar el ZIP sin publicar automáticamente.
 
