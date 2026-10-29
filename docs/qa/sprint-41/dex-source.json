@@ -1,0 +1,11 @@
+{
+  "assertions": 72,
+  "campaignEdition": 30,
+  "failures": [],
+  "scope": "Natural battle plus read-only Pokédex inspection: nested modal, keyboard/mouse, focus, search, parent closure,1280/100% and1024/150%. Automated same-PC test.",
+  "screenshots": [
+    "dex-detail-1280.png",
+    "dex-detail-1024.png"
+  ],
+  "stateHash": "5e09839174acf6d3af44dae52e2cf973a0ed78cd6e89c98b83419338832efb7d"
+}

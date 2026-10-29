@@ -15,6 +15,7 @@ export const currentDocs = [
   'docs/RELEASE_1_0_RC2.md',
   'docs/BETA_RC2_2026-10-28.md',
   'docs/RELEASE_1_0_RC3.md', 'docs/SPRINT_40_RELIEF.md', 'docs/MAPAS_RELIEVE.md',
+  'docs/RELEASE_1_0_RC4.md', 'docs/SPRINT_41_STABILITY.md',
 ];
 
 export function windowsVersion(version) {

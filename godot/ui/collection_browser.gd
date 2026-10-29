@@ -77,4 +77,4 @@ func select_species(species: int) -> void:
 	elif species!=base: access = "Evoluciona a %s o recluta esta forma en Kecleon desde Nv. %d."%[Collection.record(base).name,Collection.minimum_level(species)]
 	var text: String = ("Obtenido" if owned else "Visto" if seen else "Sin ver")+"\n"+app._type_names(record.types)+"\n\n"+access
 	text += "\n\nInicial: %s · Nv. 5\n%s"%[Collection.record(base).name,"Desbloqueado en este perfil." if base in app.trainer.model.starters() else "Se desbloquea al obtener una forma de esta línea."]
-	app._review_text("#%03d · %s"%[species,record.name],text)
+	app.trainer.dialog.show_species("#%03d · %s"%[species,record.name],text)

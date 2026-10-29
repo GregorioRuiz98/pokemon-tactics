@@ -159,7 +159,12 @@
     "godot:qa:relief:export": "node tools/godot/run.mjs qa-relief-export",
     "godot:verify:relief": "python tools/godot/verify-relief.py",
     "godot:test:relief:compat": "node tools/godot/run.mjs test-relief-compat",
-    "godot:test:relief:replay": "node tools/godot/run.mjs replay-relief"
+    "godot:test:relief:replay": "node tools/godot/run.mjs replay-relief",
+    "godot:qa:dex": "node tools/godot/run.mjs qa-dex-dialog",
+    "godot:qa:dex:export": "node tools/godot/run.mjs qa-dex-dialog-export",
+    "godot:qa:candidate:journey": "node tools/godot/run.mjs qa-candidate-journey",
+    "godot:qa:candidate:journey:export": "node tools/godot/run.mjs qa-candidate-journey-export",
+    "godot:prepare:candidate:journey": "python tools/godot/prepare-candidate-journey.py"
   },
   "dependencies": {
     "easystarjs": "0.4.4",

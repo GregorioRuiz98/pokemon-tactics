@@ -118,7 +118,24 @@ if (!['qa-fluency-export','qa-economy-export','qa-moves-export','qa-spatial-expo
   if (version.status !== 0 || !version.stdout.startsWith('4.7.2.stable.')) throw new Error('Expected Godot 4.7.2 stable.');
 }
 const common = ['--path', project, '--log-file', resolve(work, `engine-${operation}.log`)];
-if(operation === 'replay-relief') {
+if(operation === 'qa-dex-dialog' || operation === 'qa-dex-dialog-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'dex-'+(exported?'release':'source'));
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--dex-qa-dir='+directory],'dex-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'dex-dialog.json'),'utf8'));
+  if(report.failures.length || report.assertions<60) throw new Error('Pokédex dialog regression failed');
+} else if(operation === 'qa-candidate-journey' || operation === 'qa-candidate-journey-export') {
+  const exported=operation.endsWith('export');
+  const directory=resolve(work,'journey-'+(exported?'release':'source'));
+  const journal=process.env.CANDIDATE_JOURNAL??resolve(work,'journey-strategy.json');
+  if(!existsSync(journal)) {
+    const prepared=spawnSync('python',[resolve(root,'tools/godot/prepare-candidate-journey.py')],{cwd:root,encoding:'utf8',windowsHide:true});
+    if(prepared.status!==0 || !existsSync(journal)) throw new Error('Prepare a legal campaign journal first: '+prepared.stderr);
+  }
+  run(exported?resolve(output,'PokemonTactics.exe'):binary,[...(exported?[]:common),'--position','50,50','--audio-driver','Dummy','--','--candidate-journey-dir='+directory,'--review-journal='+journal],'playthrough-candidate-'+(exported?'release':'source'),exported?output:root);
+  const report=JSON.parse(readFileSync(resolve(directory,'candidate-journey.json'),'utf8'));
+  if(report.failures.length || report.visited.length!==58 || report.orders!==10277) throw new Error('Full native campaign failed');
+} else if(operation === 'replay-relief') {
   run(binary,['--headless',...common,'--script','res://tests/relief_replay.gd','--','--save-dir='+resolve(work,'natural-relief-final')],'playthrough-relief-cold');
 } else if(operation === 'test-relief-compat') {
   run(binary,['--headless',...common,'--script','res://tests/relief_compat.gd','--','--save-dir='+resolve(work,'relief-compat')],'relief-compat');

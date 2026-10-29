@@ -5,7 +5,7 @@ Campaña Windows 1.0.0-rc.2 como referencia. Las notas por sprint/diseños anter
 | Necesito… | Documento vigente |
 | --- | --- |
 | Jugar, controles o recuperación | [Prueba Windows](PLAYTEST_WINDOWS.md), [LEEME](LEEME_WINDOWS.txt) |
-| Candidata1.0 y beta | [Cambios](RELEASE_1_0_RC3.md), [protocolo](BETA_1_0.md), [plantilla](PLANTILLA_BETA.md) |
+| Candidata1.0 y beta | [Cambios](RELEASE_1_0_RC4.md), [protocolo](BETA_1_0.md), [plantilla](PLANTILLA_BETA.md) |
 | Resultado de la auditoría beta | [RC2: pruebas e incidencias](BETA_RC2_2026-10-28.md) |
 | Colección e iniciales 0.35 | [Cambios](SPRINT_35_COLLECTION.md) |
 | Reglas actuales | [Reglas](REGLAS_ACTUALES.md) |
@@ -20,7 +20,7 @@ Campaña Windows 1.0.0-rc.2 como referencia. Las notas por sprint/diseños anter
 | Versiones anteriores | [Historial](history/README.md) |
 | Prototipo navegador | [Web histórica](WEB_LEGACY.md) |
 
-Revisión actual: [relieve de Kanto RC3](SPRINT_40_RELIEF.md) · [58 mapas](MAPAS_RELIEVE.md). Campaña base y entrega previa: [RC1](SPRINT_38_RC.md).
+Revisión actual: [correcciones y campaña RC4](SPRINT_41_STABILITY.md); mapas de [RC3](SPRINT_40_RELIEF.md) · [58 mapas](MAPAS_RELIEVE.md). Campaña base y entrega previa: [RC1](SPRINT_38_RC.md).
 
 Cierre: [campaña actual](SPRINT_36_CLOSURE.md), [interfaz/rendimiento](SPRINT_37_USABILITY.md).
 

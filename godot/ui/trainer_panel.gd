@@ -20,6 +20,7 @@ var controls: Dictionary = {}
 var page_buttons: Dictionary = {}
 var feedback: String = ""
 var dex_browser: VBoxContainer
+var species_detail: ConfirmationDialog
 var fitting: bool = false
 
 func setup(owner_app: Control, trainer: RefCounted) -> void:
@@ -49,6 +50,18 @@ func setup(owner_app: Control, trainer: RefCounted) -> void:
 	size_changed.connect(queue_fit)
 	app.get_window().size_changed.connect(func():
 		if visible: queue_fit())
+	visibility_changed.connect(func():
+		if not visible and species_detail!=null: species_detail.hide())
+
+func show_species(label: String, text: String) -> void:
+	# The profile already owns the main window's exclusive modal slot.
+	# Its detail must be a child window, rather than a sibling of the profile.
+	if species_detail==null:
+		species_detail = preload("res://ui/action_review.gd").new()
+		add_child(species_detail)
+		species_detail.setup(app)
+		app._watch_dialog(species_detail)
+	species_detail.review(label,text,Callable())
 
 func queue_fit() -> void:
 	if not fitting: fitting = true; call_deferred("fit_window")

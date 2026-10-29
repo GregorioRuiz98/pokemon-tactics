@@ -3,6 +3,9 @@ import hashlib,json,os,pathlib,re,shutil,zipfile
 import runpy
 ROOT=pathlib.Path(__file__).resolve().parents[2]
 version=re.search(r'config/version="([^"]+)"',(ROOT/'godot/project.godot').read_text(encoding='utf-8'))[1]
+if version=='1.0.0-rc.4':
+    runpy.run_path(str(ROOT/'tools/godot/package-stability.py'),run_name='__main__')
+    raise SystemExit(0)
 if version=='1.0.0-rc.3':
     runpy.run_path(str(ROOT/'tools/godot/package-relief.py'),run_name='__main__')
     raise SystemExit(0)

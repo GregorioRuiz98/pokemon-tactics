@@ -1,6 +1,6 @@
 # Reglas actuales — campaña Windows
 
-Referencia vigente desde 1.0.0-rc.3. Sustituye las descripciones antiguas de PT,
+Referencia vigente desde 1.0.0-rc.4. Sustituye las descripciones antiguas de PT,
 caramelos, piedras consumibles, roles y finales excluyentes. Los informes de
 sprints anteriores describen sus propias versiones y se conservan como historial.
 
@@ -117,7 +117,7 @@ se conservan al iniciar otra aventura. El perfil anterior se migra con copia
 
 Las campañas anteriores conservan sus reglas hasta actualizarse entre encuentros.
 No se inventan capturas de jefes que ya se habían vencido antes de actualizar.
-Detalles en [Cambios de la candidata](RELEASE_1_0_RC3.md).
+Detalles en [Cambios de la candidata](RELEASE_1_0_RC4.md).
 
 ## Relieve de Kanto · edición 30
 

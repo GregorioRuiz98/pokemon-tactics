@@ -1,6 +1,6 @@
-# Probar Pokémon Tactics en Windows — 1.0.0-rc.3
+# Probar Pokémon Tactics en Windows — 1.0.0-rc.4
 
-[Reglas actuales](REGLAS_ACTUALES.md) · [Cambios de la candidata](RELEASE_1_0_RC3.md).
+[Reglas actuales](REGLAS_ACTUALES.md) · [Cambios de la candidata](RELEASE_1_0_RC4.md).
 Este documento describe la campaña Windows actual. Los informes por versión son historial.
 
 ## Arranque y controles

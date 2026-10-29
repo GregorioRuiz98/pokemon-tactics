@@ -1,0 +1,59 @@
+{
+  "version": "1.0.0-rc.4",
+  "campaignEdition": 30,
+  "combatEdition": 25,
+  "uiChecksPerBuild": {
+    "dex": 72,
+    "journey": 20574
+  },
+  "campaignLocations": 58,
+  "campaignBattles": 57,
+  "campaignMedals": 8,
+  "campaignOrders": 10277,
+  "fullCampaignInExe": true,
+  "sourceAndExeStateMatch": true,
+  "stateHash": "27aa70566dda5e02617b9f576f4e5462c76117b20a3102425c1dfba80db777a8",
+  "nextStateHash": "3b5af4aea55561807a62f4ec12eac77d244a9d88d2f40b760d65aab7987128a2",
+  "mapCatalogHash": "90a254e0510f45f50133b9ff30a828c8e975880d72f55f421851a355c1f30313",
+  "errors": 0,
+  "warnings": 65,
+  "newWarnings": 0,
+  "humanPlaytest": false,
+  "externalHardwareTest": false,
+  "publicDeployment": false,
+  "scope": "UI correction only; full edition30 legal journal executed through source and final EXE with per-order saves, full cold replay, profile and next-run starter. Prior RC3 map/core fixtures are historical, not repeated.",
+  "exe": {
+    "bytes": 132416728,
+    "sha256": "5f02bf7ef7e0705c07250b808dabc9a3a04c39311ce0a4035d7d52f11a242b80"
+  },
+  "zip": {
+    "bytes": 56002479,
+    "sha256": "baa07d17d021d1d9e202bafd0225383943d16108b4ab3f1b15d61805dcd9da0d"
+  },
+  "cleanStartup": {
+    "cpu": "Intel(R) Core(TM) i5-14600KF",
+    "editorHint": false,
+    "engine": "4.7.2-stable (official)",
+    "executable": "PokemonTactics.exe",
+    "frames": 120,
+    "observedFps": 132.369244006155,
+    "os": "Windows",
+    "renderer": "gl_compatibility",
+    "scope": "Exact ZIP extracted to a fresh directory on the same physical PC. Engine embedded, no Godot on PATH. Audio uses Dummy for smoke; human audio and external hardware remain pending.",
+    "seconds": 0.906555,
+    "titleVisible": true,
+    "version": "1.0.0-rc.4",
+    "window": {
+      "height": 900,
+      "width": 1280
+    },
+    "archiveExtracted": true,
+    "isolatedProfile": true,
+    "godotNotOnPath": true,
+    "diagnosticHelperPassed": true,
+    "externalHardwareTest": false,
+    "humanPlaytest": false,
+    "exeSha256": "5f02bf7ef7e0705c07250b808dabc9a3a04c39311ce0a4035d7d52f11a242b80",
+    "zipSha256": "baa07d17d021d1d9e202bafd0225383943d16108b4ab3f1b15d61805dcd9da0d"
+  }
+}

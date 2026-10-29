@@ -1,4 +1,4 @@
-# Desarrollo nativo — Windows 1.0.0-rc.3
+# Desarrollo nativo — Windows 1.0.0-rc.4
 
 [Reglas](../docs/REGLAS_ACTUALES.md) · [Jugar/recuperar](../docs/PLAYTEST_WINDOWS.md) · [Arquitectura](../docs/ARCHITECTURE.md) · [Estado](../docs/PLAN_SPRINTS.md)
 
@@ -48,11 +48,11 @@ npm run godot:check:candidate
 
 El runner comprueba exactamente Godot 4.7.2 estable. Las herramientas de QA del EXE también comprueban el editor; el jugador que abre el EXE no lo necesita. El empaquetado requiere evidencias fuente/EXE y lint/validación según [Entrega](../docs/DEPLOY.md).
 
-Salidas relativas a raíz: `../releases/pokemon-tactics-1.0.0-rc.3/`; QA: `../../work/qa-sprint-40/`. Partidas reales: `%APPDATA%/PokemonTacticsLab`; no usarlas en ensayos.
+Salidas relativas a raíz: `../releases/pokemon-tactics-1.0.0-rc.4/`; QA: `../../work/qa-sprint-41/`. Partidas reales: `%APPDATA%/PokemonTacticsLab`; no usarlas en ensayos.
 
 [Notas acumuladas](../docs/history/GODOT_README_2026-10-27.md) · [Web 0.12.0](../docs/WEB_LEGACY.md).
 
-La candidata usa `application/config/qa_stage=40` para separar número de sprint y versión del producto. La versión Windows numérica es 1.0.0.3; campaña30/combate25 añade mapas sin sobrescribir los motores publicados. `godot:test:package` comprueba el contrato del empaquetador; `godot:check:candidate` extrae el ZIP y prueba arranque con perfil aislado en el mismo PC. La reproducción completa puede tardar varios minutos y no es una sesión humana.
+La candidata usa `application/config/qa_stage=41` para separar número de sprint y versión del producto. La versión Windows numérica es 1.0.0.4; campaña30/combate25 añade mapas sin sobrescribir los motores publicados. `godot:test:package` comprueba el contrato del empaquetador; `godot:check:candidate` extrae el ZIP y prueba arranque con perfil aislado en el mismo PC. La reproducción completa puede tardar varios minutos y no es una sesión humana.
 
 Historial: para la revisión de presentación RC2 se exigieron las suites de perfil
 (`godot:qa:profile` y `godot:qa:profile:export`), colección, usabilidad de cierre
@@ -62,3 +62,7 @@ evidencia previa de RC1; no se presenta como repetido en RC2.
 ## Relieve RC3
 
 `npm run godot:verify:relief` verifica dos aproximaciones y accesos por tierra en los58 diseños. `npm run godot:test:relief` comprueba116 escenarios, IA y compatibilidad. `npm run godot:simulate:relief` recorre Kanto con órdenes legales; `npm run godot:qa:relief` y `npm run godot:qa:relief:export` comparan apertura natural y116 vistas de prueba. El empaquetador RC3 es `tools/godot/package-relief.py`; exige esta evidencia y la campaña final del catálogo exacto, no reutiliza resultados RC2. [Detalle](../docs/SPRINT_40_RELIEF.md).
+
+## Correcciones RC4
+
+`npm run godot:qa:dex` y `npm run godot:qa:dex:export` comprueban ficha anidada, teclado/ratón, foco, búsqueda y texto150%. `npm run godot:prepare:candidate:journey` prepara el diario legal de la simulación previa; si no existe, genera uno con `npm run godot:simulate:relief`. `npm run godot:qa:candidate:journey` y `npm run godot:qa:candidate:journey:export` ejecutan las10.277 órdenes desde la interfaz y verifican guardados, perfil y próximo inicial. El empaquetador RC4 es `tools/godot/package-stability.py`; las reglas continúan en edición30.

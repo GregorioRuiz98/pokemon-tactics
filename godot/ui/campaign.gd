@@ -29,6 +29,8 @@ var starter_dialog: AcceptDialog
 var starter_browser: VBoxContainer
 var encounter_preview: RefCounted = preload("res://ui/encounter_preview.gd").new()
 var relief_qa_dir: String = ""
+var dex_qa_dir: String = ""
+var candidate_journey_dir: String = ""
 var quality_qa_dir: String = ""
 var climate_qa_dir: String = ""
 var trainer: RefCounted = preload("res://ui/trainer_session.gd").new()
@@ -223,6 +225,8 @@ func _boot() -> void:
 		if argument.begins_with("--closing-playthrough-dir="): closing_playthrough_dir = argument.trim_prefix("--closing-playthrough-dir=")
 		if argument.begins_with("--collection-qa-dir="): collection_qa_dir = argument.trim_prefix("--collection-qa-dir=")
 		if argument.begins_with("--briefing-qa-dir="): briefing_qa_dir = argument.trim_prefix("--briefing-qa-dir=")
+		if argument.begins_with("--dex-qa-dir="): dex_qa_dir = argument.trim_prefix("--dex-qa-dir=")
+		if argument.begins_with("--candidate-journey-dir="): candidate_journey_dir = argument.trim_prefix("--candidate-journey-dir=")
 		if argument.begins_with("--relief-qa-dir="): relief_qa_dir = argument.trim_prefix("--relief-qa-dir=")
 		if argument.begins_with("--quality-qa-dir="): quality_qa_dir = argument.trim_prefix("--quality-qa-dir=")
 		if argument.begins_with("--climate-qa-dir="): climate_qa_dir = argument.trim_prefix("--climate-qa-dir=")
@@ -281,6 +285,8 @@ func _boot() -> void:
 	if not collection_qa_dir.is_empty(): test_dir = collection_qa_dir
 	if not quality_qa_dir.is_empty(): test_dir = quality_qa_dir
 	if not relief_qa_dir.is_empty(): test_dir = relief_qa_dir
+	if not dex_qa_dir.is_empty(): test_dir = dex_qa_dir
+	if not candidate_journey_dir.is_empty(): test_dir = candidate_journey_dir
 	if not playthrough_qa_dir.is_empty(): test_dir = playthrough_qa_dir
 	if not portable_smoke_path.is_empty(): test_dir = portable_smoke_path.get_base_dir().path_join("diagnostic-profile")
 	qa_running = not test_dir.is_empty()
@@ -317,6 +323,8 @@ func _boot() -> void:
 	add_child(title_screen)
 	title_screen.setup(self)
 	title_screen.hide()
+	if not dex_qa_dir.is_empty(): _open_title(); call_deferred("_run_dex_qa"); return
+	if not candidate_journey_dir.is_empty(): _open_title(); call_deferred("_run_candidate_journey"); return
 	if not relief_qa_dir.is_empty(): _open_title(); call_deferred("_run_relief_qa"); return
 	if not portable_smoke_path.is_empty(): _open_title(); call_deferred("_run_portable_smoke")
 	elif not playthrough_qa_dir.is_empty(): _open_title(); call_deferred("_run_playthrough_qa")
@@ -1964,3 +1972,9 @@ func _travel_command(command: Dictionary) -> void:
 
 func _run_relief_qa() -> void:
 	await load("res://ui/qa_relief.gd").new().run(self,relief_qa_dir)
+
+func _run_dex_qa() -> void:
+	await load("res://ui/qa_dex_dialog.gd").new().run(self,dex_qa_dir)
+
+func _run_candidate_journey() -> void:
+	await load("res://ui/qa_candidate_journey.gd").new().run(self,candidate_journey_dir)
